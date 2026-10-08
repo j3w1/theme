@@ -1844,3 +1844,40 @@ the address field instead of opening the intended control. Neither a startup
 marker nor absence of a second crash proves rendered acceptance. A fresh native
 tooltip paint and update/recovery stability assessment are still required before
 another mapping is admitted. No raw crash dump or document content was read.
+
+
+### Native sign-in shortcut and bounded offline crash evidence
+
+After a reboot, the recovered Full candidate had no running engine and Test
+failed only that check. Its installed current-user Run value was 329 characters,
+exceeding Microsoft's documented 260-character command-data limit. The existing
+guard was then invoked manually; its compatibility/artifact checks passed and it
+started the engine. The startup-length defect is established, but neither that
+invocation nor the length observation proves why the real sign-in omitted it.
+
+Full installation now serializes a native current-user Startup shell link to the
+same pinned PowerShell executable and public installer Guard action, retaining
+explicit source/state paths and hidden, noninteractive execution. Serialization
+occurs in bounded task staging; only the ordinary journaled file operation writes
+Startup. Matching journal-owned links reuse their exact recorded bytes, including
+hidden shell-link flags; edited links reach normal conflict handling. The previous Run value is
+removed within that transaction and its exact original value/type can be restored.
+No scheduled task, watchdog, second public installer or unknown-version admission
+is introduced. Actual sign-in remains an unresolved native acceptance check.
+
+Platform contracts: [Run command limit](https://learn.microsoft.com/en-us/windows/win32/setupapi/run-and-runonce-registry-keys),
+[Startup shortcuts](https://support.microsoft.com/en-US/Windows/Experience/Startup-Boot/configure-startup-applications-in-windows),
+and [native shell-link creation](https://learn.microsoft.com/en-us/troubleshoot/windows-client/admin-development/create-desktop-shortcut-with-wsh).
+
+Following explicit owner authorization, a bounded offline diagnostic read the
+matching Explorer exception record, module metadata, register context and stack
+bytes requested by Microsoft's unwinder. It did not read the heap, scan stack
+words, inspect a live process, output raw bytes or upload the dump. Matching local
+PE identities and unwind records produced 128 frames before the fixed frame limit;
+the stack is incomplete. Public PDB identity and indexed symbol records resolved
+the fault as CDependencyObject::SetParent + 0x72, reached through effective-value
+and theme-resource updates, including CSetter::NotifyThemeChangedCore. This narrows
+the failure to a native theme-resource refresh but does not establish the invalid
+pointer, original caller, brush ownership error or crash cause. The rejected
+tooltip mappings remain withdrawn. The earlier failure and unread-dump boundary
+above are historical; the later owner-authorized diagnostic does not rewrite them.

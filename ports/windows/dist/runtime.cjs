@@ -1688,8 +1688,17 @@ if (["Plan", "Apply", "Update"].includes(action)) {
   const set = (p, keys, value) => ops.push({ kind: "json", path: safe(p), keys, after: { exists: true, value } });
   const member = (p, collection, key, value, item) => ops.push({ kind: "json", path: safe(p), keys: [], member: { collection, key, value }, after: { exists: true, value: item } });
   if (args.mode === "Full" && (!fixture || args.fixtureWindhawk)) {
-    const command = `"${args.guardPwsh ?? args.pwsh}" -NoLogo -NoProfile -NonInteractive -WindowStyle Hidden -File "${import_node_path2.default.join(source, "install.ps1")}" -Action Guard -StateRoot "${state}"`;
-    reg("Software\\Microsoft\\Windows\\CurrentVersion\\Run", "j3w1ThemeGuard", command, "String");
+    const startupTarget = safe(args.guardPwsh ?? args.pwsh ?? (fixture ? import_node_path2.default.join(state, "fixture/runtime/pwsh.exe") : null));
+    const quote = (value) => '"' + String(value).replace(/(\\*)"/g, '$1$1\\"').replace(/(\\+)$/, "$1$1") + '"';
+    for (const value of [startupTarget, source, state]) if (/[\r\n\0"]/.test(value)) throw Error("Invalid startup guard path");
+    const startupArguments = `-NoLogo -NoProfile -NonInteractive -WindowStyle Hidden -File ${quote(import_node_path2.default.join(source, "install.ps1"))} -Action Guard -StateRoot ${quote(state)}`;
+    const ownedStartup = history.transactions.filter((tx) => tx.status === "applied").flatMap((tx) => tx.operations).filter((op) => op.applied && op.kind === "file" && import_node_path2.default.basename(op.path) === "j3w1-theme-guard.lnk").at(-1);
+    const startupSpec = { target: startupTarget, arguments: startupArguments, workingDirectory: source };
+    if (ownedStartup?.after?.exists) startupSpec.expectedShortcut = { path: ownedStartup.path, value: ownedStartup.after.value };
+    const startup = fixture ? { path: import_node_path2.default.join(root, "startup/j3w1-theme-guard.lnk"), value: Buffer.from(JSON.stringify({ target: startupTarget, arguments: startupArguments, workingDirectory: source })).toString("base64") } : ps({ operation: "startupShortcut", ...startupSpec });
+    if (typeof startup.path !== "string" || typeof startup.value !== "string" || !startup.value) throw Error("Invalid startup shortcut result");
+    ops.push({ kind: "file", path: safe(startup.path), after: { exists: true, value: startup.value } });
+    ops.push({ kind: "registry", key: "Software\\Microsoft\\Windows\\CurrentVersion\\Run", name: "j3w1ThemeGuard", after: { exists: false } });
     ops.push({ kind: "windhawk-setting", name: "disableUpdateCheck", after: { exists: true, value: true } });
   }
   const personalization = "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize";

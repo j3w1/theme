@@ -125,6 +125,14 @@ Full setup starts the retained Windhawk engine. Test fails if that engine is
 stopped. Repeating installation of the same revision can restart it without
 recompiling unchanged adapters; it preserves reported settings conflicts.
 
+At sign-in, Full mode uses one managed shortcut in your Startup folder to invoke
+the same installer's compatibility guard with the retained runtime and explicit
+state path. Setup replaces its previous registry startup command, which could
+exceed Windows' 260-character Run-key limit. The shortcut and removal of the old
+entry share normal journaled Update, Restore and Uninstall recovery. Setup does
+not create another public script, scheduled task or background watcher. A manual
+guard invocation remains separate from acceptance after an actual new sign-in.
+
 ## Remaining limits
 
 The owner confirmed that Paint's Selection and Brushes buttons, including their

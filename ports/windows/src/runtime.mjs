@@ -107,8 +107,22 @@ const file=(dest,from)=>ops.push({kind:'file',path:safe(dest),after:{exists:true
 const set=(p,keys,value)=>ops.push({kind:'json',path:safe(p),keys,after:{exists:true,value}});
 const member=(p,collection,key,value,item)=>ops.push({kind:'json',path:safe(p),keys:[],member:{collection,key,value},after:{exists:true,value:item}});
 if(args.mode==='Full'&&(!fixture||args.fixtureWindhawk)){
- const command=`"${args.guardPwsh??args.pwsh}" -NoLogo -NoProfile -NonInteractive -WindowStyle Hidden -File "${path.join(source,'install.ps1')}" -Action Guard -StateRoot "${state}"`;
- reg('Software\\Microsoft\\Windows\\CurrentVersion\\Run','j3w1ThemeGuard',command,'String');
+ // Run registry data is limited to 260 characters. Keep the same pinned
+ // guard, with explicit state/runtime paths, in a native Startup shell link.
+ // The link is a journaled file; no second installer or background loop exists.
+ const startupTarget=safe(args.guardPwsh??args.pwsh??(fixture?path.join(state,'fixture/runtime/pwsh.exe'):null));
+ const quote=value=>'"'+String(value).replace(/(\\*)"/g,'$1$1\\"').replace(/(\\+)$/,'$1$1')+'"';
+ for(const value of [startupTarget,source,state])if(/[\r\n\0"]/.test(value))throw Error('Invalid startup guard path');
+ const startupArguments=`-NoLogo -NoProfile -NonInteractive -WindowStyle Hidden -File ${quote(path.join(source,'install.ps1'))} -Action Guard -StateRoot ${quote(state)}`;
+ const ownedStartup=history.transactions.filter(tx=>tx.status==='applied').flatMap(tx=>tx.operations).filter(op=>op.applied&&op.kind==='file'&&path.basename(op.path)==='j3w1-theme-guard.lnk').at(-1);
+ const startupSpec={target:startupTarget,arguments:startupArguments,workingDirectory:source};
+ if(ownedStartup?.after?.exists)startupSpec.expectedShortcut={path:ownedStartup.path,value:ownedStartup.after.value};
+ const startup=fixture?{path:path.join(root,'startup/j3w1-theme-guard.lnk'),value:Buffer.from(JSON.stringify({target:startupTarget,arguments:startupArguments,workingDirectory:source})).toString('base64')}:ps({operation:'startupShortcut',...startupSpec});
+ if(typeof startup.path!=='string'||typeof startup.value!=='string'||!startup.value)throw Error('Invalid startup shortcut result');
+ ops.push({kind:'file',path:safe(startup.path),after:{exists:true,value:startup.value}});
+ // Migrate the previous owned Run value within the same transaction. Its
+ // exact original bytes/type remain restorable through existing registry ops.
+ ops.push({kind:'registry',key:'Software\\Microsoft\\Windows\\CurrentVersion\\Run',name:'j3w1ThemeGuard',after:{exists:false}});
  ops.push({kind:'windhawk-setting',name:'disableUpdateCheck',after:{exists:true,value:true}});
 }
 const personalization='Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize';

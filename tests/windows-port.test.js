@@ -354,6 +354,43 @@ test('Windhawk uses local installed IDs, verifies staged version and nested enab
  const failed=f.run('Test',f.args);assert.equal(failed.status,1);assert.match(failed.stdout,/disabled or unknown state/);
  f.ok('Guard',f.args);f.ok('Test',f.args);f.ok('Uninstall',f.args);assert.deepEqual(f.db(),{appSettings:{disableUpdateCheck:false}});
 });
+
+test('Full startup uses one journaled shell link and restores the former Run value exactly',t=>{
+ const f=windhawkFixture(t,'protocol'),runKey='Software\\Microsoft\\Windows\\CurrentVersion\\Run|j3w1ThemeGuard';
+ const registry=path.join(f.state,'fixture/registry.json'),link=path.join(f.state,'fixture/startup/j3w1-theme-guard.lnk');
+ const original={exists:true,type:'ExpandString',value:'owner original startup value'};
+ write(registry,{[runKey]:original,unrelated:{exists:true,type:'String',value:'keep'}});
+ f.ok('Plan',f.args);assert.ok(!fs.existsSync(link));assert.deepEqual(read(registry)[runKey],original);
+ const longPwsh=path.join(f.state,'long startup path '.repeat(10),'nested startup path '.repeat(10),'pwsh.exe');
+ const args={...f.args,guardPwsh:longPwsh};
+ f.ok('Apply',args);
+ const specification=JSON.parse(fs.readFileSync(link,'utf8'));
+ assert.equal(specification.target,longPwsh);
+ assert.ok((longPwsh+' '+specification.arguments).length>260);
+ assert.ok(specification.arguments.includes(' -Action Guard -StateRoot "'+f.state+'"'));
+ assert.ok(specification.arguments.includes(' -File "'+path.join(args.source,'install.ps1')+'"'));
+ assert.equal(read(registry)[runKey],undefined);assert.equal(read(registry).unrelated.value,'keep');
+ assert.equal(f.journal().transactions[0].operations.filter(op=>op.kind==='file'&&op.path===link).length,1);
+ assert.equal(JSON.parse(f.ok('Apply',args).stdout).result,'unchanged');
+ f.ok('Test',args);f.ok('Restore',args);
+ assert.ok(!fs.existsSync(link));assert.deepEqual(read(registry)[runKey],original);
+ assert.equal(read(registry).unrelated.value,'keep');
+});
+
+test('startup migration failure and later user shortcut edits retain exact recovery',t=>{
+ const f=windhawkFixture(t,'protocol'),runKey='Software\\Microsoft\\Windows\\CurrentVersion\\Run|j3w1ThemeGuard';
+ const registry=path.join(f.state,'fixture/registry.json'),link=path.join(f.state,'fixture/startup/j3w1-theme-guard.lnk');
+ const original={exists:true,type:'String',value:'legacy guard'};
+ write(registry,{[runKey]:original});
+ const failure=f.run('Apply',{...f.args,failAfter:2});assert.notEqual(failure.status,0);
+ assert.ok(!fs.existsSync(link));assert.deepEqual(read(registry)[runKey],original);
+ f.ok('Apply',f.args);write(link,'later user link bytes');
+ assert.equal(f.run('Test',f.args).status,1);
+ const recovery=f.run('Restore',f.args);assert.equal(recovery.status,2);
+ assert.equal(fs.readFileSync(link,'utf8'),'later user link bytes');
+ assert.ok(JSON.parse(recovery.stdout).conflicts.some(value=>value.includes('j3w1-theme-guard.lnk')));
+});
+
 test('lifecycle progress preserves JSON results and reports every restored update',t=>{
  const f=windhawkFixture(t,'protocol');
  const first=f.ok('Apply',f.args);

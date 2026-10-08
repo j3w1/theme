@@ -67,6 +67,77 @@ public static class J3w1StartLayoutProbe {
       }
     } finally {if($null -ne $key){$key.Dispose()}}
   }
+  'startupShortcut' {
+    # Serialize a native link in private staging. The lifecycle alone writes
+    # the Startup file, atomically and with an original-state receipt.
+    function Assert-ShortcutPath([string]$Path){
+      if(-not [IO.Path]::IsPathFullyQualified($Path) -or $Path -match '[\r\n\x00"]'){throw 'Invalid startup shortcut path'}
+      $full=[IO.Path]::GetFullPath($Path)
+      for($cursor=$full;$cursor;){
+        if(Test-Path -LiteralPath $cursor){
+          if((Get-Item -LiteralPath $cursor -Force).Attributes -band [IO.FileAttributes]::ReparsePoint){throw 'Startup shortcut reparse path refused'}
+        }
+        $parent=[IO.Path]::GetDirectoryName($cursor)
+        if($parent -eq $cursor){break};$cursor=$parent
+      }
+      return $full
+    }
+    $target=Assert-ShortcutPath ([string]$request.target)
+    $working=Assert-ShortcutPath ([string]$request.workingDirectory)
+    if([IO.Path]::GetFileName($target) -cnotin 'pwsh.exe','powershell.exe' -or -not [IO.File]::Exists($target) -or -not [IO.Directory]::Exists($working)){throw 'Startup guard executable or source unavailable'}
+    $arguments=[string]$request.arguments
+    if($arguments.Length -gt 4096 -or $arguments -match '[\r\n\x00]' -or -not $arguments.StartsWith('-NoLogo -NoProfile -NonInteractive -WindowStyle Hidden -File ') -or $arguments -notmatch ' -Action Guard -StateRoot '){throw 'Invalid startup guard arguments'}
+    $startup=[Environment]::GetFolderPath([Environment+SpecialFolder]::Startup)
+    if(-not $startup){throw 'Current-user Startup folder unavailable'}
+    $destination=Assert-ShortcutPath (Join-Path $startup 'j3w1-theme-guard.lnk')
+    $shell=New-Object -ComObject WScript.Shell
+    $description='j3w1 theme compatibility guard'
+    # Only reuse exact journal-owned bytes. Visible fields alone omit hidden
+    # shell-link flags such as RunAsUser; a user edit must reach conflict checks.
+    $trusted=if($request.PSObject.Properties['expectedShortcut']){$request.expectedShortcut}else{$null}
+    if($null -ne $trusted -and [StringComparer]::OrdinalIgnoreCase.Equals([string]$trusted.path,$destination) -and [IO.File]::Exists($destination) -and (Get-Item -LiteralPath $destination).Length -le 131072){
+      $bytes=[IO.File]::ReadAllBytes($destination)
+      $value=[Convert]::ToBase64String($bytes)
+      if($value -ceq [string]$trusted.value -and $bytes.Length -ge 76 -and ([BitConverter]::ToUInt32($bytes,20) -band 0x2000) -eq 0){
+        $existing=$null
+        try {
+          $existing=$shell.CreateShortcut($destination)
+          $matches=[StringComparer]::OrdinalIgnoreCase.Equals($existing.TargetPath,$target) -and $existing.Arguments -ceq $arguments -and [StringComparer]::OrdinalIgnoreCase.Equals($existing.WorkingDirectory,$working) -and $existing.WindowStyle -eq 7 -and $existing.Description -ceq $description
+        } catch { $matches=$false } finally { if($null -ne $existing){[void][Runtime.InteropServices.Marshal]::FinalReleaseComObject($existing)} }
+        if($matches){
+          [void][Runtime.InteropServices.Marshal]::FinalReleaseComObject($shell)
+          @{path=$destination;value=$value}|ConvertTo-Json -Compress
+          break
+        }
+      }
+    }
+    $temporaryRoot=Assert-ShortcutPath ([IO.Path]::GetTempPath())
+    $stage=Join-Path $temporaryRoot ('j3w1-startup-link-'+[guid]::NewGuid().ToString('N'))
+    if(Test-Path -LiteralPath $stage){throw 'Startup shortcut staging collision'}
+    [void][IO.Directory]::CreateDirectory($stage)
+    $stage=Assert-ShortcutPath $stage
+    $temporary=Join-Path $stage 'guard.lnk'
+    $shortcut=$null
+    try {
+      $shortcut=$shell.CreateShortcut($temporary)
+      $shortcut.TargetPath=$target;$shortcut.Arguments=$arguments
+      $shortcut.WorkingDirectory=$working;$shortcut.WindowStyle=7;$shortcut.Description=$description
+      $shortcut.Save()
+      [void](Assert-ShortcutPath $temporary)
+      if((Get-Item -LiteralPath $temporary).Length -gt 131072){throw 'Startup shortcut exceeds bounded size'}
+      $bytes=[IO.File]::ReadAllBytes($temporary)
+      if($bytes.Length -lt 76 -or ([BitConverter]::ToUInt32($bytes,20) -band 0x2000) -ne 0){throw 'Startup shortcut unexpectedly requests a different user'}
+      @{path=$destination;value=[Convert]::ToBase64String($bytes)}|ConvertTo-Json -Compress
+    } finally {
+      if($null -ne $shortcut){[void][Runtime.InteropServices.Marshal]::FinalReleaseComObject($shortcut)}
+      [void][Runtime.InteropServices.Marshal]::FinalReleaseComObject($shell)
+      # Remove only the two exact owned staging paths; never recursive cleanup.
+      $checked=Assert-ShortcutPath $stage
+      if(-not $checked.StartsWith($temporaryRoot.TrimEnd('\')+'\',[StringComparison]::OrdinalIgnoreCase) -or [IO.Path]::GetFileName($checked) -notmatch '^j3w1-startup-link-[0-9a-f]{32}$'){throw 'Unsafe startup shortcut cleanup refused'}
+      if([IO.File]::Exists($temporary)){[void](Assert-ShortcutPath $temporary);[IO.File]::Delete($temporary)}
+      [IO.Directory]::Delete($checked,$false)
+    }
+  }
   'engine' {
     $expected=[IO.Path]::GetFullPath($request.path)
     if([IO.Path]::GetFileName($expected) -cne 'windhawk.exe' -or $expected -match '[\r\n]'){throw 'Invalid theme engine path'}

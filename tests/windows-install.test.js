@@ -145,3 +145,38 @@ test('Prepare retains verified release and returns a plan without mutating theme
  assert.ok(fs.existsSync(path.join(f.state,'releases',f.first,'verified.json')));
  f.ok('Apply',['-Revision',f.first]);f.ok('Test');
 });
+
+test('native Startup link preserves long explicit guard arguments without writing Startup',{skip:process.platform!=='win32'?'Native Windows shell-link API required':false},t=>{
+ const folder=fs.mkdtempSync(path.join(os.tmpdir(),'j3w1 startup link test '));
+ t.after(()=>fs.rmSync(folder,{recursive:true,force:true}));
+ const probe=spawnSync(pwsh,['-NoProfile','-Command','[Diagnostics.Process]::GetCurrentProcess().MainModule.FileName'],{encoding:'utf8',windowsHide:true,timeout:15000});
+ assert.equal(probe.status,0,probe.stderr);
+ const target=probe.stdout.trim(),working=path.join(folder,'guard source');fs.mkdirSync(working);
+ fs.writeFileSync(path.join(working,'install.ps1'),'throw "The serializer must never execute this script"\n');
+ const state=path.join(folder,'long state path '.repeat(15));
+ const args=`-NoLogo -NoProfile -NonInteractive -WindowStyle Hidden -File "${path.join(working,'install.ps1')}" -Action Guard -StateRoot "${state}"`;
+ assert.ok((target+' '+args).length>260);
+ const invoke=request=>spawnSync(pwsh,['-NoProfile','-File',path.join(repoRoot,'ports/windows/adapter.ps1')],{input:JSON.stringify(request),encoding:'utf8',windowsHide:true,timeout:30000});
+ const request={operation:'startupShortcut',target,arguments:args,workingDirectory:working};
+ const startup=spawnSync(pwsh,['-NoProfile','-Command',"[Environment]::GetFolderPath([Environment+SpecialFolder]::Startup)"],{encoding:'utf8',windowsHide:true,timeout:15000});
+ assert.equal(startup.status,0,startup.stderr);
+ const destination=path.join(startup.stdout.trim(),'j3w1-theme-guard.lnk');
+ const before=fs.existsSync(destination)?fs.readFileSync(destination):null;
+ const result=invoke(request);assert.equal(result.status,0,result.stderr);
+ const data=JSON.parse(result.stdout),link=path.join(folder,'serialized.lnk');
+ assert.equal(path.basename(data.path),'j3w1-theme-guard.lnk');
+ const serialized=Buffer.from(data.value,'base64');
+ assert.ok(serialized.length>=76&&serialized.length<131072);
+ assert.equal(serialized.readUInt32LE(20)&0x2000,0,'RunAsUser must remain disabled');
+ fs.writeFileSync(link,Buffer.from(data.value,'base64'));
+ const inspection=path.join(folder,'inspect.ps1');
+ fs.writeFileSync(inspection,`$r=[Console]::In.ReadToEnd()|ConvertFrom-Json; $s=New-Object -ComObject WScript.Shell; $l=$s.CreateShortcut($r.link); @{target=$l.TargetPath;arguments=$l.Arguments;working=$l.WorkingDirectory;windowStyle=$l.WindowStyle}|ConvertTo-Json -Compress`);
+ const shown=spawnSync(pwsh,['-NoProfile','-File',inspection],{input:JSON.stringify({link}),encoding:'utf8',windowsHide:true,timeout:15000});
+ assert.equal(shown.status,0,shown.stderr);
+ const metadata=JSON.parse(shown.stdout);assert.equal(metadata.target.toLowerCase(),target.toLowerCase());
+ assert.equal(metadata.arguments,args);assert.equal(metadata.working.toLowerCase(),working.toLowerCase());assert.equal(metadata.windowStyle,7);
+ for(const bad of [{...request,arguments:args+'\n'}, {...request,target:path.join(folder,'unapproved.exe')}])assert.notEqual(invoke(bad).status,0);
+ const junction=path.join(folder,'runtime-junction');fs.symlinkSync(path.dirname(target),junction,'junction');
+ assert.notEqual(invoke({...request,target:path.join(junction,path.basename(target))}).status,0);
+ assert.deepEqual(fs.existsSync(destination)?fs.readFileSync(destination):null,before,'Serialization must never write Startup');
+});
