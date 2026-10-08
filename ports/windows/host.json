@@ -1113,26 +1113,6 @@
           "styles": {
             "Fill@Disabled": "color.interaction.disabled.bg"
           }
-        },
-        {
-          "target": "ToolTip",
-          "styles": {
-            "Background": "color.surface.raised",
-            "Foreground": "color.text.default",
-            "BorderBrush": "color.border.overlay",
-            "CornerRadius": "radius.none",
-            "BorderThickness": "border.width.default"
-          }
-        },
-        {
-          "target": "ToolTip > ContentPresenter#LayoutRoot",
-          "styles": {
-            "Background": "color.surface.raised",
-            "Foreground": "color.text.default",
-            "BorderBrush": "color.border.overlay",
-            "CornerRadius": "radius.none",
-            "BorderThickness": "border.width.default"
-          }
         }
       ]
     },

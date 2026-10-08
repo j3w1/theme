@@ -570,9 +570,7 @@
       "windows-11-taskbar-styler.resource.MenuFlyoutSubItemForeground",
       "windows-11-taskbar-styler.resource.MenuFlyoutSubItemForegroundSubMenuOpened",
       "windows-11-taskbar-styler.resource.MenuFlyoutSubItemForegroundPointerOver",
-      "windows-11-taskbar-styler.resource.MenuFlyoutSubItemForegroundPressed",
-      "windows-11-file-explorer-styler | ToolTip | Foreground",
-      "windows-11-file-explorer-styler | ToolTip > ContentPresenter#LayoutRoot | Foreground"
+      "windows-11-taskbar-styler.resource.MenuFlyoutSubItemForegroundPressed"
     ],
     "color.text.bright": [
       "native.bright",
@@ -881,9 +879,7 @@
       "windows-11-taskbar-styler.resource.MenuFlyoutItemBackground",
       "windows-11-taskbar-styler.resource.MenuFlyoutItemBackgroundDisabled",
       "windows-11-taskbar-styler.resource.MenuFlyoutSubItemBackground",
-      "windows-11-taskbar-styler.resource.MenuFlyoutSubItemBackgroundDisabled",
-      "windows-11-file-explorer-styler | ToolTip | Background",
-      "windows-11-file-explorer-styler | ToolTip > ContentPresenter#LayoutRoot | Background"
+      "windows-11-taskbar-styler.resource.MenuFlyoutSubItemBackgroundDisabled"
     ],
     "color.border.control": [
       "powertoys.border",
@@ -1372,9 +1368,7 @@
       "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.Popup > Border#InputSwitcherPopupBorder | BorderBrush",
       "windows-11-taskbar-styler | MenuFlyoutPresenter > Border | BorderBrush",
       "windows-11-taskbar-styler | Grid#OverflowRootGrid > Border#OverflowFlyoutBackgroundBorder | BorderBrush",
-      "windows-11-taskbar-styler.resource.MenuFlyoutPresenterBorderBrush",
-      "windows-11-file-explorer-styler | ToolTip | BorderBrush",
-      "windows-11-file-explorer-styler | ToolTip > ContentPresenter#LayoutRoot | BorderBrush"
+      "windows-11-taskbar-styler.resource.MenuFlyoutPresenterBorderBrush"
     ],
     "border.width.default": [
       "windows-11-start-menu-styler | Border#AcrylicBorder | BorderThickness",
@@ -1401,9 +1395,7 @@
       "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.Popup > Border#InputSwitcherPopupBorder | BorderThickness",
       "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates | BorderThickness",
       "windows-11-taskbar-styler | MenuFlyoutPresenter > Border | BorderThickness",
-      "windows-11-taskbar-styler | Grid#OverflowRootGrid > Border#OverflowFlyoutBackgroundBorder | BorderThickness",
-      "windows-11-file-explorer-styler | ToolTip | BorderThickness",
-      "windows-11-file-explorer-styler | ToolTip > ContentPresenter#LayoutRoot | BorderThickness"
+      "windows-11-taskbar-styler | Grid#OverflowRootGrid > Border#OverflowFlyoutBackgroundBorder | BorderThickness"
     ],
     "radius.none": [
       "windows-11-start-menu-styler | Border#AcrylicBorder | CornerRadius",
@@ -1488,9 +1480,7 @@
       "windows-11-taskbar-styler | MenuFlyoutSubItem | CornerRadius",
       "windows-11-taskbar-styler | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | CornerRadius",
       "windows-11-taskbar-styler | ToggleMenuFlyoutItem | CornerRadius",
-      "windows-11-taskbar-styler | ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates | CornerRadius",
-      "windows-11-file-explorer-styler | ToolTip | CornerRadius",
-      "windows-11-file-explorer-styler | ToolTip > ContentPresenter#LayoutRoot | CornerRadius"
+      "windows-11-taskbar-styler | ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates | CornerRadius"
     ],
     "color.interaction.disabled.bg": [
       "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | Background@Disabled",

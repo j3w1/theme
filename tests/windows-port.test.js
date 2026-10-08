@@ -1006,28 +1006,3 @@ test('shell popup state rules use brush properties supported by their template p
  for(const state of ['','PointerOver','Pressed','Disabled'])
   assert.ok(payload.themeResourceVariables.some(s=>s.startsWith('MenuFlyoutItemForeground'+state+'=')));
 });
-
-test('Explorer toolbar tooltips theme the backing and template without changing tooltip behavior',async()=>{
- const host=await readJson('ports/windows/host.json');
- const mapping=await readJson('ports/windows/mapping.json');
- const tokens=(await readJson('exports/tokens.resolved.json')).profiles.default.tokens;
- const id='windows-11-file-explorer-styler';
- const config=host.stylers.find(m=>m.id===id);
- const payload=await readJson('ports/windows/dist/'+id+'.json');
- const expected={Background:'color.surface.raised',Foreground:'color.text.default',BorderBrush:'color.border.overlay',CornerRadius:'radius.none',BorderThickness:'border.width.default'};
- for(const target of ['ToolTip','ToolTip > ContentPresenter#LayoutRoot']){
-  const rules=config.targets.filter(t=>t.target===target);
-  assert.equal(rules.length,1,target);
-  assert.deepEqual(rules[0].styles,expected);
-  const emitted=payload.controlStyles.filter(t=>t.target===target);
-  assert.equal(emitted.length,1,target);
-  assert.deepEqual(emitted[0].styles,Object.entries(expected).map(([key,role])=>`${key}=${windowsStyleValue(key,{type:tokens[role].type,resolved:tokens[role].value})}`));
-  for(const [key,role] of Object.entries(expected))assert.ok(mapping.mappings[role].includes(`${id} | ${target} | ${key}`));
- }
- // Only the observed native ToolTip and its direct backing are admitted.
- // Keep placement, content, visibility, focus, timing and dimensions host-owned.
- assert.deepEqual(config.targets.filter(t=>/ToolTip/i.test(t.target)).map(t=>t.target),['ToolTip','ToolTip > ContentPresenter#LayoutRoot']);
- assert.equal(config.resources,undefined,'No Settings-only resource aliases may leak into Explorer');
- for(const target of config.targets.filter(t=>/ToolTip/i.test(t.target)))for(const key of Object.keys(target.styles))
-  assert.doesNotMatch(key,/^(?:Width|Height|MinWidth|MaxWidth|Padding|Margin|Placement|PlacementTarget|Content|Text|Visibility|IsOpen|IsEnabled|IsTabStop|TabIndex|UseSystemFocusVisuals|ShowDuration|InitialShowDelay)$/);
-});
