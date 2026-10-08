@@ -1091,3 +1091,46 @@ strip still needs an admissible baseline; it is not covered by this correction.
 
 References: [system dispatcher management](https://learn.microsoft.com/en-us/windows/apps/develop/dispatcherqueue#system-dispatcher-management)
 and [EnsureSystemDispatcherQueue](https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/winrt/microsoft.ui.dispatching.dispatcherqueue.ensuresystemdispatcherqueue).
+
+
+### Quick Settings and taskbar popup surfaces
+
+The owner's screenshot showed a gray media card, gray brightness/volume
+tracks and thumbs, and orange checked quick-action tiles while the outer
+Quick Settings frame and labels were already themed. The previous configuration
+omitted those separate native controls. The existing pinned notification styler
+now maps the media backing and L1 layers to the black canvas, the paginated
+toggle presenters' normal/hover/pressed/checked/disabled states to the canonical
+switch palette, and the named media and footer buttons to their state palette.
+Slider resources are local to this styler; scoped track and thumb selectors
+map the visible parts. Native slider values, media playback, connectivity,
+rotation settings, labels, artwork, target sizes, navigation and focus remain
+host-owned. No global accent setting, diagnostic adapter or second installer
+is added. The same public install.ps1 transaction restores these settings.
+
+The taskbar right-click menu and hidden-icons overflow panel now use the raised
+surface, square edges and overlay border through the existing taskbar styler.
+Menu rest, hover, pressed, disabled and submenu-open states and separators use
+their canonical roles. Menu resource overrides stay local to that styler. Icons,
+menu actions, popup placement, control dimensions and native focus are preserved.
+
+These configuration and preservation checks do not establish installed rendering
+acceptance. First-open, pointer-exit, disabled, focus, high-contrast and DPI
+behavior still need bounded native checks. Slider thumb silhouettes remain
+native; no replacement drawing or artwork overlay is used.
+
+
+### Deferred chrome island discovery
+
+The owner supplied gray Windows Terminal profile and tab-menu screenshots.
+Source inspection found a startup defect: a pending named chrome control was
+retried against the entire XamlRoot content, then removed from the pending list.
+Terminal's generic document page is intentionally outside the chrome allowlist,
+so that retry could discard the tab/menu root. Deferred discovery now uses the
+same bounded root selection as immediate discovery. It retains the named chrome
+control or its topmost admitted ancestor in the same XamlRoot. A generic page,
+foreign root, terminal pane, drawing surface or document does not grant admission.
+The exact package/runtime checks, existing restoration path and public installer
+are retained. Synthetic native checks exercise generic content, admitted parents,
+foreign roots and bounded cyclic ancestry. Installed menu rendering still needs
+acceptance; this source defect does not by itself explain every gray menu frame.

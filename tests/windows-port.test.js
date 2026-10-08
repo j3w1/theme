@@ -131,7 +131,7 @@ test('Settings resource overrides retain shared brushes and stay isolated from o
   for(const [key,role]of Object.entries({...host.resources,...(mod.id===settings.id?expected:{})}))
    assert.equal(actual[key],windowsStyleValue(key,{type:tokens[role].type,resolved:tokens[role].value}));
   if(mod.id!==settings.id){
-   assert.equal(mod.resources,undefined);
+   if(!['windows-11-notification-center-styler','windows-11-taskbar-styler'].includes(mod.id))assert.equal(mod.resources,undefined);
    for(const key of Object.keys(expected))assert.equal(actual[key],undefined,'Settings resource leaked into '+mod.id);
   }
  }
@@ -909,4 +909,100 @@ test('Paint menu acrylic backing has a bounded public-property owner and all cle
  assert.match(paint,/restored=RestorePopupBackings\(state.popupBackings\)&&restored/);
  assert.match(paint,/RestorePopupBackings\(uiState->popupBackings\)/);
  assert.equal((paint.match(/if\(!RestorePopupBackings\(state.popupBackings\)\)Log\(239\);Restore\(state.roots\[at\]\);/g)??[]).length,2);
+});
+
+
+test('Quick Settings maps its own media, toggle and slider states without changing actions or content',async()=>{
+ const host=await readJson('ports/windows/host.json');
+ const mapping=await readJson('ports/windows/mapping.json');
+ const tokens=(await readJson('exports/tokens.resolved.json')).profiles.default.tokens;
+ const id='windows-11-notification-center-styler';
+ const config=host.stylers.find(m=>m.id===id);
+ const payload=await readJson('ports/windows/dist/'+id+'.json');
+ const rules=target=>payload.controlStyles.find(t=>t.target===target)?.styles??[];
+ for(const target of ['Grid#MediaTransportControlsRegion','Grid#MediaTransportControlsRoot','Grid#L1Grid','Grid#L1Grid > Border']){
+  assert.ok(rules(target).includes('Background=#000000'));
+  assert.ok(rules(target).includes('CornerRadius=0'));
+ }
+ const tile=rules('ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates');
+ for(const [state,bg,fg]of [['Normal','color.surface.input','color.text.default'],['PointerOver','color.interaction.hover.bg','color.text.default'],['Pressed','color.interaction.pressed.bg','color.text.default'],['Checked','color.action.primary.bg','color.action.primary.text'],['CheckedPointerOver','color.action.primary.hover-bg','color.action.primary.text'],['CheckedPressed','color.action.primary.pressed-bg','color.action.primary.text'],['Disabled','color.interaction.disabled.bg','color.text.disabled'],['CheckedDisabled','color.interaction.disabled.bg','color.text.disabled']]){
+  assert.ok(tile.includes('Background@'+state+'='+tokens[bg].css));
+  assert.ok(tile.includes('Foreground@'+state+'='+tokens[fg].css));
+ }
+ for(const button of ['Windows.UI.Xaml.Controls.Primitives.RepeatButton#PreviousButton','Button#PlayPauseButton','Windows.UI.Xaml.Controls.Primitives.RepeatButton#NextButton','Button#FooterButton','Button#VolumeL2Button']){
+  const values=rules(button+' > ContentPresenter#ContentPresenter@CommonStates');
+  for(const state of ['Normal','PointerOver','Pressed','Disabled']){
+   assert.ok(values.some(value=>value.startsWith('Background@'+state+'=')));
+   assert.ok(values.some(value=>value.startsWith('Foreground@'+state+'=')));
+  }
+ }
+ assert.ok(Object.keys(config.resources).length>0);
+ assert.ok(Object.keys(config.resources).every(key=>key.startsWith('Slider')));
+ for(const [key,role]of Object.entries(config.resources)){
+  if(Object.hasOwn(host.winuiChromeResources,key))assert.equal(role,host.winuiChromeResources[key]);
+  assert.ok(mapping.mappings[role].includes(id+'.resource.'+key));
+  assert.ok(payload.themeResourceVariables.includes(key+'='+windowsStyleValue(key,{type:tokens[role].type,resolved:tokens[role].value})));
+  for(const other of host.stylers.filter(mod=>mod.id!==id))assert.ok(!Object.hasOwn(other.resources??{},key));
+ }
+ for(const slider of ['ControlCenter.AsyncSlider','Slider'])for(const shape of ['Windows.UI.Xaml.Shapes.Rectangle#HorizontalTrackRect','Windows.UI.Xaml.Shapes.Rectangle#HorizontalDecreaseRect','Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border > Windows.UI.Xaml.Shapes.Ellipse#SliderInnerThumb']){
+  const values=rules(slider+' > Grid@CommonStates > * > '+shape);
+  for(const state of ['Normal','PointerOver','Pressed','Disabled'])assert.ok(values.some(v=>v.startsWith('Fill@'+state+'=')));
+ }
+ for(const {target,styles}of payload.controlStyles)for(const value of styles){
+  assert.doesNotMatch(value,/^(?:Source|Value|Minimum|Maximum|SmallChange|LargeChange|IsChecked|IsEnabled|Visibility|Width|Height|Margin|Padding|Command|Content|Text|FontSize|RenderTransform)=/);
+  assert.doesNotMatch(target,/ThumbnailImage|AlbumTextAndArtContainer/);
+ }
+});
+
+
+test('taskbar popup styling preserves icon artwork, commands and native focus',async()=>{
+ const host=await readJson('ports/windows/host.json'),mapping=await readJson('ports/windows/mapping.json');
+ const id='windows-11-taskbar-styler',config=host.stylers.find(m=>m.id===id);
+ const payload=await readJson('ports/windows/dist/'+id+'.json');
+ const rules=target=>payload.controlStyles.find(t=>t.target===target)?.styles??[];
+ for(const target of ['MenuFlyoutPresenter > Border','Grid#OverflowRootGrid > Border#OverflowFlyoutBackgroundBorder']){
+  assert.ok(rules(target).includes('Background=#160b0b'));
+  assert.ok(rules(target).includes('BorderBrush=#e53935'));
+  assert.ok(rules(target).includes('CornerRadius=0'));
+  assert.ok(rules(target).includes('BorderThickness=1'));
+ }
+ for(const type of ['MenuFlyoutItem','MenuFlyoutSubItem','ToggleMenuFlyoutItem']){
+  const states=rules(type+' > Grid#LayoutRoot@CommonStates');
+  for(const state of ['Normal','PointerOver','Pressed','Disabled']){
+   assert.ok(states.some(v=>v.startsWith('Background@'+state+'=')));
+   assert.ok(!states.some(v=>v.startsWith('Foreground')),'Grid colors text through named menu resources');
+  }
+ }
+ assert.ok(rules('MenuFlyoutSeparator > Windows.UI.Xaml.Shapes.Rectangle').includes('Fill=#2b0e0d'));
+ assert.ok(Object.keys(config.resources).length>0);
+ for(const [key,role]of Object.entries(config.resources)){
+  assert.ok(key.startsWith('MenuFlyout'));
+  assert.equal(role,host.winuiChromeResources[key]);
+  assert.ok(mapping.mappings[role].includes(id+'.resource.'+key));
+  for(const other of host.stylers.filter(mod=>mod.id!==id))assert.ok(!Object.hasOwn(other.resources??{},key));
+ }
+ for(const rule of payload.controlStyles)for(const value of rule.styles)
+  assert.doesNotMatch(value,/^(?:Source|Glyph|Text|Content|Command|IsEnabled|Visibility|Width|Height|Margin|Padding|RenderTransform|FocusVisualPrimaryBrush|FocusVisualSecondaryBrush|IsTabStop|TabIndex)=/);
+});
+
+
+test('deferred chrome islands retry their original admitted root instead of a document page',()=>{
+ for(const app of ['notepad','paint','terminal']){
+  const source=fs.readFileSync(path.join('ports/windows/dist','j3w1-'+app+'-chrome.wh.cpp'),'utf8');
+  const retry=source.slice(source.indexOf('for(auto it=state.pending.begin()'),source.indexOf('const size_t rootCount'));
+  assert.match(retry,/xaml&&xaml.Content\(\)\) \{ObserveRoot\(element\);finished=true;/);
+  assert.doesNotMatch(retry,/Track\(xaml.Content/);
+  assert.match(source,/auto admitted=SelectChromeRoot\(element,content,FrameworkElement\{nullptr\},/);
+ }
+});
+
+
+test('shell popup state rules use brush properties supported by their template parts',async()=>{
+ const payload=await readJson('ports/windows/dist/windows-11-taskbar-styler.json');
+ for(const rule of payload.controlStyles.filter(t=>/MenuFlyout.* > Grid#LayoutRoot/.test(t.target)))
+  for(const style of rule.styles)assert.match(style,/^(?:Background@|CornerRadius=)/);
+ const frame=payload.controlStyles.find(t=>t.target==='MenuFlyoutPresenter');
+ assert.ok(!frame.styles.some(s=>s.startsWith('Border')),'the template border owns the one popup frame');
+ for(const state of ['','PointerOver','Pressed','Disabled'])
+  assert.ok(payload.themeResourceVariables.some(s=>s.startsWith('MenuFlyoutItemForeground'+state+'=')));
 });

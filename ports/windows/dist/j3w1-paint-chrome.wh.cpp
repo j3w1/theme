@@ -2,7 +2,7 @@
 // @id j3w1-paint-chrome
 // @name j3w1 Paint chrome
 // @description Exact-package Paint chrome resources; document and artwork colors remain native
-// @version 1.0.24
+// @version 1.0.25
 // @author j3w1
 // @include mspaint.exe
 // @architecture x86-64
@@ -1919,6 +1919,21 @@ static void Bridge(Root& root,FrameworkElement const& popup=nullptr) {
  if(uiState&&uiState->ticks<3)Log(21,count,static_cast<unsigned>(root.changes.size()));
 }
 static bool RootCandidateClass(std::wstring_view name);
+// The window content can be a document/page outside the admitted chrome scope.
+// A deferred island must retain its discovered chrome root instead of widening
+// admission to that content or dropping the pending root as successfully handled.
+template<typename Element,typename Name,typename Parent,typename SameRoot>
+static Element SelectChromeRoot(Element const& element,Element const& content,Element const& empty,Name name,Parent parent,SameRoot sameRoot) {
+ if(!element||!RootCandidateClass(name(element)))return empty;
+ if(content&&sameRoot(content)&&RootCandidateClass(name(content)))return content;
+ auto admitted=element;auto ancestor=parent(element);
+ for(unsigned depth=0;ancestor&&depth<32;++depth,ancestor=parent(ancestor)) {
+  if(!sameRoot(ancestor))break;
+  if(RootCandidateClass(name(ancestor)))admitted=ancestor;
+ }
+ return admitted;
+}
+static void ObserveRoot(FrameworkElement const& element);
 static void Track(UIElement const& content,DesktopWindowXamlSource const& source,Window const& window=nullptr);
 
 
@@ -2077,7 +2092,7 @@ static void Refresh(ThreadState& state) noexcept {
   bool finished=!enabled.load()||HighContrast();
   try {
    if(auto element=it->element.get()) {
-    if(auto xaml=element.XamlRoot();xaml&&xaml.Content()) {Track(xaml.Content(),nullptr);finished=true;}
+    if(auto xaml=element.XamlRoot();xaml&&xaml.Content()) {ObserveRoot(element);finished=true;}
    } else finished=true;
   }catch(...){Log(96);}
   if(finished||++it->attempts>=120)it=state.pending.erase(it);else ++it;
@@ -2170,14 +2185,12 @@ static void ObserveRoot(FrameworkElement const& element) {
  if(auto xaml=element.XamlRoot();xaml&&xaml.Content()) {
   // Diagnostics can report an admitted app control below a generic island
   // root. Choose only its topmost named chrome ancestor in this same XamlRoot.
-  auto admitted=element;auto ancestor=VisualTreeHelper::GetParent(element);
-  for(unsigned depth=0;ancestor&&depth<32;++depth,ancestor=VisualTreeHelper::GetParent(ancestor)) {
-   auto parent=ancestor.try_as<FrameworkElement>();
-   if(!parent||!Identity(parent.XamlRoot(),xaml))break;
-   if(RootCandidateClass(std::wstring_view{get_class_name(parent)}))admitted=parent;
-  }
   auto content=xaml.Content().try_as<FrameworkElement>();
-  Track(content&&RootCandidateClass(std::wstring_view{get_class_name(content)})?content:admitted,nullptr);return;
+  auto admitted=SelectChromeRoot(element,content,FrameworkElement{nullptr},
+   [](auto const& candidate){return get_class_name(candidate);},
+   [](auto const& candidate){return VisualTreeHelper::GetParent(candidate).template try_as<FrameworkElement>();},
+   [&](auto const& candidate){return Identity(candidate.XamlRoot(),xaml);});
+  Track(admitted,nullptr);return;
  }
  for(auto const& pending:uiState->pending)if(Identity(pending.element.get(),element))return;
  if(uiState->pending.size()<1024)uiState->pending.push_back({make_weak(element),0});

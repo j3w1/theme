@@ -122,6 +122,96 @@
         "BorderThickness=1",
         "CornerRadius=0"
       ]
+    },
+    {
+      "target": "MenuFlyoutPresenter",
+      "styles": [
+        "Background=#160b0b",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "MenuFlyoutPresenter > Border",
+      "styles": [
+        "Background=#160b0b",
+        "CornerRadius=0",
+        "BorderBrush=#e53935",
+        "BorderThickness=1"
+      ]
+    },
+    {
+      "target": "Grid#OverflowRootGrid",
+      "styles": [
+        "Background=#160b0b",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Grid#OverflowRootGrid > Border#OverflowFlyoutBackgroundBorder",
+      "styles": [
+        "Background=#160b0b",
+        "CornerRadius=0",
+        "BorderBrush=#e53935",
+        "BorderThickness=1"
+      ]
+    },
+    {
+      "target": "MenuFlyoutItem",
+      "styles": [
+        "CornerRadius=0",
+        "Foreground=#e99499"
+      ]
+    },
+    {
+      "target": "MenuFlyoutItem > Grid#LayoutRoot@CommonStates",
+      "styles": [
+        "CornerRadius=0",
+        "Background@Normal=#160b0b",
+        "Background@PointerOver=#630f0d",
+        "Background@Pressed=#420f0c",
+        "Background@Disabled=#160b0b"
+      ]
+    },
+    {
+      "target": "MenuFlyoutSubItem",
+      "styles": [
+        "CornerRadius=0",
+        "Foreground=#e99499"
+      ]
+    },
+    {
+      "target": "MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates",
+      "styles": [
+        "CornerRadius=0",
+        "Background@Normal=#160b0b",
+        "Background@PointerOver=#630f0d",
+        "Background@Pressed=#420f0c",
+        "Background@Disabled=#160b0b",
+        "Background@SubMenuOpened=#630f0d"
+      ]
+    },
+    {
+      "target": "ToggleMenuFlyoutItem",
+      "styles": [
+        "CornerRadius=0",
+        "Foreground=#e99499"
+      ]
+    },
+    {
+      "target": "ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates",
+      "styles": [
+        "CornerRadius=0",
+        "Background@Normal=#160b0b",
+        "Background@PointerOver=#630f0d",
+        "Background@Pressed=#420f0c",
+        "Background@Disabled=#160b0b"
+      ]
+    },
+    {
+      "target": "MenuFlyoutSeparator > Windows.UI.Xaml.Shapes.Rectangle",
+      "styles": [
+        "Fill=#2b0e0d"
+      ]
     }
   ],
   "themeResourceVariables": [
@@ -236,6 +326,33 @@
     "AccentButtonBorderBrushPressed=#9e231f",
     "AccentButtonBackgroundDisabled=#160b0b",
     "AccentButtonForegroundDisabled=#8a5559",
-    "AccentButtonBorderBrushDisabled=#7d1310"
+    "AccentButtonBorderBrushDisabled=#7d1310",
+    "MenuFlyoutItemBackgroundBrush=#160b0b",
+    "MenuFlyoutPresenterBackground=#160b0b",
+    "MenuFlyoutPresenterBorderBrush=#e53935",
+    "MenuFlyoutSeparatorBackground=#2b0e0d",
+    "MenuFlyoutItemForeground=#e99499",
+    "MenuFlyoutItemForegroundPointerOver=#e99499",
+    "MenuFlyoutItemForegroundPressed=#e99499",
+    "MenuFlyoutSubItemForeground=#e99499",
+    "MenuFlyoutSubItemForegroundSubMenuOpened=#e99499",
+    "MenuFlyoutItemKeyboardAcceleratorTextForeground=#bd787d",
+    "MenuFlyoutSubItemChevron=#bd787d",
+    "MenuFlyoutItemForegroundDisabled=#8a5559",
+    "MenuFlyoutSubItemForegroundDisabled=#8a5559",
+    "MenuFlyoutItemBackgroundPointerOver=#630f0d",
+    "MenuFlyoutSubItemBackgroundPointerOver=#630f0d",
+    "MenuFlyoutSubItemBackgroundSubMenuOpened=#630f0d",
+    "MenuFlyoutItemBackgroundPressed=#420f0c",
+    "MenuFlyoutSubItemBackgroundPressed=#420f0c",
+    "MenuFlyoutItemBackground=#160b0b",
+    "MenuFlyoutItemBackgroundDisabled=#160b0b",
+    "MenuFlyoutSubItemBackground=#160b0b",
+    "MenuFlyoutSubItemBackgroundDisabled=#160b0b",
+    "MenuFlyoutSubItemForegroundPointerOver=#e99499",
+    "MenuFlyoutSubItemForegroundPressed=#e99499",
+    "MenuFlyoutItemKeyboardAcceleratorTextForegroundDisabled=#8a5559",
+    "MenuFlyoutItemKeyboardAcceleratorTextForegroundPointerOver=#bd787d",
+    "MenuFlyoutItemKeyboardAcceleratorTextForegroundPressed=#bd787d"
   ]
 }

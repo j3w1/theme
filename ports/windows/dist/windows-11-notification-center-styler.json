@@ -216,6 +216,267 @@
         "Foreground@Disabled=#8a5559",
         "BorderBrush@Disabled=#7d1310"
       ]
+    },
+    {
+      "target": "Grid#MediaTransportControlsRegion",
+      "styles": [
+        "Background=#000000",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Grid#MediaTransportControlsRoot",
+      "styles": [
+        "Background=#000000",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Grid#L1Grid",
+      "styles": [
+        "Background=#000000",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Grid#L1Grid > Border",
+      "styles": [
+        "Background=#000000",
+        "CornerRadius=0",
+        "BorderBrush=#2b0e0d"
+      ]
+    },
+    {
+      "target": "Grid#L1Grid > Grid",
+      "styles": [
+        "BorderBrush=#2b0e0d"
+      ]
+    },
+    {
+      "target": "ControlCenter.PaginatedToggleButton",
+      "styles": [
+        "CornerRadius=0",
+        "Foreground=#e99499"
+      ]
+    },
+    {
+      "target": "ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates",
+      "styles": [
+        "CornerRadius=0",
+        "BorderThickness=1",
+        "Background@Normal=#000000",
+        "Foreground@Normal=#e99499",
+        "BorderBrush@Normal=#a3676b",
+        "Background@PointerOver=#1c0a09",
+        "Foreground@PointerOver=#e99499",
+        "BorderBrush@PointerOver=#a3676b",
+        "Background@Pressed=#420f0c",
+        "Foreground@Pressed=#e99499",
+        "BorderBrush@Pressed=#e53935",
+        "Background@Disabled=#160b0b",
+        "Foreground@Disabled=#8a5559",
+        "BorderBrush@Disabled=#7d1310",
+        "Background@Checked=#7d1310",
+        "Foreground@Checked=#ffa2a7",
+        "BorderBrush@Checked=#a3676b",
+        "Background@CheckedPointerOver=#911410",
+        "Foreground@CheckedPointerOver=#ffa2a7",
+        "BorderBrush@CheckedPointerOver=#a3676b",
+        "Background@CheckedPressed=#630f0d",
+        "Foreground@CheckedPressed=#ffa2a7",
+        "BorderBrush@CheckedPressed=#e53935",
+        "Background@CheckedDisabled=#160b0b",
+        "Foreground@CheckedDisabled=#8a5559",
+        "BorderBrush@CheckedDisabled=#7d1310"
+      ]
+    },
+    {
+      "target": "Windows.UI.Xaml.Controls.Primitives.RepeatButton#PreviousButton > ContentPresenter#ContentPresenter@CommonStates",
+      "styles": [
+        "CornerRadius=0",
+        "Background@Normal=#000000",
+        "Foreground@Normal=#e99499",
+        "BorderBrush@Normal=#a3676b",
+        "Background@PointerOver=#1c0a09",
+        "Foreground@PointerOver=#e99499",
+        "BorderBrush@PointerOver=#a3676b",
+        "Background@Pressed=#420f0c",
+        "Foreground@Pressed=#ffa2a7",
+        "BorderBrush@Pressed=#e53935",
+        "Background@Disabled=#160b0b",
+        "Foreground@Disabled=#8a5559",
+        "BorderBrush@Disabled=#7d1310"
+      ]
+    },
+    {
+      "target": "Button#PlayPauseButton > ContentPresenter#ContentPresenter@CommonStates",
+      "styles": [
+        "CornerRadius=0",
+        "Background@Normal=#000000",
+        "Foreground@Normal=#e99499",
+        "BorderBrush@Normal=#a3676b",
+        "Background@PointerOver=#1c0a09",
+        "Foreground@PointerOver=#e99499",
+        "BorderBrush@PointerOver=#a3676b",
+        "Background@Pressed=#420f0c",
+        "Foreground@Pressed=#ffa2a7",
+        "BorderBrush@Pressed=#e53935",
+        "Background@Disabled=#160b0b",
+        "Foreground@Disabled=#8a5559",
+        "BorderBrush@Disabled=#7d1310"
+      ]
+    },
+    {
+      "target": "Windows.UI.Xaml.Controls.Primitives.RepeatButton#NextButton > ContentPresenter#ContentPresenter@CommonStates",
+      "styles": [
+        "CornerRadius=0",
+        "Background@Normal=#000000",
+        "Foreground@Normal=#e99499",
+        "BorderBrush@Normal=#a3676b",
+        "Background@PointerOver=#1c0a09",
+        "Foreground@PointerOver=#e99499",
+        "BorderBrush@PointerOver=#a3676b",
+        "Background@Pressed=#420f0c",
+        "Foreground@Pressed=#ffa2a7",
+        "BorderBrush@Pressed=#e53935",
+        "Background@Disabled=#160b0b",
+        "Foreground@Disabled=#8a5559",
+        "BorderBrush@Disabled=#7d1310"
+      ]
+    },
+    {
+      "target": "Button#FooterButton > ContentPresenter#ContentPresenter@CommonStates",
+      "styles": [
+        "CornerRadius=0",
+        "Background@Normal=#000000",
+        "Foreground@Normal=#e99499",
+        "BorderBrush@Normal=#a3676b",
+        "Background@PointerOver=#1c0a09",
+        "Foreground@PointerOver=#e99499",
+        "BorderBrush@PointerOver=#a3676b",
+        "Background@Pressed=#420f0c",
+        "Foreground@Pressed=#ffa2a7",
+        "BorderBrush@Pressed=#e53935",
+        "Background@Disabled=#160b0b",
+        "Foreground@Disabled=#8a5559",
+        "BorderBrush@Disabled=#7d1310"
+      ]
+    },
+    {
+      "target": "Button#VolumeL2Button > ContentPresenter#ContentPresenter@CommonStates",
+      "styles": [
+        "CornerRadius=0",
+        "Background@Normal=#000000",
+        "Foreground@Normal=#e99499",
+        "BorderBrush@Normal=#a3676b",
+        "Background@PointerOver=#1c0a09",
+        "Foreground@PointerOver=#e99499",
+        "BorderBrush@PointerOver=#a3676b",
+        "Background@Pressed=#420f0c",
+        "Foreground@Pressed=#ffa2a7",
+        "BorderBrush@Pressed=#e53935",
+        "Background@Disabled=#160b0b",
+        "Foreground@Disabled=#8a5559",
+        "BorderBrush@Disabled=#7d1310"
+      ]
+    },
+    {
+      "target": "ControlCenter.AsyncSlider",
+      "styles": [
+        "Background=#a3676b",
+        "Foreground=#7d1310",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Shapes.Rectangle#HorizontalTrackRect",
+      "styles": [
+        "Fill@Normal=#a3676b",
+        "Fill@PointerOver=#a3676b",
+        "Fill@Pressed=#a3676b",
+        "Fill@Disabled=#7d1310"
+      ]
+    },
+    {
+      "target": "ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Shapes.Rectangle#HorizontalDecreaseRect",
+      "styles": [
+        "Fill@Normal=#7d1310",
+        "Fill@PointerOver=#911410",
+        "Fill@Pressed=#630f0d",
+        "Fill@Disabled=#160b0b"
+      ]
+    },
+    {
+      "target": "ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border",
+      "styles": [
+        "CornerRadius=0",
+        "Background@Normal=#000000",
+        "BorderBrush@Normal=#a3676b",
+        "Background@PointerOver=#000000",
+        "BorderBrush@PointerOver=#a3676b",
+        "Background@Pressed=#000000",
+        "BorderBrush@Pressed=#a3676b",
+        "Background@Disabled=#160b0b",
+        "BorderBrush@Disabled=#7d1310"
+      ]
+    },
+    {
+      "target": "ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border > Windows.UI.Xaml.Shapes.Ellipse#SliderInnerThumb",
+      "styles": [
+        "Fill@Normal=#7d1310",
+        "Fill@PointerOver=#911410",
+        "Fill@Pressed=#630f0d",
+        "Fill@Disabled=#160b0b"
+      ]
+    },
+    {
+      "target": "Slider",
+      "styles": [
+        "Background=#a3676b",
+        "Foreground=#7d1310",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Slider > Grid@CommonStates > * > Windows.UI.Xaml.Shapes.Rectangle#HorizontalTrackRect",
+      "styles": [
+        "Fill@Normal=#a3676b",
+        "Fill@PointerOver=#a3676b",
+        "Fill@Pressed=#a3676b",
+        "Fill@Disabled=#7d1310"
+      ]
+    },
+    {
+      "target": "Slider > Grid@CommonStates > * > Windows.UI.Xaml.Shapes.Rectangle#HorizontalDecreaseRect",
+      "styles": [
+        "Fill@Normal=#7d1310",
+        "Fill@PointerOver=#911410",
+        "Fill@Pressed=#630f0d",
+        "Fill@Disabled=#160b0b"
+      ]
+    },
+    {
+      "target": "Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border",
+      "styles": [
+        "CornerRadius=0",
+        "Background@Normal=#000000",
+        "BorderBrush@Normal=#a3676b",
+        "Background@PointerOver=#000000",
+        "BorderBrush@PointerOver=#a3676b",
+        "Background@Pressed=#000000",
+        "BorderBrush@Pressed=#a3676b",
+        "Background@Disabled=#160b0b",
+        "BorderBrush@Disabled=#7d1310"
+      ]
+    },
+    {
+      "target": "Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border > Windows.UI.Xaml.Shapes.Ellipse#SliderInnerThumb",
+      "styles": [
+        "Fill@Normal=#7d1310",
+        "Fill@PointerOver=#911410",
+        "Fill@Pressed=#630f0d",
+        "Fill@Disabled=#160b0b"
+      ]
     }
   ],
   "themeResourceVariables": [
@@ -330,6 +591,27 @@
     "AccentButtonBorderBrushPressed=#9e231f",
     "AccentButtonBackgroundDisabled=#160b0b",
     "AccentButtonForegroundDisabled=#8a5559",
-    "AccentButtonBorderBrushDisabled=#7d1310"
+    "AccentButtonBorderBrushDisabled=#7d1310",
+    "SliderTrackFill=#a3676b",
+    "SliderTrackFillPointerOver=#a3676b",
+    "SliderTrackFillPressed=#a3676b",
+    "SliderTrackFillDisabled=#7d1310",
+    "SliderTrackValueFill=#7d1310",
+    "SliderTrackValueFillPointerOver=#911410",
+    "SliderTrackValueFillPressed=#630f0d",
+    "SliderTrackValueFillDisabled=#160b0b",
+    "SliderThumbBackground=#7d1310",
+    "SliderThumbBackgroundPointerOver=#911410",
+    "SliderThumbBackgroundPressed=#630f0d",
+    "SliderThumbBackgroundDisabled=#160b0b",
+    "SliderThumbBorderBrush=#a3676b",
+    "SliderOuterThumbBackground=#000000",
+    "SliderHeaderForeground=#e99499",
+    "SliderTickBarFill=#a3676b",
+    "SliderInlineTickBarFill=#000000",
+    "SliderContainerBackground=#000000",
+    "SliderContainerBackgroundPointerOver=#000000",
+    "SliderContainerBackgroundPressed=#000000",
+    "SliderHeaderForegroundDisabled=#8a5559"
   ]
 }

@@ -280,8 +280,127 @@
             "BorderThickness": "border.width.default",
             "CornerRadius": "radius.none"
           }
+        },
+        {
+          "target": "MenuFlyoutPresenter",
+          "styles": {
+            "Background": "color.surface.raised",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "MenuFlyoutPresenter > Border",
+          "styles": {
+            "Background": "color.surface.raised",
+            "CornerRadius": "radius.none",
+            "BorderBrush": "color.border.overlay",
+            "BorderThickness": "border.width.default"
+          }
+        },
+        {
+          "target": "Grid#OverflowRootGrid",
+          "styles": {
+            "Background": "color.surface.raised",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Grid#OverflowRootGrid > Border#OverflowFlyoutBackgroundBorder",
+          "styles": {
+            "Background": "color.surface.raised",
+            "CornerRadius": "radius.none",
+            "BorderBrush": "color.border.overlay",
+            "BorderThickness": "border.width.default"
+          }
+        },
+        {
+          "target": "MenuFlyoutItem",
+          "styles": {
+            "CornerRadius": "radius.none",
+            "Foreground": "color.text.default"
+          }
+        },
+        {
+          "target": "MenuFlyoutItem > Grid#LayoutRoot@CommonStates",
+          "styles": {
+            "CornerRadius": "radius.none",
+            "Background@Normal": "color.surface.raised",
+            "Background@PointerOver": "color.interaction.hover.bg-strong",
+            "Background@Pressed": "color.interaction.pressed.bg",
+            "Background@Disabled": "color.surface.raised"
+          }
+        },
+        {
+          "target": "MenuFlyoutSubItem",
+          "styles": {
+            "CornerRadius": "radius.none",
+            "Foreground": "color.text.default"
+          }
+        },
+        {
+          "target": "MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates",
+          "styles": {
+            "CornerRadius": "radius.none",
+            "Background@Normal": "color.surface.raised",
+            "Background@PointerOver": "color.interaction.hover.bg-strong",
+            "Background@Pressed": "color.interaction.pressed.bg",
+            "Background@Disabled": "color.surface.raised",
+            "Background@SubMenuOpened": "color.interaction.hover.bg-strong"
+          }
+        },
+        {
+          "target": "ToggleMenuFlyoutItem",
+          "styles": {
+            "CornerRadius": "radius.none",
+            "Foreground": "color.text.default"
+          }
+        },
+        {
+          "target": "ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates",
+          "styles": {
+            "CornerRadius": "radius.none",
+            "Background@Normal": "color.surface.raised",
+            "Background@PointerOver": "color.interaction.hover.bg-strong",
+            "Background@Pressed": "color.interaction.pressed.bg",
+            "Background@Disabled": "color.surface.raised"
+          }
+        },
+        {
+          "target": "MenuFlyoutSeparator > Windows.UI.Xaml.Shapes.Rectangle",
+          "styles": {
+            "Fill": "color.border.divider"
+          }
         }
-      ]
+      ],
+      "resources": {
+        "MenuFlyoutItemBackgroundBrush": "color.surface.raised",
+        "MenuFlyoutPresenterBackground": "color.surface.raised",
+        "MenuFlyoutPresenterBorderBrush": "color.border.overlay",
+        "MenuFlyoutSeparatorBackground": "color.border.divider",
+        "MenuFlyoutItemForeground": "color.text.default",
+        "MenuFlyoutItemForegroundPointerOver": "color.text.default",
+        "MenuFlyoutItemForegroundPressed": "color.text.default",
+        "MenuFlyoutSubItemForeground": "color.text.default",
+        "MenuFlyoutSubItemForegroundSubMenuOpened": "color.text.default",
+        "MenuFlyoutItemKeyboardAcceleratorTextForeground": "color.text.muted",
+        "MenuFlyoutSubItemChevron": "color.text.muted",
+        "MenuFlyoutItemForegroundDisabled": "color.text.disabled",
+        "MenuFlyoutSubItemForegroundDisabled": "color.text.disabled",
+        "MenuFlyoutItemBackgroundPointerOver": "color.interaction.hover.bg-strong",
+        "MenuFlyoutSubItemBackgroundPointerOver": "color.interaction.hover.bg-strong",
+        "MenuFlyoutSubItemBackgroundSubMenuOpened": "color.interaction.hover.bg-strong",
+        "MenuFlyoutItemBackgroundPressed": "color.interaction.pressed.bg",
+        "MenuFlyoutSubItemBackgroundPressed": "color.interaction.pressed.bg",
+        "MenuFlyoutItemBackground": "color.surface.raised",
+        "MenuFlyoutItemBackgroundDisabled": "color.surface.raised",
+        "MenuFlyoutSubItemBackground": "color.surface.raised",
+        "MenuFlyoutSubItemBackgroundDisabled": "color.surface.raised",
+        "MenuFlyoutSubItemForegroundPointerOver": "color.text.default",
+        "MenuFlyoutSubItemForegroundPressed": "color.text.default",
+        "MenuFlyoutItemKeyboardAcceleratorTextForegroundDisabled": "color.text.disabled",
+        "MenuFlyoutItemKeyboardAcceleratorTextForegroundPointerOver": "color.text.muted",
+        "MenuFlyoutItemKeyboardAcceleratorTextForegroundPressed": "color.text.muted"
+      }
     },
     {
       "id": "windows-11-start-menu-styler",
@@ -1215,8 +1334,292 @@
             "Foreground@Disabled": "color.text.disabled",
             "BorderBrush@Disabled": "color.border.disabled"
           }
+        },
+        {
+          "target": "Grid#MediaTransportControlsRegion",
+          "styles": {
+            "Background": "color.surface.canvas",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Grid#MediaTransportControlsRoot",
+          "styles": {
+            "Background": "color.surface.canvas",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Grid#L1Grid",
+          "styles": {
+            "Background": "color.surface.canvas",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Grid#L1Grid > Border",
+          "styles": {
+            "Background": "color.surface.canvas",
+            "CornerRadius": "radius.none",
+            "BorderBrush": "color.border.divider"
+          }
+        },
+        {
+          "target": "Grid#L1Grid > Grid",
+          "styles": {
+            "BorderBrush": "color.border.divider"
+          }
+        },
+        {
+          "target": "ControlCenter.PaginatedToggleButton",
+          "styles": {
+            "CornerRadius": "radius.none",
+            "Foreground": "color.text.default"
+          }
+        },
+        {
+          "target": "ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates",
+          "styles": {
+            "CornerRadius": "radius.none",
+            "BorderThickness": "border.width.default",
+            "Background@Normal": "color.surface.input",
+            "Foreground@Normal": "color.text.default",
+            "BorderBrush@Normal": "color.border.control",
+            "Background@PointerOver": "color.interaction.hover.bg",
+            "Foreground@PointerOver": "color.text.default",
+            "BorderBrush@PointerOver": "color.border.control",
+            "Background@Pressed": "color.interaction.pressed.bg",
+            "Foreground@Pressed": "color.text.default",
+            "BorderBrush@Pressed": "color.border.active",
+            "Background@Disabled": "color.interaction.disabled.bg",
+            "Foreground@Disabled": "color.text.disabled",
+            "BorderBrush@Disabled": "color.border.disabled",
+            "Background@Checked": "color.action.primary.bg",
+            "Foreground@Checked": "color.action.primary.text",
+            "BorderBrush@Checked": "color.border.control",
+            "Background@CheckedPointerOver": "color.action.primary.hover-bg",
+            "Foreground@CheckedPointerOver": "color.action.primary.text",
+            "BorderBrush@CheckedPointerOver": "color.border.control",
+            "Background@CheckedPressed": "color.action.primary.pressed-bg",
+            "Foreground@CheckedPressed": "color.action.primary.text",
+            "BorderBrush@CheckedPressed": "color.border.active",
+            "Background@CheckedDisabled": "color.interaction.disabled.bg",
+            "Foreground@CheckedDisabled": "color.text.disabled",
+            "BorderBrush@CheckedDisabled": "color.border.disabled"
+          }
+        },
+        {
+          "target": "Windows.UI.Xaml.Controls.Primitives.RepeatButton#PreviousButton > ContentPresenter#ContentPresenter@CommonStates",
+          "styles": {
+            "CornerRadius": "radius.none",
+            "Background@Normal": "color.surface.canvas",
+            "Foreground@Normal": "color.text.default",
+            "BorderBrush@Normal": "color.border.control",
+            "Background@PointerOver": "color.interaction.hover.bg",
+            "Foreground@PointerOver": "color.text.default",
+            "BorderBrush@PointerOver": "color.border.control",
+            "Background@Pressed": "color.interaction.pressed.bg",
+            "Foreground@Pressed": "color.text.bright",
+            "BorderBrush@Pressed": "color.border.active",
+            "Background@Disabled": "color.interaction.disabled.bg",
+            "Foreground@Disabled": "color.text.disabled",
+            "BorderBrush@Disabled": "color.border.disabled"
+          }
+        },
+        {
+          "target": "Button#PlayPauseButton > ContentPresenter#ContentPresenter@CommonStates",
+          "styles": {
+            "CornerRadius": "radius.none",
+            "Background@Normal": "color.surface.canvas",
+            "Foreground@Normal": "color.text.default",
+            "BorderBrush@Normal": "color.border.control",
+            "Background@PointerOver": "color.interaction.hover.bg",
+            "Foreground@PointerOver": "color.text.default",
+            "BorderBrush@PointerOver": "color.border.control",
+            "Background@Pressed": "color.interaction.pressed.bg",
+            "Foreground@Pressed": "color.text.bright",
+            "BorderBrush@Pressed": "color.border.active",
+            "Background@Disabled": "color.interaction.disabled.bg",
+            "Foreground@Disabled": "color.text.disabled",
+            "BorderBrush@Disabled": "color.border.disabled"
+          }
+        },
+        {
+          "target": "Windows.UI.Xaml.Controls.Primitives.RepeatButton#NextButton > ContentPresenter#ContentPresenter@CommonStates",
+          "styles": {
+            "CornerRadius": "radius.none",
+            "Background@Normal": "color.surface.canvas",
+            "Foreground@Normal": "color.text.default",
+            "BorderBrush@Normal": "color.border.control",
+            "Background@PointerOver": "color.interaction.hover.bg",
+            "Foreground@PointerOver": "color.text.default",
+            "BorderBrush@PointerOver": "color.border.control",
+            "Background@Pressed": "color.interaction.pressed.bg",
+            "Foreground@Pressed": "color.text.bright",
+            "BorderBrush@Pressed": "color.border.active",
+            "Background@Disabled": "color.interaction.disabled.bg",
+            "Foreground@Disabled": "color.text.disabled",
+            "BorderBrush@Disabled": "color.border.disabled"
+          }
+        },
+        {
+          "target": "Button#FooterButton > ContentPresenter#ContentPresenter@CommonStates",
+          "styles": {
+            "CornerRadius": "radius.none",
+            "Background@Normal": "color.surface.canvas",
+            "Foreground@Normal": "color.text.default",
+            "BorderBrush@Normal": "color.border.control",
+            "Background@PointerOver": "color.interaction.hover.bg",
+            "Foreground@PointerOver": "color.text.default",
+            "BorderBrush@PointerOver": "color.border.control",
+            "Background@Pressed": "color.interaction.pressed.bg",
+            "Foreground@Pressed": "color.text.bright",
+            "BorderBrush@Pressed": "color.border.active",
+            "Background@Disabled": "color.interaction.disabled.bg",
+            "Foreground@Disabled": "color.text.disabled",
+            "BorderBrush@Disabled": "color.border.disabled"
+          }
+        },
+        {
+          "target": "Button#VolumeL2Button > ContentPresenter#ContentPresenter@CommonStates",
+          "styles": {
+            "CornerRadius": "radius.none",
+            "Background@Normal": "color.surface.canvas",
+            "Foreground@Normal": "color.text.default",
+            "BorderBrush@Normal": "color.border.control",
+            "Background@PointerOver": "color.interaction.hover.bg",
+            "Foreground@PointerOver": "color.text.default",
+            "BorderBrush@PointerOver": "color.border.control",
+            "Background@Pressed": "color.interaction.pressed.bg",
+            "Foreground@Pressed": "color.text.bright",
+            "BorderBrush@Pressed": "color.border.active",
+            "Background@Disabled": "color.interaction.disabled.bg",
+            "Foreground@Disabled": "color.text.disabled",
+            "BorderBrush@Disabled": "color.border.disabled"
+          }
+        },
+        {
+          "target": "ControlCenter.AsyncSlider",
+          "styles": {
+            "Background": "color.border.control",
+            "Foreground": "color.action.primary.bg",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Shapes.Rectangle#HorizontalTrackRect",
+          "styles": {
+            "Fill@Normal": "color.border.control",
+            "Fill@PointerOver": "color.border.control",
+            "Fill@Pressed": "color.border.control",
+            "Fill@Disabled": "color.border.disabled"
+          }
+        },
+        {
+          "target": "ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Shapes.Rectangle#HorizontalDecreaseRect",
+          "styles": {
+            "Fill@Normal": "color.action.primary.bg",
+            "Fill@PointerOver": "color.action.primary.hover-bg",
+            "Fill@Pressed": "color.action.primary.pressed-bg",
+            "Fill@Disabled": "color.interaction.disabled.bg"
+          }
+        },
+        {
+          "target": "ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border",
+          "styles": {
+            "CornerRadius": "radius.none",
+            "Background@Normal": "color.surface.input",
+            "BorderBrush@Normal": "color.border.control",
+            "Background@PointerOver": "color.surface.input",
+            "BorderBrush@PointerOver": "color.border.control",
+            "Background@Pressed": "color.surface.input",
+            "BorderBrush@Pressed": "color.border.control",
+            "Background@Disabled": "color.interaction.disabled.bg",
+            "BorderBrush@Disabled": "color.border.disabled"
+          }
+        },
+        {
+          "target": "ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border > Windows.UI.Xaml.Shapes.Ellipse#SliderInnerThumb",
+          "styles": {
+            "Fill@Normal": "color.action.primary.bg",
+            "Fill@PointerOver": "color.action.primary.hover-bg",
+            "Fill@Pressed": "color.action.primary.pressed-bg",
+            "Fill@Disabled": "color.interaction.disabled.bg"
+          }
+        },
+        {
+          "target": "Slider",
+          "styles": {
+            "Background": "color.border.control",
+            "Foreground": "color.action.primary.bg",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "Slider > Grid@CommonStates > * > Windows.UI.Xaml.Shapes.Rectangle#HorizontalTrackRect",
+          "styles": {
+            "Fill@Normal": "color.border.control",
+            "Fill@PointerOver": "color.border.control",
+            "Fill@Pressed": "color.border.control",
+            "Fill@Disabled": "color.border.disabled"
+          }
+        },
+        {
+          "target": "Slider > Grid@CommonStates > * > Windows.UI.Xaml.Shapes.Rectangle#HorizontalDecreaseRect",
+          "styles": {
+            "Fill@Normal": "color.action.primary.bg",
+            "Fill@PointerOver": "color.action.primary.hover-bg",
+            "Fill@Pressed": "color.action.primary.pressed-bg",
+            "Fill@Disabled": "color.interaction.disabled.bg"
+          }
+        },
+        {
+          "target": "Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border",
+          "styles": {
+            "CornerRadius": "radius.none",
+            "Background@Normal": "color.surface.input",
+            "BorderBrush@Normal": "color.border.control",
+            "Background@PointerOver": "color.surface.input",
+            "BorderBrush@PointerOver": "color.border.control",
+            "Background@Pressed": "color.surface.input",
+            "BorderBrush@Pressed": "color.border.control",
+            "Background@Disabled": "color.interaction.disabled.bg",
+            "BorderBrush@Disabled": "color.border.disabled"
+          }
+        },
+        {
+          "target": "Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border > Windows.UI.Xaml.Shapes.Ellipse#SliderInnerThumb",
+          "styles": {
+            "Fill@Normal": "color.action.primary.bg",
+            "Fill@PointerOver": "color.action.primary.hover-bg",
+            "Fill@Pressed": "color.action.primary.pressed-bg",
+            "Fill@Disabled": "color.interaction.disabled.bg"
+          }
         }
-      ]
+      ],
+      "resources": {
+        "SliderTrackFill": "color.border.control",
+        "SliderTrackFillPointerOver": "color.border.control",
+        "SliderTrackFillPressed": "color.border.control",
+        "SliderTrackFillDisabled": "color.border.disabled",
+        "SliderTrackValueFill": "color.action.primary.bg",
+        "SliderTrackValueFillPointerOver": "color.action.primary.hover-bg",
+        "SliderTrackValueFillPressed": "color.action.primary.pressed-bg",
+        "SliderTrackValueFillDisabled": "color.interaction.disabled.bg",
+        "SliderThumbBackground": "color.action.primary.bg",
+        "SliderThumbBackgroundPointerOver": "color.action.primary.hover-bg",
+        "SliderThumbBackgroundPressed": "color.action.primary.pressed-bg",
+        "SliderThumbBackgroundDisabled": "color.interaction.disabled.bg",
+        "SliderThumbBorderBrush": "color.border.control",
+        "SliderOuterThumbBackground": "color.surface.input",
+        "SliderHeaderForeground": "color.text.default",
+        "SliderTickBarFill": "color.border.control",
+        "SliderInlineTickBarFill": "color.surface.input",
+        "SliderContainerBackground": "color.surface.canvas",
+        "SliderContainerBackgroundPointerOver": "color.surface.canvas",
+        "SliderContainerBackgroundPressed": "color.surface.canvas",
+        "SliderHeaderForegroundDisabled": "color.text.disabled"
+      }
     },
     {
       "id": "windows-11-settings-styler",
@@ -1790,7 +2193,7 @@
     }
   },
   "notepadChrome": {
-    "version": "1.2.29",
+    "version": "1.2.30",
     "packageFullName": "Microsoft.WindowsNotepad_11.2607.14.0_x64__8wekyb3d8bbwe",
     "runtimePackage": "Microsoft.WindowsAppRuntime.2_2.5.1.0_x64__8wekyb3d8bbwe",
     "runtimeSha256": "aad12524765e6fb63f0ae26a45a9ba3104f24fde66413d8a3036fbed74a1e990",
@@ -2152,7 +2555,7 @@
     "ScrollBarButtonArrowForegroundDisabled": "color.text.disabled"
   },
   "paintChrome": {
-    "version": "1.0.24",
+    "version": "1.0.25",
     "packageFullName": "Microsoft.Paint_11.2605.81.0_x64__8wekyb3d8bbwe",
     "runtimePackage": "Microsoft.WindowsAppRuntime.2_2.5.1.0_x64__8wekyb3d8bbwe",
     "runtimeSha256": "aad12524765e6fb63f0ae26a45a9ba3104f24fde66413d8a3036fbed74a1e990",
@@ -2177,7 +2580,7 @@
     "SHELLCOMMON": "410141eceecfaa5d7cccbfd7c357920988bf18fec3db7f6865eec674677c0204"
   },
   "terminalChrome": {
-    "version": "1.0.9",
+    "version": "1.0.10",
     "packageFullName": "Microsoft.WindowsTerminal_1.24.11911.0_x64__8wekyb3d8bbwe",
     "runtimeSha256": "5b653bc535d87e7301c7ab9b4785fb7f0f6de5481ece03e7e7a89ca3e53e6905",
     "diagnosticsBridgeSha256": "5b653bc535d87e7301c7ab9b4785fb7f0f6de5481ece03e7e7a89ca3e53e6905",

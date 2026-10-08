@@ -37750,7 +37750,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-7+7Ctw902MsBxJBdkcytOKLC403py/CIaGWK53Hwk8E=",
+      "subjectDigest": "sha256-iCt4Uf53xNEY2cVYzWQMaCbifgnKLiPnJe9NDSjnUMk=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37783,7 +37783,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-ixzrsA9GAPaU4XfwlSzL7Lvga8HkQOj5Nv1IqHGBWN8="
+          "digest": "sha256-2yGS0xdRDYyo8/Mmsb5gM2yh26pfBCLa+aZ4HE6JwMk="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37807,7 +37807,7 @@
           "path": "dist/windows-11-taskbar-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-taskbar-styler.json",
-          "digest": "sha256-C2EpGo5nhxww9aorI4RaKKFemDZS8jIIjufDIIDbJnY="
+          "digest": "sha256-C7cxH5TldXthL2osp63rBYFq1BCkjGpAk4F54sHGUMk="
         },
         {
           "path": "dist/windows-11-start-menu-styler.json",
@@ -37825,7 +37825,7 @@
           "path": "dist/windows-11-notification-center-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-notification-center-styler.json",
-          "digest": "sha256-a3gXEaIVvXDXXnL0UF4TadQryu9w/ahA4c/J4KYsTXI="
+          "digest": "sha256-i5kB4p3Qup4Dufbmd42lY/xPHfIx2HR4Uxx6wVw/xXo="
         },
         {
           "path": "dist/windows-11-settings-styler.json",
@@ -37957,7 +37957,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-P2OSzzJrnJX17DVDMNVq+AD6V2Fkpr3EXGj1A5xeTkw="
+          "digest": "sha256-rur8YkMbaSZ7Rbe8FBJ9DbDIbiobvrGqmXqUP8oT5D4="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -38041,7 +38041,7 @@
           "path": "dist/j3w1-notepad-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-notepad-chrome.wh.cpp",
-          "digest": "sha256-GsJpsxTfqLpRJL8SLpih0nZ2UJwTEg63vRdic3wGeGc="
+          "digest": "sha256-OMgADcA9PRAlqK1o6n23J0Rvq1i0VAwn+a9p1BC8Cc8="
         },
         {
           "path": "dist/j3w1-notepad-chrome.json",
@@ -38053,7 +38053,7 @@
           "path": "dist/j3w1-paint-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-paint-chrome.wh.cpp",
-          "digest": "sha256-+x5lsA4uon1u6GVbdlaC+MJVWB0m4vNhKUoUgnfZYQI="
+          "digest": "sha256-6nVahNx+hQmiGtE++PfSCTgqYGWqvg452cD3R+rcMDk="
         },
         {
           "path": "dist/j3w1-paint-chrome.json",
@@ -38065,7 +38065,7 @@
           "path": "dist/j3w1-terminal-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-terminal-chrome.wh.cpp",
-          "digest": "sha256-CSYdITwkoNFAD0qDRMlAkYCBorTz+/FkWEWQj5mFo4g="
+          "digest": "sha256-FqgwmUeuUxiGYlP+S8zJlUQGiVbZ5SaR3ALQzwnzIIk="
         },
         {
           "path": "dist/j3w1-terminal-chrome.json",
@@ -38101,7 +38101,10 @@
             "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid | BorderThickness",
             "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher | BorderThickness",
             "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid > Border | BorderThickness",
-            "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.Popup > Border#InputSwitcherPopupBorder | BorderThickness"
+            "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.Popup > Border#InputSwitcherPopupBorder | BorderThickness",
+            "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates | BorderThickness",
+            "windows-11-taskbar-styler | MenuFlyoutPresenter > Border | BorderThickness",
+            "windows-11-taskbar-styler | Grid#OverflowRootGrid > Border#OverflowFlyoutBackgroundBorder | BorderThickness"
           ],
           "value": "1px",
           "eligibility": {
@@ -38326,7 +38329,16 @@
             "terminal-chrome.resource.SliderTrackValueFill",
             "terminal-chrome.resource.SliderThumbBackground",
             "windows-11-settings-styler.resource.ProgressBarForeground",
-            "windows-11-settings-styler.resource.ToggleSwitchFillOn"
+            "windows-11-settings-styler.resource.ToggleSwitchFillOn",
+            "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates | Background@Checked",
+            "windows-11-notification-center-styler.resource.SliderTrackValueFill",
+            "windows-11-notification-center-styler.resource.SliderThumbBackground",
+            "windows-11-notification-center-styler | ControlCenter.AsyncSlider | Foreground",
+            "windows-11-notification-center-styler | ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Shapes.Rectangle#HorizontalDecreaseRect | Fill@Normal",
+            "windows-11-notification-center-styler | ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border > Windows.UI.Xaml.Shapes.Ellipse#SliderInnerThumb | Fill@Normal",
+            "windows-11-notification-center-styler | Slider | Foreground",
+            "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Shapes.Rectangle#HorizontalDecreaseRect | Fill@Normal",
+            "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border > Windows.UI.Xaml.Shapes.Ellipse#SliderInnerThumb | Fill@Normal"
           ],
           "value": "#7d1310",
           "eligibility": {
@@ -38382,7 +38394,14 @@
             "terminal-chrome.resource.ToggleSwitchStrokeOnPointerOver",
             "terminal-chrome.resource.SliderTrackValueFillPointerOver",
             "terminal-chrome.resource.SliderThumbBackgroundPointerOver",
-            "windows-11-settings-styler.resource.ToggleSwitchFillOnPointerOver"
+            "windows-11-settings-styler.resource.ToggleSwitchFillOnPointerOver",
+            "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates | Background@CheckedPointerOver",
+            "windows-11-notification-center-styler.resource.SliderTrackValueFillPointerOver",
+            "windows-11-notification-center-styler.resource.SliderThumbBackgroundPointerOver",
+            "windows-11-notification-center-styler | ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Shapes.Rectangle#HorizontalDecreaseRect | Fill@PointerOver",
+            "windows-11-notification-center-styler | ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border > Windows.UI.Xaml.Shapes.Ellipse#SliderInnerThumb | Fill@PointerOver",
+            "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Shapes.Rectangle#HorizontalDecreaseRect | Fill@PointerOver",
+            "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border > Windows.UI.Xaml.Shapes.Ellipse#SliderInnerThumb | Fill@PointerOver"
           ],
           "value": "#911410",
           "eligibility": {
@@ -38418,7 +38437,14 @@
             "terminal-chrome.resource.ToggleSwitchStrokeOnPressed",
             "terminal-chrome.resource.SliderTrackValueFillPressed",
             "terminal-chrome.resource.SliderThumbBackgroundPressed",
-            "windows-11-settings-styler.resource.ToggleSwitchFillOnPressed"
+            "windows-11-settings-styler.resource.ToggleSwitchFillOnPressed",
+            "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates | Background@CheckedPressed",
+            "windows-11-notification-center-styler.resource.SliderTrackValueFillPressed",
+            "windows-11-notification-center-styler.resource.SliderThumbBackgroundPressed",
+            "windows-11-notification-center-styler | ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Shapes.Rectangle#HorizontalDecreaseRect | Fill@Pressed",
+            "windows-11-notification-center-styler | ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border > Windows.UI.Xaml.Shapes.Ellipse#SliderInnerThumb | Fill@Pressed",
+            "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Shapes.Rectangle#HorizontalDecreaseRect | Fill@Pressed",
+            "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border > Windows.UI.Xaml.Shapes.Ellipse#SliderInnerThumb | Fill@Pressed"
           ],
           "value": "#630f0d",
           "eligibility": {
@@ -38449,7 +38475,10 @@
             "terminal-chrome.resource.ToggleSwitchKnobFillOnPressed",
             "windows-11-settings-styler.resource.ToggleSwitchKnobFillOn",
             "windows-11-settings-styler.resource.ToggleSwitchKnobFillOnPointerOver",
-            "windows-11-settings-styler.resource.ToggleSwitchKnobFillOnPressed"
+            "windows-11-settings-styler.resource.ToggleSwitchKnobFillOnPressed",
+            "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates | Foreground@Checked",
+            "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates | Foreground@CheckedPointerOver",
+            "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates | Foreground@CheckedPressed"
           ],
           "value": "#ffa2a7",
           "eligibility": {
@@ -38703,7 +38732,14 @@
             "terminal-chrome.resource.SplitButtonBorderBrushCheckedPointerOver",
             "terminal-chrome.resource.SplitButtonBorderBrushCheckedPressed",
             "windows-11-settings-styler | Button > ContentPresenter@CommonStates | BorderBrush@Pressed",
-            "windows-11-taskbar-styler | Rectangle#HorizontalDecreaseRect, Rectangle#DeterminateProgressBarIndicator | Fill"
+            "windows-11-taskbar-styler | Rectangle#HorizontalDecreaseRect, Rectangle#DeterminateProgressBarIndicator | Fill",
+            "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@Pressed",
+            "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@CheckedPressed",
+            "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.RepeatButton#PreviousButton > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@Pressed",
+            "windows-11-notification-center-styler | Button#PlayPauseButton > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@Pressed",
+            "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.RepeatButton#NextButton > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@Pressed",
+            "windows-11-notification-center-styler | Button#FooterButton > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@Pressed",
+            "windows-11-notification-center-styler | Button#VolumeL2Button > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@Pressed"
           ],
           "value": "#e53935",
           "eligibility": {
@@ -38800,7 +38836,40 @@
             "windows-11-settings-styler.resource.ToggleSwitchStrokeOnPointerOver",
             "windows-11-settings-styler.resource.ToggleSwitchStrokeOffPressed",
             "windows-11-settings-styler.resource.ToggleSwitchStrokeOnPressed",
-            "windows-11-taskbar-styler | Rectangle#HorizontalTrackRect, Rectangle#ProgressBarTrack | Fill"
+            "windows-11-taskbar-styler | Rectangle#HorizontalTrackRect, Rectangle#ProgressBarTrack | Fill",
+            "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@Normal",
+            "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@PointerOver",
+            "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@Checked",
+            "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@CheckedPointerOver",
+            "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.RepeatButton#PreviousButton > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@Normal",
+            "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.RepeatButton#PreviousButton > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@PointerOver",
+            "windows-11-notification-center-styler | Button#PlayPauseButton > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@Normal",
+            "windows-11-notification-center-styler | Button#PlayPauseButton > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@PointerOver",
+            "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.RepeatButton#NextButton > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@Normal",
+            "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.RepeatButton#NextButton > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@PointerOver",
+            "windows-11-notification-center-styler | Button#FooterButton > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@Normal",
+            "windows-11-notification-center-styler | Button#FooterButton > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@PointerOver",
+            "windows-11-notification-center-styler | Button#VolumeL2Button > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@Normal",
+            "windows-11-notification-center-styler | Button#VolumeL2Button > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@PointerOver",
+            "windows-11-notification-center-styler.resource.SliderTrackFill",
+            "windows-11-notification-center-styler.resource.SliderTrackFillPointerOver",
+            "windows-11-notification-center-styler.resource.SliderTrackFillPressed",
+            "windows-11-notification-center-styler.resource.SliderThumbBorderBrush",
+            "windows-11-notification-center-styler.resource.SliderTickBarFill",
+            "windows-11-notification-center-styler | ControlCenter.AsyncSlider | Background",
+            "windows-11-notification-center-styler | ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Shapes.Rectangle#HorizontalTrackRect | Fill@Normal",
+            "windows-11-notification-center-styler | ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Shapes.Rectangle#HorizontalTrackRect | Fill@PointerOver",
+            "windows-11-notification-center-styler | ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Shapes.Rectangle#HorizontalTrackRect | Fill@Pressed",
+            "windows-11-notification-center-styler | ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | BorderBrush@Normal",
+            "windows-11-notification-center-styler | ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | BorderBrush@PointerOver",
+            "windows-11-notification-center-styler | ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | BorderBrush@Pressed",
+            "windows-11-notification-center-styler | Slider | Background",
+            "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Shapes.Rectangle#HorizontalTrackRect | Fill@Normal",
+            "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Shapes.Rectangle#HorizontalTrackRect | Fill@PointerOver",
+            "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Shapes.Rectangle#HorizontalTrackRect | Fill@Pressed",
+            "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | BorderBrush@Normal",
+            "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | BorderBrush@PointerOver",
+            "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | BorderBrush@Pressed"
           ],
           "value": "#a3676b",
           "eligibility": {
@@ -38880,7 +38949,19 @@
             "terminal-chrome.resource.SliderTrackFillDisabled",
             "windows-11-settings-styler | Button > ContentPresenter@CommonStates | BorderBrush@Disabled",
             "windows-11-settings-styler.resource.ToggleSwitchStrokeOffDisabled",
-            "windows-11-settings-styler.resource.ToggleSwitchStrokeOnDisabled"
+            "windows-11-settings-styler.resource.ToggleSwitchStrokeOnDisabled",
+            "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@Disabled",
+            "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@CheckedDisabled",
+            "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.RepeatButton#PreviousButton > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@Disabled",
+            "windows-11-notification-center-styler | Button#PlayPauseButton > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@Disabled",
+            "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.RepeatButton#NextButton > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@Disabled",
+            "windows-11-notification-center-styler | Button#FooterButton > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@Disabled",
+            "windows-11-notification-center-styler | Button#VolumeL2Button > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@Disabled",
+            "windows-11-notification-center-styler.resource.SliderTrackFillDisabled",
+            "windows-11-notification-center-styler | ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Shapes.Rectangle#HorizontalTrackRect | Fill@Disabled",
+            "windows-11-notification-center-styler | ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | BorderBrush@Disabled",
+            "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Shapes.Rectangle#HorizontalTrackRect | Fill@Disabled",
+            "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | BorderBrush@Disabled"
           ],
           "value": "#7d1310",
           "eligibility": {
@@ -38966,7 +39047,11 @@
             "terminal-chrome.resource.ScrollBarButtonBorderBrushDisabled",
             "notepad-chrome.resource.ScrollBarThumbBorderBrush",
             "paint-chrome.resource.ScrollBarThumbBorderBrush",
-            "terminal-chrome.resource.ScrollBarThumbBorderBrush"
+            "terminal-chrome.resource.ScrollBarThumbBorderBrush",
+            "windows-11-notification-center-styler | Grid#L1Grid > Border | BorderBrush",
+            "windows-11-notification-center-styler | Grid#L1Grid > Grid | BorderBrush",
+            "windows-11-taskbar-styler | MenuFlyoutSeparator > Windows.UI.Xaml.Shapes.Rectangle | Fill",
+            "windows-11-taskbar-styler.resource.MenuFlyoutSeparatorBackground"
           ],
           "value": "#2b0e0d",
           "eligibility": {
@@ -39016,7 +39101,10 @@
             "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid | BorderBrush",
             "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher | BorderBrush",
             "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid > Border | BorderBrush",
-            "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.Popup > Border#InputSwitcherPopupBorder | BorderBrush"
+            "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.Popup > Border#InputSwitcherPopupBorder | BorderBrush",
+            "windows-11-taskbar-styler | MenuFlyoutPresenter > Border | BorderBrush",
+            "windows-11-taskbar-styler | Grid#OverflowRootGrid > Border#OverflowFlyoutBackgroundBorder | BorderBrush",
+            "windows-11-taskbar-styler.resource.MenuFlyoutPresenterBorderBrush"
           ],
           "value": "#e53935",
           "eligibility": {
@@ -40210,7 +40298,22 @@
             "terminal-chrome.resource.ScrollBarPanningThumbBackgroundDisabled",
             "windows-11-settings-styler | Button > ContentPresenter@CommonStates | Background@Disabled",
             "windows-11-settings-styler.resource.ToggleSwitchFillOffDisabled",
-            "windows-11-settings-styler.resource.ToggleSwitchFillOnDisabled"
+            "windows-11-settings-styler.resource.ToggleSwitchFillOnDisabled",
+            "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates | Background@Disabled",
+            "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates | Background@CheckedDisabled",
+            "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.RepeatButton#PreviousButton > ContentPresenter#ContentPresenter@CommonStates | Background@Disabled",
+            "windows-11-notification-center-styler | Button#PlayPauseButton > ContentPresenter#ContentPresenter@CommonStates | Background@Disabled",
+            "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.RepeatButton#NextButton > ContentPresenter#ContentPresenter@CommonStates | Background@Disabled",
+            "windows-11-notification-center-styler | Button#FooterButton > ContentPresenter#ContentPresenter@CommonStates | Background@Disabled",
+            "windows-11-notification-center-styler | Button#VolumeL2Button > ContentPresenter#ContentPresenter@CommonStates | Background@Disabled",
+            "windows-11-notification-center-styler.resource.SliderTrackValueFillDisabled",
+            "windows-11-notification-center-styler.resource.SliderThumbBackgroundDisabled",
+            "windows-11-notification-center-styler | ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Shapes.Rectangle#HorizontalDecreaseRect | Fill@Disabled",
+            "windows-11-notification-center-styler | ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | Background@Disabled",
+            "windows-11-notification-center-styler | ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border > Windows.UI.Xaml.Shapes.Ellipse#SliderInnerThumb | Fill@Disabled",
+            "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Shapes.Rectangle#HorizontalDecreaseRect | Fill@Disabled",
+            "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | Background@Disabled",
+            "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border > Windows.UI.Xaml.Shapes.Ellipse#SliderInnerThumb | Fill@Disabled"
           ],
           "value": "#160b0b",
           "eligibility": {
@@ -40356,7 +40459,13 @@
             "paint-chrome.resource.ScrollBarButtonBackgroundPointerOver",
             "terminal-chrome.resource.ScrollBarButtonBackgroundPointerOver",
             "windows-11-settings-styler.resource.ToggleSwitchFillOffPointerOver",
-            "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | PointerOverBackground"
+            "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | PointerOverBackground",
+            "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates | Background@PointerOver",
+            "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.RepeatButton#PreviousButton > ContentPresenter#ContentPresenter@CommonStates | Background@PointerOver",
+            "windows-11-notification-center-styler | Button#PlayPauseButton > ContentPresenter#ContentPresenter@CommonStates | Background@PointerOver",
+            "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.RepeatButton#NextButton > ContentPresenter#ContentPresenter@CommonStates | Background@PointerOver",
+            "windows-11-notification-center-styler | Button#FooterButton > ContentPresenter#ContentPresenter@CommonStates | Background@PointerOver",
+            "windows-11-notification-center-styler | Button#VolumeL2Button > ContentPresenter#ContentPresenter@CommonStates | Background@PointerOver"
           ],
           "value": "#1c0a09",
           "eligibility": {
@@ -40386,7 +40495,14 @@
             "terminal-chrome.resource.MenuFlyoutItemBackgroundPointerOver",
             "terminal-chrome.resource.MenuFlyoutSubItemBackgroundPointerOver",
             "terminal-chrome.resource.MenuFlyoutSubItemBackgroundSubMenuOpened",
-            "terminal-chrome.resource.ComboBoxItemBackgroundPointerOver"
+            "terminal-chrome.resource.ComboBoxItemBackgroundPointerOver",
+            "windows-11-taskbar-styler | MenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@PointerOver",
+            "windows-11-taskbar-styler | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | Background@PointerOver",
+            "windows-11-taskbar-styler | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | Background@SubMenuOpened",
+            "windows-11-taskbar-styler | ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@PointerOver",
+            "windows-11-taskbar-styler.resource.MenuFlyoutItemBackgroundPointerOver",
+            "windows-11-taskbar-styler.resource.MenuFlyoutSubItemBackgroundPointerOver",
+            "windows-11-taskbar-styler.resource.MenuFlyoutSubItemBackgroundSubMenuOpened"
           ],
           "value": "#630f0d",
           "eligibility": {
@@ -40505,7 +40621,18 @@
             "windows-11-settings-styler.resource.ProgressBarBackground",
             "windows-11-settings-styler.resource.ToggleSwitchFillOffPressed",
             "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | PressedBackground",
-            "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | SelectedPressedBackground"
+            "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | SelectedPressedBackground",
+            "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates | Background@Pressed",
+            "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.RepeatButton#PreviousButton > ContentPresenter#ContentPresenter@CommonStates | Background@Pressed",
+            "windows-11-notification-center-styler | Button#PlayPauseButton > ContentPresenter#ContentPresenter@CommonStates | Background@Pressed",
+            "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.RepeatButton#NextButton > ContentPresenter#ContentPresenter@CommonStates | Background@Pressed",
+            "windows-11-notification-center-styler | Button#FooterButton > ContentPresenter#ContentPresenter@CommonStates | Background@Pressed",
+            "windows-11-notification-center-styler | Button#VolumeL2Button > ContentPresenter#ContentPresenter@CommonStates | Background@Pressed",
+            "windows-11-taskbar-styler | MenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@Pressed",
+            "windows-11-taskbar-styler | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | Background@Pressed",
+            "windows-11-taskbar-styler | ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@Pressed",
+            "windows-11-taskbar-styler.resource.MenuFlyoutItemBackgroundPressed",
+            "windows-11-taskbar-styler.resource.MenuFlyoutSubItemBackgroundPressed"
           ],
           "value": "#420f0c",
           "eligibility": {
@@ -42571,7 +42698,19 @@
             "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | Background",
             "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher | Background",
             "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid > Border | Background",
-            "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.Popup > Border#InputSwitcherPopupBorder | Background"
+            "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.Popup > Border#InputSwitcherPopupBorder | Background",
+            "windows-11-notification-center-styler | Grid#MediaTransportControlsRegion | Background",
+            "windows-11-notification-center-styler | Grid#MediaTransportControlsRoot | Background",
+            "windows-11-notification-center-styler | Grid#L1Grid | Background",
+            "windows-11-notification-center-styler | Grid#L1Grid > Border | Background",
+            "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.RepeatButton#PreviousButton > ContentPresenter#ContentPresenter@CommonStates | Background@Normal",
+            "windows-11-notification-center-styler | Button#PlayPauseButton > ContentPresenter#ContentPresenter@CommonStates | Background@Normal",
+            "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.RepeatButton#NextButton > ContentPresenter#ContentPresenter@CommonStates | Background@Normal",
+            "windows-11-notification-center-styler | Button#FooterButton > ContentPresenter#ContentPresenter@CommonStates | Background@Normal",
+            "windows-11-notification-center-styler | Button#VolumeL2Button > ContentPresenter#ContentPresenter@CommonStates | Background@Normal",
+            "windows-11-notification-center-styler.resource.SliderContainerBackground",
+            "windows-11-notification-center-styler.resource.SliderContainerBackgroundPointerOver",
+            "windows-11-notification-center-styler.resource.SliderContainerBackgroundPressed"
           ],
           "value": "#000000",
           "eligibility": {
@@ -42731,7 +42870,16 @@
             "terminal-chrome.resource.ComboBoxBackgroundFocused",
             "terminal-chrome.resource.SliderOuterThumbBackground",
             "terminal-chrome.resource.SliderInlineTickBarFill",
-            "windows-11-settings-styler.resource.ToggleSwitchFillOff"
+            "windows-11-settings-styler.resource.ToggleSwitchFillOff",
+            "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates | Background@Normal",
+            "windows-11-notification-center-styler.resource.SliderOuterThumbBackground",
+            "windows-11-notification-center-styler.resource.SliderInlineTickBarFill",
+            "windows-11-notification-center-styler | ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | Background@Normal",
+            "windows-11-notification-center-styler | ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | Background@PointerOver",
+            "windows-11-notification-center-styler | ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | Background@Pressed",
+            "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | Background@Normal",
+            "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | Background@PointerOver",
+            "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | Background@Pressed"
           ],
           "value": "#000000",
           "eligibility": {
@@ -42807,7 +42955,23 @@
             "terminal-chrome.resource.FlyoutPresenterBackground",
             "windows-11-settings-styler.resource.ToolTipBackground",
             "windows-11-settings-styler.resource.ToolTipBackgroundBrush",
-            "windows-11-settings-styler | ToolTip | Background"
+            "windows-11-settings-styler | ToolTip | Background",
+            "windows-11-taskbar-styler | MenuFlyoutPresenter | Background",
+            "windows-11-taskbar-styler | MenuFlyoutPresenter > Border | Background",
+            "windows-11-taskbar-styler | Grid#OverflowRootGrid | Background",
+            "windows-11-taskbar-styler | Grid#OverflowRootGrid > Border#OverflowFlyoutBackgroundBorder | Background",
+            "windows-11-taskbar-styler | MenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@Normal",
+            "windows-11-taskbar-styler | MenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@Disabled",
+            "windows-11-taskbar-styler | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | Background@Normal",
+            "windows-11-taskbar-styler | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | Background@Disabled",
+            "windows-11-taskbar-styler | ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@Normal",
+            "windows-11-taskbar-styler | ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@Disabled",
+            "windows-11-taskbar-styler.resource.MenuFlyoutItemBackgroundBrush",
+            "windows-11-taskbar-styler.resource.MenuFlyoutPresenterBackground",
+            "windows-11-taskbar-styler.resource.MenuFlyoutItemBackground",
+            "windows-11-taskbar-styler.resource.MenuFlyoutItemBackgroundDisabled",
+            "windows-11-taskbar-styler.resource.MenuFlyoutSubItemBackground",
+            "windows-11-taskbar-styler.resource.MenuFlyoutSubItemBackgroundDisabled"
           ],
           "value": "#160b0b",
           "eligibility": {
@@ -43287,7 +43451,12 @@
             "terminal-chrome.resource.ScrollBarButtonArrowForegroundPointerOver",
             "notepad-chrome.resource.ScrollBarButtonArrowForegroundPressed",
             "paint-chrome.resource.ScrollBarButtonArrowForegroundPressed",
-            "terminal-chrome.resource.ScrollBarButtonArrowForegroundPressed"
+            "terminal-chrome.resource.ScrollBarButtonArrowForegroundPressed",
+            "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.RepeatButton#PreviousButton > ContentPresenter#ContentPresenter@CommonStates | Foreground@Pressed",
+            "windows-11-notification-center-styler | Button#PlayPauseButton > ContentPresenter#ContentPresenter@CommonStates | Foreground@Pressed",
+            "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.RepeatButton#NextButton > ContentPresenter#ContentPresenter@CommonStates | Foreground@Pressed",
+            "windows-11-notification-center-styler | Button#FooterButton > ContentPresenter#ContentPresenter@CommonStates | Foreground@Pressed",
+            "windows-11-notification-center-styler | Button#VolumeL2Button > ContentPresenter#ContentPresenter@CommonStates | Foreground@Pressed"
           ],
           "value": "#ffa2a7",
           "eligibility": {
@@ -43541,7 +43710,32 @@
             "windows-11-settings-styler.resource.ToggleSwitchKnobFillOffPointerOver",
             "windows-11-settings-styler.resource.ToggleSwitchKnobFillOffPressed",
             "windows-11-taskbar-styler | ListViewItem | Foreground",
-            "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | PointerOverForeground"
+            "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | PointerOverForeground",
+            "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton | Foreground",
+            "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates | Foreground@Normal",
+            "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates | Foreground@PointerOver",
+            "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates | Foreground@Pressed",
+            "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.RepeatButton#PreviousButton > ContentPresenter#ContentPresenter@CommonStates | Foreground@Normal",
+            "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.RepeatButton#PreviousButton > ContentPresenter#ContentPresenter@CommonStates | Foreground@PointerOver",
+            "windows-11-notification-center-styler | Button#PlayPauseButton > ContentPresenter#ContentPresenter@CommonStates | Foreground@Normal",
+            "windows-11-notification-center-styler | Button#PlayPauseButton > ContentPresenter#ContentPresenter@CommonStates | Foreground@PointerOver",
+            "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.RepeatButton#NextButton > ContentPresenter#ContentPresenter@CommonStates | Foreground@Normal",
+            "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.RepeatButton#NextButton > ContentPresenter#ContentPresenter@CommonStates | Foreground@PointerOver",
+            "windows-11-notification-center-styler | Button#FooterButton > ContentPresenter#ContentPresenter@CommonStates | Foreground@Normal",
+            "windows-11-notification-center-styler | Button#FooterButton > ContentPresenter#ContentPresenter@CommonStates | Foreground@PointerOver",
+            "windows-11-notification-center-styler | Button#VolumeL2Button > ContentPresenter#ContentPresenter@CommonStates | Foreground@Normal",
+            "windows-11-notification-center-styler | Button#VolumeL2Button > ContentPresenter#ContentPresenter@CommonStates | Foreground@PointerOver",
+            "windows-11-notification-center-styler.resource.SliderHeaderForeground",
+            "windows-11-taskbar-styler | MenuFlyoutItem | Foreground",
+            "windows-11-taskbar-styler | MenuFlyoutSubItem | Foreground",
+            "windows-11-taskbar-styler | ToggleMenuFlyoutItem | Foreground",
+            "windows-11-taskbar-styler.resource.MenuFlyoutItemForeground",
+            "windows-11-taskbar-styler.resource.MenuFlyoutItemForegroundPointerOver",
+            "windows-11-taskbar-styler.resource.MenuFlyoutItemForegroundPressed",
+            "windows-11-taskbar-styler.resource.MenuFlyoutSubItemForeground",
+            "windows-11-taskbar-styler.resource.MenuFlyoutSubItemForegroundSubMenuOpened",
+            "windows-11-taskbar-styler.resource.MenuFlyoutSubItemForegroundPointerOver",
+            "windows-11-taskbar-styler.resource.MenuFlyoutSubItemForegroundPressed"
           ],
           "value": "#e99499",
           "eligibility": {
@@ -43634,7 +43828,18 @@
             "windows-11-settings-styler.resource.ToggleSwitchContentForegroundDisabled",
             "windows-11-settings-styler.resource.ToggleSwitchHeaderForegroundDisabled",
             "windows-11-settings-styler.resource.ToggleSwitchKnobFillOffDisabled",
-            "windows-11-settings-styler.resource.ToggleSwitchKnobFillOnDisabled"
+            "windows-11-settings-styler.resource.ToggleSwitchKnobFillOnDisabled",
+            "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates | Foreground@Disabled",
+            "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates | Foreground@CheckedDisabled",
+            "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.RepeatButton#PreviousButton > ContentPresenter#ContentPresenter@CommonStates | Foreground@Disabled",
+            "windows-11-notification-center-styler | Button#PlayPauseButton > ContentPresenter#ContentPresenter@CommonStates | Foreground@Disabled",
+            "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.RepeatButton#NextButton > ContentPresenter#ContentPresenter@CommonStates | Foreground@Disabled",
+            "windows-11-notification-center-styler | Button#FooterButton > ContentPresenter#ContentPresenter@CommonStates | Foreground@Disabled",
+            "windows-11-notification-center-styler | Button#VolumeL2Button > ContentPresenter#ContentPresenter@CommonStates | Foreground@Disabled",
+            "windows-11-notification-center-styler.resource.SliderHeaderForegroundDisabled",
+            "windows-11-taskbar-styler.resource.MenuFlyoutItemForegroundDisabled",
+            "windows-11-taskbar-styler.resource.MenuFlyoutSubItemForegroundDisabled",
+            "windows-11-taskbar-styler.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundDisabled"
           ],
           "value": "#8a5559",
           "eligibility": {
@@ -43812,7 +44017,11 @@
             "terminal-chrome.resource.SplitButtonForegroundSecondaryPressed",
             "terminal-chrome.resource.DropDownButtonForegroundSecondary",
             "terminal-chrome.resource.DropDownButtonForegroundSecondaryPointerOver",
-            "terminal-chrome.resource.DropDownButtonForegroundSecondaryPressed"
+            "terminal-chrome.resource.DropDownButtonForegroundSecondaryPressed",
+            "windows-11-taskbar-styler.resource.MenuFlyoutItemKeyboardAcceleratorTextForeground",
+            "windows-11-taskbar-styler.resource.MenuFlyoutSubItemChevron",
+            "windows-11-taskbar-styler.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundPointerOver",
+            "windows-11-taskbar-styler.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundPressed"
           ],
           "value": "#bd787d",
           "eligibility": {
@@ -44777,7 +44986,32 @@
             "windows-11-taskbar-styler | ListViewItem | CornerRadius",
             "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher | CornerRadius",
             "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid > Border | CornerRadius",
-            "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.Popup > Border#InputSwitcherPopupBorder | CornerRadius"
+            "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.Popup > Border#InputSwitcherPopupBorder | CornerRadius",
+            "windows-11-notification-center-styler | Grid#MediaTransportControlsRegion | CornerRadius",
+            "windows-11-notification-center-styler | Grid#MediaTransportControlsRoot | CornerRadius",
+            "windows-11-notification-center-styler | Grid#L1Grid | CornerRadius",
+            "windows-11-notification-center-styler | Grid#L1Grid > Border | CornerRadius",
+            "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton | CornerRadius",
+            "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates | CornerRadius",
+            "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.RepeatButton#PreviousButton > ContentPresenter#ContentPresenter@CommonStates | CornerRadius",
+            "windows-11-notification-center-styler | Button#PlayPauseButton > ContentPresenter#ContentPresenter@CommonStates | CornerRadius",
+            "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.RepeatButton#NextButton > ContentPresenter#ContentPresenter@CommonStates | CornerRadius",
+            "windows-11-notification-center-styler | Button#FooterButton > ContentPresenter#ContentPresenter@CommonStates | CornerRadius",
+            "windows-11-notification-center-styler | Button#VolumeL2Button > ContentPresenter#ContentPresenter@CommonStates | CornerRadius",
+            "windows-11-notification-center-styler | ControlCenter.AsyncSlider | CornerRadius",
+            "windows-11-notification-center-styler | ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | CornerRadius",
+            "windows-11-notification-center-styler | Slider | CornerRadius",
+            "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | CornerRadius",
+            "windows-11-taskbar-styler | MenuFlyoutPresenter | CornerRadius",
+            "windows-11-taskbar-styler | MenuFlyoutPresenter > Border | CornerRadius",
+            "windows-11-taskbar-styler | Grid#OverflowRootGrid | CornerRadius",
+            "windows-11-taskbar-styler | Grid#OverflowRootGrid > Border#OverflowFlyoutBackgroundBorder | CornerRadius",
+            "windows-11-taskbar-styler | MenuFlyoutItem | CornerRadius",
+            "windows-11-taskbar-styler | MenuFlyoutItem > Grid#LayoutRoot@CommonStates | CornerRadius",
+            "windows-11-taskbar-styler | MenuFlyoutSubItem | CornerRadius",
+            "windows-11-taskbar-styler | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | CornerRadius",
+            "windows-11-taskbar-styler | ToggleMenuFlyoutItem | CornerRadius",
+            "windows-11-taskbar-styler | ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates | CornerRadius"
           ],
           "value": "0px",
           "eligibility": {
