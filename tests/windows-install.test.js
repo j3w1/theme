@@ -173,8 +173,11 @@ test('native Startup link preserves long explicit guard arguments without writin
  fs.writeFileSync(inspection,`$r=[Console]::In.ReadToEnd()|ConvertFrom-Json; $s=New-Object -ComObject WScript.Shell; $l=$s.CreateShortcut($r.link); @{target=$l.TargetPath;arguments=$l.Arguments;working=$l.WorkingDirectory;windowStyle=$l.WindowStyle;description=$l.Description}|ConvertTo-Json -Compress`);
  const shown=spawnSync(pwsh,['-NoProfile','-File',inspection],{input:JSON.stringify({link}),encoding:'utf8',windowsHide:true,timeout:15000});
  assert.equal(shown.status,0,shown.stderr);
- const metadata=JSON.parse(shown.stdout);assert.equal(metadata.target.toLowerCase(),target.toLowerCase());
- assert.equal(metadata.arguments,args);assert.equal(metadata.working.toLowerCase(),working.toLowerCase());assert.equal(metadata.windowStyle,7);
+ // Shell links expand Windows 8.3 path aliases, including CI's TEMP root.
+ // Compare existing filesystem identities; guard arguments remain byte-exact.
+ const identity=p=>fs.realpathSync.native(p).toLowerCase();
+ const metadata=JSON.parse(shown.stdout);assert.equal(identity(metadata.target),identity(target));
+ assert.equal(metadata.arguments,args);assert.equal(identity(metadata.working),identity(working));assert.equal(metadata.windowStyle,7);
  for(const bad of [{...request,arguments:args+'\n'}, {...request,target:path.join(folder,'unapproved.exe')}])assert.notEqual(invoke(bad).status,0);
  const junction=path.join(folder,'runtime-junction');fs.symlinkSync(path.dirname(target),junction,'junction');
  assert.notEqual(invoke({...request,target:path.join(junction,path.basename(target))}).status,0);
