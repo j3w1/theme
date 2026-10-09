@@ -37750,7 +37750,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-E4WJdWPdn9evD3AGY2KkVOFGK/8W5D8WcWVbONb4ucI=",
+      "subjectDigest": "sha256-nWb17pASsBRsRcey/Zxx6hGh22vZbOHeb+SmxytxWgk=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37783,7 +37783,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-NACsK5ToyhtsCKhxxQrWKXSlwi3qSFO9GgCKy+kvzzM="
+          "digest": "sha256-hqorp7EHHBC6kQjPynBalzWwpS66Sc+HGxt2vv91kx8="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37957,7 +37957,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-uTump2AZ5+xYmwCHHF10N/qo4XY9CGfiWglZ+tKkwvo="
+          "digest": "sha256-ebZl5q9ebv5RObFPPy/1JU2iG6mg7NjTbv9t2OAIg3A="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -38053,7 +38053,7 @@
           "path": "dist/j3w1-paint-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-paint-chrome.wh.cpp",
-          "digest": "sha256-dcVpG2Xp0drUm+pRSFtdlxYV4GEp9FVXYdJbtu2BcO4="
+          "digest": "sha256-3ZzX0NKtkcWc422je1FLx4QJVk3IYrGt41blxyuf+Ls="
         },
         {
           "path": "dist/j3w1-paint-chrome.json",

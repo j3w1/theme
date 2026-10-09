@@ -2,7 +2,7 @@
 // @id j3w1-paint-chrome
 // @name j3w1 Paint chrome
 // @description Exact-package Paint chrome resources; document and artwork colors remain native
-// @version 1.0.26
+// @version 1.0.27
 // @author j3w1
 // @include mspaint.exe
 // @architecture x86-64
@@ -2157,7 +2157,10 @@ static void PreparePaintMenuStyle(Root& root,FrameworkElement const& element) {
  style.Setters().Append(Setter{Control::BackgroundProperty(),background});
  style.Setters().Append(Setter{Control::ForegroundProperty(),foreground});
  style.Setters().Append(Setter{Control::BorderBrushProperty(),border});
- style.Setters().Append(Setter{MenuFlyoutPresenter::SystemBackdropProperty(),nullptr});
+// The two-argument WinUI Setter constructor refuses null (E_INVALIDARG).
+// Set its property and explicit null value through the public accessors.
+ Setter backdrop;backdrop.Property(MenuFlyoutPresenter::SystemBackdropProperty());
+ backdrop.Value(nullptr);style.Setters().Append(backdrop);
  // No template, geometry, items, actions, focus or RequestedTheme is replaced.
  // Retain the receipt before writing; a failed setter may have partially applied.
  entries.push_back({make_weak(owner),make_weak(flyout),{nullptr,style}});

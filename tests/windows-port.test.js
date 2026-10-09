@@ -963,7 +963,9 @@ test('Paint preopening menu styles retain native structure and join the existing
  assert.match(prepare,/flyout.IsOpen\(\)\|\|flyout.MenuFlyoutPresenterStyle\(\)/);
  assert.match(prepare,/ReadLocalValue\(property\),DependencyProperty::UnsetValue\(\)/);
  assert.match(prepare,/entries.push_back[\s\S]*UpdatePreopenMenuStyle\(entries.back\(\),true\)/);
- assert.match(prepare,/SystemBackdropProperty\(\),nullptr/);
+ assert.match(prepare,/Setter backdrop;backdrop.Property\(MenuFlyoutPresenter::SystemBackdropProperty\(\)\)/);
+ assert.match(prepare,/backdrop.Value\(nullptr\);style.Setters\(\).Append\(backdrop\)/);
+ assert.ok(!prepare.includes("Setter{MenuFlyoutPresenter::SystemBackdropProperty(),nullptr}"));
  for(const forbidden of ['TemplateProperty','WidthProperty','HeightProperty','PaddingProperty','RequestedThemeProperty','Items().Clear','Items().Append'])assert.ok(!prepare.includes(forbidden));
  assert.match(paint,/const bool styles=RestorePreopenMenuStyles\(state.preopenMenus\);[\s\S]*return RestorePopupBackings\(state.popupBackings\)&&styles/);
  assert.match(paint,/if\(active&&!RestorePreopenMenuStyles\(state.preopenMenus,true\)\)/);

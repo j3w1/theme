@@ -1911,3 +1911,29 @@ The synthetic native regression checks erasure, ownership, clipping/DC state,
 unchanged class brush, fallback and stable GDI lifetime. It is not installed
 appearance evidence. This backing correction does not repair the separately
 unresolved stalled initialization or certify transient first-frame behavior.
+
+
+### Paint preopening null-setter rejection and correction
+
+The first preopening-style candidate passed source, native ownership, installer
+Test and rollback/reapply checks, but Paint's installed toolbar returned to
+native gray. It was rejected and not published. Latest Restore returned to the
+accepted source and restored the black/rose toolbar; the other twelve adapter
+identities were preserved.
+
+A same-thread detached-object diagnostic identified `E_INVALIDARG` at the
+two-argument `Setter(SystemBackdropProperty, null)` constructor. The three
+brush setters had already succeeded. The exception reached the existing root
+failure handler, which restores the palette rather than retaining partial
+styling. A second detached comparison used the default Setter constructor,
+then its public Property and Value accessors. Construction, four-setter style
+assignment to a detached MenuFlyout and application to a detached native
+presenter all succeeded on the admitted runtime. No diagnostic object was
+attached to Paint's tree and no drawing or document content was read.
+
+The source now uses that accepted null-value construction. The exact toolbar
+endpoint, admission, host-template preservation, journaled recovery and
+partial-write receipts remain unchanged. Detached success is not first-open,
+submenu, pointer-exit or startup-frame acceptance; those need their own installed
+observations. Both numeric diagnostic generations and the rejected candidate
+remain historical evidence outside the repository.

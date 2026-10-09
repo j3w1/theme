@@ -222,5 +222,9 @@ bindings, unrelated controls and menus already open at first discovery are
 left to the host. Rollback restores the unset local value while preserving later
 application replacements. Failed writes retain their receipt for cleanup retry. Retired owners return their
 style through the same bounded refresh path before receipts are released.
-This source correction still requires installed first-open assessment; it does
-not establish startup-frame timing, submenu or whole-application acceptance.
+The null backdrop setter uses the public property/value accessors: the
+two-argument WinUI constructor rejects null and previously caused the toolbar
+to return to native gray. Detached construction, style assignment and native
+presenter application passed on the recorded runtime. Installed first-open
+assessment remains separate; this does not establish startup-frame timing,
+submenu or whole-application acceptance.
