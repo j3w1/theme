@@ -1304,11 +1304,23 @@ Calculator, Notepad, Paint and Terminal. Rendered hover and native header checks
 remain distinct from this correction's ownership regressions.
 
 The preview-backing boundary additionally requires the recorded native preview
-surrogate and Explorer executable digests in host.json. An unknown or restarted
-Explorer process outside the adapter's captured owner set retains native backing
-until the adapter is reloaded. It does not alter preview registration or install
-another application. The existing Markdown adapter owns this loading surface;
-setup, Test and recovery still use the same install.ps1 entry point.
+surrogate and Explorer executable digests in host.json. The shared surrogate
+discovers an exact Explorer owner at startup, on native preview creation, show
+and position notifications, and during enabled settings refresh. An executable
+query or digest check never runs inside background erasure. Exited owners are
+retired before admission, so the 16-owner capacity counts live processes rather
+than historical launches. Concurrent discovery rechecks lifetime, identity and
+capacity under the cache mutex; teardown closes admission before releasing its
+handles. Unknown owners and failed checks retain native backing. Discovery
+forwards every native notification without changing its result, parent,
+geometry or provider initialization. It adds no worker or periodic scan.
+
+The synthetic regression covers late discovery reaching identity verification,
+unknown-executable refusal, disabled/high-contrast fallback, bounded live-owner
+capacity, concurrent admission and handle release. It does not establish live
+Explorer-restart or transient first-frame acceptance. Preview registration is
+unchanged. The existing Markdown adapter owns this loading surface; setup, Test
+and recovery still use the same install.ps1 entry point.
 
 
 ### Settings split-button parent brushes

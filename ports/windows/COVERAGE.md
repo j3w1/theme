@@ -73,6 +73,18 @@ rose border. Other Search states and accessibility acceptance remain open.
 | Notepad++, browsers, Office, media and archive apps | No application-specific port installed by Windows setup | Use documented theme APIs where available; dark mode alone is not a complete j3w1 match |
 | Secure desktop, authentication, protected system surfaces and arbitrary document/media colors | Host-owned | No binary patching, isolation changes, or whole-screen color filters |
 
+## Preview owner lifecycle
+
+The native preview surrogate can outlive the Explorer owner observed at mod
+startup. Its backing adapter now admits later exact-digest Explorer owners on
+native creation/show/position notifications and enabled settings refresh.
+Retired process handles no longer consume its bounded live-owner cache. The
+same lifetime and teardown mutex prevents duplicate admission or ownership
+after unload. No executable lookup occurs during erasure, and no worker,
+geometry substitution or preview-provider launch is added. Synthetic native
+tests verify those lifecycle and fallback boundaries. Live restart, stalled
+provider initialization and transient startup appearance remain unassessed.
+
 ## Shared adapters and their boundaries
 
 Search WebView rows and action buttons use the tertiary action palette with no
