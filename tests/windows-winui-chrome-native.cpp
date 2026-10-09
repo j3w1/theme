@@ -94,6 +94,55 @@ static void CheckPaintSplitEdges() {
  puts("PASS: exact Paint split-edge shape and protected-data refusal; paired ownership, app-write preservation, partial failure and exact retry restoration");
 }
 int main(int argc, char** argv) {
+#if J3W1_TEST_PAINT
+ if(argc>1&&strcmp(argv[1],"preopen-menu-ownership")==0) {
+  auto admission=[](bool active=true,bool thread=true,bool loaded=true,bool root=true,bool menu=true){
+   return PaintMenuTriggerAdmission(L"PaintUI.AppChrome",L"Microsoft.UI.Xaml.Controls.Button",L"ContentButton",L"Microsoft.UI.Xaml.Controls.MenuBarItemFlyout",active,thread,loaded,root,menu);
+  };
+  assert(admission());
+  assert(!admission(false)&&!admission(true,false)&&!admission(true,true,false)
+   &&!admission(true,true,true,false)&&!admission(true,true,true,true,false));
+  for(auto owner:{L"PaintUI.Ribbon",L"NotepadXamlUI.MainMenuBar",L"PaintUI.AppChromeExtra",L""})
+   assert(!PaintMenuTriggerAdmission(owner,L"Microsoft.UI.Xaml.Controls.Button",L"ContentButton",L"Microsoft.UI.Xaml.Controls.MenuBarItemFlyout",true,true,true,true,true));
+  for(auto trigger:{L"Microsoft.UI.Xaml.Controls.ButtonExtra",L"PaintUI.ColorRadioButton",L"PaintUI.D2DSwapChainPanel"})
+   assert(!PaintMenuTriggerAdmission(L"PaintUI.AppChrome",trigger,L"ContentButton",L"Microsoft.UI.Xaml.Controls.MenuBarItemFlyout",true,true,true,true,true));
+  for(auto name:{L"ContentButtonExtra",L"BrushesSplitButton",L""})
+   assert(!PaintMenuTriggerAdmission(L"PaintUI.AppChrome",L"Microsoft.UI.Xaml.Controls.Button",name,L"Microsoft.UI.Xaml.Controls.MenuBarItemFlyout",true,true,true,true,true));
+  for(auto flyout:{L"Microsoft.UI.Xaml.Controls.MenuFlyout",L"Microsoft.UI.Xaml.Controls.MenuBarItemFlyoutExtra",L"Microsoft.UI.Xaml.Controls.Flyout"})
+   assert(!PaintMenuTriggerAdmission(L"PaintUI.AppChrome",L"Microsoft.UI.Xaml.Controls.Button",L"ContentButton",flyout,true,true,true,true,true));
+  init_apartment(apartment_type::multi_threaded);
+  {
+   auto unset=box_value(1),theme=box_value(2),app=box_value(3);ProjectedObject current=unset;
+   unsigned clears=0,writes=0;
+   auto read=[&]{return current;};
+   auto write=[&](auto const& value){++writes;current=value;};
+   auto clear=[&]{++clears;current=unset;};
+   auto isUnset=[&](auto const& value){return Identity(value,unset);};
+   OwnedCompositionBrush entry{nullptr,theme};
+   assert(UpdatePreopenMenuStyle(entry,true,read,write,clear,isUnset)&&entry.owned&&Identity(entry.before,unset)&&Identity(current,theme));
+   assert(UpdatePreopenMenuStyle(entry,true,read,write,clear,isUnset)&&writes==1);
+   assert(UpdatePreopenMenuStyle(entry,false,read,write,clear,isUnset)&&clears==1&&Identity(current,unset));
+   // Explicit null is a distinct baseline and must be written, not cleared.
+   current=nullptr;entry={nullptr,theme};
+   assert(UpdatePreopenMenuStyle(entry,true,read,write,clear,isUnset));
+   assert(UpdatePreopenMenuStyle(entry,false,read,write,clear,isUnset)&&!current&&clears==1);
+   current=unset;entry={nullptr,theme};assert(UpdatePreopenMenuStyle(entry,true,read,write,clear,isUnset));current=app;
+   assert(UpdatePreopenMenuStyle(entry,false,read,write,clear,isUnset)&&entry.changed&&!entry.owned&&Identity(current,app));
+   assert(UpdatePreopenMenuStyle(entry,true,read,write,clear,isUnset)&&Identity(current,app));
+   current=unset;entry={nullptr,theme};auto partial=[&](auto const& value){write(value);throw hresult_error(E_FAIL);};
+   assert(!UpdatePreopenMenuStyle(entry,true,read,partial,clear,isUnset)&&entry.owned&&Identity(current,theme));
+   auto failedClear=[]{throw hresult_error(E_FAIL);};
+   assert(!UpdatePreopenMenuStyle(entry,false,read,write,failedClear,isUnset)&&entry.owned);
+   assert(UpdatePreopenMenuStyle(entry,false,read,write,clear,isUnset)&&Identity(current,unset));
+   entry={nullptr,theme};auto denied=[]()->ProjectedObject{throw hresult_error(E_ACCESSDENIED);};
+   assert(!UpdatePreopenMenuStyle(entry,true,denied,write,clear,isUnset)&&!entry.owned&&Identity(current,unset));
+  }
+  std::vector<PreopenMenuStyle> retired(3);
+  assert(RestorePreopenMenuStyles(retired,true)&&retired.empty());
+  uninit_apartment();puts("PASS: exact preopening menu admission, unset versus null, app replacement, partial setter, retired owners and retained cleanup retry");return 0;
+ }
+#endif
+
  if(argc>1&&strcmp(argv[1],"paint-split-edge-ownership")==0){CheckPaintSplitEdges();return 0;}
  if(argc>1&&strcmp(argv[1],"background-transition-ownership")==0){CheckChromeTransitions();return 0;}
  if(argc>1&&strcmp(argv[1],"hover-state-palette")==0){CheckChromeHoverStates();return 0;}

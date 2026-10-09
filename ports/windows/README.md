@@ -207,3 +207,20 @@ The exact package/runtime checks, existing restoration path and public installer
 are retained. Synthetic native checks exercise generic content, admitted parents,
 foreign roots and bounded cyclic ancestry. Installed menu rendering still needs
 acceptance; this source defect does not by itself explain every gray menu frame.
+
+
+### Paint toolbar menus before opening
+
+The recorded Paint package creates its File/Edit/View `MenuBarItemFlyout` on
+the loaded `ContentButton` before opening; its presenter style is initially
+unset. The existing Paint adapter now prepares that exact owned toolbar endpoint
+with the mapped raised surface, rose foreground, overlay border and a null
+system backdrop. The native template, dimensions, items, actions and keyboard
+behavior remain unchanged. It admits only the same-root AppChrome/MenuBarItem
+chain on its UI thread, with normal accessibility state; custom styles,
+bindings, unrelated controls and menus already open at first discovery are
+left to the host. Rollback restores the unset local value while preserving later
+application replacements. Failed writes retain their receipt for cleanup retry. Retired owners return their
+style through the same bounded refresh path before receipts are released.
+This source correction still requires installed first-open assessment; it does
+not establish startup-frame timing, submenu or whole-application acceptance.

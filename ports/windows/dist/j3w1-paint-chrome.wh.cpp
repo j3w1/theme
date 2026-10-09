@@ -2,7 +2,7 @@
 // @id j3w1-paint-chrome
 // @name j3w1 Paint chrome
 // @description Exact-package Paint chrome resources; document and artwork colors remain native
-// @version 1.0.25
+// @version 1.0.26
 // @author j3w1
 // @include mspaint.exe
 // @architecture x86-64
@@ -1224,11 +1224,20 @@ static bool RestoreWindowBackings(std::vector<std::unique_ptr<WindowBacking>>& e
  return complete;
 }
 #endif
+#include <winrt/Windows.UI.Xaml.Interop.h>
 // The recorded Paint menu presenter has a DesktopAcrylicBackdrop behind
 // its already-themed brushes, including before its first layout. Use only
 // the public presenter property. Never infer a popup HWND or modify artwork.
 struct PopupBacking { weak_ref<MenuFlyoutPresenter> element; OwnedCompositionBrush value; };
 static void ApplyPopupBacking(Root& root,FrameworkElement const& element);
+
+// The exact Paint toolbar creates MenuBarItemFlyout on ContentButton before
+// opening. Prepare only its previously unset presenter style, so the native
+// presenter receives the semantic surface before its first layout.
+struct PreopenMenuStyle { weak_ref<FrameworkElement> owner; weak_ref<MenuFlyout> element; OwnedCompositionBrush value; };
+static void PreparePaintMenuStyle(Root& root,FrameworkElement const& element);
+struct ThreadState;
+static bool RestorePaintPopups(ThreadState& state) noexcept;
 
 
 // Paint owns an admitted native title. Notepad owns custom tabs and declines
@@ -1335,7 +1344,7 @@ struct ThreadState {
 std::vector<std::unique_ptr<PublicCaption>> publicCaptions;
 #if !J3W1_LEGACY_XAML
  std::vector<std::unique_ptr<WindowBacking>> windowBackings;
- std::vector<PopupBacking> popupBackings;
+ std::vector<PopupBacking> popupBackings; std::vector<PreopenMenuStyle> preopenMenus;
 #endif
  ControlResources keyTips; std::deque<ChromeAnimationChange> animations; std::deque<ChromeSetterChange> setters; std::deque<ChromeBaseChange> bases; std::deque<ChromeTransitionChange> transitions; HWND channel=nullptr; WNDPROC original=nullptr; std::deque<Root> roots; std::vector<OwnedNativeBrush> nativeBrushes; std::deque<PaintSplitEdgeReceipt> paintSplitEdges; std::vector<PendingRoot> pending; bool busy=false,queued=false,cleaning=false; unsigned ticks=0; };
 static thread_local ThreadState* uiState=nullptr;
@@ -1895,7 +1904,7 @@ static void Bridge(Root& root,FrameworkElement const& popup=nullptr) {
  while(!stack.empty()&&count++<4096) {
   auto object=stack.back();stack.pop_back();if(DataSubtree(object))continue;
   RefreshChromeControl(root,object);
-  if(auto element=object.try_as<FrameworkElement>())ApplyPopupBacking(root,element);
+  if(auto element=object.try_as<FrameworkElement>()){PreparePaintMenuStyle(root,element);ApplyPopupBacking(root,element);}
   if(uiState)ApplyChromeAnimationPalette(object,uiState->animations,uiState->setters,uiState->bases,uiState->transitions);
   if(object.try_as<Control>()) {
    apply(object,Control::BackgroundProperty(),Kind::Background);apply(object,Control::ForegroundProperty(),Kind::Foreground);apply(object,Control::BorderBrushProperty(),Kind::Border);
@@ -2080,12 +2089,88 @@ static void ApplyPopupBacking(Root& root,FrameworkElement const& element) {
   [&](auto const& value){presenter.SystemBackdrop(value?value.template as<SystemBackdrop>():nullptr);}))throw hresult_error(E_FAIL);
 }
 
+static bool PaintMenuTriggerAdmission(std::wstring_view owner,std::wstring_view trigger,
+ std::wstring_view name,std::wstring_view flyout,bool active,bool uiThread,bool loaded,bool sameRoot,bool menuOwner) noexcept {
+ return owner==L"PaintUI.AppChrome"&&trigger==L"Microsoft.UI.Xaml.Controls.Button"
+  &&name==L"ContentButton"&&flyout==L"Microsoft.UI.Xaml.Controls.MenuBarItemFlyout"
+  &&active&&uiThread&&loaded&&sameRoot&&menuOwner;
+}
+template<class Read,class Write,class Clear,class IsUnset>
+static bool UpdatePreopenMenuStyle(OwnedCompositionBrush& entry,bool active,Read read,Write write,Clear clear,IsUnset unset) noexcept {
+ return UpdateCompositionBrush(entry,active,read,[&](auto const& value){if(unset(value))clear();else write(value);});
+}
+static bool UpdatePreopenMenuStyle(PreopenMenuStyle& entry,bool active) noexcept {
+ auto flyout=entry.element.get();if(!flyout){entry.value.owned=false;return true;}
+ auto property=MenuFlyout::MenuFlyoutPresenterStyleProperty();
+ return UpdatePreopenMenuStyle(entry.value,active,[&]{return flyout.ReadLocalValue(property);},
+  [&](auto const& value){flyout.SetValue(property,value);},[&]{flyout.ClearValue(property);},
+  [](auto const& value){return Identity(value,DependencyProperty::UnsetValue());});
+}
+static bool RestorePreopenMenuStyles(std::vector<PreopenMenuStyle>& entries,bool retiredOnly=false) noexcept {
+ bool restored=true;
+ for(auto it=entries.begin();it!=entries.end();)try {
+  auto owner=it->owner.get();
+  if(retiredOnly&&owner&&owner.IsLoaded()&&it->element.get()){++it;continue;}
+  if(!UpdatePreopenMenuStyle(*it,false)){restored=false;++it;continue;}
+  it=entries.erase(it);
+ }catch(...){restored=false;++it;}
+ return restored;
+}
+static bool RestorePaintPopups(ThreadState& state) noexcept {
+ const bool styles=RestorePreopenMenuStyles(state.preopenMenus);
+ return RestorePopupBackings(state.popupBackings)&&styles;
+}
+static void PreparePaintMenuStyle(Root& root,FrameworkElement const& element) {
+ auto owner=root.element.get();
+ if(!uiState||!owner||!element||get_class_name(owner)!=L"PaintUI.AppChrome")return;
+ auto button=element.try_as<Button>();if(!button||button.Name()!=L"ContentButton")return;
+ auto xaml=owner.XamlRoot();if(!xaml||!Identity(element.XamlRoot(),xaml))return;
+ bool menuOwner=false,reachedOwner=false;auto ancestor=VisualTreeHelper::GetParent(button);
+ for(unsigned depth=0;ancestor&&depth<16;++depth,ancestor=VisualTreeHelper::GetParent(ancestor)) {
+  if(auto peer=ancestor.try_as<FrameworkElement>();peer&&!Identity(peer.XamlRoot(),xaml))return;
+  if(Identity(ancestor,owner)){reachedOwner=true;break;}
+  if(get_class_name(ancestor)==L"Microsoft.UI.Xaml.Controls.MenuBarItem")menuOwner=true;
+ }
+ auto flyout=button.ContextFlyout().try_as<MenuFlyout>();if(!flyout)return;
+ if(!PaintMenuTriggerAdmission(std::wstring_view{get_class_name(owner)},std::wstring_view{get_class_name(button)},
+  std::wstring_view{button.Name()},std::wstring_view{get_class_name(flyout)},enabled.load()&&!HighContrast(),
+  ChromeUiThread(element)&&flyout.DispatcherQueue().HasThreadAccess(),element.IsLoaded(),reachedOwner,menuOwner))return;
+ auto& entries=uiState->preopenMenus;
+ for(auto it=entries.begin();it!=entries.end();)if(!it->element.get())it=entries.erase(it);else ++it;
+ for(auto& entry:entries)if(Identity(entry.element.get(),flyout)) {
+  if(!UpdatePreopenMenuStyle(entry,true))throw hresult_error(E_FAIL);
+  return;
+ }
+ // A local/implicit app style, binding or already-open menu retains ownership.
+ // The recorded native endpoint has an unset local value and no effective style.
+ auto property=MenuFlyout::MenuFlyoutPresenterStyleProperty();
+ if(flyout.IsOpen()||flyout.MenuFlyoutPresenterStyle()
+  ||!Identity(flyout.ReadLocalValue(property),DependencyProperty::UnsetValue()))return;
+ auto brush=[&](PCWSTR key)->SolidColorBrush {
+  for(auto const& entry:root.palette)if(wcscmp(entry.rule->key,key)==0)return entry.applied;
+  return nullptr;
+ };
+ auto background=brush(L"MenuFlyoutPresenterBackground"),foreground=brush(L"MenuFlyoutItemForeground"),border=brush(L"MenuFlyoutPresenterBorderBrush");
+ if(!background||!foreground||!border)return;
+ if(entries.size()>=64)throw hresult_error(E_BOUNDS);
+ Style style{xaml_typename<MenuFlyoutPresenter>()};
+ style.Setters().Append(Setter{Control::BackgroundProperty(),background});
+ style.Setters().Append(Setter{Control::ForegroundProperty(),foreground});
+ style.Setters().Append(Setter{Control::BorderBrushProperty(),border});
+ style.Setters().Append(Setter{MenuFlyoutPresenter::SystemBackdropProperty(),nullptr});
+ // No template, geometry, items, actions, focus or RequestedTheme is replaced.
+ // Retain the receipt before writing; a failed setter may have partially applied.
+ entries.push_back({make_weak(owner),make_weak(flyout),{nullptr,style}});
+ if(!UpdatePreopenMenuStyle(entries.back(),true))throw hresult_error(E_FAIL);
+}
+
 static void Refresh(ThreadState& state) noexcept {
  if(state.busy)return;state.busy=true;state.queued=false;
  ApplyPublicCaptions(state);
  const bool active=enabled.load()&&!HighContrast();
  if(!RefreshWindowBackings(state,active))Log(237);
- if(!active&&!RestorePopupBackings(state.popupBackings))Log(239);
+ if(active&&!RestorePreopenMenuStyles(state.preopenMenus,true))Log(239);
+ if(!active&&!RestorePaintPopups(state))Log(239);
  if(!active){RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreChromeBases(state.bases);RestoreChromeTransitions(state.transitions);RestoreKeyTips(state);RestoreNativeBrushes(state.nativeBrushes);if(!RestorePaintSplitEdges(state.paintSplitEdges))Log(238);}
  else if(!state.roots.empty())ApplyKeyTips(state);
  for(auto it=state.pending.begin();it!=state.pending.end();) {
@@ -2105,8 +2190,8 @@ static void Refresh(ThreadState& state) noexcept {
     &&ChromeUiThread(element)&&Prepare(root)) {
    ApplyBackdrop(root);ApplyRootBackground(root);Bridge(root);
   }
- }catch(hresult_error const& error){Log(98,static_cast<unsigned>(error.code().value));RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreChromeBases(state.bases);RestoreChromeTransitions(state.transitions);if(!RestorePaintSplitEdges(state.paintSplitEdges))Log(238);if(!RestorePopupBackings(state.popupBackings))Log(239);Restore(state.roots[at]);}
- catch(...){Log(97);RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreChromeBases(state.bases);RestoreChromeTransitions(state.transitions);if(!RestorePaintSplitEdges(state.paintSplitEdges))Log(238);if(!RestorePopupBackings(state.popupBackings))Log(239);Restore(state.roots[at]);}
+ }catch(hresult_error const& error){Log(98,static_cast<unsigned>(error.code().value));RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreChromeBases(state.bases);RestoreChromeTransitions(state.transitions);if(!RestorePaintSplitEdges(state.paintSplitEdges))Log(238);if(!RestorePaintPopups(state))Log(239);Restore(state.roots[at]);}
+ catch(...){Log(97);RestoreChromeAnimations(state.animations);RestoreChromeSetters(state.setters);RestoreChromeBases(state.bases);RestoreChromeTransitions(state.transitions);if(!RestorePaintSplitEdges(state.paintSplitEdges))Log(238);if(!RestorePaintPopups(state))Log(239);Restore(state.roots[at]);}
  for(auto it=state.roots.begin();it!=state.roots.end();) {
   if(!it->element.get()&&Restore(*it))it=state.roots.erase(it);else ++it;
  }
@@ -2123,7 +2208,7 @@ static bool RestoreThreadState(ThreadState& state) noexcept {
  bool publicRestored=RestorePublicCaptions(state);
  bool restored=RestoreKeyTips(state)&&publicRestored;
  restored=RefreshWindowBackings(state,false)&&restored;
- restored=RestorePopupBackings(state.popupBackings)&&restored;
+ restored=RestorePaintPopups(state)&&restored;
  restored=RestoreNativeBrushes(state.nativeBrushes)&&restored;
  restored=RestorePaintSplitEdges(state.paintSplitEdges)&&restored;
  restored=RestoreChromeAnimations(state.animations)&&restored;
@@ -2237,7 +2322,7 @@ static void ObservePopupChrome(FrameworkElement const& element) {
     RestoreChromeAnimations(uiState->animations);RestoreChromeSetters(uiState->setters);
     RestoreChromeBases(uiState->bases);RestoreChromeTransitions(uiState->transitions);
     if(!RestorePaintSplitEdges(uiState->paintSplitEdges))Log(238);
-    if(!RestorePopupBackings(uiState->popupBackings))Log(239);
+    if(!RestorePaintPopups(*uiState))Log(239);
     Restore(root);
    }
    Schedule();return;

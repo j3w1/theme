@@ -948,12 +948,26 @@ test('Paint menu acrylic backing has a bounded public-property owner and all cle
  assert.match(apply,/Identity\(owner.XamlRoot\(\),element.XamlRoot\(\)\)/);
  assert.match(apply,/get_class_name\(native\)!=L"Microsoft.UI.Xaml.Media.DesktopAcrylicBackdrop"/);
  assert.match(apply,/UpdateCompositionBrush[\s\S]*SystemBackdrop\(/);
- assert.match(paint,/if\(!active&&!RestorePopupBackings\(state.popupBackings\)\)/);
- assert.match(paint,/restored=RestorePopupBackings\(state.popupBackings\)&&restored/);
- assert.match(paint,/RestorePopupBackings\(uiState->popupBackings\)/);
- assert.equal((paint.match(/if\(!RestorePopupBackings\(state.popupBackings\)\)Log\(239\);Restore\(state.roots\[at\]\);/g)??[]).length,2);
+ assert.match(paint,/if\(!active&&!RestorePaintPopups\(state\)\)/);
+ assert.match(paint,/restored=RestorePaintPopups\(state\)&&restored/);
+ assert.match(paint,/RestorePaintPopups\(\*uiState\)/);
+ assert.equal((paint.match(/if\(!RestorePaintPopups\(state\)\)Log\(239\);Restore\(state.roots\[at\]\);/g)??[]).length,2);
 });
 
+
+test('Paint preopening menu styles retain native structure and join the existing cleanup path',()=>{
+ const paint=fs.readFileSync(path.join(source,'dist/j3w1-paint-chrome.wh.cpp'),'utf8');
+ for(const id of ['notepad','terminal'])assert.ok(!fs.readFileSync(path.join(source,'dist/j3w1-'+id+'-chrome.wh.cpp'),'utf8').includes('struct PreopenMenuStyle'));
+ const prepare=paint.slice(paint.indexOf('static void PreparePaintMenuStyle(Root& root,FrameworkElement const& element) {'),paint.indexOf('static void Refresh(ThreadState& state) noexcept'));
+ for(const key of ['MenuFlyoutPresenterBackground','MenuFlyoutItemForeground','MenuFlyoutPresenterBorderBrush'])assert.ok(prepare.includes('brush(L"'+key+'")'));
+ assert.match(prepare,/flyout.IsOpen\(\)\|\|flyout.MenuFlyoutPresenterStyle\(\)/);
+ assert.match(prepare,/ReadLocalValue\(property\),DependencyProperty::UnsetValue\(\)/);
+ assert.match(prepare,/entries.push_back[\s\S]*UpdatePreopenMenuStyle\(entries.back\(\),true\)/);
+ assert.match(prepare,/SystemBackdropProperty\(\),nullptr/);
+ for(const forbidden of ['TemplateProperty','WidthProperty','HeightProperty','PaddingProperty','RequestedThemeProperty','Items().Clear','Items().Append'])assert.ok(!prepare.includes(forbidden));
+ assert.match(paint,/const bool styles=RestorePreopenMenuStyles\(state.preopenMenus\);[\s\S]*return RestorePopupBackings\(state.popupBackings\)&&styles/);
+ assert.match(paint,/if\(active&&!RestorePreopenMenuStyles\(state.preopenMenus,true\)\)/);
+});
 
 test('Quick Settings maps its own media, toggle and slider states without changing actions or content',async()=>{
  const host=await readJson('ports/windows/host.json');
