@@ -84,6 +84,7 @@ static decltype(&DefWindowProcW) originalDefWindowProc;
 static decltype(&SetScrollInfo) originalSetScrollInfo;
 static thread_local HWND defaultWindow=nullptr;
 static void RefreshCaption(HWND window);
+static bool PaintPreviewBacking(HWND window,HDC dc);
 // Nonclient scrollbars paint during default window handling and SetScrollInfo,
 // outside BeginPaint. Both paths share the most recent actual HWND; nested calls
 // restore the previous origin. This scope is used only for ScrollBar theme draws.
@@ -94,6 +95,7 @@ struct DefaultPaintScope {
 };
 static LRESULT WINAPI DefaultWindowHook(HWND window,UINT message,WPARAM wParam,LPARAM lParam) {
     DefaultPaintScope scope(window);
+    if(message==WM_ERASEBKGND && PaintPreviewBacking(window,reinterpret_cast<HDC>(wParam)))return 1;
     if(message==WM_THEMECHANGED || message==WM_SETTINGCHANGE)RefreshCaption(window);
     return originalDefWindowProc(window,message,wParam,lParam);
 }
@@ -115,6 +117,35 @@ static bool ExplorerWindow(HWND window) {
     wchar_t name[64]{};
     if(!GetClassNameW(GetAncestor(window,GA_ROOT),name,64)) return false;
     return _wcsicmp(name,L"CabinetWClass")==0 && !HighContrast();
+}
+// The recorded outer preview container belongs to Explorer, independently of
+// the prevhost-owned preview child. Erase only its observed solid-white backing;
+// retain the native brush, sizing, clipping, content and COM initialization.
+static bool PaintPreviewBacking(HWND window,HDC dc) {
+    if(!enabled.load() || drawingTheme || !backgroundBrush || !originalFillRect
+       || HighContrast() || !window || !dc || WindowFromDC(dc)!=window
+       || GetObjectType(dc)!=OBJ_DC || GetMapMode(dc)!=MM_TEXT || GetLayout(dc)!=0
+       || GetGraphicsMode(dc)!=GM_COMPATIBLE)return false;
+    POINT viewport{},origin{};
+    if(!GetViewportOrgEx(dc,&viewport) || !GetWindowOrgEx(dc,&origin)
+       || viewport.x || viewport.y || origin.x || origin.y)return false;
+    DWORD process=0,rootProcess=0;
+    GetWindowThreadProcessId(window,&process);
+    HWND root=GetAncestor(window,GA_ROOT);
+    GetWindowThreadProcessId(root,&rootProcess);
+    wchar_t name[64]{},rootName[64]{};
+    if(process!=GetCurrentProcessId() || rootProcess!=GetCurrentProcessId()
+       || !root || root==window || !GetClassNameW(window,name,std::size(name))
+       || _wcsicmp(name,L"Shell Preview Extension Host")!=0
+       || !GetClassNameW(root,rootName,std::size(rootName))
+       || _wcsicmp(rootName,L"CabinetWClass")!=0)return false;
+    HBRUSH brush=reinterpret_cast<HBRUSH>(GetClassLongPtrW(window,GCLP_HBRBACKGROUND));
+    LOGBRUSH value{};
+    if(!brush || GetObjectW(brush,sizeof(value),&value)!=sizeof(value)
+       || value.lbStyle!=BS_SOLID || value.lbColor!=RGB(255,255,255))return false;
+    RECT rect{};
+    if(!GetClientRect(window,&rect) || rect.right<=rect.left || rect.bottom<=rect.top)return false;
+    return originalFillRect(dc,&rect,backgroundBrush)!=0;
 }
 // Native caption buttons are composed above a transparent XAML title strip.
 // Keep their hit testing, geometry and commands; color the DWM backing instead.

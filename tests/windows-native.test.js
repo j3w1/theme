@@ -39,6 +39,7 @@ for(const mod of settings.bundledMods)test(`complete native DLL link: ${mod.id}`
 });
 for(const [name,mod] of [
  ['explorer-startup','j3w1-explorer-native'],
+ ['explorer-preview-backing','j3w1-explorer-native'],
  ['caption','j3w1-explorer-native'],['scroll-paint','j3w1-explorer-native'],
  ['explorer-interaction','j3w1-explorer-native'],['marquee-paint','j3w1-explorer-native'],['tooltip','j3w1-explorer-native'],
  ['preview-paint','j3w1-powertoys-preview'],['markdown','j3w1-powertoys-markdown'],

@@ -1881,3 +1881,33 @@ the failure to a native theme-resource refresh but does not establish the invali
 pointer, original caller, brush ownership error or crash cause. The rejected
 tooltip mappings remain withdrawn. The earlier failure and unread-dump boundary
 above are historical; the later owner-authorized diagnostic does not rewrite them.
+
+### Explorer-owned outer preview backing
+
+The bounded public-COM geometry trace distinguished normal and stalled text
+preview initialization. Both began with an empty rectangle and a hidden 0-by-0
+parent. The working tab later received a usable SetRect and launched normally;
+the stalled tab did not receive that update during the observation. No geometry
+substitution, COM reordering or direct preview launch is implemented.
+
+A separate read-only native snapshot identified the visible outer
+`Shell Preview Extension Host` as Explorer-owned, under its CabinetWClass root,
+with a solid-white class brush. The prevhost-owned Previewer child had a separate
+solid-gray brush and could remain 0-by-0 while that white parent stayed visible.
+The existing child adapter therefore did not cover the exposed outer backing.
+
+The exact-host Explorer adapter now handles only that outer window's
+[WM_ERASEBKGND](https://learn.microsoft.com/en-us/windows/win32/winmsg/wm-erasebkgnd)
+through the existing token-derived canvas brush. The class and root must belong
+to the current admitted Explorer process; the DC must belong to the same window,
+with ordinary untransformed client coordinates. Only the observed solid-white
+class brush is admitted. Native clipping is retained. The class brush, window
+properties, dimensions, document content and preview-provider behavior do not
+change. Disable returns to native erasure and the normal unload repaint path.
+Unknown brushes, later colors, foreign windows/DCs, memory DCs, high contrast
+and failed accessibility queries retain native painting.
+
+The synthetic native regression checks erasure, ownership, clipping/DC state,
+unchanged class brush, fallback and stable GDI lifetime. It is not installed
+appearance evidence. This backing correction does not repair the separately
+unresolved stalled initialization or certify transient first-frame behavior.
