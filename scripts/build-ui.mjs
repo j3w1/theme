@@ -2,6 +2,7 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { pathToFileURL, fileURLToPath } from "node:url";
+import { setTimeout as delay } from "node:timers/promises";
 import { build } from "vite";
 import { parseFragment } from "parse5";
 import { repoRoot, readJson, readText, listFiles, stableJson, writeFileEnsured } from "./lib/fs.mjs";
@@ -22,7 +23,27 @@ async function packageDir(name, from) {
   }
 }
 
-export async function buildUI({ check = false } = {}) {
+export async function buildUI(options = {}) {
+  // Keep entry paths stable for reproducible chunk bytes, but let only one
+  // process clear or read their shared staging directory at a time.
+  const cache = path.join(repoRoot, ".cache");
+  await fs.mkdir(cache, { recursive: true });
+  const lockPath = path.join(cache, "ui-build.lock");
+  const deadline = Date.now() + 60_000;
+  let lock;
+  while (!lock) {
+    try { lock = await fs.open(lockPath, "wx"); }
+    catch (error) {
+      if (error.code !== "EEXIST") throw error;
+      if (Date.now() >= deadline) throw new Error("Timed out waiting for .cache/ui-build.lock. If a build was interrupted, confirm no UI build is running before removing that lock.");
+      await delay(50);
+    }
+  }
+  try { return await buildUIExclusive(options); }
+  finally { await lock.close(); await fs.unlink(lockPath); }
+}
+
+async function buildUIExclusive({ check = false } = {}) {
   const manifest = await readJson("theme.json");
   const inventory = await readJson("spec/inventory.json");
   const components = await loadComponents();
