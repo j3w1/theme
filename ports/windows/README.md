@@ -228,3 +228,11 @@ to return to native gray. Detached construction, style assignment and native
 presenter application passed on the recorded runtime. Installed first-open
 assessment remains separate; this does not establish startup-frame timing,
 submenu or whole-application acceptance.
+
+### Popup discovery before Loaded
+
+Notepad, Paint and Terminal menu styling now keeps track of permitted popup
+controls discovered before their templates are ready. It applies the existing
+palette when those controls load, then removes the callback. The same installer
+restores this change. Native ownership and cleanup checks are separate from
+installed first-open appearance; remaining visual limits stay recorded above.

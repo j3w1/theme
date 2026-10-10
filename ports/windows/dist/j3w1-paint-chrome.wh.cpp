@@ -2,7 +2,7 @@
 // @id j3w1-paint-chrome
 // @name j3w1 Paint chrome
 // @description Exact-package Paint chrome resources; document and artwork colors remain native
-// @version 1.0.27
+// @version 1.0.28
 // @author j3w1
 // @include mspaint.exe
 // @architecture x86-64
@@ -601,6 +601,21 @@ struct Root { weak_ref<FrameworkElement> element; weak_ref<FrameworkElement> bac
 #endif
  DependencyProperty backgroundProperty{nullptr}; ProjectedObject backgroundBefore{nullptr}; SolidColorBrush backgroundApplied{nullptr}; std::vector<Palette> palette; std::vector<Visual> changes; std::deque<OwnedThemeRefresh> refreshes; std::deque<ControlResources> controls; };
 struct PendingRoot { weak_ref<FrameworkElement> element; unsigned attempts=0; };
+struct PopupLoadReceipt { weak_ref<FrameworkElement> element; event_token loaded{}; bool registered=false; };
+// Retain a failed event removal so shutdown can retry before unloading code.
+// Expired elements have already released their subscription; do not revive them.
+template<class Entries,class Resolve,class Select,class Remove>
+static bool RevokePopupLoadEvents(Entries& entries,Resolve resolve,Select select,Remove remove) noexcept {
+ bool complete=true;
+ for(auto it=entries.begin();it!=entries.end();)try {
+  auto element=resolve(*it);
+  if(!element){it=entries.erase(it);continue;}
+  if(!select(element)){++it;continue;}
+  if(it->registered&&!remove(element,it->loaded)){complete=false;++it;continue;}
+  it=entries.erase(it);
+ }catch(...){complete=false;++it;}
+ return complete;
+}
 // Readable caption customization is admitted separately from the XAML roots.
 // Extended title content is refused so native tabs and drag geometry remain
 // owned by the application.
@@ -1346,7 +1361,7 @@ std::vector<std::unique_ptr<PublicCaption>> publicCaptions;
  std::vector<std::unique_ptr<WindowBacking>> windowBackings;
  std::vector<PopupBacking> popupBackings; std::vector<PreopenMenuStyle> preopenMenus;
 #endif
- ControlResources keyTips; std::deque<ChromeAnimationChange> animations; std::deque<ChromeSetterChange> setters; std::deque<ChromeBaseChange> bases; std::deque<ChromeTransitionChange> transitions; HWND channel=nullptr; WNDPROC original=nullptr; std::deque<Root> roots; std::vector<OwnedNativeBrush> nativeBrushes; std::deque<PaintSplitEdgeReceipt> paintSplitEdges; std::vector<PendingRoot> pending; bool busy=false,queued=false,cleaning=false; unsigned ticks=0; };
+ ControlResources keyTips; std::deque<ChromeAnimationChange> animations; std::deque<ChromeSetterChange> setters; std::deque<ChromeBaseChange> bases; std::deque<ChromeTransitionChange> transitions; HWND channel=nullptr; WNDPROC original=nullptr; std::deque<Root> roots; std::vector<OwnedNativeBrush> nativeBrushes; std::deque<PaintSplitEdgeReceipt> paintSplitEdges; std::vector<PendingRoot> pending; std::deque<PopupLoadReceipt> popupLoads; bool busy=false,queued=false,cleaning=false; unsigned ticks=0; };
 static thread_local ThreadState* uiState=nullptr;
 static bool EnsureChannel();
 static void Schedule();
@@ -1944,6 +1959,8 @@ static Element SelectChromeRoot(Element const& element,Element const& content,El
 }
 static void ObserveRoot(FrameworkElement const& element);
 static void Track(UIElement const& content,DesktopWindowXamlSource const& source,Window const& window=nullptr);
+static bool RestorePopupLoads(ThreadState& state) noexcept;
+static void RefreshPopupLoads(ThreadState& state) noexcept;
 
 
 static void WriteOwnedCaption(PublicCaption const& caption,unsigned slot,CaptionColor const& color) {
@@ -2198,7 +2215,7 @@ static void Refresh(ThreadState& state) noexcept {
  for(auto it=state.roots.begin();it!=state.roots.end();) {
   if(!it->element.get()&&Restore(*it))it=state.roots.erase(it);else ++it;
  }
- state.ticks++;state.busy=false;
+ state.ticks++;state.busy=false;RefreshPopupLoads(state);
 }
 static std::atomic<bool> modulePinned{false};
 static void PinForCleanup() noexcept {if(!modulePinned.exchange(true)){HMODULE module=nullptr;GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS,reinterpret_cast<LPCWSTR>(PinForCleanup),&module);Log(178,module!=nullptr);}}
@@ -2209,7 +2226,8 @@ static void Schedule() {
 [[clang::no_destroy]] static std::vector<ThreadState*> retiredCleanup;
 static bool RestoreThreadState(ThreadState& state) noexcept {
  bool publicRestored=RestorePublicCaptions(state);
- bool restored=RestoreKeyTips(state)&&publicRestored;
+ bool restored=RestorePopupLoads(state);
+ restored=RestoreKeyTips(state)&&publicRestored&&restored;
  restored=RefreshWindowBackings(state,false)&&restored;
  restored=RestorePaintPopups(state)&&restored;
  restored=RestoreNativeBrushes(state.nativeBrushes)&&restored;
@@ -2300,13 +2318,70 @@ static bool PopupChromeClass(std::wstring_view type) noexcept {
   ||type==L"Microsoft.UI.Xaml.Controls.MenuFlyoutItem"
   ||type==L"Microsoft.UI.Xaml.Controls.MenuFlyoutSubItem";
 }
+static bool PopupObservationAdmission(std::wstring_view type,bool uiThread,bool active) noexcept {
+ return active&&uiThread&&PopupChromeClass(type);
+}
 static bool PopupDiscoveryAdmission(std::wstring_view type,bool uiThread,bool active,bool loaded,bool sameRoot) noexcept {
  return active&&uiThread&&loaded&&sameRoot&&PopupChromeClass(type);
 }
+static bool RemovePopupLoadedEvent(FrameworkElement const& element,event_token token) noexcept {
+ // The projected event remover discards HRESULT. Use its public typed ABI to
+ // distinguish an actual detach from a failure that must keep its receipt.
+ try {
+  auto api=element.as<IFrameworkElement>();
+  auto abi=reinterpret_cast<winrt::impl::abi_t<IFrameworkElement>*>(get_abi(api));
+  return SUCCEEDED(abi->remove_Loaded(token));
+ }catch(...){return false;}
+}
+static bool RestorePopupLoads(ThreadState& state) noexcept {
+ return RevokePopupLoadEvents(state.popupLoads,[](auto const& entry){return entry.element.get();},
+  [](auto const&){return true;},RemovePopupLoadedEvent);
+}
+static bool DetachPopupLoad(ThreadState& state,FrameworkElement const& element) noexcept {
+ return RevokePopupLoadEvents(state.popupLoads,[](auto const& entry){return entry.element.get();},
+  [&](auto const& candidate){return Identity(candidate,element);},RemovePopupLoadedEvent);
+}
+static void ObservePopupChrome(FrameworkElement const& element);
+static void WatchPopupLoad(FrameworkElement const& element) {
+ auto& state=*uiState;
+ if(!RevokePopupLoadEvents(state.popupLoads,[](auto const& entry){return entry.element.get();},
+  [](auto const&){return false;},RemovePopupLoadedEvent))return;
+ for(auto const& entry:state.popupLoads)if(Identity(entry.element.get(),element))return;
+ if(state.popupLoads.size()>=1024)return;
+ state.popupLoads.push_back({make_weak(element)});
+ auto& receipt=state.popupLoads.back();auto expected=&state;
+ try {
+  receipt.loaded=element.Loaded([expected](auto const& sender,auto const&) {
+   // A reentrant notification remains queued for the existing refresh. Never
+   // follow a receipt into a different dispatcher or a retired channel.
+   if(uiState!=expected||uiState->busy||uiState->cleaning)return;
+   try{ObservePopupChrome(sender.template try_as<FrameworkElement>());}catch(...){Schedule();}
+  });
+  receipt.registered=true;
+ }catch(...){state.popupLoads.pop_back();throw;}
+ // Registration and readiness can overlap in a native notification. The
+ // ordinary refresh also retries ready receipts after a reentrant callback.
+ if(element.IsLoaded())ObservePopupChrome(element);
+}
+static void RefreshPopupLoads(ThreadState& state) noexcept {
+ if(!enabled.load()||HighContrast()){if(!RestorePopupLoads(state))Log(253);return;}
+ try {
+  RevokePopupLoadEvents(state.popupLoads,[](auto const& entry){return entry.element.get();},
+   [](auto const&){return false;},RemovePopupLoadedEvent);
+  std::vector<FrameworkElement> ready;
+  for(auto const& entry:state.popupLoads)if(auto element=entry.element.get();element&&element.IsLoaded())ready.push_back(element);
+  for(auto const& element:ready)ObservePopupChrome(element);
+ }catch(...){Log(254);}
+}
 static void ObservePopupChrome(FrameworkElement const& element) {
- if(!element||!uiState||uiState->busy||uiState->cleaning||!enabled.load()||HighContrast())return;
- auto xaml=element.XamlRoot();if(!xaml)return;
+ if(!element||!uiState||uiState->busy||uiState->cleaning)return;
  auto type=get_class_name(element);
+ if(!PopupObservationAdmission(std::wstring_view{type},ChromeUiThread(element),enabled.load()&&!HighContrast())) {
+  if(!DetachPopupLoad(*uiState,element))Log(253);return;
+ }
+ if(!element.IsLoaded()){WatchPopupLoad(element);return;}
+ if(!DetachPopupLoad(*uiState,element)){Schedule();return;}
+ auto xaml=element.XamlRoot();if(!xaml)return;
  for(auto& root:uiState->roots) {
   auto owner=root.element.get();if(!owner||root.palette.empty())continue;
   if(!PopupDiscoveryAdmission(std::wstring_view{type},ChromeUiThread(element),enabled.load(),element.IsLoaded(),Identity(owner.XamlRoot(),xaml)))continue;

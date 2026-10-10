@@ -1195,3 +1195,15 @@ to return to native gray. Detached construction, style assignment and native
 presenter application passed on the recorded runtime. Installed first-open
 assessment remains separate; this does not establish startup-frame timing,
 submenu or whole-application acceptance.
+
+### Popup discovery before Loaded
+
+The shared Notepad, Paint and Terminal adapters now retain a weak, bounded
+Loaded-event receipt when an already-permitted popup is discovered before its
+template is ready. The load callback uses the existing dispatcher, accessibility
+and same-root admission before applying the existing template palette. Disable
+and unload detach the receipt; failed removal remains retryable. Synthetic
+native checks establish these admission and cleanup contracts. They do not
+establish installed first-frame, hover-exit, submenu, DPI or high-contrast
+rendering acceptance. The independent preview startup stall, withdrawn Explorer
+toolbar-tooltip correction and gray Paint drawing surround remain unresolved.

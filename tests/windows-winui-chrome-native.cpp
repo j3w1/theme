@@ -60,6 +60,7 @@ struct NoWeakBackingPeer : implements<NoWeakBackingPeer,Windows::Foundation::ISt
 };
 #endif
 #include "windows-chrome-transition-assertions.h"
+#include "windows-popup-load-assertions.h"
 static void CheckPaintSplitEdges() {
  const Color top{24,255,255,255},bottom{18,255,255,255},theme{255,80,10,10},app{255,17,19,21};
  assert(PaintSplitEdgeAdmission(true,false,2,double(0.33f),1,top,bottom));
@@ -94,6 +95,7 @@ static void CheckPaintSplitEdges() {
  puts("PASS: exact Paint split-edge shape and protected-data refusal; paired ownership, app-write preservation, partial failure and exact retry restoration");
 }
 int main(int argc, char** argv) {
+ if(argc>1&&strcmp(argv[1],"popup-load-lifecycle")==0){CheckPopupLoadLifecycle();return 0;}
 #if J3W1_TEST_PAINT
  if(argc>1&&strcmp(argv[1],"preopen-menu-ownership")==0) {
   auto admission=[](bool active=true,bool thread=true,bool loaded=true,bool root=true,bool menu=true){

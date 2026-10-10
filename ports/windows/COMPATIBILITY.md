@@ -1968,3 +1968,28 @@ high contrast, unreadable accessibility settings, disabled state and recursion
 retain native output. Messages, return values, scroll ranges, clipping and
 geometry are unchanged. Offscreen regression checks cover those boundaries;
 they do not establish complete installed hover, DPI or transient-frame coverage.
+
+### Popup discovery before Loaded
+
+Shared Notepad, Paint and Terminal chrome discovery previously discarded a
+known popup when its visual-tree Add notification preceded IsLoaded. The next
+ordinary refresh could style it only after a native first frame. Discovery now
+keeps a bounded weak receipt for the same permitted popup classes and handles
+their public FrameworkElement.Loaded event. Loaded follows template application
+in both WinUI and legacy XAML; the existing same-root bridge can then refresh
+the presenter and its template immediately.
+
+The callback grants no painting ownership. It rechecks the current dispatcher,
+enabled/accessibility state, loaded state and admitted XamlRoot before using
+the existing palette, document exclusions and restoration receipts. Reentrant
+loads wait for the existing refresh, with no added worker, timer, app input,
+geometry substitution or preview-provider initialization change. Callback
+receipts are detached on completion, disable, high contrast and unload.
+Expired weak elements release capacity. Failed removals retain their exact
+event token for cleanup retry; the typed public event ABI preserves its HRESULT,
+which the projected remover discards. Native test fixtures cover those ownership
+and fallback cases. Installed first-frame and whole-application appearance
+remain separate acceptance checks.
+
+References: [WinUI Loaded](https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.frameworkelement.loaded)
+and [legacy XAML Loaded](https://learn.microsoft.com/en-us/uwp/api/windows.ui.xaml.frameworkelement.loaded).
