@@ -110,7 +110,7 @@ test('Windows native values, Terminal ANSI and styler selectors resolve from can
  assert.equal(terminal.schemes[0].foreground,'#e99499');
  const ansi=['black','red','green','yellow','blue','purple','cyan','white','brightBlack','brightRed','brightGreen','brightYellow','brightBlue','brightPurple','brightCyan','brightWhite'];
  ansi.forEach((key,i)=>assert.equal(terminal.schemes[0][key],tokens[`color.terminal.ansi.${i}`].css));
- for(const styler of host.stylers){const x=await readJson(`ports/windows/dist/${styler.id}.json`);assert.deepEqual(x.controlStyles,styler.targets.map(t=>({target:t.target,styles:Object.entries(t.styles).map(([k,r])=>`${k}=${windowsStyleValue(k,{type:tokens[r].type,resolved:tokens[r].value})}`)})));}
+ for(const styler of host.stylers){const x=await readJson(`ports/windows/dist/${styler.id}.json`);assert.deepEqual(x.controlStyles,[...host.menuTargets,...styler.targets].map(t=>({target:t.target,styles:Object.entries(t.styles).map(([k,r])=>`${k}=${windowsStyleValue(k,{type:tokens[r].type,resolved:tokens[r].value})}`)})));}
  assert.equal(settings.version,(await readJson('theme.json')).version);
 });
 
@@ -224,7 +224,7 @@ test('Explorer submenu stays on the hover palette while its child flyout is open
   const submenu=config.controlStyles.find(x=>x.target===target);
   assert.ok(submenu,target);
   const value=name=>submenu.styles.find(s=>s.startsWith(`${name}=`))?.split('=').slice(1).join('=');
-  const role=tokens['color.interaction.hover.bg'];
+  const role=tokens[target.startsWith('MenuFlyout')?'color.interaction.hover.bg-strong':'color.interaction.hover.bg'];
   assert.equal(value(`Background@${opened}`),windowsStyleValue(`Background@${opened}`,{type:role.type,resolved:role.value}),target);
   assert.equal(value(`Background@${opened}`),value(`Background@${hover}`),target);
   assert.notEqual(value(`Background@${opened}`),value(`Background@${normal}`),target);
@@ -1033,12 +1033,13 @@ test('taskbar popup styling preserves icon artwork, commands and native focus',a
   }
  }
  assert.ok(rules('MenuFlyoutSeparator > Windows.UI.Xaml.Shapes.Rectangle').includes('Fill=#2b0e0d'));
- assert.ok(Object.keys(config.resources).length>0);
- for(const [key,role]of Object.entries(config.resources)){
-  assert.ok(key.startsWith('MenuFlyout'));
+ const menuResources=Object.entries(host.resources).filter(([key])=>key.startsWith('MenuFlyout'));
+ assert.equal(menuResources.length,27);
+ assert.equal(config.resources,undefined,'taskbar consumes the shared menu palette');
+ for(const [key,role]of menuResources){
   assert.equal(role,host.winuiChromeResources[key]);
-  assert.ok(mapping.mappings[role].includes(id+'.resource.'+key));
-  for(const other of host.stylers.filter(mod=>mod.id!==id))assert.ok(!Object.hasOwn(other.resources??{},key));
+  assert.ok(mapping.mappings[role].includes('windhawk.resource.'+key));
+  for(const other of host.stylers)assert.ok(!Object.hasOwn(other.resources??{},key));
  }
  for(const rule of payload.controlStyles)for(const value of rule.styles)
   assert.doesNotMatch(value,/^(?:Source|Glyph|Text|Content|Command|IsEnabled|Visibility|Width|Height|Margin|Padding|RenderTransform|FocusVisualPrimaryBrush|FocusVisualSecondaryBrush|IsTabStop|TabIndex)=/);

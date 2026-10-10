@@ -2,6 +2,80 @@
   "theme": "",
   "controlStyles": [
     {
+      "target": "MenuFlyoutPresenter",
+      "styles": [
+        "Background=#160b0b",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "MenuFlyoutPresenter > Border",
+      "styles": [
+        "Background=#160b0b",
+        "CornerRadius=0",
+        "BorderBrush=#e53935",
+        "BorderThickness=1"
+      ]
+    },
+    {
+      "target": "MenuFlyoutItem",
+      "styles": [
+        "CornerRadius=0",
+        "Foreground=#e99499"
+      ]
+    },
+    {
+      "target": "MenuFlyoutItem > Grid#LayoutRoot@CommonStates",
+      "styles": [
+        "CornerRadius=0",
+        "Background@Normal=#160b0b",
+        "Background@PointerOver=#630f0d",
+        "Background@Pressed=#420f0c",
+        "Background@Disabled=#160b0b"
+      ]
+    },
+    {
+      "target": "MenuFlyoutSubItem",
+      "styles": [
+        "CornerRadius=0",
+        "Foreground=#e99499"
+      ]
+    },
+    {
+      "target": "MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates",
+      "styles": [
+        "CornerRadius=0",
+        "Background@Normal=#160b0b",
+        "Background@PointerOver=#630f0d",
+        "Background@Pressed=#420f0c",
+        "Background@Disabled=#160b0b",
+        "Background@SubMenuOpened=#630f0d"
+      ]
+    },
+    {
+      "target": "ToggleMenuFlyoutItem",
+      "styles": [
+        "CornerRadius=0",
+        "Foreground=#e99499"
+      ]
+    },
+    {
+      "target": "ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates",
+      "styles": [
+        "CornerRadius=0",
+        "Background@Normal=#160b0b",
+        "Background@PointerOver=#630f0d",
+        "Background@Pressed=#420f0c",
+        "Background@Disabled=#160b0b"
+      ]
+    },
+    {
+      "target": "MenuFlyoutSeparator > Windows.UI.Xaml.Shapes.Rectangle",
+      "styles": [
+        "Fill=#2b0e0d"
+      ]
+    },
+    {
       "target": "TextBlock",
       "styles": [
         "Foreground=#e99499"
@@ -124,22 +198,6 @@
       ]
     },
     {
-      "target": "MenuFlyoutPresenter",
-      "styles": [
-        "Background=#160b0b",
-        "CornerRadius=0"
-      ]
-    },
-    {
-      "target": "MenuFlyoutPresenter > Border",
-      "styles": [
-        "Background=#160b0b",
-        "CornerRadius=0",
-        "BorderBrush=#e53935",
-        "BorderThickness=1"
-      ]
-    },
-    {
       "target": "Grid#OverflowRootGrid",
       "styles": [
         "Background=#160b0b",
@@ -153,64 +211,6 @@
         "CornerRadius=0",
         "BorderBrush=#e53935",
         "BorderThickness=1"
-      ]
-    },
-    {
-      "target": "MenuFlyoutItem",
-      "styles": [
-        "CornerRadius=0",
-        "Foreground=#e99499"
-      ]
-    },
-    {
-      "target": "MenuFlyoutItem > Grid#LayoutRoot@CommonStates",
-      "styles": [
-        "CornerRadius=0",
-        "Background@Normal=#160b0b",
-        "Background@PointerOver=#630f0d",
-        "Background@Pressed=#420f0c",
-        "Background@Disabled=#160b0b"
-      ]
-    },
-    {
-      "target": "MenuFlyoutSubItem",
-      "styles": [
-        "CornerRadius=0",
-        "Foreground=#e99499"
-      ]
-    },
-    {
-      "target": "MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates",
-      "styles": [
-        "CornerRadius=0",
-        "Background@Normal=#160b0b",
-        "Background@PointerOver=#630f0d",
-        "Background@Pressed=#420f0c",
-        "Background@Disabled=#160b0b",
-        "Background@SubMenuOpened=#630f0d"
-      ]
-    },
-    {
-      "target": "ToggleMenuFlyoutItem",
-      "styles": [
-        "CornerRadius=0",
-        "Foreground=#e99499"
-      ]
-    },
-    {
-      "target": "ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates",
-      "styles": [
-        "CornerRadius=0",
-        "Background@Normal=#160b0b",
-        "Background@PointerOver=#630f0d",
-        "Background@Pressed=#420f0c",
-        "Background@Disabled=#160b0b"
-      ]
-    },
-    {
-      "target": "MenuFlyoutSeparator > Windows.UI.Xaml.Shapes.Rectangle",
-      "styles": [
-        "Fill=#2b0e0d"
       ]
     }
   ],

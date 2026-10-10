@@ -153,8 +153,111 @@
     "AccentButtonBorderBrushPressed": "color.action.primary.border",
     "AccentButtonBackgroundDisabled": "color.interaction.disabled.bg",
     "AccentButtonForegroundDisabled": "color.text.disabled",
-    "AccentButtonBorderBrushDisabled": "color.border.disabled"
+    "AccentButtonBorderBrushDisabled": "color.border.disabled",
+    "MenuFlyoutItemBackgroundBrush": "color.surface.raised",
+    "MenuFlyoutPresenterBackground": "color.surface.raised",
+    "MenuFlyoutPresenterBorderBrush": "color.border.overlay",
+    "MenuFlyoutSeparatorBackground": "color.border.divider",
+    "MenuFlyoutItemForeground": "color.text.default",
+    "MenuFlyoutItemForegroundPointerOver": "color.text.default",
+    "MenuFlyoutItemForegroundPressed": "color.text.default",
+    "MenuFlyoutSubItemForeground": "color.text.default",
+    "MenuFlyoutSubItemForegroundSubMenuOpened": "color.text.default",
+    "MenuFlyoutItemKeyboardAcceleratorTextForeground": "color.text.muted",
+    "MenuFlyoutSubItemChevron": "color.text.muted",
+    "MenuFlyoutItemForegroundDisabled": "color.text.disabled",
+    "MenuFlyoutSubItemForegroundDisabled": "color.text.disabled",
+    "MenuFlyoutItemBackgroundPointerOver": "color.interaction.hover.bg-strong",
+    "MenuFlyoutSubItemBackgroundPointerOver": "color.interaction.hover.bg-strong",
+    "MenuFlyoutSubItemBackgroundSubMenuOpened": "color.interaction.hover.bg-strong",
+    "MenuFlyoutItemBackgroundPressed": "color.interaction.pressed.bg",
+    "MenuFlyoutSubItemBackgroundPressed": "color.interaction.pressed.bg",
+    "MenuFlyoutItemBackground": "color.surface.raised",
+    "MenuFlyoutItemBackgroundDisabled": "color.surface.raised",
+    "MenuFlyoutSubItemBackground": "color.surface.raised",
+    "MenuFlyoutSubItemBackgroundDisabled": "color.surface.raised",
+    "MenuFlyoutSubItemForegroundPointerOver": "color.text.default",
+    "MenuFlyoutSubItemForegroundPressed": "color.text.default",
+    "MenuFlyoutItemKeyboardAcceleratorTextForegroundDisabled": "color.text.disabled",
+    "MenuFlyoutItemKeyboardAcceleratorTextForegroundPointerOver": "color.text.muted",
+    "MenuFlyoutItemKeyboardAcceleratorTextForegroundPressed": "color.text.muted"
   },
+  "menuTargets": [
+    {
+      "target": "MenuFlyoutPresenter",
+      "styles": {
+        "Background": "color.surface.raised",
+        "CornerRadius": "radius.none"
+      }
+    },
+    {
+      "target": "MenuFlyoutPresenter > Border",
+      "styles": {
+        "Background": "color.surface.raised",
+        "CornerRadius": "radius.none",
+        "BorderBrush": "color.border.overlay",
+        "BorderThickness": "border.width.default"
+      }
+    },
+    {
+      "target": "MenuFlyoutItem",
+      "styles": {
+        "CornerRadius": "radius.none",
+        "Foreground": "color.text.default"
+      }
+    },
+    {
+      "target": "MenuFlyoutItem > Grid#LayoutRoot@CommonStates",
+      "styles": {
+        "CornerRadius": "radius.none",
+        "Background@Normal": "color.surface.raised",
+        "Background@PointerOver": "color.interaction.hover.bg-strong",
+        "Background@Pressed": "color.interaction.pressed.bg",
+        "Background@Disabled": "color.surface.raised"
+      }
+    },
+    {
+      "target": "MenuFlyoutSubItem",
+      "styles": {
+        "CornerRadius": "radius.none",
+        "Foreground": "color.text.default"
+      }
+    },
+    {
+      "target": "MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates",
+      "styles": {
+        "CornerRadius": "radius.none",
+        "Background@Normal": "color.surface.raised",
+        "Background@PointerOver": "color.interaction.hover.bg-strong",
+        "Background@Pressed": "color.interaction.pressed.bg",
+        "Background@Disabled": "color.surface.raised",
+        "Background@SubMenuOpened": "color.interaction.hover.bg-strong"
+      }
+    },
+    {
+      "target": "ToggleMenuFlyoutItem",
+      "styles": {
+        "CornerRadius": "radius.none",
+        "Foreground": "color.text.default"
+      }
+    },
+    {
+      "target": "ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates",
+      "styles": {
+        "CornerRadius": "radius.none",
+        "Background@Normal": "color.surface.raised",
+        "Background@PointerOver": "color.interaction.hover.bg-strong",
+        "Background@Pressed": "color.interaction.pressed.bg",
+        "Background@Disabled": "color.surface.raised"
+      }
+    },
+    {
+      "target": "MenuFlyoutSeparator > Windows.UI.Xaml.Shapes.Rectangle",
+      "styles": {
+        "Fill": "color.border.divider"
+      }
+    }
+  ],
   "stylers": [
     {
       "id": "windows-11-taskbar-styler",
@@ -282,22 +385,6 @@
           }
         },
         {
-          "target": "MenuFlyoutPresenter",
-          "styles": {
-            "Background": "color.surface.raised",
-            "CornerRadius": "radius.none"
-          }
-        },
-        {
-          "target": "MenuFlyoutPresenter > Border",
-          "styles": {
-            "Background": "color.surface.raised",
-            "CornerRadius": "radius.none",
-            "BorderBrush": "color.border.overlay",
-            "BorderThickness": "border.width.default"
-          }
-        },
-        {
           "target": "Grid#OverflowRootGrid",
           "styles": {
             "Background": "color.surface.raised",
@@ -312,95 +399,8 @@
             "BorderBrush": "color.border.overlay",
             "BorderThickness": "border.width.default"
           }
-        },
-        {
-          "target": "MenuFlyoutItem",
-          "styles": {
-            "CornerRadius": "radius.none",
-            "Foreground": "color.text.default"
-          }
-        },
-        {
-          "target": "MenuFlyoutItem > Grid#LayoutRoot@CommonStates",
-          "styles": {
-            "CornerRadius": "radius.none",
-            "Background@Normal": "color.surface.raised",
-            "Background@PointerOver": "color.interaction.hover.bg-strong",
-            "Background@Pressed": "color.interaction.pressed.bg",
-            "Background@Disabled": "color.surface.raised"
-          }
-        },
-        {
-          "target": "MenuFlyoutSubItem",
-          "styles": {
-            "CornerRadius": "radius.none",
-            "Foreground": "color.text.default"
-          }
-        },
-        {
-          "target": "MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates",
-          "styles": {
-            "CornerRadius": "radius.none",
-            "Background@Normal": "color.surface.raised",
-            "Background@PointerOver": "color.interaction.hover.bg-strong",
-            "Background@Pressed": "color.interaction.pressed.bg",
-            "Background@Disabled": "color.surface.raised",
-            "Background@SubMenuOpened": "color.interaction.hover.bg-strong"
-          }
-        },
-        {
-          "target": "ToggleMenuFlyoutItem",
-          "styles": {
-            "CornerRadius": "radius.none",
-            "Foreground": "color.text.default"
-          }
-        },
-        {
-          "target": "ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates",
-          "styles": {
-            "CornerRadius": "radius.none",
-            "Background@Normal": "color.surface.raised",
-            "Background@PointerOver": "color.interaction.hover.bg-strong",
-            "Background@Pressed": "color.interaction.pressed.bg",
-            "Background@Disabled": "color.surface.raised"
-          }
-        },
-        {
-          "target": "MenuFlyoutSeparator > Windows.UI.Xaml.Shapes.Rectangle",
-          "styles": {
-            "Fill": "color.border.divider"
-          }
         }
-      ],
-      "resources": {
-        "MenuFlyoutItemBackgroundBrush": "color.surface.raised",
-        "MenuFlyoutPresenterBackground": "color.surface.raised",
-        "MenuFlyoutPresenterBorderBrush": "color.border.overlay",
-        "MenuFlyoutSeparatorBackground": "color.border.divider",
-        "MenuFlyoutItemForeground": "color.text.default",
-        "MenuFlyoutItemForegroundPointerOver": "color.text.default",
-        "MenuFlyoutItemForegroundPressed": "color.text.default",
-        "MenuFlyoutSubItemForeground": "color.text.default",
-        "MenuFlyoutSubItemForegroundSubMenuOpened": "color.text.default",
-        "MenuFlyoutItemKeyboardAcceleratorTextForeground": "color.text.muted",
-        "MenuFlyoutSubItemChevron": "color.text.muted",
-        "MenuFlyoutItemForegroundDisabled": "color.text.disabled",
-        "MenuFlyoutSubItemForegroundDisabled": "color.text.disabled",
-        "MenuFlyoutItemBackgroundPointerOver": "color.interaction.hover.bg-strong",
-        "MenuFlyoutSubItemBackgroundPointerOver": "color.interaction.hover.bg-strong",
-        "MenuFlyoutSubItemBackgroundSubMenuOpened": "color.interaction.hover.bg-strong",
-        "MenuFlyoutItemBackgroundPressed": "color.interaction.pressed.bg",
-        "MenuFlyoutSubItemBackgroundPressed": "color.interaction.pressed.bg",
-        "MenuFlyoutItemBackground": "color.surface.raised",
-        "MenuFlyoutItemBackgroundDisabled": "color.surface.raised",
-        "MenuFlyoutSubItemBackground": "color.surface.raised",
-        "MenuFlyoutSubItemBackgroundDisabled": "color.surface.raised",
-        "MenuFlyoutSubItemForegroundPointerOver": "color.text.default",
-        "MenuFlyoutSubItemForegroundPressed": "color.text.default",
-        "MenuFlyoutItemKeyboardAcceleratorTextForegroundDisabled": "color.text.disabled",
-        "MenuFlyoutItemKeyboardAcceleratorTextForegroundPointerOver": "color.text.muted",
-        "MenuFlyoutItemKeyboardAcceleratorTextForegroundPressed": "color.text.muted"
-      }
+      ]
     },
     {
       "id": "windows-11-start-menu-styler",
@@ -965,14 +965,6 @@
           }
         },
         {
-          "target": "MenuFlyoutPresenter > Border",
-          "styles": {
-            "Background": "color.surface.canvas",
-            "BorderBrush": "color.border.divider",
-            "CornerRadius": "radius.none"
-          }
-        },
-        {
           "target": "AppBarSeparator",
           "styles": {
             "Foreground": "color.border.divider"
@@ -980,18 +972,6 @@
         },
         {
           "target": "AppBarSeparator > Grid#RootGrid > Rectangle#SeparatorRectangle",
-          "styles": {
-            "Fill": "color.border.divider"
-          }
-        },
-        {
-          "target": "MenuFlyoutSeparator",
-          "styles": {
-            "Background": "color.border.divider"
-          }
-        },
-        {
-          "target": "MenuFlyoutSeparator > Rectangle",
           "styles": {
             "Fill": "color.border.divider"
           }
@@ -1009,37 +989,6 @@
             "Background@OverflowDisabled": "color.surface.canvas",
             "Background@OverflowSubMenuOpened": "color.interaction.hover.bg",
             "BorderBrush": "color.border.divider",
-            "CornerRadius": "radius.none"
-          }
-        },
-        {
-          "target": "MenuFlyoutItem > Grid#LayoutRoot@CommonStates",
-          "styles": {
-            "Background@Normal": "color.surface.canvas",
-            "Background@PointerOver": "color.interaction.hover.bg",
-            "Background@Pressed": "color.interaction.pressed.bg",
-            "Background@Disabled": "color.surface.canvas",
-            "CornerRadius": "radius.none"
-          }
-        },
-        {
-          "target": "MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates",
-          "styles": {
-            "Background@Normal": "color.surface.canvas",
-            "Background@PointerOver": "color.interaction.hover.bg",
-            "Background@Pressed": "color.interaction.pressed.bg",
-            "Background@Disabled": "color.surface.canvas",
-            "CornerRadius": "radius.none",
-            "Background@SubMenuOpened": "color.interaction.hover.bg"
-          }
-        },
-        {
-          "target": "ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates",
-          "styles": {
-            "Background@Normal": "color.surface.canvas",
-            "Background@PointerOver": "color.interaction.hover.bg",
-            "Background@Pressed": "color.interaction.pressed.bg",
-            "Background@Disabled": "color.surface.canvas",
             "CornerRadius": "radius.none"
           }
         },

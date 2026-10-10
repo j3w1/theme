@@ -236,3 +236,24 @@ controls discovered before their templates are ready. It applies the existing
 palette when those controls load, then removes the callback. The same installer
 restores this change. Native ownership and cleanup checks are separate from
 installed first-open appearance; remaining visual limits stay recorded above.
+
+### Shared shell context menus
+
+Start and Search, notification center, Settings, Explorer and the taskbar now
+consume one Windows XAML menu recipe. It covers the presenter and its template
+border, ordinary/check/submenu items, separators, shortcut hints, and normal,
+hover, pressed, disabled and submenu-open colors. The rules match native menu
+control types, not command text or the location where a menu opens. Native
+menu sizing, commands, icons and keyboard focus remain owned by Windows.
+
+The resource palette is shared by all five pinned shell stylers. The same
+semantic roles remain in the separate WinUI app adapter used by Notepad, Paint
+and Terminal; classic Explorer menus retain their native drawing adapter.
+These rendering families require different host interfaces. This is shared
+coverage of the supported hosts, not a claim that one Windows accent setting
+recolors every third-party or custom-drawn menu. The existing compatibility
+checks and the single public install.ps1 update/restore transaction still apply.
+
+Source checks establish common rules and token mappings. Screenshots of the
+previous gray menus establish the defect; installed first-open, hover-exit,
+high-contrast and DPI appearance still require their own assessment.

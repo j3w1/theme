@@ -561,16 +561,16 @@
       "windows-11-notification-center-styler | Button#VolumeL2Button > ContentPresenter#ContentPresenter@CommonStates | Foreground@Normal",
       "windows-11-notification-center-styler | Button#VolumeL2Button > ContentPresenter#ContentPresenter@CommonStates | Foreground@PointerOver",
       "windows-11-notification-center-styler.resource.SliderHeaderForeground",
-      "windows-11-taskbar-styler | MenuFlyoutItem | Foreground",
-      "windows-11-taskbar-styler | MenuFlyoutSubItem | Foreground",
-      "windows-11-taskbar-styler | ToggleMenuFlyoutItem | Foreground",
-      "windows-11-taskbar-styler.resource.MenuFlyoutItemForeground",
-      "windows-11-taskbar-styler.resource.MenuFlyoutItemForegroundPointerOver",
-      "windows-11-taskbar-styler.resource.MenuFlyoutItemForegroundPressed",
-      "windows-11-taskbar-styler.resource.MenuFlyoutSubItemForeground",
-      "windows-11-taskbar-styler.resource.MenuFlyoutSubItemForegroundSubMenuOpened",
-      "windows-11-taskbar-styler.resource.MenuFlyoutSubItemForegroundPointerOver",
-      "windows-11-taskbar-styler.resource.MenuFlyoutSubItemForegroundPressed"
+      "windhawk.resource.MenuFlyoutItemForeground",
+      "windhawk.resource.MenuFlyoutItemForegroundPointerOver",
+      "windhawk.resource.MenuFlyoutItemForegroundPressed",
+      "windhawk.resource.MenuFlyoutSubItemForeground",
+      "windhawk.resource.MenuFlyoutSubItemForegroundSubMenuOpened",
+      "windhawk.resource.MenuFlyoutSubItemForegroundPointerOver",
+      "windhawk.resource.MenuFlyoutSubItemForegroundPressed",
+      "windhawk.menu | MenuFlyoutItem | Foreground",
+      "windhawk.menu | MenuFlyoutSubItem | Foreground",
+      "windhawk.menu | ToggleMenuFlyoutItem | Foreground"
     ],
     "color.text.bright": [
       "native.bright",
@@ -670,10 +670,10 @@
       "terminal-chrome.resource.DropDownButtonForegroundSecondary",
       "terminal-chrome.resource.DropDownButtonForegroundSecondaryPointerOver",
       "terminal-chrome.resource.DropDownButtonForegroundSecondaryPressed",
-      "windows-11-taskbar-styler.resource.MenuFlyoutItemKeyboardAcceleratorTextForeground",
-      "windows-11-taskbar-styler.resource.MenuFlyoutSubItemChevron",
-      "windows-11-taskbar-styler.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundPointerOver",
-      "windows-11-taskbar-styler.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundPressed"
+      "windhawk.resource.MenuFlyoutItemKeyboardAcceleratorTextForeground",
+      "windhawk.resource.MenuFlyoutSubItemChevron",
+      "windhawk.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundPointerOver",
+      "windhawk.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundPressed"
     ],
     "color.text.disabled": [
       "native.disabled",
@@ -761,9 +761,9 @@
       "windows-11-notification-center-styler | Button#FooterButton > ContentPresenter#ContentPresenter@CommonStates | Foreground@Disabled",
       "windows-11-notification-center-styler | Button#VolumeL2Button > ContentPresenter#ContentPresenter@CommonStates | Foreground@Disabled",
       "windows-11-notification-center-styler.resource.SliderHeaderForegroundDisabled",
-      "windows-11-taskbar-styler.resource.MenuFlyoutItemForegroundDisabled",
-      "windows-11-taskbar-styler.resource.MenuFlyoutSubItemForegroundDisabled",
-      "windows-11-taskbar-styler.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundDisabled"
+      "windhawk.resource.MenuFlyoutItemForegroundDisabled",
+      "windhawk.resource.MenuFlyoutSubItemForegroundDisabled",
+      "windhawk.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundDisabled"
     ],
     "color.interaction.selection.bg": [
       "native.selection",
@@ -864,22 +864,22 @@
       "windows-11-settings-styler.resource.ToolTipBackground",
       "windows-11-settings-styler.resource.ToolTipBackgroundBrush",
       "windows-11-settings-styler | ToolTip | Background",
-      "windows-11-taskbar-styler | MenuFlyoutPresenter | Background",
-      "windows-11-taskbar-styler | MenuFlyoutPresenter > Border | Background",
       "windows-11-taskbar-styler | Grid#OverflowRootGrid | Background",
       "windows-11-taskbar-styler | Grid#OverflowRootGrid > Border#OverflowFlyoutBackgroundBorder | Background",
-      "windows-11-taskbar-styler | MenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@Normal",
-      "windows-11-taskbar-styler | MenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@Disabled",
-      "windows-11-taskbar-styler | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | Background@Normal",
-      "windows-11-taskbar-styler | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | Background@Disabled",
-      "windows-11-taskbar-styler | ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@Normal",
-      "windows-11-taskbar-styler | ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@Disabled",
-      "windows-11-taskbar-styler.resource.MenuFlyoutItemBackgroundBrush",
-      "windows-11-taskbar-styler.resource.MenuFlyoutPresenterBackground",
-      "windows-11-taskbar-styler.resource.MenuFlyoutItemBackground",
-      "windows-11-taskbar-styler.resource.MenuFlyoutItemBackgroundDisabled",
-      "windows-11-taskbar-styler.resource.MenuFlyoutSubItemBackground",
-      "windows-11-taskbar-styler.resource.MenuFlyoutSubItemBackgroundDisabled"
+      "windhawk.resource.MenuFlyoutItemBackgroundBrush",
+      "windhawk.resource.MenuFlyoutPresenterBackground",
+      "windhawk.resource.MenuFlyoutItemBackground",
+      "windhawk.resource.MenuFlyoutItemBackgroundDisabled",
+      "windhawk.resource.MenuFlyoutSubItemBackground",
+      "windhawk.resource.MenuFlyoutSubItemBackgroundDisabled",
+      "windhawk.menu | MenuFlyoutPresenter | Background",
+      "windhawk.menu | MenuFlyoutPresenter > Border | Background",
+      "windhawk.menu | MenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@Normal",
+      "windhawk.menu | MenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@Disabled",
+      "windhawk.menu | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | Background@Normal",
+      "windhawk.menu | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | Background@Disabled",
+      "windhawk.menu | ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@Normal",
+      "windhawk.menu | ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@Disabled"
     ],
     "color.border.control": [
       "powertoys.border",
@@ -1133,7 +1133,6 @@
       "windows-11-start-menu-styler | Button#HideMoreSuggestionsButton > Grid@CommonStates > Border | Background@PointerOver",
       "nativeExplorer.hover",
       "windows-11-file-explorer-styler | TabViewItem > Grid#LayoutRoot@CommonStates | Background@PointerOver",
-      "windows-11-file-explorer-styler | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | Background@SubMenuOpened",
       "windows-11-file-explorer-styler | AppBarButton > Grid#Root@CommonStates > Border#AppBarButtonInnerBorder | Background@OverflowSubMenuOpened",
       "calculator.resource.CalcButtonFillColorHoverBrush",
       "calculator.resource.CalcButtonAltFillColorHoverBrush",
@@ -1287,11 +1286,11 @@
       "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.RepeatButton#NextButton > ContentPresenter#ContentPresenter@CommonStates | Background@Pressed",
       "windows-11-notification-center-styler | Button#FooterButton > ContentPresenter#ContentPresenter@CommonStates | Background@Pressed",
       "windows-11-notification-center-styler | Button#VolumeL2Button > ContentPresenter#ContentPresenter@CommonStates | Background@Pressed",
-      "windows-11-taskbar-styler | MenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@Pressed",
-      "windows-11-taskbar-styler | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | Background@Pressed",
-      "windows-11-taskbar-styler | ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@Pressed",
-      "windows-11-taskbar-styler.resource.MenuFlyoutItemBackgroundPressed",
-      "windows-11-taskbar-styler.resource.MenuFlyoutSubItemBackgroundPressed"
+      "windhawk.resource.MenuFlyoutItemBackgroundPressed",
+      "windhawk.resource.MenuFlyoutSubItemBackgroundPressed",
+      "windhawk.menu | MenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@Pressed",
+      "windhawk.menu | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | Background@Pressed",
+      "windhawk.menu | ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@Pressed"
     ],
     "color.action.primary.bg": [
       "windhawk.resource.AccentFillColorDefault",
@@ -1366,9 +1365,9 @@
       "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher | BorderBrush",
       "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid > Border | BorderBrush",
       "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.Popup > Border#InputSwitcherPopupBorder | BorderBrush",
-      "windows-11-taskbar-styler | MenuFlyoutPresenter > Border | BorderBrush",
       "windows-11-taskbar-styler | Grid#OverflowRootGrid > Border#OverflowFlyoutBackgroundBorder | BorderBrush",
-      "windows-11-taskbar-styler.resource.MenuFlyoutPresenterBorderBrush"
+      "windhawk.resource.MenuFlyoutPresenterBorderBrush",
+      "windhawk.menu | MenuFlyoutPresenter > Border | BorderBrush"
     ],
     "border.width.default": [
       "windows-11-start-menu-styler | Border#AcrylicBorder | BorderThickness",
@@ -1394,8 +1393,8 @@
       "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid > Border | BorderThickness",
       "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.Popup > Border#InputSwitcherPopupBorder | BorderThickness",
       "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates | BorderThickness",
-      "windows-11-taskbar-styler | MenuFlyoutPresenter > Border | BorderThickness",
-      "windows-11-taskbar-styler | Grid#OverflowRootGrid > Border#OverflowFlyoutBackgroundBorder | BorderThickness"
+      "windows-11-taskbar-styler | Grid#OverflowRootGrid > Border#OverflowFlyoutBackgroundBorder | BorderThickness",
+      "windhawk.menu | MenuFlyoutPresenter > Border | BorderThickness"
     ],
     "radius.none": [
       "windows-11-start-menu-styler | Border#AcrylicBorder | CornerRadius",
@@ -1471,16 +1470,16 @@
       "windows-11-notification-center-styler | ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | CornerRadius",
       "windows-11-notification-center-styler | Slider | CornerRadius",
       "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | CornerRadius",
-      "windows-11-taskbar-styler | MenuFlyoutPresenter | CornerRadius",
-      "windows-11-taskbar-styler | MenuFlyoutPresenter > Border | CornerRadius",
       "windows-11-taskbar-styler | Grid#OverflowRootGrid | CornerRadius",
       "windows-11-taskbar-styler | Grid#OverflowRootGrid > Border#OverflowFlyoutBackgroundBorder | CornerRadius",
-      "windows-11-taskbar-styler | MenuFlyoutItem | CornerRadius",
-      "windows-11-taskbar-styler | MenuFlyoutItem > Grid#LayoutRoot@CommonStates | CornerRadius",
-      "windows-11-taskbar-styler | MenuFlyoutSubItem | CornerRadius",
-      "windows-11-taskbar-styler | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | CornerRadius",
-      "windows-11-taskbar-styler | ToggleMenuFlyoutItem | CornerRadius",
-      "windows-11-taskbar-styler | ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates | CornerRadius"
+      "windhawk.menu | MenuFlyoutPresenter | CornerRadius",
+      "windhawk.menu | MenuFlyoutPresenter > Border | CornerRadius",
+      "windhawk.menu | MenuFlyoutItem | CornerRadius",
+      "windhawk.menu | MenuFlyoutItem > Grid#LayoutRoot@CommonStates | CornerRadius",
+      "windhawk.menu | MenuFlyoutSubItem | CornerRadius",
+      "windhawk.menu | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | CornerRadius",
+      "windhawk.menu | ToggleMenuFlyoutItem | CornerRadius",
+      "windhawk.menu | ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates | CornerRadius"
     ],
     "color.interaction.disabled.bg": [
       "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | Background@Disabled",
@@ -1772,8 +1771,8 @@
       "terminal-chrome.resource.ScrollBarThumbBorderBrush",
       "windows-11-notification-center-styler | Grid#L1Grid > Border | BorderBrush",
       "windows-11-notification-center-styler | Grid#L1Grid > Grid | BorderBrush",
-      "windows-11-taskbar-styler | MenuFlyoutSeparator > Windows.UI.Xaml.Shapes.Rectangle | Fill",
-      "windows-11-taskbar-styler.resource.MenuFlyoutSeparatorBackground"
+      "windhawk.resource.MenuFlyoutSeparatorBackground",
+      "windhawk.menu | MenuFlyoutSeparator > Windows.UI.Xaml.Shapes.Rectangle | Fill"
     ],
     "color.interaction.scrollbar.thumb": [
       "nativeExplorer.scrollbar",
@@ -1856,13 +1855,13 @@
       "terminal-chrome.resource.MenuFlyoutSubItemBackgroundPointerOver",
       "terminal-chrome.resource.MenuFlyoutSubItemBackgroundSubMenuOpened",
       "terminal-chrome.resource.ComboBoxItemBackgroundPointerOver",
-      "windows-11-taskbar-styler | MenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@PointerOver",
-      "windows-11-taskbar-styler | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | Background@PointerOver",
-      "windows-11-taskbar-styler | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | Background@SubMenuOpened",
-      "windows-11-taskbar-styler | ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@PointerOver",
-      "windows-11-taskbar-styler.resource.MenuFlyoutItemBackgroundPointerOver",
-      "windows-11-taskbar-styler.resource.MenuFlyoutSubItemBackgroundPointerOver",
-      "windows-11-taskbar-styler.resource.MenuFlyoutSubItemBackgroundSubMenuOpened"
+      "windhawk.resource.MenuFlyoutItemBackgroundPointerOver",
+      "windhawk.resource.MenuFlyoutSubItemBackgroundPointerOver",
+      "windhawk.resource.MenuFlyoutSubItemBackgroundSubMenuOpened",
+      "windhawk.menu | MenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@PointerOver",
+      "windhawk.menu | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | Background@PointerOver",
+      "windhawk.menu | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | Background@SubMenuOpened",
+      "windhawk.menu | ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@PointerOver"
     ],
     "color.text.link-hover": [
       "nativeExplorer.menuHoverText",

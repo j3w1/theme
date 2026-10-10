@@ -308,7 +308,9 @@ export function windowsArtifacts({manifest,host,resolved}){
  {uuid:'{15E5C3A1-92E4-40FC-A9B0-B24F580CF504}',name:'j3w1 main and stack',type:'grid',info:{rows:2,columns:2,'rows-percentage':[5000,5000],'columns-percentage':[6500,3500],'cell-child-map':[[0,1],[0,2]],'show-spacing':true,spacing:8,'sensitivity-radius':20}}
  ]});
  for(const mod of host.stylers){
-  const controlStyles=targets(mod.targets);
+  // Native menu controls are shared across every supported shell host.
+  // Location-specific layout rules stay separate from the common menu palette.
+  const controlStyles=targets([...host.menuTargets,...mod.targets]);
   const payload={theme:'',controlStyles,themeResourceVariables:Object.entries({...host.resources,...mod.resources}).map(([key,role])=>{val(role);return `${key}=${windowsStyleValue(key,resolved.get(role))}`;})};
   if(mod.webContentStyles)payload.webContentStyles=windowsWebContentStyles(mod.webContentStyles,val);
   if(mod.webContentStyles)payload.webContentCustomJs='';
