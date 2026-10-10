@@ -1993,3 +1993,14 @@ remain separate acceptance checks.
 
 References: [WinUI Loaded](https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.frameworkelement.loaded)
 and [legacy XAML Loaded](https://learn.microsoft.com/en-us/uwp/api/windows.ui.xaml.frameworkelement.loaded).
+
+### Large shell palettes
+
+Settings writes and settings-only restoration use bounded argument batches
+through the pinned Windhawk CLI. The adapter stays disabled until every batch
+and the complete readback succeed. The journal and original adapter export
+retain the existing recovery contract if a later batch fails. An individual
+setting too large for a native launch is refused; values are never truncated.
+This avoids the [Windows process command-line limit](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessw)
+as the shared shell palette grows. The same public install.ps1 handles update
+and recovery; no extra public script or direct registry writer is introduced.

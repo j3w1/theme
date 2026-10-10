@@ -1,5 +1,6 @@
 import {shellCompatibility,stylerSettings,flattenStylerSettings} from './compatibility.mjs';
 import {settingsStylerSource} from './settings-styler-source.mjs';
+import {settingsArgumentBatches} from './settings-arguments.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
@@ -184,7 +185,13 @@ function compatibility(){
 }
 function compat(){return compatibility().compatible;}
 const windhawk=path.join(state,'tools/windhawk/2.0.0-alpha.6/windhawk-cli.exe');
-function wh(argv,allowMissing=false){const command=fixture&&args.fixtureWindhawk?process.execPath:windhawk;const prefix=fixture&&args.fixtureWindhawk?[args.fixtureWindhawk,state]:[];const r=spawnSync(command,[...prefix,'--json',...argv],{encoding:'utf8',windowsHide:true,maxBuffer:8*1024*1024});if(r.error)throw r.error;const result=r.stdout.trim()?JSON.parse(r.stdout):null;if(allowMissing&&result?.error?.code==='MOD_NOT_INSTALLED')return null;if(r.status!==0||result?.success===false)throw Error(`Windhawk ${argv.slice(0,3).join(' ')} failed: ${result?.error?.message??r.stderr.trim()}`);return result?.data;}
+function whLaunch(){return {command:fixture&&args.fixtureWindhawk?process.execPath:windhawk,prefix:fixture&&args.fixtureWindhawk?[args.fixtureWindhawk,state]:[]};}
+function whSettings(id,values){
+ const {command,prefix}=whLaunch();
+ const batches=settingsArgumentBatches(command,[...prefix,'--json','mod','settings','set',id],values);
+ for(const batch of batches)wh(['mod','settings','set',id,...batch]);
+}
+function wh(argv,allowMissing=false){const {command,prefix}=whLaunch();const r=spawnSync(command,[...prefix,'--json',...argv],{encoding:'utf8',windowsHide:true,maxBuffer:8*1024*1024});if(r.error)throw r.error;const result=r.stdout.trim()?JSON.parse(r.stdout):null;if(allowMissing&&result?.error?.code==='MOD_NOT_INSTALLED')return null;if(r.status!==0||result?.success===false)throw Error(`Windhawk ${argv.slice(0,3).join(' ')} failed: ${result?.error?.message??r.stderr.trim()}`);return result?.data;}
 let fixtureEngineRunning=args.fixtureEngineStopped!==true;
 function engineRunning(waitMs=0){
  if(fixture)return fixtureEngineRunning;
@@ -290,7 +297,7 @@ function stageMods(tx){
   }
   const staged=wh(['mod','show',installedId]);
   if(staged?.config?.disabled!==true||staged?.metadata?.version!==mod.version)throw Error('Windhawk disabled staging or version readback failed');
-  wh(['mod','settings','set',installedId,...Object.entries(values).map(([k,v])=>`${k}=${v}`)]);
+  whSettings(installedId,values);
   const got=wh(['mod','settings','get',installedId]);
   const actual=got.settings??got;
   if(!Object.entries(values).every(([key,value])=>String(actual[key])===String(value)))throw Error(`Windhawk settings readback differs: ${mod.id}`);
@@ -327,7 +334,7 @@ function restore(tx) {
    wh(['mod','disable',mod.id]);
    if(reuseRestore){
     console.error('Restoring saved settings using the verified compiled adapter: '+mod.sourceId+'.');
-    wh(['mod','settings','set',mod.id,...Object.entries(mod.beforeSettings.settings).map(([k,v])=>k+'='+v)]);
+    whSettings(mod.id,mod.beforeSettings.settings);
     if(!eq(wh(['mod','settings','get',mod.id]),mod.beforeSettings))throw Error('Saved settings readback differs');
     if(mod.before.config.disabled===false)wh(['mod','enable',mod.id]);
     if(!eq(wh(['mod','show',mod.id]).config,mod.before.config))throw Error('Saved configuration readback differs');

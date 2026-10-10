@@ -90,6 +90,32 @@ function settingsStylerSource(bytes, patch) {
   return Buffer.from(source2);
 }
 
+// ports/windows/src/settings-arguments.mjs
+var WINDOWS_COMMAND_LINE_BUDGET = 3e4;
+var argumentCost = (value) => 2 * String(value).length + 3;
+function windowsCommandLineUpperBound(command, argv) {
+  return argumentCost(command) + argv.reduce((sum, value) => sum + argumentCost(value), 0) + 1;
+}
+function settingsArgumentBatches(command, prefix, values) {
+  const fixed = windowsCommandLineUpperBound(command, prefix);
+  if (fixed >= WINDOWS_COMMAND_LINE_BUDGET) throw Error("Windhawk command prefix exceeds the Windows launch budget");
+  const batches = [];
+  let batch = [], length = fixed;
+  for (const [key, value] of Object.entries(values)) {
+    const pair = key + "=" + value, cost = argumentCost(pair);
+    if (fixed + cost > WINDOWS_COMMAND_LINE_BUDGET) throw Error("A Windhawk setting exceeds the Windows launch budget");
+    if (length + cost > WINDOWS_COMMAND_LINE_BUDGET) {
+      batches.push(batch);
+      batch = [];
+      length = fixed;
+    }
+    batch.push(pair);
+    length += cost;
+  }
+  if (batch.length) batches.push(batch);
+  return batches;
+}
+
 // ports/windows/src/runtime.mjs
 var import_node_fs2 = __toESM(require("node:fs"), 1);
 var import_node_path2 = __toESM(require("node:path"), 1);
@@ -1786,9 +1812,16 @@ function compat() {
   return compatibility().compatible;
 }
 var windhawk = import_node_path2.default.join(state, "tools/windhawk/2.0.0-alpha.6/windhawk-cli.exe");
+function whLaunch() {
+  return { command: fixture && args.fixtureWindhawk ? process.execPath : windhawk, prefix: fixture && args.fixtureWindhawk ? [args.fixtureWindhawk, state] : [] };
+}
+function whSettings(id, values) {
+  const { command, prefix } = whLaunch();
+  const batches = settingsArgumentBatches(command, [...prefix, "--json", "mod", "settings", "set", id], values);
+  for (const batch of batches) wh(["mod", "settings", "set", id, ...batch]);
+}
 function wh(argv, allowMissing = false) {
-  const command = fixture && args.fixtureWindhawk ? process.execPath : windhawk;
-  const prefix = fixture && args.fixtureWindhawk ? [args.fixtureWindhawk, state] : [];
+  const { command, prefix } = whLaunch();
   const r = (0, import_node_child_process.spawnSync)(command, [...prefix, "--json", ...argv], { encoding: "utf8", windowsHide: true, maxBuffer: 8 * 1024 * 1024 });
   if (r.error) throw r.error;
   const result = r.stdout.trim() ? JSON.parse(r.stdout) : null;
@@ -1918,7 +1951,7 @@ function stageMods(tx) {
     }
     const staged = wh(["mod", "show", installedId]);
     if (staged?.config?.disabled !== true || staged?.metadata?.version !== mod.version) throw Error("Windhawk disabled staging or version readback failed");
-    wh(["mod", "settings", "set", installedId, ...Object.entries(values).map(([k, v2]) => `${k}=${v2}`)]);
+    whSettings(installedId, values);
     const got = wh(["mod", "settings", "get", installedId]);
     const actual = got.settings ?? got;
     if (!Object.entries(values).every(([key, value]) => String(actual[key]) === String(value))) throw Error(`Windhawk settings readback differs: ${mod.id}`);
@@ -1962,7 +1995,7 @@ function restore(tx) {
       wh(["mod", "disable", mod.id]);
       if (reuseRestore) {
         console.error("Restoring saved settings using the verified compiled adapter: " + mod.sourceId + ".");
-        wh(["mod", "settings", "set", mod.id, ...Object.entries(mod.beforeSettings.settings).map(([k, v2]) => k + "=" + v2)]);
+        whSettings(mod.id, mod.beforeSettings.settings);
         if (!eq(wh(["mod", "settings", "get", mod.id]), mod.beforeSettings)) throw Error("Saved settings readback differs");
         if (mod.before.config.disabled === false) wh(["mod", "enable", mod.id]);
         if (!eq(wh(["mod", "show", mod.id]).config, mod.before.config)) throw Error("Saved configuration readback differs");

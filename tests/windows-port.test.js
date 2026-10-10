@@ -1079,3 +1079,17 @@ test('shell popup state rules use brush properties supported by their template p
  for(const state of ['','PointerOver','Pressed','Disabled'])
   assert.ok(payload.themeResourceVariables.some(s=>s.startsWith('MenuFlyoutItemForeground'+state+'=')));
 });
+
+
+test('production-sized settings apply and recover with every palette value intact',t=>{
+ const f=windhawkFixture(t,'protocol'),config=path.join(f.args.source,'dist/fixture-styler.json');
+ const payload=read(path.join(source,'dist/windows-11-notification-center-styler.json'));
+ write(config,payload);f.ok('Apply',f.args);f.ok('Test',f.args);const baseline=f.db();
+ payload.controlStyles[0].styles[0]='Background=#000000';write(config,payload);
+ const settingsFile=path.join(f.args.source,'dist/windows-settings.json'),settings=read(settingsFile);
+ settings.values['native.accent']='#f73f35';write(settingsFile,settings);
+ const failed=f.run('Update',{...f.args,revision:'2'.repeat(40),failAfter:1});
+ assert.notEqual(failed.status,0);assert.match(failed.stderr,/Injected partial failure; rollback completed/);
+ assert.equal(f.journal().transactions.at(-1).status,'restored');
+ assert.deepEqual(f.db(),baseline);f.ok('Test',f.args);
+});
