@@ -82,17 +82,35 @@ static std::atomic<bool> enabled{false};
 static thread_local bool drawingTheme=false;
 static decltype(&DefWindowProcW) originalDefWindowProc;
 static decltype(&SetScrollInfo) originalSetScrollInfo;
+static decltype(&DispatchMessageW) originalDispatchMessage;
 static thread_local HWND defaultWindow=nullptr;
+static thread_local HWND scrollbarWindow=nullptr;
+static thread_local bool scrollbarWindowScoped=false;
 static void RefreshCaption(HWND window);
 static bool PaintPreviewBacking(HWND window,HDC dc);
-// Nonclient scrollbars paint during default window handling and SetScrollInfo,
-// outside BeginPaint. Both paths share the most recent actual HWND; nested calls
-// restore the previous origin. This scope is used only for ScrollBar theme draws.
-struct DefaultPaintScope {
+// Native scrollbars also paint synchronously during input dispatch, without a
+// BeginPaint or DC owner. All observed entry points share the most recent HWND;
+// nested unrelated or ownerless dispatch masks an outer Explorer origin.
+// Dispatch ownership is available only to ScrollBar draws, never other themes.
+struct ScrollbarPaintScope {
     HWND previous;
-    explicit DefaultPaintScope(HWND window):previous(defaultWindow){defaultWindow=window;}
+    bool previouslyScoped;
+    explicit ScrollbarPaintScope(HWND window):previous(scrollbarWindow),previouslyScoped(scrollbarWindowScoped) {
+        scrollbarWindow=window;scrollbarWindowScoped=true;
+    }
+    ~ScrollbarPaintScope(){scrollbarWindow=previous;scrollbarWindowScoped=previouslyScoped;}
+    ScrollbarPaintScope(const ScrollbarPaintScope&)=delete;
+    ScrollbarPaintScope& operator=(const ScrollbarPaintScope&)=delete;
+};
+struct DefaultPaintScope:ScrollbarPaintScope {
+    HWND previous;
+    explicit DefaultPaintScope(HWND window):ScrollbarPaintScope(window),previous(defaultWindow){defaultWindow=window;}
     ~DefaultPaintScope(){defaultWindow=previous;}
 };
+static LRESULT WINAPI DispatchWindowHook(const MSG* message) {
+    ScrollbarPaintScope scope(message?message->hwnd:nullptr);
+    return originalDispatchMessage(message);
+}
 static LRESULT WINAPI DefaultWindowHook(HWND window,UINT message,WPARAM wParam,LPARAM lParam) {
     DefaultPaintScope scope(window);
     if(message==WM_ERASEBKGND && PaintPreviewBacking(window,reinterpret_cast<HDC>(wParam)))return 1;
@@ -513,7 +531,7 @@ static bool ExplorerDC(HDC dc,bool nonclientScrollbar=false) {
     HWND owner=WindowFromDC(dc);
     if(!enabled.load() || drawingTheme || HighContrast())return false;
     if(owner)return ExplorerWindow(owner);
-    if(nonclientScrollbar && defaultWindow)return ExplorerWindow(defaultWindow);
+    if(nonclientScrollbar && scrollbarWindowScoped)return ExplorerWindow(scrollbarWindow);
     return !paintWindows.empty() && ExplorerWindow(paintWindows.back());
 }
 // Clipped navigation labels use a separate native tooltip HWND. Its root is
@@ -874,6 +892,7 @@ BOOL Wh_ModInit() {
         && Wh_SetFunctionHook((void*)EndPaint,(void*)EndPaintHook,(void**)&originalEndPaint)
         && Wh_SetFunctionHook((void*)DefWindowProcW,(void*)DefaultWindowHook,(void**)&originalDefWindowProc)
         && Wh_SetFunctionHook((void*)SetScrollInfo,(void*)ScrollInfoHook,(void**)&originalSetScrollInfo)
+        && Wh_SetFunctionHook((void*)DispatchMessageW,(void*)DispatchWindowHook,(void**)&originalDispatchMessage)
         && Wh_SetFunctionHook((void*)DrawThemeBackground,(void*)BackgroundHook,(void**)&originalDrawThemeBackground)
         && Wh_SetFunctionHook((void*)DrawThemeBackgroundEx,(void*)BackgroundExHook,(void**)&originalDrawThemeBackgroundEx);
 

@@ -1949,3 +1949,22 @@ partial-write receipts remain unchanged. Detached success is not first-open,
 submenu, pointer-exit or startup-frame acceptance; those need their own installed
 observations. Both numeric diagnostic generations and the rejected candidate
 remain historical evidence outside the repository.
+
+
+### Expanded native file-list scrollbar dispatch
+
+The installed file-list panning indicator stayed red while scrolling, but a
+thumb click expanded a gray thumb, track and arrows. A bounded numeric trace
+identified ownerless ScrollBar theme draws for parts 1, 3, 6, 7 and 9 during
+WM_LBUTTONDOWN dispatch, with no BeginPaint, DefWindowProcW or SetScrollInfo
+scope. The effective production settings matched their pinned source.
+
+The native adapter now shares the most recent actual window origin across
+DispatchMessageW, default handling and SetScrollInfo for ScrollBar draws.
+Nested unrelated or ownerless dispatch masks an outer Explorer origin and
+restores it on return. Dispatch does not grant ownership to list, tooltip or
+general GDI recoloring. Explicit DC owners take precedence; unknown windows,
+high contrast, unreadable accessibility settings, disabled state and recursion
+retain native output. Messages, return values, scroll ranges, clipping and
+geometry are unchanged. Offscreen regression checks cover those boundaries;
+they do not establish complete installed hover, DPI or transient-frame coverage.

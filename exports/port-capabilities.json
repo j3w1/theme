@@ -37750,7 +37750,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-yLFHseVPY4L3/D9XtyE6Au252wcfFWTkntJwiEsIX7w=",
+      "subjectDigest": "sha256-Ync8yHe1LeBYPk/m0Vl6FcvqEkS4eKc8WHNu3NSL7Fo=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37783,7 +37783,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-oqxqkqbMsouYzhswNf4EO2bCn9k2PPjB3ip1gRV9gSw="
+          "digest": "sha256-XzBgHsUfRZe44MfJF4EkAgVOZMX40Aho5gdm/un1440="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37957,13 +37957,13 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-5a5+jG202/0bC4w4CajMYOD5C49yA5yaKFzuxllpv00="
+          "digest": "sha256-uDjLSEZCFw0bLym+bnP4SJ3Pr4Ak77I3tM1lP7VzHms="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/j3w1-explorer-native.wh.cpp",
-          "digest": "sha256-OWt+VO5Ji325rUUJSVYiZ+vvMAod1ILYTrJTyIvQHy0="
+          "digest": "sha256-UZG5GVedbGyIlwZKszpZ1FJMq0L9aluZmgQJUQz0fHI="
         },
         {
           "path": "dist/j3w1-explorer-native.json",
