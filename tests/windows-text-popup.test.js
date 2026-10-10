@@ -128,3 +128,20 @@ test('Settings search input and placeholder follow the observed native CommonSta
  assert.notEqual(frame.styles['Background@Normal'],frame.styles['Background@PointerOver'],'exit restores the input surface');
  assert.notEqual(frame.styles['BorderBrush@Normal'],frame.styles['BorderBrush@Focused'],'focus stays distinct');
 });
+
+test('Settings search removes clipping on its exact native parent without another frame',async()=>{
+ const host=await readJson('ports/windows/host.json');
+ const settings=host.stylers.find(x=>x.id==='windows-11-settings-styler');
+ const target='SystemSettings.View.SettingsCommandSearchBox > StackPanel#SettingsCommandSearchBoxBackground';
+ const parent=settings.targets.filter(x=>x.target===target);
+ assert.equal(parent.length,1,'the wrapper with native rounded child clipping is mapped once');
+ assert.deepEqual(parent[0].styles,{CornerRadius:'radius.none'},'only parent clipping changes; no extra border, fill or layout override');
+ assert.ok(!host.stylers.filter(x=>x!==settings).some(x=>x.targets.some(t=>t.target===target)),'this Settings template is not applied in other hosts');
+ const mapping=await readJson('ports/windows/mapping.json');
+ assert.ok(mapping.mappings['radius.none'].includes(settings.id+' | '+target+' | CornerRadius'));
+ const button=settings.targets.find(x=>x.target==='Button > ContentPresenter@CommonStates');
+ assert.ok(button,'the common button state mapping remains present');
+ for(const state of ['Normal','PointerOver','Pressed','Disabled'])assert.ok(button.styles['Background@'+state],state);
+ const inputFrame=settings.targets.find(x=>x.target==='TextBox#CommandSearchTextBox > Grid@CommonStates > Border#BorderElement');
+ assert.equal(inputFrame.styles['BorderBrush@Focused'],'color.border.active','the native input retains its focused edge');
+});

@@ -279,3 +279,13 @@ install.ps1. Rendered assessment is separate from source and lifecycle checks.
 See Microsoft's [command-bar flyout template](https://github.com/microsoft/microsoft-ui-xaml/blob/v2.8.7/dev/CommandBarFlyout/CommandBarFlyout_themeresources.xaml)
 and [suggestion template](https://github.com/microsoft/microsoft-ui-xaml/blob/v2.8.7/dev/AutoSuggestBox/AutoSuggestBox_themeresources.xaml)
 for the distinct resource keys and native frame ownership.
+
+### Settings search frame geometry
+
+The supported Settings search template wraps its TextBox in
+`StackPanel#SettingsCommandSearchBoxBackground`. That parent retains a native
+rounded radius and clips the otherwise square input frame. The scoped mapping
+sets only this parent's radius to `radius.none`. It does not add another border
+or change the wrapper's fill, layout, input, suggestions, or focus behavior.
+The existing native input states keep the ordinary and active frame colors.
+Update and rollback use the same public install.ps1 transaction.

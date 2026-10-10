@@ -37750,7 +37750,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-4owqaYWKAX7p+0sASD1SQh6eJviiwFaKNKSbP3gS2Mg=",
+      "subjectDigest": "sha256-iULnokRYBmcGe/tOVG8DShcha9cX9khAm+Z1a3Rz9xA=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37831,7 +37831,7 @@
           "path": "dist/windows-11-settings-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-settings-styler.json",
-          "digest": "sha256-djQFqGyFdGnRMjt6fqjm8u8sl/CqFgfYJtXCrZNYSXc="
+          "digest": "sha256-uDW5e3AmKm2/qHpD+720tXp/8yOeHN1MzG0ypakt+ok="
         },
         {
           "path": "dist/j3w1-wallpaper.bmp",
@@ -37957,7 +37957,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-RdY7GnLz/EBxaSPBqvOq8HKE6je+rSUIb0Qg9+khTp0="
+          "digest": "sha256-/IF0QwN9+qMWTiqSmc/gWWPW//BLy9XfT389M5+iegA="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -45130,7 +45130,8 @@
             "windhawk.menu | Grid#SuggestionsContainer | CornerRadius",
             "windows-11-settings-styler | Border#StatusTextPopupBorder | CornerRadius",
             "windows-11-settings-styler | TextBox#CommandSearchTextBox | CornerRadius",
-            "windows-11-settings-styler | TextBox#CommandSearchTextBox > Grid@CommonStates > Border#BorderElement | CornerRadius"
+            "windows-11-settings-styler | TextBox#CommandSearchTextBox > Grid@CommonStates > Border#BorderElement | CornerRadius",
+            "windows-11-settings-styler | SystemSettings.View.SettingsCommandSearchBox > StackPanel#SettingsCommandSearchBoxBackground | CornerRadius"
           ],
           "value": "0px",
           "eligibility": {

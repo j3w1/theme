@@ -1247,5 +1247,17 @@ and same-root admission before applying the existing template palette. Disable
 and unload detach the receipt; failed removal remains retryable. Synthetic
 native checks establish these admission and cleanup contracts. They do not
 establish installed first-frame, hover-exit, submenu, DPI or high-contrast
-rendering acceptance. The independent preview startup stall, withdrawn Explorer
-toolbar-tooltip correction and gray Paint drawing surround remain unresolved.
+rendering acceptance. The owner reports working ordinary Explorer toolbar
+tooltips and no preview stalls; the withdrawn tooltip experiment and incomplete
+preview traces remain historical investigation limits. Paint's drawing surround
+is host-owned and excluded from further recoloring by the owner.
+
+### Settings search frame geometry
+
+The Settings search frame correction maps the exact enclosing
+`SettingsCommandSearchBoxBackground` StackPanel's radius. A bounded comparison
+identified the parent's native rounded clipping while its TextBox and inner
+border already reported square corners; changing only the parent radius
+produced a rectangular frame. This is scoped template geometry, not a global
+radius rewrite. Native focus and input states are retained. Other DPI and
+accessibility combinations remain separate acceptance limits.

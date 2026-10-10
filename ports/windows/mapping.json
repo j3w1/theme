@@ -1578,7 +1578,8 @@
       "windhawk.menu | Grid#SuggestionsContainer | CornerRadius",
       "windows-11-settings-styler | Border#StatusTextPopupBorder | CornerRadius",
       "windows-11-settings-styler | TextBox#CommandSearchTextBox | CornerRadius",
-      "windows-11-settings-styler | TextBox#CommandSearchTextBox > Grid@CommonStates > Border#BorderElement | CornerRadius"
+      "windows-11-settings-styler | TextBox#CommandSearchTextBox > Grid@CommonStates > Border#BorderElement | CornerRadius",
+      "windows-11-settings-styler | SystemSettings.View.SettingsCommandSearchBox > StackPanel#SettingsCommandSearchBoxBackground | CornerRadius"
     ],
     "color.interaction.disabled.bg": [
       "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | Background@Disabled",

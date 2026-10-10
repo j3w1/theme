@@ -273,6 +273,12 @@
       ]
     },
     {
+      "target": "SystemSettings.View.SettingsCommandSearchBox > StackPanel#SettingsCommandSearchBoxBackground",
+      "styles": [
+        "CornerRadius=0"
+      ]
+    },
+    {
       "target": "TextBox#CommandSearchTextBox",
       "styles": [
         "Background=#000000",

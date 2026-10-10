@@ -1771,6 +1771,12 @@
           }
         },
         {
+          "target": "SystemSettings.View.SettingsCommandSearchBox > StackPanel#SettingsCommandSearchBoxBackground",
+          "styles": {
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
           "target": "TextBox#CommandSearchTextBox",
           "styles": {
             "Background": "color.surface.input",
