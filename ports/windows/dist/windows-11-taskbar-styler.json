@@ -1,0 +1,358 @@
+{
+  "theme": "",
+  "controlStyles": [
+    {
+      "target": "TextBlock",
+      "styles": [
+        "Foreground=#e99499"
+      ]
+    },
+    {
+      "target": "Control",
+      "styles": [
+        "Foreground=#e99499"
+      ]
+    },
+    {
+      "target": "Taskbar.TaskbarFrame > Grid#RootGrid",
+      "styles": [
+        "Background=#090707"
+      ]
+    },
+    {
+      "target": "Rectangle#BackgroundFill",
+      "styles": [
+        "Fill=#090707"
+      ]
+    },
+    {
+      "target": "Rectangle#BackgroundStroke",
+      "styles": [
+        "Fill=#2b0e0d"
+      ]
+    },
+    {
+      "target": "Grid#ConfirmatorMainGrid",
+      "styles": [
+        "Background=#000000",
+        "BorderBrush=#e53935",
+        "BorderThickness=1",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Grid#VolumeConfirmator, Grid#BrightnessConfirmator",
+      "styles": [
+        "Background=#000000",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Rectangle#HorizontalTrackRect, Rectangle#ProgressBarTrack",
+      "styles": [
+        "Fill=#a3676b"
+      ]
+    },
+    {
+      "target": "Rectangle#HorizontalDecreaseRect, Rectangle#DeterminateProgressBarIndicator",
+      "styles": [
+        "Fill=#e53935"
+      ]
+    },
+    {
+      "target": "WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid",
+      "styles": [
+        "Background=#000000",
+        "BorderBrush=#e53935",
+        "BorderThickness=1",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid > Grid",
+      "styles": [
+        "Background=#000000",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "ListViewItem",
+      "styles": [
+        "Background=#000000",
+        "Foreground=#e99499",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter",
+      "styles": [
+        "Background=#000000",
+        "PointerOverBackground=#1c0a09",
+        "PressedBackground=#420f0c",
+        "SelectedBackground=#531310",
+        "SelectedPointerOverBackground=#531310",
+        "SelectedPressedBackground=#420f0c",
+        "PointerOverForeground=#e99499",
+        "SelectedForeground=#f4eeee"
+      ]
+    },
+    {
+      "target": "WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher",
+      "styles": [
+        "Background=#000000",
+        "BorderBrush=#e53935",
+        "BorderThickness=1",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid > Border",
+      "styles": [
+        "Background=#000000",
+        "BorderBrush=#e53935",
+        "BorderThickness=1",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Windows.UI.Xaml.Controls.Primitives.Popup > Border#InputSwitcherPopupBorder",
+      "styles": [
+        "Background=#000000",
+        "BorderBrush=#e53935",
+        "BorderThickness=1",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "MenuFlyoutPresenter",
+      "styles": [
+        "Background=#160b0b",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "MenuFlyoutPresenter > Border",
+      "styles": [
+        "Background=#160b0b",
+        "CornerRadius=0",
+        "BorderBrush=#e53935",
+        "BorderThickness=1"
+      ]
+    },
+    {
+      "target": "Grid#OverflowRootGrid",
+      "styles": [
+        "Background=#160b0b",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Grid#OverflowRootGrid > Border#OverflowFlyoutBackgroundBorder",
+      "styles": [
+        "Background=#160b0b",
+        "CornerRadius=0",
+        "BorderBrush=#e53935",
+        "BorderThickness=1"
+      ]
+    },
+    {
+      "target": "MenuFlyoutItem",
+      "styles": [
+        "CornerRadius=0",
+        "Foreground=#e99499"
+      ]
+    },
+    {
+      "target": "MenuFlyoutItem > Grid#LayoutRoot@CommonStates",
+      "styles": [
+        "CornerRadius=0",
+        "Background@Normal=#160b0b",
+        "Background@PointerOver=#630f0d",
+        "Background@Pressed=#420f0c",
+        "Background@Disabled=#160b0b"
+      ]
+    },
+    {
+      "target": "MenuFlyoutSubItem",
+      "styles": [
+        "CornerRadius=0",
+        "Foreground=#e99499"
+      ]
+    },
+    {
+      "target": "MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates",
+      "styles": [
+        "CornerRadius=0",
+        "Background@Normal=#160b0b",
+        "Background@PointerOver=#630f0d",
+        "Background@Pressed=#420f0c",
+        "Background@Disabled=#160b0b",
+        "Background@SubMenuOpened=#630f0d"
+      ]
+    },
+    {
+      "target": "ToggleMenuFlyoutItem",
+      "styles": [
+        "CornerRadius=0",
+        "Foreground=#e99499"
+      ]
+    },
+    {
+      "target": "ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates",
+      "styles": [
+        "CornerRadius=0",
+        "Background@Normal=#160b0b",
+        "Background@PointerOver=#630f0d",
+        "Background@Pressed=#420f0c",
+        "Background@Disabled=#160b0b"
+      ]
+    },
+    {
+      "target": "MenuFlyoutSeparator > Windows.UI.Xaml.Shapes.Rectangle",
+      "styles": [
+        "Fill=#2b0e0d"
+      ]
+    }
+  ],
+  "themeResourceVariables": [
+    "TextFillColorPrimary=#e99499",
+    "TextFillColorSecondary=#bd787d",
+    "TextFillColorTertiary=#ad7175",
+    "TextFillColorDisabled=#8a5559",
+    "SystemControlForegroundBaseHighBrush=#e99499",
+    "SystemControlForegroundBaseMediumBrush=#bd787d",
+    "SystemControlForegroundBaseLowBrush=#8a5559",
+    "SolidBackgroundFillColorBase=#000000",
+    "SolidBackgroundFillColorSecondary=#100c0c",
+    "LayerFillColorDefault=#100c0c",
+    "LayerFillColorAlt=#160b0b",
+    "CardBackgroundFillColorDefault=#100c0c",
+    "CardBackgroundFillColorSecondary=#160b0b",
+    "ControlFillColorDefault=#000000",
+    "ControlFillColorSecondary=#1c0a09",
+    "ControlFillColorTertiary=#420f0c",
+    "ControlStrokeColorDefault=#a3676b",
+    "AccentFillColorDefault=#7d1310",
+    "AccentTextFillColorPrimary=#ffa2a7",
+    "TextOnAccentFillColorPrimary=#ffa2a7",
+    "SystemAccentColor=#e53935",
+    "SystemControlHighlightAccentBrush=#e53935",
+    "ScrollBarThumbBackground=#420f0c",
+    "ScrollBarPanningThumbBackground=#420f0c",
+    "ScrollBarThumbFill=#420f0c",
+    "ScrollBarThumbFillPointerOver=#911410",
+    "ScrollBarThumbFillPressed=#911410",
+    "ScrollBarThumbFillDisabled=#160b0b",
+    "ScrollBarPanningThumbBackgroundDisabled=#160b0b",
+    "ScrollBarThumbBorderBrush=#000000",
+    "ScrollBarTrackFill=#000000",
+    "ScrollBarTrackFillPointerOver=#000000",
+    "ScrollBarTrackFillDisabled=#000000",
+    "ScrollBarTrackStroke=#000000",
+    "ScrollBarTrackStrokePointerOver=#000000",
+    "ScrollBarTrackStrokeDisabled=#000000",
+    "ScrollBarButtonArrowForeground=#e99499",
+    "ScrollBarButtonArrowForegroundPointerOver=#ffa2a7",
+    "ScrollBarButtonArrowForegroundPressed=#ffa2a7",
+    "ScrollBarButtonArrowForegroundDisabled=#8a5559",
+    "ButtonBackground=#000000",
+    "ButtonBackgroundPointerOver=#1c0a09",
+    "ButtonBackgroundPressed=#420f0c",
+    "ButtonForeground=#e99499",
+    "AccentFillColorDefaultBrush=#7d1310",
+    "AccentFillColorSecondaryBrush=#911410",
+    "AccentFillColorTertiaryBrush=#630f0d",
+    "TextOnAccentFillColorPrimaryBrush=#ffa2a7",
+    "ButtonForegroundPointerOver=#e99499",
+    "ButtonForegroundPressed=#e99499",
+    "ButtonForegroundDisabled=#8a5559",
+    "ButtonBorderBrush=#a3676b",
+    "ButtonBorderBrushPointerOver=#e53935",
+    "ButtonBorderBrushPressed=#e53935",
+    "ButtonBorderBrushDisabled=#7d1310",
+    "ButtonBackgroundDisabled=#160b0b",
+    "SubtleButtonBackground=#000000",
+    "SubtleButtonForeground=#e99499",
+    "SubtleButtonBorderBrush=#a3676b",
+    "SubtleButtonBackgroundPointerOver=#1c0a09",
+    "SubtleButtonForegroundPointerOver=#e99499",
+    "SubtleButtonBorderBrushPointerOver=#e53935",
+    "SubtleButtonBackgroundPressed=#420f0c",
+    "SubtleButtonForegroundPressed=#e99499",
+    "SubtleButtonBorderBrushPressed=#e53935",
+    "SubtleButtonBackgroundDisabled=#160b0b",
+    "SubtleButtonForegroundDisabled=#8a5559",
+    "SubtleButtonBorderBrushDisabled=#7d1310",
+    "SplitButtonBackground=#000000",
+    "SplitButtonForeground=#e99499",
+    "SplitButtonBorderBrush=#a3676b",
+    "SplitButtonBackgroundPointerOver=#1c0a09",
+    "SplitButtonForegroundPointerOver=#e99499",
+    "SplitButtonBorderBrushPointerOver=#e53935",
+    "SplitButtonBackgroundPressed=#420f0c",
+    "SplitButtonForegroundPressed=#e99499",
+    "SplitButtonBorderBrushPressed=#e53935",
+    "SplitButtonBackgroundDisabled=#160b0b",
+    "SplitButtonForegroundDisabled=#8a5559",
+    "SplitButtonBorderBrushDisabled=#7d1310",
+    "SplitButtonBackgroundChecked=#531310",
+    "SplitButtonForegroundChecked=#f4eeee",
+    "SplitButtonBorderBrushChecked=#e53935",
+    "SplitButtonBackgroundCheckedPointerOver=#531310",
+    "SplitButtonForegroundCheckedPointerOver=#f4eeee",
+    "SplitButtonBorderBrushCheckedPointerOver=#e53935",
+    "SplitButtonBackgroundCheckedPressed=#420f0c",
+    "SplitButtonForegroundCheckedPressed=#e99499",
+    "SplitButtonBorderBrushCheckedPressed=#e53935",
+    "SplitButtonBackgroundCheckedDisabled=#160b0b",
+    "SplitButtonForegroundCheckedDisabled=#8a5559",
+    "SplitButtonBorderBrushCheckedDisabled=#7d1310",
+    "SplitButtonForegroundSecondary=#bd787d",
+    "SplitButtonForegroundSecondaryPressed=#bd787d",
+    "SplitButtonBorderBrushDivider=#2b0e0d",
+    "SplitButtonBorderBrushCheckedDivider=#2b0e0d",
+    "SplitButtonInAppBarUnfocusedPointerOver=#420f0c",
+    "DropDownButtonForegroundSecondary=#bd787d",
+    "DropDownButtonForegroundSecondaryPointerOver=#bd787d",
+    "DropDownButtonForegroundSecondaryPressed=#bd787d",
+    "AccentButtonBackground=#7d1310",
+    "AccentButtonForeground=#ffa2a7",
+    "AccentButtonBorderBrush=#9e231f",
+    "AccentButtonBackgroundPointerOver=#911410",
+    "AccentButtonForegroundPointerOver=#ffa2a7",
+    "AccentButtonBorderBrushPointerOver=#9e231f",
+    "AccentButtonBackgroundPressed=#630f0d",
+    "AccentButtonForegroundPressed=#ffa2a7",
+    "AccentButtonBorderBrushPressed=#9e231f",
+    "AccentButtonBackgroundDisabled=#160b0b",
+    "AccentButtonForegroundDisabled=#8a5559",
+    "AccentButtonBorderBrushDisabled=#7d1310",
+    "MenuFlyoutItemBackgroundBrush=#160b0b",
+    "MenuFlyoutPresenterBackground=#160b0b",
+    "MenuFlyoutPresenterBorderBrush=#e53935",
+    "MenuFlyoutSeparatorBackground=#2b0e0d",
+    "MenuFlyoutItemForeground=#e99499",
+    "MenuFlyoutItemForegroundPointerOver=#e99499",
+    "MenuFlyoutItemForegroundPressed=#e99499",
+    "MenuFlyoutSubItemForeground=#e99499",
+    "MenuFlyoutSubItemForegroundSubMenuOpened=#e99499",
+    "MenuFlyoutItemKeyboardAcceleratorTextForeground=#bd787d",
+    "MenuFlyoutSubItemChevron=#bd787d",
+    "MenuFlyoutItemForegroundDisabled=#8a5559",
+    "MenuFlyoutSubItemForegroundDisabled=#8a5559",
+    "MenuFlyoutItemBackgroundPointerOver=#630f0d",
+    "MenuFlyoutSubItemBackgroundPointerOver=#630f0d",
+    "MenuFlyoutSubItemBackgroundSubMenuOpened=#630f0d",
+    "MenuFlyoutItemBackgroundPressed=#420f0c",
+    "MenuFlyoutSubItemBackgroundPressed=#420f0c",
+    "MenuFlyoutItemBackground=#160b0b",
+    "MenuFlyoutItemBackgroundDisabled=#160b0b",
+    "MenuFlyoutSubItemBackground=#160b0b",
+    "MenuFlyoutSubItemBackgroundDisabled=#160b0b",
+    "MenuFlyoutSubItemForegroundPointerOver=#e99499",
+    "MenuFlyoutSubItemForegroundPressed=#e99499",
+    "MenuFlyoutItemKeyboardAcceleratorTextForegroundDisabled=#8a5559",
+    "MenuFlyoutItemKeyboardAcceleratorTextForegroundPointerOver=#bd787d",
+    "MenuFlyoutItemKeyboardAcceleratorTextForegroundPressed=#bd787d"
+  ]
+}

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "range",
-  "version": "3.1.0",
-  "contract": "https://github.com/j3w1/theme/blob/v3.1.0/spec/components/range.md",
+  "version": "4.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/range.md",
   "dependencies": [
     "register/range.js",
     "chunks/element-C1XeXVYC.js",
@@ -14,13 +14,13 @@
     "runtime/register/range.js": "sha256-g8jU/JKj2ySLza7/G+XS4TC2NE8Gwuw6lyc+G1k9pi4=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/components/range.js": "sha256-2Xq6WM9QGPqfN1tbUtZSTg/PH5AoTqk5U4F8m1ETGog=",
+    "runtime/components/range.js": "sha256-uAqR2sA5IXjunYSDuvl+0MoUbuwonAPLwhQFCExPI/I=",
     "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
-    "tokens.css": "sha256-c/NmCkdHsOHiHx4q0evmxTKbpeLSU3Eoo2b0S7PYNzU=",
+    "tokens.css": "sha256-gjEwadB0zTFK+892nxLpStOcmcjP5pxj2Pe/By5vwPE=",
     "component.css": "sha256-XwLMipanpFGzjbmGs1VEzJL/+7DPUuYTewuadW6x3zE=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-F3TYZf5Pysp2EfVbSAxBHmgiviXyRS3/dKjUdvZrzF0=",
     "index.html": "sha256-xuKPgkTCOPNTZ8muQffKPJpVLWZpA03yfkf+90bVZmw=",
-    "README.md": "sha256-S7Nj1iTNsxWFg9+14vniHKrE7mr1GPc1pSua8L755ik="
+    "README.md": "sha256-lW1eqkbbrr3cTilmwEqgWHViJTPEMEDqDOHhsAizE1I="
   }
 }

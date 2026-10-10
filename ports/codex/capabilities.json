@@ -1758,6 +1758,16 @@
       "state": "out-of-scope",
       "surface": "outside-codex",
       "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "color.text.heading": {
+      "state": "unsupported",
+      "surface": "editor-surfaces",
+      "reason": "Host exposes no separately mapped content heading/highlight foreground in this port."
+    },
+    "color.text.highlight": {
+      "state": "unsupported",
+      "surface": "editor-surfaces",
+      "reason": "Host exposes no separately mapped content heading/highlight foreground in this port."
     }
   },
   "rollback": "Run node ports/codex/install.mjs restore in the same clone. By hand: set theme under [tui] in ~/.codex/config.toml back to your previous theme (or remove the line) and delete ~/.codex/themes/j3w1.tmTheme."

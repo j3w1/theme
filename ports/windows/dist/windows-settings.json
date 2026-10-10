@@ -1,0 +1,220 @@
+{
+  "schemaVersion": 1,
+  "version": "4.0.0",
+  "values": {
+    "native.accent": "#e53935",
+    "native.desktop": "#000000",
+    "terminal.foreground": "#e99499",
+    "terminal.background": "#000000",
+    "terminal.cursor": "#e99499",
+    "terminal.selection": "#420f0c",
+    "terminal.chrome": "#090707",
+    "native.foreground": "#e99499",
+    "native.bright": "#ffa2a7",
+    "native.heading": "#f4eeee",
+    "native.highlight": "#f4eeee",
+    "native.muted": "#bd787d",
+    "native.disabled": "#8a5559",
+    "native.selection": "#531310",
+    "cursor.foreground": "#000000",
+    "cursor.outline": "#e53935",
+    "powertoys.highlight": "#e53935",
+    "powertoys.inactive": "#160b0b",
+    "powertoys.border": "#a3676b",
+    "powertoys.number": "#ffa2a7",
+    "font.family": "\"SauceCodePro NFM\", \"Source Code Pro\", \"Cascadia Mono\", \"Consolas\", \"Liberation Mono\", \"DejaVu Sans Mono\", monospace",
+    "terminal.ansi.0": "#0c0909",
+    "terminal.ansi.1": "#e84b4b",
+    "terminal.ansi.2": "#bd787d",
+    "terminal.ansi.3": "#d4868b",
+    "terminal.ansi.4": "#e53131",
+    "terminal.ansi.5": "#f73f35",
+    "terminal.ansi.6": "#ff7a66",
+    "terminal.ansi.7": "#ffa2a7",
+    "terminal.ansi.8": "#b71c17",
+    "terminal.ansi.9": "#ea3833",
+    "terminal.ansi.10": "#dc4f49",
+    "terminal.ansi.11": "#b37175",
+    "terminal.ansi.12": "#db433a",
+    "terminal.ansi.13": "#ed5360",
+    "terminal.ansi.14": "#e6565a",
+    "terminal.ansi.15": "#b17e81",
+    "folder.fill": "#7d1310",
+    "folder.edge": "#e53935"
+  },
+  "stylerVariants": {
+    "windows-11-start-menu-styler": {
+      "classic": [
+        {
+          "target": "StartDocked.StartSizingFrame",
+          "styles": [
+            "Background=#000000"
+          ]
+        },
+        {
+          "target": "StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement",
+          "styles": [
+            "Background=#000000",
+            "BorderBrush=#a3676b",
+            "BorderThickness=1",
+            "CornerRadius=0"
+          ]
+        }
+      ],
+      "redesigned": [
+        {
+          "target": "StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement",
+          "styles": [
+            "Background=#000000",
+            "BorderBrush=#a3676b",
+            "BorderThickness=1",
+            "CornerRadius=0"
+          ]
+        },
+        {
+          "target": "StartMenu.StartBlendedFlexFrame",
+          "styles": [
+            "CornerRadius=0"
+          ]
+        },
+        {
+          "target": "StartMenu.CategoryControl > Grid > Border",
+          "styles": [
+            "Background=#100c0c",
+            "BorderBrush=#531310",
+            "BorderThickness=1",
+            "CornerRadius=0"
+          ]
+        },
+        {
+          "target": "StartMenu.FolderModal > Grid > Border",
+          "styles": [
+            "Background=#160b0b",
+            "BorderBrush=#e53935",
+            "BorderThickness=1",
+            "CornerRadius=0"
+          ]
+        },
+        {
+          "target": "Grid#DroppedFlickerWorkaroundWrapper > Border#BackgroundBorder",
+          "styles": [
+            "CornerRadius=0"
+          ]
+        },
+        {
+          "target": "Button#LogoContainer > Grid@CommonStates > Border",
+          "styles": [
+            "CornerRadius=0"
+          ]
+        },
+        {
+          "target": "Button#FolderPlate > Grid@CommonStates > Border",
+          "styles": [
+            "CornerRadius=0"
+          ]
+        },
+        {
+          "target": "Button#Header > Grid@CommonStates > Border",
+          "styles": [
+            "CornerRadius=0"
+          ]
+        }
+      ]
+    }
+  },
+  "bundledMods": [
+    {
+      "id": "j3w1-explorer-native",
+      "version": "1.8.5",
+      "path": "dist/j3w1-explorer-native.wh.cpp",
+      "sha256": "5191b919579d6c6c8897064ab33a59d4524cab42fd6a5b999a0409510cf47c72"
+    },
+    {
+      "id": "j3w1-powertoys-preview",
+      "version": "1.1",
+      "path": "dist/j3w1-powertoys-preview.wh.cpp",
+      "sha256": "aa24170ff4ebb40bf78ad6abe14e3d88cebfeacde21c8c392e659c7207ebb7a1"
+    },
+    {
+      "id": "j3w1-calculator",
+      "version": "1.4.11",
+      "path": "dist/j3w1-calculator.wh.cpp",
+      "sha256": "b160984dcfa7f5c34885be0cb173c90dc7b41c62aac5b96e05836b34716961a9"
+    },
+    {
+      "id": "j3w1-notepad-native",
+      "version": "1.1.1",
+      "path": "dist/j3w1-notepad-native.wh.cpp",
+      "sha256": "55f6825db1f71a0f7da4504cc38bac93e99b1f7a71137b0199420bb8797d50aa"
+    },
+    {
+      "id": "j3w1-notepad-chrome",
+      "version": "1.2.31",
+      "path": "dist/j3w1-notepad-chrome.wh.cpp",
+      "sha256": "fc3d2a2b3cc0dc7f6889370b69d31bdb52422fcff474599419a961969b49cd36"
+    },
+    {
+      "id": "j3w1-paint-chrome",
+      "version": "1.0.28",
+      "path": "dist/j3w1-paint-chrome.wh.cpp",
+      "sha256": "387c87010c3da7808fa9e081377d9f60a1ef495cc4778b759cb42cedd9eba70f"
+    },
+    {
+      "id": "j3w1-terminal-chrome",
+      "version": "1.0.11",
+      "path": "dist/j3w1-terminal-chrome.wh.cpp",
+      "sha256": "1cee5528214f44a610f08e21e5ce0a6730c54cc5137a1b4a23418b6bf7c50d8e"
+    },
+    {
+      "id": "j3w1-powertoys-markdown",
+      "version": "1.4.1",
+      "path": "dist/j3w1-powertoys-markdown.wh.cpp",
+      "sha256": "c1afe27af0186af5c971e2e35c95fcd1b7b8024419f7276c245b40b282db89a6"
+    }
+  ],
+  "settingsStartup": {
+    "sourceSha256": "7424d3b2298d06b4c8dc0e2b16a6e49011c4af2e97ec92ef28ecd2ad53bf8571",
+    "replacement": "// Owned startup and recovery boundary for the pinned Settings rendering adapter.\n// No window text, document data or pixels participate in admission.\n#include <bcrypt.h>\nnamespace j3w1Settings {\nstatic bool DigestFile(const std::wstring& path,const char* expected) {\n    HANDLE file=CreateFileW(path.c_str(),GENERIC_READ,FILE_SHARE_READ,nullptr,\n        OPEN_EXISTING,FILE_FLAG_OPEN_REPARSE_POINT,nullptr);\n    if(file==INVALID_HANDLE_VALUE)return false;\n    BY_HANDLE_FILE_INFORMATION info{};BCRYPT_ALG_HANDLE algorithm=nullptr;\n    BCRYPT_HASH_HANDLE hash=nullptr;bool ok=false;\n    if(GetFileInformationByHandle(file,&info)&&!(info.dwFileAttributes&FILE_ATTRIBUTE_REPARSE_POINT)\n        &&BCryptOpenAlgorithmProvider(&algorithm,BCRYPT_SHA256_ALGORITHM,nullptr,0)>=0\n        &&BCryptCreateHash(algorithm,&hash,nullptr,0,nullptr,0,0)>=0) {\n        BYTE buffer[65536],digest[32]{};DWORD count=0;ok=true;\n        for(;;) {\n            if(!ReadFile(file,buffer,sizeof(buffer),&count,nullptr)){ok=false;break;}\n            if(!count)break;\n            if(BCryptHashData(hash,buffer,count,0)<0){ok=false;break;}\n        }\n        ok=ok&&BCryptFinishHash(hash,digest,sizeof(digest),0)>=0;\n        const char hex[]=\"0123456789abcdef\";char actual[65]{};\n        for(size_t i=0;i<32;i++){actual[i*2]=hex[digest[i]>>4];actual[i*2+1]=hex[digest[i]&15];}\n        ok=ok&&strcmp(actual,expected)==0;\n    }\n    if(hash)BCryptDestroyHash(hash);\n    if(algorithm)BCryptCloseAlgorithmProvider(algorithm,0);\n    CloseHandle(file);return ok;\n}\nstatic bool Admit() {\n    wchar_t exe[32768]{},system[32768]{},modulePath[32768]{};\n    const DWORD exeLength=GetModuleFileNameW(nullptr,exe,32768);\n    const DWORD systemLength=GetSystemWindowsDirectoryW(system,32768);\n    const HMODULE module=GetModuleHandleW(L\"Windows.UI.Xaml.dll\");\n    const DWORD moduleLength=module?GetModuleFileNameW(module,modulePath,32768):0;\n    HIGHCONTRASTW contrast{sizeof(contrast)};\n    return exeLength&&exeLength<32768&&systemLength&&systemLength<32768\n        &&moduleLength&&moduleLength<32768\n        &&_wcsicmp(exe,(std::wstring(system)+L\"\\\\ImmersiveControlPanel\\\\SystemSettings.exe\").c_str())==0\n        &&DigestFile(exe,\"c514b73f3b9cc38be1dc817c177d07ecf12ce4ce9e21df5d54128e7359198bba\")\n        &&DigestFile(modulePath,\"5b653bc535d87e7301c7ab9b4785fb7f0f6de5481ece03e7e7a89ca3e53e6905\")\n        &&SystemParametersInfoW(SPI_GETHIGHCONTRAST,sizeof(contrast),&contrast,0)\n        &&!(contrast.dwFlags&HCF_HIGHCONTRASTON);\n}\n}\n\nHWND GetCoreWnd() {\n    struct Candidates { HWND window=nullptr;unsigned count=0;DWORD thread=0; };\n    Candidates candidates{nullptr,0,g_targetThreadId.load()};\n    EnumWindows([](HWND top,LPARAM parameter)->BOOL {\n        auto& candidates=*reinterpret_cast<Candidates*>(parameter);\n        const auto admit=[&](HWND window) {\n            DWORD process=0;const DWORD thread=GetWindowThreadProcessId(window,&process);\n            if(!thread||process!=GetCurrentProcessId()\n                ||(candidates.thread&&thread!=candidates.thread))return;\n            if(window!=candidates.window){candidates.window=window;++candidates.count;}\n        };\n        wchar_t className[64]{};\n        if(!GetClassNameW(top,className,64))return TRUE;\n        if(_wcsicmp(className,L\"Windows.UI.Core.CoreWindow\")==0)admit(top);\n        else if(_wcsicmp(className,L\"ApplicationFrameWindow\")==0) {\n            HWND child=nullptr;\n            while((child=FindWindowExW(top,child,L\"Windows.UI.Core.CoreWindow\",nullptr)))admit(child);\n        }\n        return TRUE;\n    },reinterpret_cast<LPARAM>(&candidates));\n    // An ambiguous or missing owner cannot initialize or restore another root.\n    return candidates.count==1?candidates.window:nullptr;\n}\n"
+  },
+  "compatibility": [
+    {
+      "build": 26200,
+      "ubr": 9550,
+      "architecture": "X64",
+      "explorerVersion": "10.0.26100.8117",
+      "startDockedVersion": "10.0.26100.9549",
+      "status": "candidate",
+      "settingsVersion": "10.0.26100.9549",
+      "shellExperienceVersion": "10.0.26100.9549",
+      "searchVersion": "2608.25008.200.0",
+      "startPackageVersion": "10.0.26100.4768",
+      "shellPackageVersion": "10.0.26100.8115",
+      "clientPackageVersion": "1000.26100.372.0",
+      "startLayout": "redesigned",
+      "explorerFixedVersion": "10.0.26100.9549"
+    },
+    {
+      "build": 26300,
+      "shellPackageVersion": "10.0.26100.8115",
+      "ubr": 9550,
+      "explorerFixedVersion": "10.0.26100.9549",
+      "architecture": "X64",
+      "startLayout": "redesigned",
+      "settingsVersion": "10.0.26100.9549",
+      "startPackageVersion": "10.0.26100.4768",
+      "explorerVersion": "10.0.26100.8117",
+      "shellExperienceVersion": "10.0.26100.9549",
+      "startDockedVersion": "10.0.26100.9549",
+      "searchVersion": "2608.25008.200.0",
+      "clientPackageVersion": "1000.26100.372.0",
+      "status": "candidate"
+    }
+  ],
+  "limitations": [
+    "Windows owns arbitrary application title bars and unsupported Win32 control foregrounds.",
+    "Command Palette custom tint cannot independently assign every foreground.",
+    "Lock-screen application requires a supported API and recoverable previous image; otherwise it is not applied.",
+    "Windows/Start updates outside the tested compatibility entry disable managed shell styling until reviewed.",
+    "Static cursor shapes preserve roles; host accessibility pointer overrides take priority."
+  ]
+}

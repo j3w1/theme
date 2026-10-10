@@ -3,8 +3,8 @@ import { r as fields } from "../chunks/native-CAzZmDKR.js";
 //#region .cache/ui-build/entries/components/time-picker.js
 var J3w1TimePicker = class extends J3w1Element {
 	static componentId = "time-picker";
-	static version = "3.1.0";
-	static implementationId = "sha256-eUNX69EG9tZGIwN14UJ0d2JpfMgbEMfFjHIRCp51wB8=";
+	static version = "4.0.0";
+	static implementationId = "sha256-NixIqVSP1+pZBmD/nUflx8v6ZEWVt0qAVhGMMZv7eWQ=";
 	static connect = fields;
 	static upgradeProperties = [
 		"disabled",

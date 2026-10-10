@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "toast",
-  "version": "3.1.0",
-  "contract": "https://github.com/j3w1/theme/blob/v3.1.0/spec/components/toast.md",
+  "version": "4.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/toast.md",
   "dependencies": [
     "register/toast.js",
     "chunks/element-C1XeXVYC.js",
@@ -14,13 +14,13 @@
     "runtime/register/toast.js": "sha256-IdIE1uz4eUV1mu94jhavw3kQx9Omawr6aMO+ij/EIRU=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/components/toast.js": "sha256-I8BBGmNzLBdmgeYTQT+FMmHcb8fav3eoiiveQ6pAxiU=",
+    "runtime/components/toast.js": "sha256-v6J5D8moC3m7GxC2mVYytkK8MOkwHSwODcmKmj1Kkgk=",
     "runtime/chunks/overlays-C6nlCHqg.js": "sha256-JtKjtFU2sbObAEtYaA9S+YE40WKP5hX073Xv4lpA67o=",
-    "tokens.css": "sha256-c/NmCkdHsOHiHx4q0evmxTKbpeLSU3Eoo2b0S7PYNzU=",
+    "tokens.css": "sha256-gjEwadB0zTFK+892nxLpStOcmcjP5pxj2Pe/By5vwPE=",
     "component.css": "sha256-dMp7q8HbznH2LxwbeRaoK7WL/2M2GeVwkitql3aJ3GE=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-2DXrOBOlEPzc9p3N5SEbw98qHHSMYTxlOnR6gT91kkU=",
     "index.html": "sha256-UfXmgxl10YQJyIiSccW0Sy7gHSjlICq9a865B0vR+7Q=",
-    "README.md": "sha256-HC2D/FmpdYjMdfe1fS9Wqt3W4aqvO4sylZ2TD4A/QKM="
+    "README.md": "sha256-Gqkqv+2L4+y8mTQfPGpUxoV4B+6QJazzN5XtXWfyj4w="
   }
 }

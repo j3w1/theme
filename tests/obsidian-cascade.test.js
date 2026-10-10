@@ -47,19 +47,19 @@ test("specificity includes :not and variants; same-weight source order remains d
 
 for (const { version } of audit.versions) {
   const native = nativeCss(version), css = native + emitted;
-  test(`${version}: Reading View and CM6 text are rose while note headings, title and bold are near-white`, () => {
+  test(`${version}: Reading View and CM6 text are rose while note headings are near-white and bold inherits`, () => {
     const root = body(), preview = element("div", ["markdown-preview-view"], root);
     const view = element("div", ["markdown-source-view", "mod-cm6"], root);
     const content = element("div", ["cm-content"], element("div", ["cm-scroller"], view));
     for (const node of [preview, content]) {
       const style = cascade(css, node);
       assert.equal(style.value("color"), role("color.text.default"));
-      assert.equal(style.value("--bold-color"), role("color.text.prose"));
-      assert.equal(style.value("--inline-title-color"), role("color.text.prose"));
-      for (let level = 1; level <= 6; level++) assert.equal(style.value(`--h${level}-color`), role("color.text.prose"));
+      assert.equal(style.value("--bold-color"), "inherit");
+      assert.equal(style.value("--inline-title-color"), role("color.text.heading"));
+      for (let level = 1; level <= 6; level++) assert.equal(style.value(`--h${level}-color`), role("color.text.heading"));
       assert.equal(style.value("--italic-color"), role("color.text.bright"));
       assert.ok(pair(style.value("color"), role("color.surface.canvas")).pass);
-      assert.ok(pair(style.value("--bold-color"), role("color.surface.canvas")).pass);
+      assert.ok(pair(style.value("--h1-color"), role("color.surface.canvas")).pass);
     }
   });
   test(`${version}: every audited compound dark root keeps its mapped values`, () => {

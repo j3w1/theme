@@ -1,10 +1,10 @@
 {
   "id": "radio-group",
   "name": "Radio group",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "tag": "j3w1-radio-group",
-  "contract": "https://github.com/j3w1/theme/blob/v3.1.0/spec/components/radio-group.md",
-  "source": "https://github.com/j3w1/theme/blob/v3.1.0/packages/ui/src/behaviors/native.js",
+  "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/radio-group.md",
+  "source": "https://github.com/j3w1/theme/blob/v4.0.0/packages/ui/src/behaviors/native.js",
   "imports": {
     "class": "@j3w1/ui/components/radio-group",
     "register": "@j3w1/ui/register/radio-group",
@@ -179,6 +179,7 @@
       "color.text.bright",
       "color.text.default",
       "color.text.disabled",
+      "color.text.on-action",
       "density.comfortable.icon",
       "density.compact.icon",
       "focus.offset",
@@ -395,6 +396,6 @@
   "copy": {
     "directory": "copy/radio-group/",
     "manifest": "copy/radio-group/manifest.json",
-    "digest": "sha256-+YkdRDTPFdU7vMvLQcxMuW5yRxrt05yQe930rdMdo3U="
+    "digest": "sha256-rJMHqX9Ubyy1ts4W8Xtf4nbu3mNnv3VlQThVuL31r9g="
   }
 }

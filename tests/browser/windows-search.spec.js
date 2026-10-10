@@ -1,0 +1,181 @@
+import {readFileSync} from 'node:fs';
+import {test,expect} from './evidence-fixture.mjs';
+import {verification} from './verification.mjs';
+
+const settings=JSON.parse(readFileSync(new URL('../../ports/windows/dist/windows-11-start-menu-styler.json',import.meta.url),'utf8'));
+const tokens=JSON.parse(readFileSync(new URL('../../exports/tokens.resolved.json',import.meta.url),'utf8')).profiles.default.tokens;
+const color=role=>`rgb(${tokens[role].value.components.map(x=>Math.round(x*255)).join(', ')})`;
+const dimension=role=>`${tokens[role].value.value}${tokens[role].value.unit}`;
+const css=settings.webContentStyles.map(rule=>`${rule.target}{${rule.styles.join(';')}}`).join('\n');
+// Synthetic host fills deliberately conflict with the generated theme. This
+// fixture exercises emitted CSS, never a native Search import or acceptance.
+const specimen=`<html data-profile="default"><head><style>
+ .suggestion {display:flex;max-width:100%;padding:8px;box-sizing:border-box}
+ .details {background:GrayText;flex:1}.iconContainer {background:GrayText;padding:8px}
+ .title,.secondaryText {background:GrayText}
+ .leftPill::before {content:"";width:2px}
+ </style><style>${css}</style></head><body class="darkTheme">
+ <div class="suggestion leftPill" role="option" aria-selected="false" tabindex="0">
+ <div class="iconContainer">Icon</div><div class="details"><div class="title">Sample application</div><div class="secondaryText">Application</div></div>
+ </div><button>Outside</button><div class="previewContainer" tabindex="0">Preview</div>
+ </body></html>`;
+const fill=page=>page.locator('.suggestion, .details, .iconContainer, .title, .secondaryText').evaluateAll(elements=>elements.map(element=>getComputedStyle(element).backgroundColor));
+
+test('Search result fill follows hover and selection without separate child rectangles',verification({component:'list',category:'appearance',states:['default','hover','selected'],variants:[],note:'Generated Search WebView CSS on synthetic markup. Covers hover exit, selection, selected hover and deselection; does not exercise native Search admission or host navigation.'}),async({page})=>{
+ await page.setContent(specimen);
+ const row=page.getByRole('option'),outside=page.getByRole('button',{name:'Outside'});
+ await outside.hover();expect(await fill(page)).toEqual(Array(5).fill(color('color.surface.canvas')));
+ await row.hover();expect(await fill(page)).toEqual(Array(5).fill(color('color.interaction.hover.bg')));
+ await outside.hover();expect(await fill(page)).toEqual(Array(5).fill(color('color.surface.canvas')));
+ await row.evaluate(element=>element.setAttribute('aria-selected','true'));
+ expect(await fill(page)).toEqual(Array(5).fill(color('color.interaction.selection.bg')));
+ await row.hover();expect(await fill(page)).toEqual(Array(5).fill(color('color.interaction.selection.bg')));
+ for(const selector of ['.title','.secondaryText'])
+  expect(await page.locator(selector).evaluate(element=>getComputedStyle(element).color)).toBe(color('color.interaction.selection.text'));
+ expect(await row.evaluate(element=>getComputedStyle(element,'::before').content)).toBe('none');
+ await row.evaluate(element=>element.setAttribute('aria-selected','false'));
+ await outside.hover();expect(await fill(page)).toEqual(Array(5).fill(color('color.surface.canvas')));
+ await expect(row).toHaveAttribute('aria-selected','false');await expect(row).toHaveAttribute('tabindex','0');
+});
+
+test('Search selection retains the control focus ring and preview retains its container ring',verification({component:'list',category:'keyboard',states:['focus-visible','selected+focus-visible'],variants:[],note:'Synthetic keyboard focus with generated Search CSS. Checks existing focus targets and approved control/container ring mappings; not a native Search keyboard protocol.'}),async({page})=>{
+ await page.setContent(specimen);
+ const row=page.getByRole('option');await row.evaluate(element=>element.setAttribute('aria-selected','true'));
+ await page.keyboard.press('Tab');await expect(row).toBeFocused();
+ const outline=locator=>locator.evaluate(element=>{const style=getComputedStyle(element);return {color:style.outlineColor,width:style.outlineWidth,offset:style.outlineOffset,style:style.outlineStyle};});
+ expect(await outline(row)).toEqual({color:color('color.interaction.focus.ring'),width:dimension('border.width.default'),offset:dimension('focus.offset'),style:'dashed'});
+ expect(await fill(page)).toEqual(Array(5).fill(color('color.interaction.selection.bg')));
+ await page.keyboard.press('Tab');await expect(page.getByRole('button',{name:'Outside'})).toBeFocused();
+ await page.keyboard.press('Tab');const preview=page.locator('.previewContainer');await expect(preview).toBeFocused();
+ expect(await outline(preview)).toEqual({color:color('color.interaction.focus.ring-container'),width:dimension('border.width.emphasis'),offset:dimension('focus.offset-container'),style:'solid'});
+ await page.emulateMedia({forcedColors:'active'});
+ expect(await preview.evaluate(element=>getComputedStyle(element).forcedColorAdjust)).toBe('auto');
+ expect((await outline(preview)).color).not.toBe(color('color.interaction.focus.ring-container'));
+});
+
+for(const layout of ['outer-container','inner-container','class-selection']) {
+ test(`Search selection frame owns the whole result in ${layout}`,verification({component:'list',category:'appearance',states:['default','hover','selected','selected+focus-visible'],variants:[],note:'Generated CSS on synthetic nested Search markup, including the documented leftPill state. Checks full-row fill, a single reserved frame, selected hover, focus, hover exit and deselection. Native host appearance remains a separate acceptance check.'}),async({page})=>{
+  const outer=layout==='inner-container'?'suggestion':'suggContainer';
+  const inner=layout==='inner-container'?'suggContainer':'suggestion';
+  const markup=`<html data-profile="default"><head><style>
+   #result {width:360px;max-width:100%;box-sizing:border-box;padding:12px}
+   .suggestion,.suggContainer,.iconContainer,.details,.title,.secondaryText {background:GrayText}
+   #inner {display:flex}.details {flex:1}.iconContainer {padding:8px}
+   .leftPill::before {content:"";position:absolute;width:2px;height:24px;background:GrayText}
+  </style><style>${css}</style></head><body><div id="result" class="${outer}" role="option" tabindex="0" ${layout==='class-selection'?'':'aria-selected="false"'}><div id="inner" class="${inner}"><div class="iconContainer">Icon</div><div class="details"><div class="title">Sample application</div><div class="secondaryText">Application</div></div></div></div><button>Outside</button></body></html>`;
+  await page.setContent(markup);
+  const row=page.getByRole('option'),outside=page.getByRole('button',{name:'Outside'});
+  const backgrounds=()=>page.locator('#result,#inner,.details,.iconContainer,.title,.secondaryText').evaluateAll(elements=>elements.map(element=>getComputedStyle(element).backgroundColor));
+  const frame=()=>row.evaluate(element=>{const style=getComputedStyle(element);return {width:style.borderTopWidth,leadingWidth:style.borderInlineStartWidth,color:style.borderTopColor,leadingColor:style.borderInlineStartColor,style:style.borderTopStyle,radius:style.borderRadius};});
+  await outside.hover();
+  expect(await backgrounds()).toEqual(Array(6).fill(color('color.surface.canvas')));
+  const before=await row.boundingBox();
+  await row.hover();expect(await backgrounds()).toEqual(Array(6).fill(color('color.interaction.hover.bg')));
+  await outside.hover();expect(await backgrounds()).toEqual(Array(6).fill(color('color.surface.canvas')));
+  await row.evaluate((element,kind)=>{if(kind==='class-selection')element.classList.add('leftPill');else element.setAttribute('aria-selected','true');},layout);
+  expect(await backgrounds()).toEqual(Array(6).fill(color('color.interaction.selection.bg')));
+  expect(await frame()).toEqual({width:dimension('border.width.default'),leadingWidth:dimension('border.width.emphasis'),color:color('color.border.control'),leadingColor:color('color.border.selected-indicator'),style:'solid',radius:dimension('radius.none')});
+  expect(await row.boundingBox()).toEqual(before);
+  expect(await page.locator('#inner').evaluate(element=>getComputedStyle(element).borderTopStyle)).toBe('none');
+  await row.hover();expect(await backgrounds()).toEqual(Array(6).fill(color('color.interaction.selection.bg')));
+  await row.evaluate(element=>element.classList.add('leftPill'));
+  expect(await row.evaluate(element=>getComputedStyle(element,'::before').content)).toBe('none');
+  for(const selector of ['.title','.secondaryText'])expect(await page.locator(selector).evaluate(element=>getComputedStyle(element).color)).toBe(color('color.interaction.selection.text'));
+  await page.keyboard.press('Tab');await expect(row).toBeFocused();
+  expect(await row.evaluate(element=>{const style=getComputedStyle(element);return {color:style.outlineColor,width:style.outlineWidth,offset:style.outlineOffset,style:style.outlineStyle};})).toEqual({color:color('color.interaction.focus.ring'),width:dimension('border.width.default'),offset:dimension('focus.offset'),style:'dashed'});
+  expect(await backgrounds()).toEqual(Array(6).fill(color('color.interaction.selection.bg')));
+  // Explicit ARIA deselection defeats a stale host pill class.
+  await row.evaluate(element=>element.setAttribute('aria-selected','false'));
+  await outside.hover();expect(await backgrounds()).toEqual(Array(6).fill(color('color.surface.canvas')));
+  expect((await frame()).color).toBe(color('color.surface.canvas'));
+  expect(await row.boundingBox()).toEqual(before);
+ });
+}
+
+
+test('Search nested paint layers follow their result state',verification({component:'list',category:'appearance',states:['default','hover','selected','selected+focus-visible'],variants:[],note:'Synthetic intermediate paint layers reproduce a selected frame whose interior keeps the host background. Checks emitted CSS through hover exit, selection and ARIA deselection; native Search remains separately verified.'}),async({page})=>{
+ await page.setContent(
+  '<html><head><style>.suggestion{width:300px;padding:8px;box-sizing:border-box}.hostPaintLayer{display:flex;background:GrayText}.details{flex:1}.iconContainer{padding:8px}</style><style>'+css+'</style></head><body><div class="suggestion leftPill" role="option" aria-selected="false" tabindex="0"><div class="hostPaintLayer"><div class="iconContainer">Icon</div><div class="hostPaintLayer details"><div class="title">Sample application</div><div class="secondaryText">Application</div></div></div></div><button>Outside</button></body></html>'
+ );
+ const row=page.getByRole('option'),outside=page.getByRole('button',{name:'Outside'});
+ const fills=()=>page.locator('.suggestion,.hostPaintLayer,.iconContainer,.title,.secondaryText').evaluateAll(elements=>elements.map(element=>getComputedStyle(element).backgroundColor));
+ await outside.hover();expect(await fills()).toEqual(Array(6).fill(color('color.surface.canvas')));
+ await row.hover();expect(await fills()).toEqual(Array(6).fill(color('color.interaction.hover.bg')));
+ await outside.hover();expect(await fills()).toEqual(Array(6).fill(color('color.surface.canvas')));
+ await row.evaluate(element=>element.setAttribute('aria-selected','true'));
+ expect(await fills()).toEqual(Array(6).fill(color('color.interaction.selection.bg')));
+ await row.hover();expect(await fills()).toEqual(Array(6).fill(color('color.interaction.selection.bg')));
+ await row.evaluate(element=>element.setAttribute('aria-selected','false'));
+ await outside.hover();expect(await fills()).toEqual(Array(6).fill(color('color.surface.canvas')));
+ await page.emulateMedia({forcedColors:'active'});
+ expect(await row.evaluate(element=>getComputedStyle(element).forcedColorAdjust)).toBe('auto');
+});
+
+
+for(const direction of ['ltr','rtl'])test('Search result frame stays inside a clipped host column in '+direction,verification({component:'list',category:'appearance',states:['default','hover','selected','selected+focus-visible'],variants:[],note:'Synthetic native content-box sizing with a clipped, width-constrained result column. Verifies physical frame edges remain visible, row width and height stay stable across state changes, and unrelated controls retain host sizing. Does not certify native Search layout.'}),async({page})=>{
+ await page.setContent('<html dir="'+direction+'"><head><style>#column{width:280px;max-width:100%;overflow:hidden}.suggestion{width:100%;display:flex;padding:12px;box-sizing:content-box}.details{flex:1;min-width:0}.title{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.iconContainer{padding:8px}.nativeControl{box-sizing:content-box}</style><style>'+css+'</style></head><body><div id="column"><div class="suggestion leftPill" role="option" aria-selected="false" tabindex="0"><div class="iconContainer">Icon</div><div class="details"><div class="title">A long result title that must stay inside the host column</div><div class="secondaryText">Application</div></div></div></div><button class="nativeControl">Outside</button></body></html>');
+ const row=page.getByRole('option'),outside=page.getByRole('button',{name:'Outside'});
+ await outside.hover();const before=await row.boundingBox();
+ const assertVisible=async()=>{
+  const column=await page.locator('#column').boundingBox(),frame=await row.boundingBox();
+  expect(frame.x).toBeGreaterThanOrEqual(column.x);
+  expect(frame.x+frame.width).toBeLessThanOrEqual(column.x+column.width);
+  expect(frame.width).toBe(column.width);
+  expect(await row.boundingBox()).toEqual(before);
+ };
+ await assertVisible();await row.hover();await assertVisible();
+ await row.evaluate(element=>element.setAttribute('aria-selected','true'));await assertVisible();
+ const frame=await row.evaluate(element=>{const s=getComputedStyle(element);return {left:s.borderLeftStyle,right:s.borderRightStyle,leftColor:s.borderLeftColor,rightColor:s.borderRightColor,leftWidth:s.borderLeftWidth,rightWidth:s.borderRightWidth};});
+ expect(frame.left).toBe('solid');expect(frame.right).toBe('solid');
+ expect(frame[direction==='ltr'?'rightColor':'leftColor']).toBe(color('color.border.control'));
+ expect(frame[direction==='ltr'?'rightWidth':'leftWidth']).toBe(dimension('border.width.default'));
+ await row.hover();await assertVisible();await outside.hover();await assertVisible();
+ await row.focus();await assertVisible();await expect(row).toHaveAttribute('tabindex','0');
+ await row.evaluate(element=>element.setAttribute('aria-selected','false'));await outside.hover();await assertVisible();
+ expect(await outside.evaluate(element=>getComputedStyle(element).boxSizing)).toBe('content-box');
+});
+
+// Reconstructed host geometry: the pinned Search package places a 100%-wide
+// inner layer one pixel toward the trailing edge. Its inherited opaque fill
+// can cover the row frame even when the outer border box fits its column.
+for(const direction of ['ltr','rtl'])test('Search nested host layer leaves the trailing frame painted in '+direction,verification({component:'list',category:'appearance',states:['default','hover','selected','selected+focus-visible'],variants:[],note:'Reconstructed pinned Search geometry, not vendor CSS: a nested full-width layer with a one-pixel directional margin and visible overflow. Checks trailing border paint ownership, stable row bounds, fill, hover exit, deselection and forced colors. Native Search readback remains separate.'}),async({page})=>{
+ await page.setContent('<html><head><style>#column{width:280px;max-width:100%;overflow:hidden}.suggestion{position:relative;height:56px;box-sizing:border-box;overflow:visible}.suggContainer{width:100%;height:100%}.suggDetailsContainer{position:relative;width:100%;height:100%;display:flex;align-items:center;box-sizing:border-box}.details{flex:1;min-width:0}.iconContainer{padding:8px}body[dir="ltr"] .suggContainer{margin-left:1px}body[dir="rtl"] .suggContainer{margin-right:1px}.nativeControl{margin-inline-start:1px}</style><style>'+css+'</style></head><body dir="'+direction+'"><div id="column"><div class="suggestion leftPill" role="option" aria-selected="false" tabindex="0"><div class="suggContainer"><div class="suggDetailsContainer"><div class="iconContainer">Icon</div><div class="details"><div class="title">Sample application</div><div class="secondaryText">Application</div></div></div></div></div></div><button class="nativeControl">Outside</button></body></html>');
+ const row=page.getByRole('option'),outside=page.getByRole('button',{name:'Outside'});
+ await outside.hover();const before=await row.boundingBox();
+ const assertPainted=async()=>{
+  expect(await row.boundingBox()).toEqual(before);
+  const edge=await row.evaluate((element,dir)=>{
+   const r=element.getBoundingClientRect(),s=getComputedStyle(element);
+   const width=Number.parseFloat(dir==='ltr'?s.borderRightWidth:s.borderLeftWidth);
+   // Hit testing rounds a half-pixel on the left toward the child.
+   // Sample the first physical pixel of that border; raster checks below
+   // separately verify its rendered color.
+   const x=dir==='ltr'?r.right-width/2:r.left;
+   const y=r.top+r.height/2;
+   return {owner:document.elementFromPoint(x,y)===element,margin:getComputedStyle(element.querySelector('.suggContainer')).marginInlineStart};
+  },direction);
+  expect(edge.owner).toBe(true);expect(edge.margin).toBe(dimension('space.0'));
+ };
+ const fills=()=>page.locator('.suggestion,.suggContainer,.suggDetailsContainer,.details,.title,.secondaryText,.iconContainer').evaluateAll(elements=>elements.map(element=>getComputedStyle(element).backgroundColor));
+ await assertPainted();expect(await fills()).toEqual(Array(7).fill(color('color.surface.canvas')));
+ await row.hover();await assertPainted();expect(await fills()).toEqual(Array(7).fill(color('color.interaction.hover.bg')));
+ await outside.hover();await assertPainted();expect(await fills()).toEqual(Array(7).fill(color('color.surface.canvas')));
+ await row.evaluate(element=>element.setAttribute('aria-selected','true'));await assertPainted();expect(await fills()).toEqual(Array(7).fill(color('color.interaction.selection.bg')));
+ const bounds=await row.boundingBox();
+ const edgePng=await page.screenshot({scale:'css',clip:{x:direction==='ltr'?bounds.x+bounds.width-1:bounds.x,y:bounds.y+bounds.height/2,width:1,height:1}});
+ const pixel=await page.evaluate(async data=>{
+  const image=new Image();image.src=data;await image.decode();
+  const canvas=document.createElement('canvas');canvas.width=canvas.height=1;
+  const context=canvas.getContext('2d');context.drawImage(image,0,0);
+  return [...context.getImageData(0,0,1,1).data];
+ },'data:image/png;base64,'+edgePng.toString('base64'));
+ expect(pixel).toEqual([...tokens['color.border.control'].value.components.map(x=>Math.round(x*255)),255]);
+ await row.hover();await assertPainted();await outside.hover();await assertPainted();
+ await page.keyboard.press('Tab');await expect(row).toBeFocused();await assertPainted();
+ expect(await row.evaluate(element=>getComputedStyle(element).outlineStyle)).toBe('dashed');
+ await row.evaluate(element=>element.setAttribute('aria-selected','false'));await outside.hover();await assertPainted();
+ expect(await fills()).toEqual(Array(7).fill(color('color.surface.canvas')));
+ expect(await outside.evaluate(element=>getComputedStyle(element).marginInlineStart)).toBe('1px');
+ await page.emulateMedia({forcedColors:'active'});await assertPainted();
+ expect(await row.evaluate(element=>getComputedStyle(element).forcedColorAdjust)).toBe('auto');
+});

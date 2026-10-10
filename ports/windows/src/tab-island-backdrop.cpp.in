@@ -1,0 +1,57 @@
+// The observed TabsBar uses a ContentIsland whose nullable system backing
+// is outside the app-owned XAML brush tree. Reuse the window-backing receipt;
+// do not access AppWindow.TitleBar or the separate native caption surface.
+static bool TabIslandAdmission(std::wstring_view type,bool thread,bool loaded,bool connected,bool nativeWindow,bool nullBacking) noexcept {
+ return type==L"NotepadXamlUI.TabsBar"&&thread&&loaded&&connected&&nativeWindow&&nullBacking;
+}
+static unsigned CompositionTargetState(bool closed,bool connected) noexcept {return closed?0:connected?1:2;}
+static unsigned TabIslandState(WindowBacking const& entry) noexcept {
+ if(!entry.islandTarget)return 1;
+ try {
+  if(!entry.island)return 0;
+  auto island=entry.island.as<Microsoft::UI::Content::ContentIsland>();
+  if(island.IsClosed())return 0;
+  return CompositionTargetState(false,island.IsConnected());
+ }catch(...){return 2;} // Unknown/detached targets retain receipts for retry.
+}
+static void ObserveTabIslandBacking(FrameworkElement const& element) noexcept;
+// IMPLEMENTATION
+static void ObserveTabIslandBacking(FrameworkElement const& element) noexcept {
+ if(!element||!uiState||!enabled.load()||HighContrast()||!ReviewedRuntime())return;
+ try {
+  if(!TabIslandAdmission(std::wstring_view{get_class_name(element)},element.DispatcherQueue().HasThreadAccess(),element.IsLoaded(),true,true,true))return;
+  auto xaml=element.XamlRoot();if(!xaml)return;
+  auto island=xaml.ContentIsland();if(!island||island.IsClosed()||!island.IsConnected()||!island.DispatcherQueue().HasThreadAccess())return;
+  auto id=island.Environment().AppWindowId();if(!id.Value)return;
+  // Same public WindowId conversion used by the existing caption adapter.
+  // Enumerate this UI thread only; never materialize AppWindow or its title bar.
+  using Convert=HRESULT(WINAPI*)(HWND,Microsoft::UI::WindowId*);
+  auto module=GetModuleHandleW(L"Microsoft.Internal.FrameworkUdk.dll");
+  auto convert=module?reinterpret_cast<Convert>(GetProcAddress(module,"Windowing_GetWindowIdFromWindow")):nullptr;
+  if(!convert)return;
+  struct Search {Convert convert;Microsoft::UI::WindowId id;HWND result=nullptr;unsigned matches=0;} search{convert,id};
+  EnumThreadWindows(GetCurrentThreadId(),[](HWND window,LPARAM parameter)->BOOL {
+   auto& search=*reinterpret_cast<Search*>(parameter);
+   if(!PublicCaptionWindow(window))return TRUE;
+   Microsoft::UI::WindowId id{};
+   if(SUCCEEDED(search.convert(window,&id))&&id.Value==search.id.Value){search.result=window;++search.matches;}
+   return TRUE;
+  },reinterpret_cast<LPARAM>(&search));
+  if(search.matches!=1||GetPropW(search.result,windowBackingProperty)||uiState->windowBackings.size()>=256)return;
+  auto target=island.try_as<Microsoft::UI::Composition::ICompositionSupportsSystemBackdrop>();if(!target)return;
+  if(!TabIslandAdmission(std::wstring_view{get_class_name(element)},true,true,true,true,!target.SystemBackdrop()))return;
+  auto entry=std::make_unique<WindowBacking>();entry->window=search.result;entry->target=target;
+  // The observed ContentIsland does not implement IWeakReferenceSource.
+  // Retain its COM identity until closed, HWND destruction or completed recovery.
+  entry->island=island;entry->islandTarget=true;
+  // ContentIsland expects a Windows composition brush, not a lifted WinUI brush.
+  // The WinUI dispatcher and Windows system dispatcher are distinct.
+  // Attach the composition dependency to the existing WinUI queue so it owns
+  // system-queue shutdown. Never create a controller or another message loop.
+  island.DispatcherQueue().EnsureSystemDispatcherQueue();
+  entry->brush.applied=Windows::UI::Composition::Compositor().CreateColorBrush(CanvasColor());
+  if(!SetPropW(entry->window,windowBackingProperty,entry.get()))return;
+  try{uiState->windowBackings.push_back(std::move(entry));}catch(...){RemovePropW(search.result,windowBackingProperty);throw;}
+  Schedule();
+ }catch(...){Log(268);}
+}

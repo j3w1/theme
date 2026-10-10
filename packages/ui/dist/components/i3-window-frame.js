@@ -3,8 +3,8 @@ import { r as windowFrame } from "../chunks/compositions-d6BkKTYf.js";
 //#region .cache/ui-build/entries/components/i3-window-frame.js
 var J3w1I3WindowFrame = class extends J3w1Element {
 	static componentId = "i3-window-frame";
-	static version = "3.1.0";
-	static implementationId = "sha256-rdnuDsa6eQKaQlMUMQdX9lt8i/ASV3uPyPK3oP2Oe+w=";
+	static version = "4.0.0";
+	static implementationId = "sha256-Y4Ce7n8VcttdP/24Otj7l0Ls+ShSo3ACSeSkMKfZg4o=";
 	static connect = windowFrame;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

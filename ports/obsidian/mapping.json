@@ -56,9 +56,7 @@
       "--nav-heading-color",
       "--titlebar-text-color-focused",
       "--metadata-input-text-color",
-      ".theme-dark .tooltip | color",
-      ".theme-dark .markdown-preview-view | color",
-      ".theme-dark .markdown-source-view.mod-cm6 .cm-content | color"
+      ".theme-dark .tooltip | color"
     ],
     "color.text.bright": [
       "--italic-color",
@@ -333,16 +331,6 @@
       "--touch-radius-m",
       "--touch-radius-xl"
     ],
-    "color.text.prose": [
-      "--bold-color",
-      "--inline-title-color",
-      "--h1-color",
-      "--h2-color",
-      "--h3-color",
-      "--h4-color",
-      "--h5-color",
-      "--h6-color"
-    ],
     "color.code.selection-bg": [
       ".theme-dark .markdown-source-view.mod-cm6 .cm-scroller | --text-selection"
     ],
@@ -444,6 +432,19 @@
       ".theme-dark button.mod-destructive:hover | --background-modifier-border-focus",
       ".theme-dark button.mod-destructive.mobile-tap | --text-color",
       ".theme-dark button.mod-destructive.mobile-tap | --background-modifier-border-focus"
+    ],
+    "color.text.heading": [
+      "--inline-title-color",
+      "--h1-color",
+      "--h2-color",
+      "--h3-color",
+      "--h4-color",
+      "--h5-color",
+      "--h6-color"
+    ],
+    "color.text.prose": [
+      ".theme-dark .markdown-preview-view | color",
+      ".theme-dark .markdown-source-view.mod-cm6 .cm-content | color"
     ]
   },
   "unmapped": {
@@ -575,7 +576,7 @@
     "color.code.whitespace": "Native whitespace rendering is retained; no whitespace-marker selector override is installed.",
     "color.code.syntax.constant": "Native --code-tag/--code-value conflate constants with tags/values; tag and number own those keys.",
     "color.code.syntax.type": "Native --code-function conflates types/classes with functions; function owns that key.",
-    "color.code.syntax.heading": "Native Markdown headings use h1–h6 color variables, owned by text.prose; no separate code syntax heading channel.",
+    "color.code.syntax.heading": "Native Markdown headings use h1–h6 color variables, owned by text.heading; no separate code syntax heading channel.",
     "color.code.syntax.attribute": "Native --code-property also styles attributes; property owns that key without claiming distinct attribute coverage.",
     "color.code.syntax.invalid": "Native invalid code uses --text-error; no separate syntax-invalid color plus wavy-underline contract is installed.",
     "color.code.syntax.deprecated": "No independent deprecated-code token/strike-through contract is exposed by the mapped native syntax variables.",
@@ -703,6 +704,7 @@
     "z.toast": "z.toast: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
     "z.skip-link": "z.skip-link: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host.",
     "color.action.destructive.filled-bg": "Native desktop warning/confirmation fills and their hover/mobile-tap variants consume background-modifier-error/error-hover, owned by status.danger.fill; mobile warning uses interactive-normal. No independent filled-bg assignment is claimed.",
-    "color.status.warning.tint": "No consumer for background-modifier-warning/warning-hover in audited Obsidian 1.13.4/1.13.7; warning callouts compute their tint from callout-warning, not this exact tint role."
+    "color.status.warning.tint": "No consumer for background-modifier-warning/warning-hover in audited Obsidian 1.13.4/1.13.7; warning callouts compute their tint from callout-warning, not this exact tint role.",
+    "color.text.highlight": "Host exposes no separately mapped content heading/highlight foreground in this port."
   }
 }

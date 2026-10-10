@@ -42,7 +42,7 @@
   fill: none;
 }
 
-/* hover: the strong fill, the prose-white text, a 2px underline in the text colour */
+/* hover: the strong fill, the explicit near-white hover highlight, a 2px underline in the text colour */
 @media (hover: hover) {
   .link:hover {
     background: var(--color-interaction-hover-bg-strong);

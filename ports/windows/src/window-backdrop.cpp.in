@@ -1,0 +1,81 @@
+// Public composition backing, without AppWindow.TitleBar or title-mode writes.
+// Retain the exact native brush; a nullable original is still a readable value.
+struct OwnedCompositionBrush {ProjectedObject before{nullptr},applied{nullptr};bool owned=false,changed=false;};
+static bool SameCompositionObject(ProjectedObject const& a,ProjectedObject const& b) {return (!a&&!b)||Identity(a,b);}
+template<class Read,class Write> static bool UpdateCompositionBrush(OwnedCompositionBrush& entry,bool active,Read read,Write write) noexcept {
+ if(!active&&!entry.owned)return true;
+ try {
+  auto current=read();
+  if(entry.owned&&!SameCompositionObject(current,entry.applied)){entry.owned=false;entry.changed=true;}
+  if(!active){if(entry.owned){write(entry.before);entry.owned=false;}return true;}
+  if(entry.changed||entry.owned)return true;
+  entry.before=current;entry.owned=true;write(entry.applied);return true;
+ }catch(...) {
+  if(entry.owned)try {auto current=read();if(SameCompositionObject(current,entry.before))entry.owned=false;
+   else if(!SameCompositionObject(current,entry.applied)){entry.owned=false;entry.changed=true;}}catch(...){}
+  return false;
+ }
+}
+#if !J3W1_LEGACY_XAML
+// IWindowNative is the documented one-method IUnknown ABI in
+// microsoft.ui.xaml.window.h. The pinned compiler omits that interop header.
+struct NativeXamlWindow : ::IUnknown {virtual HRESULT STDMETHODCALLTYPE get_WindowHandle(HWND*)=0;};
+static constexpr GUID nativeXamlWindowId={0x45d64a29,0xa63e,0x4cb6,{0xb4,0x98,0x57,0x81,0xd2,0x98,0xcb,0x4f}};
+struct WindowBacking {
+ HWND window=nullptr;Microsoft::UI::Composition::ICompositionSupportsSystemBackdrop target{nullptr};OwnedCompositionBrush brush;@TAB_ISLAND_SLOT@
+};
+static constexpr PCWSTR windowBackingProperty=L"@ADAPTER_ID@-composition-backing";
+@TAB_ISLAND_DECLARATIONS@static bool OwnsWindowBacking(WindowBacking const& entry) {
+ DWORD process=0;auto thread=GetWindowThreadProcessId(entry.window,&process);
+ return thread==GetCurrentThreadId()&&process==GetCurrentProcessId()&&GetPropW(entry.window,windowBackingProperty)==&entry;
+}
+static bool RestoreWindowBackings(std::vector<std::unique_ptr<WindowBacking>>& entries) noexcept {
+ bool complete=true;
+ for(auto it=entries.begin();it!=entries.end();) {
+  auto& entry=**it;
+  if(OwnsWindowBacking(entry)&&@TAB_ISLAND_RESTORE_GUARD@!UpdateCompositionBrush(entry.brush,false,[&]{return entry.target.SystemBackdrop();},
+    [&](auto const& brush){entry.target.SystemBackdrop(brush?brush.template as<Windows::UI::Composition::CompositionBrush>():Windows::UI::Composition::CompositionBrush{nullptr});})@TAB_ISLAND_RESTORE_CLOSE@) {complete=false;++it;continue;}
+  if(OwnsWindowBacking(entry))RemovePropW(entry.window,windowBackingProperty);
+  it=entries.erase(it);
+ }
+ return complete;
+}
+#endif
+// IMPLEMENTATION
+static void ObserveWindowBacking(Window const& window) noexcept {
+#if !J3W1_LEGACY_XAML
+ if(!@NATIVE_CAPTION_BACKDROP@||!window||!window.DispatcherQueue().HasThreadAccess()||!enabled.load()||HighContrast()||!ReviewedRuntime())return;
+ try {
+  com_ptr<NativeXamlWindow> native;if(FAILED(get_unknown(window)->QueryInterface(nativeXamlWindowId,native.put_void())))return;
+  HWND handle=nullptr;if(FAILED(native->get_WindowHandle(&handle))||!handle)return;
+  DWORD process=0;auto thread=GetWindowThreadProcessId(handle,&process);wchar_t type[64]{};
+  if(thread!=GetCurrentThreadId()||process!=GetCurrentProcessId()||!GetClassNameW(handle,type,64)||wcscmp(type,L"@NATIVE_CLASS@")||!EnsureChannel())return;
+  if(GetPropW(handle,windowBackingProperty))return;
+  if(uiState->windowBackings.size()>=256)return;
+  auto target=window.try_as<Microsoft::UI::Composition::ICompositionSupportsSystemBackdrop>();if(!target)return;
+  auto compositor=window.Compositor();if(!compositor)return;
+  auto entry=std::make_unique<WindowBacking>();entry->window=handle;entry->target=target;
+  entry->brush.applied=compositor.CreateColorBrush(CanvasColor());
+  if(!SetPropW(handle,windowBackingProperty,entry.get()))return;
+  try{uiState->windowBackings.push_back(std::move(entry));}catch(...){RemovePropW(handle,windowBackingProperty);throw;}
+  Schedule();
+ }catch(...){/* Unknown/closed targets retain their native backing. */}
+#endif
+}
+@TAB_ISLAND_IMPLEMENTATION@static bool RefreshWindowBackings(ThreadState& state,bool active) noexcept {
+#if !J3W1_LEGACY_XAML
+ if(!active)return RestoreWindowBackings(state.windowBackings);
+ bool complete=true;
+ for(auto it=state.windowBackings.begin();it!=state.windowBackings.end();) {
+  auto& entry=**it;
+  // Destroyed/reused HWNDs must never lead to a disposed compositor getter.
+  if(!OwnsWindowBacking(entry)){it=state.windowBackings.erase(it);continue;}
+@TAB_ISLAND_REFRESH_GUARD@  complete=UpdateCompositionBrush(entry.brush,true,[&]{return entry.target.SystemBackdrop();},
+    [&](auto const& brush){entry.target.SystemBackdrop(brush?brush.template as<Windows::UI::Composition::CompositionBrush>():Windows::UI::Composition::CompositionBrush{nullptr});})&&complete;
+  ++it;
+ }
+ return complete;
+#else
+ return true;
+#endif
+}

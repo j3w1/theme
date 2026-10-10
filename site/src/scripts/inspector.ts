@@ -137,4 +137,9 @@ export const initInspector = (): void => {
     if (!el.hasAttribute("tabindex")) el.tabIndex = 0;
     el.setAttribute("aria-describedby", "inspector");
   });
+  /* A native token link can receive focus before this enhancement loads.
+     Preserve that focus and restore the missed inspector, without refocusing. */
+  const focused = document.activeElement instanceof HTMLElement
+    ? document.activeElement.closest<HTMLElement>("[data-token]") : null;
+  if (focused) show(focused, false);
 };

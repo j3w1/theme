@@ -1,10 +1,10 @@
 {
   "id": "link",
   "name": "Link",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "tag": "j3w1-link",
-  "contract": "https://github.com/j3w1/theme/blob/v3.1.0/spec/components/link.md",
-  "source": "https://github.com/j3w1/theme/blob/v3.1.0/packages/ui/src/behaviors/native.js",
+  "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/link.md",
+  "source": "https://github.com/j3w1/theme/blob/v4.0.0/packages/ui/src/behaviors/native.js",
   "imports": {
     "class": "@j3w1/ui/components/link",
     "register": "@j3w1/ui/register/link",
@@ -322,6 +322,6 @@
   "copy": {
     "directory": "copy/link/",
     "manifest": "copy/link/manifest.json",
-    "digest": "sha256-cxOg1hFgIF6xdi0L5WcFfj1RFEx+pgFOgaltzez081Y="
+    "digest": "sha256-GV95pbVAMoE/H7vyf7rgbllx7rjJ85rYWZr4oT2vF+A="
   }
 }

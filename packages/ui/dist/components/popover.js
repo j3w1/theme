@@ -3,8 +3,8 @@ import { r as popover } from "../chunks/overlays-C6nlCHqg.js";
 //#region .cache/ui-build/entries/components/popover.js
 var J3w1Popover = class extends J3w1Element {
 	static componentId = "popover";
-	static version = "3.1.0";
-	static implementationId = "sha256-fWQGcWoNYs+Vobx3uqNtzIe6ndtKCkzwi2GIZ0S24oY=";
+	static version = "4.0.0";
+	static implementationId = "sha256-R3mF1UXSn1CBWM10egGi9EjTZGc775igXYWKiLNBZSY=";
 	static connect = popover;
 	static upgradeProperties = [
 		"disabled",

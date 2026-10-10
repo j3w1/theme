@@ -42,7 +42,6 @@ export const OBSIDIAN_VARIABLE_TYPES = {
   "--nav-heading-color": "color",
   "--titlebar-text-color-focused": "color",
   "--metadata-input-text-color": "color",
-  "--bold-color": "color",
   "--italic-color": "color",
   "--inline-title-color": "color",
   "--setting-group-heading-color": "color",
@@ -582,6 +581,7 @@ export const OBSIDIAN_RULES = [
 ];
 
 const RESET_VARIABLES = {
+  "--bold-color": "inherit",
   "--input-shadow": "none", "--input-shadow-hover": "none",
   "--shadow-xs": "none", "--shadow-s": "none", "--shadow-l": "none",
   "--menu-shadow": "none", "--raised-shadow": "none",

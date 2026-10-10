@@ -1,6 +1,6 @@
 j3w1/theme implementation brief — filterable-table
-theme: j3w1-theme 3.1.0  profile: default  sourceDigest: sha256-MOuqI0ddpI8r/kqzJMDhPHu5yZQrlrZ2LrbWIvNGGAw=
-pin: https://raw.githubusercontent.com/j3w1/theme/v3.1.0/exports/components/filterable-table.json
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-lYCeahYByMe6IB0c/kb+1ReT0XZFpjawue/30DNEY6o=
+pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/filterable-table.json
 spec: spec/components/filterable-table.md  site: https://j3w1.github.io/theme/reference/#c-filterable-table
 maturity: stable  priority: R1
 
@@ -21,7 +21,7 @@ Tokens (resolved):
   filter.text              #e99499  ({color.text.default})  use
   filter.border            #a3676b  ({color.border.control})  use-and-report (D-007)
   new.bg                   #7d1310  ({color.action.primary.bg})  use
-  new.text                 #f4eeee  ({color.action.primary.text})  use
+  new.text                 #ffa2a7  ({color.action.primary.text})  use
   chip.bg                  #100c0c  ({color.surface.default})  use
   chip.border              #a3676b  ({color.border.control})  use-and-report (D-007)
   chip.text                #e99499  ({color.text.default})  use
@@ -38,7 +38,7 @@ Tokens (resolved):
   check.bg                 #000000  ({color.surface.input})  use
   check.border             #a3676b  ({color.border.control})  use-and-report (D-007)
   check.checked-bg         #7d1310  ({color.action.primary.bg})  use
-  check.glyph              #f4eeee  ({color.action.primary.text})  use
+  check.glyph              #ffa2a7  ({color.action.primary.text})  use
   badge.tested-fill        #86a46f  ({color.status.success.fill})  use
   badge.tested-text        #0c0909  ({color.status.success.on-fill})  use
   badge.demonstrated-fill  #7e9ebb  ({color.status.info.fill})  use

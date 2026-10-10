@@ -1,5 +1,92 @@
 # Changelog
 
+## [4.0.0] - 2026-09-28
+
+- Windows: admit the first existing native Notepad caption without touching its
+  public title API, tabs, geometry or window buttons. Under the owner-approved
+  Notepad-only policy, an unknown original caption resets to Windows' default
+  on rollback; known originals and later app requests keep exact restoration.
+
+- Windows: admit the measured WebView2 154.0.4258.62 public rendering boundaries
+  after its runtime update left Markdown previews in native gray. Preserve full
+  module identity checks, document bytes and existing background restoration.
+
+- Windows: attach Notepad's system-composition dependency to its existing WinUI
+  dispatcher before creating the tab-island brush. WinUI owns queue shutdown;
+  exact original backdrop restoration and native caption boundaries remain.
+
+- Windows: retain Notepad's tab ContentIsland as a strong COM peer; the observed
+  object does not support weak references. Preserve closed-target and recovery
+  guards, and cover non-weak-reference lifetime in the native regression.
+
+- Windows: theme the observed Notepad tab ContentIsland backing through its
+  public composition property, reusing exact brush ownership and recovery.
+  The separate first-window native caption strip remains unresolved.
+
+- Windows: map the input-language picker outer control and popup border through
+  the existing pinned taskbar adapter and single installer journal.
+
+- Windows: map hardware volume/brightness flyout backgrounds and tracks and
+  input-language picker backgrounds and native list states through the existing
+  pinned taskbar adapter and single installer journal.
+
+- Windows: correct Paint Selection and Brushes' custom split-button outer
+  transitions and cached neutral edge stops, preserving exact native recovery,
+  protected artwork resources and later application color writes.
+
+- Windows: remove owned cosmetic button background transitions instead of
+  assigning zero duration, which still permits compositor interpolation.
+  Retain native transition objects for recovery and refuse later app replacements.
+
+- Windows: retain the original transition contract when normalizing transparent
+  button backgrounds after the owned hover-transition replacement, avoiding
+  interference between the two corrections while preserving native recovery.
+
+- Windows: refresh stable SplitButton parent brush bindings through the existing
+  owned chrome-property lifecycle, preserving native hover states and exact
+  local-value recovery rather than painting over each inner button.
+
+- Windows: route Calculator caption and toggle controls through the shared
+  button hover correction and theme cached checked-state storyboards with the
+  same state palette as setters in Calculator, Notepad, Paint and Terminal;
+  include independently animated RootGrid fills in the owned transition scope.
+
+- Windows: prevent the observed neutral button-background interpolation in
+  admitted templates using a private immediate transition, preserving exact
+  original objects for the existing single-script rollback lifecycle.
+
+- Site: restore the token inspector when a native token link receives focus
+  before enhancement startup; retain that focus and the existing keyboard order.
+
+- Windows: render exact generic folder glyphs in Explorer clipped-label popups
+  through the existing owner-checked folder renderer and single-script lifecycle.
+
+- Windows: preserve transparent button hit testing and native animation while
+  normalizing observed white transition endpoints to the mapped normal
+  background RGB, with exact local-value rollback.
+
+- Rose prose and inherited bold across the canonical theme; dedicated heading
+  and highlight roles (D-033), with audited selection/on-fill exceptions.
+- Generated Windows native and Windhawk port with pinned installation lifecycle
+  (D-034). See the Windows guide and typography migration note.
+- Windows classic-menu keyboard focus uses the strong red menu fill and a red
+  outline on the recorded host. Downstream installations receive this bounded
+  correction through the existing single-script update and rollback actions.
+
+- Settings standard-button templates use the complete secondary-action state
+  ladder instead of retaining native accent/gray brushes. Commands and layout
+  remain native; setup and offline rollback share the existing installer.
+
+- Settings owns its focus and tooltip resource overrides, preserving native
+  focus geometry and leaving the other shell stylers unchanged. The existing
+  single installer applies and restores these mappings.
+
+- Settings tooltips map the observed template brush aliases and owning control,
+  preserving native timing and content while using square raised/rose surfaces.
+
+- Settings maps native switch state brushes and ordinary progress track/fill
+  resources to existing component roles, retaining values and status semantics.
+
 ## [3.1.0] - 2026-09-27
 
 Additive minor preparation, following the first downloadable application-port

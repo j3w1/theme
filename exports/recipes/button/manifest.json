@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
   "theme": "j3w1-theme",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "component": "button",
   "variant": "default",
   "profile": "default",
   "source": {
     "algorithm": "sha256 over LF file bytes, base64",
     "files": {
-      "theme.json": "sha256-SzEnZLYMJsewlh9OYcNhKN3DKlWMDR+RVzl1WMVjfPU=",
+      "theme.json": "sha256-4NYtr9+dtCjVshxiuC/YkB+7FzdUbd4E60lcZknHTLE=",
       "site/recipes.json": "sha256-71h0SYIOKbPRh+V/IhtLV7ZGuX90wfmeo84Rx0sm494=",
       "scripts/lib/recipe-generator.mjs": "sha256-73WV6IUzUVgC3oyFESbgawkTU9o6mh+rKtZx8HgdZeA=",
       "scripts/lib/recipe-css.mjs": "sha256-dA/5L61Tsn+Gkmz/syAd689Z5IyuShpluZ1NfgXcZ/c=",
@@ -20,10 +20,10 @@
       "site/src/styles/components/button.css": "sha256-cTeJ1Xhs2PQ77A1isdwO7UPvrb+RZDEArmYJ946DLWI=",
       "LICENSE.md": "sha256-Ih5+DpqcNXGWJX6BbYgpt6psmJi9lGcXGJzuiU7elE0=",
       "tokens/primitives.tokens.json": "sha256-b1osAFVmgaL/BLjX4YejhWVDzTVHrhKDL1vpf4OnyBo=",
-      "tokens/semantic.tokens.json": "sha256-n3cm7xZJZgXC/U0hMUUvu1R5XbewIklroL7M82/VTBM=",
+      "tokens/semantic.tokens.json": "sha256-7U4gs0TX70zWT4sLVOabjHPelNqLx9xDgLIpHGkELLo=",
       "tokens/foundations.tokens.json": "sha256-/gYmJavPwEyem7mpNRhaBa8jjyuPKnSisugGky3PdCY="
     },
-    "digest": "sha256-YB5RW+kjbEbw/pqXyHxY7tmADfNE8rSxSnQCfrVA35w=",
+    "digest": "sha256-9bb7eWBzdVJbhWVvC1TILUA+la4Eo3DoX6EB/biPX8k=",
     "revisionPolicy": "Resolve these paths at the same pinned commit as this manifest. The hosted source viewer identifies its supplying commit; generated source files contain content digests, never a floating revision claim."
   },
   "dependencies": {
@@ -83,8 +83,10 @@
     "color.primitive.rose.700",
     "color.primitive.rose.800",
     "color.surface.canvas",
+    "color.text.bright",
     "color.text.default",
     "color.text.disabled",
+    "color.text.on-action",
     "density.comfortable.control-height",
     "density.comfortable.control-padding-x",
     "density.compact.control-height",
@@ -381,17 +383,17 @@
   "licenses": {
     "markup": "CC-BY-4.0",
     "css": "MIT",
-    "notice": "j3w1 theme 3.1.0. Markup adapted from j3w1 UI Theme Spec, https://github.com/j3w1/theme, CC BY 4.0: https://creativecommons.org/licenses/by/4.0/. Changes: scoped instance IDs and documentation-only content removed. CSS and generator: MIT; see LICENSE.md."
+    "notice": "j3w1 theme 4.0.0. Markup adapted from j3w1 UI Theme Spec, https://github.com/j3w1/theme, CC BY 4.0: https://creativecommons.org/licenses/by/4.0/. Changes: scoped instance IDs and documentation-only content removed. CSS and generator: MIT; see LICENSE.md."
   },
   "files": {
-    "markup.html": "sha256-8shUNMhDfSVnOwCKgaWDFOS7zaWCsOLDRKhxwREAXuI=",
-    "template.html": "sha256-LKyLamQx968rgAXZNP/qZo10fAQLLF9iF+jNFiRii3g=",
-    "tokens.css": "sha256-fpn5CZvJ4u+NtejoAEJt7EXe6FRC+aiwp4qFR0cMzPQ=",
-    "foundation.css": "sha256-F2TCchRYMCJlWmEcjznkZy3uixEYZEcJvS+dEqCAIbI=",
-    "component.css": "sha256-DVGd0xU8QHRk8BdjKtlBbJgmdU0/99LR6iSRY09E6Es=",
-    "example.html": "sha256-562rd6pIb4q6XyP+YmqmsInMtjChu/G++C/9Cnzyy1s=",
-    "two-instances.html": "sha256-kKyGhWTHUR5bpha1TCBD7oaLi0jspnUCo/LJJDSl4Vg=",
-    "LICENSE.md": "sha256-q4E9usI46Lr1FX9/A45gLiHYcq2lwVjOd49YJxLDebY=",
-    "README.md": "sha256-iTUwM1WCIohnh5OFJmSDOozkbUpwfTDZp9MvuNTt6lY="
+    "markup.html": "sha256-9HjLJ98lH4SKiwVWynQKarCqWTK/+IKfcvGr6464P3c=",
+    "template.html": "sha256-FfylFZ+qzMUFxQKnIdqJiYmC8p4F+cNxK8BJSTo8XU8=",
+    "tokens.css": "sha256-a/TLRGPaqlzicffxz3q5+tWHlvaJ9h78GE1mHVxzp/s=",
+    "foundation.css": "sha256-gItmMJgxTkuTe8+9G3aZQviwGcJ5cQaNANEvpcyOA88=",
+    "component.css": "sha256-+Fn90PbGbnW0JxDH1RAdiYrVQ4FrstMA+Rq7HlAQTdU=",
+    "example.html": "sha256-HRSLwap8t93ggusQ8BYoEAE0wPCsBWTKSY+4JGzRNa4=",
+    "two-instances.html": "sha256-SUuvR3ZxzWymDnwkF8BdP321ok8G/grt3ePxGLLUBS4=",
+    "LICENSE.md": "sha256-vVf/G6WKJRqbyGZCppbAxMh+UAJdSzaPt5xWUujehyU=",
+    "README.md": "sha256-Bi1OfThZQbG02yMRkG9P/7LP2162XZHU/zn7HSWhWFs="
   }
 }
