@@ -112,7 +112,8 @@
       "windows-11-notification-center-styler | Button#PlayPauseButton > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@Pressed",
       "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.RepeatButton#NextButton > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@Pressed",
       "windows-11-notification-center-styler | Button#FooterButton > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@Pressed",
-      "windows-11-notification-center-styler | Button#VolumeL2Button > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@Pressed"
+      "windows-11-notification-center-styler | Button#VolumeL2Button > ContentPresenter#ContentPresenter@CommonStates | BorderBrush@Pressed",
+      "windows-11-settings-styler | TextBox#CommandSearchTextBox > Grid@CommonStates > Border#BorderElement | BorderBrush@Focused"
     ],
     "color.surface.desktop": [
       "native.desktop"
@@ -585,7 +586,8 @@
       "windows-11-settings-styler.resource.ListViewItemForegroundPointerOver",
       "windows-11-settings-styler.resource.ListViewItemForegroundPressed",
       "windows-11-settings-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | Foreground",
-      "windows-11-settings-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | PointerOverForeground"
+      "windows-11-settings-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | PointerOverForeground",
+      "windows-11-settings-styler | TextBox#CommandSearchTextBox | Foreground"
     ],
     "color.text.bright": [
       "native.bright",
@@ -790,7 +792,8 @@
       "windhawk.resource.CommandBarFlyoutAppBarButtonSubItemChevronDisabledForeground",
       "windhawk.resource.CommandBarFlyoutAppBarButtonForegroundCheckedDisabled",
       "windows-11-settings-styler.resource.ListViewItemForegroundDisabled",
-      "windows-11-settings-styler.resource.ListViewItemForegroundSelectedDisabled"
+      "windows-11-settings-styler.resource.ListViewItemForegroundSelectedDisabled",
+      "windows-11-settings-styler | TextBox#CommandSearchTextBox > Grid@CommonStates > TextBlock#PlaceholderTextContentPresenter | Foreground@Disabled"
     ],
     "color.interaction.selection.bg": [
       "native.selection",
@@ -933,7 +936,9 @@
       "windhawk.menu | ListView#SuggestionsList | Background",
       "windows-11-settings-styler.resource.ListViewItemBackground",
       "windows-11-settings-styler.resource.ListViewItemBackgroundDisabled",
-      "windows-11-settings-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | Background"
+      "windows-11-settings-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | Background",
+      "windhawk.menu | Grid#SuggestionsContainer | Background",
+      "windows-11-settings-styler | Border#StatusTextPopupBorder | Background"
     ],
     "color.border.control": [
       "powertoys.border",
@@ -1049,7 +1054,10 @@
       "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Shapes.Rectangle#HorizontalTrackRect | Fill@Pressed",
       "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | BorderBrush@Normal",
       "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | BorderBrush@PointerOver",
-      "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | BorderBrush@Pressed"
+      "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | BorderBrush@Pressed",
+      "windows-11-settings-styler | TextBox#CommandSearchTextBox | BorderBrush",
+      "windows-11-settings-styler | TextBox#CommandSearchTextBox > Grid@CommonStates > Border#BorderElement | BorderBrush@Normal",
+      "windows-11-settings-styler | TextBox#CommandSearchTextBox > Grid@CommonStates > Border#BorderElement | BorderBrush@PointerOver"
     ],
     "font.family.mono": [
       "font.family",
@@ -1178,7 +1186,10 @@
       "windows-11-notification-center-styler | ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | Background@Pressed",
       "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | Background@Normal",
       "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | Background@PointerOver",
-      "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | Background@Pressed"
+      "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | Background@Pressed",
+      "windows-11-settings-styler | TextBox#CommandSearchTextBox | Background",
+      "windows-11-settings-styler | TextBox#CommandSearchTextBox > Grid@CommonStates > Border#BorderElement | Background@Normal",
+      "windows-11-settings-styler | TextBox#CommandSearchTextBox > Grid@CommonStates > Border#BorderElement | Background@Focused"
     ],
     "color.interaction.hover.bg": [
       "windhawk.resource.ControlFillColorSecondary",
@@ -1245,7 +1256,8 @@
       "windows-11-notification-center-styler | Button#PlayPauseButton > ContentPresenter#ContentPresenter@CommonStates | Background@PointerOver",
       "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.RepeatButton#NextButton > ContentPresenter#ContentPresenter@CommonStates | Background@PointerOver",
       "windows-11-notification-center-styler | Button#FooterButton > ContentPresenter#ContentPresenter@CommonStates | Background@PointerOver",
-      "windows-11-notification-center-styler | Button#VolumeL2Button > ContentPresenter#ContentPresenter@CommonStates | Background@PointerOver"
+      "windows-11-notification-center-styler | Button#VolumeL2Button > ContentPresenter#ContentPresenter@CommonStates | Background@PointerOver",
+      "windows-11-settings-styler | TextBox#CommandSearchTextBox > Grid@CommonStates > Border#BorderElement | Background@PointerOver"
     ],
     "color.interaction.pressed.bg": [
       "windhawk.resource.ControlFillColorTertiary",
@@ -1436,7 +1448,9 @@
       "windhawk.menu | CommandBarOverflowPresenter#SecondaryItemsControl | BorderBrush",
       "windhawk.menu | FlyoutPresenter | BorderBrush",
       "windhawk.menu | FlyoutPresenter > Border | BorderBrush",
-      "windhawk.menu | Border#SuggestionsContainer | BorderBrush"
+      "windhawk.menu | Border#SuggestionsContainer | BorderBrush",
+      "windhawk.menu | Grid#SuggestionsContainer | BorderBrush",
+      "windows-11-settings-styler | Border#StatusTextPopupBorder | BorderBrush"
     ],
     "border.width.default": [
       "windows-11-start-menu-styler | Border#AcrylicBorder | BorderThickness",
@@ -1465,7 +1479,9 @@
       "windows-11-taskbar-styler | Grid#OverflowRootGrid > Border#OverflowFlyoutBackgroundBorder | BorderThickness",
       "windhawk.menu | MenuFlyoutPresenter > Border | BorderThickness",
       "windhawk.menu | FlyoutPresenter > Border | BorderThickness",
-      "windhawk.menu | Border#SuggestionsContainer | BorderThickness"
+      "windhawk.menu | Border#SuggestionsContainer | BorderThickness",
+      "windhawk.menu | Grid#SuggestionsContainer | BorderThickness",
+      "windows-11-settings-styler | Border#StatusTextPopupBorder | BorderThickness"
     ],
     "radius.none": [
       "windows-11-start-menu-styler | Border#AcrylicBorder | CornerRadius",
@@ -1558,7 +1574,11 @@
       "windhawk.menu | Grid#OverflowContentRoot | CornerRadius",
       "windhawk.menu | FlyoutPresenter | CornerRadius",
       "windhawk.menu | FlyoutPresenter > Border | CornerRadius",
-      "windhawk.menu | Border#SuggestionsContainer | CornerRadius"
+      "windhawk.menu | Border#SuggestionsContainer | CornerRadius",
+      "windhawk.menu | Grid#SuggestionsContainer | CornerRadius",
+      "windows-11-settings-styler | Border#StatusTextPopupBorder | CornerRadius",
+      "windows-11-settings-styler | TextBox#CommandSearchTextBox | CornerRadius",
+      "windows-11-settings-styler | TextBox#CommandSearchTextBox > Grid@CommonStates > Border#BorderElement | CornerRadius"
     ],
     "color.interaction.disabled.bg": [
       "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | Background@Disabled",
@@ -1653,7 +1673,8 @@
       "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border > Windows.UI.Xaml.Shapes.Ellipse#SliderInnerThumb | Fill@Disabled",
       "windhawk.resource.CommandBarFlyoutAppBarButtonBackgroundCheckedDisabled",
       "windows-11-settings-styler.resource.ListViewItemBackgroundSelectedDisabled",
-      "windows-11-settings-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | SelectedDisabledBackground"
+      "windows-11-settings-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | SelectedDisabledBackground",
+      "windows-11-settings-styler | TextBox#CommandSearchTextBox > Grid@CommonStates > Border#BorderElement | Background@Disabled"
     ],
     "color.border.disabled": [
       "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@Disabled",
@@ -1712,7 +1733,8 @@
       "windows-11-notification-center-styler | ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Shapes.Rectangle#HorizontalTrackRect | Fill@Disabled",
       "windows-11-notification-center-styler | ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | BorderBrush@Disabled",
       "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Shapes.Rectangle#HorizontalTrackRect | Fill@Disabled",
-      "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | BorderBrush@Disabled"
+      "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | BorderBrush@Disabled",
+      "windows-11-settings-styler | TextBox#CommandSearchTextBox > Grid@CommonStates > Border#BorderElement | BorderBrush@Disabled"
     ],
     "color.border.default": [
       "windows-11-start-menu-styler | StartMenu.CategoryControl > Grid > Border | BorderBrush"
@@ -2194,6 +2216,11 @@
       "notepad-chrome.resource.ScrollBarTrackStrokeDisabled",
       "paint-chrome.resource.ScrollBarTrackStrokeDisabled",
       "terminal-chrome.resource.ScrollBarTrackStrokeDisabled"
+    ],
+    "color.text.placeholder": [
+      "windows-11-settings-styler | TextBox#CommandSearchTextBox > Grid@CommonStates > TextBlock#PlaceholderTextContentPresenter | Foreground@Normal",
+      "windows-11-settings-styler | TextBox#CommandSearchTextBox > Grid@CommonStates > TextBlock#PlaceholderTextContentPresenter | Foreground@PointerOver",
+      "windows-11-settings-styler | TextBox#CommandSearchTextBox > Grid@CommonStates > TextBlock#PlaceholderTextContentPresenter | Foreground@Focused"
     ]
   },
   "unmapped": {
@@ -2281,7 +2308,6 @@
     "color.surface.sunken": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.surface.backdrop": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.surface.terminal": "Outside Windows visual adapter scope; preserve host semantics.",
-    "color.text.placeholder": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.text.accent": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.text.accent-strong": "Outside Windows visual adapter scope; preserve host semantics.",
     "color.text.on-selection": "Outside Windows visual adapter scope; preserve host semantics.",

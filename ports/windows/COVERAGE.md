@@ -96,6 +96,25 @@ selected-hover and selected-pressed combinations. Native geometry, content,
 actions and keyboard focus remain intact. The captured metadata establishes
 the runtime control families; new rendered acceptance remains a separate check.
 
+### Settings search popup backings
+
+The supported Settings template uses a detached acrylic
+`Border#StatusTextPopupBorder` for empty-result status and an acrylic
+`Grid#SuggestionsContainer` for suggestions. The earlier shared rule covered
+only the Border variant of the suggestions container; the Grid variant now
+shares that same raised surface and overlay frame across the shell stylers.
+Settings' empty-result Border receives the same palette through its own
+template mapping. The transparent feedback footer inherits the full container
+fill rather than receiving a separate opaque layer.
+
+The observed `CommandSearchTextBox` has a translucent-white local background
+and a gradient edge. Its input surface, border and placeholder now follow the
+native Grid's Normal, PointerOver, Focused and Disabled states. Pointer exit
+returns to the ordinary input fill; focus retains a distinct active border.
+No popup size, offset, content, search behavior or focus policy is changed.
+Control-metadata tracing identified these types, brush owners and states;
+rendered acceptance of this correction remains separate from source contracts.
+
 ## Preview owner lifecycle
 
 The native preview surrogate can outlive the Explorer owner observed at mod

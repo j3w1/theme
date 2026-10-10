@@ -163,6 +163,15 @@
       ]
     },
     {
+      "target": "Grid#SuggestionsContainer",
+      "styles": [
+        "Background=#160b0b",
+        "BorderBrush=#e53935",
+        "BorderThickness=1",
+        "CornerRadius=0"
+      ]
+    },
+    {
       "target": "TextBlock",
       "styles": [
         "Foreground=#e99499"
@@ -252,6 +261,47 @@
         "SelectedDisabledBackground=#160b0b",
         "PointerOverForeground=#e99499",
         "SelectedForeground=#f4eeee"
+      ]
+    },
+    {
+      "target": "Border#StatusTextPopupBorder",
+      "styles": [
+        "Background=#160b0b",
+        "BorderBrush=#e53935",
+        "BorderThickness=1",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "TextBox#CommandSearchTextBox",
+      "styles": [
+        "Background=#000000",
+        "Foreground=#e99499",
+        "BorderBrush=#a3676b",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "TextBox#CommandSearchTextBox > Grid@CommonStates > Border#BorderElement",
+      "styles": [
+        "CornerRadius=0",
+        "Background@Normal=#000000",
+        "BorderBrush@Normal=#a3676b",
+        "Background@PointerOver=#1c0a09",
+        "BorderBrush@PointerOver=#a3676b",
+        "Background@Focused=#000000",
+        "BorderBrush@Focused=#e53935",
+        "Background@Disabled=#160b0b",
+        "BorderBrush@Disabled=#7d1310"
+      ]
+    },
+    {
+      "target": "TextBox#CommandSearchTextBox > Grid@CommonStates > TextBlock#PlaceholderTextContentPresenter",
+      "styles": [
+        "Foreground@Normal=#a3676b",
+        "Foreground@PointerOver=#a3676b",
+        "Foreground@Focused=#a3676b",
+        "Foreground@Disabled=#8a5559"
       ]
     }
   ],

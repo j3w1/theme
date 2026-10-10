@@ -379,6 +379,15 @@
         "Background": "color.surface.raised",
         "Foreground": "color.text.default"
       }
+    },
+    {
+      "target": "Grid#SuggestionsContainer",
+      "styles": {
+        "Background": "color.surface.raised",
+        "BorderBrush": "color.border.overlay",
+        "BorderThickness": "border.width.default",
+        "CornerRadius": "radius.none"
+      }
     }
   ],
   "stylers": [
@@ -1750,6 +1759,47 @@
             "SelectedDisabledBackground": "color.interaction.disabled.bg",
             "PointerOverForeground": "color.text.default",
             "SelectedForeground": "color.interaction.selection.text"
+          }
+        },
+        {
+          "target": "Border#StatusTextPopupBorder",
+          "styles": {
+            "Background": "color.surface.raised",
+            "BorderBrush": "color.border.overlay",
+            "BorderThickness": "border.width.default",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "TextBox#CommandSearchTextBox",
+          "styles": {
+            "Background": "color.surface.input",
+            "Foreground": "color.text.default",
+            "BorderBrush": "color.border.control",
+            "CornerRadius": "radius.none"
+          }
+        },
+        {
+          "target": "TextBox#CommandSearchTextBox > Grid@CommonStates > Border#BorderElement",
+          "styles": {
+            "CornerRadius": "radius.none",
+            "Background@Normal": "color.surface.input",
+            "BorderBrush@Normal": "color.border.control",
+            "Background@PointerOver": "color.interaction.hover.bg",
+            "BorderBrush@PointerOver": "color.border.control",
+            "Background@Focused": "color.surface.input",
+            "BorderBrush@Focused": "color.border.active",
+            "Background@Disabled": "color.interaction.disabled.bg",
+            "BorderBrush@Disabled": "color.border.disabled"
+          }
+        },
+        {
+          "target": "TextBox#CommandSearchTextBox > Grid@CommonStates > TextBlock#PlaceholderTextContentPresenter",
+          "styles": {
+            "Foreground@Normal": "color.text.placeholder",
+            "Foreground@PointerOver": "color.text.placeholder",
+            "Foreground@Focused": "color.text.placeholder",
+            "Foreground@Disabled": "color.text.disabled"
           }
         }
       ],

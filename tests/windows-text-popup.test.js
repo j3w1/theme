@@ -12,7 +12,7 @@ test('text-command and suggestion backings are shared once in every shell host a
   'FlyoutPresenterBackground','FlyoutPresenterBorderBrush','AutoSuggestBoxSuggestionsListBackground','AutoSuggestBoxSuggestionsListBorderBrush'];
  const targets=['Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar',
   'CommandBarOverflowPresenter#SecondaryItemsControl','CommandBarOverflowPresenter#SecondaryItemsControl > Grid#LayoutRoot',
-  'Grid#OverflowContentRoot','FlyoutPresenter','FlyoutPresenter > Border','Border#SuggestionsContainer','ListView#SuggestionsList'];
+  'Grid#OverflowContentRoot','FlyoutPresenter','FlyoutPresenter > Border','Border#SuggestionsContainer','Grid#SuggestionsContainer','ListView#SuggestionsList'];
  for(const styler of host.stylers){
   const payload=await readJson('ports/windows/dist/'+styler.id+'.json');
   for(const key of frameKeys){
@@ -73,4 +73,58 @@ test('Settings suggestion rows retain selection while hovered and use complete n
  assert.ok(!Object.keys(presenter.styles).some(x=>/Focus|Opacity|Width|Margin|Padding|Visibility|Template/.test(x)));
  const explorer=host.stylers.find(x=>x.id==='windows-11-file-explorer-styler');
  assert.equal(explorer.targets.find(x=>x.target==='CommandBar#FileExplorerCommandBar').styles.Background,'color.surface.canvas','Explorer toolbar keeps its black background');
+});
+
+test('detached Settings search backings replace acrylic without changing content or popup layout',async()=>{
+ const host=await readJson('ports/windows/host.json');
+ const settings=host.stylers.find(x=>x.id==='windows-11-settings-styler');
+ const mapping=await readJson('ports/windows/mapping.json');
+ const tokens=(await readJson('exports/tokens.resolved.json')).profiles.default.tokens;
+ const payload=await readJson('ports/windows/dist/'+settings.id+'.json');
+ const backing=target=>[...host.menuTargets,...settings.targets].find(x=>x.target===target);
+ // The status popup owns a Border; the suggestions popup owns a Grid. Its
+ // transparent feedback footer must inherit the same opaque raised surface.
+ for(const target of ['Border#StatusTextPopupBorder','Grid#SuggestionsContainer']){
+  const rule=backing(target);assert.ok(rule,target);
+  assert.equal(rule.styles.Background,'color.surface.raised');
+  assert.equal(rule.styles.BorderBrush,'color.border.overlay');
+  assert.equal(rule.styles.BorderThickness,'border.width.default');
+  assert.equal(rule.styles.CornerRadius,'radius.none');
+  assert.deepEqual(payload.controlStyles.filter(x=>x.target===target).map(x=>x.styles),[
+   ['Background='+tokens['color.surface.raised'].css,'BorderBrush='+tokens['color.border.overlay'].css,'BorderThickness=1','CornerRadius=0'],
+  ]);
+ }
+ assert.ok(!settings.targets.some(x=>/SearchFeedback/.test(x.target)),'footer inherits container paint without another opaque layer');
+ assert.ok(!host.menuTargets.some(x=>/StatusTextPopupBorder|CommandSearchTextBox/.test(x.target)),'Settings template details do not leak to other hosts');
+ const searchRules=settings.targets.filter(x=>/StatusTextPopupBorder|CommandSearchTextBox/.test(x.target));
+ assert.equal(searchRules.length,4);
+ for(const rule of searchRules){
+  assert.doesNotMatch(rule.target,/Text=|Content=|Command=/,'matching uses template identity, never user data');
+  for(const [property,role]of Object.entries(rule.styles)){
+   assert.match(property,/^(?:Background|Foreground|BorderBrush|BorderThickness|CornerRadius)(?:@(?:Normal|PointerOver|Focused|Disabled))?$/);
+   assert.ok(mapping.mappings[role].includes(settings.id+' | '+rule.target+' | '+property));
+  }
+ }
+});
+
+test('Settings search input and placeholder follow the observed native CommonStates',async()=>{
+ const settings=(await readJson('ports/windows/host.json')).stylers.find(x=>x.id==='windows-11-settings-styler');
+ const textbox=settings.targets.find(x=>x.target==='TextBox#CommandSearchTextBox');
+ assert.equal(textbox.styles.Background,'color.surface.input','local translucent white base is replaced');
+ assert.equal(textbox.styles.Foreground,'color.text.default');
+ const frame=settings.targets.find(x=>x.target==='TextBox#CommandSearchTextBox > Grid@CommonStates > Border#BorderElement');
+ const placeholder=settings.targets.find(x=>x.target==='TextBox#CommandSearchTextBox > Grid@CommonStates > TextBlock#PlaceholderTextContentPresenter');
+ assert.ok(frame&&placeholder,'state group belongs to the direct Grid, not the Border');
+ for(const [state,bg,edge,text]of [
+  ['Normal','color.surface.input','color.border.control','color.text.placeholder'],
+  ['PointerOver','color.interaction.hover.bg','color.border.control','color.text.placeholder'],
+  ['Focused','color.surface.input','color.border.active','color.text.placeholder'],
+  ['Disabled','color.interaction.disabled.bg','color.border.disabled','color.text.disabled'],
+ ]){
+  assert.equal(frame.styles['Background@'+state],bg,state);
+  assert.equal(frame.styles['BorderBrush@'+state],edge,state);
+  assert.equal(placeholder.styles['Foreground@'+state],text,state);
+ }
+ assert.notEqual(frame.styles['Background@Normal'],frame.styles['Background@PointerOver'],'exit restores the input surface');
+ assert.notEqual(frame.styles['BorderBrush@Normal'],frame.styles['BorderBrush@Focused'],'focus stays distinct');
 });

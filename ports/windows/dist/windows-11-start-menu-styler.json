@@ -163,6 +163,15 @@
       ]
     },
     {
+      "target": "Grid#SuggestionsContainer",
+      "styles": [
+        "Background=#160b0b",
+        "BorderBrush=#e53935",
+        "BorderThickness=1",
+        "CornerRadius=0"
+      ]
+    },
+    {
       "target": "TextBlock",
       "styles": [
         "Foreground=#e99499"
