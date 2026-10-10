@@ -184,7 +184,7 @@ is added. The same public install.ps1 transaction restores these settings.
 The taskbar right-click menu and hidden-icons overflow panel now use the raised
 surface, square edges and overlay border through the existing taskbar styler.
 Menu rest, hover, pressed, disabled and submenu-open states and separators use
-their canonical roles. Menu resource overrides stay local to that styler. Icons,
+their canonical roles. Menu resource overrides are now shared across the five shell stylers. Icons,
 menu actions, popup placement, control dimensions and native focus are preserved.
 
 These configuration and preservation checks do not establish installed rendering
@@ -257,3 +257,25 @@ checks and the single public install.ps1 update/restore transaction still apply.
 Source checks establish common rules and token mappings. Screenshots of the
 previous gray menus establish the defect; installed first-open, hover-exit,
 high-contrast and DPI appearance still require their own assessment.
+
+### Text commands and search suggestions
+
+Textbox command menus use a command-bar flyout, rather than the ordinary
+MenuFlyout template. All five shell stylers now share the command flyout's
+raised background, overlay border, command foreground, shortcut hints,
+separators, and normal, hover, pressed, disabled and checked resource colors.
+The observed WinUI 2 command-bar class and its native overflow presenter use
+one common recipe. Explorer's earlier local command-flyout rules are folded
+into that recipe; its ordinary toolbar background remains separate.
+
+Standard suggestion containers and FlyoutPresenter backings use the same
+raised surface and overlay frame. Settings' recorded custom search wrapper
+uses a native flyout and list-item presenters; its row palette preserves the
+selected dark-red fill across hover and restores the raised fill on pointer
+exit. The mappings do not set widths, offsets, command labels, keyboard
+behavior, or popup placement. Installation and restoration still use only
+install.ps1. Rendered assessment is separate from source and lifecycle checks.
+
+See Microsoft's [command-bar flyout template](https://github.com/microsoft/microsoft-ui-xaml/blob/v2.8.7/dev/CommandBarFlyout/CommandBarFlyout_themeresources.xaml)
+and [suggestion template](https://github.com/microsoft/microsoft-ui-xaml/blob/v2.8.7/dev/AutoSuggestBox/AutoSuggestBox_themeresources.xaml)
+for the distinct resource keys and native frame ownership.

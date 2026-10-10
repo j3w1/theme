@@ -127,6 +127,19 @@ test('Settings resource overrides retain shared brushes and stay isolated from o
    expected['ToggleSwitchKnobFill'+state+suffix]=suffix==='Disabled'?'color.text.disabled':state==='On'?'color.action.primary.text':'color.text.default';
   }
  }
+ for(const [suffix,bg,fg]of [
+  ['','color.surface.raised','color.text.default'],
+  ['PointerOver','color.interaction.hover.bg-strong','color.text.default'],
+  ['Pressed','color.interaction.pressed.bg','color.text.default'],
+  ['Selected','color.interaction.selection.bg','color.interaction.selection.text'],
+  ['SelectedPointerOver','color.interaction.selection.bg','color.interaction.selection.text'],
+  ['SelectedPressed','color.interaction.selection.bg','color.interaction.selection.text'],
+  ['Disabled','color.surface.raised','color.text.disabled'],
+  ['SelectedDisabled','color.interaction.disabled.bg','color.text.disabled'],
+ ]){
+  expected['ListViewItemBackground'+suffix]=bg;
+  expected['ListViewItemForeground'+suffix]=fg;
+ }
  assert.deepEqual(settings.resources,expected);
  const mapping=await readJson('ports/windows/mapping.json');
  for(const [key,role]of Object.entries(expected))assert.ok(mapping.mappings[role].includes(settings.id+'.resource.'+key));

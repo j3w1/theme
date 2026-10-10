@@ -180,7 +180,43 @@
     "MenuFlyoutSubItemForegroundPressed": "color.text.default",
     "MenuFlyoutItemKeyboardAcceleratorTextForegroundDisabled": "color.text.disabled",
     "MenuFlyoutItemKeyboardAcceleratorTextForegroundPointerOver": "color.text.muted",
-    "MenuFlyoutItemKeyboardAcceleratorTextForegroundPressed": "color.text.muted"
+    "MenuFlyoutItemKeyboardAcceleratorTextForegroundPressed": "color.text.muted",
+    "CommandBarFlyoutBackground": "color.surface.raised",
+    "CommandBarFlyoutForeground": "color.text.default",
+    "CommandBarFlyoutBorderBrush": "color.border.overlay",
+    "CommandBarFlyoutButtonBackground": "color.surface.raised",
+    "CommandBarOverflowPresenterBackground": "color.surface.raised",
+    "CommandBarOverflowPresenterBorderBrush": "color.border.overlay",
+    "CommandBarFlyoutAppBarButtonBackground": "color.surface.raised",
+    "CommandBarFlyoutAppBarButtonBackgroundPointerOver": "color.interaction.hover.bg-strong",
+    "CommandBarFlyoutAppBarButtonBackgroundPressed": "color.interaction.pressed.bg",
+    "CommandBarFlyoutAppBarButtonBackgroundDisabled": "color.surface.raised",
+    "CommandBarFlyoutAppBarButtonForeground": "color.text.default",
+    "CommandBarFlyoutAppBarButtonForegroundPointerOver": "color.text.default",
+    "CommandBarFlyoutAppBarButtonForegroundPressed": "color.text.default",
+    "CommandBarFlyoutAppBarButtonForegroundDisabled": "color.text.disabled",
+    "CommandBarFlyoutAppBarButtonKeyboardTextLabelForeground": "color.text.muted",
+    "CommandBarFlyoutAppBarButtonKeyboardTextLabelForegroundPointerOver": "color.text.muted",
+    "CommandBarFlyoutAppBarButtonKeyboardTextLabelForegroundPressed": "color.text.muted",
+    "CommandBarFlyoutAppBarButtonSubItemChevronForeground": "color.text.muted",
+    "CommandBarFlyoutAppBarButtonSubItemChevronPointerOverForeground": "color.text.muted",
+    "CommandBarFlyoutAppBarButtonSubItemChevronPressedForeground": "color.text.muted",
+    "CommandBarFlyoutAppBarButtonSubItemChevronSubMenuOpenedForeground": "color.text.muted",
+    "CommandBarFlyoutAppBarButtonSubItemChevronDisabledForeground": "color.text.disabled",
+    "CommandBarFlyoutAppBarButtonBackgroundChecked": "color.interaction.selection.bg",
+    "CommandBarFlyoutAppBarButtonBackgroundCheckedPointerOver": "color.interaction.selection.bg",
+    "CommandBarFlyoutAppBarButtonBackgroundCheckedPressed": "color.interaction.pressed.bg",
+    "CommandBarFlyoutAppBarButtonBackgroundCheckedDisabled": "color.interaction.disabled.bg",
+    "CommandBarFlyoutAppBarButtonForegroundChecked": "color.interaction.selection.text",
+    "CommandBarFlyoutAppBarButtonForegroundCheckedPointerOver": "color.interaction.selection.text",
+    "CommandBarFlyoutAppBarButtonForegroundCheckedPressed": "color.text.default",
+    "CommandBarFlyoutAppBarButtonForegroundCheckedDisabled": "color.text.disabled",
+    "CommandBarFlyoutAppBarButtonBorderBrush": "color.border.divider",
+    "FlyoutPresenterBackground": "color.surface.raised",
+    "FlyoutPresenterForeground": "color.text.default",
+    "FlyoutPresenterBorderBrush": "color.border.overlay",
+    "AutoSuggestBoxSuggestionsListBackground": "color.surface.raised",
+    "AutoSuggestBoxSuggestionsListBorderBrush": "color.border.overlay"
   },
   "menuTargets": [
     {
@@ -255,6 +291,93 @@
       "target": "MenuFlyoutSeparator > Windows.UI.Xaml.Shapes.Rectangle",
       "styles": {
         "Fill": "color.border.divider"
+      }
+    },
+    {
+      "target": "Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar",
+      "styles": {
+        "Background": "color.surface.raised",
+        "BorderBrush": "color.border.overlay",
+        "CornerRadius": "radius.none",
+        "Foreground": "color.text.default"
+      }
+    },
+    {
+      "target": "Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar > Grid#LayoutRoot > Grid#OuterContentRoot > Grid#ContentRoot > Grid#PrimaryItemsRoot",
+      "styles": {
+        "Background": "color.surface.raised",
+        "BorderBrush": "color.border.overlay",
+        "CornerRadius": "radius.none"
+      }
+    },
+    {
+      "target": "CommandBarOverflowPresenter#SecondaryItemsControl > Grid#LayoutRoot",
+      "styles": {
+        "Background": "color.surface.raised",
+        "BorderBrush": "color.border.overlay",
+        "CornerRadius": "radius.none"
+      }
+    },
+    {
+      "target": "AppBarSeparator",
+      "styles": {
+        "Foreground": "color.border.divider"
+      }
+    },
+    {
+      "target": "AppBarSeparator > Grid#RootGrid > Rectangle#SeparatorRectangle",
+      "styles": {
+        "Fill": "color.border.divider"
+      }
+    },
+    {
+      "target": "CommandBarOverflowPresenter#SecondaryItemsControl",
+      "styles": {
+        "Background": "color.surface.raised",
+        "Foreground": "color.text.default",
+        "BorderBrush": "color.border.overlay",
+        "CornerRadius": "radius.none"
+      }
+    },
+    {
+      "target": "Grid#OverflowContentRoot",
+      "styles": {
+        "Background": "color.surface.raised",
+        "CornerRadius": "radius.none"
+      }
+    },
+    {
+      "target": "FlyoutPresenter",
+      "styles": {
+        "Background": "color.surface.raised",
+        "Foreground": "color.text.default",
+        "BorderBrush": "color.border.overlay",
+        "CornerRadius": "radius.none"
+      }
+    },
+    {
+      "target": "FlyoutPresenter > Border",
+      "styles": {
+        "Background": "color.surface.raised",
+        "BorderBrush": "color.border.overlay",
+        "BorderThickness": "border.width.default",
+        "CornerRadius": "radius.none"
+      }
+    },
+    {
+      "target": "Border#SuggestionsContainer",
+      "styles": {
+        "Background": "color.surface.raised",
+        "BorderBrush": "color.border.overlay",
+        "BorderThickness": "border.width.default",
+        "CornerRadius": "radius.none"
+      }
+    },
+    {
+      "target": "ListView#SuggestionsList",
+      "styles": {
+        "Background": "color.surface.raised",
+        "Foreground": "color.text.default"
       }
     }
   ],
@@ -941,42 +1064,6 @@
           }
         },
         {
-          "target": "Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar",
-          "styles": {
-            "Background": "color.surface.canvas",
-            "BorderBrush": "color.border.divider",
-            "CornerRadius": "radius.none"
-          }
-        },
-        {
-          "target": "Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar > Grid#LayoutRoot > Grid#OuterContentRoot > Grid#ContentRoot > Grid#PrimaryItemsRoot",
-          "styles": {
-            "Background": "color.surface.canvas",
-            "BorderBrush": "color.border.divider",
-            "CornerRadius": "radius.none"
-          }
-        },
-        {
-          "target": "CommandBarOverflowPresenter#SecondaryItemsControl > Grid#LayoutRoot",
-          "styles": {
-            "Background": "color.surface.canvas",
-            "BorderBrush": "color.border.divider",
-            "CornerRadius": "radius.none"
-          }
-        },
-        {
-          "target": "AppBarSeparator",
-          "styles": {
-            "Foreground": "color.border.divider"
-          }
-        },
-        {
-          "target": "AppBarSeparator > Grid#RootGrid > Rectangle#SeparatorRectangle",
-          "styles": {
-            "Fill": "color.border.divider"
-          }
-        },
-        {
           "target": "AppBarButton > Grid#Root@CommonStates > Border#AppBarButtonInnerBorder",
           "styles": {
             "Background@Normal": "color.surface.canvas",
@@ -1649,6 +1736,21 @@
             "BorderBrush": "color.border.overlay",
             "CornerRadius": "radius.none"
           }
+        },
+        {
+          "target": "Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter",
+          "styles": {
+            "Background": "color.surface.raised",
+            "Foreground": "color.text.default",
+            "PointerOverBackground": "color.interaction.hover.bg-strong",
+            "PressedBackground": "color.interaction.pressed.bg",
+            "SelectedBackground": "color.interaction.selection.bg",
+            "SelectedPointerOverBackground": "color.interaction.selection.bg",
+            "SelectedPressedBackground": "color.interaction.selection.bg",
+            "SelectedDisabledBackground": "color.interaction.disabled.bg",
+            "PointerOverForeground": "color.text.default",
+            "SelectedForeground": "color.interaction.selection.text"
+          }
         }
       ],
       "resources": {
@@ -1692,7 +1794,23 @@
         "ToggleSwitchStrokeOffDisabled": "color.border.disabled",
         "ToggleSwitchKnobFillOffDisabled": "color.text.disabled",
         "ToggleSwitchStrokeOnDisabled": "color.border.disabled",
-        "ToggleSwitchKnobFillOnDisabled": "color.text.disabled"
+        "ToggleSwitchKnobFillOnDisabled": "color.text.disabled",
+        "ListViewItemBackground": "color.surface.raised",
+        "ListViewItemBackgroundPointerOver": "color.interaction.hover.bg-strong",
+        "ListViewItemBackgroundPressed": "color.interaction.pressed.bg",
+        "ListViewItemBackgroundSelected": "color.interaction.selection.bg",
+        "ListViewItemBackgroundSelectedPointerOver": "color.interaction.selection.bg",
+        "ListViewItemBackgroundSelectedPressed": "color.interaction.selection.bg",
+        "ListViewItemBackgroundDisabled": "color.surface.raised",
+        "ListViewItemBackgroundSelectedDisabled": "color.interaction.disabled.bg",
+        "ListViewItemForeground": "color.text.default",
+        "ListViewItemForegroundPointerOver": "color.text.default",
+        "ListViewItemForegroundPressed": "color.text.default",
+        "ListViewItemForegroundSelected": "color.interaction.selection.text",
+        "ListViewItemForegroundSelectedPointerOver": "color.interaction.selection.text",
+        "ListViewItemForegroundSelectedPressed": "color.interaction.selection.text",
+        "ListViewItemForegroundDisabled": "color.text.disabled",
+        "ListViewItemForegroundSelectedDisabled": "color.text.disabled"
       }
     }
   ],

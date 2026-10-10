@@ -23,7 +23,8 @@ test('every supported shell host receives the common menu controls and resource 
   assert.ok(mapping.mappings[role].includes('windhawk.resource.'+key));
  }
  const menuTargets=new Set(host.menuTargets.map(x=>x.target));
- assert.equal(menuTargets.size,9);
+ assert.equal(menuTargets.size,host.menuTargets.length);
+ assert.equal(host.menuTargets.filter(x=>/^(?:MenuFlyout|ToggleMenuFlyout)/.test(x.target)).length,9);
  for(const styler of host.stylers){
   assert.ok(!styler.targets.some(x=>/^(?:MenuFlyout|ToggleMenuFlyout)/.test(x.target)),styler.id+' duplicates shared menu controls');
   const payload=await readJson('ports/windows/dist/'+styler.id+'.json');
@@ -65,7 +66,7 @@ test('shared menu states restore their unhovered color and preserve native inter
  assert.equal(frame.styles.BorderThickness,'border.width.default');
  assert.ok(!Object.keys(host.menuTargets.find(x=>x.target==='MenuFlyoutPresenter').styles).some(x=>x.startsWith('Border')),'one template-owned frame');
  const allowed=/^(?:Background(?:@(?:Normal|PointerOver|Pressed|Disabled|SubMenuOpened))?|Foreground|BorderBrush|BorderThickness|CornerRadius|Fill)$/;
- for(const rule of host.menuTargets){
+ for(const rule of host.menuTargets.filter(x=>/^(?:MenuFlyout|ToggleMenuFlyout)/.test(x.target))){
   assert.match(rule.target,/^(?:MenuFlyout|ToggleMenuFlyout)/,'menu-class scope');
   assert.doesNotMatch(rule.target,/\[|Text=|Content=|Command=/,'command-independent matching');
   for(const property of Object.keys(rule.styles))assert.match(property,allowed,'native behavior, geometry and focus are preserved');

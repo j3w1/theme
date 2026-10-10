@@ -11,8 +11,7 @@ was missed by the pinned upstream lookup. A controlled comparison showed black
 page surfaces, rose text and a themed calendar. Whole-app state acceptance is
 still open. The owner accepted the corrected existing first Notepad header
 after installation and rollback/reapply: black, with unobstructed tabs and all
-three native window buttons visible. Paint's gray drawing workspace remains
-unresolved. Paint's viewport scrollbar now has native
+three native window buttons visible. The owner excluded further recoloring of Paint's gray drawing workspace. Paint's viewport scrollbar now has native
 state mappings and a bounded installed scroll/recovery observation; full
 transition and accessibility acceptance remain open.
 Exact shell compatibility and historical observations remain in
@@ -22,8 +21,9 @@ own import evidence meets the port contract.
 The owner confirmed the permanent Paint Selection and Brushes correction: their
 main buttons and dropdown arrows stay black/red/rose on hover and pointer exit.
 The installed input-language picker and hardware volume popup were also
-accepted. These are bounded state confirmations; Paint's drawing surround,
-brightness, other popup states and the remaining acceptance checks stay open.
+accepted. These are bounded state confirmations; brightness, other popup states and the
+remaining acceptance checks stay open. Paint's drawing surround is host-owned
+and excluded by the owner.
 
 Search result rows own their rest, hover and selected backgrounds. Their icon,
 label and detail containers inherit the row fill, avoiding separate overlapping
@@ -59,19 +59,42 @@ rose border. Other Search states and accessibility acceptance remain open.
 | Explorer folder defaults, pins and dividers | Generated original closed/open folder ICOs; journaled current-user generic registrations and shell icon refresh; XAML divider mappings; exact-host navigation pin/state-image and separator paint adapters | Specialized and customized folder icons retain native registrations; pin silhouette, alpha and separator DPI width are preserved; live icon-cache, view and divider acceptance remains open |
 | Explorer drag-selection rectangle | Symbol-identified UIMarqueeSelector rooted at the actual Explorer UIItemsView; scoped cached-system-brush substitution, canonical red fill at 12% and themed border | Owner accepted the live red selection area with rose borders. Native solid border is a geometry deviation; other DPI and accessibility cases remain open |
 | Explorer filename selection and selected-row outline | Scoped Edit selection and native ListView border color mappings | Border pixel regression passes; corrected live rename outline still needs acceptance |
-| Explorer outer preview backing | Exact-host native background erasure for the observed Explorer-owned solid-white container, using the existing canvas role | Native ownership/fallback regression; installed appearance remains unassessed. Stalled preview initialization and transient first frames remain unresolved |
+| Explorer outer preview backing | Exact-host native background erasure for the observed Explorer-owned solid-white container, using the existing canvas role | Native ownership/fallback regression; installed outer-backing appearance remains unassessed. The owner reports no preview stalls; earlier incomplete initialization traces are investigation limits, not an established current stall. Transient first-frame acceptance remains open |
 | PowerToys plain-text/code preview and loading controls | Exact-version, hash-checked Monaco template adapter and native loading palette | Owner confirmed loaded preview and loading control; this does not cover Markdown |
 | PowerToys Markdown preview | Digest-pinned WebView2 HTML-boundary adapter and token-derived reading CSS for normal and large-file routes | Owner accepted completed small and large previews after installer rollback/reapply, with black backgrounds and improved rose formatting; earlier typography acceptance covered headings, spacing, code, quotations and tables. Transient startup frames, other DPI and runtime accessibility cases remain open |
 | Explorer classic “Show more options” menu | Scoped exact-host Win32 popup palette | Confirmed owner/paint trace and native regressions; live normal, hot, disabled and submenu appearance still need verification |
 | Notepad | Bundled exact-package WinUI chrome resource adapter plus the RichEdit-binary editor adapter | A fresh sample window showed black/rose, native gray/white on disable, and the same unmodified character count. Native regressions cover ordinary glyph paint, color emoji, background restoration, high contrast and worker shutdown. Fresh-window chrome checks showed black tabs/toolbar/status regions, rose labels, a dark-red popup and red/rose keyboard focus. Existing chrome is discovered through the exact-runtime diagnostics bridge; full hover, startup and accessibility acceptance remain open |
 | Calculator | Bundled package-gated Windows.UI.Xaml brush adapter for the recorded 11.2607.0.0 package | Bounded Scientific-mode black/rose and disable/reapply were observed. Native worker shutdown and a deliberate post-apply restoration fault passed. Other modes, final installer startup and live accessibility acceptance remain open; graph-series brushes are excluded |
-| Paint | Exact-package WinUI chrome adapter sharing Notepad ownership and existing-root discovery | Owner accepted permanent Selection/Brushes main-button and dropdown-arrow hover and pointer-exit colors. The drawing surround remains gray; other controls, popup transitions and accessibility acceptance remain open. Drawing controls, artwork and swatches retain native ownership |
+| Paint | Exact-package WinUI chrome adapter sharing Notepad ownership and existing-root discovery | Owner accepted permanent Selection/Brushes main-button and dropdown-arrow hover and pointer-exit colors. The owner excluded further changes to the drawing surround; other controls, popup transitions and accessibility acceptance remain open. Drawing controls, artwork and swatches retain native ownership |
 | Terminal | Native generated scheme, font and opaque chrome, plus an exact-package legacy-XAML tab/menu adapter | Owner confirmed the earlier general appearance; the new native-menu path needs rendered acceptance. Command output can intentionally choose other colors |
 | PowerToys utilities | Configurable FancyZones, Always On Top and Command Palette appearance | Command Palette exposes tint, not every text role |
 | Obsidian | Separate j3w1 CSS/manifest port | Installed pair readback is separate from Windows installation; third-party plugin surfaces may override it |
 | Orca, Warp, Ghostty, Codex CLI, Claude Code and ChatGPT Appearance | Separate repository ports | Import only through the corresponding port guide; the Windows installer does not claim these imports |
 | Notepad++, browsers, Office, media and archive apps | No application-specific port installed by Windows setup | Use documented theme APIs where available; dark mode alone is not a complete j3w1 match |
 | Secure desktop, authentication, protected system surfaces and arbitrary document/media colors | Host-owned | No binary patching, isolation changes, or whole-screen color filters |
+
+## Current owner scope and historical evidence
+
+The owner reports ordinary Explorer toolbar tooltips working normally and no
+Explorer preview stalls. The withdrawn tooltip comparison and its missing
+crash record are retained below as historical investigation limits; they are
+not current correction requests. Do not reintroduce that comparison merely to
+close its old evidence gap. Small and large Markdown previews remain accepted.
+Paint's drawing surround is excluded from further recoloring. Clean-install
+readiness uses the existing installer fixtures; no fresh-machine, VM or sign-in
+test is claimed or requested. Earlier unresolved labels below describe their
+recorded candidates and are superseded by this current scope and the inventory
+above.
+
+The owner accepted ordinary Start, notification and Settings menus after the
+shared-menu update. Subsequent screenshots establish separate textbox command
+flyout and Settings suggestion-backing defects. The shared shell recipe now
+covers those families too, using command-bar resources and native popup
+wrappers rather than command names or specific menu locations. Settings list
+items map rest, hover, pressed, selected and disabled backgrounds, including
+selected-hover and selected-pressed combinations. Native geometry, content,
+actions and keyboard focus remain intact. The captured metadata establishes
+the runtime control families; new rendered acceptance remains a separate check.
 
 ## Preview owner lifecycle
 

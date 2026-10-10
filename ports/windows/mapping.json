@@ -570,7 +570,22 @@
       "windhawk.resource.MenuFlyoutSubItemForegroundPressed",
       "windhawk.menu | MenuFlyoutItem | Foreground",
       "windhawk.menu | MenuFlyoutSubItem | Foreground",
-      "windhawk.menu | ToggleMenuFlyoutItem | Foreground"
+      "windhawk.menu | ToggleMenuFlyoutItem | Foreground",
+      "windhawk.resource.CommandBarFlyoutForeground",
+      "windhawk.resource.CommandBarFlyoutAppBarButtonForeground",
+      "windhawk.resource.CommandBarFlyoutAppBarButtonForegroundPointerOver",
+      "windhawk.resource.CommandBarFlyoutAppBarButtonForegroundPressed",
+      "windhawk.resource.CommandBarFlyoutAppBarButtonForegroundCheckedPressed",
+      "windhawk.resource.FlyoutPresenterForeground",
+      "windhawk.menu | Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar | Foreground",
+      "windhawk.menu | CommandBarOverflowPresenter#SecondaryItemsControl | Foreground",
+      "windhawk.menu | FlyoutPresenter | Foreground",
+      "windhawk.menu | ListView#SuggestionsList | Foreground",
+      "windows-11-settings-styler.resource.ListViewItemForeground",
+      "windows-11-settings-styler.resource.ListViewItemForegroundPointerOver",
+      "windows-11-settings-styler.resource.ListViewItemForegroundPressed",
+      "windows-11-settings-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | Foreground",
+      "windows-11-settings-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | PointerOverForeground"
     ],
     "color.text.bright": [
       "native.bright",
@@ -673,7 +688,14 @@
       "windhawk.resource.MenuFlyoutItemKeyboardAcceleratorTextForeground",
       "windhawk.resource.MenuFlyoutSubItemChevron",
       "windhawk.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundPointerOver",
-      "windhawk.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundPressed"
+      "windhawk.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundPressed",
+      "windhawk.resource.CommandBarFlyoutAppBarButtonKeyboardTextLabelForeground",
+      "windhawk.resource.CommandBarFlyoutAppBarButtonKeyboardTextLabelForegroundPointerOver",
+      "windhawk.resource.CommandBarFlyoutAppBarButtonKeyboardTextLabelForegroundPressed",
+      "windhawk.resource.CommandBarFlyoutAppBarButtonSubItemChevronForeground",
+      "windhawk.resource.CommandBarFlyoutAppBarButtonSubItemChevronPointerOverForeground",
+      "windhawk.resource.CommandBarFlyoutAppBarButtonSubItemChevronPressedForeground",
+      "windhawk.resource.CommandBarFlyoutAppBarButtonSubItemChevronSubMenuOpenedForeground"
     ],
     "color.text.disabled": [
       "native.disabled",
@@ -763,7 +785,12 @@
       "windows-11-notification-center-styler.resource.SliderHeaderForegroundDisabled",
       "windhawk.resource.MenuFlyoutItemForegroundDisabled",
       "windhawk.resource.MenuFlyoutSubItemForegroundDisabled",
-      "windhawk.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundDisabled"
+      "windhawk.resource.MenuFlyoutItemKeyboardAcceleratorTextForegroundDisabled",
+      "windhawk.resource.CommandBarFlyoutAppBarButtonForegroundDisabled",
+      "windhawk.resource.CommandBarFlyoutAppBarButtonSubItemChevronDisabledForeground",
+      "windhawk.resource.CommandBarFlyoutAppBarButtonForegroundCheckedDisabled",
+      "windows-11-settings-styler.resource.ListViewItemForegroundDisabled",
+      "windows-11-settings-styler.resource.ListViewItemForegroundSelectedDisabled"
     ],
     "color.interaction.selection.bg": [
       "native.selection",
@@ -821,7 +848,15 @@
       "terminal-chrome.resource.SplitButtonBackgroundChecked",
       "terminal-chrome.resource.SplitButtonBackgroundCheckedPointerOver",
       "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | SelectedBackground",
-      "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | SelectedPointerOverBackground"
+      "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | SelectedPointerOverBackground",
+      "windhawk.resource.CommandBarFlyoutAppBarButtonBackgroundChecked",
+      "windhawk.resource.CommandBarFlyoutAppBarButtonBackgroundCheckedPointerOver",
+      "windows-11-settings-styler.resource.ListViewItemBackgroundSelected",
+      "windows-11-settings-styler.resource.ListViewItemBackgroundSelectedPointerOver",
+      "windows-11-settings-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | SelectedBackground",
+      "windows-11-settings-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | SelectedPointerOverBackground",
+      "windows-11-settings-styler.resource.ListViewItemBackgroundSelectedPressed",
+      "windows-11-settings-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | SelectedPressedBackground"
     ],
     "color.surface.raised": [
       "powertoys.inactive",
@@ -879,7 +914,26 @@
       "windhawk.menu | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | Background@Normal",
       "windhawk.menu | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | Background@Disabled",
       "windhawk.menu | ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@Normal",
-      "windhawk.menu | ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@Disabled"
+      "windhawk.menu | ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@Disabled",
+      "windhawk.resource.CommandBarFlyoutBackground",
+      "windhawk.resource.CommandBarFlyoutButtonBackground",
+      "windhawk.resource.CommandBarOverflowPresenterBackground",
+      "windhawk.resource.CommandBarFlyoutAppBarButtonBackground",
+      "windhawk.resource.CommandBarFlyoutAppBarButtonBackgroundDisabled",
+      "windhawk.resource.FlyoutPresenterBackground",
+      "windhawk.resource.AutoSuggestBoxSuggestionsListBackground",
+      "windhawk.menu | Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar | Background",
+      "windhawk.menu | Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar > Grid#LayoutRoot > Grid#OuterContentRoot > Grid#ContentRoot > Grid#PrimaryItemsRoot | Background",
+      "windhawk.menu | CommandBarOverflowPresenter#SecondaryItemsControl > Grid#LayoutRoot | Background",
+      "windhawk.menu | CommandBarOverflowPresenter#SecondaryItemsControl | Background",
+      "windhawk.menu | Grid#OverflowContentRoot | Background",
+      "windhawk.menu | FlyoutPresenter | Background",
+      "windhawk.menu | FlyoutPresenter > Border | Background",
+      "windhawk.menu | Border#SuggestionsContainer | Background",
+      "windhawk.menu | ListView#SuggestionsList | Background",
+      "windows-11-settings-styler.resource.ListViewItemBackground",
+      "windows-11-settings-styler.resource.ListViewItemBackgroundDisabled",
+      "windows-11-settings-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | Background"
     ],
     "color.border.control": [
       "powertoys.border",
@@ -1290,7 +1344,11 @@
       "windhawk.resource.MenuFlyoutSubItemBackgroundPressed",
       "windhawk.menu | MenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@Pressed",
       "windhawk.menu | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | Background@Pressed",
-      "windhawk.menu | ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@Pressed"
+      "windhawk.menu | ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@Pressed",
+      "windhawk.resource.CommandBarFlyoutAppBarButtonBackgroundPressed",
+      "windhawk.resource.CommandBarFlyoutAppBarButtonBackgroundCheckedPressed",
+      "windows-11-settings-styler.resource.ListViewItemBackgroundPressed",
+      "windows-11-settings-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | PressedBackground"
     ],
     "color.action.primary.bg": [
       "windhawk.resource.AccentFillColorDefault",
@@ -1367,7 +1425,18 @@
       "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.Popup > Border#InputSwitcherPopupBorder | BorderBrush",
       "windows-11-taskbar-styler | Grid#OverflowRootGrid > Border#OverflowFlyoutBackgroundBorder | BorderBrush",
       "windhawk.resource.MenuFlyoutPresenterBorderBrush",
-      "windhawk.menu | MenuFlyoutPresenter > Border | BorderBrush"
+      "windhawk.menu | MenuFlyoutPresenter > Border | BorderBrush",
+      "windhawk.resource.CommandBarFlyoutBorderBrush",
+      "windhawk.resource.CommandBarOverflowPresenterBorderBrush",
+      "windhawk.resource.FlyoutPresenterBorderBrush",
+      "windhawk.resource.AutoSuggestBoxSuggestionsListBorderBrush",
+      "windhawk.menu | Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar | BorderBrush",
+      "windhawk.menu | Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar > Grid#LayoutRoot > Grid#OuterContentRoot > Grid#ContentRoot > Grid#PrimaryItemsRoot | BorderBrush",
+      "windhawk.menu | CommandBarOverflowPresenter#SecondaryItemsControl > Grid#LayoutRoot | BorderBrush",
+      "windhawk.menu | CommandBarOverflowPresenter#SecondaryItemsControl | BorderBrush",
+      "windhawk.menu | FlyoutPresenter | BorderBrush",
+      "windhawk.menu | FlyoutPresenter > Border | BorderBrush",
+      "windhawk.menu | Border#SuggestionsContainer | BorderBrush"
     ],
     "border.width.default": [
       "windows-11-start-menu-styler | Border#AcrylicBorder | BorderThickness",
@@ -1394,7 +1463,9 @@
       "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.Popup > Border#InputSwitcherPopupBorder | BorderThickness",
       "windows-11-notification-center-styler | ControlCenter.PaginatedToggleButton > ContentPresenter#ContentPresenter@CommonStates | BorderThickness",
       "windows-11-taskbar-styler | Grid#OverflowRootGrid > Border#OverflowFlyoutBackgroundBorder | BorderThickness",
-      "windhawk.menu | MenuFlyoutPresenter > Border | BorderThickness"
+      "windhawk.menu | MenuFlyoutPresenter > Border | BorderThickness",
+      "windhawk.menu | FlyoutPresenter > Border | BorderThickness",
+      "windhawk.menu | Border#SuggestionsContainer | BorderThickness"
     ],
     "radius.none": [
       "windows-11-start-menu-styler | Border#AcrylicBorder | CornerRadius",
@@ -1479,7 +1550,15 @@
       "windhawk.menu | MenuFlyoutSubItem | CornerRadius",
       "windhawk.menu | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | CornerRadius",
       "windhawk.menu | ToggleMenuFlyoutItem | CornerRadius",
-      "windhawk.menu | ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates | CornerRadius"
+      "windhawk.menu | ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates | CornerRadius",
+      "windhawk.menu | Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar | CornerRadius",
+      "windhawk.menu | Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar > Grid#LayoutRoot > Grid#OuterContentRoot > Grid#ContentRoot > Grid#PrimaryItemsRoot | CornerRadius",
+      "windhawk.menu | CommandBarOverflowPresenter#SecondaryItemsControl > Grid#LayoutRoot | CornerRadius",
+      "windhawk.menu | CommandBarOverflowPresenter#SecondaryItemsControl | CornerRadius",
+      "windhawk.menu | Grid#OverflowContentRoot | CornerRadius",
+      "windhawk.menu | FlyoutPresenter | CornerRadius",
+      "windhawk.menu | FlyoutPresenter > Border | CornerRadius",
+      "windhawk.menu | Border#SuggestionsContainer | CornerRadius"
     ],
     "color.interaction.disabled.bg": [
       "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | Background@Disabled",
@@ -1571,7 +1650,10 @@
       "windows-11-notification-center-styler | ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border > Windows.UI.Xaml.Shapes.Ellipse#SliderInnerThumb | Fill@Disabled",
       "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Shapes.Rectangle#HorizontalDecreaseRect | Fill@Disabled",
       "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | Background@Disabled",
-      "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border > Windows.UI.Xaml.Shapes.Ellipse#SliderInnerThumb | Fill@Disabled"
+      "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border > Windows.UI.Xaml.Shapes.Ellipse#SliderInnerThumb | Fill@Disabled",
+      "windhawk.resource.CommandBarFlyoutAppBarButtonBackgroundCheckedDisabled",
+      "windows-11-settings-styler.resource.ListViewItemBackgroundSelectedDisabled",
+      "windows-11-settings-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | SelectedDisabledBackground"
     ],
     "color.border.disabled": [
       "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@Disabled",
@@ -1772,7 +1854,10 @@
       "windows-11-notification-center-styler | Grid#L1Grid > Border | BorderBrush",
       "windows-11-notification-center-styler | Grid#L1Grid > Grid | BorderBrush",
       "windhawk.resource.MenuFlyoutSeparatorBackground",
-      "windhawk.menu | MenuFlyoutSeparator > Windows.UI.Xaml.Shapes.Rectangle | Fill"
+      "windhawk.menu | MenuFlyoutSeparator > Windows.UI.Xaml.Shapes.Rectangle | Fill",
+      "windhawk.resource.CommandBarFlyoutAppBarButtonBorderBrush",
+      "windhawk.menu | AppBarSeparator | Foreground",
+      "windhawk.menu | AppBarSeparator > Grid#RootGrid > Rectangle#SeparatorRectangle | Fill"
     ],
     "color.interaction.scrollbar.thumb": [
       "nativeExplorer.scrollbar",
@@ -1861,7 +1946,10 @@
       "windhawk.menu | MenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@PointerOver",
       "windhawk.menu | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | Background@PointerOver",
       "windhawk.menu | MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates | Background@SubMenuOpened",
-      "windhawk.menu | ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@PointerOver"
+      "windhawk.menu | ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@PointerOver",
+      "windhawk.resource.CommandBarFlyoutAppBarButtonBackgroundPointerOver",
+      "windows-11-settings-styler.resource.ListViewItemBackgroundPointerOver",
+      "windows-11-settings-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | PointerOverBackground"
     ],
     "color.text.link-hover": [
       "nativeExplorer.menuHoverText",
@@ -2005,7 +2093,13 @@
       "terminal-chrome.resource.ComboBoxItemForegroundSelectedPressed",
       "terminal-chrome.resource.SplitButtonForegroundChecked",
       "terminal-chrome.resource.SplitButtonForegroundCheckedPointerOver",
-      "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | SelectedForeground"
+      "windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | SelectedForeground",
+      "windhawk.resource.CommandBarFlyoutAppBarButtonForegroundChecked",
+      "windhawk.resource.CommandBarFlyoutAppBarButtonForegroundCheckedPointerOver",
+      "windows-11-settings-styler.resource.ListViewItemForegroundSelected",
+      "windows-11-settings-styler.resource.ListViewItemForegroundSelectedPointerOver",
+      "windows-11-settings-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | SelectedForeground",
+      "windows-11-settings-styler.resource.ListViewItemForegroundSelectedPressed"
     ],
     "focus.offset": [
       "windows-11-start-menu-styler | web :focus-visible | outline-offset"

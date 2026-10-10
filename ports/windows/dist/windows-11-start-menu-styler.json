@@ -76,6 +76,93 @@
       ]
     },
     {
+      "target": "Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar",
+      "styles": [
+        "Background=#160b0b",
+        "BorderBrush=#e53935",
+        "CornerRadius=0",
+        "Foreground=#e99499"
+      ]
+    },
+    {
+      "target": "Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar > Grid#LayoutRoot > Grid#OuterContentRoot > Grid#ContentRoot > Grid#PrimaryItemsRoot",
+      "styles": [
+        "Background=#160b0b",
+        "BorderBrush=#e53935",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "CommandBarOverflowPresenter#SecondaryItemsControl > Grid#LayoutRoot",
+      "styles": [
+        "Background=#160b0b",
+        "BorderBrush=#e53935",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "AppBarSeparator",
+      "styles": [
+        "Foreground=#2b0e0d"
+      ]
+    },
+    {
+      "target": "AppBarSeparator > Grid#RootGrid > Rectangle#SeparatorRectangle",
+      "styles": [
+        "Fill=#2b0e0d"
+      ]
+    },
+    {
+      "target": "CommandBarOverflowPresenter#SecondaryItemsControl",
+      "styles": [
+        "Background=#160b0b",
+        "Foreground=#e99499",
+        "BorderBrush=#e53935",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Grid#OverflowContentRoot",
+      "styles": [
+        "Background=#160b0b",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "FlyoutPresenter",
+      "styles": [
+        "Background=#160b0b",
+        "Foreground=#e99499",
+        "BorderBrush=#e53935",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "FlyoutPresenter > Border",
+      "styles": [
+        "Background=#160b0b",
+        "BorderBrush=#e53935",
+        "BorderThickness=1",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Border#SuggestionsContainer",
+      "styles": [
+        "Background=#160b0b",
+        "BorderBrush=#e53935",
+        "BorderThickness=1",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "ListView#SuggestionsList",
+      "styles": [
+        "Background=#160b0b",
+        "Foreground=#e99499"
+      ]
+    },
+    {
       "target": "TextBlock",
       "styles": [
         "Foreground=#e99499"
@@ -402,7 +489,43 @@
     "MenuFlyoutSubItemForegroundPressed=#e99499",
     "MenuFlyoutItemKeyboardAcceleratorTextForegroundDisabled=#8a5559",
     "MenuFlyoutItemKeyboardAcceleratorTextForegroundPointerOver=#bd787d",
-    "MenuFlyoutItemKeyboardAcceleratorTextForegroundPressed=#bd787d"
+    "MenuFlyoutItemKeyboardAcceleratorTextForegroundPressed=#bd787d",
+    "CommandBarFlyoutBackground=#160b0b",
+    "CommandBarFlyoutForeground=#e99499",
+    "CommandBarFlyoutBorderBrush=#e53935",
+    "CommandBarFlyoutButtonBackground=#160b0b",
+    "CommandBarOverflowPresenterBackground=#160b0b",
+    "CommandBarOverflowPresenterBorderBrush=#e53935",
+    "CommandBarFlyoutAppBarButtonBackground=#160b0b",
+    "CommandBarFlyoutAppBarButtonBackgroundPointerOver=#630f0d",
+    "CommandBarFlyoutAppBarButtonBackgroundPressed=#420f0c",
+    "CommandBarFlyoutAppBarButtonBackgroundDisabled=#160b0b",
+    "CommandBarFlyoutAppBarButtonForeground=#e99499",
+    "CommandBarFlyoutAppBarButtonForegroundPointerOver=#e99499",
+    "CommandBarFlyoutAppBarButtonForegroundPressed=#e99499",
+    "CommandBarFlyoutAppBarButtonForegroundDisabled=#8a5559",
+    "CommandBarFlyoutAppBarButtonKeyboardTextLabelForeground=#bd787d",
+    "CommandBarFlyoutAppBarButtonKeyboardTextLabelForegroundPointerOver=#bd787d",
+    "CommandBarFlyoutAppBarButtonKeyboardTextLabelForegroundPressed=#bd787d",
+    "CommandBarFlyoutAppBarButtonSubItemChevronForeground=#bd787d",
+    "CommandBarFlyoutAppBarButtonSubItemChevronPointerOverForeground=#bd787d",
+    "CommandBarFlyoutAppBarButtonSubItemChevronPressedForeground=#bd787d",
+    "CommandBarFlyoutAppBarButtonSubItemChevronSubMenuOpenedForeground=#bd787d",
+    "CommandBarFlyoutAppBarButtonSubItemChevronDisabledForeground=#8a5559",
+    "CommandBarFlyoutAppBarButtonBackgroundChecked=#531310",
+    "CommandBarFlyoutAppBarButtonBackgroundCheckedPointerOver=#531310",
+    "CommandBarFlyoutAppBarButtonBackgroundCheckedPressed=#420f0c",
+    "CommandBarFlyoutAppBarButtonBackgroundCheckedDisabled=#160b0b",
+    "CommandBarFlyoutAppBarButtonForegroundChecked=#f4eeee",
+    "CommandBarFlyoutAppBarButtonForegroundCheckedPointerOver=#f4eeee",
+    "CommandBarFlyoutAppBarButtonForegroundCheckedPressed=#e99499",
+    "CommandBarFlyoutAppBarButtonForegroundCheckedDisabled=#8a5559",
+    "CommandBarFlyoutAppBarButtonBorderBrush=#2b0e0d",
+    "FlyoutPresenterBackground=#160b0b",
+    "FlyoutPresenterForeground=#e99499",
+    "FlyoutPresenterBorderBrush=#e53935",
+    "AutoSuggestBoxSuggestionsListBackground=#160b0b",
+    "AutoSuggestBoxSuggestionsListBorderBrush=#e53935"
   ],
   "webContentStyles": [
     {
