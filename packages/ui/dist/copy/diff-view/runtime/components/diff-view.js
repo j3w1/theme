@@ -3,8 +3,8 @@ import { r as developerView } from "../chunks/display-dj9YaBfn.js";
 //#region .cache/ui-build/entries/components/diff-view.js
 var J3w1DiffView = class extends J3w1Element {
 	static componentId = "diff-view";
-	static version = "3.1.0";
-	static implementationId = "sha256-9/yJ4RG8NMxGr2lxNjJ65pw/8NDOysXb18W3xPVyfmw=";
+	static version = "4.0.0";
+	static implementationId = "sha256-lEC5NAzVDADHe5s6uWIGnx5icpXJwmRoT/VTUI4h2l8=";
 	static connect = developerView;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

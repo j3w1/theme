@@ -12,14 +12,16 @@ export const attachSourceLines = async (index) => {
       const counter = new LineCounter();
       const doc = parseDocument(frontmatter ? frontmatter[1] : text, { lineCounter: counter });
       if (doc.errors.length) throw new Error(`Cannot index source locations in ${source.file}`);
-      files.set(source.file, { doc, counter, offset: frontmatter ? 1 : 0, bodyLine: frontmatter ? frontmatter[0].split("\n").length : null });
+      files.set(source.file, { doc, counter, lines: new Map(), offset: frontmatter ? 1 : 0, bodyLine: frontmatter ? frontmatter[0].split("\n").length : null });
     }
-    const { doc, counter, offset, bodyLine } = files.get(source.file);
+    const { doc, counter, lines, offset, bodyLine } = files.get(source.file);
     if (source.pointer === "body") { source.line = bodyLine; return; }
+    if (lines.has(source.pointer)) { source.line = lines.get(source.pointer); return; }
     const parts = source.pointer.slice(1).split("/").map((p) => p.replaceAll("~1", "/").replaceAll("~0", "~"));
     const node = doc.getIn(parts, true);
     if (!node?.range) throw new Error(`Missing indexed source ${source.file}${source.pointer}`);
     source.line = counter.linePos(node.range[0]).line + offset;
+    lines.set(source.pointer, source.line);
   };
   for (const profile of Object.values(index.profiles)) for (const token of Object.values(profile.tokens)) {
     await locate(token.source);

@@ -1,0 +1,128 @@
+#include <winrt/Windows.UI.Xaml.Interop.h>
+// The recorded Paint menu presenter has a DesktopAcrylicBackdrop behind
+// its already-themed brushes, including before its first layout. Use only
+// the public presenter property. Never infer a popup HWND or modify artwork.
+struct PopupBacking { weak_ref<MenuFlyoutPresenter> element; OwnedCompositionBrush value; };
+static void ApplyPopupBacking(Root& root,FrameworkElement const& element);
+
+// The exact Paint toolbar creates MenuBarItemFlyout on ContentButton before
+// opening. Prepare only its previously unset presenter style, so the native
+// presenter receives the semantic surface before its first layout.
+struct PreopenMenuStyle { weak_ref<FrameworkElement> owner; weak_ref<MenuFlyout> element; OwnedCompositionBrush value; };
+static void PreparePaintMenuStyle(Root& root,FrameworkElement const& element);
+struct ThreadState;
+static bool RestorePaintPopups(ThreadState& state) noexcept;
+// IMPLEMENTATION
+static bool PopupBackingAdmission(std::wstring_view type,bool active,bool uiThread,bool loaded,bool sameRoot) noexcept {
+ return type==L"Microsoft.UI.Xaml.Controls.MenuFlyoutPresenter"&&active&&uiThread&&loaded&&sameRoot;
+}
+static bool RestorePopupBackings(std::vector<PopupBacking>& entries) noexcept {
+ bool restored=true;
+ for(auto& entry:entries)try {
+  if(auto element=entry.element.get())
+   restored=UpdateCompositionBrush(entry.value,false,[&]{return element.SystemBackdrop();},
+    [&](auto const& value){element.SystemBackdrop(value?value.template as<SystemBackdrop>():nullptr);})&&restored;
+  else entry.value.owned=false;
+ }catch(...){restored=false;}
+ if(restored)entries.clear();
+ return restored;
+}
+static void ApplyPopupBacking(Root& root,FrameworkElement const& element) {
+ auto owner=root.element.get();
+ if(!uiState||!owner||!element||!PopupBackingAdmission(std::wstring_view{get_class_name(element)},
+  enabled.load()&&!HighContrast(),ChromeUiThread(element),element.IsLoaded(),Identity(owner.XamlRoot(),element.XamlRoot())))return;
+ auto presenter=element.try_as<MenuFlyoutPresenter>();if(!presenter)return;
+ auto& entries=uiState->popupBackings;
+ for(auto it=entries.begin();it!=entries.end();)if(!it->element.get())it=entries.erase(it);else ++it;
+ for(auto& entry:entries)if(Identity(entry.element.get(),presenter)) {
+  if(!UpdateCompositionBrush(entry.value,true,[&]{return presenter.SystemBackdrop();},
+   [&](auto const& value){presenter.SystemBackdrop(value?value.template as<SystemBackdrop>():nullptr);}))throw hresult_error(E_FAIL);
+  return;
+ }
+ auto native=presenter.SystemBackdrop();
+ // Unknown or custom backdrop implementations retain host ownership.
+ if(!native||get_class_name(native)!=L"Microsoft.UI.Xaml.Media.DesktopAcrylicBackdrop")return;
+ if(entries.size()>=1024)throw hresult_error(E_BOUNDS);
+ entries.push_back({make_weak(presenter),{native,nullptr}});
+ auto& entry=entries.back();
+ if(!UpdateCompositionBrush(entry.value,true,[&]{return presenter.SystemBackdrop();},
+  [&](auto const& value){presenter.SystemBackdrop(value?value.template as<SystemBackdrop>():nullptr);}))throw hresult_error(E_FAIL);
+}
+
+static bool PaintMenuTriggerAdmission(std::wstring_view owner,std::wstring_view trigger,
+ std::wstring_view name,std::wstring_view flyout,bool active,bool uiThread,bool loaded,bool sameRoot,bool menuOwner) noexcept {
+ return owner==L"PaintUI.AppChrome"&&trigger==L"Microsoft.UI.Xaml.Controls.Button"
+  &&name==L"ContentButton"&&flyout==L"Microsoft.UI.Xaml.Controls.MenuBarItemFlyout"
+  &&active&&uiThread&&loaded&&sameRoot&&menuOwner;
+}
+template<class Read,class Write,class Clear,class IsUnset>
+static bool UpdatePreopenMenuStyle(OwnedCompositionBrush& entry,bool active,Read read,Write write,Clear clear,IsUnset unset) noexcept {
+ return UpdateCompositionBrush(entry,active,read,[&](auto const& value){if(unset(value))clear();else write(value);});
+}
+static bool UpdatePreopenMenuStyle(PreopenMenuStyle& entry,bool active) noexcept {
+ auto flyout=entry.element.get();if(!flyout){entry.value.owned=false;return true;}
+ auto property=MenuFlyout::MenuFlyoutPresenterStyleProperty();
+ return UpdatePreopenMenuStyle(entry.value,active,[&]{return flyout.ReadLocalValue(property);},
+  [&](auto const& value){flyout.SetValue(property,value);},[&]{flyout.ClearValue(property);},
+  [](auto const& value){return Identity(value,DependencyProperty::UnsetValue());});
+}
+static bool RestorePreopenMenuStyles(std::vector<PreopenMenuStyle>& entries,bool retiredOnly=false) noexcept {
+ bool restored=true;
+ for(auto it=entries.begin();it!=entries.end();)try {
+  auto owner=it->owner.get();
+  if(retiredOnly&&owner&&owner.IsLoaded()&&it->element.get()){++it;continue;}
+  if(!UpdatePreopenMenuStyle(*it,false)){restored=false;++it;continue;}
+  it=entries.erase(it);
+ }catch(...){restored=false;++it;}
+ return restored;
+}
+static bool RestorePaintPopups(ThreadState& state) noexcept {
+ const bool styles=RestorePreopenMenuStyles(state.preopenMenus);
+ return RestorePopupBackings(state.popupBackings)&&styles;
+}
+static void PreparePaintMenuStyle(Root& root,FrameworkElement const& element) {
+ auto owner=root.element.get();
+ if(!uiState||!owner||!element||get_class_name(owner)!=L"PaintUI.AppChrome")return;
+ auto button=element.try_as<Button>();if(!button||button.Name()!=L"ContentButton")return;
+ auto xaml=owner.XamlRoot();if(!xaml||!Identity(element.XamlRoot(),xaml))return;
+ bool menuOwner=false,reachedOwner=false;auto ancestor=VisualTreeHelper::GetParent(button);
+ for(unsigned depth=0;ancestor&&depth<16;++depth,ancestor=VisualTreeHelper::GetParent(ancestor)) {
+  if(auto peer=ancestor.try_as<FrameworkElement>();peer&&!Identity(peer.XamlRoot(),xaml))return;
+  if(Identity(ancestor,owner)){reachedOwner=true;break;}
+  if(get_class_name(ancestor)==L"Microsoft.UI.Xaml.Controls.MenuBarItem")menuOwner=true;
+ }
+ auto flyout=button.ContextFlyout().try_as<MenuFlyout>();if(!flyout)return;
+ if(!PaintMenuTriggerAdmission(std::wstring_view{get_class_name(owner)},std::wstring_view{get_class_name(button)},
+  std::wstring_view{button.Name()},std::wstring_view{get_class_name(flyout)},enabled.load()&&!HighContrast(),
+  ChromeUiThread(element)&&flyout.DispatcherQueue().HasThreadAccess(),element.IsLoaded(),reachedOwner,menuOwner))return;
+ auto& entries=uiState->preopenMenus;
+ for(auto it=entries.begin();it!=entries.end();)if(!it->element.get())it=entries.erase(it);else ++it;
+ for(auto& entry:entries)if(Identity(entry.element.get(),flyout)) {
+  if(!UpdatePreopenMenuStyle(entry,true))throw hresult_error(E_FAIL);
+  return;
+ }
+ // A local/implicit app style, binding or already-open menu retains ownership.
+ // The recorded native endpoint has an unset local value and no effective style.
+ auto property=MenuFlyout::MenuFlyoutPresenterStyleProperty();
+ if(flyout.IsOpen()||flyout.MenuFlyoutPresenterStyle()
+  ||!Identity(flyout.ReadLocalValue(property),DependencyProperty::UnsetValue()))return;
+ auto brush=[&](PCWSTR key)->SolidColorBrush {
+  for(auto const& entry:root.palette)if(wcscmp(entry.rule->key,key)==0)return entry.applied;
+  return nullptr;
+ };
+ auto background=brush(L"MenuFlyoutPresenterBackground"),foreground=brush(L"MenuFlyoutItemForeground"),border=brush(L"MenuFlyoutPresenterBorderBrush");
+ if(!background||!foreground||!border)return;
+ if(entries.size()>=64)throw hresult_error(E_BOUNDS);
+ Style style{xaml_typename<MenuFlyoutPresenter>()};
+ style.Setters().Append(Setter{Control::BackgroundProperty(),background});
+ style.Setters().Append(Setter{Control::ForegroundProperty(),foreground});
+ style.Setters().Append(Setter{Control::BorderBrushProperty(),border});
+// The two-argument WinUI Setter constructor refuses null (E_INVALIDARG).
+// Set its property and explicit null value through the public accessors.
+ Setter backdrop;backdrop.Property(MenuFlyoutPresenter::SystemBackdropProperty());
+ backdrop.Value(nullptr);style.Setters().Append(backdrop);
+ // No template, geometry, items, actions, focus or RequestedTheme is replaced.
+ // Retain the receipt before writing; a failed setter may have partially applied.
+ entries.push_back({make_weak(owner),make_weak(flyout),{nullptr,style}});
+ if(!UpdatePreopenMenuStyle(entries.back(),true))throw hresult_error(E_FAIL);
+}

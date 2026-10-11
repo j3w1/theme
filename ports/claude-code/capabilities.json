@@ -630,11 +630,6 @@
       "surface": "outside-claude",
       "reason": "Interface colour role that no Claude Code theme key takes."
     },
-    "color.interaction.text-selection.tint": {
-      "state": "out-of-scope",
-      "surface": "outside-claude",
-      "reason": "Interface colour role that no Claude Code theme key takes."
-    },
     "color.primitive.alpha.black-55": {
       "state": "out-of-scope",
       "surface": "outside-claude",
@@ -646,11 +641,6 @@
       "reason": "Primitive; ports consume roles, never primitives."
     },
     "color.primitive.alpha.red-12": {
-      "state": "out-of-scope",
-      "surface": "outside-claude",
-      "reason": "Primitive; ports consume roles, never primitives."
-    },
-    "color.primitive.alpha.red-50": {
       "state": "out-of-scope",
       "surface": "outside-claude",
       "reason": "Primitive; ports consume roles, never primitives."
@@ -936,11 +926,6 @@
       "reason": "Primitive; ports consume roles, never primitives."
     },
     "color.primitive.red.450": {
-      "state": "out-of-scope",
-      "surface": "outside-claude",
-      "reason": "Primitive; ports consume roles, never primitives."
-    },
-    "color.primitive.red.40": {
       "state": "out-of-scope",
       "surface": "outside-claude",
       "reason": "Primitive; ports consume roles, never primitives."
@@ -1769,6 +1754,31 @@
       "state": "out-of-scope",
       "surface": "outside-claude",
       "reason": "Not a colour; a Claude Code theme carries colours only."
+    },
+    "color.text.heading": {
+      "state": "unsupported",
+      "surface": "terminal-palette",
+      "reason": "Host exposes no separately mapped content heading/highlight foreground in this port."
+    },
+    "color.text.highlight": {
+      "state": "unsupported",
+      "surface": "terminal-palette",
+      "reason": "Host exposes no separately mapped content heading/highlight foreground in this port."
+    },
+    "color.interaction.text-selection.tint": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.primitive.alpha.red-50": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.40": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
     },
     "color.surface.accent": {
       "state": "not-implemented",

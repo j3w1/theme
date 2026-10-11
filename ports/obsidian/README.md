@@ -34,6 +34,21 @@ checks, is not recorded. The port is not `verified`.
    fails, and removes temporary files on success. If restoration itself fails,
    it prints the location of recovery copies rather than deleting them.
 
+## Local candidate or offline installation
+
+For a reviewed local checkout or a release archive obtained separately, pass the
+directory containing its generated `manifest.json` and `theme.css`:
+
+```powershell
+& ./ports/obsidian/install.ps1 -VaultPath $vault -SourcePath ./ports/obsidian/dist
+```
+
+This performs no network request. It uses the same pair validation, staging and
+failure recovery as the download route; it does not establish the source's
+provenance. Use the two files from the same reviewed revision. Keep a copy of the
+previous pair for a deliberate rollback, and close the affected vault before
+replacement. No notes, plugins or appearance preferences are changed.
+
 ## Alternative: paste PowerShell commands
 
 This route does not back up or verify the matching versions; it is **less
@@ -126,3 +141,12 @@ previous theme under Appearance; after closing Obsidian, you may delete only
 the `j3w1` theme folder if no longer needed. No vault notes, settings or
 plugins should be removed. See [implementation and verification limits](IMPLEMENTATION.md)
 for the compatibility audit, selector ledger and real-import protocol.
+
+## Canonical typography in 4.0.0
+
+D-033 replaces the earlier port-only reading override. Body and prose use
+`text.prose` (`#e99499`); content titles and H1–H6 use `text.heading`
+(`#f4eeee`). Bold inherits its surrounding foreground, including rose body,
+muted text, links and near-white headings. `--bold-color: inherit` is an
+explicit structural rule, not a fixed color mapping. Android uses the same
+generated theme. Existing historical implementation evidence remains historical.

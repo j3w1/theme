@@ -9,7 +9,7 @@
     },
     "markdown": {
       "state": "supported",
-      "reason": "Rose Reading View and CM6 note text, near-white note headings/title/bold and monochrome code variables; structural checks only."
+      "reason": "Canonical rose Reading View and CM6 prose; near-white content headings; bold inherits context (D-033)."
     },
     "commands": {
       "state": "supported",
@@ -83,11 +83,6 @@
       "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
     },
     "color.primitive.ink.60": {
-      "state": "out-of-scope",
-      "surface": "primitives",
-      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
-    },
-    "color.primitive.red.40": {
       "state": "out-of-scope",
       "surface": "primitives",
       "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
@@ -317,11 +312,6 @@
       "surface": "primitives",
       "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
     },
-    "color.primitive.alpha.red-50": {
-      "state": "out-of-scope",
-      "surface": "primitives",
-      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
-    },
     "color.primitive.ansi.0": {
       "state": "out-of-scope",
       "surface": "primitives",
@@ -520,7 +510,7 @@
     "color.text.prose": {
       "state": "mapped",
       "surface": "markdown",
-      "reason": "Near-white is reserved for note headings (h1–h6), inline title and bold; a documented Obsidian-only semantic deviation, not a token change."
+      "reason": "Canonical rose prose in Reading View and CM6 (D-033)."
     },
     "color.text.muted": {
       "state": "mapped",
@@ -676,11 +666,6 @@
       "state": "inherited",
       "surface": "host-behavior",
       "reason": "Obsidian native text-selection changes its fill and preserves content/syntax foregrounds; no global ::selection foreground override is installed."
-    },
-    "color.interaction.text-selection.tint": {
-      "state": "unsupported",
-      "surface": "interface",
-      "reason": "Obsidian keeps the text colour inside a selection (rose 3.96:1 on --text-selection, IMPLEMENTATION.md), so the tint fits it; adopting it changes the Obsidian artifact and needs its own import check, so --text-selection keeps text-selection.bg for now."
     },
     "color.interaction.hover.bg": {
       "state": "mapped",
@@ -1075,7 +1060,7 @@
     "color.code.syntax.heading": {
       "state": "unsupported",
       "surface": "unsupported-hooks",
-      "reason": "Native Markdown headings use h1–h6 color variables, owned by text.prose; no separate code syntax heading channel."
+      "reason": "Native Markdown headings use h1–h6 color variables, owned by text.heading; no separate code syntax heading channel."
     },
     "color.code.syntax.tag": {
       "state": "mapped",
@@ -1781,6 +1766,31 @@
       "state": "inherited",
       "surface": "host-behavior",
       "reason": "z.skip-link: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "color.text.heading": {
+      "state": "mapped",
+      "surface": "markdown",
+      "reason": "Content title and H1–H6 use the canonical heading role (D-033)."
+    },
+    "color.text.highlight": {
+      "state": "unsupported",
+      "surface": "light-mode",
+      "reason": "Host exposes no separately mapped content heading/highlight foreground in this port."
+    },
+    "color.primitive.red.40": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.alpha.red-50": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.interaction.text-selection.tint": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "Obsidian keeps the text colour inside a selection (rose 3.96:1 on --text-selection, IMPLEMENTATION.md), so the tint fits it; adopting it changes the Obsidian artifact and needs its own import check, so --text-selection keeps text-selection.bg for now."
     },
     "color.surface.accent": {
       "state": "unsupported",

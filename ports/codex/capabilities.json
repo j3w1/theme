@@ -634,11 +634,6 @@
       "surface": "outside-codex",
       "reason": "Interface colour role; a Codex tmTheme colours code only."
     },
-    "color.interaction.text-selection.tint": {
-      "state": "out-of-scope",
-      "surface": "outside-codex",
-      "reason": "Interface colour role; a Codex tmTheme colours code only."
-    },
     "color.primitive.alpha.black-55": {
       "state": "out-of-scope",
       "surface": "outside-codex",
@@ -650,11 +645,6 @@
       "reason": "Primitive; ports consume roles, never primitives."
     },
     "color.primitive.alpha.red-12": {
-      "state": "out-of-scope",
-      "surface": "outside-codex",
-      "reason": "Primitive; ports consume roles, never primitives."
-    },
-    "color.primitive.alpha.red-50": {
       "state": "out-of-scope",
       "surface": "outside-codex",
       "reason": "Primitive; ports consume roles, never primitives."
@@ -940,11 +930,6 @@
       "reason": "Primitive; ports consume roles, never primitives."
     },
     "color.primitive.red.450": {
-      "state": "out-of-scope",
-      "surface": "outside-codex",
-      "reason": "Primitive; ports consume roles, never primitives."
-    },
-    "color.primitive.red.40": {
       "state": "out-of-scope",
       "surface": "outside-codex",
       "reason": "Primitive; ports consume roles, never primitives."
@@ -1773,6 +1758,31 @@
       "state": "out-of-scope",
       "surface": "outside-codex",
       "reason": "Not a colour; a tmTheme carries colours only."
+    },
+    "color.text.heading": {
+      "state": "unsupported",
+      "surface": "editor-surfaces",
+      "reason": "Host exposes no separately mapped content heading/highlight foreground in this port."
+    },
+    "color.text.highlight": {
+      "state": "unsupported",
+      "surface": "editor-surfaces",
+      "reason": "Host exposes no separately mapped content heading/highlight foreground in this port."
+    },
+    "color.interaction.text-selection.tint": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.primitive.alpha.red-50": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.40": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
     },
     "color.surface.accent": {
       "state": "out-of-scope",

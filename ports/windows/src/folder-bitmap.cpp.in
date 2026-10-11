@@ -1,0 +1,96 @@
+// The tab's XAML SoftwareBitmapSource is created through this public WIC
+// method. The borrowed HICON and caller-owned IWICBitmap follow native lifetime
+// rules; only an exact stock folder gets an independent themed input icon.
+namespace FolderBitmap {
+using ConvertFn=HRESULT(STDMETHODCALLTYPE*)(IWICImagingFactory*,HICON,IWICBitmap**);
+static ConvertFn originalConvert=nullptr;
+static IWICImagingFactory* retainedFactory=nullptr;
+static HMODULE retainedShell=nullptr;
+[[clang::no_destroy]] static std::mutex moduleLock;
+static bool Digest(HMODULE module,const char* expected) noexcept {
+    // RAII also covers allocation failure while preparing the hash object.
+    struct Reader {
+        HANDLE file=INVALID_HANDLE_VALUE;
+        BCRYPT_ALG_HANDLE algorithm=nullptr;BCRYPT_HASH_HANDLE hash=nullptr;
+        std::vector<BYTE> object;
+        ~Reader(){if(hash)BCryptDestroyHash(hash);if(algorithm)BCryptCloseAlgorithmProvider(algorithm,0);if(file!=INVALID_HANDLE_VALUE)CloseHandle(file);}
+    } reader;
+    try {
+    wchar_t path[32768]{};DWORD length=GetModuleFileNameW(module,path,std::size(path));
+    if(!length||length>=std::size(path))return false;
+    reader.file=CreateFileW(path,GENERIC_READ,FILE_SHARE_READ,nullptr,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,nullptr);
+    if(reader.file==INVALID_HANDLE_VALUE)return false;
+    DWORD size=0,written=0;BYTE digest[32]{};bool valid=false;
+    if(BCryptOpenAlgorithmProvider(&reader.algorithm,BCRYPT_SHA256_ALGORITHM,nullptr,0)>=0
+       &&BCryptGetProperty(reader.algorithm,BCRYPT_OBJECT_LENGTH,reinterpret_cast<PUCHAR>(&size),sizeof(size),&written,0)>=0) {
+        reader.object.resize(size);
+        if(BCryptCreateHash(reader.algorithm,&reader.hash,reader.object.data(),size,nullptr,0,0)>=0) {
+            BYTE buffer[65536];DWORD count=0;bool complete=false;
+            for(;;){if(!ReadFile(reader.file,buffer,sizeof(buffer),&count,nullptr))break;
+                if(!count){complete=true;break;}if(BCryptHashData(reader.hash,buffer,count,0)<0)break;}
+            if(complete&&BCryptFinishHash(reader.hash,digest,sizeof(digest),0)>=0) {
+                constexpr char hex[]="0123456789abcdef";char actual[65]{};
+                for(unsigned n=0;n<32;n++){actual[n*2]=hex[digest[n]>>4];actual[n*2+1]=hex[digest[n]&15];}
+                valid=strcmp(actual,expected)==0;
+            }
+        }
+    }
+    return valid;
+    }catch(...){return false;}
+}
+static bool Caller(void* address) noexcept {
+    try {
+    HMODULE module=nullptr;
+    if(!GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS|GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+        reinterpret_cast<LPCWSTR>(address),&module)||module!=GetModuleHandleW(L"windowsudk.shellcommon.dll"))return false;
+    std::lock_guard guard(moduleLock);
+    if(retainedShell)return module==retainedShell;
+    if(!FixedModuleVersion(module,MAKELONG(@SHELLCOMMON_MINOR@,@SHELLCOMMON_MAJOR@),MAKELONG(@SHELLCOMMON_REVISION@,@SHELLCOMMON_BUILD@))
+       ||!Digest(module,"@SHELLCOMMON_SHA256@"))return false;
+    // Retain the admitted module until hook cleanup so a recycled handle cannot
+    // inherit an earlier module's admission. Missing/unknown callers pass through.
+    return GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS,reinterpret_cast<LPCWSTR>(address),&retainedShell)!=FALSE;
+    }catch(...){return false;}
+}
+static HRESULT Convert(IWICImagingFactory* factory,HICON icon,IWICBitmap** result,bool reviewed) noexcept {
+    DWORD before=GetLastError();HICON themed=nullptr;
+    // Never let C++ allocation/locking failures cross the public COM boundary.
+    // Fall back before invoking native conversion, which must run exactly once.
+    try {if(result)themed=FolderGlyph::Copy(icon,reviewed);}catch(...) {}
+    SetLastError(before);HRESULT status=originalConvert(factory,themed?themed:icon,result);DWORD after=GetLastError();
+    if(themed)DestroyIcon(themed);SetLastError(after);return status;
+}
+static HRESULT STDMETHODCALLTYPE Hook(IWICImagingFactory* factory,HICON icon,IWICBitmap** result) noexcept {
+    DWORD before=GetLastError();bool reviewed=Caller(__builtin_return_address(0));SetLastError(before);
+    return Convert(factory,icon,result,reviewed);
+}
+static bool Init() noexcept {
+    HRESULT apartment=CoInitializeEx(nullptr,COINIT_APARTMENTTHREADED);
+    if(FAILED(apartment)&&apartment!=RPC_E_CHANGED_MODE)return false;
+    struct Apartment {
+        IWICImagingFactory* factory=nullptr;
+        bool initialized;
+        ~Apartment(){if(factory)factory->Release();if(initialized)CoUninitialize();}
+    } apartmentScope{nullptr,SUCCEEDED(apartment)};
+    auto& factory=apartmentScope.factory;bool ready=false;
+    try {
+    if(SUCCEEDED(CoCreateInstance(CLSID_WICImagingFactory,nullptr,CLSCTX_INPROC_SERVER,IID_PPV_ARGS(&factory)))) {
+        // IWICImagingFactory inherits IUnknown; CreateBitmapFromHICON is the
+        // documented method at slot 22 of the public interface ABI.
+        auto function=(*reinterpret_cast<void***>(factory))[22];HMODULE module=nullptr;
+        ready=GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS|GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+            reinterpret_cast<LPCWSTR>(function),&module)&&module==GetModuleHandleW(L"windowscodecs.dll")
+            &&FixedModuleVersion(module,MAKELONG(@WIC_MINOR@,@WIC_MAJOR@),MAKELONG(@WIC_REVISION@,@WIC_BUILD@))
+            &&Digest(module,"@WIC_SHA256@")
+            &&Wh_SetFunctionHook(function,reinterpret_cast<void*>(Hook),reinterpret_cast<void**>(&originalConvert));
+    }
+    if(ready){retainedFactory=factory;factory=nullptr;}
+    return ready;
+    }catch(...){return false;}
+}
+static void Uninit() {
+    if(retainedFactory){retainedFactory->Release();retainedFactory=nullptr;}
+    std::lock_guard guard(moduleLock);
+    if(retainedShell){FreeLibrary(retainedShell);retainedShell=nullptr;}
+}
+}

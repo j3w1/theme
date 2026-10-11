@@ -14,6 +14,13 @@ acceptance and deployment are in the separate delivery and execution records.
 - The portal and Vue showcase consume those outputs. They carry no second
   component implementation.
 
+UI builds keep stable entry paths under `.cache/ui-build` so emitted bytes and
+implementation identities are reproducible. An exclusive `.cache/ui-build.lock`
+coordinates concurrent build and check processes; each waits for the prior
+process to finish before clearing or reading that stage. The lock is released
+on success or a caught failure. A wait longer than 60 seconds fails. If a process
+is forcibly stopped, confirm no UI build is running before removing its lock.
+
 **Choices (D-025).** Theme-rendered choices are the default web implementation.
 The shared `internal/choice.js` renderer draws single comboboxes and multiple
 listboxes. The original select keeps FormData, constraints, defaults and events.

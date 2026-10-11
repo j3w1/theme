@@ -2,9 +2,9 @@
   "schemaVersion": 1,
   "id": "telegram",
   "displayName": "Telegram Android and Desktop",
-  "status": "verified",
-  "themeVersion": "3.1.0",
-  "tokenDigest": "sha256-BKqEUtENinXFQptVKx700rUHp117biuUeG7FSCx83Vw=",
+  "status": "experimental",
+  "themeVersion": "4.0.0",
+  "tokenDigest": "sha256-zFvYCG+sRacSRpLqVjVsMUNxxfakWzjnJrCN7WOgQYY=",
   "profile": "default",
   "format": "telegram-theme",
   "targetVersions": [
@@ -40,11 +40,11 @@
   "files": [
     {
       "path": "dist/j3w1.attheme",
-      "install": "File install: open in Telegram for Android (or send to Saved Messages and tap), then Apply. The cloud link in the guide installs the same theme with automatic updates."
+      "install": "File install: open in Telegram for Android (or send to Saved Messages and tap), then Apply. Cloud publication and automatic updates require the separate owner steps in the guide; the current files await a new import check."
     },
     {
       "path": "dist/j3w1.tdesktop-theme",
-      "install": "File install: open with Telegram Desktop, then Apply this theme and Keep changes. The cloud link in the guide installs the same theme with automatic updates."
+      "install": "File install: open with Telegram Desktop, then Apply this theme and Keep changes. Cloud publication and automatic updates require the separate owner steps in the guide; the current files await a new import check."
     }
   ],
   "mappingPath": "mapping.json",

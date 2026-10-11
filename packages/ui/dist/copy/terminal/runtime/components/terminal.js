@@ -3,8 +3,8 @@ import { r as developerView } from "../chunks/display-dj9YaBfn.js";
 //#region .cache/ui-build/entries/components/terminal.js
 var J3w1Terminal = class extends J3w1Element {
 	static componentId = "terminal";
-	static version = "3.1.0";
-	static implementationId = "sha256-B2adhZVNdrkGsc0frE2M15xqFrCuguKQAtGwZ8l28Mc=";
+	static version = "4.0.0";
+	static implementationId = "sha256-YtjoIQGA3MHvquAi/l7AGweWpTNBe/ruD7iYJIEkkoc=";
 	static connect = developerView;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

@@ -1,0 +1,117 @@
+// Native shell preview backing belongs to prevhost, before PowerToys creates
+// its WinForms/WebView children. Never change a shared class brush or pixels.
+static std::atomic<bool> nativePreviewMode{false};
+static decltype(&DefWindowProcW) originalPreviewDefault;
+struct PreviewOwner {DWORD process;HANDLE lifetime;};
+static std::vector<PreviewOwner> previewOwners;
+static std::mutex previewOwnerMutex;
+static bool previewOwnerAdmissionOpen=false;
+static void RetirePreviewOwnersLocked() {
+ for(auto it=previewOwners.begin();it!=previewOwners.end();) {
+  if(WaitForSingleObject(it->lifetime,0)==WAIT_TIMEOUT){++it;continue;}
+  CloseHandle(it->lifetime);it=previewOwners.erase(it);
+ }
+}
+// Ownership transfers only after successful admission. Recheck capacity and
+// lifetime under the lock: discovery may overlap another window or teardown.
+static bool CachePreviewOwner(DWORD process,HANDLE lifetime) {
+ std::lock_guard guard(previewOwnerMutex);
+ if(!previewOwnerAdmissionOpen||GetProcessId(lifetime)!=process
+  ||WaitForSingleObject(lifetime,0)!=WAIT_TIMEOUT)return false;
+ RetirePreviewOwnersLocked();
+ for(const auto& owner:previewOwners)if(owner.process==process)return false;
+ if(previewOwners.size()>=16)return false;
+ try{previewOwners.push_back({process,lifetime});return true;}catch(...){return false;}
+}
+static bool PreviewOwnerAlive(DWORD process) {
+ std::lock_guard guard(previewOwnerMutex);
+ for(const auto& owner:previewOwners)if(owner.process==process) {
+  return WaitForSingleObject(owner.lifetime,0)==WAIT_TIMEOUT;
+ }return false;
+}
+static BOOL CALLBACK DiscoverPreviewOwner(HWND window,LPARAM) {
+ wchar_t name[64]{};DWORD process=0;
+ if(!GetClassNameW(window,name,64)||_wcsicmp(name,L"CabinetWClass")
+  ||!GetWindowThreadProcessId(window,&process))return TRUE;
+ {
+  std::lock_guard guard(previewOwnerMutex);
+  if(!previewOwnerAdmissionOpen)return TRUE;
+  RetirePreviewOwnersLocked();
+  for(const auto& owner:previewOwners)if(owner.process==process)return TRUE;
+  if(previewOwners.size()>=16)return TRUE;
+ }
+ HANDLE lifetime=OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION|SYNCHRONIZE,FALSE,process);
+ if(!lifetime)return TRUE;
+ wchar_t exe[32768]{};DWORD length=std::size(exe);
+ try{
+  if(QueryFullProcessImageNameW(lifetime,0,exe,&length)&&length<std::size(exe)
+   &&DigestFile(exe,"@PREVIEW_EXPLORER_SHA256@")&&CachePreviewOwner(process,lifetime))return TRUE;
+ }catch(...){} // Native notifications must retain fallback after allocation failure.
+ CloseHandle(lifetime);return TRUE;
+}
+static HWND PreviewHostRoot(HWND window) {
+ if(!window)return nullptr;
+ DWORD process=0,parentProcess=0,rootProcess=0;
+ GetWindowThreadProcessId(window,&process);
+ HWND parent=GetParent(window),root=GetAncestor(window,GA_ROOT);
+ GetWindowThreadProcessId(parent,&parentProcess);GetWindowThreadProcessId(root,&rootProcess);
+ wchar_t name[128]{},parentName[128]{},rootName[64]{};
+ return process==GetCurrentProcessId()&&parentProcess==rootProcess
+  &&GetClassNameW(window,name,128)&&_wcsicmp(name,L"Shell Preview Extension Host Previewer")==0
+  &&GetClassNameW(parent,parentName,128)&&_wcsicmp(parentName,L"Shell Preview Extension Host")==0
+  &&GetClassNameW(root,rootName,64)&&_wcsicmp(rootName,L"CabinetWClass")==0?root:nullptr;
+}
+static bool PreviewHostWindow(HWND window) {
+ HWND root=PreviewHostRoot(window);DWORD process=0;
+ return root&&GetWindowThreadProcessId(root,&process)&&PreviewOwnerAlive(process);
+}
+static bool PaintPreviewHost(HWND window,HDC dc) {
+ if(!nativePreviewMode||!enabled.load()||HighContrast()||!PreviewHostWindow(window)
+  ||WindowFromDC(dc)!=window)return false;
+ LOGBRUSH original{};
+ auto brush=reinterpret_cast<HBRUSH>(GetClassLongPtrW(window,GCLP_HBRBACKGROUND));
+ if(GetObjectW(brush,sizeof(original),&original)!=sizeof(original)
+  ||original.lbStyle!=BS_SOLID||original.lbColor!=RGB(30,30,30))return false;
+ // The current host-owned brush is checked on every erase. Unknown or later
+ // colors keep native painting. Filling consumes no document/window contents.
+ RECT rect{};if(!GetClientRect(window,&rect))return false;
+ HBRUSH canvas=CreateSolidBrush(loadingBackground);if(!canvas)return false;
+ int result=FillRect(dc,&rect,canvas);DeleteObject(canvas);return result!=0;
+}
+static LRESULT WINAPI PreviewDefaultHook(HWND window,UINT message,WPARAM wp,LPARAM lp) {
+ // A shared surrogate can acquire another Explorer owner after mod startup.
+ // Discover it only on native creation/show/position notifications, before
+ // erasure; never query an executable from WM_ERASEBKGND or invent geometry.
+ if(nativePreviewMode&&enabled.load()
+  &&(message==WM_CREATE||message==WM_SHOWWINDOW||message==WM_WINDOWPOSCHANGED)) {
+  HWND root=PreviewHostRoot(window);
+  if(root&&!HighContrast())DiscoverPreviewOwner(root,0);
+ }
+ if(message==WM_ERASEBKGND&&PaintPreviewHost(window,reinterpret_cast<HDC>(wp)))return 1;
+ return originalPreviewDefault(window,message,wp,lp);
+}
+static BOOL CALLBACK RefreshPreviewChild(HWND window,LPARAM) {
+ if(PreviewHostWindow(window))RedrawWindow(window,nullptr,nullptr,RDW_INVALIDATE|RDW_ERASE|RDW_NOCHILDREN);
+ return TRUE;
+}
+static BOOL CALLBACK RefreshPreviewRoot(HWND window,LPARAM) {
+ DWORD process=0;GetWindowThreadProcessId(window,&process);
+ if(PreviewOwnerAlive(process))EnumChildWindows(window,RefreshPreviewChild,0);
+ return TRUE;
+}
+static void RefreshPreviewHosts(){
+ if(enabled.load()&&!HighContrast())EnumWindows(DiscoverPreviewOwner,0);
+ EnumWindows(RefreshPreviewRoot,0);
+}
+static void ReleasePreviewOwners(){std::lock_guard guard(previewOwnerMutex);previewOwnerAdmissionOpen=false;for(auto owner:previewOwners)CloseHandle(owner.lifetime);previewOwners.clear();}
+static bool InitNativePreviewHost(const std::wstring& exe) {
+ if(!DigestFile(exe,"@PREVIEW_HOST_SHA256@"))return false;
+ // Open admission only for the verified surrogate. Teardown closes it under
+ // the same mutex so in-flight discovery cannot retain a handle after unload.
+ {std::lock_guard guard(previewOwnerMutex);previewOwnerAdmissionOpen=true;}
+ EnumWindows(DiscoverPreviewOwner,0);
+ nativePreviewMode=true;enabled=Wh_GetIntSetting(L"enabled")!=0;
+ if(!Wh_SetFunctionHook(reinterpret_cast<void*>(DefWindowProcW),reinterpret_cast<void*>(PreviewDefaultHook),reinterpret_cast<void**>(&originalPreviewDefault))) {
+  enabled=false;nativePreviewMode=false;ReleasePreviewOwners();return false;
+ }return true;
+}

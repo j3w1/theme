@@ -3,8 +3,8 @@ import { r as fields } from "../chunks/native-CAzZmDKR.js";
 //#region .cache/ui-build/entries/components/date-picker.js
 var J3w1DatePicker = class extends J3w1Element {
 	static componentId = "date-picker";
-	static version = "3.1.0";
-	static implementationId = "sha256-Yq9YXiyppXwisS6dlAJVXvYo9X86atPMOfqrGik3A8c=";
+	static version = "4.0.0";
+	static implementationId = "sha256-c14aNjkp318olUOl5+cdRlcdDahvWoTp8lk0sI48z1Y=";
 	static connect = fields;
 	static upgradeProperties = [
 		"disabled",

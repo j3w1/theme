@@ -1,5 +1,6 @@
+import { recordJson } from "./json-records.mjs";
 import { z } from "zod";
-import { readJson, writeOrCheck, stableJson } from "./fs.mjs";
+import { readJson, writeOrCheck } from "./fs.mjs";
 import { buildUsageIndex } from "./usage.mjs";
 import { usageSchema, portMappingSchema } from "../../schemas/usage.mjs";
 import { validatePorts } from "./validators.mjs";
@@ -13,6 +14,6 @@ export const usageGenerator = {
     const globalPairs = (await readJson("spec/contrast.json")).pairs;
     const index = usageSchema(z).parse(await attachSourceLines(buildUsageIndex({ manifest, profiles, components, ports, globalPairs })));
     const file = "exports/token-usage.json";
-    return { files: [file], changed: await writeOrCheck(file, stableJson(index), { check }) ? [file] : [], note: `${Object.keys(index.profiles).length} profiles` };
+    return { files: [file], changed: await writeOrCheck(file, recordJson(index, ["uses", "contrast", "unmappedPorts"]), { check }) ? [file] : [], note: `${Object.keys(index.profiles).length} profiles` };
   },
 };

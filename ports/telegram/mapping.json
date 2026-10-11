@@ -750,7 +750,6 @@
       "desktop:historyFileInIconFg",
       "desktop:historyFileOutIconFg",
       "desktop:sideBarBadgeFg",
-      "desktop:historyFileThumbIconFg",
       "android:chat_inMediaIcon",
       "android:chat_outMediaIcon",
       "android:musicPicker_checkboxCheck",
@@ -1293,6 +1292,9 @@
     ],
     "color.text.on-light": [
       "desktop:dialogsUnreadFg"
+    ],
+    "color.text.highlight": [
+      "desktop:historyFileThumbIconFg"
     ]
   },
   "unmapped": {
@@ -1594,6 +1596,7 @@
     "z.dialog": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these.",
     "z.toast": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these.",
     "z.skip-link": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these.",
-    "color.text.inverse": "color.text.inverse has no separate native hook in this projection; related controls share the declared canonical role instead."
+    "color.text.inverse": "color.text.inverse has no separate native hook in this projection; related controls share the declared canonical role instead.",
+    "color.text.heading": "The pinned Telegram theme formats expose shared names and chrome titles, but no independent content-heading foreground; UI titles remain canonical bright rose under D-033."
   }
 }

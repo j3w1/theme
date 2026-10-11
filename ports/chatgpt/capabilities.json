@@ -654,11 +654,6 @@
       "surface": "interaction",
       "reason": "Focus, hover, pressed and selection colours are derived by ChatGPT from the accent and contrast; only the accent is set."
     },
-    "color.interaction.text-selection.tint": {
-      "state": "unsupported",
-      "surface": "interaction",
-      "reason": "Focus, hover, pressed and selection colours are derived by ChatGPT from the accent and contrast; only the accent is set."
-    },
     "color.primitive.alpha.black-55": {
       "state": "out-of-scope",
       "surface": "outside-chatgpt",
@@ -670,11 +665,6 @@
       "reason": "Primitive; ports consume roles, never primitives."
     },
     "color.primitive.alpha.red-12": {
-      "state": "out-of-scope",
-      "surface": "outside-chatgpt",
-      "reason": "Primitive; ports consume roles, never primitives."
-    },
-    "color.primitive.alpha.red-50": {
       "state": "out-of-scope",
       "surface": "outside-chatgpt",
       "reason": "Primitive; ports consume roles, never primitives."
@@ -960,11 +950,6 @@
       "reason": "Primitive; ports consume roles, never primitives."
     },
     "color.primitive.red.450": {
-      "state": "out-of-scope",
-      "surface": "outside-chatgpt",
-      "reason": "Primitive; ports consume roles, never primitives."
-    },
-    "color.primitive.red.40": {
       "state": "out-of-scope",
       "surface": "outside-chatgpt",
       "reason": "Primitive; ports consume roles, never primitives."
@@ -1793,6 +1778,31 @@
       "state": "out-of-scope",
       "surface": "outside-chatgpt",
       "reason": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints)."
+    },
+    "color.text.heading": {
+      "state": "unsupported",
+      "surface": "text-ladder",
+      "reason": "Host exposes no separately mapped content heading/highlight foreground in this port."
+    },
+    "color.text.highlight": {
+      "state": "unsupported",
+      "surface": "text-ladder",
+      "reason": "Host exposes no separately mapped content heading/highlight foreground in this port."
+    },
+    "color.interaction.text-selection.tint": {
+      "state": "unsupported",
+      "surface": "interaction",
+      "reason": "Focus, hover, pressed and selection colours are derived by ChatGPT from the accent and contrast; only the accent is set."
+    },
+    "color.primitive.alpha.red-50": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.40": {
+      "state": "out-of-scope",
+      "surface": "outside-chatgpt",
+      "reason": "Primitive; ports consume roles, never primitives."
     },
     "color.surface.accent": {
       "state": "unsupported",

@@ -36,6 +36,16 @@ document.
 component. Waived pairs carry their reason. A waiver is only valid for
 decorative graphics that are never the only boundary of a control.
 
+## Text hierarchy
+
+D-033 makes ordinary interface and reading text rose (`color.text.default` and
+`color.text.prose`). Bold changes weight and inherits the current semantic
+foreground, including inside headings, links, muted and selected text. Content
+titles and H1-H6 use `color.text.heading`; near-white is not a readability or
+boldness requirement. Selection and contrast-critical on-fill roles stay
+explicit and are checked against their actual backgrounds. Heading level is
+also conveyed through structure, size and weight, never colour alone.
+
 ## Focus
 
 Focus is never lost and never invisible. The ring is defined once, in

@@ -102,7 +102,7 @@ test("every Vue destination resolves under the Pages base and graph bars use can
   const link=page.getByRole("link",{name:"Open the work board →"});
   await expect(link).toHaveCSS("color",color("color.text.link"));
   await expect(link).toHaveCSS("text-decoration-line","underline");
-  await expect(page.locator("main h1")).toHaveCSS("color",color("color.text.prose"));
+  await expect(page.locator("main h1")).toHaveCSS("color",color("color.text.heading"));
   await expect(page.locator("j3w1-chart thead th").first()).toHaveCSS("color",color("color.text.bright"));
   await expect(page.locator("j3w1-chart tbody th").first()).toHaveCSS("color",color("color.text.default"));
   await link.hover();await expect(link).toHaveCSS("color",color("color.text.link-hover"));

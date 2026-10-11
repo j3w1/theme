@@ -79,7 +79,7 @@
       "chat_botKeyboardButtonText": "Bot keyboard label text: upstream default is a translucent dark grey (0xF0444444) that is unreadable on dark panels; opaque rose text never hides content.",
       "code_comment": "Code comment text: upstream default is 50% black, invisible on dark code blocks; the canonical comment role is opaque text."
     },
-    "nearWhite": {
+    "onFill": {
       "dialogCheckboxSquareCheck": [
         "dialogCheckboxSquareBackground"
       ],
@@ -327,7 +327,7 @@
       "callBarMuteRipple",
       "sideBarBgRipple"
     ],
-    "nearWhite": {
+    "onFill": {
       "windowFgActive": [
         "windowBgActive"
       ],

@@ -3,8 +3,8 @@ import { n as disclosure } from "../chunks/navigation-Dt8ap-9J.js";
 //#region .cache/ui-build/entries/components/disclosure.js
 var J3w1Disclosure = class extends J3w1Element {
 	static componentId = "disclosure";
-	static version = "3.1.0";
-	static implementationId = "sha256-3nrHMcxup1GUGOCUKZt2hVVrKx9pOUF2EfoAwtH91xQ=";
+	static version = "4.0.0";
+	static implementationId = "sha256-ROxGJvPyGtUqhWzL3a8qhGmOOsm3PD+fneX9Gb764gg=";
 	static connect = disclosure;
 	static upgradeProperties = [
 		"disabled",

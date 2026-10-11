@@ -8,7 +8,7 @@ import { spawnSync } from "node:child_process";
 import test from "node:test";
 import { z } from "zod";
 import { listFiles, readJson, readText } from "../scripts/lib/fs.mjs";
-import { devboxLines, guideBlocks, INSTALL_GUIDES, orcaOneLiner, orcaScript, PENDING } from "../scripts/lib/install-guides.mjs";
+import { devboxLines, guideBlocks, firstInstallerTag, INSTALL_GUIDES, orcaOneLiner, orcaScript, PENDING } from "../scripts/lib/install-guides.mjs";
 import { FIRST_INSTALLER_TAG, themeSchema } from "../schemas/theme.mjs";
 
 const manifest = await readJson("theme.json");
@@ -34,13 +34,13 @@ test("without a release every block is one line; with one every command names it
   for (const guide of INSTALL_GUIDES) {
     for (const [name, body] of Object.entries(guideBlocks(unreleased, guide))) {
       assert.equal(body.split("\n").length, 1, `${guide} ${name}`);
-      assert.ok(body.endsWith(`once ${FIRST_INSTALLER_TAG} is released.`), body);
+      assert.ok(body.endsWith(`once ${firstInstallerTag(guide)} is released.`), body);
     }
   }
   assert.equal(guideBlocks(unreleased, "ports/orca/README.md").install, PENDING);
 
   const commit = "0123456789abcdef0123456789abcdef01234567";
-  const released = { ...unreleased, release: { tag: FIRST_INSTALLER_TAG, commit } };
+  const released = { ...unreleased, release: { tag: "v4.0.0", commit } };
   for (const guide of INSTALL_GUIDES) {
     const blocks = guideBlocks(released, guide);
     assert.ok(blocks.install.includes(commit), `${guide} install names the commit`);
@@ -94,4 +94,24 @@ test("the release schema takes a tag from v3.0.0 on and a full commit, nothing e
     { tag: FIRST_INSTALLER_TAG, commit: "A".repeat(40) },
     { tag: FIRST_INSTALLER_TAG, commit: "a".repeat(40), branch: "main" },
   ]) assert.equal(parse(bad).success, false, JSON.stringify(bad));
+});
+
+test("Windows guides do not name an older release that did not contain the port", () => {
+  const commit="0123456789abcdef0123456789abcdef01234567";
+  for(const tag of ["v2.0.0","v3.0.0"]){
+    const blocks=guideBlocks({...manifest,release:{tag,commit}},"ports/windows/README.md");
+    for(const body of Object.values(blocks)){
+      assert.equal(body,"Install commands appear here once v4.0.0 is released.");
+      assert.ok(!body.includes(commit));
+    }
+  }
+  const ready=guideBlocks({...manifest,release:{tag:"v4.0.0",commit}},"ports/windows/README.md");
+  assert.ok(ready.install.includes(`/`+commit+`/ports/windows/install.ps1`));
+  assert.ok(ready.update.includes(`newer release`));
+  assert.ok(ready.install.includes(`Invoke-WebRequest -UseBasicParsing`));
+  assert.ok(ready.install.includes(`& $setup -Revision ${commit}`));
+  assert.ok(!ready.install.includes(`-Action Plan`));
+  assert.ok(ready.restore.includes(`-Action Restore -Latest`));
+  assert.ok(ready.restore.includes(`install.ps1`));
+  assert.doesNotMatch(ready.restore, /\bpwsh\b|setup\.ps1/);
 });

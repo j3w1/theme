@@ -44,6 +44,10 @@ export default function copyExports() {
           if (downloads.has(installer)) throw new Error(`A port file would overwrite ${installer}`);
           await writeFileEnsured(path.join(out, installer), await fs.readFile(path.join(repoRoot, installer)));
         }
+        for (const name of ["install.ps1", "adapter.ps1", "host.json", "dependencies.json"]) {
+          const relative = `ports/windows/${name}`;
+          await writeFileEnsured(path.join(out, relative), await fs.readFile(path.join(repoRoot, relative)));
+        }
         await fs.writeFile(path.join(out, ".nojekyll"), "");
       },
     },

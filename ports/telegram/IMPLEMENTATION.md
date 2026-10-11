@@ -88,7 +88,7 @@ Non-colour keys (`wallpaperFileOffset`, `chat_wallpaper_gradient_rotation`, `cha
 **Contrast and colour rules, enforced by tests:**
 - The wallpaper is darker than incoming bubbles, and incoming bubbles are darker than outgoing ones.
 - Message text, timestamps, replies and links pass 4.5:1 on both bubbles and on the main panels.
-- Near-white, by luminance, appears only on keys listed in `nearWhite` in `src/coverage.json`, inherited keys included. Each entry names the backgrounds the glyph is drawn on; the test checks every one is a selection, action or danger fill (or the media scrim behind loader and thumbnail icons) at 4.5:1 or more. Translucent scrims are measured composited over both white and black. Bold never selects white.
+- The reviewed `onFill` table in `src/coverage.json` records every on-fill foreground/background pair, inherited keys included. Near-white appears only within that table; action foregrounds now use canonical bright rose under D-033 and retain the same contrast checks. Each entry names the backgrounds the glyph is drawn on; the test checks every one is a selection, action or danger fill (or the media scrim behind loader and thumbnail icons) at 4.5:1 or more. Translucent scrims are measured composited over both white and black. Bold never selects white.
 - Interface keys stay in the red/rose hue range: no blue, cyan, orange or purple.
 
 ## Cloud theme
@@ -127,7 +127,7 @@ The same `https://t.me/addtheme/<slug>` link opens the matching document on each
 ## Limitations
 
 - **Colours only.** Telegram owns fonts, sizes, bubble corners, spacing, glass/blur effects, motion and accessibility settings. The theme changes none of them.
-- **No heading levels.** Messages have no H1–H6, and names and titles share bright rose. Once canonical D-033 lands, they move to `text.heading`.
+- **No independent heading hook.** The pinned formats expose shared names and chrome titles, which retain bright rose under D-033. They expose no independent H1–H6 foreground, so `text.heading` is unsupported instead of turning UI names or all bold text near-white. `text.highlight` is mapped only to Desktop's two thumbnail controls (`historyFileThumbIconFg` and `historyFileThumbRadialFg`): bright rose on their media scrim measures 3.66:1 over white media, so these contrast-critical glyphs retain an explicit near-white highlight.
 - **Android selected bubbles.** Android uses the same message text colour for normal and selected bubbles; Desktop has separate selected foregrounds.
 - **Android text selection.** Android keeps the text and code colours inside a selection; Desktop turns selected text and links near-white.
   - **Visibility:** the tint stands ΔE 36.5 from the message field, 35.1 from incoming bubbles and 21.5 from outgoing bubbles.
@@ -206,7 +206,7 @@ The API calls were checked against teleproto 1.229.1's TL definitions and client
 
 The port is `verified` while that record matches; it returns to experimental if a later change is not re-checked on each client whose file it changes.
 
-**Current state:** verified. The owner found text selection too faint on Android, and the Android file changed for it (D-036). The owner then re-imported it and re-checked selection on Android on 2026-10-06. The Desktop file did not change.
+**Current state:** experimental after integration with D-033. Both artifacts now use the 4.0.0 canonical palette; ordinary action foregrounds change to bright rose, with the two contrast-critical thumbnail highlights retained. The 2026-10-06 import and acceptance records are retained unchanged as historical evidence of the earlier 3.1.0 files. The owner must import and assess the new files on both clients before the port and cloud link return to verified. The Android selection correction from D-036 remains intact.
 
 **Visual check, on Android and on Telegram Desktop for Windows:**
 - **Chats:** the chat list and the unread badges; one chat, with incoming and outgoing bubbles, message text, names, timestamps and links; a reply or quote; the composer and the send button.

@@ -117,7 +117,7 @@ test("emission is byte-identical across repeats and time zones", () => {
 });
 
 test("every token and upstream key has one classification with direct, non-redundant inheritance", () => {
-  assert.equal(resolved.size, 350);
+  assert.equal(resolved.size, 352);
   assertPortMapping({ ...port, mapping }, resolved.keys());
   assertCapabilities({ ...port, mapping }, capabilities);
   const keys = Object.values(mapping.mappings).flat(); assert.equal(new Set(keys).size, keys.length);
@@ -343,8 +343,10 @@ test("wallpaper, solid bubbles, rose messages, chrome emphasis and avatars keep 
   assert.equal(roleOf("android", "voipgroup_mutedIconUnscrolled"), "color.text.muted");
 });
 
-test("near-white is restricted to approved on-fill or link-hover roles, and interface hues stay red/rose", () => {
-  const whiteRoles = ["color.text.on-selection", "color.interaction.selection.text", "color.text.on-action", "color.text.on-danger", "color.status.danger.on-fill", "color.text.link-hover"];
+test("on-fill foregrounds retain contrast, near-white stays restricted and interface hues stay red/rose", () => {
+  const whiteRoles = ["color.text.on-selection", "color.interaction.selection.text", "color.text.on-action", "color.text.on-danger", "color.status.danger.on-fill", "color.text.link-hover", "color.text.highlight"];
+  assert.deepEqual(mapping.mappings["color.text.highlight"], ["desktop:historyFileThumbIconFg"], "only the contrast-critical thumbnail control owns a deliberate highlight");
+  assert.equal(effective("desktop", "historyFileThumbRadialFg").role, "color.text.highlight", "the thumbnail radial control inherits the same contrast-critical highlight");
   // Near-white by relative luminance, not by literal value, so a token change
   // cannot silently widen it. Bright rose (text.bright) stays well below.
   const luminance = ([r, g, b]) => [r, g, b].map(v => { v /= 255; return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }).reduce((sum, v, i) => sum + v * [0.2126, 0.7152, 0.0722][i], 0);
@@ -352,17 +354,18 @@ test("near-white is restricted to approved on-fill or link-hover roles, and inte
   // loader icons over photos.
   const fills = new Set(["color.action.primary.bg", "color.action.primary.hover-bg", "color.action.primary.pressed-bg", "color.interaction.selection.bg", "color.interaction.selection.inactive-bg", "color.interaction.hover.bg-strong", "color.status.danger.fill", "color.interaction.text-selection.bg", "color.surface.backdrop"]);
   for (const target of ["android", "desktop"]) {
-    // Every near-white key, emitted or inherited, is on the reviewed table
-    // naming the backgrounds it is drawn on, and nothing else is near-white.
+    // Every near-white key is in the reviewed table. The same table also
+    // retains all rose on-fill pairs, so D-033 cannot remove their contrast checks.
     const near = registry[target].keys.filter(key => { const e = effective(target, key); return e && luminance(e.color) > 0.6; }).sort();
-    assert.deepEqual(near, Object.keys(coverage[target].nearWhite).sort(), `${target} near-white keys`);
-    for (const [key, backgrounds] of Object.entries(coverage[target].nearWhite)) {
+    assert.deepEqual(near, Object.keys(coverage[target].onFill).filter(key => luminance(effective(target, key).color) > 0.6).sort(), `${target} near-white keys`);
+    for (const [key, backgrounds] of Object.entries(coverage[target].onFill)) {
       assert.ok(backgrounds.length, `${target}:${key} names its backgrounds`);
       assert.ok(whiteRoles.includes(effective(target, key).role), `${target}:${key}: ${effective(target, key).role}`);
       for (const bg of backgrounds) {
         assert.ok(registry[target].keys.includes(bg), `${target}:${bg} is a registry key`);
         const fill = effective(target, bg), fg = effective(target, key).color;
         assert.ok(fill && fills.has(fill.role), `${target}:${key} sits on ${bg} (${fill?.role ?? "host default"}), not a fill`);
+        if (effective(target, key).role === "color.text.highlight") assert.ok(target === "desktop" && ["historyFileThumbIconFg", "historyFileThumbRadialFg"].includes(key), `${target}:${key} is an admitted contrast-critical thumbnail control`);
         for (const result of contrastResults(fg, fill.color)) assert.ok(result.pass, `${target}:${key} on ${bg}${result.surface ? ` over ${result.surface}` : ""}: ${result.ratio}`);
       }
     }

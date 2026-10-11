@@ -1794,6 +1794,16 @@
       "state": "mapped",
       "surface": "messages",
       "reason": "Canonical color.surface.accent for outgoing message bubbles (D-035); native keys are listed in mapping.json and use no derived colours."
+    },
+    "color.text.heading": {
+      "state": "unsupported",
+      "surface": "interface",
+      "reason": "The pinned Telegram theme formats expose shared names and chrome titles, but no independent content-heading foreground; UI titles remain canonical bright rose under D-033."
+    },
+    "color.text.highlight": {
+      "state": "mapped",
+      "surface": "controls",
+      "reason": "The two Desktop thumbnail controls use an explicit near-white highlight over the media scrim: canonical bright-rose on-action text falls to 3.66:1 over white media. All ordinary action foregrounds remain bright rose under D-033."
     }
   },
   "rollback": "Choose the previous Telegram theme in Settings → Chat Settings/Appearance; restore the previous chat background if it was customised.",

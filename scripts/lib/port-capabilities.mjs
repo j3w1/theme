@@ -1,3 +1,4 @@
+import { recordJson } from "./json-records.mjs";
 import { z } from "zod";
 import path from "node:path";
 import { readJson, readText, repoRoot, sha256, sha256File, stableJson, writeOrCheck } from "./fs.mjs";
@@ -65,6 +66,6 @@ export const portCatalogueGenerator = {
       sourcePolicy: "Relative paths refer to the same pinned revision as this digest-covered export. Historical references and private runs are not published ports.",
       ports });
     const file = "exports/port-capabilities.json";
-    return { files: [file], changed: await writeOrCheck(file, stableJson(catalogue), { check }) ? [file] : [], note: `${ports.length} real ports` };
+    return { files: [file], changed: await writeOrCheck(file, recordJson(catalogue, ["mappings", "files"]), { check }) ? [file] : [], note: `${ports.length} real ports` };
   },
 };
