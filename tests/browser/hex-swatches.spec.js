@@ -117,6 +117,32 @@ test("printed previews request exact colors", verification({ component: "page", 
   expect(await swatch.evaluate((el) => getComputedStyle(el).printColorAdjust)).toBe("exact");
 });
 
+test("inspector restores token focus established before its script loads", verification({ component: "page", category: "enhancements", states: ["focus-visible"], variants: [], note: "Module requests are held until an existing token link receives focus; initialization must retain that focus and show its generated swatches. Desktop automation only, not manual accessibility evidence." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "one explicit delayed-startup check");
+  let releaseScript;
+  const delivery = new Promise(resolve => { releaseScript = resolve; });
+  await page.route("**/_astro/*.js", async route => { await delivery; await route.continue(); });
+  try {
+    await page.goto("reference/", { waitUntil: "commit" });
+    const token = page.locator('[data-token="color.interaction.focus.ring"]').first();
+    await token.focus();
+    await expect(token).toBeFocused();
+    await expect(token).not.toHaveAttribute("aria-describedby", "inspector");
+    releaseScript();
+    await expect(token).toHaveAttribute("aria-describedby", "inspector");
+    await expect(page.locator("#inspector")).toBeVisible();
+    await expect(page.locator("#inspector .hex-swatch")).not.toHaveCount(0);
+    await expect(token).toBeFocused();
+    expect(await token.evaluate(el => el.matches(":focus-visible"))).toBe(true);
+    expect(await page.locator("#inspector .hex-swatch[tabindex]").count()).toBe(0);
+    await page.keyboard.press("Escape");
+    await expect(page.locator("#inspector")).toBeHidden();
+    await expect(token).toBeFocused();
+  } finally {
+    releaseScript();
+  }
+});
+
 test("inspector uses generated previews and retains all token matches without new tab stops", verification({component: "page", category: "enhancements", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
   test.skip(!only(testInfo, "desktop"), "one enhanced inspector");
   await openSpec(page);

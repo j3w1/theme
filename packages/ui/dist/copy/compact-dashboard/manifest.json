@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "compact-dashboard",
-  "version": "3.1.0",
-  "contract": "https://github.com/j3w1/theme/blob/v3.1.0/spec/components/compact-dashboard.md",
+  "version": "4.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/compact-dashboard.md",
   "dependencies": [
     "register/compact-dashboard.js",
     "chunks/element-C1XeXVYC.js",
@@ -19,16 +19,16 @@
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
     "runtime/register/chart.js": "sha256-5iBwKSjcyRylARXTeL2emhbuI2FCMQ757IBdPqFnU0U=",
-    "runtime/components/chart.js": "sha256-a9bWzdbO+oMAbZ4ZWFyeLasAmQ7aMdPUC6GyBOLOcX8=",
+    "runtime/components/chart.js": "sha256-J4rkX+ylh8URHbl2DxJ2FtbkHBtan2UOpNGVJIh1LjQ=",
     "runtime/chunks/display-dj9YaBfn.js": "sha256-0Y8LcHvfDz2LLz+EWdO8Jr6pfwnXPw03N8x1UcM2pN8=",
-    "runtime/components/compact-dashboard.js": "sha256-0fTG86kWm4Qv6PM8B2v6uCRlz4NhekYc4YAvypBp14M=",
+    "runtime/components/compact-dashboard.js": "sha256-AyJRimILR3ZhpG7LU6Jtut1sQj0LSEFhOC9MT+gVfbQ=",
     "runtime/chunks/compositions-d6BkKTYf.js": "sha256-El5csGAVMeeZWmJ1ztdXW3O3t2AQPrf3YrEOMkGX17c=",
     "runtime/chunks/navigation-Dt8ap-9J.js": "sha256-7QSC/eQSDSRRy3YqMltwjb6cwbEA0V652cfo+Ng2VqA=",
-    "tokens.css": "sha256-c/NmCkdHsOHiHx4q0evmxTKbpeLSU3Eoo2b0S7PYNzU=",
+    "tokens.css": "sha256-gjEwadB0zTFK+892nxLpStOcmcjP5pxj2Pe/By5vwPE=",
     "component.css": "sha256-CK9kd2wDntxSLF6J4F4+3SFybCPdr/tSqL7xJpw3hFs=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-I++zY2714BqcfCh02WgcXCFwujrwXLK4TwP9wII+QE4=",
     "index.html": "sha256-3/JWb8Uk24wjHBuQjWRaXDvwfUi9Mp9wjh4uYtdNxQ4=",
-    "README.md": "sha256-hEYCPhM1yEFspCvp92csyqa59IxgNNL0mhE7WQakMx4="
+    "README.md": "sha256-6g2tbWoWmdPy5ju9eAR0VdQ5vp0GjEEftnqhmjoP1j4="
   }
 }

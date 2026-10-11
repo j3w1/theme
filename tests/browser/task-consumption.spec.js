@@ -55,9 +55,17 @@ test("sealed composed reconstruction retains native controls and modal lifecycle
       const result = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
       expect(result.violations.map((v) => v.id)).toEqual([]);
     }
+    // Native close queues its event. A hidden dialog and native focus return
+    // do not establish that the sealed fixture's close handler has completed.
+    // Observe that lifecycle before opening another confirmation; otherwise
+    // the prior handler can clear the newly opened pending state.
+    await modal.evaluate((node) => {
+      window.__taskDialogClosed = new Promise((resolve) => node.addEventListener("close", () => resolve(), { once: true }));
+    });
     if (action === "Escape") await page.keyboard.press("Escape");
     else await page.getByRole("button", { name: action, exact: true }).click();
     await expect(modal).toBeHidden();
+    await page.evaluate(() => window.__taskDialogClosed);
     await expect(save).toBeFocused();
     if (action !== "Confirm") await expect(page.getByRole("status")).toHaveText("No settings confirmed.");
   }

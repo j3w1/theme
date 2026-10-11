@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "admin-form",
-  "version": "3.1.0",
-  "contract": "https://github.com/j3w1/theme/blob/v3.1.0/spec/components/admin-form.md",
+  "version": "4.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/admin-form.md",
   "dependencies": [
     "register/admin-form.js",
     "chunks/element-C1XeXVYC.js",
@@ -22,19 +22,19 @@
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
     "runtime/register/text-field.js": "sha256-DD+ctMlKClOK6B/glshiJwIjKilewzY171GvKtVGf1A=",
-    "runtime/components/text-field.js": "sha256-29p4cdWqA/EBhBT89jNZLXBHG9fq2KCwsLNr9aXXQV4=",
+    "runtime/components/text-field.js": "sha256-6f5tLWwF57IFY+uH5zM0afiU3g09PW3M4772zC7zD4Q=",
     "runtime/chunks/native-CAzZmDKR.js": "sha256-er7tiDPWmSEvPEp+BvRPWpdqnw28ypHQStJng7Dbah4=",
     "runtime/register/textarea.js": "sha256-H+BMjmdgnMxVEA9KvLSSKoOlHTAH91Qy7+pjUiTlgEE=",
-    "runtime/components/textarea.js": "sha256-DwUvNeQ1dZXOICXpSHqIEQSbWEKbILIj0f8v1lCz3ME=",
+    "runtime/components/textarea.js": "sha256-qJqDEskuaVeBUFjefVF+KSbJV3s6vpaKCtd4aQ4QtoY=",
     "runtime/register/select.js": "sha256-zXXuJRnrp9EVnk1A8VpgUzF/JPShcAImY9zRc6nQasQ=",
-    "runtime/components/select.js": "sha256-40sgf7T7I5yJjditBU5kYdpVU0hZNVygdu7KUswflRY=",
-    "runtime/components/admin-form.js": "sha256-cUz7PusxNzX0NI+Ds7SRanLW1408g0KCawfFoPo0558=",
+    "runtime/components/select.js": "sha256-yyq0jsJOysQGTPpFoA1C1aRWSIukrk+M4Ro2ZwCyWbw=",
+    "runtime/components/admin-form.js": "sha256-aN07ea+gUj6aAxwJjeILpqJFPUQJ27g3LAIjpHmljNg=",
     "runtime/chunks/forms-BT3z7lNC.js": "sha256-Txmae07dWLj1H/FL869U0Kv84TQxzpdFeOg0g8zGK6I=",
-    "tokens.css": "sha256-c/NmCkdHsOHiHx4q0evmxTKbpeLSU3Eoo2b0S7PYNzU=",
+    "tokens.css": "sha256-gjEwadB0zTFK+892nxLpStOcmcjP5pxj2Pe/By5vwPE=",
     "component.css": "sha256-Of5oLJY6n5Yfqu44/xCAuuJEYRoCg4Kr+YZbVggbwZE=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-TRLraonRxggrZcfXS9jlN+nTIOpRHiXbMKQNm8NbR2A=",
     "index.html": "sha256-HsmeIqneb7G9ZHVJEuzAqXdP7AYU8OlzG8Rs70uYyBQ=",
-    "README.md": "sha256-lw8EjBJvJJNeC87EVJKw3v5HehflIuXahPH8waiTf6s="
+    "README.md": "sha256-bid+/EA6npftuo0cAZQP6rg+96qu7gNC4h/Klx23PF0="
   }
 }

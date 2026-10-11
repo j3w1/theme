@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "chart",
-  "version": "3.1.0",
-  "contract": "https://github.com/j3w1/theme/blob/v3.1.0/spec/components/chart.md",
+  "version": "4.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/chart.md",
   "dependencies": [
     "register/chart.js",
     "chunks/element-C1XeXVYC.js",
@@ -14,13 +14,13 @@
     "runtime/register/chart.js": "sha256-5iBwKSjcyRylARXTeL2emhbuI2FCMQ757IBdPqFnU0U=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/components/chart.js": "sha256-a9bWzdbO+oMAbZ4ZWFyeLasAmQ7aMdPUC6GyBOLOcX8=",
+    "runtime/components/chart.js": "sha256-J4rkX+ylh8URHbl2DxJ2FtbkHBtan2UOpNGVJIh1LjQ=",
     "runtime/chunks/display-dj9YaBfn.js": "sha256-0Y8LcHvfDz2LLz+EWdO8Jr6pfwnXPw03N8x1UcM2pN8=",
-    "tokens.css": "sha256-c/NmCkdHsOHiHx4q0evmxTKbpeLSU3Eoo2b0S7PYNzU=",
+    "tokens.css": "sha256-gjEwadB0zTFK+892nxLpStOcmcjP5pxj2Pe/By5vwPE=",
     "component.css": "sha256-/W9/IEOepx6zAHtGcRJs1x0lwfMFkVEiYDCV4y4byXw=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-Wk7EuPuisom2ohEBkZvcgafrpN7xXzlCUaNrWq7BZEA=",
     "index.html": "sha256-HuXni+L2aI7ES/QsPUPIODbff80dbY+jNFEIzyVxLFg=",
-    "README.md": "sha256-zBpGzBxG15OtbVhcfHivx3m3/JFjaZgCpVhUDNvFv5E="
+    "README.md": "sha256-AvM1lRutn7M/qWu0sIsbdBF9wn5nT5Ag8avrXpfo9a4="
   }
 }

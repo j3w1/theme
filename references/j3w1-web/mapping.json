@@ -51,7 +51,8 @@
       "token": "color.text.bright"
     },
     "--prose": {
-      "token": "color.text.prose"
+      "token": "color.text.prose",
+      "divergence": "D-033: rose prose is the approved 4.0 default; the original near-white snapshot remains historical evidence."
     },
     "--muted": {
       "token": "color.text.muted"

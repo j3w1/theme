@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "theme": "j3w1-theme",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "profile": "default",
   "profileStatus": "approved",
   "release": {
-    "version": "3.1.0",
+    "version": "4.0.0",
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-MOuqI0ddpI8r/kqzJMDhPHu5yZQrlrZ2LrbWIvNGGAw=",
+  "sourceDigest": "sha256-lYCeahYByMe6IB0c/kb+1ReT0XZFpjawue/30DNEY6o=",
   "id": "admin-form",
   "family": "composed",
   "maturity": "stable",
@@ -450,10 +450,10 @@
     },
     "continue.text": {
       "alias": "color.action.primary.text",
-      "value": "#f4eeee",
-      "status": "observed",
+      "value": "#ffa2a7",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-033",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -462,10 +462,10 @@
     },
     "continue.busy-glyph": {
       "alias": "color.action.primary.text",
-      "value": "#f4eeee",
-      "status": "observed",
+      "value": "#ffa2a7",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-033",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -617,10 +617,10 @@
       "tokens": {
         "fg": {
           "alias": "color.action.primary.text",
-          "value": "#f4eeee",
-          "status": "observed",
+          "value": "#ffa2a7",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-033",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -766,9 +766,9 @@
       "min": 4.5,
       "fg": "color.action.primary.text",
       "bg": "color.action.primary.bg",
-      "fgHex": "#f4eeee",
+      "fgHex": "#ffa2a7",
       "bgHex": "#7d1310",
-      "ratio": 9.28,
+      "ratio": 5.57,
       "pass": true,
       "waiver": null
     },

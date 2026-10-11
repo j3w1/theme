@@ -3,8 +3,8 @@ import { n as chart } from "../chunks/display-dj9YaBfn.js";
 //#region .cache/ui-build/entries/components/chart.js
 var J3w1Chart = class extends J3w1Element {
 	static componentId = "chart";
-	static version = "3.1.0";
-	static implementationId = "sha256-VWMQvKRZOkRZeQy3laXKmXoiHtRAs+S4oz2MixCaR1Q=";
+	static version = "4.0.0";
+	static implementationId = "sha256-HoAvhRRdFv6zYSIR6McpxJvYeGHHbg4t1zBpi2x1EXo=";
 	static connect = chart;
 	static upgradeProperties = [
 		"disabled",

@@ -1,10 +1,10 @@
 {
   "id": "progress",
   "name": "Progress",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "tag": "j3w1-progress",
-  "contract": "https://github.com/j3w1/theme/blob/v3.1.0/spec/components/progress.md",
-  "source": "https://github.com/j3w1/theme/blob/v3.1.0/packages/ui/src/behaviors/native.js",
+  "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/progress.md",
+  "source": "https://github.com/j3w1/theme/blob/v4.0.0/packages/ui/src/behaviors/native.js",
   "imports": {
     "class": "@j3w1/ui/components/progress",
     "register": "@j3w1/ui/register/progress",
@@ -298,6 +298,6 @@
   "copy": {
     "directory": "copy/progress/",
     "manifest": "copy/progress/manifest.json",
-    "digest": "sha256-HRcmm+Y+v7Wb4HHH+5r94d96/wSygPSdoNbNJ+3tWRs="
+    "digest": "sha256-vGM48kZe887KT7iozJLQPsZAEegifV/on25nqE3MGNU="
   }
 }

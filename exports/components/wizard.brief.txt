@@ -1,6 +1,6 @@
 j3w1/theme implementation brief — wizard
-theme: j3w1-theme 3.1.0  profile: default  sourceDigest: sha256-MOuqI0ddpI8r/kqzJMDhPHu5yZQrlrZ2LrbWIvNGGAw=
-pin: https://raw.githubusercontent.com/j3w1/theme/v3.1.0/exports/components/wizard.json
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-lYCeahYByMe6IB0c/kb+1ReT0XZFpjawue/30DNEY6o=
+pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/wizard.json
 spec: spec/components/wizard.md  site: https://j3w1.github.io/theme/reference/#c-wizard
 maturity: stable  priority: R1
 
@@ -24,7 +24,7 @@ Tokens (resolved):
   text.text               #e99499  ({color.text.default})  use
   message.text            #f73f35  ({color.status.danger.text})  use
   next.bg                 #7d1310  ({color.action.primary.bg})  use
-  next.text               #f4eeee  ({color.action.primary.text})  use
+  next.text               #ffa2a7  ({color.action.primary.text})  use
   next.bg-hover           #911410  ({color.action.primary.hover-bg})  use
   next.bg-pressed         #630f0d  ({color.action.primary.pressed-bg})  use
   next.border             #9e231f  ({color.action.primary.border})  use
@@ -32,7 +32,7 @@ Tokens (resolved):
   back.text               #ffa2a7  ({color.action.secondary.text})  use
   back.border             #a3676b  ({color.action.secondary.border})  use
   back.bg-hover           #630f0d  ({color.action.secondary.hover-bg})  use
-  busy.glyph              #f4eeee  ({color.action.primary.text})  use
+  busy.glyph              #ffa2a7  ({color.action.primary.text})  use
 
 States: default, hover, focus-visible, current, disabled, invalid, busy
   default: steps in {color.text.default}; complete steps carry the ✓ in {color.status.success.text} [the ✓ glyph; the numbers]

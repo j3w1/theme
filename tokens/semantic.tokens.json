@@ -131,11 +131,19 @@
       },
       "bright": {
         "$value": "{color.primitive.rose.800}",
-        "$description": "Headings and emphasis. Links use color.text.link."
+        "$description": "Brighter rose interface labels and explicit semantic emphasis. Bold itself inherits color; content headings use text.heading (D-033)."
       },
       "prose": {
-        "$value": "{color.primitive.paper.90}",
-        "$description": "Long-form reading text."
+        "$value": "{color.text.default}",
+        "$description": "Long-form reading and body text; rose, never an on-fill or heading shortcut (D-033).",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-033"
+            }
+          }
+        }
       },
       "muted": {
         "$value": "{color.primitive.rose.600}",
@@ -210,8 +218,16 @@
         "$description": "Text on the selection fill."
       },
       "on-action": {
-        "$value": "{color.primitive.paper.90}",
-        "$description": "Text on the primary action fill."
+        "$value": "{color.text.bright}",
+        "$description": "Bright rose text on primary-action fills in every state (D-033).",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-033"
+            }
+          }
+        }
       },
       "on-danger": {
         "$value": "{color.primitive.paper.100}",
@@ -224,6 +240,30 @@
       "inverse": {
         "$value": "{color.primitive.ink.20}",
         "$description": "Text on inverted surfaces."
+      },
+      "heading": {
+        "$value": "{color.primitive.paper.90}",
+        "$description": "Content titles and H1–H6. Window/chrome titles use text.default or text.bright (D-033).",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-033"
+            }
+          }
+        }
+      },
+      "highlight": {
+        "$value": "{color.primitive.paper.90}",
+        "$description": "Exceptional, deliberately highlighted text; not ordinary prose or a bold treatment (D-033).",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "approved",
+            "approval": {
+              "decision": "D-033"
+            }
+          }
+        }
       }
     },
     "border": {
@@ -395,12 +435,20 @@
           }
         },
         "text": {
-          "$value": "{color.primitive.paper.90}",
-          "$description": "Primary button text (9.28:1)."
+          "$value": "{color.text.on-action}",
+          "$description": "Primary action labels: bright rose across rest, hover and pressed states (D-033).",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-033"
+              }
+            }
+          }
         },
         "hover-bg": {
           "$value": "{color.primitive.red.350}",
-          "$description": "Primary button hover (7.92:1 with prose)."
+          "$description": "Primary button hover; pair with action.primary.text (D-033)."
         },
         "pressed-bg": {
           "$value": "{color.primitive.red.150}",

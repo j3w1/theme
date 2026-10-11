@@ -1,10 +1,10 @@
 {
   "id": "data-table",
   "name": "Data table",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "tag": "j3w1-data-table",
-  "contract": "https://github.com/j3w1/theme/blob/v3.1.0/spec/components/data-table.md",
-  "source": "https://github.com/j3w1/theme/blob/v3.1.0/packages/ui/src/behaviors/tables.js",
+  "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/data-table.md",
+  "source": "https://github.com/j3w1/theme/blob/v4.0.0/packages/ui/src/behaviors/tables.js",
   "imports": {
     "class": "@j3w1/ui/components/data-table",
     "register": "@j3w1/ui/register/data-table",
@@ -258,6 +258,7 @@
       "color.text.disabled",
       "color.text.link-hover",
       "color.text.muted",
+      "color.text.on-action",
       "density.comfortable.control-height",
       "density.comfortable.control-padding-x",
       "density.comfortable.icon",
@@ -606,6 +607,6 @@
   "copy": {
     "directory": "copy/data-table/",
     "manifest": "copy/data-table/manifest.json",
-    "digest": "sha256-gcbYwHPGeWK7zWcDJ7ryZKnsOACu1+HOwm3Baz16EKA="
+    "digest": "sha256-+4G6hyl5Jnnla+Ks91AGJ44dHDEwB2O+0n60BxclhCg="
   }
 }

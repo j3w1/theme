@@ -3,8 +3,8 @@ import { t as actions } from "../chunks/native-CAzZmDKR.js";
 //#region .cache/ui-build/entries/components/icon-button.js
 var J3w1IconButton = class extends J3w1Element {
 	static componentId = "icon-button";
-	static version = "3.1.0";
-	static implementationId = "sha256-i+gyO39sCnfqN0BIV3M2YDjPB7FgVXIACn94MsdlYiM=";
+	static version = "4.0.0";
+	static implementationId = "sha256-yIIam+ZjRGwxBMpAmgZARlOdFeFJZkhR1zP8PoO2q8g=";
 	static connect = actions;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...[

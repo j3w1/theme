@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "data-table",
-  "version": "3.1.0",
-  "contract": "https://github.com/j3w1/theme/blob/v3.1.0/spec/components/data-table.md",
+  "version": "4.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/data-table.md",
   "dependencies": [
     "register/data-table.js",
     "chunks/element-C1XeXVYC.js",
@@ -18,15 +18,15 @@
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
     "runtime/register/menu.js": "sha256-YX+9ydadaIbkPIBFhLWX4Jv3V9vIl4UY1qolxLGfZUg=",
-    "runtime/components/menu.js": "sha256-sS+a5mj889dVp/5ZMX1AFcZK53ZorESEbzrCV6XAFwA=",
+    "runtime/components/menu.js": "sha256-AMtJth+M+4jqb8imqdn9VcM3aKvtgCWkPySfsI7htH8=",
     "runtime/chunks/navigation-Dt8ap-9J.js": "sha256-7QSC/eQSDSRRy3YqMltwjb6cwbEA0V652cfo+Ng2VqA=",
-    "runtime/components/data-table.js": "sha256-fIr4WGB1URVgAFZloKwAPuOIFV85jX6suXzLLKuuGXI=",
+    "runtime/components/data-table.js": "sha256-jj60XwNxQlssKZTff5HB9Z6v14UDZdK8O80kLP082l4=",
     "runtime/chunks/tables-B25ydUHs.js": "sha256-XqRdyfrSS93rVybWHq6a0WhrmZgaboHi5n8ymgwRbM8=",
-    "tokens.css": "sha256-c/NmCkdHsOHiHx4q0evmxTKbpeLSU3Eoo2b0S7PYNzU=",
+    "tokens.css": "sha256-gjEwadB0zTFK+892nxLpStOcmcjP5pxj2Pe/By5vwPE=",
     "component.css": "sha256-aygLfHiZmFXenQHQrHnjVcw8W0tp2SLdB7d/laGcKgA=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-FieIuPCt66UIxpdAH0wuPBOrPEVXUqjJfyWMyCdO9nI=",
     "index.html": "sha256-wxdZWAwB7Q/aPOpcvws/xlqJAMNO1twAxfHnSVMuNlo=",
-    "README.md": "sha256-nRFW2lrvCPkkRwfx+2hNQ5AliQ6xJUz4fvyjARaiBdY="
+    "README.md": "sha256-bS0eRb53j0VgRsRbFv81sqclvoIS7Uv4m/FIBGXMqTw="
   }
 }

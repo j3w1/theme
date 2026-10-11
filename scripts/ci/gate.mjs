@@ -20,6 +20,7 @@ if (JSON.stringify(again) !== JSON.stringify(plan)) problems.push(`the plan does
 const has = (p) => plan.proofs.includes(p);
 const expected = {
   checks: ["sources", "unit", "unit-install", "unit-install-windows"].some(has),
+  "windows-install": ["sources", "unit", "unit-install", "unit-install-windows"].some(has),
   build: has("build"),
   browser: plan.shards.length > 0,
   consumers: has("consumers"),

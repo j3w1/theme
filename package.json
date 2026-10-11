@@ -1,6 +1,6 @@
 {
   "name": "j3w1-theme",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "private": true,
   "type": "module",
   "description": "j3w1 UI Theme Spec: canonical design tokens, component rules, a generated single-page visual specification, and machine exports for agents. The repository owns the theme; j3w1.github.io demonstrates it.",
@@ -54,6 +54,7 @@
     "astro": "7.3.5",
     "es-module-lexer": "3.0.2",
     "fflate": "0.8.3",
+    "jsonc-parser": "3.3.1",
     "parse5": "8.0.1",
     "postcss": "8.5.28",
     "postcss-value-parser": "4.2.0",

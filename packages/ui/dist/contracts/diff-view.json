@@ -1,10 +1,10 @@
 {
   "id": "diff-view",
   "name": "Diff view",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "tag": "j3w1-diff-view",
-  "contract": "https://github.com/j3w1/theme/blob/v3.1.0/spec/components/diff-view.md",
-  "source": "https://github.com/j3w1/theme/blob/v3.1.0/packages/ui/src/behaviors/display.js",
+  "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/diff-view.md",
+  "source": "https://github.com/j3w1/theme/blob/v4.0.0/packages/ui/src/behaviors/display.js",
   "imports": {
     "class": "@j3w1/ui/components/diff-view",
     "register": "@j3w1/ui/register/diff-view",
@@ -516,6 +516,6 @@
   "copy": {
     "directory": "copy/diff-view/",
     "manifest": "copy/diff-view/manifest.json",
-    "digest": "sha256-sFfKdlHI48pBEI7TJq+8uI31lHDtYL5FbNzTL8/FumM="
+    "digest": "sha256-+EVQA9anrM4BKZP0nv/RHjwtv3S43yZD6Ql+fXIeHbE="
   }
 }

@@ -1,0 +1,26 @@
+// Owner-approved Notepad-only policy for an existing native caption whose
+// original color is unavailable. This receipt deliberately restores Windows'
+// default, not an inferred original. Captured application requests supersede it.
+static bool CaptureExistingCaption(HWND window) {
+ std::lock_guard guard(captionsMutex);
+ if(!enabled.load()||HighContrast()||!CaptionWindow(window))return false;
+ if(OwnedCaption(window))return true; // Preserve every genuine capture.
+ auto state=CaptureCaption(window,DWMWA_COLOR_DEFAULT);if(!state)return false;
+ state->resetToDefault=true;
+ auto canvas=CanvasColor();COLORREF color=RGB(canvas.R,canvas.G,canvas.B);
+ if(FAILED(originalDwmSet(window,DWMWA_CAPTION_COLOR,&color,sizeof(color)))) {
+  ForgetCaption(state,false);return false;
+ }
+ state->applied=true;
+ if(!RefreshCapturedBackdrop(*state,true))Log(236);
+ return true;
+}
+static BOOL CALLBACK ExistingCaptionVisitor(HWND window,LPARAM) noexcept {
+ try {CaptureExistingCaption(window);}catch(...){Log(256);}
+ return TRUE;
+}
+static void DiscoverExistingCaptions(bool package=ReviewedPackage(),bool runtime=ReviewedRuntime()) {
+ if(!package||!runtime||!enabled.load()||HighContrast())return;
+ EnumWindows(ExistingCaptionVisitor,0);
+ RefreshCaptions();
+}

@@ -50,6 +50,9 @@ apply.
 | D-031 | Select the checks a change needs; shard the deployment matrix | accepted | 2026-09-26 | owner (explicit CI renovation request, plan approval) |
 | D-032 | Coral slot 6 and a fixed prompt background | accepted | 2026-09-26 | owner (explicit selection of coral and the PowerShell prompt look) |
 
+| D-033 | Rose prose, semantic content headings and inherited bold | accepted | 2026-09-28 | owner (explicit implementation plan) |
+| D-034 | Versioned Windows native and Windhawk adapters | accepted | 2026-09-28 | owner (explicit implementation plan) |
+
 ## D-000 Responsibility split
 
 **Decision.** Token files own literal values and aliases; the specification owns
@@ -767,3 +770,51 @@ should match across hosts).
 
 **Status.** accepted · 2026-09-26 · owner, who saw both problems in real use and
 chose the values. Supersedes D-029 in part.
+
+## D-033 Rose prose, semantic content headings and inherited bold
+
+**Decision.** Ordinary interface, body and long-form prose use rose `#e99499`.
+`text.prose` aliases `text.default`. `text.bright` remains `#ffa2a7` for brighter
+UI labels. New `text.heading` and `text.highlight` use existing paper `#f4eeee`:
+the former for content titles and H1–H6, the latter for deliberate exceptional
+highlights. Application/window chrome titles use rose default or bright.
+Bold changes weight only and inherits its semantic foreground. It is never a
+reason to choose white. Selection remains an explicit near-white exception.
+Primary action labels use bright rose across rest, hover and pressed states;
+danger/on-fill text retains paper `#f9faf9` where contrast requires it.
+
+**Why.** White prose and white bold overwhelmed the intended rose identity.
+Headings are distinguished by typography, not by turning lower headings into
+ordinary body text. Prose must no longer be an ambiguous alias for white.
+
+**Consequences.** Version 4.0.0 changes the canonical semantics, site and ports.
+The audit and migration are in `docs/rose-typography-migration.md`. Historical
+ANSI slots and historical decision records remain unchanged. Contrasts are
+tested per state; no waiver or contrast floor changes.
+
+**Alternatives.** Obsidian-only overrides, white bold, and rose lower headings
+were rejected by the owner in favor of one canonical hierarchy.
+
+**Status.** accepted · 2026-09-28 · owner, explicit instruction and implementation
+plan approval. Supersedes earlier near-white prose descriptions and bright/red
+content-heading assignments; updates D-026's primary foreground only.
+
+## D-034 Versioned Windows native and Windhawk adapters
+
+**Decision.** A Windows port uses native settings where sufficient and pinned
+Windhawk 2.0 alpha 6 stylers solely as rendering adapters for canonical semantic
+tokens. This is a bounded exception to the unsupported-injection prohibition in
+portability. No binary patching, shell replacement, paid tool or third-party
+theme is permitted. Unknown shell versions/structures fail closed. Full lifecycle
+support includes pinned install/update, verification, original-state restore,
+transaction rollback and removal of owned theme assets. User shortcuts, window
+management, existing layouts and desktop icons are preserved; cursors and black
+wallpaper are included. Native limitations are disclosed, not silently patched.
+
+**Why.** Native settings cannot represent the full black/rose shell identity.
+The owner explicitly accepted the pinned prerelease to use its upstream CLI.
+
+**Alternatives.** Native-only styling lacks shell coverage; private storage edits
+and UI automation are less reproducible; binary theme patching was rejected.
+
+**Status.** accepted · 2026-09-28 · owner, explicit implementation plan approval.

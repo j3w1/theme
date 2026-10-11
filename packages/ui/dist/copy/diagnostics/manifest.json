@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "diagnostics",
-  "version": "3.1.0",
-  "contract": "https://github.com/j3w1/theme/blob/v3.1.0/spec/components/diagnostics.md",
+  "version": "4.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/diagnostics.md",
   "dependencies": [
     "register/diagnostics.js",
     "chunks/element-C1XeXVYC.js",
@@ -14,13 +14,13 @@
     "runtime/register/diagnostics.js": "sha256-lSYtaMuTbe7wtLvNB4chvQ8SOVu0ILi3pFknhy/X/0E=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/components/diagnostics.js": "sha256-argwwjLEPEPVDW3ylTW3T9VxFBc9IKM+65Sc3YUh8ps=",
+    "runtime/components/diagnostics.js": "sha256-nC94tOw1MCiaCz5hbJRQf8qjWzQDz53K24KiwRwR8ws=",
     "runtime/chunks/display-dj9YaBfn.js": "sha256-0Y8LcHvfDz2LLz+EWdO8Jr6pfwnXPw03N8x1UcM2pN8=",
-    "tokens.css": "sha256-c/NmCkdHsOHiHx4q0evmxTKbpeLSU3Eoo2b0S7PYNzU=",
+    "tokens.css": "sha256-gjEwadB0zTFK+892nxLpStOcmcjP5pxj2Pe/By5vwPE=",
     "component.css": "sha256-1uXLsplg978riCNhv/v5p+RvR0hW6fVdRnKgNUo+IYs=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-oPPp/R+dnwC1tnH/Td+Hlrs3CRODUkA4Bvq/HK/fAUU=",
     "index.html": "sha256-Tq03gSM/g1JYQlO5vswlLUOSXHf9l2bEjBuZbLQpK1E=",
-    "README.md": "sha256-tqaticD/w+CUWSFOw/D2t35mkSJtgZn4la0qfWZi1Is="
+    "README.md": "sha256-zoebnEYS306DsFzwTsEnc2EoKA+8Dm/eyz4eTXdSnAs="
   }
 }

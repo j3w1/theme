@@ -30,8 +30,10 @@ more red on screen.
 
 | Role | Value | Contrast on canvas / default / raised | Use |
 | --- | --- | --- | --- |
-| `text.prose` | `#f4eeee` | 18.31 / 16.96 / 15.83 | long-form reading, on-fill text |
-| `text.bright` | `#ffa2a7` | 10.98 / 10.17 / 9.49 | headings and emphasis |
+| `text.prose` | `#e99499` | 9.16 / 8.48 / 7.92 | long-form reading; aliases text.default (D-033) |
+| `text.heading` | `#f4eeee` | see generated contrast report | content titles and H1–H6 |
+| `text.highlight` | `#f4eeee` | see generated contrast report | deliberate exceptional highlights |
+| `text.bright` | `#ffa2a7` | 10.98 / 10.17 / 9.49 | brighter UI labels and semantic rose emphasis |
 | `text.default` | `#e99499` | 9.16 / 8.48 / 7.92 | interface and body text |
 | `text.muted` | `#bd787d` | 6.15 / 5.69 / 5.31 | secondary text; the darkest colour permitted for chrome text |
 | `text.subtle` | `#ad7175` | 5.40 / 5.00 / 4.66 | metadata, comments, line numbers |
@@ -105,7 +107,7 @@ Rules that apply everywhere:
 There are four button tones:
 
 - `primary` is the only filled button at rest (`action.primary.bg` `#7d1310`
-  with `text.prose`, 9.28:1).
+  with `action.primary.text` (bright rose; D-033)).
 - `secondary` is an outline (`border.control`, text `text.bright`).
 - `tertiary` is a ghost or icon button (`text.default`, hover
   `interaction.hover.bg`).
@@ -205,7 +207,7 @@ the fallbacks; no font file is distributed. Weights 400 and 700, plus italic.
 
 Scale (size/line-height in px): `ui-sm` 12/16, `ui-md` 13/18, `ui-lg` 14/20,
 `reading` 15/24, `code` 13/19, `terminal` 13/19 with −0.5px letter-spacing,
-`h1` 20/28 bold, `h2` 16/24 bold, `h3` 13/18 bold in `text.accent`, `caption`
+`h1` 20/28 bold, `h2` 16/24 bold, `h3` 13/18 bold in `text.heading`, `caption`
 11/16 only with `text.muted` or lighter. Hosts keep the size the user chose;
 tiny UI text is a metric of the reference implementation, not a rule.
 
@@ -269,3 +271,14 @@ Breakpoints 320 (reflow floor), 600, 900, 1280.
 - The page never scrolls horizontally at 320px.
 - Right-to-left mirrors breadcrumb separators, pagination, sidebar and drawer
   sides, wizard progression, affixes and tree indentation.
+
+## Typography semantics (D-033)
+
+All content titles and H1–H6 use `text.heading`; size, weight and spacing carry
+their relative hierarchy. Chrome/window titles use `text.default` or
+`text.bright`. Ordinary body and long-form prose use `text.default` and
+`text.prose`. Bold inherits the current semantic color, including inside
+headings, muted text, links and selections. It never requests white by itself.
+Near-white is limited to headings, deliberate highlights, selections, hover
+highlights and documented contrast-critical on-fill text. See the exhaustive
+role audit in `docs/rose-typography-migration.md`; measure the actual state pair.

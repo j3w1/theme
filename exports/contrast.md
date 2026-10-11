@@ -1,4 +1,4 @@
-# Contrast report (3.1.0, profile: default)
+# Contrast report (4.0.0, profile: default)
 
 Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a design target for the named role, not an application-wide conformance claim. Waived pairs are listed with their reason.
 
@@ -8,8 +8,8 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | default text on default surface | — | text | `color.text.default` #e99499 | `color.surface.default` #100c0c | 8.48 | 4.5 | pass |
 | default text on raised | — | text | `color.text.default` #e99499 | `color.surface.raised` #160b0b | 8.43 | 4.5 | pass |
 | bright text on canvas | — | text | `color.text.bright` #ffa2a7 | `color.surface.canvas` #000000 | 10.98 | 4.5 | pass |
-| prose on canvas | — | text | `color.text.prose` #f4eeee | `color.surface.canvas` #000000 | 18.31 | 4.5 | pass |
-| prose on sunken | — | text | `color.text.prose` #f4eeee | `color.surface.sunken` #000000 | 18.31 | 4.5 | pass |
+| prose on canvas | — | text | `color.text.prose` #e99499 | `color.surface.canvas` #000000 | 9.16 | 4.5 | pass |
+| prose on sunken | — | text | `color.text.prose` #e99499 | `color.surface.sunken` #000000 | 9.16 | 4.5 | pass |
 | muted text on canvas | — | text | `color.text.muted` #bd787d | `color.surface.canvas` #000000 | 6.15 | 4.5 | pass |
 | muted text on raised | — | text | `color.text.muted` #bd787d | `color.surface.raised` #160b0b | 5.66 | 4.5 | pass |
 | subtle text on canvas | — | text | `color.text.subtle` #ad7175 | `color.surface.canvas` #000000 | 5.40 | 4.5 | pass |
@@ -23,8 +23,8 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | link hover text on strong hover fill | — | text | `color.text.link-hover` #f4eeee | `color.interaction.hover.bg-strong` #630f0d | 11.41 | 4.5 | pass |
 | selection text on selection | — | text | `color.interaction.selection.text` #f4eeee | `color.interaction.selection.bg` #531310 | 12.47 | 4.5 | pass |
 | inactive selection text on inactive selection | — | text | `color.interaction.selection.inactive-text` #e99499 | `color.interaction.selection.inactive-bg` #420f0c | 7.02 | 4.5 | pass |
-| primary action text on fill | — | text | `color.action.primary.text` #f4eeee | `color.action.primary.bg` #7d1310 | 9.28 | 4.5 | pass |
-| primary action text on hover fill | — | text | `color.action.primary.text` #f4eeee | `color.action.primary.hover-bg` #911410 | 7.92 | 4.5 | pass |
+| primary action text on fill | — | text | `color.action.primary.text` #ffa2a7 | `color.action.primary.bg` #7d1310 | 5.57 | 4.5 | pass |
+| primary action text on hover fill | — | text | `color.action.primary.text` #ffa2a7 | `color.action.primary.hover-bg` #911410 | 4.75 | 4.5 | pass |
 | secondary action text on canvas | — | text | `color.action.secondary.text` #ffa2a7 | `color.surface.canvas` #000000 | 10.98 | 4.5 | pass |
 | destructive text on canvas | — | text | `color.action.destructive.text` #f73f35 | `color.surface.canvas` #000000 | 5.72 | 4.5 | pass |
 | destructive hover text on hover fill | — | text | `color.action.destructive.hover-text` #f9faf9 | `color.action.destructive.hover-bg` #dc282e | 4.58 | 4.5 | pass |
@@ -67,11 +67,18 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | chart label on canvas | — | text | `color.chart.label` #bd787d | `color.surface.canvas` #000000 | 6.15 | 4.5 | pass |
 | chart series 4 on canvas (graphic) | — | ui | `color.chart.series-4` #a3676b | `color.surface.canvas` #000000 | 4.71 | 3 | pass |
 | decorative icon on canvas (graphic) | — | ui | `color.icon.decorative` #a3676b | `color.surface.canvas` #000000 | 4.71 | 3 | pass |
+| prose on default (D-033) | — | text | `color.text.prose` #e99499 | `color.surface.default` #100c0c | 8.48 | 4.5 | pass |
+| prose on raised (D-033) | — | text | `color.text.prose` #e99499 | `color.surface.raised` #160b0b | 8.43 | 4.5 | pass |
+| heading on default (D-033) | — | text | `color.text.heading` #f4eeee | `color.surface.default` #100c0c | 16.96 | 4.5 | pass |
+| heading on raised (D-033) | — | text | `color.text.heading` #f4eeee | `color.surface.raised` #160b0b | 16.85 | 4.5 | pass |
+| highlight on default (D-033) | — | text | `color.text.highlight` #f4eeee | `color.surface.default` #100c0c | 16.96 | 4.5 | pass |
+| highlight on raised (D-033) | — | text | `color.text.highlight` #f4eeee | `color.surface.raised` #160b0b | 16.85 | 4.5 | pass |
+| primary action text on pressed fill (D-033) | — | text | `color.action.primary.text` #ffa2a7 | `color.action.primary.pressed-bg` #630f0d | 6.84 | 4.5 | pass |
 | admin-form default text | default | text | `color.text.default` #e99499 | `color.surface.input` #000000 | 9.16 | 4.5 | pass |
 | admin-form default border | default | ui | `color.border.control` #a3676b | `color.surface.input` #000000 | 4.71 | 3 | pass |
 | admin-form invalid text | invalid | text | `color.status.danger.text` #f73f35 | `color.status.danger.tint` #2b0e0d | 4.88 | 4.5 | pass |
 | admin-form invalid border | invalid | ui | `color.status.danger.border` #e53935 | `color.status.danger.tint` #2b0e0d | 4.24 | 3 | pass |
-| admin-form busy text | busy | text | `color.action.primary.text` #f4eeee | `color.action.primary.bg` #7d1310 | 9.28 | 4.5 | pass |
+| admin-form busy text | busy | text | `color.action.primary.text` #ffa2a7 | `color.action.primary.bg` #7d1310 | 5.57 | 4.5 | pass |
 | title, labels and the current step on the panel surface | — | text | `color.text.bright` #ffa2a7 | `color.surface.default` #100c0c | 10.17 | 4.5 | pass |
 | help, affix and review keys on the panel surface | — | text | `color.text.muted` #bd787d | `color.surface.default` #100c0c | 5.69 | 4.5 | pass |
 | breadcrumb links on the panel surface | — | text | `color.text.link` #f73f35 | `color.surface.default` #100c0c | 5.29 | 4.5 | pass |
@@ -120,7 +127,7 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | success badge | — | text | `color.status.success.on-fill` #0c0909 | `color.status.success.fill` #86a46f | 7.13 | 4.5 | pass |
 | info badge | — | text | `color.status.info.on-fill` #0c0909 | `color.status.info.fill` #7e9ebb | 7.08 | 4.5 | pass |
 | neutral badge | — | text | `color.status.neutral.on-fill` #000000 | `color.status.neutral.fill` #a3676b | 4.71 | 4.5 | pass |
-| count badge | — | text | `color.action.primary.text` #f4eeee | `color.action.primary.bg` #7d1310 | 9.28 | 4.5 | pass |
+| count badge | — | text | `color.action.primary.text` #ffa2a7 | `color.action.primary.bg` #7d1310 | 5.57 | 4.5 | pass |
 | danger outline text | — | text | `color.status.danger.text` #f73f35 | `color.surface.default` #100c0c | 5.29 | 4.5 | pass |
 | warning outline text | — | text | `color.status.warning.text` #c9973f | `color.surface.default` #100c0c | 7.39 | 4.5 | pass |
 | success outline text | — | text | `color.status.success.text` #86a46f | `color.surface.default` #100c0c | 6.99 | 4.5 | pass |
@@ -149,12 +156,12 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | Primary content | — | text | `color.text.default` #e99499 | `color.surface.default` #100c0c | 8.48 | 4.5 | pass |
 | Supporting content | — | text | `color.text.muted` #bd787d | `color.surface.default` #100c0c | 5.69 | 4.5 | pass |
 | Control boundary | — | ui | `color.border.control` #a3676b | `color.surface.default` #100c0c | 4.36 | 3 | pass |
-| button default text | default | text | `color.action.primary.text` #f4eeee | `color.action.primary.bg` #7d1310 | 9.28 | 4.5 | pass |
-| button hover text | hover | text | `color.action.primary.text` #f4eeee | `color.action.primary.hover-bg` #911410 | 7.92 | 4.5 | pass |
-| button focus-visible text | focus-visible | text | `color.action.primary.text` #f4eeee | `color.action.primary.bg` #7d1310 | 9.28 | 4.5 | pass |
+| button default text | default | text | `color.action.primary.text` #ffa2a7 | `color.action.primary.bg` #7d1310 | 5.57 | 4.5 | pass |
+| button hover text | hover | text | `color.action.primary.text` #ffa2a7 | `color.action.primary.hover-bg` #911410 | 4.75 | 4.5 | pass |
+| button focus-visible text | focus-visible | text | `color.action.primary.text` #ffa2a7 | `color.action.primary.bg` #7d1310 | 5.57 | 4.5 | pass |
 | button focus-visible outline | focus-visible | ui | `color.interaction.focus.ring-container` #ffa2a7 | `color.action.primary.bg` #7d1310 | 5.57 | 3 | pass |
-| button active text | active | text | `color.action.primary.text` #f4eeee | `color.action.primary.pressed-bg` #630f0d | 11.41 | 4.5 | pass |
-| button loading text | loading | text | `color.action.primary.text` #f4eeee | `color.action.primary.bg` #7d1310 | 9.28 | 4.5 | pass |
+| button active text | active | text | `color.action.primary.text` #ffa2a7 | `color.action.primary.pressed-bg` #630f0d | 6.84 | 4.5 | pass |
+| button loading text | loading | text | `color.action.primary.text` #ffa2a7 | `color.action.primary.bg` #7d1310 | 5.57 | 4.5 | pass |
 | primary fill against the panel (decorative; the label identifies the button) | — | ui | `color.action.primary.bg` #7d1310 | `color.surface.default` #100c0c | 1.83 | 3 | waived: the fill is not the boundary of the control; the label text at 9.28:1 identifies it, and hover, active and focus each add a second channel |
 | secondary text at rest | — | text | `color.action.secondary.text` #ffa2a7 | `color.action.secondary.bg` #000000 | 10.98 | 4.5 | pass |
 | secondary border at rest | — | ui | `color.action.secondary.border` #a3676b | `color.action.secondary.bg` #000000 | 4.71 | 3 | pass |
@@ -196,16 +203,16 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | checkbox hover border | hover | ui | `color.border.control` #a3676b | `color.interaction.hover.bg` #1c0a09 | 4.29 | 3 | pass |
 | checkbox focus-visible border | focus-visible | ui | `color.border.control` #a3676b | `color.surface.input` #000000 | 4.71 | 3 | pass |
 | checkbox focus-visible outline | focus-visible | ui | `color.interaction.focus.ring` #e53935 | `color.surface.input` #000000 | 4.97 | 3 | pass |
-| checkbox checked text | checked | text | `color.action.primary.text` #f4eeee | `color.action.primary.bg` #7d1310 | 9.28 | 4.5 | pass |
-| checkbox mixed text | mixed | text | `color.action.primary.text` #f4eeee | `color.action.primary.bg` #7d1310 | 9.28 | 4.5 | pass |
-| checkbox checked+focus-visible text | checked+focus-visible | text | `color.action.primary.text` #f4eeee | `color.action.primary.bg` #7d1310 | 9.28 | 4.5 | pass |
+| checkbox checked text | checked | text | `color.action.primary.text` #ffa2a7 | `color.action.primary.bg` #7d1310 | 5.57 | 4.5 | pass |
+| checkbox mixed text | mixed | text | `color.action.primary.text` #ffa2a7 | `color.action.primary.bg` #7d1310 | 5.57 | 4.5 | pass |
+| checkbox checked+focus-visible text | checked+focus-visible | text | `color.action.primary.text` #ffa2a7 | `color.action.primary.bg` #7d1310 | 5.57 | 4.5 | pass |
 | checkbox checked+focus-visible outline | checked+focus-visible | ui | `color.interaction.focus.ring-container` #ffa2a7 | `color.action.primary.bg` #7d1310 | 5.57 | 3 | pass |
 | checkbox invalid border | invalid | ui | `color.status.danger.border` #e53935 | `color.surface.input` #000000 | 4.97 | 3 | pass |
 | checkbox required border | required | ui | `color.border.control` #a3676b | `color.surface.input` #000000 | 4.71 | 3 | pass |
 | option text on the panel surface | — | text | `color.text.default` #e99499 | `color.surface.default` #100c0c | 8.48 | 4.5 | pass |
 | legend on the panel surface | — | text | `color.text.bright` #ffa2a7 | `color.surface.default` #100c0c | 10.17 | 4.5 | pass |
 | checked box edge against the panel (the border stays border.control) | checked | ui | `color.border.control` #a3676b | `color.surface.default` #100c0c | 4.36 | 3 | pass |
-| glyph on the hovered checked fill | hover | text | `color.action.primary.text` #f4eeee | `color.action.primary.hover-bg` #911410 | 7.92 | 4.5 | pass |
+| glyph on the hovered checked fill | hover | text | `color.action.primary.text` #ffa2a7 | `color.action.primary.hover-bg` #911410 | 4.75 | 4.5 | pass |
 | validation message on the panel surface | — | text | `color.status.danger.text` #f73f35 | `color.surface.default` #100c0c | 5.29 | 4.5 | pass |
 | disabled option text (exempt; house floor 3:1) | disabled | ui | `color.text.disabled` #8a5559 | `color.surface.default` #100c0c | 3.26 | 3 | pass |
 | disabled glyph (exempt; house floor 3:1) | checked+disabled | ui | `color.text.disabled` #8a5559 | `color.interaction.disabled.bg` #160b0b | 3.24 | 3 | pass |
@@ -295,7 +302,7 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | data-table selected+focus-visible text | selected+focus-visible | text | `color.interaction.selection.text` #f4eeee | `color.interaction.selection.bg` #531310 | 12.47 | 4.5 | pass |
 | data-table selected+focus-visible outline | selected+focus-visible | ui | `color.interaction.focus.ring-container` #ffa2a7 | `color.interaction.selection.bg` #531310 | 7.48 | 3 | pass |
 | data-table sorted text | sorted | text | `color.text.bright` #ffa2a7 | `color.surface.default` #100c0c | 10.17 | 4.5 | pass |
-| data-table mixed text | mixed | text | `color.action.primary.text` #f4eeee | `color.action.primary.bg` #7d1310 | 9.28 | 4.5 | pass |
+| data-table mixed text | mixed | text | `color.action.primary.text` #ffa2a7 | `color.action.primary.bg` #7d1310 | 5.57 | 4.5 | pass |
 | data-table empty text | empty | text | `color.text.muted` #bd787d | `color.surface.default` #100c0c | 5.69 | 4.5 | pass |
 | data-table loading text | loading | text | `color.text.muted` #bd787d | `color.surface.default` #100c0c | 5.69 | 4.5 | pass |
 | header text | — | text | `color.text.bright` #ffa2a7 | `color.surface.default` #100c0c | 10.17 | 4.5 | pass |
@@ -377,7 +384,7 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | note on the overlay surface | — | text | `color.text.muted` #bd787d | `color.surface.overlay` #241010 | 5.31 | 4.5 | pass |
 | secondary button text on the overlay surface | — | text | `color.action.secondary.text` #ffa2a7 | `color.surface.overlay` #241010 | 9.49 | 4.5 | pass |
 | secondary button boundary on the overlay surface | — | ui | `color.action.secondary.border` #a3676b | `color.surface.overlay` #241010 | 4.07 | 3 | pass |
-| primary button text | — | text | `color.action.primary.text` #f4eeee | `color.action.primary.bg` #7d1310 | 9.28 | 4.5 | pass |
+| primary button text | — | text | `color.action.primary.text` #ffa2a7 | `color.action.primary.bg` #7d1310 | 5.57 | 4.5 | pass |
 | destructive confirm text on its fill | — | text | `color.action.destructive.filled-text` #f9faf9 | `color.action.destructive.filled-bg` #dc282e | 4.58 | 4.5 | pass |
 | destructive fill against the overlay surface | — | ui | `color.action.destructive.filled-bg` #dc282e | `color.surface.overlay` #241010 | 3.79 | 3 | pass |
 | ring on the primary fill | focus-visible | ui | `color.interaction.focus.ring-container` #ffa2a7 | `color.action.primary.bg` #7d1310 | 5.57 | 3 | pass |
@@ -499,7 +506,7 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | count, chip remove glyph and empty-state text | — | text | `color.text.muted` #bd787d | `color.surface.default` #100c0c | 5.69 | 4.5 | pass |
 | Tested badge | — | text | `color.status.success.on-fill` #0c0909 | `color.status.success.fill` #86a46f | 7.13 | 4.5 | pass |
 | Demonstrated badge | — | text | `color.status.info.on-fill` #0c0909 | `color.status.info.fill` #7e9ebb | 7.08 | 4.5 | pass |
-| New button and checked boxes | — | text | `color.action.primary.text` #f4eeee | `color.action.primary.bg` #7d1310 | 9.28 | 4.5 | pass |
+| New button and checked boxes | — | text | `color.action.primary.text` #ffa2a7 | `color.action.primary.bg` #7d1310 | 5.57 | 4.5 | pass |
 | ring on a selected row | selected | ui | `color.interaction.focus.ring-container` #ffa2a7 | `color.interaction.selection.bg` #531310 | 7.48 | 3 | pass |
 | chip and checkbox boundaries | — | ui | `color.border.control` #a3676b | `color.surface.default` #100c0c | 4.36 | 3 | pass |
 | disabled Prev link (exempt; house floor 3:1) | — | ui | `color.text.disabled` #8a5559 | `color.surface.default` #100c0c | 3.26 | 3 | pass |
@@ -649,15 +656,15 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | radio-group hover border | hover | ui | `color.border.control` #a3676b | `color.interaction.hover.bg` #1c0a09 | 4.29 | 3 | pass |
 | radio-group focus-visible border | focus-visible | ui | `color.border.control` #a3676b | `color.surface.input` #000000 | 4.71 | 3 | pass |
 | radio-group focus-visible outline | focus-visible | ui | `color.interaction.focus.ring` #e53935 | `color.surface.input` #000000 | 4.97 | 3 | pass |
-| radio-group checked text | checked | text | `color.action.primary.text` #f4eeee | `color.action.primary.bg` #7d1310 | 9.28 | 4.5 | pass |
-| radio-group checked+focus-visible text | checked+focus-visible | text | `color.action.primary.text` #f4eeee | `color.action.primary.bg` #7d1310 | 9.28 | 4.5 | pass |
+| radio-group checked text | checked | text | `color.action.primary.text` #ffa2a7 | `color.action.primary.bg` #7d1310 | 5.57 | 4.5 | pass |
+| radio-group checked+focus-visible text | checked+focus-visible | text | `color.action.primary.text` #ffa2a7 | `color.action.primary.bg` #7d1310 | 5.57 | 4.5 | pass |
 | radio-group checked+focus-visible outline | checked+focus-visible | ui | `color.interaction.focus.ring-container` #ffa2a7 | `color.action.primary.bg` #7d1310 | 5.57 | 3 | pass |
 | radio-group invalid border | invalid | ui | `color.status.danger.border` #e53935 | `color.surface.input` #000000 | 4.97 | 3 | pass |
 | radio-group required border | required | ui | `color.border.control` #a3676b | `color.surface.input` #000000 | 4.71 | 3 | pass |
 | option text on the panel surface | — | text | `color.text.default` #e99499 | `color.surface.default` #100c0c | 8.48 | 4.5 | pass |
 | legend on the panel surface | — | text | `color.text.bright` #ffa2a7 | `color.surface.default` #100c0c | 10.17 | 4.5 | pass |
 | checked radio edge against the panel (the border stays border.control) | checked | ui | `color.border.control` #a3676b | `color.surface.default` #100c0c | 4.36 | 3 | pass |
-| inner square on the hovered checked fill | hover | ui | `color.action.primary.text` #f4eeee | `color.action.primary.hover-bg` #911410 | 7.92 | 3 | pass |
+| inner square on the hovered checked fill | hover | ui | `color.action.primary.text` #ffa2a7 | `color.action.primary.hover-bg` #911410 | 4.75 | 3 | pass |
 | validation message on the panel surface | — | text | `color.status.danger.text` #f73f35 | `color.surface.default` #100c0c | 5.29 | 4.5 | pass |
 | disabled option text (exempt; house floor 3:1) | disabled | ui | `color.text.disabled` #8a5559 | `color.surface.default` #100c0c | 3.26 | 3 | pass |
 | disabled inner square (exempt; house floor 3:1) | disabled | ui | `color.text.disabled` #8a5559 | `color.interaction.disabled.bg` #160b0b | 3.24 | 3 | pass |
@@ -726,7 +733,7 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | settings-panel focus-visible outline | focus-visible | ui | `color.interaction.focus.ring` #e53935 | `color.surface.input` #000000 | 4.97 | 3 | pass |
 | settings-panel invalid text | invalid | text | `color.text.default` #e99499 | `color.surface.input` #000000 | 9.16 | 4.5 | pass |
 | settings-panel invalid border | invalid | ui | `color.status.danger.border` #e53935 | `color.surface.input` #000000 | 4.97 | 3 | pass |
-| settings-panel busy text | busy | text | `color.action.primary.text` #f4eeee | `color.action.primary.bg` #7d1310 | 9.28 | 4.5 | pass |
+| settings-panel busy text | busy | text | `color.action.primary.text` #ffa2a7 | `color.action.primary.bg` #7d1310 | 5.57 | 4.5 | pass |
 | title, legend and the current section on the panel surface | — | text | `color.text.bright` #ffa2a7 | `color.surface.default` #100c0c | 10.17 | 4.5 | pass |
 | lead and help text on the panel surface | — | text | `color.text.muted` #bd787d | `color.surface.default` #100c0c | 5.69 | 4.5 | pass |
 | validation message on the panel surface | invalid | text | `color.status.danger.text` #f73f35 | `color.surface.default` #100c0c | 5.29 | 4.5 | pass |
@@ -763,12 +770,12 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | switch hover border | hover | ui | `color.border.control` #a3676b | `color.interaction.hover.bg` #1c0a09 | 4.29 | 3 | pass |
 | switch focus-visible border | focus-visible | ui | `color.border.control` #a3676b | `color.surface.input` #000000 | 4.71 | 3 | pass |
 | switch focus-visible outline | focus-visible | ui | `color.interaction.focus.ring` #e53935 | `color.surface.input` #000000 | 4.97 | 3 | pass |
-| switch checked text | checked | text | `color.action.primary.text` #f4eeee | `color.action.primary.bg` #7d1310 | 9.28 | 4.5 | pass |
-| switch checked+focus-visible text | checked+focus-visible | text | `color.action.primary.text` #f4eeee | `color.action.primary.bg` #7d1310 | 9.28 | 4.5 | pass |
+| switch checked text | checked | text | `color.action.primary.text` #ffa2a7 | `color.action.primary.bg` #7d1310 | 5.57 | 4.5 | pass |
+| switch checked+focus-visible text | checked+focus-visible | text | `color.action.primary.text` #ffa2a7 | `color.action.primary.bg` #7d1310 | 5.57 | 4.5 | pass |
 | switch checked+focus-visible outline | checked+focus-visible | ui | `color.interaction.focus.ring-container` #ffa2a7 | `color.action.primary.bg` #7d1310 | 5.57 | 3 | pass |
 | thumb on the off track | — | ui | `color.text.default` #e99499 | `color.surface.input` #000000 | 9.16 | 3 | pass |
 | thumb on the hovered off track | hover | ui | `color.text.default` #e99499 | `color.interaction.hover.bg` #1c0a09 | 8.35 | 3 | pass |
-| thumb on the hovered on track | hover | ui | `color.action.primary.text` #f4eeee | `color.action.primary.hover-bg` #911410 | 7.92 | 3 | pass |
+| thumb on the hovered on track | hover | ui | `color.action.primary.text` #ffa2a7 | `color.action.primary.hover-bg` #911410 | 4.75 | 3 | pass |
 | on track edge against the panel (the border stays border.control) | checked | ui | `color.border.control` #a3676b | `color.surface.default` #100c0c | 4.36 | 3 | pass |
 | visible name on the panel surface | — | text | `color.text.default` #e99499 | `color.surface.default` #100c0c | 8.48 | 4.5 | pass |
 | Off / On word on the panel surface | — | text | `color.text.muted` #bd787d | `color.surface.default` #100c0c | 5.69 | 4.5 | pass |
@@ -949,7 +956,7 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | wizard current border | current | ui | `color.border.selected-indicator` #e53935 | `color.surface.canvas` #000000 | 4.97 | 3 | pass |
 | wizard invalid text | invalid | text | `color.status.danger.text` #f73f35 | `color.surface.canvas` #000000 | 5.72 | 4.5 | pass |
 | wizard invalid border | invalid | ui | `color.status.danger.border` #e53935 | `color.surface.canvas` #000000 | 4.97 | 3 | pass |
-| wizard busy text | busy | text | `color.action.primary.text` #f4eeee | `color.action.primary.bg` #7d1310 | 9.28 | 4.5 | pass |
+| wizard busy text | busy | text | `color.action.primary.text` #ffa2a7 | `color.action.primary.bg` #7d1310 | 5.57 | 4.5 | pass |
 | complete marker on the canvas | — | text | `color.status.success.text` #86a46f | `color.surface.canvas` #000000 | 7.55 | 4.5 | pass |
 | panel title on the panel surface | — | text | `color.text.bright` #ffa2a7 | `color.surface.default` #100c0c | 10.17 | 4.5 | pass |
 | panel text on the panel surface | — | text | `color.text.default` #e99499 | `color.surface.default` #100c0c | 8.48 | 4.5 | pass |

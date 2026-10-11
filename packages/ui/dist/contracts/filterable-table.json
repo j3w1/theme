@@ -1,10 +1,10 @@
 {
   "id": "filterable-table",
   "name": "Filterable table",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "tag": "j3w1-filterable-table",
-  "contract": "https://github.com/j3w1/theme/blob/v3.1.0/spec/components/filterable-table.md",
-  "source": "https://github.com/j3w1/theme/blob/v3.1.0/packages/ui/src/behaviors/tables.js",
+  "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/filterable-table.md",
+  "source": "https://github.com/j3w1/theme/blob/v4.0.0/packages/ui/src/behaviors/tables.js",
   "imports": {
     "class": "@j3w1/ui/components/filterable-table",
     "register": "@j3w1/ui/register/filterable-table",
@@ -309,6 +309,7 @@
       "color.text.disabled",
       "color.text.link-hover",
       "color.text.muted",
+      "color.text.on-action",
       "color.text.placeholder",
       "density.comfortable.control-height",
       "density.comfortable.control-padding-x",
@@ -755,6 +756,6 @@
   "copy": {
     "directory": "copy/filterable-table/",
     "manifest": "copy/filterable-table/manifest.json",
-    "digest": "sha256-oX543u+v+PajKcANRdbobNZmwOb4aQ4w/S0Nfpsi+Ic="
+    "digest": "sha256-C/MSJ36Fk9mn1NmeXmGBv+KReFX5bv48uOjVvaC5j80="
   }
 }

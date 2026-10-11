@@ -1,6 +1,6 @@
 j3w1/theme implementation brief — data-table
-theme: j3w1-theme 3.1.0  profile: default  sourceDigest: sha256-MOuqI0ddpI8r/kqzJMDhPHu5yZQrlrZ2LrbWIvNGGAw=
-pin: https://raw.githubusercontent.com/j3w1/theme/v3.1.0/exports/components/data-table.json
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-lYCeahYByMe6IB0c/kb+1ReT0XZFpjawue/30DNEY6o=
+pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/data-table.json
 spec: spec/components/data-table.md  site: https://j3w1.github.io/theme/reference/#c-data-table
 maturity: stable  priority: R1
 
@@ -22,7 +22,7 @@ Tokens (resolved):
   checkbox.bg          #000000  ({color.surface.input})  use
   checkbox.border      #a3676b  ({color.border.control})  use-and-report (D-007)
   checkbox.checked-bg  #7d1310  ({color.action.primary.bg})  use
-  checkbox.glyph       #f4eeee  ({color.action.primary.text})  use
+  checkbox.glyph       #ffa2a7  ({color.action.primary.text})  use
   resize.handle        #531310  ({color.border.default})  use
   resize.handle-hover  #e53935  ({color.border.active})  use
   empty.text           #bd787d  ({color.text.muted})  use

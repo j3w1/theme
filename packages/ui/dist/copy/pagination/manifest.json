@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "pagination",
-  "version": "3.1.0",
-  "contract": "https://github.com/j3w1/theme/blob/v3.1.0/spec/components/pagination.md",
+  "version": "4.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/pagination.md",
   "dependencies": [
     "register/pagination.js",
     "chunks/element-C1XeXVYC.js",
@@ -14,13 +14,13 @@
     "runtime/register/pagination.js": "sha256-pgp0U5vF4tER52b++qgmdpAuRSmpiybgRt6HfLmtBqU=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/components/pagination.js": "sha256-JvNY5w5d/JwbNAUYD8L0YhhjQ5NQMvIOcfuk+weeLoM=",
+    "runtime/components/pagination.js": "sha256-yrEJa21eYjbFYfF3K/IdLp2FXFcKGFkLEVD4bxibWrE=",
     "runtime/chunks/tables-B25ydUHs.js": "sha256-XqRdyfrSS93rVybWHq6a0WhrmZgaboHi5n8ymgwRbM8=",
-    "tokens.css": "sha256-c/NmCkdHsOHiHx4q0evmxTKbpeLSU3Eoo2b0S7PYNzU=",
+    "tokens.css": "sha256-gjEwadB0zTFK+892nxLpStOcmcjP5pxj2Pe/By5vwPE=",
     "component.css": "sha256-J6AIVbVHNyS581oA3enNH84ZCf3yRHxSsjlqUa9Z6d0=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-jp4BjPewAxszUnraKXf7iG6Zty7ZB7J8SdFyHQg7hL4=",
     "index.html": "sha256-/fV58cVZi1JLHRPrv8jsrMD51D/264mvCsNHTj4WEYM=",
-    "README.md": "sha256-G2SVunBjNlrxSQ31HyRms/G2n92E+B2IEKwQbVoflZ0="
+    "README.md": "sha256-CkmYa5gHgFCQLGpkV2WpwdaxjhezkCTRRw8d9KDRUqg="
   }
 }

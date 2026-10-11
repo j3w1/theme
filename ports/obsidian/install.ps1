@@ -1,4 +1,7 @@
-param([Parameter(Mandatory)][string]$VaultPath)
+param(
+    [Parameter(Mandatory)][string]$VaultPath,
+    [string]$SourcePath
+)
 
 $ErrorActionPreference = 'Stop'
 $vault = (Resolve-Path -LiteralPath $VaultPath -ErrorAction Stop).ProviderPath
@@ -18,8 +21,22 @@ $names = @('manifest.json', 'theme.css')
 try {
     New-Item -ItemType Directory -Path $download -ErrorAction Stop | Out-Null
     $base = 'https://j3w1.github.io/theme/ports/obsidian/'
-    foreach ($name in $names) {
-        Invoke-WebRequest -Uri ($base + $name) -OutFile (Join-Path $download $name) -UseBasicParsing -ErrorAction Stop
+    if ($SourcePath) {
+        $source = (Resolve-Path -LiteralPath $SourcePath -ErrorAction Stop).ProviderPath
+        if (-not (Test-Path -LiteralPath $source -PathType Container)) {
+            throw 'SourcePath must be a directory containing the generated theme pair.'
+        }
+        foreach ($name in $names) {
+            $artifact = Join-Path $source $name
+            if (-not (Test-Path -LiteralPath $artifact -PathType Leaf)) {
+                throw "Missing local theme artifact: $name"
+            }
+            Copy-Item -LiteralPath $artifact -Destination (Join-Path $download $name) -ErrorAction Stop
+        }
+    } else {
+        foreach ($name in $names) {
+            Invoke-WebRequest -Uri ($base + $name) -OutFile (Join-Path $download $name) -UseBasicParsing -ErrorAction Stop
+        }
     }
 
     $manifest = Get-Content -LiteralPath (Join-Path $download 'manifest.json') -Raw -ErrorAction Stop | ConvertFrom-Json -ErrorAction Stop

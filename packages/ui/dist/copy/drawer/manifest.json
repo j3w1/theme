@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "component": "drawer",
-  "version": "3.1.0",
-  "contract": "https://github.com/j3w1/theme/blob/v3.1.0/spec/components/drawer.md",
+  "version": "4.0.0",
+  "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/drawer.md",
   "dependencies": [
     "register/drawer.js",
     "chunks/element-C1XeXVYC.js",
@@ -14,13 +14,13 @@
     "runtime/register/drawer.js": "sha256-6AFbTqS+kQAd15TJ9NzKLIyNKPdVVmxyZMeHJXtNEhU=",
     "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
     "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-    "runtime/components/drawer.js": "sha256-MWAaFI3fg9IKpL++GW+abrYlsCAjYpPaV+3+/iuv/7Y=",
+    "runtime/components/drawer.js": "sha256-vwjZdEg2SybEwAsIBL+uJuAs6ArJnLfrtqdRiOtleqA=",
     "runtime/chunks/overlays-C6nlCHqg.js": "sha256-JtKjtFU2sbObAEtYaA9S+YE40WKP5hX073Xv4lpA67o=",
-    "tokens.css": "sha256-c/NmCkdHsOHiHx4q0evmxTKbpeLSU3Eoo2b0S7PYNzU=",
+    "tokens.css": "sha256-gjEwadB0zTFK+892nxLpStOcmcjP5pxj2Pe/By5vwPE=",
     "component.css": "sha256-39DmGp3B3f8+C/QGAv6xbiVXT7QviSaVCnHk8XpC158=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
     "element.html": "sha256-RNAiKQJPioHCtfhMtqcsFaQFfwhKvdH+iIfLXOWo6QQ=",
     "index.html": "sha256-CbS/ignNl9YlA8MUwmXMnGVVRk6rR78IN2YGSe3T/OI=",
-    "README.md": "sha256-iIHt6cGl0eL7gD4BHLbwGD4P7brOERPIAjSw8ifVPeM="
+    "README.md": "sha256-fOfwfTYC9vdlgQFOfWiigzqCKfrU93VWnGHVQW9kH8s="
   }
 }

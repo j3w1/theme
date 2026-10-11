@@ -1,10 +1,10 @@
 {
   "id": "list",
   "name": "List",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "tag": "j3w1-list",
-  "contract": "https://github.com/j3w1/theme/blob/v3.1.0/spec/components/list.md",
-  "source": "https://github.com/j3w1/theme/blob/v3.1.0/packages/ui/src/behaviors/native.js",
+  "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/list.md",
+  "source": "https://github.com/j3w1/theme/blob/v4.0.0/packages/ui/src/behaviors/native.js",
   "imports": {
     "class": "@j3w1/ui/components/list",
     "register": "@j3w1/ui/register/list",
@@ -407,6 +407,6 @@
   "copy": {
     "directory": "copy/list/",
     "manifest": "copy/list/manifest.json",
-    "digest": "sha256-ooGElFH9DEmbyJt3cQnMxELdj87Nfj5bF1o59jwrWEI="
+    "digest": "sha256-oe9dfAsYFT7oOiJdiyHCWMytstkeyf/DKpKDPNXD4Ko="
   }
 }
