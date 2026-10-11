@@ -2,7 +2,7 @@
 // @id j3w1-terminal-chrome
 // @name j3w1 Terminal chrome
 // @description Exact-package Terminal chrome resources; document and artwork colors remain native
-// @version 1.0.13
+// @version 1.0.14
 // @author j3w1
 // @include WindowsTerminal.exe
 // @architecture x86-64
@@ -1849,7 +1849,9 @@ static void Bridge(Root& root,FrameworkElement const& popup=nullptr) {
    apply(object,Windows::UI::Xaml::Shapes::Shape::FillProperty(),Kind::Background,std::wstring_view{type});
    apply(object,Windows::UI::Xaml::Shapes::Shape::StrokeProperty(),Kind::Border,std::wstring_view{type});
   }
-  if(object.try_as<FrameworkElement>()) {
+  // Only Controls are eligible for NativeFocusBrushKey. Reject other
+  // FrameworkElements before reading focus values or template ancestry.
+  if(object.try_as<Control>()) {
    apply(object,FrameworkElement::FocusVisualPrimaryBrushProperty(),Kind::FocusPrimary,std::wstring_view{type});apply(object,FrameworkElement::FocusVisualSecondaryBrushProperty(),Kind::FocusSecondary,std::wstring_view{type});
   }
   for(int i=0;i<VisualTreeHelper::GetChildrenCount(object);i++)stack.push_back(VisualTreeHelper::GetChild(object,i));

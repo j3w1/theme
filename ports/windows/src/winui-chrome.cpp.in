@@ -933,7 +933,9 @@ static void Bridge(Root& root,FrameworkElement const& popup=nullptr) {
    apply(object,Microsoft::UI::Xaml::Shapes::Shape::FillProperty(),Kind::Background,std::wstring_view{type});
    apply(object,Microsoft::UI::Xaml::Shapes::Shape::StrokeProperty(),Kind::Border,std::wstring_view{type});
   }
-  if(object.try_as<FrameworkElement>()) {
+  // Only Controls are eligible for NativeFocusBrushKey. Reject other
+  // FrameworkElements before reading focus values or template ancestry.
+  if(object.try_as<Control>()) {
    apply(object,FrameworkElement::FocusVisualPrimaryBrushProperty(),Kind::FocusPrimary,std::wstring_view{type});apply(object,FrameworkElement::FocusVisualSecondaryBrushProperty(),Kind::FocusSecondary,std::wstring_view{type});
   }
   for(int i=0;i<VisualTreeHelper::GetChildrenCount(object);i++)stack.push_back(VisualTreeHelper::GetChild(object,i));

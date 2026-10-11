@@ -1296,3 +1296,9 @@ redundant identity query, while different views still use canonical IUnknown.
 The refresh cadence, popup discovery, native state handling and cleanup retries
 are unchanged. Native tests retain every eligible template class, split-button
 and focus scope and reject unrelated drawing/button paint.
+
+Focus bridging also rejects non-Control FrameworkElements before reading
+their brush or template. The existing final matcher admits focus paint only
+on Controls, so this removes work without changing an eligible focus scope.
+Native focus admission regressions retain both control focus brushes and
+refuse backgrounds and non-control focus scopes.
