@@ -72,3 +72,43 @@ test('shared menu states restore their unhovered color and preserve native inter
   for(const property of Object.keys(rule.styles))assert.match(property,allowed,'native behavior, geometry and focus are preserved');
  }
 });
+
+
+test('taskbar app jump lists theme the shared shell container without command or app matching',async()=>{
+ const host=await readJson('ports/windows/host.json');
+ const mapping=await readJson('ports/windows/mapping.json');
+ const styler=host.stylers.find(x=>x.id==='windows-11-notification-center-styler');
+ const payload=await readJson('ports/windows/dist/'+styler.id+'.json');
+ const wanted={
+  'Border#JumpListRestyledAcrylic':{Background:'color.surface.raised',BorderBrush:'color.border.overlay',BorderThickness:'border.width.default',CornerRadius:'radius.none'},
+  'Border#JumpListAcrylic':{Background:'color.surface.raised',CornerRadius:'radius.none'},
+  'Grid#JumpListGrid':{Background:'color.surface.raised',CornerRadius:'radius.none'},
+  'Grid#SystemItemsContainer > Border':{Background:'color.surface.raised',CornerRadius:'radius.none'},
+  'Grid#SystemItemsContainer > Rectangle':{Fill:'color.border.divider'},
+  'JumpViewUI.JumpListCategoryHeaderControl > Grid > TextBlock#HeadingTextBlock':{Foreground:'color.text.muted'},
+ };
+ for(const [target,styles]of Object.entries(wanted)){
+  assert.deepEqual(styler.targets.find(x=>x.target===target)?.styles,styles,target);
+  assert.equal(payload.controlStyles.filter(x=>x.target===target).length,1,target);
+ }
+ for(const type of ['JumpViewUI.SystemItemListViewItem','JumpViewUI.JumpListListViewItem']){
+  const control=styler.targets.find(x=>x.target===type);
+  assert.equal(control.styles.CornerRadius,'radius.none');
+  assert.equal(control.styles.FocusVisualPrimaryBrush,'color.interaction.focus.ring');
+  assert.equal(control.styles.FocusVisualSecondaryBrush,'color.interaction.focus.ring-container');
+  const states=styler.targets.find(x=>x.target===type+' > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder');
+  assert.equal(states.styles['Background@Normal'],'color.surface.raised');
+  assert.equal(states.styles['Background@PointerOver'],'color.interaction.hover.bg-strong');
+  assert.equal(states.styles['Background@Pressed'],'color.interaction.pressed.bg');
+  assert.equal(states.styles['Background@Selected'],'color.interaction.selection.bg');
+  assert.notEqual(states.styles['Background@PointerOver'],states.styles['Background@Normal']);
+ }
+ const rules=styler.targets.filter(x=>/JumpViewUI|JumpList|SystemItemsContainer/.test(x.target));
+ for(const rule of rules){
+  assert.doesNotMatch(rule.target,/\[|Text=|Content=|Command=/);
+  for(const [property,role]of Object.entries(rule.styles)){
+   assert.ok(mapping.mappings[role].includes(styler.id+' | '+rule.target+' | '+property));
+   assert.doesNotMatch(property,/Width|Height|Margin|Padding|Visibility|IsHitTestVisible|IsEnabled/);
+  }
+ }
+});

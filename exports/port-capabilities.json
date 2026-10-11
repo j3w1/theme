@@ -37750,7 +37750,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-iULnokRYBmcGe/tOVG8DShcha9cX9khAm+Z1a3Rz9xA=",
+      "subjectDigest": "sha256-8Sr6r4yXpmSnDapKa0sfF7n+wHZzstyP7/gvdj341R8=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -37783,7 +37783,7 @@
           "path": "dist/windows-settings.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-settings.json",
-          "digest": "sha256-AuLsmDoAXMzCW2ywOrCBYd95KLdqGSYPV4zZRKW9CY8="
+          "digest": "sha256-wDXJkeecqPOdDF6kQ6Hag7opV7opVTZ6bJZ9qSAiesg="
         },
         {
           "path": "dist/terminal-fragment.json",
@@ -37825,7 +37825,7 @@
           "path": "dist/windows-11-notification-center-styler.json",
           "install": "Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.",
           "source": "ports/windows/dist/windows-11-notification-center-styler.json",
-          "digest": "sha256-FgWAOugwwufsLolDf2BWBOqDEz+YqBTX9D/cMV5HnF4="
+          "digest": "sha256-1P5O/Bk8o4qDiyG1An65XWCGfNE9IVdVreLMIAq3Zy4="
         },
         {
           "path": "dist/windows-11-settings-styler.json",
@@ -37957,7 +37957,7 @@
           "path": "dist/install-manifest.json",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/install-manifest.json",
-          "digest": "sha256-/IF0QwN9+qMWTiqSmc/gWWPW//BLy9XfT389M5+iegA="
+          "digest": "sha256-UyMSjGZHRe9uPvombigG7hRL2+yjcmjowyYbPuOUlN4="
         },
         {
           "path": "dist/j3w1-explorer-native.wh.cpp",
@@ -37987,7 +37987,7 @@
           "path": "dist/j3w1-calculator.wh.cpp",
           "install": "Use the pinned Windows lifecycle installer.",
           "source": "ports/windows/dist/j3w1-calculator.wh.cpp",
-          "digest": "sha256-sWCYTc+n9cNIhb4MsXPJDce0HGKqxbluBYNrNHFpYak="
+          "digest": "sha256-kuIdNmbGVCYXbQUD5YBZ1i+YzOJHZDwO+gKP0nuSl3Y="
         },
         {
           "path": "dist/j3w1-calculator.json",
@@ -38041,7 +38041,7 @@
           "path": "dist/j3w1-notepad-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-notepad-chrome.wh.cpp",
-          "digest": "sha256-/D0qKzzA3H9oiTcLadMb21JCL8/0dFmUGalhlptJzTY="
+          "digest": "sha256-CR3AdZlxcc7tEsdZhnvQNuEP2nJpaaBn6A9+HlbSrto="
         },
         {
           "path": "dist/j3w1-notepad-chrome.json",
@@ -38053,7 +38053,7 @@
           "path": "dist/j3w1-paint-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-paint-chrome.wh.cpp",
-          "digest": "sha256-OHyHAQw9p4CPqeCBN32fYKHvSVzEd4t1nLQs7dnrpw8="
+          "digest": "sha256-ayg9XbVD5iBhGdK/IzZ0wrXoehmBm26k3P7CHB/R75I="
         },
         {
           "path": "dist/j3w1-paint-chrome.json",
@@ -38065,7 +38065,7 @@
           "path": "dist/j3w1-terminal-chrome.wh.cpp",
           "install": "Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.",
           "source": "ports/windows/dist/j3w1-terminal-chrome.wh.cpp",
-          "digest": "sha256-HO5VKCFPRKYQ8I4h5c4KZzDFTMUTehtKI0GLa/fFDY4="
+          "digest": "sha256-6enDiWTvAhEfZDKw9O9kMU8Z4h+W1bkBYWZFWpvrqyM="
         },
         {
           "path": "dist/j3w1-terminal-chrome.json",
@@ -38108,7 +38108,8 @@
             "windhawk.menu | FlyoutPresenter > Border | BorderThickness",
             "windhawk.menu | Border#SuggestionsContainer | BorderThickness",
             "windhawk.menu | Grid#SuggestionsContainer | BorderThickness",
-            "windows-11-settings-styler | Border#StatusTextPopupBorder | BorderThickness"
+            "windows-11-settings-styler | Border#StatusTextPopupBorder | BorderThickness",
+            "windows-11-notification-center-styler | Border#JumpListRestyledAcrylic | BorderThickness"
           ],
           "value": "1px",
           "eligibility": {
@@ -39063,7 +39064,9 @@
             "windhawk.menu | MenuFlyoutSeparator > Windows.UI.Xaml.Shapes.Rectangle | Fill",
             "windhawk.resource.CommandBarFlyoutAppBarButtonBorderBrush",
             "windhawk.menu | AppBarSeparator | Foreground",
-            "windhawk.menu | AppBarSeparator > Grid#RootGrid > Rectangle#SeparatorRectangle | Fill"
+            "windhawk.menu | AppBarSeparator > Grid#RootGrid > Rectangle#SeparatorRectangle | Fill",
+            "windows-11-notification-center-styler | Grid#SystemItemsContainer > Rectangle | Fill",
+            "windows-11-notification-center-styler | JumpViewUI.JumpListListViewItem > Grid#LayoutRoot > ContentPresenter#ContentPresenter > Grid#LayoutRoot > Rectangle | Fill"
           ],
           "value": "#2b0e0d",
           "eligibility": {
@@ -39129,7 +39132,8 @@
             "windhawk.menu | FlyoutPresenter > Border | BorderBrush",
             "windhawk.menu | Border#SuggestionsContainer | BorderBrush",
             "windhawk.menu | Grid#SuggestionsContainer | BorderBrush",
-            "windows-11-settings-styler | Border#StatusTextPopupBorder | BorderBrush"
+            "windows-11-settings-styler | Border#StatusTextPopupBorder | BorderBrush",
+            "windows-11-notification-center-styler | Border#JumpListRestyledAcrylic | BorderBrush"
           ],
           "value": "#e53935",
           "eligibility": {
@@ -40389,7 +40393,9 @@
             "terminal-chrome.resource.FocusStrokeColorOuterBrush",
             "terminal-chrome.resource.ComboBoxBackgroundBorderBrushFocused",
             "windows-11-settings-styler.resource.SystemControlFocusVisualPrimaryBrush",
-            "windows-11-settings-styler.resource.FocusStrokeColorOuterBrush"
+            "windows-11-settings-styler.resource.FocusStrokeColorOuterBrush",
+            "windows-11-notification-center-styler | JumpViewUI.SystemItemListViewItem | FocusVisualPrimaryBrush",
+            "windows-11-notification-center-styler | JumpViewUI.JumpListListViewItem | FocusVisualPrimaryBrush"
           ],
           "value": "#e53935",
           "eligibility": {
@@ -40412,7 +40418,9 @@
             "paint-chrome.resource.FocusStrokeColorInnerBrush",
             "windows-11-start-menu-styler | web .previewContainer:focus-visible | outline-color",
             "terminal-chrome.resource.SystemControlFocusVisualSecondaryBrush",
-            "terminal-chrome.resource.FocusStrokeColorInnerBrush"
+            "terminal-chrome.resource.FocusStrokeColorInnerBrush",
+            "windows-11-notification-center-styler | JumpViewUI.SystemItemListViewItem | FocusVisualSecondaryBrush",
+            "windows-11-notification-center-styler | JumpViewUI.JumpListListViewItem | FocusVisualSecondaryBrush"
           ],
           "value": "#ffa2a7",
           "eligibility": {
@@ -40534,7 +40542,9 @@
             "windhawk.menu | ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates | Background@PointerOver",
             "windhawk.resource.CommandBarFlyoutAppBarButtonBackgroundPointerOver",
             "windows-11-settings-styler.resource.ListViewItemBackgroundPointerOver",
-            "windows-11-settings-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | PointerOverBackground"
+            "windows-11-settings-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | PointerOverBackground",
+            "windows-11-notification-center-styler | JumpViewUI.SystemItemListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder | Background@PointerOver",
+            "windows-11-notification-center-styler | JumpViewUI.JumpListListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder | Background@PointerOver"
           ],
           "value": "#630f0d",
           "eligibility": {
@@ -40668,7 +40678,11 @@
             "windhawk.resource.CommandBarFlyoutAppBarButtonBackgroundPressed",
             "windhawk.resource.CommandBarFlyoutAppBarButtonBackgroundCheckedPressed",
             "windows-11-settings-styler.resource.ListViewItemBackgroundPressed",
-            "windows-11-settings-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | PressedBackground"
+            "windows-11-settings-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | PressedBackground",
+            "windows-11-notification-center-styler | JumpViewUI.SystemItemListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder | Background@Pressed",
+            "windows-11-notification-center-styler | JumpViewUI.SystemItemListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder | Background@PressedSelected",
+            "windows-11-notification-center-styler | JumpViewUI.JumpListListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder | Background@Pressed",
+            "windows-11-notification-center-styler | JumpViewUI.JumpListListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder | Background@PressedSelected"
           ],
           "value": "#420f0c",
           "eligibility": {
@@ -40869,7 +40883,11 @@
             "windows-11-settings-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | SelectedBackground",
             "windows-11-settings-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | SelectedPointerOverBackground",
             "windows-11-settings-styler.resource.ListViewItemBackgroundSelectedPressed",
-            "windows-11-settings-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | SelectedPressedBackground"
+            "windows-11-settings-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | SelectedPressedBackground",
+            "windows-11-notification-center-styler | JumpViewUI.SystemItemListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder | Background@Selected",
+            "windows-11-notification-center-styler | JumpViewUI.SystemItemListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder | Background@PointerOverSelected",
+            "windows-11-notification-center-styler | JumpViewUI.JumpListListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder | Background@Selected",
+            "windows-11-notification-center-styler | JumpViewUI.JumpListListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder | Background@PointerOverSelected"
           ],
           "value": "#531310",
           "eligibility": {
@@ -43045,7 +43063,17 @@
             "windows-11-settings-styler.resource.ListViewItemBackgroundDisabled",
             "windows-11-settings-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | Background",
             "windhawk.menu | Grid#SuggestionsContainer | Background",
-            "windows-11-settings-styler | Border#StatusTextPopupBorder | Background"
+            "windows-11-settings-styler | Border#StatusTextPopupBorder | Background",
+            "windows-11-notification-center-styler | JumpViewUI.TaskbarJumpListFrame | Background",
+            "windows-11-notification-center-styler | Grid#JumpListGrid | Background",
+            "windows-11-notification-center-styler | Border#JumpListRestyledAcrylic | Background",
+            "windows-11-notification-center-styler | Border#JumpListAcrylic | Background",
+            "windows-11-notification-center-styler | Grid#SystemItemsContainer | Background",
+            "windows-11-notification-center-styler | Grid#SystemItemsContainer > Border | Background",
+            "windows-11-notification-center-styler | JumpViewUI.SystemItemListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder | Background@Normal",
+            "windows-11-notification-center-styler | JumpViewUI.SystemItemListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder | Background@Disabled",
+            "windows-11-notification-center-styler | JumpViewUI.JumpListListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder | Background@Normal",
+            "windows-11-notification-center-styler | JumpViewUI.JumpListListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder | Background@Disabled"
           ],
           "value": "#160b0b",
           "eligibility": {
@@ -43825,7 +43853,9 @@
             "windows-11-settings-styler.resource.ListViewItemForegroundPressed",
             "windows-11-settings-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | Foreground",
             "windows-11-settings-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | PointerOverForeground",
-            "windows-11-settings-styler | TextBox#CommandSearchTextBox | Foreground"
+            "windows-11-settings-styler | TextBox#CommandSearchTextBox | Foreground",
+            "windows-11-notification-center-styler | JumpViewUI.SystemItemListViewItem | Foreground",
+            "windows-11-notification-center-styler | JumpViewUI.JumpListListViewItem | Foreground"
           ],
           "value": "#e99499",
           "eligibility": {
@@ -44124,7 +44154,8 @@
             "windhawk.resource.CommandBarFlyoutAppBarButtonSubItemChevronForeground",
             "windhawk.resource.CommandBarFlyoutAppBarButtonSubItemChevronPointerOverForeground",
             "windhawk.resource.CommandBarFlyoutAppBarButtonSubItemChevronPressedForeground",
-            "windhawk.resource.CommandBarFlyoutAppBarButtonSubItemChevronSubMenuOpenedForeground"
+            "windhawk.resource.CommandBarFlyoutAppBarButtonSubItemChevronSubMenuOpenedForeground",
+            "windows-11-notification-center-styler | JumpViewUI.JumpListCategoryHeaderControl > Grid > TextBlock#HeadingTextBlock | Foreground"
           ],
           "value": "#bd787d",
           "eligibility": {
@@ -45131,7 +45162,17 @@
             "windows-11-settings-styler | Border#StatusTextPopupBorder | CornerRadius",
             "windows-11-settings-styler | TextBox#CommandSearchTextBox | CornerRadius",
             "windows-11-settings-styler | TextBox#CommandSearchTextBox > Grid@CommonStates > Border#BorderElement | CornerRadius",
-            "windows-11-settings-styler | SystemSettings.View.SettingsCommandSearchBox > StackPanel#SettingsCommandSearchBoxBackground | CornerRadius"
+            "windows-11-settings-styler | SystemSettings.View.SettingsCommandSearchBox > StackPanel#SettingsCommandSearchBoxBackground | CornerRadius",
+            "windows-11-notification-center-styler | JumpViewUI.TaskbarJumpListFrame | CornerRadius",
+            "windows-11-notification-center-styler | Grid#JumpListGrid | CornerRadius",
+            "windows-11-notification-center-styler | Border#JumpListRestyledAcrylic | CornerRadius",
+            "windows-11-notification-center-styler | Border#JumpListAcrylic | CornerRadius",
+            "windows-11-notification-center-styler | Grid#SystemItemsContainer | CornerRadius",
+            "windows-11-notification-center-styler | Grid#SystemItemsContainer > Border | CornerRadius",
+            "windows-11-notification-center-styler | JumpViewUI.SystemItemListViewItem | CornerRadius",
+            "windows-11-notification-center-styler | JumpViewUI.SystemItemListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder | CornerRadius",
+            "windows-11-notification-center-styler | JumpViewUI.JumpListListViewItem | CornerRadius",
+            "windows-11-notification-center-styler | JumpViewUI.JumpListListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder | CornerRadius"
           ],
           "value": "0px",
           "eligibility": {

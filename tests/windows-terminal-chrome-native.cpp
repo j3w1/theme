@@ -10,7 +10,11 @@ static int Wh_GetIntSetting(PCWSTR){return 1;}
 static DWORD Handles(){DWORD count=0;assert(GetProcessHandleCount(GetCurrentProcess(),&count));return count;}
 #include "windows-chrome-transition-assertions.h"
 #include "windows-popup-load-assertions.h"
+#include "windows-control-resource-assertions.h"
+
 int main(int argc,char** argv) {
+ if(argc>1&&strcmp(argv[1],"resource-scaling")==0){CheckControlLocalKeyScaling();puts("PASS: linear absent-key admission, synchronous later-key edits, null and fault ownership");return 0;}
+
  if(argc>1&&strcmp(argv[1],"popup-load-lifecycle")==0){CheckPopupLoadLifecycle();return 0;}
  if(argc>1&&strcmp(argv[1],"background-transition-ownership")==0){CheckChromeTransitions();return 0;}
  if(argc>1&&strcmp(argv[1],"hover-state-palette")==0){CheckChromeHoverStates();return 0;}

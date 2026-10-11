@@ -647,6 +647,112 @@
         "Fill@Pressed=#630f0d",
         "Fill@Disabled=#160b0b"
       ]
+    },
+    {
+      "target": "JumpViewUI.TaskbarJumpListFrame",
+      "styles": [
+        "Background=#160b0b",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Grid#JumpListGrid",
+      "styles": [
+        "Background=#160b0b",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Border#JumpListRestyledAcrylic",
+      "styles": [
+        "Background=#160b0b",
+        "BorderBrush=#e53935",
+        "BorderThickness=1",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Border#JumpListAcrylic",
+      "styles": [
+        "Background=#160b0b",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Grid#SystemItemsContainer",
+      "styles": [
+        "Background=#160b0b",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Grid#SystemItemsContainer > Border",
+      "styles": [
+        "Background=#160b0b",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "Grid#SystemItemsContainer > Rectangle",
+      "styles": [
+        "Fill=#2b0e0d"
+      ]
+    },
+    {
+      "target": "JumpViewUI.JumpListCategoryHeaderControl > Grid > TextBlock#HeadingTextBlock",
+      "styles": [
+        "Foreground=#bd787d"
+      ]
+    },
+    {
+      "target": "JumpViewUI.JumpListListViewItem > Grid#LayoutRoot > ContentPresenter#ContentPresenter > Grid#LayoutRoot > Rectangle",
+      "styles": [
+        "Fill=#2b0e0d"
+      ]
+    },
+    {
+      "target": "JumpViewUI.SystemItemListViewItem",
+      "styles": [
+        "CornerRadius=0",
+        "Foreground=#e99499",
+        "FocusVisualPrimaryBrush=#e53935",
+        "FocusVisualSecondaryBrush=#ffa2a7"
+      ]
+    },
+    {
+      "target": "JumpViewUI.SystemItemListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder",
+      "styles": [
+        "CornerRadius=0",
+        "Background@Normal=#160b0b",
+        "Background@PointerOver=#630f0d",
+        "Background@Pressed=#420f0c",
+        "Background@Disabled=#160b0b",
+        "Background@Selected=#531310",
+        "Background@PointerOverSelected=#531310",
+        "Background@PressedSelected=#420f0c"
+      ]
+    },
+    {
+      "target": "JumpViewUI.JumpListListViewItem",
+      "styles": [
+        "CornerRadius=0",
+        "Foreground=#e99499",
+        "FocusVisualPrimaryBrush=#e53935",
+        "FocusVisualSecondaryBrush=#ffa2a7"
+      ]
+    },
+    {
+      "target": "JumpViewUI.JumpListListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder",
+      "styles": [
+        "CornerRadius=0",
+        "Background@Normal=#160b0b",
+        "Background@PointerOver=#630f0d",
+        "Background@Pressed=#420f0c",
+        "Background@Disabled=#160b0b",
+        "Background@Selected=#531310",
+        "Background@PointerOverSelected=#531310",
+        "Background@PressedSelected=#420f0c"
+      ]
     }
   ],
   "themeResourceVariables": [

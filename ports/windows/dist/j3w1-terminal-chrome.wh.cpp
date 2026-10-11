@@ -2,7 +2,7 @@
 // @id j3w1-terminal-chrome
 // @name j3w1 Terminal chrome
 // @description Exact-package Terminal chrome resources; document and artwork colors remain native
-// @version 1.0.11
+// @version 1.0.12
 // @author j3w1
 // @include WindowsTerminal.exe
 // @architecture x86-64
@@ -556,7 +556,7 @@ struct ControlKey {
  hstring key; ProjectedObject before{nullptr},applied{nullptr}; bool local=false,owned=false;
 };
 struct ControlResources {
- weak_ref<FrameworkElement> element; ResourceDictionary owner{nullptr}; std::vector<ControlKey> keys; OwnedThemeRefresh refresh;
+ weak_ref<FrameworkElement> element; ResourceDictionary owner{nullptr}; std::vector<ControlKey> keys; OwnedThemeRefresh refresh; ResourceDictionary overlay{nullptr};
 };
 struct LocalResourceValue { bool exists=false; ProjectedObject value{nullptr}; };
 static LocalResourceValue LocalResource(ResourceDictionary const& owner,hstring const& key) {
@@ -590,9 +590,33 @@ static bool RestoreControlResources(ControlResources& entry) noexcept {
   restored=RestoreControlKey(key,[&]{return LocalResource(entry.owner,key.key);},
    [&](auto const& value){entry.owner.Insert(box_value(key.key),value);},
    [&]{entry.owner.Remove(box_value(key.key));})&&restored;
+ if(entry.owner&&entry.overlay)try {
+  auto merged=entry.owner.MergedDictionaries();unsigned index=0;
+  if(merged.IndexOf(entry.overlay,index))merged.RemoveAt(index);
+  entry.overlay=nullptr;
+ }catch(...){restored=false;}
  if(restored){entry.keys.clear();entry.owner=nullptr;}
  return restored;
 }
+
+// Absent keys live in a separate merged dictionary. The owner's enumerable
+// local entries therefore do not grow with the palette. Existing local keys
+// still win resource lookup, so replace only those, reading each immediately
+// before its write. A synchronous app callback can edit the next key: a batch
+// snapshot would lose that new baseline. Rollback owns only our values/overlay.
+template<class Entry,class Items,class Key,class Value,class Read,class Write>
+static bool ApplyControlLocalKeys(Entry& entry,Items const& items,Key keyOf,Value valueOf,Read read,Write write) noexcept {
+ try {
+  for(auto const& item:items) {
+   auto key=keyOf(item);auto before=read(key);
+   if(!before.exists)continue;
+   entry.keys.push_back({key,nullptr,valueOf(item)});auto& owned=entry.keys.back();
+   if(!ApplyControlKey(owned,[&]{return before;},[&](auto const& value){write(key,value);}))return false;
+  }
+  return true;
+ }catch(...){return false;}
+}
+
 
 struct Root { weak_ref<FrameworkElement> element; weak_ref<FrameworkElement> backgroundElement; weak_ref<DesktopWindowXamlSource> source; weak_ref<Window> window; event_token layout{}; ResourceDictionary owner{nullptr},overlay{nullptr}; ProjectedObject themeBefore{nullptr}; bool themeTouched=false;
 #if !J3W1_LEGACY_XAML
@@ -1076,7 +1100,6 @@ static void ApplyChromeSetters(Control const& control,VisualStateGroup const& gr
  if(!RefreshChromeColorStates(refresh))throw hresult_error(E_FAIL);
 }
 static void ApplyChromeAnimationPalette(DependencyObject const& object,std::deque<ChromeAnimationChange>& changes,std::deque<ChromeSetterChange>& setters,std::deque<ChromeBaseChange>& bases,std::deque<ChromeTransitionChange>& transitions) {
- if(!PruneChromeColorStates(changes,RestoreChromeAnimations)||!PruneChromeColorStates(setters,RestoreChromeSetters))throw hresult_error(E_FAIL);
  auto control=object.try_as<Control>();if(!control||!control.IsLoaded())return;
  if(!object.try_as<Windows::UI::Xaml::Controls::Primitives::ButtonBase>()&&!object.try_as<MenuBarItem>())return;
  std::vector<DependencyObject> todo{object};unsigned visited=0;
@@ -1717,15 +1740,13 @@ static void RefreshChromeControl(Root& root,DependencyObject const& object) {
  if(root.controls.size()>=1024)return;
  root.controls.push_back({make_weak(element),element.Resources(),{}, {make_weak(element)}});
  auto& entry=root.controls.back();
- for(auto const& item:root.palette) {
-  auto key=hstring(item.rule->key);
-  // Own resource entries, never frozen shared brushes or local control paint
-  // values. The native templates keep control of all visual-state transitions.
-  entry.keys.push_back({key,nullptr,item.applied});
-  auto& owned=entry.keys.back();
-  if(!ApplyControlKey(owned,[&]{return LocalResource(entry.owner,key);},
-    [&](auto const& value){entry.owner.Insert(box_value(key),value);}))throw hresult_error(E_FAIL);
- }
+ entry.overlay=ResourceDictionary();
+ for(auto const& item:root.palette)entry.overlay.Insert(box_value(item.rule->key),item.applied);
+ entry.owner.MergedDictionaries().Append(entry.overlay);
+ if(!ApplyControlLocalKeys(entry,root.palette,[](auto const& item){return hstring(item.rule->key);},
+  [](auto const& item)->ProjectedObject{return item.applied;},
+  [&](auto const& key){return LocalResource(entry.owner,key);},
+  [&](auto const& key,auto const& value){entry.owner.Insert(box_value(key),value);}))throw hresult_error(E_FAIL);
  if(!RefreshThemeSource(entry.refresh))Log(235);
  Log(236,static_cast<unsigned>(entry.keys.size()));
 }
@@ -1742,6 +1763,8 @@ static void Bridge(Root& root,FrameworkElement const& popup=nullptr) {
     enabled.load()&&!HighContrast(),popup.IsLoaded(),Identity(owner.XamlRoot(),popup.XamlRoot())))return;
  }
  if(!PruneRetiredControls(root))throw hresult_error(E_FAIL);
+ if(uiState&&(!PruneChromeColorStates(uiState->animations,RestoreChromeAnimations)
+  ||!PruneChromeColorStates(uiState->setters,RestoreChromeSetters)))throw hresult_error(E_FAIL);
  std::vector<Brush> protectedBrushes;if(!ProtectedBrushes(root,protectedBrushes))return;
  auto apply=[&](DependencyObject const& object,DependencyProperty const& property,Kind kind) {
   kind=TemplateKind(object,kind);
@@ -1758,22 +1781,9 @@ static void Bridge(Root& root,FrameworkElement const& popup=nullptr) {
   if(!uiState)return;
   if(ApplyPaintSplitEdge(uiState->paintSplitEdges,object,property,brush,protectedBrushes))return;
   Palette const* match=TemplateSurface(root,object,kind,brush);
-  if(!match)for(auto const& item:root.palette) {
-   if(!Matches(*item.rule,kind))continue;
-   bool alias=false;for(auto const& candidate:item.aliases)if(Identity(brush,candidate)){alias=true;break;}
-   if(!alias)continue;
-   if(match&&!Same(match->rule->color,item.rule->color))return;
-   match=&item;
-  }
+  // Every other property was already excluded from local paint ownership.
+  // Do not scan hundreds of palette aliases for an object we cannot change.
   if(!match)return;
-  for(auto const& data:protectedBrushes)if(Identity(brush,data))return;
-  HRESULT failure=S_OK;
-  // Shared theme brushes may be frozen. Direct control resources are the
-  // supported override path; do not repeatedly attempt a denied brush write.
-  (void)failure;
-  // Only the already identified, static exact-package template surfaces use
-  // an owned local brush. State-controlled control values remain untouched.
-  if(!TemplateSurface(root,object,kind,brush))return;
   auto local=object.ReadLocalValue(property);
   if(local&&!Identity(local,DependencyProperty::UnsetValue())&&!local.try_as<Brush>())return;
   for(auto& prior:root.changes)if(Identity(prior.object.get(),object)&&Identity(prior.property,property)) {
@@ -2374,17 +2384,6 @@ template<unsigned N> static HRESULT STDMETHODCALLTYPE CreateHook(void* self,void
  bool admitted=false;
  if(self)for(unsigned at=0;at<factoryCount;at++)if(hooked[at].load()&&factoryFunction[at].load()==factoryFunction[N].load()&&SameFactory(self,factoryIdentity[at])){admitted=true;break;}
  Log(240,N,admitted);
- if(SUCCEEDED(result)&&object&&*object)try {
-  ProjectedObject value{nullptr};copy_from_abi(value,*object);
-  unsigned mask=0;
-  if(auto element=value.try_as<FrameworkElement>()) {
-   mask|=1;if(ChromeUiThread(element))mask|=8;
-   if(element.XamlRoot())mask|=16;
-  }
-  if(value.try_as<DesktopWindowXamlSource>())mask|=2;
-  if(value.try_as<Window>())mask|=4;
-  Log(263,N,mask);
- }catch(hresult_error const& error){Log(264,N,static_cast<unsigned>(error.code().value));}
 
  if(enabled.load()&&SUCCEEDED(result)&&object&&*object&&!HighContrast())try{
   ProjectedObject value{nullptr};copy_from_abi(value,*object);
@@ -2404,20 +2403,6 @@ template<unsigned N> static HRESULT STDMETHODCALLTYPE ActivationHook(void* self,
   if(activationHooked[at].load()&&activationFunction[at].load()==activationFunction[N].load()
     &&SameFactory(self,activationIdentity[at])){admitted=true;break;}
  Log(241,N,admitted);Log(245,static_cast<unsigned>(result),object&&*object);
- // Diagnostic only: public interface capabilities of the returned object.
- // No document properties, paths, text, or object state are changed here.
- if(SUCCEEDED(result)&&object&&*object)try {
-  ProjectedObject value{nullptr};copy_from_abi(value,*object);
-  unsigned mask=0;
-  if(auto element=value.try_as<FrameworkElement>()) {
-   mask|=1;if(ChromeUiThread(element))mask|=8;
-   if(element.XamlRoot())mask|=16;
-  }
-  if(value.try_as<DesktopWindowXamlSource>())mask|=2;
-  if(value.try_as<Window>())mask|=4;
-  if(value.try_as<SolidColorBrush>())mask|=32;
-  Log(254,N,mask);
- }catch(hresult_error const& error){Log(255,N,static_cast<unsigned>(error.code().value));}
 
  if(enabled.load()&&SUCCEEDED(result)&&object&&*object&&admitted&&!HighContrast())try {
   ProjectedObject value{nullptr};copy_from_abi(value,*object);AdmitSource(value);
@@ -2564,7 +2549,6 @@ static void Admit(){
    auto api=Factory(type).as<T>();auto table=*reinterpret_cast<void***>(get_abi(api));auto function=table[6];
    HMODULE module=nullptr;
    if(GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS|GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,reinterpret_cast<LPCWSTR>(function),&module)&&module==GetModuleHandleW(L"Windows.UI.Xaml.dll")){
-    Log(250,N,Identity(api,Factory(type).as<T>()));
     factoryIdentity[N]=api;factoryTable[N]=table;factoryFunction[N]=function;
     // Several exact-runtime factories share one constructor implementation.
     // Admit each factory identity, but install one hook per function address.
@@ -2591,7 +2575,6 @@ static void Admit(){
    if(activationHooked[N].load())return;
    auto api=Factory(type);auto table=*reinterpret_cast<void***>(get_abi(api));auto function=table[6];
    if(!RuntimeFunction(function))return;
-   Log(251,N,Identity(api,Factory(type)));
    activationIdentity[N]=api;activationTable[N]=table;activationFunction[N]=function;
    for(unsigned at=0;at<factoryCount;at++)if(at!=N&&activationHooked[at].load()&&activationFunction[at].load()==function){activationHooked[N]=true;return;}
    if(Wh_SetFunctionHook(function,reinterpret_cast<void*>(ActivationHook<N>),reinterpret_cast<void**>(&originalActivate[N]))&&Wh_ApplyHookOperations()){activationHooked[N]=true;Log(244,N);}

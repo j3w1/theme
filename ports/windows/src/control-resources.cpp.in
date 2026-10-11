@@ -1,0 +1,64 @@
+struct ControlKey {
+ hstring key; ProjectedObject before{nullptr},applied{nullptr}; bool local=false,owned=false;
+};
+struct ControlResources {
+ weak_ref<FrameworkElement> element; ResourceDictionary owner{nullptr}; std::vector<ControlKey> keys; OwnedThemeRefresh refresh; ResourceDictionary overlay{nullptr};
+};
+struct LocalResourceValue { bool exists=false; ProjectedObject value{nullptr}; };
+static LocalResourceValue LocalResource(ResourceDictionary const& owner,hstring const& key) {
+ // Lookup may resolve an inherited value. Enumeration records only local keys,
+ // including explicitly present null values, so rollback restores exact state.
+ for(auto const& pair:owner)if(auto name=pair.Key().try_as<Windows::Foundation::IReference<hstring>>();name&&name.Value()==key)return {true,pair.Value()};
+ return {};
+}
+template<class Read,class Write> static bool ApplyControlKey(ControlKey& key,Read read,Write write) noexcept {
+ if(key.owned)return true;
+ try {
+  auto before=read();key.before=before.value;key.local=before.exists;
+  // Ownership precedes the write: a setter can mutate and then throw.
+  key.owned=true;write(key.applied);return true;
+ }catch(...){return false;}
+}
+template<class Read,class Write,class Remove> static bool RestoreControlKey(ControlKey& key,Read read,Write write,Remove remove) noexcept {
+ if(!key.owned)return true;
+ try {
+  auto current=read();
+  // The application owns a replacement or deletion made after our write.
+  if(current.exists&&Identity(current.value,key.applied)) {
+   if(key.local)write(key.before);else remove();
+  }
+  key.owned=false;return true;
+ }catch(...){return false;}
+}
+static bool RestoreControlResources(ControlResources& entry) noexcept {
+ bool restored=RestoreThemeRefresh(entry.refresh);
+ for(auto& key:entry.keys)
+  restored=RestoreControlKey(key,[&]{return LocalResource(entry.owner,key.key);},
+   [&](auto const& value){entry.owner.Insert(box_value(key.key),value);},
+   [&]{entry.owner.Remove(box_value(key.key));})&&restored;
+ if(entry.owner&&entry.overlay)try {
+  auto merged=entry.owner.MergedDictionaries();unsigned index=0;
+  if(merged.IndexOf(entry.overlay,index))merged.RemoveAt(index);
+  entry.overlay=nullptr;
+ }catch(...){restored=false;}
+ if(restored){entry.keys.clear();entry.owner=nullptr;}
+ return restored;
+}
+
+// Absent keys live in a separate merged dictionary. The owner's enumerable
+// local entries therefore do not grow with the palette. Existing local keys
+// still win resource lookup, so replace only those, reading each immediately
+// before its write. A synchronous app callback can edit the next key: a batch
+// snapshot would lose that new baseline. Rollback owns only our values/overlay.
+template<class Entry,class Items,class Key,class Value,class Read,class Write>
+static bool ApplyControlLocalKeys(Entry& entry,Items const& items,Key keyOf,Value valueOf,Read read,Write write) noexcept {
+ try {
+  for(auto const& item:items) {
+   auto key=keyOf(item);auto before=read(key);
+   if(!before.exists)continue;
+   entry.keys.push_back({key,nullptr,valueOf(item)});auto& owned=entry.keys.back();
+   if(!ApplyControlKey(owned,[&]{return before;},[&](auto const& value){write(key,value);}))return false;
+  }
+  return true;
+ }catch(...){return false;}
+}

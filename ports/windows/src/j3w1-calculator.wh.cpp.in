@@ -39,6 +39,7 @@ using namespace Windows::UI::Xaml;
 using namespace Windows::UI::Xaml::Media;
 using namespace Windows::UI::Xaml::Controls;
 using Windows::Foundation::IInspectable;
+using ProjectedObject=IInspectable;
 struct Rule { const wchar_t* key; Color color; const wchar_t* role; };
 static constexpr Rule rules[] = {
 @RESOURCE_RULES@
@@ -227,48 +228,7 @@ static bool RefreshThemeSource(OwnedThemeRefresh& entry) noexcept {
  }catch(...){RestoreThemeRefresh(entry);return false;}
 }
 
-struct ControlKey {
- hstring key; IInspectable before{nullptr},applied{nullptr}; bool local=false,owned=false;
-};
-struct ControlResources {
- weak_ref<FrameworkElement> element; ResourceDictionary owner{nullptr}; std::vector<ControlKey> keys; OwnedThemeRefresh refresh;
-};
-struct LocalResourceValue { bool exists=false; IInspectable value{nullptr}; };
-static LocalResourceValue LocalResource(ResourceDictionary const& owner,hstring const& key) {
- // Lookup may resolve an inherited value. Enumeration records only local keys,
- // including explicitly present null values, so rollback restores exact state.
- for(auto const& pair:owner)if(auto name=pair.Key().try_as<Windows::Foundation::IReference<hstring>>();name&&name.Value()==key)return {true,pair.Value()};
- return {};
-}
-template<class Read,class Write> static bool ApplyControlKey(ControlKey& key,Read read,Write write) noexcept {
- if(key.owned)return true;
- try {
-  auto before=read();key.before=before.value;key.local=before.exists;
-  // Ownership precedes the write: a setter can mutate and then throw.
-  key.owned=true;write(key.applied);return true;
- }catch(...){return false;}
-}
-template<class Read,class Write,class Remove> static bool RestoreControlKey(ControlKey& key,Read read,Write write,Remove remove) noexcept {
- if(!key.owned)return true;
- try {
-  auto current=read();
-  // The application owns a replacement or deletion made after our write.
-  if(current.exists&&Identity(current.value,key.applied)) {
-   if(key.local)write(key.before);else remove();
-  }
-  key.owned=false;return true;
- }catch(...){return false;}
-}
-static bool RestoreControlResources(ControlResources& entry) noexcept {
- bool restored=RestoreThemeRefresh(entry.refresh);
- for(auto& key:entry.keys)
-  restored=RestoreControlKey(key,[&]{return LocalResource(entry.owner,key.key);},
-   [&](auto const& value){entry.owner.Insert(box_value(key.key),value);},
-   [&]{entry.owner.Remove(box_value(key.key));})&&restored;
- if(restored){entry.keys.clear();entry.owner=nullptr;}
- return restored;
-}
-
+@CONTROL_RESOURCES@
 
 [[clang::no_destroy]] static std::deque<ControlResources> controlsChanged;
 static bool CompositeButtonChrome(std::wstring_view type) {
@@ -302,12 +262,13 @@ static void RefreshControlResources(DependencyObject const& object) {
     // Framework theme keys can exist below Application.Resources. Supply the
     // exact declared UI keys locally even when app-level lookup cannot find them.
     // Each absent/null/existing local entry is independently restored.
-    for(auto const& rule:rules) {
-        auto key=hstring(rule.key);
-        entry.keys.push_back({key,nullptr,SolidColorBrush(rule.color)});auto& owned=entry.keys.back();
-        if(!ApplyControlKey(owned,[&]{return LocalResource(entry.owner,key);},
-            [&](auto const& value){entry.owner.Insert(box_value(key),value);}))throw hresult_error(E_FAIL);
-    }
+    entry.overlay=ResourceDictionary();
+    for(auto const& rule:rules)entry.overlay.Insert(box_value(rule.key),SolidColorBrush(rule.color));
+    entry.owner.MergedDictionaries().Append(entry.overlay);
+    if(!ApplyControlLocalKeys(entry,rules,[](auto const& rule){return hstring(rule.key);},
+        [&](auto const& rule){return entry.overlay.Lookup(box_value(rule.key));},
+        [&](auto const& key){return LocalResource(entry.owner,key);},
+        [&](auto const& key,auto const& value){entry.owner.Insert(box_value(key),value);}))throw hresult_error(E_FAIL);
     if(!RefreshThemeSource(entry.refresh))throw hresult_error(E_FAIL);
 }
 
@@ -327,7 +288,6 @@ static LocalResourceValue LocalStyle(FrameworkElement const& element) {
 }
 
 
-using ProjectedObject=IInspectable;
 @CHROME_COLOR_STATE@
 [[clang::no_destroy]] static std::deque<ChromeTransitionChange> genericTransitions;
 [[clang::no_destroy]] static std::deque<ChromeAnimationChange> genericAnimations;
@@ -583,6 +543,8 @@ static void PruneRetiredControls() {
 }
 static void BridgeViews() {
     PruneRetiredControls();
+    if(!PruneChromeColorStates(genericAnimations,RestoreChromeAnimations)
+        ||!PruneChromeColorStates(genericSetters,RestoreChromeSetters))throw hresult_error(E_FAIL);
     std::vector<DependencyObject> stack{observedRoot};
     for(auto popup:VisualTreeHelper::GetOpenPopups(Window::Current()))if(popup.Child())stack.push_back(popup.Child());
     unsigned count=0;

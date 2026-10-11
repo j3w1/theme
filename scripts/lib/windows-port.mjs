@@ -209,7 +209,7 @@ export function windowsArtifacts({manifest,host,resolved}){
   const [r,g,b]=rgb(val(role));
   return `    {L"${key}",{255,${r},${g},${b}},L"${role}"},`;
  }).join('\n');
- const calculatorSubs={CHROME_COLOR_STATE:readFileSync(path.join(repoRoot,'ports/windows/src/chrome-color-state.cpp.in'),'utf8').replaceAll('Microsoft::UI::Xaml','Windows::UI::Xaml'),VERSION:calculator.version,PACKAGE_FULL_NAME:calculator.packageFullName,BUTTON_STYLE_TARGET:calculator.buttonStyleTarget,RESOURCE_RULES:calculatorRules};
+ const calculatorSubs={CONTROL_RESOURCES:readFileSync(path.join(repoRoot,'ports/windows/src/control-resources.cpp.in'),'utf8'),CHROME_COLOR_STATE:readFileSync(path.join(repoRoot,'ports/windows/src/chrome-color-state.cpp.in'),'utf8').replaceAll('Microsoft::UI::Xaml','Windows::UI::Xaml'),VERSION:calculator.version,PACKAGE_FULL_NAME:calculator.packageFullName,BUTTON_STYLE_TARGET:calculator.buttonStyleTarget,RESOURCE_RULES:calculatorRules};
  const calculatorSource=readFileSync(path.join(repoRoot,'ports/windows/src/j3w1-calculator.wh.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in calculatorSubs))throw Error(`Unknown Calculator source placeholder ${key}`);return calculatorSubs[key];});
  artifacts.push({path:`dist/${calculatorId}.wh.cpp`,text:calculatorSource});
  json(`${calculatorId}.json`,{enabled:1});
@@ -269,7 +269,7 @@ export function windowsArtifacts({manifest,host,resolved}){
   if(legacy)Object.assign(publicSubs,{PUBLIC_CAPTION_INCLUDE:'',PUBLIC_CAPTION_DECLARATIONS:'static thread_local bool publicCaptionWrite=false;\n',PUBLIC_CAPTION_IMPLEMENTATION:'',PUBLIC_CAPTION_STATE:'',PUBLIC_CAPTION_REFRESH:'',PUBLIC_CAPTION_RESTORE:'',PUBLIC_CAPTION_RESTORE_RESULT:'',PUBLIC_CAPTION_NATIVE_EXCLUSION:'&&false',NATIVE_CAPTION_BACKDROP:'false'});
   if(customCaption)publicSubs.PUBLIC_CAPTION_INCLUDE+='\n#include <winrt/Microsoft.UI.Content.h>';
   publicSubs.PUBLIC_CAPTION_STATE=publicSubs.PUBLIC_CAPTION_STATE.trimEnd();
-  const chromeSubs={...tabSubs,...existingSubs,LEGACY_XAML:legacy?'1':'0',XAML_MODULE:legacy?'Windows.UI.Xaml.dll':'Microsoft.UI.Xaml.dll',CHROME_COLOR_STATE:readFileSync(path.join(repoRoot,'ports/windows/src/chrome-color-state.cpp.in'),'utf8'),...publicSubs,ADAPTER_ID:chromeId,APP_LABEL:label,APP_EXE:exe,NATIVE_CLASS:nativeClass,ROOT_CLASSES:rootClasses.map(c=>'L"'+c+'"').join(','),ROOT_DISCOVERY:rootDiscovery,VERSION:chrome.version,PACKAGE_FULL_NAME:chrome.packageFullName,RUNTIME_PACKAGE:chrome.runtimePackage??'',RUNTIME_SHA256:chrome.runtimeSha256,RESOURCE_RULES:chromeRules};
+  const chromeSubs={CONTROL_RESOURCES:readFileSync(path.join(repoRoot,'ports/windows/src/control-resources.cpp.in'),'utf8'),...tabSubs,...existingSubs,LEGACY_XAML:legacy?'1':'0',XAML_MODULE:legacy?'Windows.UI.Xaml.dll':'Microsoft.UI.Xaml.dll',CHROME_COLOR_STATE:readFileSync(path.join(repoRoot,'ports/windows/src/chrome-color-state.cpp.in'),'utf8'),...publicSubs,ADAPTER_ID:chromeId,APP_LABEL:label,APP_EXE:exe,NATIVE_CLASS:nativeClass,ROOT_CLASSES:rootClasses.map(c=>'L"'+c+'"').join(','),ROOT_DISCOVERY:rootDiscovery,VERSION:chrome.version,PACKAGE_FULL_NAME:chrome.packageFullName,RUNTIME_PACKAGE:chrome.runtimePackage??'',RUNTIME_SHA256:chrome.runtimeSha256,RESOURCE_RULES:chromeRules};
   Object.assign(chromeSubs,{CONTROLS_PACKAGE:chrome.controlsPackage??'',CONTROLS_SHA256:chrome.controlsSha256??'',WINDOW_BACKING_DECLARATIONS:backingDeclarations,WINDOW_BACKING_IMPLEMENTATION:backingImplementation});
   let popupDeclarations='',popupImplementation='';
   const popupBacking=chromeId==='j3w1-paint-chrome';

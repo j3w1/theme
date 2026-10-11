@@ -515,7 +515,12 @@ test('notification styling preserves content, layout and native focus without ne
  assert.ok(calendar.includes('CalendarItemForeground=#e99499'));
  assert.ok(calendar.includes('TodayForeground=#ffa2a7'));
  for(const {target,styles:values} of payload.controlStyles)for(const value of values){
-  assert.doesNotMatch(value,/^(?:Visibility|Width|Height|MinWidth|MaxWidth|Margin|Padding|FontSize|Text|Glyph|Source|RenderTransform|FocusVisualPrimaryBrush|FocusVisualSecondaryBrush|SelectedDates|IsEnabled)=/);
+  if(/^FocusVisual(?:Primary|Secondary)Brush=/.test(value)){
+   // Jump-list focus keeps the native focus geometry and behavior; only its
+   // brushes change, at the two shared shell item controls requested here.
+   assert.ok(['JumpViewUI.SystemItemListViewItem','JumpViewUI.JumpListListViewItem'].includes(target));
+   assert.ok(['FocusVisualPrimaryBrush=#e53935','FocusVisualSecondaryBrush=#ffa2a7'].includes(value));
+  }else assert.doesNotMatch(value,/^(?:Visibility|Width|Height|MinWidth|MaxWidth|Margin|Padding|FontSize|Text|Glyph|Source|RenderTransform|FocusVisualPrimaryBrush|FocusVisualSecondaryBrush|SelectedDates|IsEnabled)=/);
   if(value.startsWith('FontFamily='))assert.match(target,/TextBlock#/);
  }
 });

@@ -2,7 +2,7 @@
 // @id j3w1-calculator
 // @name j3w1 Calculator resources
 // @description Version-checked Calculator UI resources; equation colors remain native
-// @version 1.4.11
+// @version 1.4.12
 // @author j3w1
 // @include CalculatorApp.exe
 // @architecture x86-64
@@ -39,6 +39,7 @@ using namespace Windows::UI::Xaml;
 using namespace Windows::UI::Xaml::Media;
 using namespace Windows::UI::Xaml::Controls;
 using Windows::Foundation::IInspectable;
+using ProjectedObject=IInspectable;
 struct Rule { const wchar_t* key; Color color; const wchar_t* role; };
 static constexpr Rule rules[] = {
     {L"AppChromeAcrylicHostBackdropMediumLowBrush",{255,0,0,0},L"color.surface.canvas"},
@@ -405,12 +406,12 @@ static bool RefreshThemeSource(OwnedThemeRefresh& entry) noexcept {
 }
 
 struct ControlKey {
- hstring key; IInspectable before{nullptr},applied{nullptr}; bool local=false,owned=false;
+ hstring key; ProjectedObject before{nullptr},applied{nullptr}; bool local=false,owned=false;
 };
 struct ControlResources {
- weak_ref<FrameworkElement> element; ResourceDictionary owner{nullptr}; std::vector<ControlKey> keys; OwnedThemeRefresh refresh;
+ weak_ref<FrameworkElement> element; ResourceDictionary owner{nullptr}; std::vector<ControlKey> keys; OwnedThemeRefresh refresh; ResourceDictionary overlay{nullptr};
 };
-struct LocalResourceValue { bool exists=false; IInspectable value{nullptr}; };
+struct LocalResourceValue { bool exists=false; ProjectedObject value{nullptr}; };
 static LocalResourceValue LocalResource(ResourceDictionary const& owner,hstring const& key) {
  // Lookup may resolve an inherited value. Enumeration records only local keys,
  // including explicitly present null values, so rollback restores exact state.
@@ -442,8 +443,31 @@ static bool RestoreControlResources(ControlResources& entry) noexcept {
   restored=RestoreControlKey(key,[&]{return LocalResource(entry.owner,key.key);},
    [&](auto const& value){entry.owner.Insert(box_value(key.key),value);},
    [&]{entry.owner.Remove(box_value(key.key));})&&restored;
+ if(entry.owner&&entry.overlay)try {
+  auto merged=entry.owner.MergedDictionaries();unsigned index=0;
+  if(merged.IndexOf(entry.overlay,index))merged.RemoveAt(index);
+  entry.overlay=nullptr;
+ }catch(...){restored=false;}
  if(restored){entry.keys.clear();entry.owner=nullptr;}
  return restored;
+}
+
+// Absent keys live in a separate merged dictionary. The owner's enumerable
+// local entries therefore do not grow with the palette. Existing local keys
+// still win resource lookup, so replace only those, reading each immediately
+// before its write. A synchronous app callback can edit the next key: a batch
+// snapshot would lose that new baseline. Rollback owns only our values/overlay.
+template<class Entry,class Items,class Key,class Value,class Read,class Write>
+static bool ApplyControlLocalKeys(Entry& entry,Items const& items,Key keyOf,Value valueOf,Read read,Write write) noexcept {
+ try {
+  for(auto const& item:items) {
+   auto key=keyOf(item);auto before=read(key);
+   if(!before.exists)continue;
+   entry.keys.push_back({key,nullptr,valueOf(item)});auto& owned=entry.keys.back();
+   if(!ApplyControlKey(owned,[&]{return before;},[&](auto const& value){write(key,value);}))return false;
+  }
+  return true;
+ }catch(...){return false;}
 }
 
 
@@ -479,12 +503,13 @@ static void RefreshControlResources(DependencyObject const& object) {
     // Framework theme keys can exist below Application.Resources. Supply the
     // exact declared UI keys locally even when app-level lookup cannot find them.
     // Each absent/null/existing local entry is independently restored.
-    for(auto const& rule:rules) {
-        auto key=hstring(rule.key);
-        entry.keys.push_back({key,nullptr,SolidColorBrush(rule.color)});auto& owned=entry.keys.back();
-        if(!ApplyControlKey(owned,[&]{return LocalResource(entry.owner,key);},
-            [&](auto const& value){entry.owner.Insert(box_value(key),value);}))throw hresult_error(E_FAIL);
-    }
+    entry.overlay=ResourceDictionary();
+    for(auto const& rule:rules)entry.overlay.Insert(box_value(rule.key),SolidColorBrush(rule.color));
+    entry.owner.MergedDictionaries().Append(entry.overlay);
+    if(!ApplyControlLocalKeys(entry,rules,[](auto const& rule){return hstring(rule.key);},
+        [&](auto const& rule){return entry.overlay.Lookup(box_value(rule.key));},
+        [&](auto const& key){return LocalResource(entry.owner,key);},
+        [&](auto const& key,auto const& value){entry.owner.Insert(box_value(key),value);}))throw hresult_error(E_FAIL);
     if(!RefreshThemeSource(entry.refresh))throw hresult_error(E_FAIL);
 }
 
@@ -504,7 +529,6 @@ static LocalResourceValue LocalStyle(FrameworkElement const& element) {
 }
 
 
-using ProjectedObject=IInspectable;
 // Native templates can retain a resolved brush inside a zero-time object
 // keyframe. Local ThemeResource overrides do not replace that cached value.
 // Exchange only the observed color-only storyboard shape, with its clock
@@ -921,7 +945,6 @@ static void ApplyChromeSetters(Control const& control,VisualStateGroup const& gr
  if(!RefreshChromeColorStates(refresh))throw hresult_error(E_FAIL);
 }
 static void ApplyChromeAnimationPalette(DependencyObject const& object,std::deque<ChromeAnimationChange>& changes,std::deque<ChromeSetterChange>& setters,std::deque<ChromeBaseChange>& bases,std::deque<ChromeTransitionChange>& transitions) {
- if(!PruneChromeColorStates(changes,RestoreChromeAnimations)||!PruneChromeColorStates(setters,RestoreChromeSetters))throw hresult_error(E_FAIL);
  auto control=object.try_as<Control>();if(!control||!control.IsLoaded())return;
  if(!object.try_as<Windows::UI::Xaml::Controls::Primitives::ButtonBase>()&&!object.try_as<MenuBarItem>())return;
  std::vector<DependencyObject> todo{object};unsigned visited=0;
@@ -1217,6 +1240,8 @@ static void PruneRetiredControls() {
 }
 static void BridgeViews() {
     PruneRetiredControls();
+    if(!PruneChromeColorStates(genericAnimations,RestoreChromeAnimations)
+        ||!PruneChromeColorStates(genericSetters,RestoreChromeSetters))throw hresult_error(E_FAIL);
     std::vector<DependencyObject> stack{observedRoot};
     for(auto popup:VisualTreeHelper::GetOpenPopups(Window::Current()))if(popup.Child())stack.push_back(popup.Child());
     unsigned count=0;

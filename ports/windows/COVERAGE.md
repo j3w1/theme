@@ -1261,3 +1261,28 @@ border already reported square corners; changing only the parent radius
 produced a rectangular frame. This is scoped template geometry, not a global
 radius rewrite. Native focus and input states are retained. Other DPI and
 accessibility combinations remain separate acceptance limits.
+
+
+## App startup and taskbar jump lists
+
+Control resource palettes use an owned merged dictionary for missing keys.
+Only existing local entries require local replacement, and each baseline is
+read immediately before its write. Theme application no longer makes the
+control's local dictionary grow by the full palette before every subsequent
+lookup. The shared algorithm preserves explicit nulls, synchronous edits to
+later keys, subsequent application replacements and retryable failed writes.
+Expired animation receipts are pruned once per tree pass, and static-property
+bridging skips palette searches for properties it cannot own. Production
+activation hooks omit diagnostic-only interface queries. Package and runtime
+checks, native state handling, content exclusions and cleanup remain intact.
+These are source and regression facts; startup timings are private host
+measurements, not a portable launch-time guarantee.
+
+Taskbar app jump lists are drawn by the shared ShellExperienceHost jump-list
+renderer. Its acrylic backing, section surface, separators and both item
+families now use the same menu roles. Rest, pointer-over, pressed and selected
+fills are explicit, radii are zero, and keyboard focus brushes are themed.
+Matching uses template/control identity, never an application or recent-item
+name. The Settings, Start and ordinary menu recipes remain separate renderer
+adapters of the same palette. No command, content, menu dimensions or keyboard
+behavior is changed. Rendered acceptance remains separate from mapping tests.

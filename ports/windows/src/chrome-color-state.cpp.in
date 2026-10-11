@@ -414,7 +414,6 @@ static void ApplyChromeSetters(Control const& control,VisualStateGroup const& gr
  if(!RefreshChromeColorStates(refresh))throw hresult_error(E_FAIL);
 }
 static void ApplyChromeAnimationPalette(DependencyObject const& object,std::deque<ChromeAnimationChange>& changes,std::deque<ChromeSetterChange>& setters,std::deque<ChromeBaseChange>& bases,std::deque<ChromeTransitionChange>& transitions) {
- if(!PruneChromeColorStates(changes,RestoreChromeAnimations)||!PruneChromeColorStates(setters,RestoreChromeSetters))throw hresult_error(E_FAIL);
  auto control=object.try_as<Control>();if(!control||!control.IsLoaded())return;
  if(!object.try_as<Microsoft::UI::Xaml::Controls::Primitives::ButtonBase>()&&!object.try_as<MenuBarItem>())return;
  std::vector<DependencyObject> todo{object};unsigned visited=0;
