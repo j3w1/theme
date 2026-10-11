@@ -112,3 +112,21 @@ static void CheckChromeHoverStates() {
  for(auto property:{L"Content",L"Opacity",L"Width"}){bool refused=false;try{ChromeStatePaletteKey(property,L"Normal");}catch(hresult_error const&){refused=true;}assert(refused);}
  puts("PASS: normal/hover/pressed/disabled and checked state palette parity; unknown states and non-color properties refused");
 }
+
+// Run the same cached-frame admission checks in legacy XAML and WinUI.
+static void CheckChromeFrameAdmission() {
+  assert(ChromeColorFrameAdmission(L"ContentPresenter",L"Background",1,true,0));
+  assert(ChromeColorFrameAdmission(L"RootGrid",L"BorderBrush",1,true,0));
+  assert(ChromeColorFrameAdmission(L"ChevronIcon",L"Foreground",1,true,0));
+  for(auto property:{L"Text",L"Content",L"Opacity",L"Width",L"RenderTransform"})assert(!ChromeColorFrameAdmission(L"ContentPresenter",property,1,true,0));
+  assert(!ChromeColorFrameAdmission(L"Artwork",L"Background",1,true,0));
+  assert(!ChromeColorFrameAdmission(L"ContentPresenter",L"Background",2,true,0));
+  assert(!ChromeColorFrameAdmission(L"ContentPresenter",L"Background",1,false,0));
+  assert(!ChromeColorFrameAdmission(L"ContentPresenter",L"Background",1,true,1));
+  assert(!ChromeColorState(L"Selected")&&!ChromeColorState(L"Other"));
+  assert(ChromeSetterState(L"Selected")&&ChromeSetterState(L"CheckedPointerOver"));
+  assert(ChromeSetterAdmission(L"Background",true,false));
+  assert(!ChromeSetterAdmission(L"Background",true,true));
+  assert(!ChromeSetterAdmission(L"Content",true,false));
+  assert(!ChromeSetterAdmission(L"Background",false,false));
+}

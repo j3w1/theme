@@ -1,3 +1,4 @@
+import {renderWindowsTemplate} from "./windows-template.mjs";
 /* PowerToys owns Markdown parsing, document bytes and WebView restrictions.
    This renderer supplies token-derived CSS and reversible backing at pinned public boundaries. */
 import {readFileSync} from 'node:fs';
@@ -32,11 +33,7 @@ export function windowsMarkdownArtifacts(host,resolved){
   for(const key of ['length','styleOffset','styleLength'])if(!Number.isSafeInteger(pin[key])||pin[key]<=0||pin[key]>32768)throw Error('Invalid Markdown header extent');
   if(pin.styleOffset+pin.styleLength>pin.length||!/^[a-f0-9]{64}$/.test(pin.sha256))throw Error('Invalid Markdown header identity');
  }
- const render=(template,substitutions)=>{
-  const text=template.replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in substitutions))throw Error(`Unknown Markdown placeholder ${key}`);return substitutions[key];});
-  if(/@[A-Z0-9_]+@/.test(text))throw Error('Unresolved Markdown placeholder');
-  return text;
- };
+ const render=(template,substitutions)=>renderWindowsTemplate(template,substitutions,'Markdown');
  const roles=Object.fromEntries(Object.entries(md.roles).map(([key,role])=>{
   const token=resolved.get(role);if(!token||role.startsWith('color.primitive.'))throw Error(`Invalid Markdown semantic role ${role}`);
   return [key,toCss(token.type,token.resolved)];

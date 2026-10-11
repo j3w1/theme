@@ -289,3 +289,11 @@ sets only this parent's radius to `radius.none`. It does not add another border
 or change the wrapper's fill, layout, input, suggestions, or focus behavior.
 The existing native input states keep the ordinary and active frame colors.
 Update and rollback use the same public install.ps1 transaction.
+
+### Shared source generation
+
+Calculator and the WinUI chrome adapters share the owned theme-refresh and
+control-resource templates. Template substitution uses one checked renderer;
+each generated Windhawk source remains standalone for its pinned compiler.
+Refactors must preserve the emitted adapter bytes when their behavior is
+unchanged. The public installer and rollback contracts are unaffected.

@@ -29,20 +29,7 @@ int main(int argc,char** argv){
   if(InspectChromeState([]()->bool{throw hresult_error(E_FAIL);})){++inspectionWrites;}
   assert(inspectionWrites==0);
   assert(!InspectChromeState([]()->bool{throw hresult_error(E_ACCESSDENIED);}));
-  assert(ChromeColorFrameAdmission(L"ContentPresenter",L"Background",1,true,0));
-  assert(ChromeColorFrameAdmission(L"RootGrid",L"BorderBrush",1,true,0));
-  assert(ChromeColorFrameAdmission(L"ChevronIcon",L"Foreground",1,true,0));
-  for(auto property:{L"Text",L"Content",L"Opacity",L"Width",L"RenderTransform"})assert(!ChromeColorFrameAdmission(L"ContentPresenter",property,1,true,0));
-  assert(!ChromeColorFrameAdmission(L"Artwork",L"Background",1,true,0));
-  assert(!ChromeColorFrameAdmission(L"ContentPresenter",L"Background",2,true,0));
-  assert(!ChromeColorFrameAdmission(L"ContentPresenter",L"Background",1,false,0));
-  assert(!ChromeColorFrameAdmission(L"ContentPresenter",L"Background",1,true,1));
-  assert(!ChromeColorState(L"Selected")&&!ChromeColorState(L"Other"));
-  assert(ChromeSetterState(L"Selected")&&ChromeSetterState(L"CheckedPointerOver"));
-  assert(ChromeSetterAdmission(L"Background",true,false));
-  assert(!ChromeSetterAdmission(L"Background",true,true));
-  assert(!ChromeSetterAdmission(L"Content",true,false));
-  assert(!ChromeSetterAdmission(L"Background",false,false));
+  CheckChromeFrameAdmission();
   winrt::init_apartment(winrt::apartment_type::multi_threaded);
   auto native=box_value(1),theme=box_value(2),app=box_value(3);ChromeFrameValue current{true,native};
   auto read=[&]{return current;};auto write=[&](auto const& value){current={true,value};};

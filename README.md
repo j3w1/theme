@@ -274,6 +274,10 @@ mappings, not from colour similarity.
 - Missing port consumers stay unknown.
 - The index is digest-covered and uses `schemas/json/token-usage.schema.json`.
   After you edit source mappings, regenerate it with `npm run generate`.
+- The usage and port-capability indexes keep complete JSON schemas and data,
+  with one usage or capability record per line to reduce transfer size and
+  diff noise. Consume them as JSON; source locations still refer to maintained
+  source files, not the index's presentation. Other exports retain their format.
 
 ### Standalone component recipes
 

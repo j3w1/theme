@@ -4,7 +4,12 @@ import { assertPortMapping } from "../../schemas/usage.mjs";
 
 export const pointerPart = (text) => String(text).replaceAll("~", "~0").replaceAll("/", "~1");
 const location = (file, pointer) => ({ file, pointer, line: null });
-const order = (a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b), "en");
+// Serialize each record once, rather than twice per sorting comparison.
+const orderedRecords = (records, unique = false) => {
+  const keyed = records.map(record => [JSON.stringify(record), record]);
+  return (unique ? [...new Map(keyed)] : keyed)
+    .sort(([a], [b]) => a.localeCompare(b, "en")).map(([, record]) => record);
+};
 
 // Index only relationships declared in canonical sources. A shared value never
 // supplies an edge or a recommendation. An absent state/part remains null.
@@ -75,10 +80,10 @@ export const buildUsageIndex = ({ manifest, profiles, components, ports = [], gl
         kind: "port", port: port.id, nativeKey, source: location(`ports/${port.id}/mapping.json`, `/mappings/${pointerPart(path)}/${i}`) }));
     }
     for (const token of Object.values(tokens)) {
-      token.uses = [...new Map(token.uses.map((u) => [JSON.stringify(u), u])).values()].sort(order);
-      token.contrast.sort(order);
+      token.uses = orderedRecords(token.uses, true);
+      token.contrast = orderedRecords(token.contrast);
       token.usedByAliases.sort();
-      token.unmappedPorts.sort(order);
+      token.unmappedPorts = orderedRecords(token.unmappedPorts);
     }
     output.profiles[profile.id] = { status: profile.status, tokens };
   }

@@ -1,3 +1,4 @@
+import {renderWindowsTemplate} from "./windows-template.mjs";
 import {folderIconFile,folderGeometry} from './windows-folder-icon.mjs';
 /* Windows native artifacts. Host definitions own selectors; tokens own colors.
    Raster assets are deterministic original geometry, not downloaded artwork. */
@@ -159,7 +160,7 @@ export function windowsArtifacts({manifest,host,resolved}){
   return ['MAJOR','MINOR','BUILD','REVISION'].map((field,i)=>[`${key}_${field}`,moduleParts[key][i]]);
  }));
  const folderSubs=Object.fromEntries(Object.entries(folderGeometry).map(([name,points])=>['FOLDER_'+name.toUpperCase(),points.map(([x,y])=>'{'+x+','+y+'}').join(',')]));
- const folderSource=readFileSync(path.join(repoRoot,'ports/windows/src/folder-glyph.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in folderSubs))throw Error('Unknown folder source placeholder '+key);return folderSubs[key];});
+ const folderSource=renderWindowsTemplate(readFileSync(path.join(repoRoot,'ports/windows/src/folder-glyph.cpp.in'),'utf8'),folderSubs,'folder source');
  const moduleDigests=Object.fromEntries(['WIC','SHELLCOMMON'].map(key=>{
   const digest=host.nativeExplorerModuleDigests?.[key];
   if(typeof digest!=='string'||! /^[a-f0-9]{64}$/.test(digest))throw Error('Missing native Explorer module digest '+key);
@@ -170,7 +171,7 @@ export function windowsArtifacts({manifest,host,resolved}){
  });
  const substitutions={FOLDER_BITMAP:bitmapSource,FOLDER_RENDERER:folderSource,...Object.fromEntries(Object.entries(nativeSettings).map(([key,value])=>[key.toUpperCase(),value])),VERSION:native.version,
   VERSION_MAJOR:parts[0],VERSION_MINOR:parts[1],VERSION_BUILD:parts[2],VERSION_REVISION:parts[3],...moduleSubs};
- const nativeSource=readFileSync(path.join(repoRoot,'ports/windows/src/j3w1-explorer-native.wh.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in substitutions))throw Error(`Unknown native source placeholder ${key}`);return substitutions[key];});
+ const nativeSource=renderWindowsTemplate(readFileSync(path.join(repoRoot,'ports/windows/src/j3w1-explorer-native.wh.cpp.in'),'utf8'),substitutions,'native source');
  artifacts.push({path:`dist/${id}.wh.cpp`,text:nativeSource});
  json(`${id}.json`,nativeSettings);
  const bundledMods=[{id,version:native.version,path:`dist/${id}.wh.cpp`,sha256:createHash('sha256').update(nativeSource).digest('hex')}];
@@ -187,7 +188,7 @@ export function windowsArtifacts({manifest,host,resolved}){
   PROGRESS_BORDER:rgb(val(preview.loading.border)).join(','),
   RULES_JSON:JSON.stringify(Object.entries(preview.syntax).map(([token,role])=>({token,foreground:val(role).slice(1)}))),
   MEDIA_CSS:`@media (forced-colors: none) { html, body, #container { background: ${val('color.surface.canvas')}; color: ${val('color.text.default')}; } }`};
- const previewSource=readFileSync(path.join(repoRoot,'ports/windows/src/j3w1-powertoys-preview.wh.cpp.in'),'utf8').replace('@PREVIEW_LOADING@',readFileSync(path.join(repoRoot,'ports/windows/src/preview-loading.cpp.in'),'utf8')).replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in previewSubs))throw Error(`Unknown preview source placeholder ${key}`);return previewSubs[key];});
+ const previewSource=renderWindowsTemplate(readFileSync(path.join(repoRoot,'ports/windows/src/j3w1-powertoys-preview.wh.cpp.in'),'utf8').replace('@PREVIEW_LOADING@',readFileSync(path.join(repoRoot,'ports/windows/src/preview-loading.cpp.in'),'utf8')),previewSubs,'preview source');
  artifacts.push({path:`dist/${previewId}.wh.cpp`,text:previewSource});
  // Windhawk stores checkbox settings as integer strings (1/0).
  json(`${previewId}.json`,{enabled:1});
@@ -209,8 +210,8 @@ export function windowsArtifacts({manifest,host,resolved}){
   const [r,g,b]=rgb(val(role));
   return `    {L"${key}",{255,${r},${g},${b}},L"${role}"},`;
  }).join('\n');
- const calculatorSubs={CONTROL_RESOURCES:readFileSync(path.join(repoRoot,'ports/windows/src/control-resources.cpp.in'),'utf8'),CHROME_COLOR_STATE:readFileSync(path.join(repoRoot,'ports/windows/src/chrome-color-state.cpp.in'),'utf8').replaceAll('Microsoft::UI::Xaml','Windows::UI::Xaml'),VERSION:calculator.version,PACKAGE_FULL_NAME:calculator.packageFullName,BUTTON_STYLE_TARGET:calculator.buttonStyleTarget,RESOURCE_RULES:calculatorRules};
- const calculatorSource=readFileSync(path.join(repoRoot,'ports/windows/src/j3w1-calculator.wh.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in calculatorSubs))throw Error(`Unknown Calculator source placeholder ${key}`);return calculatorSubs[key];});
+ const calculatorSubs={THEME_REFRESH:readFileSync(path.join(repoRoot,'ports/windows/src/theme-refresh.cpp.in'),'utf8').trimEnd().replaceAll('ProjectedObject','IInspectable'),CONTROL_RESOURCES:readFileSync(path.join(repoRoot,'ports/windows/src/control-resources.cpp.in'),'utf8'),CHROME_COLOR_STATE:readFileSync(path.join(repoRoot,'ports/windows/src/chrome-color-state.cpp.in'),'utf8').replaceAll('Microsoft::UI::Xaml','Windows::UI::Xaml'),VERSION:calculator.version,PACKAGE_FULL_NAME:calculator.packageFullName,BUTTON_STYLE_TARGET:calculator.buttonStyleTarget,RESOURCE_RULES:calculatorRules};
+ const calculatorSource=renderWindowsTemplate(readFileSync(path.join(repoRoot,'ports/windows/src/j3w1-calculator.wh.cpp.in'),'utf8'),calculatorSubs,'Calculator source');
  artifacts.push({path:`dist/${calculatorId}.wh.cpp`,text:calculatorSource});
  json(`${calculatorId}.json`,{enabled:1});
  bundledMods.push({id:calculatorId,version:calculator.version,path:`dist/${calculatorId}.wh.cpp`,sha256:createHash('sha256').update(calculatorSource).digest('hex')});
@@ -218,7 +219,7 @@ export function windowsArtifacts({manifest,host,resolved}){
  if(!/^Microsoft\.WindowsNotepad_\d+\.\d+\.\d+\.\d+_x64__8wekyb3d8bbwe$/.test(notepad.packageFullName)||! /^[a-f0-9]{64}$/.test(notepad.editorSha256))throw Error('Notepad editor requires exact package and binary identities');
  const notepadSubs={VERSION:notepad.version,PACKAGE_FULL_NAME:notepad.packageFullName,EDITOR_SHA256:notepad.editorSha256};
  for(const [key,role] of Object.entries(notepad.roles))notepadSubs[key]='RGB('+rgb(val(role)).join(',')+')';
- const notepadSource=readFileSync(path.join(repoRoot,'ports/windows/src/j3w1-notepad-native.wh.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in notepadSubs))throw Error('Unknown Notepad source placeholder '+key);return notepadSubs[key];});
+ const notepadSource=renderWindowsTemplate(readFileSync(path.join(repoRoot,'ports/windows/src/j3w1-notepad-native.wh.cpp.in'),'utf8'),notepadSubs,'Notepad source');
  artifacts.push({path:'dist/'+notepadId+'.wh.cpp',text:notepadSource});json(notepadId+'.json',{enabled:1});
  bundledMods.push({id:notepadId,version:notepad.version,path:'dist/'+notepadId+'.wh.cpp',sha256:createHash('sha256').update(notepadSource).digest('hex')});
 
@@ -238,7 +239,7 @@ export function windowsArtifacts({manifest,host,resolved}){
   }).join('\n');
   if(!/^[a-f0-9]{64}$/.test(chrome.diagnosticsBridgeSha256))throw Error(label+' root discovery requires an exact diagnostics bridge identity');
   const discoverySubs={XAML_MODULE:legacy?'Windows.UI.Xaml.dll':'Microsoft.UI.Xaml.dll',DIAGNOSTICS_BRIDGE_SHA256:chrome.diagnosticsBridgeSha256,DIAGNOSTICS_CLSID:clsid};
-  const rootDiscovery=readFileSync(path.join(repoRoot,'ports/windows/src/winui-root-discovery.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in discoverySubs))throw Error('Unknown WinUI discovery placeholder '+key);return discoverySubs[key];});
+  const rootDiscovery=renderWindowsTemplate(readFileSync(path.join(repoRoot,'ports/windows/src/winui-root-discovery.cpp.in'),'utf8'),discoverySubs,'WinUI discovery');
   const publicCaptionNames=['BackgroundColor','ForegroundColor','ButtonBackgroundColor','ButtonForegroundColor','ButtonHoverBackgroundColor','ButtonHoverForegroundColor','ButtonPressedBackgroundColor','ButtonPressedForegroundColor','InactiveBackgroundColor','InactiveForegroundColor','ButtonInactiveBackgroundColor','ButtonInactiveForegroundColor'];
   // Calling the public caption path, even with only button colors, revives
   // a native title over Notepad's custom tabs on the recorded package.
@@ -261,7 +262,7 @@ export function windowsArtifacts({manifest,host,resolved}){
    if(!tabDeclarations||!tabImplementation||/@[A-Z0-9_]+@/.test(tabSource))throw Error('Invalid Notepad tab-island backing template');
   }
   const tabSubs={TAB_ISLAND_SLOT:customCaption?' ProjectedObject island{nullptr};bool islandTarget=false;':'',TAB_ISLAND_DECLARATIONS:tabDeclarations,TAB_ISLAND_IMPLEMENTATION:tabImplementation,TAB_ISLAND_RESTORE_GUARD:customCaption?'TabIslandState(entry)!=0&&(TabIslandState(entry)!=1||':'',TAB_ISLAND_RESTORE_CLOSE:customCaption?')':'',TAB_ISLAND_REFRESH_GUARD:customCaption?'  if(entry.islandTarget){auto targetState=TabIslandState(entry);if(targetState==0){RemovePropW(entry.window,windowBackingProperty);it=state.windowBackings.erase(it);continue;}if(targetState!=1){complete=false;++it;continue;}}\n':'',TAB_ISLAND_OBSERVE:customCaption?'\n ObserveTabIslandBacking(element);':''};
-  backingSource=backingSource.replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in tabSubs))throw Error('Unknown tab-island placeholder '+key);return tabSubs[key];});
+  backingSource=renderWindowsTemplate(backingSource,tabSubs,'tab-island');
   const [backingDeclarations,backingImplementation]=backingSource.split('// IMPLEMENTATION');
   if(!backingDeclarations||!backingImplementation||/@[A-Z0-9_]+@/.test(backingSource))throw Error('Invalid '+label+' window backing template');
   if(!publicDeclarations||!publicImplementation||/@[A-Z0-9_]+@/.test(publicSource))throw Error('Invalid '+label+' public caption template');
@@ -269,7 +270,7 @@ export function windowsArtifacts({manifest,host,resolved}){
   if(legacy)Object.assign(publicSubs,{PUBLIC_CAPTION_INCLUDE:'',PUBLIC_CAPTION_DECLARATIONS:'static thread_local bool publicCaptionWrite=false;\n',PUBLIC_CAPTION_IMPLEMENTATION:'',PUBLIC_CAPTION_STATE:'',PUBLIC_CAPTION_REFRESH:'',PUBLIC_CAPTION_RESTORE:'',PUBLIC_CAPTION_RESTORE_RESULT:'',PUBLIC_CAPTION_NATIVE_EXCLUSION:'&&false',NATIVE_CAPTION_BACKDROP:'false'});
   if(customCaption)publicSubs.PUBLIC_CAPTION_INCLUDE+='\n#include <winrt/Microsoft.UI.Content.h>';
   publicSubs.PUBLIC_CAPTION_STATE=publicSubs.PUBLIC_CAPTION_STATE.trimEnd();
-  const chromeSubs={CONTROL_RESOURCES:readFileSync(path.join(repoRoot,'ports/windows/src/control-resources.cpp.in'),'utf8'),...tabSubs,...existingSubs,LEGACY_XAML:legacy?'1':'0',XAML_MODULE:legacy?'Windows.UI.Xaml.dll':'Microsoft.UI.Xaml.dll',CHROME_COLOR_STATE:readFileSync(path.join(repoRoot,'ports/windows/src/chrome-color-state.cpp.in'),'utf8'),...publicSubs,ADAPTER_ID:chromeId,APP_LABEL:label,APP_EXE:exe,NATIVE_CLASS:nativeClass,ROOT_CLASSES:rootClasses.map(c=>'L"'+c+'"').join(','),ROOT_DISCOVERY:rootDiscovery,VERSION:chrome.version,PACKAGE_FULL_NAME:chrome.packageFullName,RUNTIME_PACKAGE:chrome.runtimePackage??'',RUNTIME_SHA256:chrome.runtimeSha256,RESOURCE_RULES:chromeRules};
+  const chromeSubs={THEME_REFRESH:readFileSync(path.join(repoRoot,'ports/windows/src/theme-refresh.cpp.in'),'utf8').trimEnd(),CONTROL_RESOURCES:readFileSync(path.join(repoRoot,'ports/windows/src/control-resources.cpp.in'),'utf8'),...tabSubs,...existingSubs,LEGACY_XAML:legacy?'1':'0',XAML_MODULE:legacy?'Windows.UI.Xaml.dll':'Microsoft.UI.Xaml.dll',CHROME_COLOR_STATE:readFileSync(path.join(repoRoot,'ports/windows/src/chrome-color-state.cpp.in'),'utf8'),...publicSubs,ADAPTER_ID:chromeId,APP_LABEL:label,APP_EXE:exe,NATIVE_CLASS:nativeClass,ROOT_CLASSES:rootClasses.map(c=>'L"'+c+'"').join(','),ROOT_DISCOVERY:rootDiscovery,VERSION:chrome.version,PACKAGE_FULL_NAME:chrome.packageFullName,RUNTIME_PACKAGE:chrome.runtimePackage??'',RUNTIME_SHA256:chrome.runtimeSha256,RESOURCE_RULES:chromeRules};
   Object.assign(chromeSubs,{CONTROLS_PACKAGE:chrome.controlsPackage??'',CONTROLS_SHA256:chrome.controlsSha256??'',WINDOW_BACKING_DECLARATIONS:backingDeclarations,WINDOW_BACKING_IMPLEMENTATION:backingImplementation});
   let popupDeclarations='',popupImplementation='';
   const popupBacking=chromeId==='j3w1-paint-chrome';
@@ -279,7 +280,7 @@ export function windowsArtifacts({manifest,host,resolved}){
    if(!popupDeclarations||!popupImplementation||/@[A-Z0-9_]+@/.test(popupSource))throw Error('Invalid Paint popup backing template');
   }
   Object.assign(chromeSubs,{POPUP_BACKING_DECLARATIONS:popupDeclarations,POPUP_BACKING_IMPLEMENTATION:popupImplementation,POPUP_BACKING_STATE:popupBacking?' std::vector<PopupBacking> popupBackings; std::vector<PreopenMenuStyle> preopenMenus;\n':'',POPUP_BACKING_APPLY:popupBacking?'  if(auto element=object.try_as<FrameworkElement>()){PreparePaintMenuStyle(root,element);ApplyPopupBacking(root,element);}\n':'',POPUP_BACKING_INACTIVE:popupBacking?' if(active&&!RestorePreopenMenuStyles(state.preopenMenus,true))Log(239);\n if(!active&&!RestorePaintPopups(state))Log(239);\n':'',POPUP_BACKING_RESTORE:popupBacking?' restored=RestorePaintPopups(state)&&restored;\n':'',POPUP_BACKING_FAILURE:popupBacking?'if(!RestorePaintPopups(state))Log(239);':'',POPUP_BACKING_DISCOVERY_FAILURE:popupBacking?'    if(!RestorePaintPopups(*uiState))Log(239);\n':''});
-  let chromeSource=readFileSync(path.join(repoRoot,'ports/windows/src/winui-chrome.cpp.in'),'utf8').replace(/@([A-Z0-9_]+)@/g,(_,key)=>{if(!(key in chromeSubs))throw Error('Unknown WinUI chrome source placeholder '+key);return chromeSubs[key];});
+  let chromeSource=renderWindowsTemplate(readFileSync(path.join(repoRoot,'ports/windows/src/winui-chrome.cpp.in'),'utf8'),chromeSubs,'WinUI chrome source');
   if(legacy)chromeSource=chromeSource.replaceAll('Microsoft::UI::Xaml','Windows::UI::Xaml').replaceAll('L"Microsoft.UI.Xaml.','L"Windows.UI.Xaml.');
   if(legacy)chromeSource=chromeSource.replace('type==L"Windows.UI.Xaml.Controls.SplitButton"||type==L"Windows.UI.Xaml.Controls.SplitButton"','type==L"Microsoft.UI.Xaml.Controls.SplitButton"||type==L"Windows.UI.Xaml.Controls.SplitButton"');
   artifacts.push({path:'dist/'+chromeId+'.wh.cpp',text:chromeSource});json(chromeId+'.json',{enabled:1});

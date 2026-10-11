@@ -186,47 +186,7 @@ static bool Matches(Rule const& rule,PropertyKind kind) {
     if(kind==PropertyKind::Border)return wcsncmp(rule.role,L"color.border.",13)==0;
     return wcsncmp(rule.role,L"color.surface.",14)==0 || wcsstr(rule.role,L".bg")!=nullptr;
 }
-struct OwnedThemeRefresh {
- weak_ref<FrameworkElement> element;
- IInspectable before{nullptr};
- ElementTheme requested=ElementTheme::Default;
- bool pending=false,complete=false;
-};
-static bool SameLocalTheme(IInspectable const& local,ElementTheme theme) {
- auto value=local.try_as<Windows::Foundation::IReference<ElementTheme>>();
- return value&&value.Value()==theme;
-}
-static bool RestoreThemeRefresh(OwnedThemeRefresh& entry) noexcept {
- if(!entry.pending)return true;
- try {
-  if(auto element=entry.element.get()) {
-   auto property=FrameworkElement::RequestedThemeProperty();
-   auto current=element.ReadLocalValue(property);
-   // Preserve a synchronous application change made during theme notification.
-   if(SameLocalTheme(current,entry.requested)) {
-    if(!entry.before||Identity(entry.before,DependencyProperty::UnsetValue()))element.ClearValue(property);
-    else element.SetValue(property,entry.before);
-   }
-  }
-  entry.pending=false;return true;
- }catch(...){return false;}
-}
-static bool RefreshThemeSource(OwnedThemeRefresh& entry) noexcept {
- if(entry.complete)return !entry.pending;
- if(!RestoreThemeRefresh(entry))return false;
- try {
-  auto element=entry.element.get();if(!element){entry.complete=true;return true;}
-  auto property=FrameworkElement::RequestedThemeProperty();
-  auto local=element.ReadLocalValue(property);
-  if(local&&!Identity(local,DependencyProperty::UnsetValue())&&!local.try_as<Windows::Foundation::IReference<ElementTheme>>())return false;
-  entry.before=local;
-  entry.requested=element.ActualTheme()==ElementTheme::Dark?ElementTheme::Light:ElementTheme::Dark;
-  entry.pending=true;
-  element.RequestedTheme(entry.requested);
-  if(!RestoreThemeRefresh(entry))return false;
-  entry.complete=true;return true;
- }catch(...){RestoreThemeRefresh(entry);return false;}
-}
+@THEME_REFRESH@
 
 @CONTROL_RESOURCES@
 
