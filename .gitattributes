@@ -3,6 +3,7 @@
 *.webp binary
 *.cur binary
 *.bmp binary
+*.tdesktop-theme binary
 exports/** linguist-generated=true
 schemas/json/** linguist-generated=true
 site/src/styles/tokens.generated.css linguist-generated=true

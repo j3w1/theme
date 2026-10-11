@@ -372,6 +372,10 @@
     "z.skip-link": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints).",
     "z.toast": "Not an appearance setting ChatGPT exposes (geometry, spacing, motion, layout or breakpoints).",
     "color.text.heading": "Host exposes no separately mapped content heading/highlight foreground in this port.",
-    "color.text.highlight": "Host exposes no separately mapped content heading/highlight foreground in this port."
+    "color.text.highlight": "Host exposes no separately mapped content heading/highlight foreground in this port.",
+    "color.interaction.text-selection.tint": "Focus, hover, pressed and selection colours are derived by ChatGPT from the accent and contrast; only the accent is set.",
+    "color.primitive.alpha.red-50": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.red.40": "Primitive; ports consume roles, never primitives.",
+    "color.surface.accent": "ChatGPT has one background and no separate surface for the user's own messages."
   }
 }

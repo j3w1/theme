@@ -19,6 +19,7 @@ import { resolveSpecimen } from "./host-install/specimen.mjs";
 import { safeKitPath } from "../../schemas/task-kit.mjs";
 import { windowsArtifacts } from "./windows-port.mjs";
 import { obsidianArtifacts } from "./obsidian-port.mjs";
+import { telegramArtifacts } from "./telegram-port.mjs";
 import { portArtifactBasename } from "../../schemas/port.mjs";
 
 const ANSI = ["black", "red", "green", "yellow", "blue", "magenta", "cyan", "white"];
@@ -152,7 +153,7 @@ const chatgptFile = ({ manifest, port, mapping, exported, source }) => {
 
 // Keep the existing text renderers intact; only their result envelope changes.
 const singleArtifact = render => args => [{ path: args.port.files[0]?.path, text: render(args) }];
-export const PORT_EMITTERS = { "warp-yaml": singleArtifact(warpYaml), "ghostty-config": singleArtifact(ghosttyConfig), "claude-theme-json": singleArtifact(claudeThemeJson), "codex-tmtheme": singleArtifact(codexTmThemeFile), "chatgpt-appearance": singleArtifact(chatgptFile), "obsidian-theme": obsidianArtifacts, "windows-theme": windowsArtifacts };
+export const PORT_EMITTERS = { "warp-yaml": singleArtifact(warpYaml), "ghostty-config": singleArtifact(ghosttyConfig), "claude-theme-json": singleArtifact(claudeThemeJson), "codex-tmtheme": singleArtifact(codexTmThemeFile), "chatgpt-appearance": singleArtifact(chatgptFile), "obsidian-theme": obsidianArtifacts, "windows-theme": windowsArtifacts, "telegram-theme": telegramArtifacts };
 
 // Validate the complete set before any write. Paths stay relative to a port,
 // under dist/, with the same portable filename policy as other exports.

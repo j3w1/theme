@@ -14,6 +14,7 @@ file, its installer if it has one, and one guide.
 | Ghostty theme | [ghostty](ghostty/README.md) | `j3w1` |
 | Obsidian theme | [obsidian](obsidian/README.md) | `manifest.json`, `theme.css` |
 | Orca (Ghostty config import) | [orca](orca/README.md) | `config.ghostty` |
+| Telegram Android and Desktop | [telegram](telegram/README.md) | `j3w1.attheme`, `j3w1.tdesktop-theme` |
 | Warp theme YAML (also Orca's Import from YAML) | [warp](warp/README.md) | `j3w1.yaml` |
 | Windows 11 native and Windhawk theme | [windows](windows/README.md) | `windows-settings.json`, `terminal-fragment.json`, `terminal-theme.json`, `fancyzones-layouts.json`, `windows-11-taskbar-styler.json`, `windows-11-start-menu-styler.json`, `windows-11-file-explorer-styler.json`, `windows-11-notification-center-styler.json`, `windows-11-settings-styler.json`, `j3w1-wallpaper.bmp`, `j3w1.theme`, `j3w1-arrow.cur`, `j3w1-help.cur`, `j3w1-appstarting.cur`, `j3w1-wait.cur`, `j3w1-crosshair.cur`, `j3w1-ibeam.cur`, `j3w1-nwpen.cur`, `j3w1-no.cur`, `j3w1-sizens.cur`, `j3w1-sizewe.cur`, `j3w1-sizenwse.cur`, `j3w1-sizenesw.cur`, `j3w1-sizeall.cur`, `j3w1-uparrow.cur`, `j3w1-hand.cur`, `j3w1-pin.cur`, `j3w1-person.cur`, `runtime.cjs`, `install-manifest.json`, `j3w1-explorer-native.wh.cpp`, `j3w1-explorer-native.json`, `j3w1-powertoys-preview.wh.cpp`, `j3w1-powertoys-preview.json`, `j3w1-calculator.wh.cpp`, `j3w1-calculator.json`, `j3w1-powertoys-markdown.wh.cpp`, `j3w1-powertoys-markdown.json`, `markdown-theme.css`, `j3w1-folder.ico`, `j3w1-folder-open.ico`, `j3w1-notepad-native.wh.cpp`, `j3w1-notepad-native.json`, `j3w1-notepad-chrome.wh.cpp`, `j3w1-notepad-chrome.json`, `j3w1-paint-chrome.wh.cpp`, `j3w1-paint-chrome.json`, `j3w1-terminal-chrome.wh.cpp`, `j3w1-terminal-chrome.json` |
 <!-- guides:end -->
@@ -69,7 +70,7 @@ port's `format` has an emitter in `scripts/lib/port-artifacts.mjs`). Add `src/`
 only for real generator inputs and `evidence/` only for actual records with
 application version, OS and date; neither needs a placeholder. Generation
 rebuilds absent emitted files, while validation and drift checks require them.
-Every emitter returns its complete declared text-artifact set; unsafe, duplicate,
+Every emitter returns its complete declared text or byte artifact set; unsafe, duplicate,
 missing or extra paths fail before any port artifact is written.
 A port with an installer also carries `host.json` (which native key takes
 which role, the host versions it was observed on, and its deviations) and the

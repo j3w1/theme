@@ -449,6 +449,10 @@
     "z.skip-link": "Not a colour; a Claude Code theme carries colours only.",
     "z.toast": "Not a colour; a Claude Code theme carries colours only.",
     "color.text.heading": "Host exposes no separately mapped content heading/highlight foreground in this port.",
-    "color.text.highlight": "Host exposes no separately mapped content heading/highlight foreground in this port."
+    "color.text.highlight": "Host exposes no separately mapped content heading/highlight foreground in this port.",
+    "color.interaction.text-selection.tint": "Interface colour role that no Claude Code theme key takes.",
+    "color.primitive.alpha.red-50": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.red.40": "Primitive; ports consume roles, never primitives.",
+    "color.surface.accent": "Claude Code's userMessageBackground keeps color.interaction.selection.bg; adopting color.surface.accent there is a separate change for this port."
   }
 }

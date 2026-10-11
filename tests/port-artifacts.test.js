@@ -62,12 +62,12 @@ const tmValues = (text) => {
 };
 
 test("the registered generated ports declare their complete artifact sets", () => {
-  assert.deepEqual(ports.map(({ port }) => `${port.id}:${port.format}`), ["chatgpt:chatgpt-appearance", "claude-code:claude-theme-json", "codex:codex-tmtheme", "ghostty:ghostty-config", "obsidian:obsidian-theme", "orca:ghostty-config", "warp:warp-yaml", "windows:windows-theme"]);
+  assert.deepEqual(ports.map(({ port }) => `${port.id}:${port.format}`), ["chatgpt:chatgpt-appearance", "claude-code:claude-theme-json", "codex:codex-tmtheme", "ghostty:ghostty-config", "obsidian:obsidian-theme", "orca:ghostty-config", "telegram:telegram-theme", "warp:warp-yaml", "windows:windows-theme"]);
   for (const format of Object.keys(PORT_EMITTERS)) assert.ok(PORT_FORMATS.includes(format), `${format} is in the closed list of port formats`);
 });
 
 // Multi-artifact ports have dedicated semantic, binary and lifecycle contracts.
-for (const entry of ports.filter(({ port }) => !["obsidian-theme", "windows-theme"].includes(port.format))) {
+for (const entry of ports.filter(({ port }) => !["obsidian-theme", "windows-theme", "telegram-theme"].includes(port.format))) {
   const { port, text } = entry;
   test(`${port.id}: every mapped role is written at its native key with the resolved value, and nothing else is`, () => {
     if (port.format === "chatgpt-appearance") {

@@ -19,11 +19,11 @@
       "site/src/styles/recipe-foundation.css": "sha256-siLjKAkNj84Wa0+Xz5Vf2yj9DT9k0K/Swy/cwHNrvYo=",
       "site/src/styles/components/text-field.css": "sha256-/kKVqES+lIgSlMzei+bu09SI6o6KeVaz7c1qSlKH0A4=",
       "LICENSE.md": "sha256-Ih5+DpqcNXGWJX6BbYgpt6psmJi9lGcXGJzuiU7elE0=",
-      "tokens/primitives.tokens.json": "sha256-b1osAFVmgaL/BLjX4YejhWVDzTVHrhKDL1vpf4OnyBo=",
-      "tokens/semantic.tokens.json": "sha256-7U4gs0TX70zWT4sLVOabjHPelNqLx9xDgLIpHGkELLo=",
+      "tokens/primitives.tokens.json": "sha256-cmydigBuNgi4hyQLi+3VS5JBhDQ8VMStlmUtPSSc05E=",
+      "tokens/semantic.tokens.json": "sha256-jbrikW294TIEdB7rAiqlLPAiLUy2CMyLT/opZiVe/E0=",
       "tokens/foundations.tokens.json": "sha256-/gYmJavPwEyem7mpNRhaBa8jjyuPKnSisugGky3PdCY="
     },
-    "digest": "sha256-aR16ql1Q9eaTPZgy7nOfHSh1ayVO9Pa4SJDP8/51lnw=",
+    "digest": "sha256-0dRyQbwiDMQLwJzeoNbHAnfQaeDkppIgJOluTJqTdWU=",
     "revisionPolicy": "Resolve these paths at the same pinned commit as this manifest. The hosted source viewer identifies its supplying commit; generated source files contain content digests, never a floating revision claim."
   },
   "dependencies": {
@@ -359,6 +359,6 @@
     "example.html": "sha256-OT8OHppA6ssLf5OlKXOIqPBdkCDLa9lXaqsUOtT1SyQ=",
     "two-instances.html": "sha256-Abep8m5/si0kuUu3cVGEVzcHqMN1pHkPazmjloND8J0=",
     "LICENSE.md": "sha256-vVf/G6WKJRqbyGZCppbAxMh+UAJdSzaPt5xWUujehyU=",
-    "README.md": "sha256-9GRA/ezU6jvdiOAlY9S68dbuRTESB3yKa5D4hzgzBpM="
+    "README.md": "sha256-4IdgTG0RNA0xp3IIcosxkwvq7KQdLS2Wiw1TuWxlzas="
   }
 }

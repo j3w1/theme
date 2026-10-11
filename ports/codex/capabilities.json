@@ -1768,6 +1768,26 @@
       "state": "unsupported",
       "surface": "editor-surfaces",
       "reason": "Host exposes no separately mapped content heading/highlight foreground in this port."
+    },
+    "color.interaction.text-selection.tint": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.primitive.alpha.red-50": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.40": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.surface.accent": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Interface colour role; a Codex tmTheme colours code only."
     }
   },
   "rollback": "Run node ports/codex/install.mjs restore in the same clone. By hand: set theme under [tui] in ~/.codex/config.toml back to your previous theme (or remove the line) and delete ~/.codex/themes/j3w1.tmTheme."

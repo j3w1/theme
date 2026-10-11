@@ -1764,6 +1764,26 @@
       "state": "unsupported",
       "surface": "terminal-palette",
       "reason": "Host exposes no separately mapped content heading/highlight foreground in this port."
+    },
+    "color.interaction.text-selection.tint": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Interface colour role that no Claude Code theme key takes."
+    },
+    "color.primitive.alpha.red-50": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.red.40": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.surface.accent": {
+      "state": "not-implemented",
+      "surface": "theme-roles",
+      "reason": "Claude Code's userMessageBackground keeps color.interaction.selection.bg; adopting color.surface.accent there is a separate change for this port."
     }
   },
   "rollback": "Run node ports/claude-code/install.mjs restore in the same clone. By hand: set \"theme\" in ~/.claude/settings.json back to your previous theme (or remove the key) and delete ~/.claude/themes/j3w1.json."

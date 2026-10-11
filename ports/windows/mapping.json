@@ -2513,6 +2513,10 @@
     "z.drawer": "Outside Windows visual adapter scope; preserve host semantics.",
     "z.dialog": "Outside Windows visual adapter scope; preserve host semantics.",
     "z.toast": "Outside Windows visual adapter scope; preserve host semantics.",
-    "z.skip-link": "Outside Windows visual adapter scope; preserve host semantics."
+    "z.skip-link": "Outside Windows visual adapter scope; preserve host semantics.",
+    "color.primitive.red.40": "Primitive inspection value; Windows consumes canonical semantic roles only.",
+    "color.primitive.alpha.red-50": "Primitive inspection value; Windows consumes canonical semantic roles only.",
+    "color.surface.accent": "Outgoing-message surfaces are outside the Windows visual adapter scope; native application content remains unchanged.",
+    "color.interaction.text-selection.tint": "The Windows adapters retain native selection foregrounds and their existing opaque selection or marquee mappings; no host requiring this tint is admitted."
   }
 }

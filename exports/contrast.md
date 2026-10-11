@@ -74,6 +74,12 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | highlight on default (D-033) | — | text | `color.text.highlight` #f4eeee | `color.surface.default` #100c0c | 16.96 | 4.5 | pass |
 | highlight on raised (D-033) | — | text | `color.text.highlight` #f4eeee | `color.surface.raised` #160b0b | 16.85 | 4.5 | pass |
 | primary action text on pressed fill (D-033) | — | text | `color.action.primary.text` #ffa2a7 | `color.action.primary.pressed-bg` #630f0d | 6.84 | 4.5 | pass |
+| default text on accent surface | — | text | `color.text.default` #e99499 | `color.surface.accent` #3d0c0a | 7.30 | 4.5 | pass |
+| muted text on accent surface | — | text | `color.text.muted` #bd787d | `color.surface.accent` #3d0c0a | 4.90 | 4.5 | pass |
+| bright text on accent surface | — | text | `color.text.bright` #ffa2a7 | `color.surface.accent` #3d0c0a | 8.74 | 4.5 | pass |
+| link on accent surface | — | text | `color.text.link` #f73f35 | `color.surface.accent` #3d0c0a | 4.55 | 4.5 | pass |
+| default text on text-selection tint | — | text | `color.text.default` #e99499 | `color.interaction.text-selection.tint` #480a08 | 6.91 | 4.5 | pass |
+| bright text on text-selection tint | — | text | `color.text.bright` #ffa2a7 | `color.interaction.text-selection.tint` #480a08 | 8.28 | 4.5 | pass |
 | admin-form default text | default | text | `color.text.default` #e99499 | `color.surface.input` #000000 | 9.16 | 4.5 | pass |
 | admin-form default border | default | ui | `color.border.control` #a3676b | `color.surface.input` #000000 | 4.71 | 3 | pass |
 | admin-form invalid text | invalid | text | `color.status.danger.text` #f73f35 | `color.status.danger.tint` #2b0e0d | 4.88 | 4.5 | pass |

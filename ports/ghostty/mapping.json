@@ -395,6 +395,10 @@
     "z.skip-link": "Not a colour; a terminal theme file carries colours only.",
     "z.toast": "Not a colour; a terminal theme file carries colours only.",
     "color.text.heading": "Host exposes no separately mapped content heading/highlight foreground in this port.",
-    "color.text.highlight": "Host exposes no separately mapped content heading/highlight foreground in this port."
+    "color.text.highlight": "Host exposes no separately mapped content heading/highlight foreground in this port.",
+    "color.interaction.text-selection.tint": "Interface colour role; a terminal theme file carries terminal colours only.",
+    "color.primitive.alpha.red-50": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.red.40": "Primitive; ports consume roles, never primitives.",
+    "color.surface.accent": "Interface colour role; a terminal theme file carries terminal colours only."
   }
 }

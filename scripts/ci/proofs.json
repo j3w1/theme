@@ -43,6 +43,23 @@
       "site": false
     },
     {
+      "why": "Telegram publishing and its contract are not rendered; source and mock-transport tests prove them.",
+      "paths": [
+        "ports/telegram/publish.mjs",
+        "ports/telegram/src/**",
+        "ports/telegram/PUBLISHING.md",
+        "ports/telegram/IMPLEMENTATION.md",
+        "ports/telegram/cloud.json",
+        "tests/telegram-publish.test.js",
+        "tests/telegram-port.test.js"
+      ],
+      "proofs": [
+        "sources",
+        "unit"
+      ],
+      "site": false
+    },
+    {
       "why": "Agent and repository notes are not rendered.",
       "paths": [
         "AGENTS.md",
