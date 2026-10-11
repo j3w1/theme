@@ -741,6 +741,22 @@ int main(int argc, char** argv) {
         puts("PASS: exact brush restoration, app-edit preservation, mutation-then-throw and failed-restore retry");
         return 0;
     }
+    if(strcmp(argv[1], "paint-type-filter") == 0) {
+        for(auto type:{L"PaintUI.Ribbon",L"PaintUI.RibbonControl",L"PaintUI.RibbonGroup",L"PaintUI.RibbonCollapsibleGroup",L"NotepadXamlUI.ExpanderExQuadratePanel",L"Microsoft.UI.Xaml.Controls.Grid",L"Microsoft.UI.Xaml.Controls.Border",L"Microsoft.UI.Xaml.Controls.ScrollViewer",L"Microsoft.UI.Xaml.Controls.Primitives.RepeatButton",L"Microsoft.UI.Xaml.Shapes.Path",L"Microsoft.UI.Xaml.Shapes.Rectangle"}) {
+            assert(ChromePaintTypeAdmission(type,Kind::Background));
+            assert(ChromePaintTypeAdmission(type,Kind::Border));
+            assert(!ChromePaintTypeAdmission(type,Kind::Foreground));
+        }
+        for(auto type:{L"Microsoft.UI.Xaml.Controls.SplitButton",L"Windows.UI.Xaml.Controls.SplitButton"})for(auto kind:{Kind::Background,Kind::Border,Kind::Foreground})assert(ChromePaintTypeAdmission(type,kind));
+        for(auto kind:{Kind::Background,Kind::Border,Kind::Foreground,Kind::Separator}) {
+            assert(!ChromePaintTypeAdmission(L"Microsoft.UI.Xaml.Controls.Button",kind));
+            assert(!ChromePaintTypeAdmission(L"PaintUI.D2DSwapChainPanel",kind));
+        }
+        assert(ChromePaintTypeAdmission(L"Microsoft.UI.Xaml.Controls.Button",Kind::FocusPrimary));
+        assert(ChromePaintTypeAdmission(L"Microsoft.UI.Xaml.Controls.Button",Kind::FocusSecondary));
+        puts("PASS: every existing static template class and split/focus scope stays eligible; unrelated paint is rejected before property reads");
+        return 0;
+    }
     if(strcmp(argv[1], "resource-ownership") == 0) {
         winrt::init_apartment(winrt::apartment_type::multi_threaded);
         auto baseline=box_value(L"native"), applied=box_value(L"theme"), later=box_value(L"app");

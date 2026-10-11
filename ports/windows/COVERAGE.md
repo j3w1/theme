@@ -1286,3 +1286,13 @@ Matching uses template/control identity, never an application or recent-item
 name. The Settings, Start and ordinary menu recipes remain separate renderer
 adapters of the same palette. No command, content, menu dimensions or keyboard
 behavior is changed. Rendered acceptance remains separate from mapping tests.
+
+Recurring chrome passes reject properties outside the existing static-template
+class set before reading their brush or ancestry. The original matcher remains
+the final admission boundary. Captured setter slots and storyboards are checked
+before their native target paths or keyframes are re-read; later application
+replacements retain ownership. Equal projected interface pointers avoid a
+redundant identity query, while different views still use canonical IUnknown.
+The refresh cadence, popup discovery, native state handling and cleanup retries
+are unchanged. Native tests retain every eligible template class, split-button
+and focus scope and reject unrelated drawing/button paint.

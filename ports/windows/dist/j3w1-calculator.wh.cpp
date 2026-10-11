@@ -2,7 +2,7 @@
 // @id j3w1-calculator
 // @name j3w1 Calculator resources
 // @description Version-checked Calculator UI resources; equation colors remain native
-// @version 1.4.12
+// @version 1.4.13
 // @author j3w1
 // @include CalculatorApp.exe
 // @architecture x86-64
@@ -262,7 +262,7 @@ static bool busy=false;
 static unsigned admissionAttempts=0;
 
 static bool Identity(IInspectable const& a,IInspectable const& b) {
-    return a && b && get_abi(a.as<Windows::Foundation::IUnknown>())==get_abi(b.as<Windows::Foundation::IUnknown>());
+    return a && b && (get_abi(a)==get_abi(b)||get_abi(a.as<Windows::Foundation::IUnknown>())==get_abi(b.as<Windows::Foundation::IUnknown>()));
 }
 static bool Same(Color a,Color b) {return a.A==b.A&&a.R==b.R&&a.G==b.G&&a.B==b.B;}
 static Color CanvasColor() {
@@ -925,6 +925,9 @@ static void ApplyChromeSetters(Control const& control,VisualStateGroup const& gr
    if(auto storyboard=state.Storyboard();storyboard&&storyboard.Children().Size())continue;
    auto setters=state.Setters();if(setters.IsSealed())continue;
    for(unsigned index=0;index<setters.Size();++index) {
+    // A captured slot is never adopted again, including after an app replacement.
+    // Check its receipt before reading targets or walking the control ancestry.
+    bool tracked=false;for(auto const& prior:changes)if(Identity(prior.state,state)&&prior.index==index){tracked=true;break;}if(tracked)continue;
     Setter original{nullptr};TargetPropertyPath target{nullptr};hstring path;
     if(!InspectChromeState([&] {
      original=setters.GetAt(index).try_as<Setter>();if(!original)return false;
@@ -932,7 +935,6 @@ static void ApplyChromeSetters(Control const& control,VisualStateGroup const& gr
      path=target.Path().Path();
      return ChromeSetterAdmission(std::wstring_view{path},bool(original.Value().try_as<Brush>()),setters.IsSealed());
     }))continue;
-    bool tracked=false;for(auto const& prior:changes)if(Identity(prior.state,state)&&prior.index==index){tracked=true;break;}if(tracked)continue;
     if(!SuspendChromeSetters(control,group,refresh))continue;
     Setter applied;applied.Target(target);applied.Value(SolidColorBrush(ChromeSetterColor(std::wstring_view{path},std::wstring_view{state.Name()})));
     if(changes.size()>=4096)throw hresult_error(E_BOUNDS);
@@ -959,9 +961,9 @@ static void ApplyChromeAnimationPalette(DependencyObject const& object,std::dequ
    try {
     for(auto const& state:group.States()) {
      auto stateName=state.Name();auto storyboard=state.Storyboard();
-     if(!ChromeSetterState(std::wstring_view{stateName})||!ChromeColorStoryboard(storyboard))continue;
+     if(!ChromeSetterState(std::wstring_view{stateName}))continue;
      bool tracked=false;for(auto const& prior:changes)if(Identity(prior.storyboard,storyboard)){tracked=true;break;}
-     if(tracked)continue;
+     if(tracked||!ChromeColorStoryboard(storyboard))continue;
      if(!StopChromeColorState(control,group,storyboard,refresh))throw hresult_error(E_FAIL);
      for(auto const& child:storyboard.Children()) {
       auto animation=child.as<ObjectAnimationUsingKeyFrames>();auto frames=animation.KeyFrames();

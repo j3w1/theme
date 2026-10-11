@@ -2,7 +2,7 @@
 // @id j3w1-paint-chrome
 // @name j3w1 Paint chrome
 // @description Exact-package Paint chrome resources; document and artwork colors remain native
-// @version 1.0.29
+// @version 1.0.30
 // @author j3w1
 // @include mspaint.exe
 // @architecture x86-64
@@ -421,7 +421,9 @@ static constexpr Rule rules[]={
 };
 static bool Same(Color a,Color b){return a.A==b.A&&a.R==b.R&&a.G==b.G&&a.B==b.B;}
 static bool Identity(ProjectedObject const& a,ProjectedObject const& b){
- return a&&b&&get_abi(a.as<Windows::Foundation::IUnknown>())==get_abi(b.as<Windows::Foundation::IUnknown>());
+ // Equal public interface pointers already prove identity. Different views
+ // still require canonical IUnknown; pointer inequality proves nothing.
+ return a&&b&&(get_abi(a)==get_abi(b)||get_abi(a.as<Windows::Foundation::IUnknown>())==get_abi(b.as<Windows::Foundation::IUnknown>()));
 }
 static bool HighContrast(){HIGHCONTRASTW value{sizeof(value)};
  return !SystemParametersInfoW(SPI_GETHIGHCONTRAST,sizeof(value),&value,0)||(value.dwFlags&HCF_HIGHCONTRASTON);}
@@ -1081,6 +1083,9 @@ static void ApplyChromeSetters(Control const& control,VisualStateGroup const& gr
    if(auto storyboard=state.Storyboard();storyboard&&storyboard.Children().Size())continue;
    auto setters=state.Setters();if(setters.IsSealed())continue;
    for(unsigned index=0;index<setters.Size();++index) {
+    // A captured slot is never adopted again, including after an app replacement.
+    // Check its receipt before reading targets or walking the control ancestry.
+    bool tracked=false;for(auto const& prior:changes)if(Identity(prior.state,state)&&prior.index==index){tracked=true;break;}if(tracked)continue;
     Setter original{nullptr};TargetPropertyPath target{nullptr};hstring path;
     if(!InspectChromeState([&] {
      original=setters.GetAt(index).try_as<Setter>();if(!original)return false;
@@ -1088,7 +1093,6 @@ static void ApplyChromeSetters(Control const& control,VisualStateGroup const& gr
      path=target.Path().Path();
      return ChromeSetterAdmission(std::wstring_view{path},bool(original.Value().try_as<Brush>()),setters.IsSealed());
     }))continue;
-    bool tracked=false;for(auto const& prior:changes)if(Identity(prior.state,state)&&prior.index==index){tracked=true;break;}if(tracked)continue;
     if(!SuspendChromeSetters(control,group,refresh))continue;
     Setter applied;applied.Target(target);applied.Value(SolidColorBrush(ChromeSetterColor(std::wstring_view{path},std::wstring_view{state.Name()})));
     if(changes.size()>=4096)throw hresult_error(E_BOUNDS);
@@ -1115,9 +1119,9 @@ static void ApplyChromeAnimationPalette(DependencyObject const& object,std::dequ
    try {
     for(auto const& state:group.States()) {
      auto stateName=state.Name();auto storyboard=state.Storyboard();
-     if(!ChromeSetterState(std::wstring_view{stateName})||!ChromeColorStoryboard(storyboard))continue;
+     if(!ChromeSetterState(std::wstring_view{stateName}))continue;
      bool tracked=false;for(auto const& prior:changes)if(Identity(prior.storyboard,storyboard)){tracked=true;break;}
-     if(tracked)continue;
+     if(tracked||!ChromeColorStoryboard(storyboard))continue;
      if(!StopChromeColorState(control,group,storyboard,refresh))throw hresult_error(E_FAIL);
      for(auto const& child:storyboard.Children()) {
       auto animation=child.as<ObjectAnimationUsingKeyFrames>();auto frames=animation.KeyFrames();
@@ -1718,6 +1722,20 @@ static const wchar_t* SplitButtonTemplateBindingKey(std::wstring_view type,Kind 
  if(type!=L"Microsoft.UI.Xaml.Controls.SplitButton"&&type!=L"Windows.UI.Xaml.Controls.SplitButton")return nullptr;
  return kind==Kind::Background?L"SplitButtonBackground":kind==Kind::Foreground?L"SplitButtonForeground":kind==Kind::Border?L"SplitButtonBorderBrush":nullptr;
 }
+// This is only an early rejection filter for the existing template matcher.
+// Keep the matcher below as the final class, ancestry and brush admission.
+// Resource/state-controlled button paint is not owned by this property bridge.
+static bool ChromePaintTypeAdmission(std::wstring_view type,Kind kind) noexcept {
+ if(kind==Kind::FocusPrimary||kind==Kind::FocusSecondary)return true;
+ if(SplitButtonTemplateBindingKey(type,kind))return true;
+ if(kind!=Kind::Background&&kind!=Kind::Border)return false;
+ return type==L"PaintUI.Ribbon"||type==L"PaintUI.RibbonControl"
+  ||type==L"PaintUI.RibbonGroup"||type==L"PaintUI.RibbonCollapsibleGroup"
+  ||type==L"NotepadXamlUI.ExpanderExQuadratePanel"
+  ||type==L"Microsoft.UI.Xaml.Controls.Grid"||type==L"Microsoft.UI.Xaml.Controls.Border"
+  ||type==L"Microsoft.UI.Xaml.Controls.ScrollViewer"||type==L"Microsoft.UI.Xaml.Controls.Primitives.RepeatButton"
+  ||type==L"Microsoft.UI.Xaml.Shapes.Path"||type==L"Microsoft.UI.Xaml.Shapes.Rectangle";
+}
 static Palette const* TemplateSurface(Root const& root,DependencyObject const& object,Kind kind,Brush const& brush) {
 
  if(auto key=SplitButtonTemplateBindingKey(std::wstring_view{get_class_name(object)},kind)) {
@@ -1881,7 +1899,8 @@ static void Bridge(Root& root,FrameworkElement const& popup=nullptr) {
  if(uiState&&(!PruneChromeColorStates(uiState->animations,RestoreChromeAnimations)
   ||!PruneChromeColorStates(uiState->setters,RestoreChromeSetters)))throw hresult_error(E_FAIL);
  std::vector<Brush> protectedBrushes;if(!ProtectedBrushes(root,protectedBrushes))return;
- auto apply=[&](DependencyObject const& object,DependencyProperty const& property,Kind kind) {
+ auto apply=[&](DependencyObject const& object,DependencyProperty const& property,Kind kind,std::wstring_view type) {
+  if(!ChromePaintTypeAdmission(type,kind))return;
   kind=TemplateKind(object,kind);
   auto brush=object.GetValue(property).try_as<Brush>();
   if(Identity(object,root.element.get())&&Identity(brush,root.backgroundApplied))return;
@@ -1928,25 +1947,26 @@ static void Bridge(Root& root,FrameworkElement const& popup=nullptr) {
  unsigned count=0;
  while(!stack.empty()&&count++<4096) {
   auto object=stack.back();stack.pop_back();if(DataSubtree(object))continue;
+  auto type=get_class_name(object);
   RefreshChromeControl(root,object);
   if(auto element=object.try_as<FrameworkElement>()){PreparePaintMenuStyle(root,element);ApplyPopupBacking(root,element);}
   if(uiState)ApplyChromeAnimationPalette(object,uiState->animations,uiState->setters,uiState->bases,uiState->transitions);
   if(object.try_as<Control>()) {
-   apply(object,Control::BackgroundProperty(),Kind::Background);apply(object,Control::ForegroundProperty(),Kind::Foreground);apply(object,Control::BorderBrushProperty(),Kind::Border);
+   apply(object,Control::BackgroundProperty(),Kind::Background,std::wstring_view{type});apply(object,Control::ForegroundProperty(),Kind::Foreground,std::wstring_view{type});apply(object,Control::BorderBrushProperty(),Kind::Border,std::wstring_view{type});
   }
   if(object.try_as<ContentPresenter>()) {
-   apply(object,ContentPresenter::BackgroundProperty(),Kind::Background);apply(object,ContentPresenter::ForegroundProperty(),Kind::Foreground);apply(object,ContentPresenter::BorderBrushProperty(),Kind::Border);
+   apply(object,ContentPresenter::BackgroundProperty(),Kind::Background,std::wstring_view{type});apply(object,ContentPresenter::ForegroundProperty(),Kind::Foreground,std::wstring_view{type});apply(object,ContentPresenter::BorderBrushProperty(),Kind::Border,std::wstring_view{type});
   }
-  if(object.try_as<Border>()){apply(object,Border::BackgroundProperty(),Kind::Background);apply(object,Border::BorderBrushProperty(),Kind::Border);}
-  if(object.try_as<Panel>())apply(object,Panel::BackgroundProperty(),Kind::Background);
-  if(object.try_as<TextBlock>())apply(object,TextBlock::ForegroundProperty(),Kind::Foreground);
-  if(object.try_as<IconElement>())apply(object,IconElement::ForegroundProperty(),Kind::Foreground);
+  if(object.try_as<Border>()){apply(object,Border::BackgroundProperty(),Kind::Background,std::wstring_view{type});apply(object,Border::BorderBrushProperty(),Kind::Border,std::wstring_view{type});}
+  if(object.try_as<Panel>())apply(object,Panel::BackgroundProperty(),Kind::Background,std::wstring_view{type});
+  if(object.try_as<TextBlock>())apply(object,TextBlock::ForegroundProperty(),Kind::Foreground,std::wstring_view{type});
+  if(object.try_as<IconElement>())apply(object,IconElement::ForegroundProperty(),Kind::Foreground,std::wstring_view{type});
   if(object.try_as<Microsoft::UI::Xaml::Shapes::Shape>()) {
-   apply(object,Microsoft::UI::Xaml::Shapes::Shape::FillProperty(),Kind::Background);
-   apply(object,Microsoft::UI::Xaml::Shapes::Shape::StrokeProperty(),Kind::Border);
+   apply(object,Microsoft::UI::Xaml::Shapes::Shape::FillProperty(),Kind::Background,std::wstring_view{type});
+   apply(object,Microsoft::UI::Xaml::Shapes::Shape::StrokeProperty(),Kind::Border,std::wstring_view{type});
   }
   if(object.try_as<FrameworkElement>()) {
-   apply(object,FrameworkElement::FocusVisualPrimaryBrushProperty(),Kind::FocusPrimary);apply(object,FrameworkElement::FocusVisualSecondaryBrushProperty(),Kind::FocusSecondary);
+   apply(object,FrameworkElement::FocusVisualPrimaryBrushProperty(),Kind::FocusPrimary,std::wstring_view{type});apply(object,FrameworkElement::FocusVisualSecondaryBrushProperty(),Kind::FocusSecondary,std::wstring_view{type});
   }
   for(int i=0;i<VisualTreeHelper::GetChildrenCount(object);i++)stack.push_back(VisualTreeHelper::GetChild(object,i));
  }

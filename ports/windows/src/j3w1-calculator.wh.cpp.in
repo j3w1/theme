@@ -85,7 +85,7 @@ static bool busy=false;
 static unsigned admissionAttempts=0;
 
 static bool Identity(IInspectable const& a,IInspectable const& b) {
-    return a && b && get_abi(a.as<Windows::Foundation::IUnknown>())==get_abi(b.as<Windows::Foundation::IUnknown>());
+    return a && b && (get_abi(a)==get_abi(b)||get_abi(a.as<Windows::Foundation::IUnknown>())==get_abi(b.as<Windows::Foundation::IUnknown>()));
 }
 static bool Same(Color a,Color b) {return a.A==b.A&&a.R==b.R&&a.G==b.G&&a.B==b.B;}
 static Color CanvasColor() {
