@@ -28,7 +28,12 @@ tokens:
   root.border: color.border.control
   heading.text: color.text.bright
   secondary.text: color.text.muted
-  control.bg: color.surface.input
+  control.bg: color.action.secondary.bg
+  control.text: color.action.secondary.text
+  control.border: color.action.secondary.border
+  control.bg-hover: color.action.secondary.hover-bg
+  control.bg-active: color.action.secondary.pressed-bg
+  control.border-active: color.border.active
   control.focus: color.interaction.focus.ring
   dependency.role-border-width-default: border.width.default
   dependency.role-color-border-divider: color.border.divider
@@ -57,6 +62,12 @@ contrast:
     min: 3
     kind: ui
     label: Control boundary
+  - fg: color.action.secondary.text
+    bg: color.surface.default
+    label: Button label
+  - fg: color.action.secondary.text
+    bg: color.action.secondary.hover-bg
+    label: Button label on hover
 anatomy:
   - part: metrics
     description: Terms and values pair each metric name with its number.
@@ -115,7 +126,7 @@ Parts as listed in the anatomy.
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | Square metric panels, readable tables. | Metric names, exact values, status text. |
+| default | Square metric panels, readable tables. Its buttons are the secondary button (button.md). | Metric names, exact values, status text. |
 | loading | Busy boundary; existing content kept. | `aria-busy` and host-provided loading status. |
 | empty | Explicit absence of records. | Empty message; a zero metric differs from an unknown one. |
 | focus-visible | Dashed action outline. | Native keyboard focus. |

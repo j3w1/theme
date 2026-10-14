@@ -1,3 +1,4 @@
+@import "../partials/button.css";
 .file-browser {box-sizing:border-box;display:grid;gap:var(--space-16);min-width:0;padding:var(--space-12);background:var(--color-surface-default);color:var(--color-text-default);border:var(--border-width-default) solid var(--color-border-control);border-radius:var(--radius-none);font:inherit;grid-template-columns:minmax(8rem,1fr) 3fr}
 .file-browser-control {font:inherit;min-height:var(--density-control-height);padding:var(--space-8);background:var(--color-surface-input);color:var(--color-text-default);border:var(--border-width-default) solid var(--color-border-control);border-radius:var(--radius-none)}
 .file-browser :focus-visible,[data-state-focus-visible] .file-browser [data-demo-focus-target] {outline:var(--focus-ring);outline-offset:var(--focus-offset)}

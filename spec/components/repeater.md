@@ -29,6 +29,13 @@ tokens:
   secondary.text: color.text.muted
   control.bg: color.surface.input
   control.focus: color.interaction.focus.ring
+  button.bg: color.action.secondary.bg
+  button.text: color.action.secondary.text
+  button.border: color.action.secondary.border
+  button.bg-hover: color.action.secondary.hover-bg
+  button.bg-active: color.action.secondary.pressed-bg
+  button.border-active: color.border.active
+  button.focus: color.interaction.focus.ring
   dependency.role-border-width-default: border.width.default
   dependency.role-color-border-disabled: color.border.disabled
   dependency.role-color-interaction-disabled-bg: color.interaction.disabled.bg
@@ -57,6 +64,12 @@ contrast:
     min: 3
     kind: ui
     label: Control boundary
+  - fg: color.action.secondary.text
+    bg: color.surface.default
+    label: Button label
+  - fg: color.action.secondary.text
+    bg: color.action.secondary.hover-bg
+    label: Button label on hover
 anatomy:
   - part: rows
     description: Ordered list of independently named field rows.
@@ -113,7 +126,7 @@ Parts as listed in the anatomy.
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | named content on the default surface | native text and structure |
+| default | named content on the default surface. Button controls are the secondary button (button.md); inputs keep the input look. | native text and structure |
 | empty | a muted empty message | explicit text; Add stays |
 | focus-visible | dashed focus ring | native focus position |
 | disabled | disabled foreground, background and border at full opacity | native disabled state blocks activation |

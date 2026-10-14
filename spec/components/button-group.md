@@ -26,7 +26,12 @@ tokens:
   root.border: color.border.control
   heading.text: color.text.bright
   secondary.text: color.text.muted
-  control.bg: color.surface.input
+  control.bg: color.action.secondary.bg
+  control.text: color.action.secondary.text
+  control.border: color.action.secondary.border
+  control.bg-hover: color.action.secondary.hover-bg
+  control.bg-active: color.action.secondary.pressed-bg
+  control.border-active: color.border.active
   control.focus: color.interaction.focus.ring
   dependency.role-border-width-default: border.width.default
   dependency.role-color-border-disabled: color.border.disabled
@@ -56,6 +61,12 @@ contrast:
     min: 3
     kind: ui
     label: Control boundary
+  - fg: color.action.secondary.text
+    bg: color.surface.default
+    label: Button label
+  - fg: color.action.secondary.text
+    bg: color.action.secondary.hover-bg
+    label: Button label on hover
 anatomy:
   - part: group
     description: Labelled group that wraps its buttons.
@@ -108,7 +119,7 @@ Parts as listed in the anatomy.
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | Named content on the default surface. | Native text and structure. |
+| default | Named content on the default surface. Its buttons are the secondary button (button.md). | Native text and structure. |
 | focus-visible | Dashed focus ring. | Native keyboard focus position. |
 | disabled | Disabled semantic foreground, background and border at full opacity. | Native disabled state blocks activation. |
 

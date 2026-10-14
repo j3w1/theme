@@ -27,7 +27,12 @@ tokens:
   root.border: color.border.control
   heading.text: color.text.bright
   secondary.text: color.text.muted
-  control.bg: color.surface.input
+  control.bg: color.action.secondary.bg
+  control.text: color.action.secondary.text
+  control.border: color.action.secondary.border
+  control.bg-hover: color.action.secondary.hover-bg
+  control.bg-active: color.action.secondary.pressed-bg
+  control.border-active: color.border.active
   control.focus: color.interaction.focus.ring
   dependency.role-border-width-default: border.width.default
   dependency.role-color-border-overlay: color.border.overlay
@@ -56,6 +61,12 @@ contrast:
     min: 3
     kind: ui
     label: Control boundary
+  - fg: color.action.secondary.text
+    bg: color.surface.default
+    label: Button label
+  - fg: color.action.secondary.text
+    bg: color.action.secondary.hover-bg
+    label: Button label on hover
 anatomy:
   - part: trigger
     description: Native button with expanded state and panel relationship.
@@ -110,7 +121,7 @@ Parts as listed in the anatomy.
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | Named trigger. | Button semantics and accessible name. |
+| default | Named trigger. Its buttons are the secondary button (button.md). | Button semantics and accessible name. |
 | open | Square overlay surface and border. | aria-expanded=true; panel is reachable. |
 | closed | Panel hidden. | aria-expanded=false; hidden controls leave focus order. |
 | focus-visible | Dashed focus ring. | Native keyboard focus. |

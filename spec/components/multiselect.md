@@ -30,6 +30,13 @@ tokens:
   secondary.text: color.text.muted
   control.bg: color.surface.input
   control.focus: color.interaction.focus.ring
+  button.bg: color.action.secondary.bg
+  button.text: color.action.secondary.text
+  button.border: color.action.secondary.border
+  button.bg-hover: color.action.secondary.hover-bg
+  button.bg-active: color.action.secondary.pressed-bg
+  button.border-active: color.border.active
+  button.focus: color.interaction.focus.ring
   dependency.role-border-width-default: border.width.default
   dependency.role-border-width-emphasis: border.width.emphasis
   dependency.role-color-action-primary-bg: color.action.primary.bg
@@ -75,6 +82,12 @@ contrast:
     min: 3
     kind: ui
     label: Control boundary
+  - fg: color.action.secondary.text
+    bg: color.surface.default
+    label: Button label
+  - fg: color.action.secondary.text
+    bg: color.action.secondary.hover-bg
+    label: Button label on hover
 anatomy:
   - part: group
     description: Fieldset and legend name the choice.
@@ -133,7 +146,7 @@ Parts as listed in the anatomy.
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | Named content on the default surface. | Native text and structure. |
+| default | Named content on the default surface. Button controls are the secondary button (button.md); inputs keep the input look. | Native text and structure. |
 | checked | Selected fill and a check indicator. | Native checked state. |
 | focus-visible | Dashed focus ring. | Native keyboard focus position. |
 | disabled | Disabled semantic foreground, background and border at full opacity. | Native disabled state blocks activation. |

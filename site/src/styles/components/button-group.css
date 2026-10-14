@@ -1,3 +1,4 @@
+@import "../partials/button.css";
 .button-group {box-sizing:border-box;display:flex;gap:var(--space-4);min-width:0;padding:var(--space-12);background:var(--color-surface-default);color:var(--color-text-default);border:var(--border-width-default) solid var(--color-border-control);border-radius:var(--radius-none);font:inherit;flex-wrap:wrap}
 .button-group-control {font:inherit;min-height:var(--density-control-height);padding:var(--space-8);background:var(--color-surface-input);color:var(--color-text-default);border:var(--border-width-default) solid var(--color-border-control);border-radius:var(--radius-none)}
 .button-group :focus-visible,[data-state-focus-visible] .button-group [data-demo-focus-target] {outline:var(--focus-ring);outline-offset:var(--focus-offset)}

@@ -3,12 +3,16 @@
    a button under its own class import this file, so each tone has one look
    wherever it appears. Forced states stay in each component's own file, where
    the state matrix and the spec validation read them; they rewrite the same
-   slots. Token variables only. */
+   slots. The template controls (button-group, command palette, compact
+   dashboard, editor search, error state, file browser, multiselect, popover,
+   repeater) are the secondary button when they are buttons; as inputs they
+   keep their component's input look. Token variables only. */
 
 .button,
 .dialog-button,
 .empty-state-action,
-.file-input-button {
+.file-input-button,
+button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -44,7 +48,8 @@
 .button-secondary,
 .dialog-button,
 .empty-state-action,
-.file-input-button {
+.file-input-button,
+button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control) {
   --_bg: var(--color-action-secondary-bg);
   --_fg: var(--color-action-secondary-text);
   --_border: var(--color-action-secondary-border);
@@ -92,7 +97,7 @@
 
 /* hover: fills and borders only, on hover-capable pointers */
 @media (hover: hover) {
-  :is(.button, .dialog-button, .empty-state-action, .file-input-button):hover {
+  :is(.button, .dialog-button, .empty-state-action, .file-input-button, button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control)):hover {
     --_bg: var(--_bg-hover);
     --_fg: var(--_fg-hover);
   }
@@ -103,20 +108,20 @@
 }
 
 /* active: a darker fill and the active border; nothing moves */
-:is(.button, .dialog-button, .empty-state-action, .file-input-button):active {
+:is(.button, .dialog-button, .empty-state-action, .file-input-button, button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control)):active {
   --_bg: var(--_bg-active);
   --_fg: var(--_fg-hover);
   --_border: var(--_border-active);
 }
 
 /* focus-visible: the dashed ring in the on-fill colour of whatever fill is showing */
-:is(.button, .dialog-button, .empty-state-action):focus-visible {
+:is(.button, .dialog-button, .empty-state-action, button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control)):focus-visible {
   outline: var(--border-width-default) dashed var(--_ring);
   outline-offset: var(--focus-offset);
 }
 
 /* disabled: the same three roles for every tone; no hover, no opacity */
-:is(.button, .dialog-button, .empty-state-action):disabled {
+:is(.button, .dialog-button, .empty-state-action, button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control)):disabled {
   --_bg: var(--color-interaction-disabled-bg);
   --_fg: var(--color-text-disabled);
   --_border: var(--color-border-disabled);
@@ -131,13 +136,14 @@
   .button,
   .dialog-button,
   .empty-state-action,
-  .file-input-button {
+  .file-input-button,
+  button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control) {
     transition: background-color var(--motion-duration-fast);
   }
 }
 
 @media (forced-colors: active) {
-  :is(.button, .dialog-button, .empty-state-action):focus-visible {
+  :is(.button, .dialog-button, .empty-state-action, button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control)):focus-visible {
     outline-color: Highlight;
   }
 }

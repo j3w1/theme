@@ -31,6 +31,13 @@ tokens:
   secondary.text: color.text.muted
   control.bg: color.surface.input
   control.focus: color.interaction.focus.ring
+  button.bg: color.action.secondary.bg
+  button.text: color.action.secondary.text
+  button.border: color.action.secondary.border
+  button.bg-hover: color.action.secondary.hover-bg
+  button.bg-active: color.action.secondary.pressed-bg
+  button.border-active: color.border.active
+  button.focus: color.interaction.focus.ring
   dependency.role-border-width-default: border.width.default
   dependency.role-border-width-emphasis: border.width.emphasis
   dependency.role-color-border-divider: color.border.divider
@@ -59,6 +66,12 @@ contrast:
     min: 3
     kind: ui
     label: Control boundary
+  - fg: color.action.secondary.text
+    bg: color.surface.default
+    label: Button label
+  - fg: color.action.secondary.text
+    bg: color.action.secondary.hover-bg
+    label: Button label on hover
 anatomy:
   - part: locations
     description: Tree navigation selects a location filter.
@@ -120,7 +133,7 @@ Parts as listed in the anatomy.
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | Locations and native file rows. | Explicit names, kinds and sizes. |
+| default | Locations and native file rows. Button controls are the secondary button (button.md); inputs keep the input look. | Explicit names, kinds and sizes. |
 | selected | Selected location follows the tree contract. | aria-selected plus location filter. |
 | empty | No file rows. | Explicit zero-files text. |
 | no-results | Filtered rows are hidden. | Matching count and retained search query. |

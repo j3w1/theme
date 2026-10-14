@@ -31,6 +31,13 @@ tokens:
   secondary.text: color.text.muted
   control.bg: color.surface.input
   control.focus: color.interaction.focus.ring
+  button.bg: color.action.secondary.bg
+  button.text: color.action.secondary.text
+  button.border: color.action.secondary.border
+  button.bg-hover: color.action.secondary.hover-bg
+  button.bg-active: color.action.secondary.pressed-bg
+  button.border-active: color.border.active
+  button.focus: color.interaction.focus.ring
   dependency.role-border-width-default: border.width.default
   dependency.role-border-width-emphasis: border.width.emphasis
   dependency.role-color-border-overlay: color.border.overlay
@@ -63,6 +70,12 @@ contrast:
     min: 3
     kind: ui
     label: Control boundary
+  - fg: color.action.secondary.text
+    bg: color.surface.default
+    label: Button label
+  - fg: color.action.secondary.text
+    bg: color.action.secondary.hover-bg
+    label: Button label on hover
 anatomy:
   - part: trigger
     description: Named native button opens the utility panel.
@@ -127,7 +140,7 @@ Parts as listed in the anatomy.
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | One prompt, dense command rows. | Visible names and categories. |
+| default | One prompt, dense command rows. Button controls are the secondary button (button.md); inputs keep the input look. | Visible names and categories. |
 | open | Square overlay surface and border. | Native modal dialog; active-descendant relationship. |
 | closed | Panel absent. | Opener stays focusable. |
 | focus-visible | Dashed input ring. | Input keeps DOM focus while results change. |
