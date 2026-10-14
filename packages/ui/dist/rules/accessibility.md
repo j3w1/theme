@@ -121,7 +121,17 @@ recorded limit.
   host draws the tint under the text.
   - **Over the text:** where a host paints it over the text, as in Telegram's
     rich editor and rich translation preview, selected text falls below 4.5:1.
-  - **Links and code:** inside a selection they drop below 4.5:1.
+  - **Links and code:** inside a selection they drop below 4.5:1. Links are
+    not a declared pair: a failing pair needs a waiver, and waivers cover
+    decorative graphics only.
+  - **Strength:** no tint strength meets both the over-the-text case and the
+    floor on `surface.accent`.
+  - **Outgoing code blocks:** inside one, the selection stands only ΔE 18.3
+    (CIE76) from the block.
+
+  The global contrast pairs composite the tint over the canvas only; the
+  Telegram port's tests enforce the raised and accent cases. A selection is
+  short-lived, as in an editor.
 
 ## Verification evidence and freshness
 
@@ -141,8 +151,9 @@ each result:
 - browser and version, OS, viewport, profile, density and JavaScript setting;
 - a run or protocol reference.
 
-The recorded profile and density are the starting configuration; tests that
-switch them say so in their scope. One browser engine never stands for
+The recorded profile and density are the page's declared `data-profile` and
+`data-density` when the test ends; tests that switch them say so in their
+scope. One browser engine never stands for
 another. Skipped, failed, not run and not applicable are separate outcomes,
 and every non-pass has a reason. Manual screen-reader and keyboard claims need
 protocol records. The automated suite targets Chromium; other engines stay not

@@ -35,8 +35,25 @@ support, exact states, pleasant controls. Not pill buttons, glass panels,
 gradients, neon glows, a Material-style redesign, or red on every surface; the
 site draws such misreadings as labelled non-examples.
 
-One exception: the colour previews the spec page draws beside each hex value
-may be round, sit on a checkerboard and animate (D-014).
+One exception (D-014): the generated preview beside each visible CSS hex
+literal on the spec page. It adds no palette, role or geometry rule, and text,
+copying, keyboard order and no-JS access stay intact.
+
+- A 16px circle with its theme-derived 1px boundary; alpha shows over a
+  checkerboard of theme tokens.
+- On CSS `:hover` it becomes a 17.4px square (fast duration, ease-out on
+  transform and border-radius; none under reduced motion).
+- Mouse and pen pointers also open a non-interactive popup with the exact
+  value; touch and unknown pointers do not. CSS `:hover` alone drives both,
+  never the `hover` or `any-hover` media features, which can report no hover
+  despite a mouse.
+- The popup follows the pointer inside the circle at an 8px gap, flips when
+  needed and keeps an 8px viewport gutter. Tracking has no animation.
+- It closes when the pointer leaves the circle, on an outside press, Escape,
+  loss of window focus, and on page or nested scrolling unless the circle is
+  still under the last pointer position. It never captures input, holds
+  itself open or adds a keyboard stop; token tables and the token inspector
+  keep the persistent information.
 
 ## Profiles
 

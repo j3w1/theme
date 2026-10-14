@@ -71,16 +71,31 @@ onto the framework's theme keys and lists what it cannot express.
 ## Native ports
 
 A port lives at `ports/<slug>/` with a README, `port.json`, `mapping.json` and
-importable artifacts under `dist/`. Add `capabilities.json` for precise role
-classifications. Add `src/` only for real generator inputs that these sources
-cannot express, and `evidence/` only for actual evidence; neither needs a
-placeholder directory. `templates/port/` is a starting aid when work begins.
+importable artifacts under `dist/`. Add `src/` only for real generator inputs
+that these sources cannot express, and `evidence/` only for actual evidence;
+neither needs a placeholder directory. `templates/port/` is a starting aid
+when work begins.
 
+- `capabilities.json` refines each role into mapped, inherited, unsupported,
+  out-of-scope or not-implemented, with a surface and a reason (D-018). A
+  legacy unmapped reason stays unclassified, never guessed. One generated
+  catalogue feeds the summaries, drill-downs and task kits; private parity
+  records never enter it.
+- Every port classifies a new role, even when only one maps it. Telegram alone
+  maps `surface.accent` (outgoing bubbles; incoming stay `surface.raised`,
+  timestamps on both `text.muted`) and `interaction.text-selection.tint`
+  (Android text selection; Desktop keeps `selection.bg` with near-white text).
+  Claude Code's `userMessageBackground` keeps `interaction.selection.bg`, and
+  Obsidian, which keeps the text colour, would suit the tint; each adoption is
+  a separate change with its own import check (D-035, D-036).
 - Statuses are `experimental`, `verified` and `deprecated`. Reference
   implementations and roadmap candidates are not statuses.
 - `verified` needs a real import into the recorded application version, with
   matching evidence and a token digest equal to the current default profile.
-  A successful XML or JSON parse is a structural pass, not verification.
+  Import verification is separate from mapping state and declared status: a
+  relevant change to the target, tokens, mappings, capabilities or artifact
+  bytes makes evidence stale, and a failed or missing check never passes. A
+  successful XML or JSON parse is a structural pass, not verification.
 - Never hand-edit a generated hex. Fix the mapping or the approved token and
   regenerate.
 - `npm run generate` writes `dist/` for every port whose `format` has an
