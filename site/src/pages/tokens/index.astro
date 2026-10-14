@@ -1,36 +1,57 @@
 ---
-import ToolLayout from "../../layouts/ToolLayout.astro";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import TextField from "../../components/fields/TextField.astro";
+import SelectField from "../../components/fields/SelectField.astro";
+import Checkbox from "../../components/fields/Checkbox.astro";
 import { usageIndex, tokenUrl } from "../../lib/usage";
 import { anchorFor } from "../../../../scripts/lib/anchors.mjs";
 import { queryIndexOf } from "../../../../scripts/lib/usage-query.mjs";
+
 const tokens = Object.values(usageIndex.profiles.default.tokens);
 const uses = tokens.flatMap((t) => t.uses);
 const values = (key: string) => [...new Set(uses.map((u) => u[key]).filter(Boolean))].sort();
-const fields = { group: [...new Set(tokens.map((t) => t.group))].sort(), component: values("component"), part: values("part"), state: values("state"), variant: values("variant"), surface: values("surface"), status: [...new Set(Object.values(usageIndex.profiles).flatMap((p) => Object.values(p.tokens).map((t) => t.status)))].sort() };
+const fields = {
+  group: [...new Set(tokens.map((t) => t.group))].sort(),
+  component: values("component"),
+  part: values("part"),
+  state: values("state"),
+  variant: values("variant"),
+  surface: values("surface"),
+  status: [...new Set(Object.values(usageIndex.profiles).flatMap((p) => Object.values(p.tokens).map((t) => t.status)))].sort(),
+};
 ---
-<ToolLayout title="Token usage" description="Choose roles by their documented component, part, state and surface. Equal colours do not imply interchangeable roles.">
+<SiteLayout title="Token usage" description="Choose roles by their documented component, part, state and surface. Equal colours do not imply interchangeable roles." revision>
   <p>Choose a role group, then narrow by component, part or state. Filters use documented relationships; unknown combinations return no match.</p>
-  <form class="usage-filters js-only" id="usage-filters">
-    <label>Path, variable, hex or words<input name="query" type="search" /></label>
-    <div><label for={anchorFor.usageControl("profile")}>Profile</label><select id={anchorFor.usageControl("profile")} name="profile">{Object.keys(usageIndex.profiles).map((id) => <option value={id}>{id}</option>)}</select></div>
-    {Object.entries(fields).map(([name, choices]) => <div><label for={anchorFor.usageControl(name)}>{name}</label><select id={anchorFor.usageControl(name)} name={name}><option value="">All</option>{choices.map((v) => <option value={v}>{v}</option>)}</select></div>)}
-    <label>Permitted roles only<input type="checkbox" name="eligible" /></label>
-    <button type="reset">Reset filters</button>
+  <form class="site-filters js-only" id="usage-filters">
+    <TextField id={anchorFor.usageControl("query")} label="Path, variable, hex or words" name="query" type="search" />
+    <SelectField id={anchorFor.usageControl("profile")} label="Profile" name="profile">
+      {Object.keys(usageIndex.profiles).map((id) => <option value={id}>{id}</option>)}
+    </SelectField>
+    {Object.entries(fields).map(([name, choices]) => <SelectField id={anchorFor.usageControl(name)} label={name} name={name}>
+      <option value="">All</option>
+      {choices.map((v) => <option value={v}>{v}</option>)}
+    </SelectField>)}
+    <Checkbox name="eligible">Permitted roles only</Checkbox>
+    <button class="button button-secondary" type="reset">Reset filters</button>
   </form>
   <p id="usage-count" role="status" aria-live="polite"></p>
   <p id="usage-empty" hidden>No documented match. Clear a facet or consult the component specification; similarity in colour is not a substitute for a documented relationship.</p>
-  {Object.entries(usageIndex.profiles).map(([profile, data]) => <section class="usage-section" data-usage-profile={profile}>
+  {Object.entries(usageIndex.profiles).map(([profile, data]) => <section class="site-section usage-section" data-usage-profile={profile}>
     <h2>{profile} · {data.status}</h2>
-    <div class="table-scroll" tabindex="0" role="region" aria-label={`${profile} token usage`}>
-      <table class="spec-table usage-table">
-        <thead><tr><th scope="col">Role</th><th scope="col">Value</th><th scope="col">Eligibility</th><th scope="col">Documented use</th></tr></thead>
-        <tbody>{Object.values(data.tokens).map((token) => <tr data-usage-path={token.path}>
-          <td><a href={tokenUrl(token.path)}><code>{token.path}</code></a></td><td><code>{token.css}</code></td>
-          <td>{token.status} · {token.eligibility.action}{token.deprecated && " · deprecated"}</td><td>{token.description ?? "No role description declared."}</td>
-        </tr>)}</tbody>
+    <div class="site-table-wrap" tabindex="0" role="region" aria-label={`${profile} token usage`}>
+      <table class="table">
+        <thead><tr><th class="table-header" scope="col">Role</th><th class="table-header" scope="col">Value</th><th class="table-header" scope="col">Eligibility</th><th class="table-header" scope="col">Documented use</th></tr></thead>
+        <tbody class="table-body">
+          {Object.values(data.tokens).map((token) => <tr class="table-row" data-usage-path={token.path}>
+            <td class="table-cell"><a class="link" href={tokenUrl(token.path)}><code>{token.path}</code></a></td>
+            <td class="table-cell"><code>{token.css}</code></td>
+            <td class="table-cell">{token.status} · {token.eligibility.action}{token.deprecated && " · deprecated"}</td>
+            <td class="table-cell">{token.description ?? "No role description declared."}</td>
+          </tr>)}
+        </tbody>
       </table>
     </div>
   </section>)}
   <script type="application/json" id="usage-data" set:html={JSON.stringify(queryIndexOf(usageIndex)).replaceAll("<", "\\u003c")} />
   <script>import "../../scripts/usage";</script>
-</ToolLayout>
+</SiteLayout>

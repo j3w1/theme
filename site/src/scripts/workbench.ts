@@ -5,6 +5,7 @@ import { renderHexText, escapeHtml } from "../../../scripts/lib/hex-literals.mjs
 import { initializeIssueDraft } from "./issue-draft";
 import { anchorFor } from "../../../scripts/lib/anchors.mjs";
 import { withBase } from "../lib/base";
+import { copyWithStatus } from "./clipboard";
 
 for (const root of document.querySelectorAll<HTMLElement>("[data-workbench]")) {
   const data = JSON.parse(root.dataset.workbenchData!);
@@ -55,7 +56,7 @@ for (const root of document.querySelectorAll<HTMLElement>("[data-workbench]")) {
       const value = evaluateWorkbenchContrast(data, { profile: config.profile, ...Object.fromEntries(new FormData(contrastForm)) } as any);
       root.querySelector<HTMLTextAreaElement>("[data-contrast-copy]")!.value = JSON.stringify({ themeVersion: data.themeVersion, component: config.component, revision: data.revision, sourceDigest: data.sourceDigest, profile: config.profile, context: contrastField("context").value, ...value }, null, 2);
       const tokenLink = (path: string) => `<a href="${withBase(`tokens/${encodeURIComponent(path)}/`)}">${escapeHtml(path)}</a>`;
-      resultNode.innerHTML = `<p><strong>${value.display}:1 — ${value.pass ? "meets" : "below"} ${value.min}:1</strong> (${escapeHtml(value.kind)}). ${value.declaredState ? `Declared state: ${escapeHtml(value.declaredState)}; <a href="${withBase("")}#${anchorFor.component(config.component)}">component state rules</a>.` : ""} Decision uses the unrounded ratio: ${value.ratio}.</p><p>Composited foreground ${renderHexText(value.fg)}; background ${renderHexText(value.bg)}; underlay ${tokenLink(value.roles.underlay)}. ${value.waiver ? `Declared exception: ${escapeHtml(value.waiver)}. This is not an accessibility pass.` : "No waiver applied."}</p><ul>${value.eligibility.map((item: any) => `<li>${tokenLink(item.path)}: ${escapeHtml(item.action)} — ${escapeHtml(item.reason)}${item.decisionIds.length ? ` (${item.decisionIds.map(escapeHtml).join(", ")})` : ""}</li>`).join("")}</ul><p>${value.alternatives.length ? `Documented foreground alternatives for the exact same part/state/variant/surface: ${value.alternatives.map(tokenLink).join(", ")}. Re-evaluate contrast before use.` : "No documented foreground alternative for this exact part/state/variant/surface."}</p>`;
+      resultNode.innerHTML = `<p><strong>${value.display}:1 — ${value.pass ? "meets" : "below"} ${value.min}:1</strong> (${escapeHtml(value.kind)}). ${value.declaredState ? `Declared state: ${escapeHtml(value.declaredState)}; <a href="${withBase("reference/")}#${anchorFor.component(config.component)}">component state rules</a>.` : ""} Decision uses the unrounded ratio: ${value.ratio}.</p><p>Composited foreground ${renderHexText(value.fg)}; background ${renderHexText(value.bg)}; underlay ${tokenLink(value.roles.underlay)}. ${value.waiver ? `Declared exception: ${escapeHtml(value.waiver)}. This is not an accessibility pass.` : "No waiver applied."}</p><ul>${value.eligibility.map((item: any) => `<li>${tokenLink(item.path)}: ${escapeHtml(item.action)} — ${escapeHtml(item.reason)}${item.decisionIds.length ? ` (${item.decisionIds.map(escapeHtml).join(", ")})` : ""}</li>`).join("")}</ul><p>${value.alternatives.length ? `Documented foreground alternatives for the exact same part/state/variant/surface: ${value.alternatives.map(tokenLink).join(", ")}. Re-evaluate contrast before use.` : "No documented foreground alternative for this exact part/state/variant/surface."}</p>`;
     } catch (error) { resultNode.textContent = (error as Error).message; }
   }
   function setPair() {
@@ -72,7 +73,7 @@ for (const root of document.querySelectorAll<HTMLElement>("[data-workbench]")) {
     root.querySelector<HTMLElement>("[data-viewport-report]")!.textContent = `Actual viewport: ${value.width} × ${value.height} CSS px. Outer horizontal overflow: ${value.outerOverflow} px. Inner scrolling regions: ${value.innerOverflow.map((item: any) => `${item.element} (${item.overflow} px)`).join(", ") || "none"}.`;
     const selected = data.parts.find((part: any) => part.part === config.part);
     root.querySelector<HTMLElement>("[data-part-description]")!.textContent = selected ? `${selected.part}: ${selected.description}${value.available ? "" : " This part is absent or hidden in the selected variant/state."}` : "Select a documented part. The overlay does not capture input or change layout.";
-    const row = (cells: string[]) => `<tr>${cells.map((cell) => `<td>${renderHexText(cell)}</td>`).join("")}</tr>`;
+    const row = (cells: string[]) => `<tr class="table-row">${cells.map((cell) => `<td class="table-cell">${renderHexText(cell)}</td>`).join("")}</tr>`;
     const prefixes = config.part.split(/\s*\/\s*/);
     const declared = Object.entries(data.contract.tokens).filter(([part]) => prefixes.some((prefix: string) => part.startsWith(`${prefix}.`))).map(([part, role]) => row([part, role as string, data.tokens[config.profile][role as string].css, "Declared mapping; state-specific roles are not a computed-style assertion."]));
     const computed = value.available ? [row(["border-box width × height", "Not specified by a role mapping", "—", `${value.box.width} × ${value.box.height} px`]), ...Object.entries(value.measured).map(([name, actual]) => row([name, "Computed style", "—", String(actual)])), ...value.measurements.map((item: any) => row([item.property, item.role, item.expected, `${item.actual} — ${item.match ? "matches" : "MISMATCH"}`]))] : [];
@@ -104,8 +105,8 @@ for (const root of document.querySelectorAll<HTMLElement>("[data-workbench]")) {
     } catch (error) { announce(`Invalid preview link: ${(error as Error).message}. Reset restores the canonical specimen.`); }
   }
   async function copy(value: string, control: HTMLInputElement | HTMLTextAreaElement) {
-    try { await navigator.clipboard.writeText(value); announce("Copied."); }
-    catch { control.focus(); control.select(); announce("Clipboard unavailable. The displayed text is selected for manual copying."); }
+    const copied = await copyWithStatus(value, { status, copied: "Copied.", failed: "Clipboard unavailable. The displayed text is selected for manual copying." });
+    if (!copied) { control.focus(); control.select(); }
   }
   issueRoot.addEventListener("submit", () => invalidateDraft(), true);
   form.addEventListener("submit", (event) => event.preventDefault());
@@ -158,7 +159,7 @@ for (const root of document.querySelectorAll<HTMLElement>("[data-workbench]")) {
   window.addEventListener("popstate", fromUrl);
   window.addEventListener("hashchange", fromUrl);
   window.addEventListener("pagehide", () => { visibility.disconnect(); post({ type: "theme:stop" }); comparePost({ type: "theme:stop" }); });
-  // PortalLayout marks <html> with .js; the workbench only runs inside it.
+  // SiteLayout marks <html> with .js; the workbench only runs inside it.
   setPair(); fromUrl();
   frame.src = root.dataset.previewUrl!;
 }

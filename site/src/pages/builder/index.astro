@@ -1,5 +1,5 @@
 ---
-import ToolLayout from "../../layouts/ToolLayout.astro";
+import SiteLayout from "../../layouts/SiteLayout.astro";
 import { builderMarkup } from "../../../../packages/ui/src/examples/form-markup.mjs";
 import templateExport from "../../../../exports/forms/templates.json";
 import "../../styles/form-tools.css";
@@ -8,13 +8,28 @@ import { withBase } from "../../lib/base";
 import { anchorFor } from "../../../../scripts/lib/anchors.mjs";
 import { renderFields } from "../../../../scripts/lib/form-fields.mjs";
 const templates = templateExport.templates;
-const sampleFields = ["text", "textarea", "select", "checkbox", "radio"].map(type => ({ id: type, type, label: `Example ${type}`, help: "Static canonical field; no submission.", required: false, options: ["select", "radio"].includes(type) ? [{ id: "one", label: "First option" }, { id: "two", label: "Second option" }] : [] }));
+const sampleFields = ["text", "textarea", "select", "checkbox", "radio"].map((type) => ({
+  id: type,
+  type,
+  label: `Example ${type}`,
+  help: "Static canonical field; no submission.",
+  required: false,
+  options: ["select", "radio"].includes(type) ? [{ id: "one", label: "First option" }, { id: "two", label: "Second option" }] : [],
+}));
 ---
-<ToolLayout title="Reference form builder" description="Compose five canonical field kinds, try a local preview, and transfer a bounded JSON definition.">
+<SiteLayout title="Reference form builder" description="Compose five canonical field kinds, try a local preview, and transfer a bounded JSON definition." revision>
   <p>Draft reference under proposed D-021. Definitions stay in memory. Import validates every field and the theme content identity before replacing your form. Definition changes clear preview values and errors; Download definition excludes entered values.</p>
-  <p><a href={withBase("reference/#" + anchorFor.component("form-builder"))}>Component contract</a> · <a href={withBase("patterns/validation-recovery/")}>Validation and recovery</a> · <a href={withBase("exports/forms/identity.json")}>Required theme content identity</a></p>
+  <div class="site-actions">
+    <a class="link link-standalone" href={withBase("reference/#" + anchorFor.component("form-builder"))}>Component contract</a>
+    <a class="link link-standalone" href={withBase("patterns/validation-recovery/")}>Validation and recovery</a>
+    <a class="link link-standalone" href={withBase("exports/forms/identity.json")}>Required theme content identity</a>
+  </div>
   <div set:html={builderMarkup("builder")} />
-  <section aria-label="Static builder reference"><h2>Without JavaScript</h2><p>The editor requires JavaScript. The definition format and representative fields remain readable here. A text field has a stable ID, label, help and required flag. A select or radio field also has stable option IDs and labels. Checkboxes hold a boolean preview value. No preview values belong in an exported definition.</p><p><a href={withBase("exports/components/form-builder.json")}>Download the static component contract</a>. Existing text-field, textarea, select, checkbox and radio-group rules remain authoritative. This is not a production backend or native port.</p></section>
+  <section class="site-section" aria-label="Static builder reference">
+    <h2>Without JavaScript</h2>
+    <p>The editor requires JavaScript. The definition format and representative fields remain readable here. A text field has a stable ID, label, help and required flag. A select or radio field also has stable option IDs and labels. Checkboxes hold a boolean preview value. No preview values belong in an exported definition.</p>
+    <p><a class="link" href={withBase("exports/components/form-builder.json")}>Download the static component contract</a>. Existing text-field, textarea, select, checkbox and radio-group rules remain authoritative. This is not a production backend or native port.</p>
+  </section>
   <div class="form-tool form-tool-fields" aria-label="Static representative fields" set:html={renderFields(sampleFields, {}, { templates, prefix: "builder-static" })} />
   <script>import "../../scripts/builder";</script>
-</ToolLayout>
+</SiteLayout>

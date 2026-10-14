@@ -1,0 +1,23 @@
+---
+/* Canonical select markup (spec/components/select.md). Options are the slot;
+   extra attributes go to the native select, which the choice enhancement
+   renders (D-025). */
+import "../../styles/components/select.css";
+interface Props {
+  id: string;
+  label: string;
+  help?: string;
+  [attribute: string]: unknown;
+}
+
+const { id, label, help, class: className, ...attributes } = Astro.props;
+const describedBy = help ? `${id}-help` : undefined;
+---
+<div class:list={["select", className]}>
+  <label class="select-label" for={id}>{label}</label>
+  <div class="select-root">
+    <select class="select-control" id={id} aria-describedby={describedBy} {...attributes}><slot /></select>
+    <svg class="select-chevron" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M4 6.5l4 4 4-4" /></svg>
+  </div>
+  {help && <p class="select-help" id={describedBy}>{help}</p>}
+</div>

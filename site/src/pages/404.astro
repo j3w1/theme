@@ -1,12 +1,7 @@
 ---
-import SpecLayout from "../layouts/SpecLayout.astro";
+import SiteLayout from "../layouts/SiteLayout.astro";
 import { withBase } from "../lib/base";
 ---
-
-<SpecLayout title="Not found — j3w1 UI Theme Spec" description="The page you asked for is not part of the j3w1 UI Theme Spec.">
-  <header class="site-header">
-    <h1>Not found</h1>
-    <p class="lede">Start from <a href={withBase("")}>the overview</a>, or open <a href={withBase("reference/")}>the complete reference</a> and use its contents to find a component by anchor.</p>
-  </header>
-  <main id="main"></main>
-</SpecLayout>
+<SiteLayout title="Not found" description="The page you asked for is not part of the j3w1 UI Theme Spec." breadcrumbs={false}>
+  <p>Start from <a class="link" href={withBase("")}>the overview</a>, search with <kbd>Ctrl K</kbd>, or open <a class="link" href={withBase("reference/")}>the complete reference</a> and use its contents to find a component by anchor.</p>
+</SiteLayout>

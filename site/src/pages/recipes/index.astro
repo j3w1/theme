@@ -1,9 +1,14 @@
 ---
-import ToolLayout from "../../layouts/ToolLayout.astro";
+import SiteLayout from "../../layouts/SiteLayout.astro";
 import { withBase } from "../../lib/base";
 import index from "../../../../exports/recipes/index.json";
 ---
-<ToolLayout title="Standalone recipes" description="Maintained reference examples with scoped styles, explicit dependencies and honest interaction limits.">
+<SiteLayout title="Standalone recipes" description="Maintained reference examples with scoped styles, explicit dependencies and honest interaction limits." revision>
   <p>Open an example without Astro, or copy its markup and three stylesheets into a host page. These references contain no JavaScript behavior modules. The dialog is visual-only.</p>
-  <ul>{index.recipes.map((recipe) => <li><a href={withBase(`recipes/${recipe.id}/`)}>{recipe.id}</a> — {recipe.limitations[0]}</li>)}</ul>
-</ToolLayout>
+  <div class="site-cards">
+    {index.recipes.map((recipe) => <a class="card card-link" href={withBase(`recipes/${recipe.id}/`)}>
+      <span class="card-title">{recipe.id} →</span>
+      <span class="card-body">{recipe.limitations[0]}</span>
+    </a>)}
+  </div>
+</SiteLayout>

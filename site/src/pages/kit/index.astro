@@ -1,6 +1,9 @@
 ---
 import { execFileSync } from "node:child_process";
-import ToolLayout from "../../layouts/ToolLayout.astro";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import TextField from "../../components/fields/TextField.astro";
+import SelectField from "../../components/fields/SelectField.astro";
+import Checkbox from "../../components/fields/Checkbox.astro";
 import { withBase } from "../../lib/base";
 import { usageRevision } from "../../lib/usage";
 import { anchorFor } from "../../../../scripts/lib/anchors.mjs";
@@ -14,39 +17,56 @@ if (usageRevision) {
   source = { revision: usageRevision, resolvedAt: new Date(seconds * 1000).toISOString() };
 }
 ---
-<ToolLayout title="Build a task kit" description="Select component contracts and package one pinned, reproducible implementation task.">
+<SiteLayout title="Build a task kit" description="Select component contracts and package one pinned, reproducible implementation task." revision>
   <p>The kit contains selected specifications, shared rules, required tokens, source digests, a lock file and a bounded task prompt. Task text stays in this page; generation needs no account or model service.</p>
   <p>Standard includes available recipes. Minimal omits only optional recipes; both retain all required contracts and rules. The legacy single-component <code>--strict</code> reconstruction command remains separate.</p>
   {!source && <p>This local build has no committed source pin. Commit generated inputs and build with <code>GITHUB_SHA</code> set to that full commit to enable packaging, or use the CLI at a committed revision.</p>}
-  <noscript><p>Interactive packaging needs JavaScript. Use the CLI below or download the <a href={withBase("exports/task-inputs.json")}>dependency index</a> and <a href={withBase("agents/consume.md")}>consumption contract</a>.</p></noscript>
-  <form data-kit-form class="kit-form js-only">
-    <fieldset><legend>Component selection</legend>
-      <p><button type="button" class="btn" data-kit-example>Use settings-form selection</button> <button type="button" class="btn" data-kit-clear>Clear selection</button></p>
-      <div class="kit-components">{Object.entries(index.components).map(([id, entry]) => <label><input type="checkbox" name="component" value={id} /> {entry.title}</label>)}</div>
+  <noscript><p>Interactive packaging needs JavaScript. Use the CLI below or download the <a class="link" href={withBase("exports/task-inputs.json")}>dependency index</a> and <a class="link" href={withBase("agents/consume.md")}>consumption contract</a>.</p></noscript>
+  <form data-kit-form class="site-form site-kit js-only">
+    <fieldset class="checkbox checkbox-group">
+      <legend class="checkbox-legend">Component selection</legend>
+      <div class="site-actions">
+        <button type="button" class="button button-secondary" data-kit-example>Use settings-form selection</button>
+        <button type="button" class="button button-tertiary" data-kit-clear>Clear selection</button>
+      </div>
+      <div class="site-kit-components">
+        {Object.entries(index.components).map(([id, entry]) => <Checkbox option name="component" value={id}>{entry.title}</Checkbox>)}
+      </div>
     </fieldset>
-    <label for={anchorFor.kitControl("task")}>Implementation task</label>
-    <textarea id={anchorFor.kitControl("task")} name="task" rows="4" maxlength="12000" required placeholder="Describe the interface and the changes authorized in the consumer project." />
-    <div class="kit-fields">
-      <label for={anchorFor.kitControl("id")}>Integration ID</label><input id={anchorFor.kitControl("id")} name="integration-id" required maxlength="120" />
-      <label for={anchorFor.kitControl("version")}>Integration version</label><input id={anchorFor.kitControl("version")} name="integration-version" required maxlength="120" />
-      <label for={anchorFor.kitControl("kind")}>Integration kind</label><select id={anchorFor.kitControl("kind")} name="integration-kind">{INTEGRATION_KINDS.map((kind) => <option value={kind}>{kind}</option>)}</select>
-      <label for={anchorFor.kitControl("mode")}>Mode</label><select id={anchorFor.kitControl("mode")} name="mode"><option value="standard">Standard — include available recipes</option><option value="minimal">Minimal — contracts and rules, omit recipes</option></select>
+    <TextField id={anchorFor.kitControl("task")} label="Implementation task" name="task" rows={4} maxlength="12000" required placeholder="Describe the interface and the changes authorized in the consumer project." />
+    <div class="site-filters">
+      <TextField id={anchorFor.kitControl("id")} label="Integration ID" name="integration-id" required maxlength="120" />
+      <TextField id={anchorFor.kitControl("version")} label="Integration version" name="integration-version" required maxlength="120" />
+      <SelectField id={anchorFor.kitControl("kind")} label="Integration kind" name="integration-kind">
+        {INTEGRATION_KINDS.map((kind) => <option value={kind}>{kind}</option>)}
+      </SelectField>
+      <SelectField id={anchorFor.kitControl("mode")} label="Mode" name="mode">
+        <option value="standard">Standard — include available recipes</option>
+        <option value="minimal">Minimal — contracts and rules, omit recipes</option>
+      </SelectField>
     </div>
     <p>Delivery profile: <code>{index.profile}</code>. Proposed and historical profiles cannot become delivery kits. Pending roles retain their required decision disclosures.</p>
-    <button class="btn" type="submit" disabled={!source}>Build kit</button>
+    <div class="site-actions"><button class="button" type="submit" disabled={!source}>Build kit</button></div>
     <p role="status" aria-live="polite" data-kit-status></p>
   </form>
-  <section hidden data-kit-result>
+  <section class="site-section" hidden data-kit-result>
     <h2>Generated kit</h2>
     <p data-kit-summary></p>
-    <p><a data-kit-download download="j3w1-task-kit.zip">Download ZIP</a> · <button type="button" class="btn" data-kit-copy>Copy complete Markdown kit</button></p>
-    <label for={anchorFor.kitControl("output")}>Complete Markdown kit</label>
-    <textarea id={anchorFor.kitControl("output")} data-kit-output readonly rows="12" />
+    <div class="site-actions">
+      <a class="link link-standalone" data-kit-download download="j3w1-task-kit.zip">Download ZIP</a>
+      <button type="button" class="button button-secondary" data-kit-copy>Copy complete Markdown kit</button>
+    </div>
+    <TextField id={anchorFor.kitControl("output")} label="Complete Markdown kit" rows={12} data-kit-output readonly />
   </section>
-  <h2>CLI</h2>
-  <p>Run from a checkout containing the task-kit command. Supply the consumer integration identity and a new directory whose parent exists. Existing directories are never replaced. Omit <code>--ref</code> to pin the checkout’s current commit.</p>
-  <pre tabindex="0" role="region" aria-label="Task kit command, scrollable"><code>npm run task:kit -- --components text-field,checkbox,button,dialog --task "Implement a settings form" --integration-id settings --integration-version 1 --mode standard --out ../settings-kit</code></pre>
-  <p><a href={withBase("exports/task-inputs.json")}>Dependency index</a> · <a href={withBase("agents/consume.md")}>Consumer authority and reporting contract</a></p>
+  <section class="site-section">
+    <h2>CLI</h2>
+    <p>Run from a checkout containing the task-kit command. Supply the consumer integration identity and a new directory whose parent exists. Existing directories are never replaced. Omit <code>--ref</code> to pin the checkout’s current commit.</p>
+    <pre class="site-code" tabindex="0" role="region" aria-label="Task kit command, scrollable"><code>npm run task:kit -- --components text-field,checkbox,button,dialog --task "Implement a settings form" --integration-id settings --integration-version 1 --mode standard --out ../settings-kit</code></pre>
+    <div class="site-actions">
+      <a class="link link-standalone" href={withBase("exports/task-inputs.json")}>Dependency index</a>
+      <a class="link link-standalone" href={withBase("agents/consume.md")}>Consumer authority and reporting contract</a>
+    </div>
+  </section>
   <script type="application/json" id={anchorFor.kitControl("data")} set:html={JSON.stringify({ index, source }).replaceAll("<", "\\u003c")} />
   <script>import "../../scripts/kit";</script>
-</ToolLayout>
+</SiteLayout>

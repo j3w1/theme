@@ -1,0 +1,24 @@
+---
+/* One canonical checkbox (spec/components/checkbox.md). The label is the
+   slot; extra attributes go to the input. `option` renders the bare option
+   for a checkbox group, without the field wrapper. */
+import "../../styles/components/checkbox.css";
+
+interface Props {
+  option?: boolean;
+  [attribute: string]: unknown;
+}
+
+const { option = false, class: className, ...attributes } = Astro.props;
+const Wrapper = option ? Fragment : "div";
+const wrapper = option ? {} : { class: ["checkbox", className].filter(Boolean).join(" ") };
+---
+<Wrapper {...wrapper}>
+  <label class="checkbox-option">
+    <span class="checkbox-control">
+      <input class="checkbox-input" type="checkbox" {...attributes} />
+      <svg class="checkbox-check" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M3.5 8.5l3 3 6-6" /></svg>
+    </span>
+    <span class="checkbox-text"><slot /></span>
+  </label>
+</Wrapper>

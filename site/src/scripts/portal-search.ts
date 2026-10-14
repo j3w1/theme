@@ -37,9 +37,9 @@ if (root) {
           const target = commandTarget(entry.href);
           const option = document.createElement("li");
           option.id = entry.id; option.setAttribute("role", "option"); option.tabIndex = -1; option.dataset.action = target.href;
-          const category = document.createElement("span"); category.className = "portal-command-category"; category.textContent = entry.category + " ";
-          const label = document.createElement("span"); label.className = "portal-command-label"; label.textContent = entry.label;
-          if (entry.value) { const value = document.createElement("small"); value.className = "portal-command-value"; value.innerHTML = renderHexText(" " + entry.value); label.append(value); }
+          const category = document.createElement("span"); category.className = "site-command-category"; category.textContent = entry.category + " ";
+          const label = document.createElement("span"); label.className = "site-command-label"; label.textContent = entry.label;
+          if (entry.value) { const value = document.createElement("small"); value.className = "site-command-value"; value.innerHTML = renderHexText(" " + entry.value); label.append(value); }
           option.append(category, label); fragment.append(option);
         }
         list.append(fragment);

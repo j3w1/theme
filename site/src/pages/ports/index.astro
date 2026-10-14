@@ -1,14 +1,30 @@
 ---
-import ToolLayout from "../../layouts/ToolLayout.astro";
+import SiteLayout from "../../layouts/SiteLayout.astro";
 import { renderPortCatalogue } from "../../../../scripts/lib/port-presentation.mjs";
 import catalogue from "../../../../exports/port-capabilities.json";
 import { withBase } from "../../lib/base";
 import { blobUrl, usageRevision } from "../../lib/revision";
-const source = (file) => blobUrl(file);
+import { anchorFor } from "../../../../scripts/lib/anchors.mjs";
+import "../../styles/components/text-field.css";
+
+const contribute = blobUrl("ports/README.md");
+/* The catalogue's filter form, rendered with the canonical text field and a
+   secondary button. The build fails if the generator's form changes, so the
+   replacement cannot silently stop applying. */
+const generatedFilter = `<form class="usage-filters" data-port-filter hidden><label>Search ports, roles and native keys <input name="query" type="search"></label><button type="reset">Reset search</button><p aria-live="polite" data-port-count></p></form>`;
+const query = anchorFor.usageControl("port-query");
+const filter = `<form class="site-filters" data-port-filter hidden><div class="text-field"><label class="text-field-label" for="${query}">Search ports, roles and native keys</label><div class="text-field-root"><input class="text-field-input" id="${query}" name="query" type="search"></div></div><button class="button button-secondary" type="reset">Reset search</button><p aria-live="polite" data-port-count></p></form>`;
+const rendered = renderPortCatalogue(catalogue, { base: withBase(""), revision: usageRevision });
+if (!rendered.includes(generatedFilter)) throw new Error("The port catalogue filter form changed; update ports/index.astro.");
+const markup = rendered.replace(generatedFilter, filter);
 ---
-<ToolLayout title="Port capabilities" description="Declared native mappings, supported surfaces and evidence for published application ports.">
+<SiteLayout title="Port capabilities" description="Declared native mappings, supported surfaces and evidence for published application ports." revision>
   <p>Mapped roles describe an implementation. Verified means a real import with matching target, token, mapping and artifact evidence. Inherited, unsupported, out-of-scope, not-implemented and not verified remain separate.</p>
-  <p><a href={withBase("exports/port-capabilities.json")} download>Download mapping JSON</a> · <a href={withBase("reference/#portability")}>Portability rules</a>{source("ports/README.md") && <> · <a href={source("ports/README.md")}>Contribute a port</a></>}</p>
-  <div data-port-content set:html={renderPortCatalogue(catalogue, { base: withBase(""), revision: usageRevision })} />
+  <div class="site-actions">
+    <a class="link link-standalone" href={withBase("exports/port-capabilities.json")} download>Download mapping JSON</a>
+    <a class="link link-standalone" href={withBase(`reference/#${anchorFor.doc("portability")}`)}>Portability rules</a>
+    {contribute && <a class="link link-standalone" href={contribute}>Contribute a port</a>}
+  </div>
+  <div data-port-content set:html={markup} />
   <script>import "../../scripts/ports-filter";</script>
-</ToolLayout>
+</SiteLayout>
