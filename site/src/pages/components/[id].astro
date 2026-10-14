@@ -37,8 +37,10 @@ const links = [
     {Object.entries(variants).map(([variant, markup]) => <section>
       <h3>{variant}</h3>
       <div class="site-example" data-specimen set:html={markup}></div>
-      <div class="site-actions"><button class="button button-secondary" type="button" data-copy={markup}>Copy markup</button></div>
-      <pre class="site-code"><code>{markup}</code></pre>
+      <div class="site-source">
+        <div class="site-source-bar">Markup<button class="button button-tertiary" type="button" data-copy={markup}>Copy markup</button></div>
+        <pre class="site-code"><code>{markup}</code></pre>
+      </div>
     </section>)}
   </section>
   <section class="site-section">

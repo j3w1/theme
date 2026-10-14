@@ -1,8 +1,9 @@
 ---
 /* The one site shell (docs/ui-architecture.md, "Site chrome"): built from the
-   components the site documents, at comfortable density. The rail is the
-   canonical sidebar-nav at 240px; below 900px it becomes the canonical
-   drawer. Without JavaScript the rail stays in the page above the content. */
+   components the site documents, at the default compact density (D-038).
+   The rail is the canonical sidebar-nav at 240px; below 900px it becomes the
+   canonical drawer. Without JavaScript the rail stays in the page above the
+   content. */
 import "../styles/tokens.generated.css";
 import "@j3w1/ui/styles/controls.css";
 import "../styles/base.css";
@@ -80,7 +81,7 @@ const id = (name: string) => anchorFor.uiExample("portal", name);
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 ---
 <!doctype html>
-<html lang="en" data-density="comfortable">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

@@ -51,11 +51,13 @@ const template = read("template.html");
   <script type="application/json" id={anchorFor.recipeSource("template")} set:html={JSON.stringify({ template }).replaceAll("<", "\\u003c")} />
   {sources.map(({ name, text }) => <section class="site-section" id={anchorFor.recipeSource(name)}>
     <h2>{name}</h2>
-    <div class="site-actions">
-      <a class="link link-standalone" href={withBase(root + name)} download>Download {name}</a>
-      <button class="button button-secondary js-only" type="button" data-copy={text}>Copy {name}</button>
+    <div class="site-source">
+      <div class="site-source-bar">
+        <a class="link" href={withBase(root + name)} download>Download {name}</a>
+        <button class="button button-tertiary js-only" type="button" data-copy={text}>Copy {name}</button>
+      </div>
+      <pre class="site-code" tabindex="0" role="region" aria-label={`${name} source, scrollable`}><code>{text}</code></pre>
     </div>
-    <pre class="site-code" tabindex="0" role="region" aria-label={`${name} source, scrollable`}><code>{text}</code></pre>
   </section>)}
   <section class="site-section">
     <h2>Source identity</h2>

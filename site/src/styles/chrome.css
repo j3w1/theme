@@ -310,6 +310,33 @@ html:not(.js) .js-only {
   white-space: pre;
 }
 
+/* Source with its copy action: one unit, attached under its example. */
+.site-source {
+  margin-block-end: var(--space-24);
+  border: var(--border-width-default) solid var(--color-border-default);
+}
+
+.site-example + .site-source {
+  border-top: 0;
+}
+
+.site-source-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+  padding: var(--space-4) var(--space-4) var(--space-4) var(--space-12);
+  border-bottom: var(--border-width-default) solid var(--color-border-divider);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.site-source > pre {
+  margin: 0;
+  border: 0;
+}
+
 .site-note {
   max-width: 72ch;
   padding-inline-start: var(--space-16);
@@ -330,20 +357,33 @@ html:not(.js) .js-only {
   overflow-x: auto;
 }
 
-/* Prose and generated tables carry no component classes. Inside their scroll
-   region they keep readable columns and scroll, instead of wrapping every
-   cell to a few characters at 360px. */
-.site-main .table-scroll > table {
-  width: max-content;
-  min-width: 100%;
-}
-
-.site-main .table-scroll > table :is(th, td) {
-  max-width: 48ch;
-}
-
+/* table.md: below 600px a table scrolls in its region with a sticky first
+   column. Its columns keep a readable width instead of wrapping every cell
+   to a few characters. A token path wraps only at its dots (<wbr>), never
+   inside a segment, and keeps one line where there is room. */
 .usage-section .table-cell:first-child {
-  min-width: 30ch;
+  overflow-wrap: normal;
+}
+
+@media (min-width: 600px) {
+  .usage-section .table-cell:first-child {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 599.98px) {
+  .site-main :is(.table-scroll, .site-table-wrap) > table {
+    width: max-content;
+    min-width: 100%;
+  }
+
+  .site-main :is(.table-scroll, .site-table-wrap) > table :is(th, td) {
+    max-width: 36ch;
+  }
+
+  .usage-section .table-cell:first-child {
+    width: 24ch;
+  }
 }
 
 @media print {

@@ -39,7 +39,7 @@
   position: static;
   height: var(--density-comfortable-row-height, 36px);
   min-width: 0;
-  padding: 0 var(--density-control-padding-x, 12px);
+  padding: 0 var(--density-control-padding-x, 8px);
   background: var(--color-surface-default);
   border: 0;
   border-bottom: var(--border-width-default) solid var(--color-border-strong);
@@ -61,7 +61,7 @@
   align-items: center;
   gap: var(--space-4);
   width: 100%;
-  min-height: var(--density-control-height, 32px);
+  min-height: var(--density-control-height, 24px);
   padding: 0;
   background: transparent;
   border: 0;
@@ -93,7 +93,7 @@
 
 .table .table-cell {
   min-width: 0;
-  padding: var(--space-4) var(--density-control-padding-x, 12px);
+  padding: var(--space-4) var(--density-control-padding-x, 8px);
   background: transparent;
   border: 0;
   color: inherit;
@@ -131,6 +131,24 @@
   z-index: var(--z-raised);
   background: var(--color-surface-raised);
   border-bottom-width: var(--border-width-emphasis);
+}
+
+/* responsive: below 600px the host scrolls the table and the first column
+   stays in view; its cells carry the row's fill so nothing shows through */
+@media (max-width: 599.98px) {
+  .table :is(.table-header, .table-cell):first-child {
+    position: sticky;
+    inset-inline-start: 0;
+    z-index: var(--z-raised);
+  }
+
+  .table .table-cell:first-child {
+    background: var(--color-surface-default);
+  }
+
+  .table .table-row:is(:hover, [aria-selected="true"]) > .table-cell:first-child {
+    background: inherit;
+  }
 }
 
 /* hover: the row fill */

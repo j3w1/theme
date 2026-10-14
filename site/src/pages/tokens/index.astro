@@ -43,7 +43,7 @@ const fields = {
         <thead><tr><th class="table-header" scope="col">Role</th><th class="table-header" scope="col">Value</th><th class="table-header" scope="col">Eligibility</th><th class="table-header" scope="col">Documented use</th></tr></thead>
         <tbody class="table-body">
           {Object.values(data.tokens).map((token) => <tr class="table-row" data-usage-path={token.path}>
-            <td class="table-cell"><a class="link" href={tokenUrl(token.path)}><code>{token.path}</code></a></td>
+            <td class="table-cell"><a class="link" href={tokenUrl(token.path)}><code>{token.path.split(".").map((segment, index) => <>{index > 0 && <>.<wbr /></>}{segment}</>)}</code></a></td>
             <td class="table-cell"><code>{token.css}</code></td>
             <td class="table-cell">{token.status} · {token.eligibility.action}{token.deprecated && " · deprecated"}</td>
             <td class="table-cell">{token.description ?? "No role description declared."}</td>
