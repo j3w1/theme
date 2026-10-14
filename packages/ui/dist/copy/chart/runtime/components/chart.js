@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-C1XeXVYC.js";
-import { n as chart } from "../chunks/display-dj9YaBfn.js";
+import { t as J3w1Element } from "../chunks/element-Dovcr9Ky.js";
+import { n as chart } from "../chunks/display-Jm9bAsnb.js";
 //#region .cache/ui-build/entries/components/chart.js
 var J3w1Chart = class extends J3w1Element {
 	static componentId = "chart";
 	static version = "4.0.0";
-	static implementationId = "sha256-HoAvhRRdFv6zYSIR6McpxJvYeGHHbg4t1zBpi2x1EXo=";
+	static implementationId = "sha256-48dT14XNNF9ZyV4PB4oLs8zT/lNQqNt9rXZCl9gUYVc=";
 	static connect = chart;
 	static upgradeProperties = [
 		"disabled",

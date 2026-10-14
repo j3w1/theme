@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-C1XeXVYC.js";
-import { r as developerView } from "../chunks/display-dj9YaBfn.js";
+import { t as J3w1Element } from "../chunks/element-Dovcr9Ky.js";
+import { r as developerView } from "../chunks/display-Jm9bAsnb.js";
 //#region .cache/ui-build/entries/components/diff-view.js
 var J3w1DiffView = class extends J3w1Element {
 	static componentId = "diff-view";
 	static version = "4.0.0";
-	static implementationId = "sha256-lEC5NAzVDADHe5s6uWIGnx5icpXJwmRoT/VTUI4h2l8=";
+	static implementationId = "sha256-7zzFpU0Y2cQR1wO8DWE4bqkofCnJMaERCXRLdai7u0A=";
 	static connect = developerView;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];
