@@ -330,6 +330,18 @@ html:not(.js) .js-only {
   overflow-x: auto;
 }
 
+/* Prose and generated tables carry no component classes. Inside their scroll
+   region they keep readable columns and scroll, instead of wrapping every
+   cell to a few characters at 360px. */
+.site-main .table-scroll > table {
+  width: max-content;
+  min-width: 100%;
+}
+
+.site-main .table-scroll > table :is(th, td) {
+  max-width: 48ch;
+}
+
 .usage-section .table-cell:first-child {
   min-width: 30ch;
 }
