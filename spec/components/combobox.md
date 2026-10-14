@@ -55,7 +55,7 @@ tokens:
   option.text-hover: color.text.link-hover
   option.bg-selected: color.interaction.selection.bg
   option.text-selected: color.interaction.selection.text
-  option.ring-selected: color.interaction.focus.ring-container
+  option.ring-selected: color.interaction.focus.ring
   group.text: color.text.subtle
   group.border: color.border.divider
   empty.text: color.text.muted
@@ -66,7 +66,7 @@ stateTokens:
   hover: { fg: color.text.link-hover, bg: color.interaction.hover.bg-strong }
   focus-visible: { fg: color.text.default, bg: color.surface.input, border: color.border.active, outline: color.interaction.focus.ring }
   open: { fg: color.text.default, bg: color.surface.raised, border: color.border.overlay }
-  selected: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg, outline: color.interaction.focus.ring-container }
+  selected: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg, outline: color.interaction.focus.ring }
   invalid: { fg: color.text.default, bg: color.surface.input, border: color.status.danger.border }
   invalid+focus-visible: { fg: color.text.default, bg: color.surface.input, border: color.status.danger.border, outline: color.interaction.focus.ring-container }
   no-results: { fg: color.text.muted, bg: color.surface.raised, border: color.border.overlay }
@@ -145,7 +145,7 @@ Parts as listed in the anatomy; help and validation message behave as in
 | focus-visible | box border → {color.border.active}; 1px dashed {color.interaction.focus.ring} at −2px | the ring |
 | open | list below the box; toggle glyph rotated 180° | `aria-expanded="true"`; toggle glyph |
 | closed | no list; box unchanged | `aria-expanded="false"`; nothing below the box |
-| selected | active option filled {color.interaction.selection.bg} with {color.interaction.selection.text}, 1px dashed {color.interaction.focus.ring-container} ring | `aria-selected="true"`; `aria-activedescendant`; the ring |
+| selected | active option filled {color.interaction.selection.bg} with {color.interaction.selection.text}, 1px dashed {color.interaction.focus.ring} ring at −2px | `aria-selected="true"`; `aria-activedescendant`; the ring |
 | invalid | 2px {color.status.danger.border}; message with ✕ | border 1 → 2px; glyph; `aria-invalid` |
 | invalid+focus-visible | 2px danger border and {color.interaction.focus.ring-container} ring at −4px | double boundary |
 | disabled | {color.text.disabled}, {color.border.disabled}, {color.interaction.disabled.bg}; list never opens | `disabled`; cursor: not-allowed |

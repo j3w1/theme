@@ -32,12 +32,12 @@ tokens:
   dependency.role-color-chart-axis: color.chart.axis
   dependency.role-color-chart-grid: color.chart.grid
   dependency.role-color-chart-label: color.chart.label
+  dependency.role-focus-offset: focus.offset
   series.primary: color.chart.series-2
   header.text: color.text.bright
   row.text: color.text.default
   dependency.role-radius-none: radius.none
   dependency.role-space-12: space.12
-  dependency.role-space-2: space.2
   dependency.role-space-8: space.8
 stateTokens:
   default:

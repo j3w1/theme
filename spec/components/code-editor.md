@@ -89,6 +89,8 @@ contrast:
   - { fg: color.code.syntax.tag, bg: color.code.bg, label: "tag" }
   - { fg: color.code.syntax.attribute, bg: color.code.bg, label: "attribute and escape" }
   - { fg: color.code.syntax.deprecated, bg: color.code.bg, label: "deprecated text" }
+  - { fg: color.code.syntax.comment, bg: color.code.selection-bg, min: 4.5, kind: ui, state: selected, label: "comment syntax decoration inside the selection", waiver: "syntax colour is decoration; the short-lived selection preserves syntax roles, and comment falls below the text floor on this recorded selection value" }
+  - { fg: color.code.syntax.type, bg: color.code.selection-bg, min: 4.5, kind: ui, state: selected, label: "type syntax decoration inside the selection", waiver: "syntax colour is decoration; the short-lived selection preserves syntax roles, and type falls below the text floor on this recorded selection value" }
   - { fg: color.code.syntax.string, bg: color.code.selection-bg, state: selected, label: "muted string text inside the selection" }
   - { fg: color.code.syntax.keyword, bg: color.code.selection-bg, state: selected, label: "keyword and tag text inside the selection (D-029)" }
   - { fg: color.code.syntax.property, bg: color.code.selection-bg, state: selected, label: "property, heading and invalid text inside the selection (D-029)" }

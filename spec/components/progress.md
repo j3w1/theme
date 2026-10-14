@@ -41,7 +41,7 @@ stateTokens:
 contrast:
   - { fg: color.text.bright, bg: color.surface.canvas, label: "label on the canvas" }
   - { fg: color.text.muted, bg: color.surface.canvas, label: "detail line on the canvas" }
-  - { fg: color.action.primary.bg, bg: color.interaction.pressed.bg, min: 3, kind: ui, label: "value fill against the track", waiver: "the fill measures 1.51:1 against the track; the value is carried by the visible percentage text and the native value, and the track boundary (border.control, 4.45:1) marks the full extent" }
+  - { fg: color.action.primary.bg, bg: color.interaction.pressed.bg, min: 3, kind: ui, label: "value fill against the track", waiver: "the fill falls below the floor against the track; the value is carried by the visible percentage text and the native value, and the track boundary (border.control) marks the full extent" }
   - { fg: color.action.primary.bg, bg: color.interaction.pressed.bg, min: 1, kind: ui, state: busy, label: "stripes (decorative pattern)", waiver: "the stripes are a pattern, not a boundary; busy is carried by aria-busy and aria-valuetext" }
   - { fg: color.status.danger.fill, bg: color.interaction.pressed.bg, min: 3, kind: ui, state: error, label: "error fill against the track" }
 anatomy:

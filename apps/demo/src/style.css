@@ -646,3 +646,10 @@ main {
     scroll-behavior: auto !important;
   }
 }
+
+.calendar-notifications {
+  position: fixed;
+  inset-inline-end: var(--space-8);
+  inset-block-end: var(--space-8);
+  max-inline-size: calc(100% - 2 * var(--space-8));
+}

@@ -85,7 +85,7 @@
 }
 
 .i3-window-frame-workspace[aria-selected="true"]:focus-visible {
-  outline-color: var(--color-interaction-focus-ring-container);
+  outline-color: var(--color-interaction-focus-ring);
 }
 
 .i3-window-frame-workspace:focus:not(:focus-visible) {

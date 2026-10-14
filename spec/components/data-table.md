@@ -43,7 +43,7 @@ tokens:
   row.ring: color.interaction.focus.ring
   selected.bg: color.interaction.selection.bg
   selected.text: color.interaction.selection.text
-  selected.ring: color.interaction.focus.ring-container
+  selected.ring: color.interaction.focus.ring
   checkbox.bg: color.surface.input
   checkbox.border: color.border.control
   checkbox.checked-bg: color.action.primary.bg
@@ -57,7 +57,7 @@ stateTokens:
   hover: { fg: color.text.default, bg: color.interaction.hover.bg }
   focus-visible: { fg: color.text.default, bg: color.surface.default, outline: color.interaction.focus.ring }
   selected: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg }
-  selected+focus-visible: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg, outline: color.interaction.focus.ring-container }
+  selected+focus-visible: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg, outline: color.interaction.focus.ring }
   sorted: { fg: color.text.bright, bg: color.surface.default }
   mixed: { fg: color.action.primary.text, bg: color.action.primary.bg }
   empty: { fg: color.text.muted, bg: color.surface.default }
@@ -133,7 +133,7 @@ the anatomy; row checkboxes have a 1px {color.border.control} boundary.
 | hover | row → {color.interaction.hover.bg}; a resize handle → {color.border.active} | cursor: default on rows, col-resize on handles |
 | focus-visible | 1px dashed {color.interaction.focus.ring} at −2px around the focused row or control | the ring |
 | selected | row fill {color.interaction.selection.bg}; every cell {color.interaction.selection.text}; row checkbox checked | `aria-selected="true"`; the checked box |
-| selected+focus-visible | the fill and a ring in {color.interaction.focus.ring-container} | both visible at once |
+| selected+focus-visible | the fill and 1px dashed {color.interaction.focus.ring} at −2px | both visible at once |
 | sorted | ▲ or ▼ in {color.text.bright} on the sorted header | `aria-sort`; the glyph |
 | mixed | select-all on {color.action.primary.bg} with the – glyph | `aria-checked="mixed"`; the glyph |
 | empty | one full-width cell in {color.text.muted}: "No rows match."; header and controls stay | the message text |

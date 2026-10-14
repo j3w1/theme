@@ -22,6 +22,7 @@ states:
   - hover
   - focus-visible
   - invalid
+  - invalid+focus-visible
   - disabled
 tokens:
   root.bg: color.surface.input
@@ -29,6 +30,7 @@ tokens:
   root.bg-hover: color.interaction.hover.bg
   root.border-focus: color.border.active
   root.ring: color.interaction.focus.ring
+  root.ring-invalid: color.interaction.focus.ring-container
   root.border-invalid: color.status.danger.border
   root.border-disabled: color.border.disabled
   root.bg-disabled: color.interaction.disabled.bg
@@ -56,6 +58,11 @@ stateTokens:
     fg: color.text.default
     bg: color.surface.input
     border: color.status.danger.border
+  invalid+focus-visible:
+    fg: color.text.default
+    bg: color.surface.input
+    border: color.status.danger.border
+    outline: color.interaction.focus.ring-container
 contrast:
   - fg: color.status.danger.text
     bg: color.surface.canvas
@@ -148,6 +155,7 @@ value, defaults and constraints, and is hidden only after enhancement.
 | hover | background → {color.interaction.hover.bg} | hover-capable pointers only |
 | focus-visible | border → {color.border.active}; the canonical focus ring | the ring |
 | invalid | 2px {color.status.danger.border}; a linked message | border 1 → 2px; ✕ glyph; `aria-invalid` |
+| invalid+focus-visible | the danger border and the ring in {color.interaction.focus.ring-container} at −4px | double boundary |
 | disabled | {color.text.disabled} on {color.interaction.disabled.bg}, border {color.border.disabled}; editor and step actions unavailable | `disabled`; cursor: not-allowed |
 
 A read-only value stays readable and cannot change through the step

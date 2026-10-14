@@ -1166,7 +1166,7 @@ is added. The same public install.ps1 transaction restores these settings.
 The taskbar right-click menu and hidden-icons overflow panel now use the raised
 surface, square edges and overlay border through the existing taskbar styler.
 Menu rest, hover, pressed, disabled and submenu-open states and separators use
-their canonical roles. Menu resource overrides stay local to that styler. Icons,
+their canonical roles. Menu resource overrides are shared across all five pinned shell stylers. Icons,
 menu actions, popup placement, control dimensions and native focus are preserved.
 
 These configuration and preservation checks do not establish installed rendering

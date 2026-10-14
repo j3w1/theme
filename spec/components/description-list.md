@@ -29,9 +29,9 @@ tokens:
   control.focus: color.interaction.focus.ring
   dependency.role-border-width-default: border.width.default
   dependency.role-color-border-divider: color.border.divider
+  dependency.role-focus-offset: focus.offset
   dependency.role-radius-none: radius.none
   dependency.role-space-12: space.12
-  dependency.role-space-2: space.2
   dependency.role-space-4: space.4
   dependency.role-space-8: space.8
 stateTokens:

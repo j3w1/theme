@@ -66,7 +66,7 @@ contrast:
   - { fg: color.border.default, bg: color.surface.canvas, min: 1, kind: ui, label: "panel edge (decorative)", waiver: "the panel is identified by its heading and position, not by this edge" }
   - { fg: color.action.secondary.text, bg: color.surface.canvas, label: "back button text" }
   - { fg: color.action.secondary.border, bg: color.surface.canvas, min: 3, kind: ui, label: "back button boundary" }
-  - { fg: color.action.primary.border, bg: color.surface.canvas, min: 3, kind: ui, label: "next button boundary", waiver: "the primary button is identified by its text at 9.28:1 on its fill and by its position; the fill measures 1.86:1 and its border 2.56:1 against the canvas, a documented property of the actions family, not of the wizard" }
+  - { fg: color.action.primary.border, bg: color.surface.canvas, min: 3, kind: ui, label: "next button boundary", waiver: "the primary button is identified by its text on the fill and by its position; the low-contrast fill and border against the canvas are a documented property of the actions family" }
   - { fg: color.interaction.focus.ring-container, bg: color.action.primary.bg, min: 3, kind: ui, state: focus-visible, label: "ring on the next button's fill" }
   - { fg: color.text.disabled, bg: color.surface.canvas, min: 3, kind: ui, state: disabled, label: "future step text (exempt; house floor 3:1)" }
 anatomy:

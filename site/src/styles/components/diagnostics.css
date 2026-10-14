@@ -251,10 +251,10 @@
   background: var(--color-code-selection-bg);
 }
 
-/* selected + focus-visible: the ring recolours on the fill */
+/* selected + focus-visible: the ordinary ring stays on the fill */
 .diagnostics-list:focus-visible .diagnostics-row[aria-selected="true"],
 [data-state-selected][data-state-focus-visible] .diagnostics-row-active {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring);
   outline-offset: var(--focus-offset);
 }
 

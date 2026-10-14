@@ -56,7 +56,7 @@ tokens:
   row.ring: color.interaction.focus.ring
   row.bg-selected: color.interaction.selection.bg
   row.text-selected: color.interaction.selection.text
-  row.ring-selected: color.interaction.focus.ring-container
+  row.ring-selected: color.interaction.focus.ring
   header.text: color.text.bright
   status.text: color.status.danger.text
   empty.text: color.text.muted
@@ -66,7 +66,7 @@ stateTokens:
   hover: { fg: color.text.default, bg: color.interaction.hover.bg }
   focus-visible: { fg: color.text.default, bg: color.surface.default, outline: color.interaction.focus.ring }
   selected: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg }
-  selected+focus-visible: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg, outline: color.interaction.focus.ring-container }
+  selected+focus-visible: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg, outline: color.interaction.focus.ring }
   error: { fg: color.status.danger.text, bg: color.surface.default }
   empty: { fg: color.text.muted, bg: color.surface.default }
 contrast:
@@ -171,7 +171,7 @@ The stripe mark repeats the glyph in the stripe colour
 | hover | panel row → {color.interaction.hover.bg}; inline ranges unchanged (the hover tooltip is a host surface) | cursor: default on rows |
 | focus-visible | active row: 1px dashed {color.interaction.focus.ring} at −2px; inline box: 2px {color.interaction.focus.ring-container} at −3px | the ring |
 | selected | row filled {color.interaction.selection.bg}, text and glyph {color.interaction.selection.text}; the matching inline range filled {color.code.selection-bg} under its underline | `aria-selected`; the glyph stays; the fill spans the row |
-| selected+focus-visible | the selection fill and a 1px dashed {color.interaction.focus.ring-container} ring | both at once |
+| selected+focus-visible | the selection fill and 1px dashed {color.interaction.focus.ring} at −2px | both at once |
 | error | provider failed: a `role=status` line with `✕` in {color.status.danger.text} above the stale rows; the stripe shows the same `✕` at its top | glyph; live announcement |
 | empty | rows, stripe marks and inline decorations removed; `✓ No problems` in {color.text.muted}, glyph in {color.status.success.text} | glyph; the absence of decoration |
 

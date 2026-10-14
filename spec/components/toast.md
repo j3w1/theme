@@ -46,7 +46,7 @@ tokens:
   danger.text: color.status.danger.on-fill
   danger.button-bg-hover: color.action.destructive.pressed-bg
   action.text: color.text.link
-  action.bg-hover: color.interaction.hover.bg-strong
+  action.bg-hover: color.interaction.hover.bg
   action.text-hover: color.text.link-hover
   close.text: color.action.tertiary.text
   close.bg-hover: color.action.tertiary.hover-bg
@@ -55,7 +55,7 @@ tokens:
   stack.z: z.toast
 stateTokens:
   default: { fg: color.text.default, bg: color.surface.canvas, border: color.border.overlay }
-  hover: { fg: color.text.link-hover, bg: color.interaction.hover.bg-strong }
+  hover: { fg: color.text.link-hover, bg: color.interaction.hover.bg }
   focus-visible: { fg: color.action.tertiary.text, bg: color.surface.canvas, outline: color.interaction.focus.ring }
   stacked: { fg: color.text.muted, bg: color.surface.canvas, border: color.border.overlay }
   reduced-motion: { fg: color.text.default, bg: color.surface.canvas, border: color.border.overlay }
@@ -76,7 +76,7 @@ contrast:
   - { fg: color.text.default, bg: color.status.neutral.tint, label: "text on the neutral tint" }
   - { fg: color.status.danger.on-fill, bg: color.status.danger.fill, label: "text, glyph and buttons on the danger fill" }
   - { fg: color.status.danger.fill, bg: color.surface.canvas, min: 3, kind: ui, label: "the danger fill is its own boundary against the canvas" }
-  - { fg: color.status.danger.border, bg: color.status.danger.fill, min: 1, kind: ui, label: "danger border on the danger fill (decorative)", waiver: "the fill is the boundary at 4.14:1 against the canvas; the border only keeps the box model identical across statuses" }
+  - { fg: color.status.danger.border, bg: color.status.danger.fill, min: 1, kind: ui, label: "danger border on the danger fill (decorative)", waiver: "the fill is the boundary against the canvas; the border only keeps the box model identical across statuses" }
 anatomy:
   - part: stack
     description: The region that holds the toasts, fixed in the end corner of the viewport at z.toast; in flow in the demonstration.
@@ -133,7 +133,7 @@ for the text, the glyph and both buttons.
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | canvas surface, 1px overlay border, glyph in the status text colour | the glyph; the worded text |
-| hover | action → {color.interaction.hover.bg-strong} with {color.text.link-hover}; Dismiss → {color.action.tertiary.hover-bg}; the timeout pauses | cursor: pointer; the action's underline thickens |
+| hover | action → {color.interaction.hover.bg} with {color.text.link-hover}; Dismiss → {color.action.tertiary.hover-bg}; the timeout pauses | cursor: pointer; the action's underline thickens |
 | focus-visible | 1px dashed {color.interaction.focus.ring} at −2px on the focused button, {color.status.danger.on-fill} on the danger fill; the timeout pauses | the ring |
 | stacked | one column, 4px gap, newest at the end; the last visible toast shows "+n" in {color.text.muted} | the count text; at most three visible |
 | reduced-motion | no transition; present or absent | `prefers-reduced-motion`; nothing moves |

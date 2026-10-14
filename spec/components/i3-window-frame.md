@@ -39,7 +39,7 @@ tokens:
   workspace.selected-text: color.interaction.selection.text
   workspace.bg-hover: color.interaction.hover.bg
   workspace.ring: color.interaction.focus.ring
-  workspace.ring-on-selection: color.interaction.focus.ring-container
+  workspace.ring-on-selection: color.interaction.focus.ring
   workspace.urgent-bg: color.status.danger.fill
   workspace.urgent-text: color.status.danger.on-fill
   status.separator: color.text.muted
@@ -68,6 +68,7 @@ stateTokens:
   container-inactive: { fg: color.text.muted, bg: color.surface.chrome }
   error: { fg: color.status.danger.on-fill, bg: color.status.danger.fill }
 contrast:
+  - { fg: color.interaction.focus.ring, bg: color.interaction.selection.bg, min: 3, kind: ui, state: selected, label: "ring on a selected workspace when focused" }
   - { fg: color.text.default, bg: color.surface.chrome, label: "workspace names and status text on the bar" }
   - { fg: color.text.bright, bg: color.surface.chrome, label: "clock on the bar" }
   - { fg: color.text.bright, bg: color.surface.chrome-alt, label: "focused title" }
@@ -140,7 +141,7 @@ Parts as listed in the anatomy.
 | --- | --- | --- |
 | default | terminal window focused: {color.border.active} frame, bright title; editor at rest; workspace 1 filled | the title text; `aria-selected` |
 | focus-visible | 2px {color.interaction.focus.ring-container} ring at −3px inside the focused window or container; the client draws no second ring | the ring |
-| selected | workspace 2 takes the selection fill with {color.interaction.selection.text}; workspace 1 at rest | `aria-selected` |
+| selected | workspace 2 takes the selection fill with {color.interaction.selection.text}, 1px dashed {color.interaction.focus.ring} at −2px when focused; workspace 1 at rest | `aria-selected` |
 | container-inactive | no window focused: every frame {color.border.default}, every title {color.text.muted} on {color.surface.chrome}, tab indicator {color.border.selected-indicator-inactive}, no caret | lightness drop; no caret |
 | error | workspace 3 urgent: {color.status.danger.fill} with {color.status.danger.on-fill} and a trailing ! | the ! mark; "urgent" read to assistive technology |
 

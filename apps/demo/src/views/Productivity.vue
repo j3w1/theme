@@ -1,8 +1,10 @@
 <script setup>
-import { computed, ref, nextTick } from 'vue';
+import { computed, ref, nextTick, onMounted, onUnmounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { state, notify, nextId } from '../store.js';
 import '@j3w1/ui/register/list';
+import '@j3w1/ui/register/toast';
+import '@j3w1/ui/styles/toast.css';
 import '@j3w1/ui/styles/link.css';
 import '@j3w1/ui/styles/list.css';
 const route = useRoute(), kind = computed(() => route.params.kind);
@@ -25,7 +27,63 @@ async function browseMail(event) {
 }
 function sendChat(event) { if(!text.value.trim())return;state.messages.push({id:nextId(state.messages),person:'You',text:text.value.trim(),self:true});text.value='';notify('Message added to the local conversation.');restart(event.target); }
 function sendMail() { state.mail.push({id:nextId(state.mail),from:'You',subject:subject.value,body:mailBody.value,read:true,archived:false});compose.value=false;subject.value='';mailBody.value='';notify('Message created locally. No email was sent.'); }
-function addEvent(event) { state.events.push({id:nextId(state.events),day:Number(day.value),title:eventTitle.value});eventTitle.value='';notify('Event added to the local September calendar.');restart(event.target); }
+function addEvent(event) { state.events.push({id:nextId([...state.events, ...removedEvents.value.map(item => item.event)]),day:Number(day.value),title:eventTitle.value});eventTitle.value='';notify('Event added to the local September calendar.');restart(event.target); }
+// Keep removal history after the notice closes, so Undo is never a timed-only action.
+const removedEvents = ref([]), removalNotice = ref(false), notifications = ref(), undoButton = ref();
+const lastRemoved = computed(() => removedEvents.value.at(-1)?.event);
+let removalTimer, remaining = 12000, started = 0, pointerInNotice = false;
+function pauseRemovalNotice() {
+  if (!removalTimer) return;
+  clearTimeout(removalTimer);
+  removalTimer = undefined;
+  remaining = Math.max(0, remaining - (Date.now() - started));
+}
+function resumeRemovalNotice() {
+  if (!removalNotice.value || removalTimer || pointerInNotice || notifications.value?.contains(document.activeElement)) return;
+  started = Date.now();
+  removalTimer = setTimeout(() => { removalTimer = undefined; removalNotice.value = false; }, remaining);
+}
+async function leaveRemovalNotice() { await nextTick(); resumeRemovalNotice(); }
+function hoverRemovalNotice(inside) {
+  pointerInNotice = inside;
+  inside ? pauseRemovalNotice() : resumeRemovalNotice();
+}
+async function removeEvent(event, trigger) {
+  const index = state.events.indexOf(event), hadFocus = trigger === document.activeElement;
+  removedEvents.value.push({ event, index });
+  state.events.splice(index, 1);
+  pauseRemovalNotice();
+  remaining = 12000;
+  removalNotice.value = true;
+  await nextTick();
+  // Removing a focused row leaves focus on a surviving calendar action, never the toast.
+  if (hadFocus) document.querySelector('[data-event-id] button, [data-add-event]')?.focus();
+  resumeRemovalNotice();
+}
+async function undoEvent() {
+  const removed = removedEvents.value.pop();
+  if (!removed) return;
+  state.events.splice(removed.index, 0, removed.event);
+  dismissRemovalNotice();
+  notify(`${removed.event.title} restored to day ${removed.event.day}.`);
+  await nextTick();
+  document.querySelector(`[data-event-id="${removed.event.id}"] button`)?.focus();
+}
+function dismissRemovalNotice() {
+  const hadFocus = notifications.value?.contains(document.activeElement);
+  pauseRemovalNotice();
+  removalNotice.value = false;
+  pointerInNotice = false;
+  if (hadFocus) nextTick(() => undoButton.value?.focus());
+}
+function focusNotifications(event) {
+  if (event.key === 'F6' && kind.value === 'calendar' && removalNotice.value) {
+    event.preventDefault();
+    notifications.value?.querySelector('.toast-action')?.focus();
+  }
+}
+onMounted(() => window.addEventListener('keydown', focusNotifications));
+onUnmounted(() => { clearTimeout(removalTimer); window.removeEventListener('keydown', focusNotifications); });
 function addTask(event) { if(!taskName.value.trim())return;state.tasks.push({id:nextId(state.tasks),name:taskName.value.trim(),status:'Ready'});taskName.value='';notify('Task added.');restart(event.target); }
 // After a successful local submit the form starts afresh: reset clears the browser's
 // user-validity state, so a field the submit emptied is not shown as invalid. Values
@@ -158,18 +216,31 @@ async function move(task,status) { task.status=status;notify(`${task.name} moved
           <p id="event-day-message" class="text-field-message">✕ Choose a day from 1 to 30.</p>
         </div>
       </j3w1-text-field>
-      <j3w1-button><button class="button" type="submit">Add event</button></j3w1-button>
+      <j3w1-button><button class="button" type="submit" data-add-event>Add event</button></j3w1-button>
     </form>
     <div class="calendar">
       <div v-for="date in 30" :key="date" class="calendar-day">
         <strong>{{ String(date).padStart(2,'0') }}</strong>
-        <p v-for="event in state.events.filter(event=>event.day===date)" :key="event.id" class="calendar-event">
+        <p v-for="event in state.events.filter(event=>event.day===date)" :key="event.id" class="calendar-event" :data-event-id="event.id">
           <span>{{ event.title }}</span>
-          <j3w1-button><button class="button button-tertiary" type="button" :aria-label="`Remove event: ${event.title}`" @click="state.events.splice(state.events.indexOf(event),1);notify('Local event removed.')">Remove</button></j3w1-button>
+          <j3w1-button><button class="button button-destructive" type="button" :aria-label="`Remove event: ${event.title}`" @click="removeEvent(event, $event.currentTarget)">Remove</button></j3w1-button>
         </p>
       </div>
     </div>
-    <p class="muted">Remove deletes the local entry. No external calendar is connected.</p>
+    <div class="actions">
+      <p class="muted">Removed entries can be restored until you leave or reset the demo.</p>
+      <j3w1-button v-if="lastRemoved"><button ref="undoButton" class="button button-secondary" type="button" @click="undoEvent">Undo removal of {{ lastRemoved.title }}</button></j3w1-button>
+    </div>
+    <div v-if="removalNotice" ref="notifications" class="toast-stack calendar-notifications" role="region" aria-label="Notifications" @mouseenter="hoverRemovalNotice(true)" @mouseleave="hoverRemovalNotice(false)" @focusin="pauseRemovalNotice" @focusout="leaveRemovalNotice">
+      <j3w1-toast @j3w1-dismiss.prevent="dismissRemovalNotice">
+        <div class="toast" role="status">
+          <span class="toast-glyph" aria-hidden="true">i</span>
+          <p class="toast-text">{{ lastRemoved.title }} removed.</p>
+          <button class="toast-action" type="button" @click="undoEvent">Undo</button>
+          <button class="toast-close" type="button" aria-label="Dismiss">✕</button>
+        </div>
+      </j3w1-toast>
+    </div>
   </section>
   <template v-else-if="kind==='kanban'">
     <form class="filters" @submit.prevent="addTask">

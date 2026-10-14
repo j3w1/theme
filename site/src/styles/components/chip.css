@@ -103,11 +103,11 @@
   color: var(--color-interaction-selection-text);
 }
 
-/* selected + focus-visible: the ring takes the on-fill colour */
+/* selected + focus-visible: the ordinary ring stays on the selection fill */
 .chip-filter[aria-pressed="true"]:focus-visible,
 [data-state-selected][data-state-focus-visible] .chip-filter,
 [data-state-selected][data-state-focus-visible] .chip-remove {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring);
   outline-offset: var(--focus-offset);
 }
 

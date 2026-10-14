@@ -30,7 +30,7 @@ tokens:
   root.bg-toggled: color.interaction.selection.bg
   root.text-toggled: color.interaction.selection.text
   root.border-toggled: color.border.selected-indicator
-  root.ring-toggled: color.interaction.focus.ring-container
+  root.ring-toggled: color.interaction.focus.ring
   root.text-disabled: color.text.disabled
   root.bg-disabled: color.interaction.disabled.bg
   root.border-disabled: color.border.disabled
@@ -41,7 +41,7 @@ stateTokens:
   focus-visible: { fg: color.action.tertiary.text, bg: color.action.secondary.bg, outline: color.interaction.focus.ring }
   active: { fg: color.action.tertiary.text, bg: color.interaction.pressed.bg, border: color.border.active }
   toggled: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg }
-  toggled+focus-visible: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg, outline: color.interaction.focus.ring-container }
+  toggled+focus-visible: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg, outline: color.interaction.focus.ring }
 contrast:
   - { fg: color.border.selected-indicator, bg: color.surface.default, min: 3, kind: ui, state: toggled, label: "toggled border against the panel" }
   - { fg: color.interaction.selection.bg, bg: color.surface.default, min: 3, kind: ui, state: toggled, label: "toggled fill against the panel (decorative)", waiver: "aria-pressed, the filled icon form and the 1px selected-indicator border carry the state; the fill is not the boundary" }
@@ -92,7 +92,7 @@ Parts as listed in the anatomy.
 | active | background → {color.interaction.pressed.bg}; border → {color.border.active} | border change; no translation |
 | disabled | {color.text.disabled} on {color.interaction.disabled.bg}, 1px {color.border.disabled}; no hover | `disabled`; cursor: not-allowed |
 | toggled | {color.interaction.selection.bg} fill, {color.interaction.selection.text}, border {color.border.selected-indicator}; filled icon form | `aria-pressed="true"`; the filled icon shape; the border |
-| toggled+focus-visible | the selection fill and a ring in {color.interaction.focus.ring-container} | both visible at once |
+| toggled+focus-visible | the selection fill and 1px dashed {color.interaction.focus.ring} at −2px | both visible at once |
 
 Precedence: disabled > toggled > active > hover; focus-visible is always
 drawn.

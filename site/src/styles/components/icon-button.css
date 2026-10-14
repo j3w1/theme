@@ -66,10 +66,10 @@
   fill: currentColor;
 }
 
-/* toggled + focus-visible: the ring takes the on-fill colour */
+/* toggled + focus-visible: the ordinary ring stays on the selection fill */
 .icon-button[aria-pressed="true"]:focus-visible,
 [data-state-toggled][data-state-focus-visible] .icon-button {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring);
   outline-offset: var(--focus-offset);
 }
 

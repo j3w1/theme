@@ -33,7 +33,7 @@ tokens:
   link.text-disabled: color.text.disabled
   current.bg: color.interaction.selection.bg
   current.text: color.text.on-selection
-  current.ring: color.interaction.focus.ring-container
+  current.ring: color.interaction.focus.ring
   gap.text: color.text.muted
   status.text: color.text.default
   status.emphasis: color.text.bright
@@ -43,7 +43,7 @@ stateTokens:
   focus-visible: { fg: color.text.default, bg: color.surface.default, outline: color.interaction.focus.ring }
   current: { fg: color.text.on-selection, bg: color.interaction.selection.bg }
 contrast:
-  - { fg: color.interaction.focus.ring-container, bg: color.interaction.selection.bg, min: 3, kind: ui, state: current, label: "ring on the current page when focused" }
+  - { fg: color.interaction.focus.ring, bg: color.interaction.selection.bg, min: 3, kind: ui, state: current, label: "ring on the current page when focused" }
   - { fg: color.text.disabled, bg: color.surface.default, min: 3, kind: ui, state: disabled, label: "disabled previous/next (exempt; house floor 3:1)" }
   - { fg: color.text.muted, bg: color.surface.default, label: "gap ellipsis on the panel surface" }
 anatomy:
@@ -94,7 +94,7 @@ Parts as listed in the anatomy; page links have no border.
 | --- | --- | --- |
 | default | {color.text.default}; no fill, no border | — |
 | hover | background → {color.interaction.hover.bg} | cursor: pointer |
-| focus-visible | 1px dashed {color.interaction.focus.ring} at −2px; {color.interaction.focus.ring-container} on the current page | the ring |
+| focus-visible | 1px dashed {color.interaction.focus.ring} at −2px, including the current page | the ring |
 | current | fill {color.interaction.selection.bg}, text {color.text.on-selection}; no hover | `aria-current="page"` |
 | disabled | {color.text.disabled}; no fill, no hover | `aria-disabled="true"`; no `href`; cursor: not-allowed |
 

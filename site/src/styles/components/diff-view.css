@@ -241,7 +241,7 @@
   color: var(--color-interaction-selection-text);
 }
 
-/* focus-visible: the row ring; recoloured on the selection fill */
+/* focus-visible: the ordinary row ring, including on the selection fill */
 .diff-view-row:focus-visible,
 [data-state-focus-visible] .diff-view-row-active {
   outline: var(--focus-ring);
@@ -250,7 +250,7 @@
 
 .diff-view-row[aria-current="true"]:focus-visible,
 [data-state-selected][data-state-focus-visible] .diff-view-row-active {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring);
   outline-offset: var(--focus-offset);
 }
 

@@ -118,7 +118,7 @@
   color: var(--color-text-bright);
 }
 
-/* selected: the fill; the ring recolours on it */
+/* selected: the fill; the ordinary ring stays on it */
 .sidebar-nav-link[aria-selected="true"],
 [data-state-selected] .sidebar-nav-link-demo-target {
   background: var(--color-interaction-selection-bg);
@@ -131,7 +131,7 @@
 }
 
 .sidebar-nav-link[aria-selected="true"]:focus-visible {
-  outline-color: var(--color-interaction-focus-ring-container);
+  outline-color: var(--color-interaction-focus-ring);
 }
 
 /* selected, container inactive */

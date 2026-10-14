@@ -98,7 +98,7 @@
   outline: 0;
 }
 
-/* current: the selection fill; the ring recolours on it */
+/* current: the selection fill; the ordinary ring stays on it */
 .pagination-link[aria-current="page"],
 [data-state-current] .pagination-current {
   background: var(--color-interaction-selection-bg);
@@ -111,7 +111,7 @@
 }
 
 .pagination-link[aria-current="page"]:focus-visible {
-  outline-color: var(--color-interaction-focus-ring-container);
+  outline-color: var(--color-interaction-focus-ring);
 }
 
 /* disabled ends: no href, aria-disabled, never opacity */

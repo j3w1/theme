@@ -81,7 +81,7 @@ keyboard:
   - key: Tab / Shift+Tab
     action: Walks the section links, then the controls in reading order, then Apply and Reset; nothing inside is a composite widget, so every control is its own stop.
   - key: Enter / Space
-    action: Follows a section link; toggles a switch or checkbox; opens the select.
+    action: Enter follows a section link; Space toggles a switch or native checkbox; Enter or Space opens the select.
   - key: Arrow keys
     action: Move within the radio-group and the select's options; step the numeric field.
   - key: Escape

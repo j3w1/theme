@@ -48,7 +48,7 @@ tokens:
   item.text-disabled: color.text.disabled
   active.bg: color.interaction.selection.bg
   active.text: color.interaction.selection.text
-  active.ring: color.interaction.focus.ring-container
+  active.ring: color.interaction.focus.ring
   check.glyph: color.text.bright
   shortcut.text: color.text.muted
   separator.color: color.border.divider
@@ -60,7 +60,7 @@ stateTokens:
   open: { fg: color.text.default, bg: color.interaction.pressed.bg, border: color.border.active }
   closed: { fg: color.text.default, bg: color.surface.default, border: color.border.control }
   checked: { fg: color.text.bright, bg: color.surface.raised }
-  selected: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg, outline: color.interaction.focus.ring-container }
+  selected: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg, outline: color.interaction.focus.ring }
 contrast:
   - { fg: color.text.muted, bg: color.surface.raised, label: "shortcut hint on the raised surface" }
   - { fg: color.text.disabled, bg: color.surface.raised, min: 3, kind: ui, state: disabled, label: "disabled item text (exempt; house floor 3:1)" }
@@ -128,7 +128,7 @@ key, takes the selection fill.
 | --- | --- | --- |
 | default | button at rest; list on {color.surface.raised} in the {color.border.overlay} frame | — |
 | hover | item → {color.interaction.hover.bg-strong}, text {color.text.link-hover} | cursor: pointer |
-| focus-visible | 1px dashed {color.interaction.focus.ring} at −2px on the button; {color.interaction.focus.ring-container} on the active item | the ring |
+| focus-visible | 1px dashed {color.interaction.focus.ring} at −2px on the button and the active item | the ring |
 | open | button {color.interaction.pressed.bg} with 1px {color.border.active}; list shown | `aria-expanded="true"`; list present |
 | closed | button at rest; list hidden | `aria-expanded="false"`; list absent from the tree |
 | disabled | item text {color.text.disabled}; no hover; still reachable by arrow keys when `aria-disabled` | `aria-disabled="true"`; cursor: not-allowed |

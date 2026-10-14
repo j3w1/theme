@@ -40,7 +40,7 @@ tokens:
   root.bg-disabled: color.interaction.disabled.bg
   selected.bg: color.interaction.selection.bg
   selected.text: color.interaction.selection.text
-  selected.ring: color.interaction.focus.ring-container
+  selected.ring: color.interaction.focus.ring
   remove.text: color.text.muted
   remove.text-hover: color.text.bright
   remove.bg-hover: color.interaction.hover.bg-strong
@@ -49,7 +49,7 @@ stateTokens:
   hover: { fg: color.text.default, bg: color.interaction.hover.bg, border: color.border.control }
   focus-visible: { fg: color.text.default, bg: color.surface.default, border: color.border.control, outline: color.interaction.focus.ring }
   selected: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg }
-  selected+focus-visible: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg, outline: color.interaction.focus.ring-container }
+  selected+focus-visible: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg, outline: color.interaction.focus.ring }
 contrast:
   - { fg: color.text.muted, bg: color.surface.default, label: "remove glyph at rest" }
   - { fg: color.text.disabled, bg: color.interaction.disabled.bg, min: 3, kind: ui, state: disabled, label: "disabled chip text (exempt; house floor 3:1)" }
@@ -103,7 +103,7 @@ Parts as listed in the anatomy; a static chip is a span with nothing else.
 | hover | background → {color.interaction.hover.bg}; remove button → {color.interaction.hover.bg-strong} with {color.text.bright} | cursor: pointer |
 | focus-visible | 1px dashed {color.interaction.focus.ring} at −2px on the chip or the remove button | the ring |
 | selected | fill {color.interaction.selection.bg}; text and glyph {color.interaction.selection.text}; border takes the fill colour | `aria-pressed="true"`; the ✓ glyph |
-| selected+focus-visible | the fill and a {color.interaction.focus.ring-container} ring | both visible at once |
+| selected+focus-visible | the fill and 1px dashed {color.interaction.focus.ring} at −2px | both visible at once |
 | disabled | {color.text.disabled}, {color.border.disabled}, {color.interaction.disabled.bg}; no hover | `disabled`; cursor: not-allowed |
 
 A filter chip shows {color.interaction.pressed.bg} only while pressed.
