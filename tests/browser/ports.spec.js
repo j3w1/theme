@@ -56,12 +56,12 @@ test("port explorer navigation is keyboard accessible with no axe violations", {
 test("synthetic mapping states use the real renderer and keyboard search without publishing a port", verification({ component: "page", category: "enhancements", states: [], variants: [], note: "Request-intercepted, explicitly synthetic port data exercises the real static renderer, mapping classifications, search/reset and no-JS. Never a real port or import result." }), async ({ page }, info) => {
   const port = describePort(fixture());
   const rendered = renderPortCatalogue({ ports: [port] }, { revision: "a".repeat(40) });
-  await page.route("**/theme/ports/", async route => {
+  await page.route("**/theme/ports/ghostty/", async route => {
     const response = await route.fetch();
     const html = await response.text();
     await route.fulfill({ response, body: html.replace(/<div data-port-content[^>]*>[\s\S]*<\/section><\/div>/, `<div data-port-content>${rendered}</div>`) });
   });
-  await page.goto("ports/");
+  await page.goto("ports/ghostty/");
   await expect(page.getByRole("heading", { name: "Synthetic test only" })).toBeVisible();
   await expect(page.locator("[data-port-row]")).toHaveCount(5);
   for (const state of ["mapped", "inherited", "unsupported", "out-of-scope", "not-implemented"]) await expect(page.locator("[data-port-row]").filter({ has: page.getByRole("cell", { name: state, exact: true }) })).toHaveCount(1);
@@ -79,4 +79,23 @@ test("synthetic mapping states use the real renderer and keyboard search without
     if (info.project.name === "desktop") expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
   }
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
+
+test("each port has its complete static mapping page and the summary searches native keys", { annotation }, async ({ page }, info) => {
+  const { ports } = await (await page.request.get("exports/port-capabilities.json")).json();
+  for (const port of ports) {
+    await page.goto(`ports/${port.id}/`);
+    await expect(page.locator("[data-port-entry]")).toHaveCount(1);
+    await expect(page.locator("[data-port-row]")).toHaveCount(port.mappings.length);
+    await expect(page.getByRole("link", { name: "All ports", exact: true })).toBeVisible();
+  }
+  await page.goto("ports/");
+  await expect(page.locator("[data-port-row]")).toHaveCount(0);
+  if (info.project.name === "nojs") return;
+  const port = ports.find((port) => port.mappings.some((mapping) => mapping.nativeKeys.length));
+  const native = port.mappings.find((mapping) => mapping.nativeKeys.length).nativeKeys[0];
+  await page.getByRole("searchbox", { name: "Search ports, roles and native keys" }).fill(native);
+  await expect(page.locator("[data-port-entry]:visible")).not.toHaveCount(0);
+  await expect(page.locator("[data-port-count]")).toContainText("ports shown");
 });

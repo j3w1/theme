@@ -17,7 +17,7 @@ test("legacy component heading links are static and jump to their detail with sc
 test("family and text filters compose on both stubs and contents (R-e)", scope, async ({ page }, info) => {
   test.skip(info.project.name !== "desktop", "One enhancement check.");
   await page.goto("reference/");
-  await page.locator("#search").fill("text-field");
+  await page.locator("#search").fill("textbox");
   await expect(page.locator("#search-count")).toContainText("1 component");
   const button = page.locator('[data-toc-component="button"]').locator("..");
   await expect(button).toBeHidden();
@@ -43,10 +43,10 @@ test("search retries an HTTP failure and shares its successful request with comm
   await page.goto("reference/");
   await page.locator("#search").focus();
   await expect(page.locator("#search-count")).toContainText("unavailable");
-  await page.locator("#search").fill("text-field");
+  await page.locator("#search").fill("textbox");
   await expect(page.locator("#search-count")).toContainText("1 component");
   await page.getByRole("button", { name: "Search the design system", exact: true }).click();
-  await page.locator('.site-command [role="combobox"]').fill("text-field");
+  await page.locator('.site-command [role="combobox"]').fill("text field");
   await expect(page.locator('.site-command [role="option"]')).toHaveCount(1);
   expect(attempts).toBe(2);
 });

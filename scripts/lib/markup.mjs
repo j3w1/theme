@@ -40,3 +40,22 @@ export const namespaceMarkup = (tree, decorate, { strict = true, renameNames = f
 
 /* Text and attribute escaping shared by HTML and XML renderers. */
 export const escapeHtml = (text) => String(text).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+
+/* Reference specimens do not own application destinations. Resolve an
+   undeclared demonstration fragment to its own link; real local destinations
+   and every strict IDREF keep their original relationship. Historical records
+   opt out in renderSpecimenMarkup so their recorded bytes stay exact. */
+export const resolveDemonstrationLinks = (tree) => {
+  const ids = new Set();
+  walkMarkup(tree, (node) => { const id = attribute(node, "id"); if (id) ids.add(id); });
+  walkMarkup(tree, (node) => {
+    if (!["a", "area"].includes(node.tagName)) return;
+    const href = attribute(node, "href");
+    if (!href?.startsWith("#") || href === "#") return;
+    const target = href.slice(1);
+    if (ids.has(target)) return;
+    const own = attribute(node, "id");
+    if (own) setAttribute(node, "href", `#${own}`);
+    else { setAttribute(node, "id", target); ids.add(target); }
+  });
+};

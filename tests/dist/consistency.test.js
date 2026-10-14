@@ -35,7 +35,7 @@ test("component sections, exports, contents entries and the search index agree",
     if (cov.demonstrated) {
       assert.equal((detail.match(/class="matrix"/g) ?? []).length, 1, `${id}: one full matrix`);
       assert.ok(detail.includes(`id="${anchorFor.states(id)}"`), `${id} detail state matrix`);
-      assert.ok(html.includes(`id="${anchorFor.states(id)}" data-legacy-target href="/theme/components/${id}/#${anchorFor.states(id)}"`), `${id}: static matrix link on hub`);
+      assert.ok(html.includes(`id="${anchorFor.states(id)}" data-legacy-target="" href="/theme/components/${id}/#${anchorFor.states(id)}"`), `${id}: static matrix link on hub`);
     }
   }
 });

@@ -50,3 +50,18 @@ test("anchors are only produced by scripts/lib/anchors.mjs", async () => {
     for (const m of text.matchAll(/id=\{?["'`](c|f|d|t|s)-\$\{/g)) assert.fail(`${file}: hand-built anchor ${m[0]}`);
   }
 });
+
+test("demonstration fragments resolve locally while historical records and strict IDREFs stay exact (R-j)", async () => {
+  const { renderSpecimenMarkup } = await import("../scripts/lib/specimen-markup.mjs");
+  const { namespaceMarkup } = await import("../scripts/lib/markup.mjs");
+  const { parseFragment } = await import("parse5");
+  const source = '<a href="#demo">Demo</a><a id="own" href="#application">Own</a><a href="#panel">Panel</a><div id="panel"></div>';
+  const live = renderSpecimenMarkup(source, "live");
+  assert.match(live, /href="#demo-live" id="demo-live"/);
+  assert.match(live, /id="own-live" href="#own-live"/);
+  assert.match(live, /href="#panel-live"/);
+  const historical = renderSpecimenMarkup(source, "record", { inert: true, resolveLinks: false });
+  assert.match(historical, /href="#demo-record" tabindex="-1"/);
+  assert.doesNotMatch(historical, /id="demo-record"/);
+  assert.throws(() => namespaceMarkup(parseFragment('<label for="missing">Label</label>'), (id) => id), /Unresolved markup ID reference/);
+});

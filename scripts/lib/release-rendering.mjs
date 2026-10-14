@@ -66,7 +66,7 @@ export const renderReleaseSpecimens = async (snapshot) => {
       const fragment = variants.get(variant.id);
       if (!fragment) { unavailable.push(`${id}/${variant.id}/${state}: no historical variant fragment.`); continue; }
       const name = `${id}/${variant.id}/${state.replaceAll("+", "_")}.html`;
-      const markup = renderSpecimenMarkup(assertHistoricalMarkup(fragment), `release-${id}-${variant.id}`, { state, inert: true });
+      const markup = renderSpecimenMarkup(assertHistoricalMarkup(fragment), `release-${id}-${variant.id}`, { state, inert: true, resolveLinks: false });
       const label = `${id}, ${variant.id}, ${state}`;
       const profile = escapeHtml(snapshot.metadata.profile);
       files[name] = `<!doctype html><html lang="en" dir="ltr" data-profile="${profile}" data-demo-profile="${profile}" data-density="comfortable"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; form-action 'none'; base-uri 'none'"><title>${escapeHtml(label)} historical specimen</title><link rel="stylesheet" href="../../style.css"></head><body><main><h1>${escapeHtml(label)}</h1><p>Reconstructed static specimen. ${profile} (${escapeHtml(snapshot.metadata.profileStatus)}). Forced visual state; no historical JavaScript is executed.</p><div data-release-specimen ${stateAttributes(state)} inert>${markup}</div></main></body></html>\n`;

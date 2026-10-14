@@ -61,10 +61,12 @@ test("surface and text grid values remain separate literals with generated swatc
   let rows = 0;
   walkMarkup(parse(hub), (node) => {
     if (!(attribute(node, "class") ?? "").split(" ").includes("swatch-row")) return;
+    const content = (node) => node.nodeName === "#text" ? node.value : (node.childNodes ?? []).map(content).join("");
+    if (!/#[0-9a-f]{6}/i.test(content(node))) return; // Alpha backdrop is rgb(), not a hex literal.
     rows++;
     let swatches = 0;
     walkMarkup(node, (child) => { if (attribute(child, "data-hex")) swatches++; });
     assert.ok(swatches > 0, attribute(node, "id"));
   });
-  assert.equal(rows, 32, "all declared surface and text roles are audited");
+  assert.equal(rows, 31, "all surface and text hex values are audited");
 });

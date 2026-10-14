@@ -26,7 +26,7 @@ test("every eligible built-page literal has one adjacent swatch and matching fil
       previews.push({ end: text.length, hex });
       return;
     }
-    const block = ["p", "div", "td", "th", "pre", "li", "h1", "h2", "h3", "h4", "section", "br", "button"].includes(n.tagName);
+    const block = ["p", "div", "td", "th", "pre", "li", "h1", "h2", "h3", "h4", "section", "br", "button", "dl", "dt", "dd", "header", "footer", "nav", "main", "ul", "ol", "h5", "h6", "form", "fieldset", "legend"].includes(n.tagName);
     if (block) text += "\n";
     if (n.nodeName === "#text") text += n.value;
     for (const c of n.childNodes ?? []) visit(c);

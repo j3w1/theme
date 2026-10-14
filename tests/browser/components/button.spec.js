@@ -81,6 +81,7 @@ test.describe("button", () => {
     await button.evaluate((el) => {
       el.disabled = true;
     });
+    await expect.poll(async () => rgbToHex((await paint(button)).bg)).toBe(token("color.interaction.disabled.bg"));
     const disabled = await paint(button);
     expect(rgbToHex(disabled.bg)).toBe(token("color.interaction.disabled.bg"));
     expect(rgbToHex(disabled.color)).toBe(token("color.text.disabled"));
