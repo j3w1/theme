@@ -5,13 +5,13 @@ order: 20
 summary: Surfaces, text ladder, borders, interaction states, focus, typography, spacing, density, elevation, motion, icons and layout, with the rules that govern each role.
 ---
 
-Values live in `tokens/`. This document says what each role means and where it
-may be used. Every rule below is normative for the `default` profile.
+Values live in `tokens/`; this document says what each role means and where
+it may be used. Every rule is normative for the `default` profile.
 
 ## Surfaces
 
-`surface.desktop` and `surface.canvas` are true black (`#000000`). Put readable
-content on the canvas or on these surfaces:
+`surface.desktop` and `surface.canvas` are true black (`#000000`). Readable
+content sits on the canvas or on:
 
 - `default` (`#100c0c`) for panels and cards;
 - `raised` (`#160b0b`) for sticky headers, menus and popovers;
@@ -21,45 +21,42 @@ content on the canvas or on these surfaces:
 - `input` for form-control fills;
 - `chrome` and `chrome-alt` for window frames and bars.
 
-The layers differ only a little, by design. That must never hide the edge of a
-control, so controls also carry `border.control`.
-
-Never tint photos, video, document content or user-defined data colours to put
-more red on screen.
+The layers differ only slightly, so controls also carry `border.control`.
+Never tint photos, video, document content or user-defined data colours.
 
 ## Text ladder
 
-| Role | Value | Contrast on canvas / default / raised | Use |
-| --- | --- | --- | --- |
-| `text.prose` | `#e99499` | 9.16 / 8.48 / 7.92 | long-form reading; aliases text.default (D-033) |
-| `text.heading` | `#f4eeee` | see generated contrast report | content titles and H1–H6 |
-| `text.highlight` | `#f4eeee` | see generated contrast report | deliberate exceptional highlights |
-| `text.bright` | `#ffa2a7` | 10.98 / 10.17 / 9.49 | brighter UI labels and semantic rose emphasis |
-| `text.default` | `#e99499` | 9.16 / 8.48 / 7.92 | interface and body text |
-| `text.muted` | `#bd787d` | 6.15 / 5.69 / 5.31 | secondary text; the darkest colour permitted for chrome text |
-| `text.subtle` | `#ad7175` | 5.40 / 5.00 / 4.66 | metadata, comments, line numbers |
-| `text.disabled` | `#8a5559` | 3.52 / 3.26 / 3.05 | disabled controls only (exempt under WCAG 1.4.3; at least 3:1 by policy) |
-| `text.accent` | `#e53935` | 4.97 / 4.60 / 4.30 | accent text on canvas and default surfaces only |
-| `text.accent-strong` | `#f73f35` | 5.72 / 5.29 / 4.94 | accent text safe on every surface |
+| Role | Value | Use |
+| --- | --- | --- |
+| `text.prose` | `#e99499` | long-form reading; aliases text.default (D-033) |
+| `text.heading` | `#f4eeee` | content titles and H1–H6 |
+| `text.highlight` | `#f4eeee` | deliberate exceptional highlights |
+| `text.bright` | `#ffa2a7` | brighter UI labels and semantic rose emphasis |
+| `text.default` | `#e99499` | interface and body text |
+| `text.muted` | `#bd787d` | secondary text; the darkest colour permitted for chrome text |
+| `text.subtle` | `#ad7175` | metadata, comments, line numbers |
+| `text.disabled` | `#8a5559` | disabled controls only (exempt under WCAG 1.4.3; at least 3:1 by policy) |
+| `text.accent` | `#e53935` | accent text on canvas and default surfaces only |
+| `text.accent-strong` | `#f73f35` | accent text safe on every surface |
+| `text.link` | `#f73f35` | links, always underlined, distinct from rose body and headings (D-024); hover is near-white `text.link-hover` on `interaction.hover.bg` (D-027) |
 
-`#a3676b` and `#7d1310` are never text roles in `default`, even where a darker
-background would raise their ratio. They stay in service as `border.control`,
-`icon.decorative`, `status.neutral.fill` and `border.disabled`. Metadata and
-comments that people need to read are not decorative: they use `text.subtle`,
-not a graphic colour. The contrast floor is rule 6 under Interaction states.
+Ratios per surface are in the contrast report. `#a3676b` and `#7d1310` are
+never text roles in `default`, even on a darker background; they serve as
+`border.control`, `icon.decorative`, `status.neutral.fill` and
+`border.disabled`. Metadata and comments people need to read use
+`text.subtle`, not a graphic colour.
 
 ## Borders
 
 Every border is 1px (`border.width.default`). 2px (`border.width.emphasis`) is
 only for the selected indicator bar, the sticky-header rule and the invalid
-border. The quote rule is the one wider edge, at twice the emphasis width,
-because it marks a block rather than bounding a control.
+border. The quote rule, which marks a block rather than bounding a control, is
+the one wider edge, at twice the emphasis width.
 
 - `border.divider` (`#2b0e0d`) separates rows and sections.
-- `border.default` (`#531310`) is decorative. It may never be the only visible
-  edge of a control.
-- `border.control` (`#a3676b`, 4.71:1) is the edge of every form control at
-  rest.
+- `border.default` (`#531310`) is decorative, never the only visible edge of
+  a control.
+- `border.control` (`#a3676b`) is the edge of every form control at rest.
 - `border.active` (`#e53935`) marks the focused or active control.
 - `border.overlay` (`#e53935`) frames every floating layer.
 
@@ -79,7 +76,7 @@ Every interactive component declares which of these apply and demonstrates every
 | active / pressed | background → `interaction.pressed.bg`; border → `border.active` | border change; no translation |
 | focus-visible | the ring (below) | the ring itself; never a glow or a colour shift alone |
 | selected | fill `interaction.selection.bg` with `interaction.selection.text`; tabs and navigation use a 2px `border.selected-indicator` | `aria-selected` / `aria-current`; a check glyph in lists |
-| selected + focus-visible | the selection fill **and** a ring in the fill's on-fill colour (`interaction.focus.ring-container`, 7.48:1 on the selection) | both visible at once |
+| selected + focus-visible | the selection fill **and** the ordinary ring (rule 1; D-027) | both visible at once |
 | text selected, host keeps the text colour | translucent `interaction.text-selection.tint` (D-036), which also suits hosts that paint the fill over their content; where the host can recolour selected text, `interaction.text-selection.bg` with `interaction.text-selection.text` | the host's selection handles |
 | selected, container inactive | `interaction.selection.inactive-bg` with `interaction.selection.inactive-text`; no ring | lightness drop between the two fills |
 | disabled | `text.disabled`, `border.disabled`, `interaction.disabled.bg`; no hover or pressed styling; still focusable when `aria-disabled` | `disabled` / `aria-disabled`; `cursor: not-allowed`; never opacity |
@@ -95,7 +92,7 @@ Every interactive component declares which of these apply and demonstrates every
 
 Rules that apply everywhere:
 
-1. **Selection is a fill; focus is a ring.** Neither borrows the other's form. A ring still has to be visible on whatever it sits over: `#e53935` measures 2.52:1 on `action.primary.bg` and 1.13:1 on `status.danger.fill`, which is why the ring recolours on those fills instead of relying on hue. It measures 3.38:1 on the `interaction.selection.bg` recessed by D-027, so a selected row keeps the ordinary control ring.
+1. **Selection is a fill; focus is a ring.** Neither borrows the other's form. The ring must reach 3:1 on whatever it sits over: `#e53935` falls below it on `action.primary.bg` and `status.danger.fill`, so the ring recolours on those fills; it meets it on `interaction.selection.bg` (D-027), so a selected row keeps the ordinary control ring.
 2. **Focus ring (D-006; component mapping clarification D-015).** Controls and rows: `outline: 1px dashed {color.interaction.focus.ring}; outline-offset: -2px`. Focusable containers (panes, windows, dialogs, cards): `outline: 2px solid {color.interaction.focus.ring-container}; outline-offset: -3px`. On filled surfaces use the component's explicit ring mapping: primary buttons and checked controls use `interaction.focus.ring-container` where declared; destructive buttons use their declared on-fill text role. The selection fill is the exception and takes the ordinary ring, on the measurement in rule 1. Keep the control or container geometry independently of the colour mapping. `:focus:not(:focus-visible)` draws nothing. Forced-colors mode uses `Highlight`. A host focus indicator is never removed without this replacement.
 3. **Never colour-only.** Every state and every status carries a second channel: a glyph (`✕ ! ✓ i ·`), a border width, an underline pattern, or an ARIA state. Charts carry pattern fills.
 4. **Hover changes fills and borders, never text colour alone**, and only on hover-capable pointers.
@@ -106,18 +103,18 @@ Rules that apply everywhere:
 
 ## Actions
 
-There are four button tones:
+Four button tones:
 
-- `primary` is the only filled button at rest (`action.primary.bg` `#7d1310`
-  with `action.primary.text` (bright rose; D-033)).
-- `secondary` is an outline (`border.control`, text `text.bright`).
-- `tertiary` is a ghost or icon button (`text.default`, hover
-  `interaction.hover.bg`).
-- `destructive` is an outline in `action.destructive.text` (`#f73f35`). On
-  hover it fills with `action.destructive.hover-bg` (`#dc282e`) and `#f9faf9`
-  text (4.58:1). A filled variant exists for confirm dialogs.
+- `primary`, the only filled button at rest: `action.primary.bg` (`#7d1310`)
+  with `action.primary.text` (bright rose; D-033).
+- `secondary`, an outline: `border.control`, text `text.bright`.
+- `tertiary`, a ghost or icon button: `text.default`, hover
+  `interaction.hover.bg`.
+- `destructive`, an outline in `action.destructive.text` (`#f73f35`) that
+  fills on hover with `action.destructive.hover-bg` (`#dc282e`) and `#f9faf9`
+  text. A filled variant exists for confirm dialogs.
 
-Destructive actions also need a confirmation step or an undo. The colour is
+Destructive actions also need a confirmation step or an undo; the colour is
 not the safeguard.
 
 ## Status, diagnostics and diffs (D-001)
@@ -127,10 +124,10 @@ Five statuses: `danger` (`#f73f35` text, `#dc282e` fill), `warning`
 text, `#a3676b` fill). Each has `text`, `fill`, `on-fill`, `tint` and `border`
 roles, a required glyph (`✕ ! ✓ i ·`) and its own underline or border pattern
 (wavy, dashed, solid, dotted, double). The three extension hues are
-desaturated and shifted warm so they fit the identity. All sit between 6.5:1
-and 7.6:1 on every surface. They are **forbidden** in `surface`, `text`,
-`border`, `interaction` and `action`. Purple, cyan and magenta do not exist in
-the theme.
+desaturated and shifted warm to fit the identity, and meet 4.5:1 as text on
+every surface. They are **forbidden** in `surface`, `text`, `border`,
+`interaction` and `action`. Purple, cyan and magenta do not exist in the
+theme.
 
 Diagnostics:
 
@@ -161,7 +158,7 @@ Editor surfaces:
 - line numbers `code.line-number` (`text.subtle`, replacing the site's
   `#7d1310`);
 - caret `#e99499`;
-- selection `#420f0c` (muted text stays 4.71:1 inside it);
+- selection `#420f0c` (muted text stays above 4.5:1 inside it);
 - search matches `#630f0d`, with the current match inverted (`#ffa2a7` on
   `#0c0909`);
 - bracket match as a 1px `#e53935` border;
@@ -170,8 +167,8 @@ Editor surfaces:
 Syntax in `default` is monochrome: keywords `#f7463c`, strings `#bd787d`,
 comments `#ad7175` italic, numbers and constants `#d4868b`, functions
 `#ffa2a7`, variables and operators `#e99499`, types `#b37175`, properties and
-headings `#e95551`, tags `#f7463c`, attributes and escapes `#d4868b`. D-029
-lifted the two syntax reds. Hosts that want hue can opt in to `code.hued.*`
+headings `#e95551`, tags `#f7463c`, attributes and escapes `#d4868b` (the two
+reds as lifted by D-029). Hosts that want hue can opt in to `code.hued.*`
 (D-030): strings green `#86a46f`; numbers, constants, functions, attributes and
 escapes amber `#c9973f`; types and properties blue `#7e9ebb`; operators
 `#ffa2a7`. Keywords, tags, comments, variables and punctuation do not change.
@@ -183,35 +180,30 @@ Inside an editor selection some syntax roles fall below 4.5:1; see
 Terminal slots:
 
 - `heritage-ansi` carries the sixteen `Xresources` slots exactly.
-- `default` carries the readable heritage sixteen (D-029). Every slot that fell
-  below the text floor keeps its hue and saturation and gets more lightness.
-  Slot 6 is the exception: it is coral `#ff7a66` (D-032). Slots 1–7 and 9–15
-  all reach 4.5:1 on the terminal background. Slot 8 (bright black) stays the
-  dim tier at 3.01:1.
+- `default` carries the readable heritage sixteen (D-029): every slot that
+  fell below the text floor keeps its hue and saturation and gains lightness,
+  except slot 6, which is coral `#ff7a66` (D-032). Slots 1–7 and 9–15 reach
+  4.5:1 on the terminal background; slot 8 (bright black) stays the dim tier,
+  at 3:1.
 - The `extended` overlay proposes a semantic sixteen that all reach 4.5:1.
 
-Programs, not the theme, choose which slot means what. The readable sixteen
+Programs, not the theme, choose which slot means what; the readable sixteen
 make that choice safe for text.
-
-Links use strong red `text.link` (`#f73f35`) and a persistent underline, so they
-stand apart from the rose body and heading colours (D-024). On hover they use
-near-white `text.link-hover` on `interaction.hover.bg` (D-027). The strong
-fill looked louder than the link itself, so it stays with menu items.
-Current-page and selected navigation use their own indicator and on-fill
-roles.
 
 ## Typography
 
-One family: `SauceCodePro NFM` (Source Code Pro in the Nerd Fonts build). It
-falls back to Source Code Pro, Cascadia Mono, Consolas, Liberation Mono,
+One family: `SauceCodePro NFM` (Source Code Pro in the Nerd Fonts build),
+falling back to Source Code Pro, Cascadia Mono, Consolas, Liberation Mono,
 DejaVu Sans Mono and `monospace`. The site records `size-adjust` metrics for
 the fallbacks; no font file is distributed. Weights 400 and 700, plus italic.
 
 Scale (size/line-height in px): `ui-sm` 12/16, `ui-md` 13/18, `ui-lg` 14/20,
 `reading` 15/24, `code` 13/19, `terminal` 13/19 with −0.5px letter-spacing,
 `h1` 20/28 bold, `h2` 16/24 bold, `h3` 13/18 bold in `text.heading`, `caption`
-11/16 only with `text.muted` or lighter. Hosts keep the size the user chose;
-tiny UI text is a metric of the reference implementation, not a rule.
+11/16 only with `text.muted` or lighter. Proposed (D-037): `display` 32/40 for
+page heroes and metric figures and `title` 24/32 for page titles above `h1`;
+components keep `h1`–`h3`. Hosts keep the size the user chose; tiny UI text is
+a metric of the reference implementation, not a rule.
 
 ## Spacing and density (D-009)
 
@@ -224,11 +216,10 @@ Spacing steps: 0, 1, 2, 4, 8, 12, 16, 24, 32, 48 px. Set a density mode with
 | `comfortable` | 32px | 36px | `ui-md` | 12px | 4px | everyday applications |
 
 Both meet the 24×24 CSS-pixel target minimum; `compact` needs 4px between
-neighbouring targets. Table rows are exempt and always use the comfortable row
-height: a data row is content, not chrome, and a compact row is harder to scan
-exactly where scanning matters most. Controls inside a row still follow the
-page density. The site's 3px i3 gap, 14/−2 window gaps and 28px bar are
-window-manager geometry, not theme tokens.
+neighbouring targets. Table rows always use the comfortable row height (a data
+row is content, and compact rows are harder to scan); controls inside a row
+follow the page density. The site's 3px i3 gap, 14/−2 window gaps and 28px bar
+are window-manager geometry, not theme tokens.
 
 ## Elevation and layering
 
@@ -240,19 +231,16 @@ skip link 1000.
 
 A popup opened by hovering follows the pointer:
 
-- It sits 8px from the cursor.
-- It flips to the other side of the cursor instead of crossing a viewport
-  edge, and keeps an 8px margin from every edge.
+- It sits 8px from the cursor, flips to the cursor's other side instead of
+  crossing a viewport edge, and keeps 8px from every edge.
 - It moves again on pointer move, scroll and resize.
-- A popup with nothing to operate takes no pointer events, so it never sits
-  between the cursor and what opened it. A popup with a control or a link
-  stays reachable and stays open while the pointer is inside it.
+- A popup with nothing to operate takes no pointer events; one with a control
+  or link stays reachable and open while the pointer is inside it.
 - Either kind closes when the pointer leaves both the trigger and the popup.
 
-The same popup opened from the keyboard anchors to its trigger instead: below
-it, or above when there is no room below. Focus has no pointer to follow. This
-is a placement rule only. What opens a popup, and whether it is a tooltip, a
-preview or an inspector, belongs to the component's own contract.
+Opened from the keyboard, the same popup anchors to its trigger: below it, or
+above when there is no room below. This is a placement rule only; what opens a
+popup and what kind it is belong to the component's contract.
 
 ## Icons
 
@@ -277,10 +265,10 @@ Breakpoints 320 (reflow floor), 600, 900, 1280.
 ## Typography semantics (D-033)
 
 All content titles and H1–H6 use `text.heading`; size, weight and spacing carry
-their relative hierarchy. Chrome/window titles use `text.default` or
-`text.bright`. Ordinary body and long-form prose use `text.default` and
-`text.prose`. Bold inherits the current semantic color, including inside
-headings, muted text, links and selections. It never requests white by itself.
-Near-white is limited to headings, deliberate highlights, selections, hover
-highlights and documented contrast-critical on-fill text. See the exhaustive
-role audit in `docs/rose-typography-migration.md`; measure the actual state pair.
+the hierarchy. Chrome and window titles use `text.default` or `text.bright`;
+body and long-form prose use `text.default` and `text.prose`. Bold inherits the
+current semantic colour, including inside headings, muted text, links and
+selections, and never requests white by itself. Near-white is limited to
+headings, deliberate highlights, selections, hover highlights and documented
+contrast-critical on-fill text; measure the actual state pair. Role audit:
+`docs/rose-typography-migration.md`.

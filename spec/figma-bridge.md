@@ -8,7 +8,7 @@ summary: A one-way, pinned Variables API bridge with explicit diffs and external
 ## Supported mapping
 
 This independently written bridge maps sRGB colors to COLOR variables and
-scalar px spacing/radius to FLOAT variables.
+scalar px spacing and radius to FLOAT variables.
 
 - Aliases stay native variable aliases.
 - Token paths are stable identities. Slash-separated names live in the
@@ -18,13 +18,13 @@ scalar px spacing/radius to FLOAT variables.
 - Semantic scopes are specific to text, fills, strokes, gaps and corner radius.
 - Eligibility and pending decision IDs travel with each definition.
 
-Only the approved default profile is imported. Heritage and proposed profiles
+Only the approved default profile is imported; heritage and proposed profiles
 are reported, never turned into extra modes. Typography, shadows, composite
 borders and other unsupported types are reported, not flattened. Figma does
-not import this JSON natively: the adapter uses the
+not import this JSON natively; the adapter uses the
 [Variables Plugin API](https://developers.figma.com/docs/plugins/api/figma-variables/).
-Install the font families named in the pinned typography tokens yourself; this
-bridge neither imports fonts nor distributes binaries.
+Fonts are neither imported nor distributed: install the families the pinned
+typography tokens name.
 
 ## Generate a pinned payload
 
@@ -34,18 +34,18 @@ In a verified checkout, run:
 node scripts/figma-bridge.mjs --ref FULL_COMMIT_OR_RELEASE_TAG > payload.json
 ```
 
-The default sample selects color.surface.default, color.text.default, space.4
-and radius.none, plus their two alias dependencies. Pass `--roles` with an
-explicit comma-separated list of roles to change the sample. The command reads
-Git objects at the resolved full revision. It records source and payload
-digests, the mapping version, unsupported items and excluded profiles. It
-never reads moving branch bytes or uses the working tree instead.
+The default sample is color.surface.default, color.text.default, space.4 and
+radius.none, plus their two alias dependencies; `--roles` takes an explicit
+comma-separated list instead. The command reads Git objects at the resolved
+full revision, never moving branch bytes or the working tree, and records
+source and payload digests, the mapping version, unsupported items and
+excluded profiles.
 
 ## Reviewed import route
 
 Use the Figma connector's `use_figma` Variables API route, in a new design
-draft or in an existing collection whose current receipt you still hold. Read
-the connector's current skill/API instructions first. The adapter is
+draft or an existing collection whose current receipt you hold, after reading
+the connector's current skill/API instructions. The adapter is
 [exports/figma/importer.mjs](https://j3w1.github.io/theme/exports/figma/importer.mjs); pin its download to
 the same reviewed delivery revision as these instructions.
 
@@ -66,7 +66,7 @@ the same reviewed delivery revision as these instructions.
    Every later dry-run and apply must pass that receipt and the same document
    key.
 
-An exact re-import changes nothing. Updates show before/after definitions.
+An exact re-import changes nothing; updates show before/after definitions.
 Owned variables left out of a payload are kept and reported, never silently
 removed. Receipts are trusted local ownership records, not importable
 third-party configuration.
@@ -97,10 +97,10 @@ receipt.
   import before you roll back; this adapter does not audit every canvas node.
 
 Before any change, the adapter compares every owned ID, value, description,
-scope, collection identity and mode against the receipt. Missing, detached or
+scope, collection identity and mode against the receipt; missing, detached or
 hand-edited variables stop apply and rollback. It never adopts a matching name
-without a receipt. Resolve a conflict on purpose in Figma, or create a
-separate draft; do not throw away ownership records to force an overwrite.
+without a receipt. Resolve a conflict deliberately in Figma or in a separate
+draft; never discard ownership records to force an overwrite.
 
 ## Actual verification status
 
@@ -115,12 +115,10 @@ design draft, with Starter/Full access and Plugin API 1.0.0.
 - A deliberate manual edit was rejected without being overwritten; the test
   edit was then explicitly restored.
 
-Private receipts stay outside public artifacts. The issue evidence records the
-exact candidate and source revision.
-
-Source protocols also cover detached IDs, value updates, first rollback,
-unrelated variables, invalid payloads and extra modes, using an explicit API
-fixture. Those are fixture results, not claims about more account
-capabilities. No full component kit, native port, library publication, manual
-design review, or automatic Figma-to-token sync is claimed. D-019 remains
-proposed.
+Private receipts stay outside public artifacts; the issue evidence records
+the exact candidate and source revision. Source protocols also cover detached
+IDs, value updates, first rollback, unrelated variables, invalid payloads and
+extra modes against an explicit API fixture; these are fixture results, not
+account-capability claims. No component kit, native port, library
+publication, manual design review or automatic Figma-to-token sync is
+claimed. D-019 remains proposed.
