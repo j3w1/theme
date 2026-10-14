@@ -7432,7 +7432,7 @@ Unlabelled controls, color-only status, drag-only operations, hidden required in
 
 | Component | Family | Priority | Specified | Demonstrated | Test implemented |
 | --- | --- | --- | --- | --- | --- |
-| `admin-form` | composed | R1 | yes | yes | — |
+| `admin-form` | composed | R1 | yes | yes | yes |
 | `alert` | feedback | R1 | yes | yes | — |
 | `avatar` | display | R2 | yes | yes | — |
 | `badge` | display | R1 | yes | yes | — |
@@ -7443,7 +7443,7 @@ Unlabelled controls, color-only status, drag-only operations, hidden required in
 | `chart` | display | R2 | yes | yes | — |
 | `checkbox` | forms-basic | R1 | yes | yes | yes |
 | `chip` | display | R1 | yes | yes | — |
-| `code-editor` | developer | R1 | yes | yes | — |
+| `code-editor` | developer | R1 | yes | yes | yes |
 | `combobox` | forms-advanced | R1 | yes | yes | — |
 | `command-palette` | navigation | R2 | yes | yes | — |
 | `compact-dashboard` | composed | R2 | yes | yes | — |

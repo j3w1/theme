@@ -12,8 +12,8 @@
     "composed": {
       "specified": 6,
       "demonstrated": 6,
-      "tested": 0,
-      "testImplemented": 0,
+      "tested": 1,
+      "testImplemented": 1,
       "total": 6
     },
     "feedback": {
@@ -54,8 +54,8 @@
     "developer": {
       "specified": 5,
       "demonstrated": 5,
-      "tested": 0,
-      "testImplemented": 0,
+      "tested": 1,
+      "testImplemented": 1,
       "total": 5
     },
     "forms-advanced": {
@@ -73,8 +73,8 @@
       "maturity": "stable",
       "specified": true,
       "demonstrated": true,
-      "tested": false,
-      "testImplemented": false,
+      "tested": true,
+      "testImplemented": true,
       "states": 4
     },
     "alert": {
@@ -183,8 +183,8 @@
       "maturity": "stable",
       "specified": true,
       "demonstrated": true,
-      "tested": false,
-      "testImplemented": false,
+      "tested": true,
+      "testImplemented": true,
       "states": 6
     },
     "combobox": {
