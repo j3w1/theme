@@ -1,8 +1,8 @@
 # True Black / Rose migration
 
-The owner selected the exact locally reviewed candidate I and approved its
-permanent adoption; D-023 records it. Version 1.0.0 follows the repository's
-major-version rule for changing approved values.
+Version 1.0.0 adopts the owner-selected candidate I (D-023), a major version
+under the rule for changing approved values. Seven surfaces change; the
+heritage profile keeps its prior surface assignments.
 
 | Semantic role | Previous value | Selected value |
 | --- | --- | --- |
@@ -14,17 +14,13 @@ major-version rule for changing approved values.
 | color.surface.chrome | #100909 | #090707 |
 | color.surface.default | #160b0b | #100c0c |
 
-The later owner-requested link change (D-024) moves `color.text.link` from
-`#ffa2a7` to the existing strong red `#f73f35`. Visited links keep that color;
-persistent underlines and near-white hover text mark navigation. The heritage
-profile keeps the previous link assignment.
-
-All other token values are unchanged: rose body text, pink headings, white
-prose, red borders/actions/focus/selection, and the status, chart, code and
-terminal assignments stay as reviewed. `color.code.bg` and `color.terminal.bg`
-keep their original assignments; do not confuse them with `color.surface.code`
-and `color.surface.terminal`. The heritage profile keeps its prior surface
-assignments.
+`color.code.bg` and `color.terminal.bg` keep their original assignments; do not
+confuse them with `color.surface.code` and `color.surface.terminal`. Two new
+primitives hold the chrome and panel values; applications still consume
+semantic roles, never primitive keys. In the same release `color.text.link`
+moved from `#ffa2a7` to strong red `#f73f35` (D-024); the heritage profile keeps
+the previous link. Later releases changed more roles: see D-026, D-027 and
+D-033 and the [rose typography migration](rose-typography-migration.md).
 
 ## Update a consumer
 
@@ -37,23 +33,16 @@ Do not overwrite user customization or silently edit another repository. Native
 import verification and manual accessibility records apply only to their
 recorded source and artifact digests.
 
-## What else changed
+## Package and site changes in 1.0.0
 
-The change adds two primitives for the selected chrome and panel values.
-Applications still consume semantic roles, never these primitive keys. This
-change approves no pending decision outside the selected foundation.
+The package and complete copy bundles implement all 67 inventory entries;
+existing mappings and lock formats still work. When you adopt them, install one
+exact version, update its tokens and component styles together, and review the
+full dependency closure when you replace copied source. The CLI refuses to
+overwrite an old copy: create a fresh directory and merge your application
+changes by hand.
 
-The portal replaces the long homepage; the full static state reference is now
+The portal replaces the long homepage; the full static reference is
 `/theme/reference/`. Old homepage hashes move there with JavaScript, and the
 static full-reference link works without it. The Vue demo uses
 `/theme/demo/#/...` so direct links work on GitHub Pages.
-
-The new package and complete copy bundles implement all 67 inventory entries.
-Existing mappings and lock formats still work. When you adopt the package or copy bundles:
-
-1. Install one exact version.
-2. Update its tokens and component styles together.
-3. Review the full dependency closure when you replace copied source.
-
-The CLI refuses to overwrite an old copy. Create a fresh directory and merge
-your application changes carefully, by hand.
