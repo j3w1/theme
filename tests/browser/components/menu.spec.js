@@ -42,6 +42,7 @@ test.describe("menu", () => {
 
     await item.focus();
     await expect(item).toBeFocused();
+    await expect.poll(async () => rgbToHex(await item.evaluate((el) => getComputedStyle(el).backgroundColor))).toBe(token("color.interaction.selection.bg"));
     const active = await item.evaluate((el) => {
       const s = getComputedStyle(el);
       return { bg: s.backgroundColor, color: s.color };
@@ -53,6 +54,7 @@ test.describe("menu", () => {
     await page.keyboard.press("Shift+Tab");
     await page.keyboard.press("Tab");
     await expect(button).toBeFocused();
+    await expect.poll(async () => rgbToHex(await button.evaluate((el) => getComputedStyle(el).backgroundColor))).toBe(token("color.interaction.pressed.bg"));
     const ring = await button.evaluate((el) => {
       const s = getComputedStyle(el);
       return { style: s.outlineStyle, width: s.outlineWidth, color: s.outlineColor, border: s.borderTopColor, bg: s.backgroundColor };

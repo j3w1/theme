@@ -60,6 +60,7 @@ test.describe("table", () => {
     expect(rgbToHex(hovered)).toBe(token("color.interaction.hover.bg"));
 
     await row.evaluate((el) => el.setAttribute("aria-selected", "true"));
+    await expect.poll(async () => rgbToHex(await row.evaluate((el) => getComputedStyle(el).backgroundColor))).toBe(token("color.interaction.selection.bg"));
     const selected = await row.evaluate((el) => {
       const s = getComputedStyle(el);
       return { bg: s.backgroundColor, color: s.color, radius: s.borderRadius };

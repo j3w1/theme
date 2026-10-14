@@ -8,7 +8,8 @@
   --_topbar: var(--space-48);
 }
 
-[hidden] {
+/* Forced matrix states reveal selected hidden specimen parts themselves. */
+[hidden]:not(.demo *) {
   display: none !important;
 }
 

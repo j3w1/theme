@@ -1,6 +1,6 @@
 /* Token inspector: hovering or focusing any [data-token] element shows the
    role's path, CSS variable, resolved value per profile, alias and status,
-   read from the JSON the layout embedded. Escape closes it. The same data is
+   fetched from shared static data on first interaction. Escape closes it. The same data is
    in the token tables, so nothing is lost without JavaScript. */
 
 import { anchorFor } from "../../../scripts/lib/anchors.mjs";
