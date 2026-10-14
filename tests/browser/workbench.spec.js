@@ -29,18 +29,18 @@ test("workbench uses real viewport widths and reports measured mismatches withou
   test.skip(info.project.name === "nojs", "Interactive enhancement.");
   const frame = await open(page, "button");
   await expect(frame.locator("[data-open-dialog]")).toBeHidden();
-  const withoutOverlay = await localBox(frame.locator(".button"));
+  const withoutOverlay = await localBox(frame.locator("[data-preview-root] .button"));
   await choice(page, "part", "root");
   await expect(page.locator("[data-measurements]")).toContainText("matches");
-  expect(await localBox(frame.locator(".button"))).toEqual(withoutOverlay);
+  expect(await localBox(frame.locator("[data-preview-root] .button"))).toEqual(withoutOverlay);
   await chooseOptions(page.locator("[data-width-preset]"), "320");
   await expect(page.locator("[data-viewport-report]")).toContainText("320 × 560");
-  const before = await localBox(frame.locator(".button"));
+  const before = await localBox(frame.locator("[data-preview-root] .button"));
   await expect(frame.locator("[data-part-overlay]")).toHaveCSS("pointer-events", "none");
-  await frame.locator(".button").click();
+  await frame.locator("[data-preview-root] .button").click();
   await expect(frame.locator("[data-preview-status]")).toContainText("Button activated");
-  expect(await localBox(frame.locator(".button"))).toEqual(before);
-  await frame.locator(".button").evaluate(el => el.style.paddingInlineStart = "37px");
+  expect(await localBox(frame.locator("[data-preview-root] .button"))).toEqual(before);
+  await frame.locator("[data-preview-root] .button").evaluate(el => el.style.paddingInlineStart = "37px");
   await expect(page.locator("[data-measurements]")).toContainText("37px — MISMATCH");
   await frame.locator("[data-preview-root]").evaluate(el => { const probe = document.createElement("div"); probe.style.width = "1700px"; probe.textContent = "Controlled overflow probe"; el.append(probe); window.dispatchEvent(new Event("resize")); });
   await expect(page.locator("[data-viewport-report]")).not.toContainText("Outer horizontal overflow: 0 px");
@@ -151,17 +151,17 @@ test("motion respects reduced preference and contrast results retain build conte
   await page.locator('[data-replay="slow"]').click();
   await expect(frame.locator("[data-preview-status]")).toContainText("one-quarter");
   await page.locator('[data-replay="stop"]').click();
-  await expect(frame.locator(".button")).not.toHaveAttribute("style", /transition-duration/);
+  await expect(frame.locator("[data-preview-root] .button")).not.toHaveAttribute("style", /transition-duration/);
   await page.locator('[data-replay="slow"]').click();
   await page.locator("[data-workbench]").evaluate(el => el.hidden = true);
-  await expect(frame.locator(".button")).not.toHaveAttribute("style", /transition-duration/);
+  await expect(frame.locator("[data-preview-root] .button")).not.toHaveAttribute("style", /transition-duration/);
   await page.locator("[data-workbench]").evaluate(el => el.hidden = false);
   await page.locator("[data-compare-reduced]").click();
   await expect(page.locator("[data-comparison-report]")).toContainText("Reduced motion is active");
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.locator('[data-replay="normal"]').click();
   await expect(frame.locator("[data-preview-status]")).toContainText("no playback");
-  await expect(frame.locator(".button")).toHaveCSS("transition-duration", "0s");
+  await expect(frame.locator("[data-preview-root] .button")).toHaveCSS("transition-duration", "0s");
 });
 
 test("viewport fixtures exercise all laboratory components and preserve the approved pressed border", { annotation }, async ({ page }, info) => {
@@ -185,7 +185,7 @@ test("viewport fixtures exercise all laboratory components and preserve the appr
   const frame = await open(page, "button");
   await choice(page, "state", "active");
   const expected = await page.locator("[data-workbench]").evaluate(el => { const d = JSON.parse(el.dataset.workbenchData); return d.tokens.default[d.contract.tokens["root.border-active"]].value.components.map(v => Math.round(v * 255)); });
-  await expect(frame.locator(".button")).toHaveCSS("border-top-color", `rgb(${expected.join(", ")})`);
+  await expect(frame.locator("[data-preview-root] .button")).toHaveCSS("border-top-color", `rgb(${expected.join(", ")})`);
 });
 
 test("workbench controls and report page have accessible labels and no axe violations", { annotation }, async ({ page }, info) => {
