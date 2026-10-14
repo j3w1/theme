@@ -32,6 +32,7 @@ test("component sections, exports, contents entries and the search index agree",
     const cov = coverage.components[id];
     assert.ok(section.includes(`data-family="${cov.family}"`), `${id} family`);
     const detail = await readText(`dist/components/${id}/index.html`);
+    for (const match of detail.matchAll(/data-token="([^"]+)"/g)) assert.ok(tokenPaths.has(match[1]), `${id}: token ${match[1]}`);
     if (cov.demonstrated) {
       assert.equal((detail.match(/class="matrix"/g) ?? []).length, 1, `${id}: one full matrix`);
       assert.ok(detail.includes(`id="${anchorFor.states(id)}"`), `${id} detail state matrix`);
@@ -75,14 +76,15 @@ test("reviewed Obsidian installers are served byte-identically but are not nativ
   assert.deepEqual(port.files.map(file => file.path), ["dist/manifest.json", "dist/theme.css"]);
 });
 
-test("ids are unique, every contents link has a target, and nothing normative hides inside details", () => {
+test("ids are unique, every contents link has a target, and nothing normative hides inside details", async () => {
   const ids = [...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]);
   const dup = ids.filter((id, i) => ids.indexOf(id) !== i);
   assert.deepEqual([...new Set(dup)], []);
   const idSet = new Set(ids);
   const toc = html.match(/<nav class="toc"[\s\S]*?<\/nav>/)[0];
   for (const m of toc.matchAll(/href="#([^"]+)"/g)) assert.ok(idSet.has(m[1]), `contents link #${m[1]}`);
-  for (const block of html.matchAll(/<details[\s\S]*?<\/details>/g)) {
+  const normativePages = [html, ...await Promise.all((await listFiles("dist/components", { filter: (file) => file.endsWith(".html") })).map(readText))];
+  for (const page of normativePages) for (const block of page.matchAll(/<details[\s\S]*?<\/details>/g)) {
     const inner = block[0];
     if (inner.includes('class="toc"') || inner.includes("<summary>Contents")) continue;
     assert.doesNotMatch(inner, /<h3|class="token-table"|class="matrix"|class="component"/, "normative content inside <details>");

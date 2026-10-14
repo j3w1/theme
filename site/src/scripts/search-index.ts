@@ -7,7 +7,8 @@ import ports from "../../../exports/port-capabilities.json";
 
 export async function searchIndex() {
   const entries: Record<string, unknown>[] = [];
-  const add = (kind: string, id: string, title: string, path: string, text: string, family: string | null = null, anchor = "", value?: string) => entries.push({ kind, id, title, label: title, category: kind.toUpperCase(), href: withBase(path), text: text.toLowerCase(), family, anchor, ...(value ? { value } : {}) });
+  const categories: Record<string, string> = { component: "COMP", doc: "SPEC" };
+  const add = (kind: string, id: string, title: string, path: string, text: string, family: string | null = null, anchor = "", value?: string) => entries.push({ kind, id, title, label: title, category: categories[kind] ?? kind.toUpperCase(), href: withBase(path), text: text.toLowerCase(), family, anchor, ...(value ? { value } : {}) });
   for (const c of (await getCollection("components")).sort((a, b) => a.id.localeCompare(b.id, "en"))) add("component", c.data.id, `${c.data.name} / ${c.data.id}`, `components/${c.data.id}/`, [c.data.name, c.data.summary, ...c.data.keywords, ...c.data.states].join(" "), c.data.family, anchorFor.component(c.data.id));
   const docs = (await getCollection("docs")).sort((a, b) => a.data.order - b.data.order);
   for (const d of docs) add("doc", d.data.id, d.data.title, `reference/${d.data.id === "decisions" ? "decisions/" : ""}#${anchorFor.doc(d.data.id)}`, `${d.data.title} ${d.data.summary}`, null, anchorFor.doc(d.data.id));
