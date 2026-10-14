@@ -24,17 +24,27 @@ const colors = Object.entries(data.tokens.default).filter(([, token]: any) => to
     <a class="link link-standalone" href={withBase(`exports/components/${c.id}.json`)}>Machine contract</a>
     <a class="link link-standalone" href={newIssueUrl(`${c.id}: describe the issue`)}>Report an issue without JavaScript</a>
   </div>
-  <div class="workbench-fallback"><h2>Canonical specimen</h2><div data-density="compact" data-profile="default" set:html={renderSpecimenMarkup(fragments.default, `workbench-static-${c.id}`)} /><p>JavaScript adds the controls below; the complete specification and this specimen remain available without it.</p></div>
+  <div class="workbench-fallback">
+    <h2>Canonical specimen</h2>
+    <div data-density="compact" data-profile="default" set:html={renderSpecimenMarkup(fragments.default, `workbench-static-${c.id}`)} />
+    <p>JavaScript adds the controls below; the complete specification and this specimen remain available without it.</p>
+  </div>
   <form class="site-filters js-only" data-workbench-controls>
     <SelectField id={key("variant")} label="Variant" name="variant">{c.variants.map((v: any) => <option value={v.id}>{v.name}</option>)}</SelectField>
     <SelectField id={key("state")} label="Initial state" name="state">{c.states.map((state: string) => <option value={state}>{state}</option>)}</SelectField>
     <SelectField id={key("density")} label="Density" name="density">{c.sizes.map((size: string) => <option value={size}>{size}</option>)}</SelectField>
     <SelectField id={key("profile")} label="Profile" name="profile">{data.profiles.map((profile: any) => <option value={profile.id}>{profile.id} — {profile.status}</option>)}</SelectField>
     <SelectField id={key("direction")} label="Direction" name="direction"><option value="ltr">Left to right</option><option value="rtl">Right to left</option></SelectField>
-    <SelectField id={key("fixture")} label="Text fixture" name="fixture"><option value="canonical">Canonical</option><option value="en">English</option><option value="es">Spanish</option><option value="zh">Chinese</option><option value="ar">Arabic</option><option value="long">Long label</option></SelectField>
+    <SelectField id={key("fixture")} label="Text fixture" name="fixture">
+      <option value="canonical">Canonical</option><option value="en">English</option><option value="es">Spanish</option>
+      <option value="zh">Chinese</option><option value="ar">Arabic</option><option value="long">Long label</option>
+    </SelectField>
     <TextField id={key("label")} label={data.bindings.labelName} name="label" maxlength="256" placeholder="Canonical fixture text" autocomplete="off" />
     {data.bindings.help && <TextField id={key("help")} label="Help / description" name="help" maxlength="512" placeholder="Canonical fixture text" autocomplete="off" />}
-    <SelectField id={key("preset")} label="Viewport preset" data-width-preset><option value="320">320 px</option><option value="360">360 px</option><option value="640" selected>640 px</option><option value="1280">Wide — 1280 px</option><option value="custom">Custom</option></SelectField>
+    <SelectField id={key("preset")} label="Viewport preset" data-width-preset>
+      <option value="320">320 px</option><option value="360">360 px</option><option value="640" selected>640 px</option>
+      <option value="1280">Wide — 1280 px</option><option value="custom">Custom</option>
+    </SelectField>
     <TextField id={key("width")} label="Viewport width (CSS px)" name="width" type="number" min="320" max="1280" step="1" value="640" required />
     <SelectField id={key("motion")} label="Motion preference" name="motion"><option value="system">System preference</option><option value="reduced">Reduced motion</option></SelectField>
     <SelectField id={key("part")} label="Inspect anatomy part" name="part"><option value="">No overlay</option>{c.anatomy.map((item: any) => <option value={item.part}>{item.part}</option>)}</SelectField>
@@ -62,7 +72,12 @@ const colors = Object.entries(data.tokens.default).filter(([, token]: any) => to
     </div>
     <h2>Anatomy and measurements</h2>
     <p data-part-description>Select a documented part. The overlay does not capture input or change layout.</p>
-    <div class="table-scroll" tabindex="0" role="region" aria-label="Anatomy measurements"><table class="table"><thead><tr><th class="table-header" scope="col">Metric / mapping</th><th class="table-header" scope="col">Declared role</th><th class="table-header" scope="col">Resolved value</th><th class="table-header" scope="col">Measured value / result</th></tr></thead><tbody class="table-body" data-measurements></tbody></table></div>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Anatomy measurements">
+      <table class="table">
+        <thead><tr><th class="table-header" scope="col">Metric / mapping</th><th class="table-header" scope="col">Declared role</th><th class="table-header" scope="col">Resolved value</th><th class="table-header" scope="col">Measured value / result</th></tr></thead>
+        <tbody class="table-body" data-measurements></tbody>
+      </table>
+    </div>
     <h2>Contrast lab</h2>
     <p>Uses the specification’s contrast engine. Choose a context explicitly; a ratio does not establish semantic suitability or overall accessibility. Large text means at least 18.66px bold or 24px regular. Alpha requires the selected opaque underlay.</p>
     <form class="site-filters" data-contrast-controls>
@@ -94,6 +109,15 @@ const colors = Object.entries(data.tokens.default).filter(([, token]: any) => to
     </div>
     <IssueDraft id={c.id} />
   </div>
-  {data.bindings.motion && <div class="motion-static"><h2>Static motion endpoints</h2><p>Default and documented hover backgrounds, available without JavaScript. Property: {data.motion.property}; duration: {data.tokens.default[data.motion.role].css} from {data.motion.role}; easing: {data.motion.easing}. Reduced motion uses instant endpoints.</p><div class="motion-specimens">{["default", "hover"].map((state) => <div class="table-scroll" tabindex="0" role="region" aria-label={`${state} motion endpoint`}><h3>{state}</h3><div aria-hidden="true" set:html={`<div ${stateAttributes(state)}>${renderSpecimenMarkup(fragments.default, `motion-${c.id}-${state}`, { state, inert: true })}</div>`} /></div>)}</div></div>}
+  {data.bindings.motion && <div class="motion-static">
+    <h2>Static motion endpoints</h2>
+    <p>Default and documented hover backgrounds, available without JavaScript. Property: {data.motion.property}; duration: {data.tokens.default[data.motion.role].css} from {data.motion.role}; easing: {data.motion.easing}. Reduced motion uses instant endpoints.</p>
+    <div class="motion-specimens">
+      {["default", "hover"].map((state) => <div class="table-scroll" tabindex="0" role="region" aria-label={`${state} motion endpoint`}>
+        <h3>{state}</h3>
+        <div aria-hidden="true" set:html={`<div ${stateAttributes(state)}>${renderSpecimenMarkup(fragments.default, `motion-${c.id}-${state}`, { state, inert: true })}</div>`} />
+      </div>)}
+    </div>
+  </div>}
 </section>
 <script>import "../scripts/workbench";</script>
