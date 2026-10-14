@@ -132,8 +132,9 @@ button:is(.button-group-control, .command-palette-control, .compact-dashboard-co
   cursor: not-allowed;
 }
 
+/* .button declares its own transition in button.css, where the workbench's
+   motion inspector reads it. */
 @media (prefers-reduced-motion: no-preference) {
-  .button,
   .dialog-button,
   .empty-state-action,
   .file-input-button,

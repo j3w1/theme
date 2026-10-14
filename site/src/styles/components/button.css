@@ -68,6 +68,12 @@
   cursor: not-allowed;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .button {
+    transition: background-color var(--motion-duration-fast);
+  }
+}
+
 @media (forced-colors: active) {
   [data-state-focus-visible] .button {
     outline-color: Highlight;
