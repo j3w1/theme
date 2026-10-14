@@ -95,7 +95,7 @@ SOFTWARE.
   --space-8: 8px;
   --z-dialog: 30;
 }
-.j3w1-recipe[data-density="compact"] {
+.j3w1-recipe, .j3w1-recipe[data-density="compact"] {
   --density-control-height: var(--density-compact-control-height);
   --density-control-padding-x: var(--density-compact-control-padding-x);
 }

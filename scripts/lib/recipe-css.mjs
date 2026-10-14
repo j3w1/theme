@@ -80,6 +80,6 @@ export const recipeTokenCss = (styles, resolved, profile) => {
   const eligibility = Object.fromEntries([...roles].sort().map((p) => [p, eligibilityOf(profile, resolved.get(p), resolved)]));
   for (const [role, policy] of Object.entries(eligibility)) if (!["use", "use-and-report"].includes(policy.action)) throw new Error(`Recipe role ${role}: ${policy.action}: ${policy.reason}`);
   const lines = [`${RECIPE_SCOPE} {`, ...[...paths].sort().map((p) => `  ${cssVar(p)}: ${toCss(resolved.get(p).type, resolved.get(p).resolved)};`), "}"];
-  for (const mode of ["compact", "comfortable"]) lines.push(`${RECIPE_SCOPE}[data-density="${mode}"] {`, ...density.filter((d) => d.mode === mode).map((d) => `  ${d.variable}: var(${cssVar(d.path)});`), "}");
+  for (const mode of ["compact", "comfortable"]) lines.push(mode === "compact" ? `${RECIPE_SCOPE}, ${RECIPE_SCOPE}[data-density="compact"] {` : `${RECIPE_SCOPE}[data-density="${mode}"] {`, ...density.filter((d) => d.mode === mode).map((d) => `  ${d.variable}: var(${cssVar(d.path)});`), "}");
   return { css: `${lines.join("\n")}\n`, paths: [...paths].sort(), roles: [...roles].sort(), eligibility };
 };
