@@ -166,3 +166,20 @@ test('themed task choices move the card and retain keyboard focus', {annotation}
   await expect(page.getByRole('option',{name:'Review',exact:true})).toHaveAttribute('aria-selected','true');
   await page.keyboard.press('Escape');audit.assertClean();
 });
+
+test("a copy button returns to its own label after quick repeated copies (R-g)", { annotation }, async ({ page }, info) => {
+  test.skip(info.project.name !== "desktop", "Clipboard permissions are granted in one configuration.");
+  await page.context().grantPermissions(["clipboard-read", "clipboard-write"]);
+  await page.clock.install();
+  await openSpec(page, "components/button/");
+  const copy = page.locator("main [data-copy]").first();
+  await expect(copy).toHaveText("Copy markup");
+  await copy.click();
+  await expect(copy).toHaveText("copied");
+  await page.clock.runFor(500);
+  await copy.click();
+  await expect(copy).toHaveText("copied");
+  /* Both resets have run; the second click must not have saved "copied" as the label. */
+  await page.clock.runFor(3000);
+  await expect(copy).toHaveText("Copy markup");
+});
