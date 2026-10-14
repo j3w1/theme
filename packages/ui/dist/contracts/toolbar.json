@@ -143,9 +143,7 @@
       "density.compact.icon",
       "density.compact.row-height",
       "focus.offset",
-      "focus.offset-container",
       "focus.ring",
-      "focus.ring-container",
       "font.family.mono",
       "font.line-height.ui-md",
       "font.line-height.ui-sm",
@@ -175,7 +173,6 @@
       "color.interaction.disabled.bg",
       "color.interaction.drop-target",
       "color.interaction.focus.ring",
-      "color.interaction.focus.ring-container",
       "color.interaction.hover.bg",
       "color.interaction.hover.bg-strong",
       "color.interaction.pressed.bg",
@@ -221,9 +218,7 @@
       "density.compact.icon",
       "density.compact.row-height",
       "focus.offset",
-      "focus.offset-container",
       "focus.ring",
-      "focus.ring-container",
       "font.family.mono",
       "font.line-height.ui-md",
       "font.line-height.ui-sm",
@@ -437,17 +432,7 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
-      "focus.offset-container": {
-        "action": "use",
-        "reason": "Use within the role's documented scope and restrictions.",
-        "decisionIds": []
-      },
       "focus.ring": {
-        "action": "use",
-        "reason": "Use within the role's documented scope and restrictions.",
-        "decisionIds": []
-      },
-      "focus.ring-container": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -533,6 +518,6 @@
   "copy": {
     "directory": "copy/toolbar/",
     "manifest": "copy/toolbar/manifest.json",
-    "digest": "sha256-0ZrQCR5s5pCdbJjnFhOwh6/SaIfnbGzzDw5zA1ST5u0="
+    "digest": "sha256-fvYtHYd1COEZj/FavW9Fo5PcEOIaI9yRebWxrwhsUag="
   }
 }

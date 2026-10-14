@@ -7,7 +7,7 @@
       "id": "button",
       "variant": "default",
       "manifest": "exports/recipes/button/manifest.json",
-      "sourceDigest": "sha256-jqI8zaZ81RGcctD+DChg5sslYOz31mbBMLbNs8+i38w=",
+      "sourceDigest": "sha256-hHAoV0QZcQwJR2ighaIsdfyAxapkx01BN5MlAn9nVjM=",
       "limitations": [
         "Native button activation only; application actions are supplied by the host.",
         "aria-busy supplies the loading appearance; the host must suppress repeated activation while busy."

@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — diagnostics
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-/JUAL10Kqyw1s0kkaIWTd+qO1Dg/8bLQDSr5dPck2Qg=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-qWZiHqlpXwq3jlfIKiKdPuFMa+byn4MrZJAB29nnE1k=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/diagnostics.json
 spec: spec/components/diagnostics.md  site: https://j3w1.github.io/theme/reference/#c-diagnostics
 maturity: stable  priority: R1
@@ -35,7 +35,7 @@ Tokens (resolved):
   row.ring           #e53935  ({color.interaction.focus.ring})  use
   row.bg-selected    #531310  ({color.interaction.selection.bg})  use
   row.text-selected  #f4eeee  ({color.interaction.selection.text})  use
-  row.ring-selected  #ffa2a7  ({color.interaction.focus.ring-container})  use
+  row.ring-selected  #e53935  ({color.interaction.focus.ring})  use
   header.text        #ffa2a7  ({color.text.bright})  use
   status.text        #f73f35  ({color.status.danger.text})  use
   empty.text         #bd787d  ({color.text.muted})  use
@@ -47,7 +47,7 @@ States: default, hover, focus-visible, selected, selected+focus-visible, error, 
   hover: panel row → {color.interaction.hover.bg}; inline ranges unchanged (the hover tooltip is a host surface) [cursor: default on rows]
   focus-visible: active row: 1px dashed {color.interaction.focus.ring} at −2px; inline box: 2px {color.interaction.focus.ring-container} at −3px [the ring]
   selected: row filled {color.interaction.selection.bg}, text and glyph {color.interaction.selection.text}; the matching inline range filled {color.code.selection-bg} under its underline [`aria-selected`; the glyph stays; the fill spans the row]
-  selected+focus-visible: the selection fill and a 1px dashed {color.interaction.focus.ring-container} ring [both at once]
+  selected+focus-visible: the selection fill and 1px dashed {color.interaction.focus.ring} at −2px [both at once]
   error: provider failed: a `role=status` line with `✕` in {color.status.danger.text} above the stale rows; the stripe shows the same `✕` at its top [glyph; live announcement]
   empty: rows, stripe marks and inline decorations removed; `✓ No problems` in {color.text.muted}, glyph in {color.status.success.text} [glyph; the absence of decoration]
 

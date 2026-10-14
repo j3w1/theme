@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — sidebar-nav
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-/JUAL10Kqyw1s0kkaIWTd+qO1Dg/8bLQDSr5dPck2Qg=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-qWZiHqlpXwq3jlfIKiKdPuFMa+byn4MrZJAB29nnE1k=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/sidebar-nav.json
 spec: spec/components/sidebar-nav.md  site: https://j3w1.github.io/theme/reference/#c-sidebar-nav
 maturity: stable  priority: R1
@@ -19,7 +19,7 @@ Tokens (resolved):
   current.text             #ffa2a7  ({color.text.bright})  use
   selected.bg              #531310  ({color.interaction.selection.bg})  use
   selected.text            #f4eeee  ({color.interaction.selection.text})  use
-  selected.ring            #ffa2a7  ({color.interaction.focus.ring-container})  use
+  selected.ring            #e53935  ({color.interaction.focus.ring})  use
   selected.inactive-bg     #420f0c  ({color.interaction.selection.inactive-bg})  use
   selected.inactive-text   #e99499  ({color.interaction.selection.inactive-text})  use
   icon.stroke              #e99499  ({color.icon.default})  use
@@ -30,7 +30,7 @@ States: default, hover, focus-visible, current, selected, selected+container-ina
   hover: → {color.interaction.hover.bg} [cursor: pointer]
   focus-visible: 1px dashed {color.interaction.focus.ring} at −2px [the ring]
   current: 2px {color.border.selected-indicator} inline-start bar; text {color.text.bright} [`aria-current="page"`; the bar]
-  selected: {color.interaction.selection.bg} with {color.interaction.selection.text}; ring {color.interaction.focus.ring-container} when focused [`aria-selected` on a listbox-style rail; the on-fill text]
+  selected: {color.interaction.selection.bg} with {color.interaction.selection.text}; 1px dashed {color.interaction.focus.ring} at −2px when focused [`aria-selected` on a listbox-style rail; the on-fill text]
   selected+container-inactive: {color.interaction.selection.inactive-bg} with {color.interaction.selection.inactive-text}; no ring [lightness drop between the two fills]
   expanded: chevron rotated 90°; sublist shown [`aria-expanded="true"`; the children are present]
   collapsed: labels visually hidden; icons centred; current bar and fills unchanged [labels remain for assistive technology and as tooltips]

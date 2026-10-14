@@ -180,7 +180,7 @@ j3w1-combobox .combobox-option:hover {
 j3w1-combobox .combobox-option[aria-selected="true"] {
   background: var(--color-interaction-selection-bg);
   color: var(--color-interaction-selection-text);
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring);
   outline-offset: var(--focus-offset);
 }
 

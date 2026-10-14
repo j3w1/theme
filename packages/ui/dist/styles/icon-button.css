@@ -73,7 +73,7 @@ j3w1-icon-button .icon-button[aria-pressed="true"] .icon-button-icon {
   fill: currentColor;
 }
 j3w1-icon-button .icon-button[aria-pressed="true"]:focus-visible {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring);
   outline-offset: var(--focus-offset);
 }
 j3w1-icon-button .icon-button:disabled {

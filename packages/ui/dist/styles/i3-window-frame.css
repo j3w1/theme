@@ -98,7 +98,7 @@ j3w1-i3-window-frame .i3-window-frame-workspace:focus-visible {
 }
 
 j3w1-i3-window-frame .i3-window-frame-workspace[aria-selected="true"]:focus-visible {
-  outline-color: var(--color-interaction-focus-ring-container);
+  outline-color: var(--color-interaction-focus-ring);
 }
 
 j3w1-i3-window-frame .i3-window-frame-workspace:focus:not(:focus-visible) {

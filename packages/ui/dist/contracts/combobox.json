@@ -135,7 +135,7 @@
     "option.text-hover": "color.text.link-hover",
     "option.bg-selected": "color.interaction.selection.bg",
     "option.text-selected": "color.interaction.selection.text",
-    "option.ring-selected": "color.interaction.focus.ring-container",
+    "option.ring-selected": "color.interaction.focus.ring",
     "group.text": "color.text.subtle",
     "group.border": "color.border.divider",
     "empty.text": "color.text.muted",
@@ -548,6 +548,6 @@
   "copy": {
     "directory": "copy/combobox/",
     "manifest": "copy/combobox/manifest.json",
-    "digest": "sha256-gUtBVcVffmzbmdy7fjYuyo3jC4jF6IA0Rox2jmBGY8A="
+    "digest": "sha256-GTacDO1sEuZ7w5WJ08WkaWKjRm36EQJ2SMRHwKQHAWo="
   }
 }

@@ -244,7 +244,7 @@ j3w1-diagnostics .diagnostics-row[aria-selected="true"] .diagnostics-rule {
   color: var(--color-interaction-selection-text);
 }
 j3w1-diagnostics .diagnostics-list:focus-visible .diagnostics-row[aria-selected="true"] {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring);
   outline-offset: var(--focus-offset);
 }
 

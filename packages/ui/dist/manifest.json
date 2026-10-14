@@ -629,7 +629,7 @@
         "root.bg-toggled": "color.interaction.selection.bg",
         "root.text-toggled": "color.interaction.selection.text",
         "root.border-toggled": "color.border.selected-indicator",
-        "root.ring-toggled": "color.interaction.focus.ring-container",
+        "root.ring-toggled": "color.interaction.focus.ring",
         "root.text-disabled": "color.text.disabled",
         "root.bg-disabled": "color.interaction.disabled.bg",
         "root.border-disabled": "color.border.disabled",
@@ -653,7 +653,6 @@
           "color.border.selected-indicator",
           "color.interaction.disabled.bg",
           "color.interaction.drop-target",
-          "color.interaction.focus.ring-container",
           "color.interaction.pressed.bg",
           "color.interaction.selection.bg",
           "color.interaction.selection.text",
@@ -689,7 +688,6 @@
           "color.interaction.disabled.bg",
           "color.interaction.drop-target",
           "color.interaction.focus.ring",
-          "color.interaction.focus.ring-container",
           "color.interaction.pressed.bg",
           "color.interaction.selection.bg",
           "color.interaction.selection.text",
@@ -707,7 +705,6 @@
           "color.primitive.red.800",
           "color.primitive.rose.300",
           "color.primitive.rose.700",
-          "color.primitive.rose.800",
           "color.surface.canvas",
           "color.text.default",
           "color.text.disabled",
@@ -773,11 +770,6 @@
             "decisionIds": []
           },
           "color.interaction.drop-target": {
-            "action": "use",
-            "reason": "Use within the role's documented scope and restrictions.",
-            "decisionIds": []
-          },
-          "color.interaction.focus.ring-container": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
@@ -904,12 +896,12 @@
           "runtime/components/icon-button.js": "sha256-vf1OEF/kOZCVO/ZtfRZNwQ9lE6RvDSCB/Ra1MK1iFVI=",
           "runtime/chunks/native-BjBt1sUh.js": "sha256-UbG+1dCvUgpK1/vnx2xDtwwcG1dueRiV1iBEEt9oP7s=",
           "tokens.css": "sha256-7A9Xv87HbmuVumnQtzllDxHGc2CPnurdpWWuBpEStJg=",
-          "component.css": "sha256-GTwkRAM0TaHGqYRLUOxZGeIx+YXuPDSlwqJfk5kkLtg=",
+          "component.css": "sha256-il6XyTxz1/FNWyp/lAP2zeoQKrY/yezCXO7+BWH4SLU=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-Zd5z+/mavK2J24Rl+RQLGhMT+nTLwoOf3bAJevwrz7s=",
           "index.html": "sha256-KThGCU4j/urAhf3dBSdh3EZIfGyU5sUJD2tDkaUj7pU=",
           "README.md": "sha256-kfL9rqvRiTy+cXrhgmDnHSmrAvPR1uA5rKGMQPP1UIM=",
-          "manifest.json": "sha256-Uj7YzvJWoBwj6HBdMgBjsSKgJVBZ3SjOnF5+yRTuX3A="
+          "manifest.json": "sha256-PtLPNMTcOcV3bfqclq1ktR8kldC1sdwlqBmiOf0F3a4="
         }
       }
     },
@@ -1349,9 +1341,9 @@
         "dependency.role-color-text-disabled": "color.text.disabled",
         "dependency.role-density-comfortable-control-height": "density.comfortable.control-height",
         "dependency.role-density-compact-control-height": "density.compact.control-height",
+        "dependency.role-focus-offset": "focus.offset",
         "dependency.role-radius-none": "radius.none",
         "dependency.role-space-12": "space.12",
-        "dependency.role-space-2": "space.2",
         "dependency.role-space-4": "space.4",
         "dependency.role-space-8": "space.8"
       },
@@ -1894,7 +1886,6 @@
         "dependency.role-radius-none": "radius.none",
         "dependency.role-space-12": "space.12",
         "dependency.role-space-16": "space.16",
-        "dependency.role-space-2": "space.2",
         "dependency.role-space-24": "space.24",
         "dependency.role-space-4": "space.4",
         "dependency.role-space-8": "space.8"
@@ -5842,6 +5833,7 @@
         "dependency.role-color-text-disabled": "color.text.disabled",
         "dependency.role-density-comfortable-control-height": "density.comfortable.control-height",
         "dependency.role-density-compact-control-height": "density.compact.control-height",
+        "dependency.role-focus-offset": "focus.offset",
         "dependency.role-radius-none": "radius.none",
         "dependency.role-space-12": "space.12",
         "dependency.role-space-2": "space.2",
@@ -7916,7 +7908,7 @@
         "option.text-hover": "color.text.link-hover",
         "option.bg-selected": "color.interaction.selection.bg",
         "option.text-selected": "color.interaction.selection.text",
-        "option.ring-selected": "color.interaction.focus.ring-container",
+        "option.ring-selected": "color.interaction.focus.ring",
         "group.text": "color.text.subtle",
         "group.border": "color.border.divider",
         "empty.text": "color.text.muted",
@@ -8335,12 +8327,12 @@
           "runtime/components/combobox.js": "sha256-7kydwJcVW8U2c0ssJPwbR84tdqvYPN/lFqBuOGeDQpU=",
           "runtime/chunks/navigation-BfNzDYZB.js": "sha256-OhGJWNOz3aZxPAacBgEhAFmBLRt/BGPr7INBjumqyQo=",
           "tokens.css": "sha256-7A9Xv87HbmuVumnQtzllDxHGc2CPnurdpWWuBpEStJg=",
-          "component.css": "sha256-6sLXEgC3OIG+sBsN+AHFQQiF8PQR/ctjymX+Flem8Qg=",
+          "component.css": "sha256-7Br4xmCcyfgXyjiq25+JY7SY8r5G/VLEzsNt6HBlB7k=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-/SDEtn3D/9kfnULtpHPFEgK1FAkmwe+77gdxlWNewhY=",
           "index.html": "sha256-p9Z0Z0qJkFi41Gxp+ZcP2av6zsHe4VtOAtgfxnDq5YE=",
           "README.md": "sha256-d6hom7buY1pZpNug4Bx9SqSXvSLDY+cq2xwlZ2Fei/U=",
-          "manifest.json": "sha256-gUtBVcVffmzbmdy7fjYuyo3jC4jF6IA0Rox2jmBGY8A="
+          "manifest.json": "sha256-GTacDO1sEuZ7w5WJ08WkaWKjRm36EQJ2SMRHwKQHAWo="
         }
       }
     },
@@ -9745,6 +9737,7 @@
         "hover",
         "focus-visible",
         "invalid",
+        "invalid+focus-visible",
         "disabled"
       ],
       "dependencies": [],
@@ -9754,6 +9747,7 @@
         "root.bg-hover": "color.interaction.hover.bg",
         "root.border-focus": "color.border.active",
         "root.ring": "color.interaction.focus.ring",
+        "root.ring-invalid": "color.interaction.focus.ring-container",
         "root.border-invalid": "color.status.danger.border",
         "root.border-disabled": "color.border.disabled",
         "root.bg-disabled": "color.interaction.disabled.bg",
@@ -10946,9 +10940,9 @@
         "dependency.role-color-text-disabled": "color.text.disabled",
         "dependency.role-density-comfortable-control-height": "density.comfortable.control-height",
         "dependency.role-density-compact-control-height": "density.compact.control-height",
+        "dependency.role-focus-offset": "focus.offset",
         "dependency.role-radius-none": "radius.none",
         "dependency.role-space-12": "space.12",
-        "dependency.role-space-2": "space.2",
         "dependency.role-space-24": "space.24",
         "dependency.role-space-8": "space.8"
       },
@@ -12932,20 +12926,20 @@
       "copy": {
         "directory": "copy/form-builder/",
         "files": {
-          "runtime/register/form-builder.js": "sha256-8e6ImYlCerWT8qxtjtoX2TzQNv+2cQQOr3vS5IyPSV8=",
+          "runtime/register/form-builder.js": "sha256-HvPtd/AhaBdG38++FDEvabWBK71yqhq9opfn+CYeRj4=",
           "runtime/chunks/element-Dovcr9Ky.js": "sha256-7tXEQrcJPBXSDlmCqor6zZVtsFMvL54mFXd6XSTVzQA=",
           "runtime/chunks/choice-B7mo5Eq3.js": "sha256-hACG+H+nHbUf/wRpyOCQ5RYMwxhd/Fiv+PtEWm0+Bkc=",
-          "runtime/chunks/form-builder-BIuY34V0.js": "sha256-L16G/CwwyHubIUj+r8dO9hSmAgLsovtyes4MPMd9X+Q=",
-          "runtime/chunks/form-builder-DC0FAN8u.js": "sha256-LbCKOvUYahzLPW9B2xSIwHTPgurlGAXoJhoq0wUpRTE=",
+          "runtime/chunks/form-builder-CmwIFmDn.js": "sha256-I2aakUpG4f0dJSmVA0Q6AAAHmHJHb+jsnl7Zd8enKA0=",
+          "runtime/chunks/form-builder-02qPxb7g.js": "sha256-Whb4xvnJgIEF+D5WbP80LPaowq8H87juv7f3s2VUccs=",
           "runtime/chunks/form-workflow-BKRLylvq.js": "sha256-LcDxqsGpnid91QErVgWLIaXtB5KQS8Uad6Q2shJ1Ohc=",
           "runtime/chunks/markup-DeQ4bEMR.js": "sha256-Eyyx7MKBoqXK4i2HaVUQhKUM066L2wIggABt6jAdgas=",
           "tokens.css": "sha256-7A9Xv87HbmuVumnQtzllDxHGc2CPnurdpWWuBpEStJg=",
-          "component.css": "sha256-c/bdyOvOMAB2baY5Lj7BWwU8vFXTxIgMud+/XP3ebk8=",
+          "component.css": "sha256-MnUc6KN0qw+qINoU13CL+UM9TxKE9DfaVaeUs/Fy57E=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-WUjDiy4tZKp/CS/g5I/hIUQY0Mci0zrItPW5k4K7As4=",
           "index.html": "sha256-640gpCzARRbVwXUct1TM0s5GcegFiYevcWBsg7VSOqI=",
           "README.md": "sha256-MGlPh4CEW6DLecBSj7Ym9ww3NAGe8r5V9uANRpZLY48=",
-          "manifest.json": "sha256-tGUJOkXCRAInDYjVuUq9cOrjL4+SEdadQhBNKcqsvnA="
+          "manifest.json": "sha256-YhbOEOBJEzNi+AU3huEw/DQcXXoo7l6JIXUUl1BIhSg="
         }
       }
     },
@@ -13450,7 +13444,7 @@
         "link.text": "color.text.link",
         "link.underline": "color.text.link-underline",
         "link.text-hover": "color.text.link-hover",
-        "link.bg-hover": "color.interaction.hover.bg-strong",
+        "link.bg-hover": "color.interaction.hover.bg",
         "link.ring": "color.interaction.focus.ring",
         "current.text": "color.text.bright",
         "separator.text": "color.text.muted",
@@ -13469,7 +13463,6 @@
           "border.width.emphasis",
           "color.interaction.drop-target",
           "color.interaction.hover.bg",
-          "color.interaction.hover.bg-strong",
           "color.interaction.selection.bg",
           "color.interaction.selection.text",
           "color.interaction.text-selection.bg",
@@ -13503,7 +13496,6 @@
           "color.interaction.drop-target",
           "color.interaction.focus.ring",
           "color.interaction.hover.bg",
-          "color.interaction.hover.bg-strong",
           "color.interaction.selection.bg",
           "color.interaction.selection.text",
           "color.interaction.text-selection.bg",
@@ -13513,7 +13505,6 @@
           "color.primitive.ink.40",
           "color.primitive.paper.90",
           "color.primitive.red.100",
-          "color.primitive.red.150",
           "color.primitive.red.350",
           "color.primitive.red.750",
           "color.primitive.red.800",
@@ -13561,11 +13552,6 @@
             "decisionIds": []
           },
           "color.interaction.hover.bg": {
-            "action": "use",
-            "reason": "Use within the role's documented scope and restrictions.",
-            "decisionIds": []
-          },
-          "color.interaction.hover.bg-strong": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
@@ -13712,12 +13698,12 @@
           "runtime/components/breadcrumbs.js": "sha256-DgJ8uy8nkN1QOm3/zq3cYvs7xmhXCyPkXdhu3CDEE00=",
           "runtime/chunks/navigation-BfNzDYZB.js": "sha256-OhGJWNOz3aZxPAacBgEhAFmBLRt/BGPr7INBjumqyQo=",
           "tokens.css": "sha256-7A9Xv87HbmuVumnQtzllDxHGc2CPnurdpWWuBpEStJg=",
-          "component.css": "sha256-DrfTZWEaASIXPXD3jcpy/MW6xeYpNU4JWbEmdtR/yD8=",
+          "component.css": "sha256-+Zc2EEKW9OfZl8s+wFiHlzjJHlyVTyGwZDbPlyRKx4A=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-W9qk0XtcetNK1me7748lByEMSMUZyP6NT//vet/Kt0I=",
           "index.html": "sha256-Q8aZfYganYA/1sF70oMXKr7Fn/icqzSWVNlbxC7x00U=",
           "README.md": "sha256-KtiYxcVwfGDIDiTnYI/c2MhmVKez7eLztyU55QJQXgs=",
-          "manifest.json": "sha256-rD6d8qZYpY4aZ5AHpGeougPOU/dRm+P5dCCHS/EtfbM="
+          "manifest.json": "sha256-ueISJuY31tOa5XV3BZcJ0JRiWkClTX+lyFKzdCvc+uc="
         }
       }
     },
@@ -13819,7 +13805,7 @@
         "link.text-disabled": "color.text.disabled",
         "current.bg": "color.interaction.selection.bg",
         "current.text": "color.text.on-selection",
-        "current.ring": "color.interaction.focus.ring-container",
+        "current.ring": "color.interaction.focus.ring",
         "gap.text": "color.text.muted",
         "status.text": "color.text.default",
         "status.emphasis": "color.text.bright"
@@ -13834,7 +13820,7 @@
         "roles": [
           "border.width.emphasis",
           "color.interaction.drop-target",
-          "color.interaction.focus.ring-container",
+          "color.interaction.focus.ring",
           "color.interaction.hover.bg",
           "color.interaction.pressed.bg",
           "color.interaction.selection.bg",
@@ -13873,7 +13859,6 @@
           "border.width.emphasis",
           "color.interaction.drop-target",
           "color.interaction.focus.ring",
-          "color.interaction.focus.ring-container",
           "color.interaction.hover.bg",
           "color.interaction.pressed.bg",
           "color.interaction.selection.bg",
@@ -13930,7 +13915,7 @@
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "color.interaction.focus.ring-container": {
+          "color.interaction.focus.ring": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
@@ -14107,12 +14092,12 @@
           "runtime/components/pagination.js": "sha256-B00TORk80D679cwO2BDfd3MFyKRhgzAoaWxrqC1AoYs=",
           "runtime/chunks/tables-Cjr1EIJz.js": "sha256-K6BF6M6xNawgWdL+NIcBRZmY98j45o69tBI034Ks4Bg=",
           "tokens.css": "sha256-7A9Xv87HbmuVumnQtzllDxHGc2CPnurdpWWuBpEStJg=",
-          "component.css": "sha256-9Atz8vx/zoiv4M5a0SuUB4te4zr/ryrphH8pmqXIqsc=",
+          "component.css": "sha256-Y82QrGBuuCOolKEvjfgUe1uRkUY8RAPoLEiVsEUahxg=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-jp4BjPewAxszUnraKXf7iG6Zty7ZB7J8SdFyHQg7hL4=",
           "index.html": "sha256-QfAgrl9jbgESweQA3i2v7JR2ghU8LgF8X0cY9hqDnWY=",
           "README.md": "sha256-CkmYa5gHgFCQLGpkV2WpwdaxjhezkCTRRw8d9KDRUqg=",
-          "manifest.json": "sha256-3G/au93/wXZHi4zG+oLtFj9YCYDe3yx0teB27oEpLYY="
+          "manifest.json": "sha256-zDt5OOHa/vu0wBtxh8xWe8JSXUu8J/5evpDRTFQQBps="
         }
       }
     },
@@ -14225,7 +14210,7 @@
         "current.text": "color.text.bright",
         "selected.bg": "color.interaction.selection.bg",
         "selected.text": "color.interaction.selection.text",
-        "selected.ring": "color.interaction.focus.ring-container",
+        "selected.ring": "color.interaction.focus.ring",
         "selected.inactive-bg": "color.interaction.selection.inactive-bg",
         "selected.inactive-text": "color.interaction.selection.inactive-text",
         "icon.stroke": "color.icon.default",
@@ -14246,7 +14231,7 @@
           "color.icon.decorative",
           "color.icon.default",
           "color.interaction.drop-target",
-          "color.interaction.focus.ring-container",
+          "color.interaction.focus.ring",
           "color.interaction.hover.bg",
           "color.interaction.pressed.bg",
           "color.interaction.selection.bg",
@@ -14289,7 +14274,6 @@
           "color.icon.default",
           "color.interaction.drop-target",
           "color.interaction.focus.ring",
-          "color.interaction.focus.ring-container",
           "color.interaction.hover.bg",
           "color.interaction.pressed.bg",
           "color.interaction.selection.bg",
@@ -14373,7 +14357,7 @@
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "color.interaction.focus.ring-container": {
+          "color.interaction.focus.ring": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
@@ -14550,12 +14534,12 @@
           "runtime/components/sidebar-nav.js": "sha256-DZRlRYGAhBJm3yZ1nqAoW67+PcYUqE3uCTEEnKa9NFQ=",
           "runtime/chunks/navigation-BfNzDYZB.js": "sha256-OhGJWNOz3aZxPAacBgEhAFmBLRt/BGPr7INBjumqyQo=",
           "tokens.css": "sha256-7A9Xv87HbmuVumnQtzllDxHGc2CPnurdpWWuBpEStJg=",
-          "component.css": "sha256-eJvoeFDbD8qj00S2p+MS6jTCTEuXsgN/B9A+tjrNSNk=",
+          "component.css": "sha256-LJ8LLDvQsYO50EORdep12yfyTFwnO4BxbDzOwHYpciA=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-LBoiPSLgtVIozM1wEFWbV78DaFWbIW+6OgOjaCSim8g=",
           "index.html": "sha256-dOEwMnbaj98YMfD6CXUGCi5NU1carEGBEl7w+wp1Aok=",
           "README.md": "sha256-QjtvSq2sHwF8bsMsDu3BpvOyATxZ0oanPWICItjaETU=",
-          "manifest.json": "sha256-HwCN9bOelw1Zhsw15+mmhTPGlOvUnOK1vgYC4WdFMT4="
+          "manifest.json": "sha256-Li6ZjxbsR1RxT5R9/zKwHLZTyxTunFX9jqRIrU0QFb8="
         }
       }
     },
@@ -14704,9 +14688,7 @@
           "density.compact.icon",
           "density.compact.row-height",
           "focus.offset",
-          "focus.offset-container",
           "focus.ring",
-          "focus.ring-container",
           "font.family.mono",
           "font.line-height.ui-md",
           "font.line-height.ui-sm",
@@ -14736,7 +14718,6 @@
           "color.interaction.disabled.bg",
           "color.interaction.drop-target",
           "color.interaction.focus.ring",
-          "color.interaction.focus.ring-container",
           "color.interaction.hover.bg",
           "color.interaction.hover.bg-strong",
           "color.interaction.pressed.bg",
@@ -14782,9 +14763,7 @@
           "density.compact.icon",
           "density.compact.row-height",
           "focus.offset",
-          "focus.offset-container",
           "focus.ring",
-          "focus.ring-container",
           "font.family.mono",
           "font.line-height.ui-md",
           "font.line-height.ui-sm",
@@ -14998,17 +14977,7 @@
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "focus.offset-container": {
-            "action": "use",
-            "reason": "Use within the role's documented scope and restrictions.",
-            "decisionIds": []
-          },
           "focus.ring": {
-            "action": "use",
-            "reason": "Use within the role's documented scope and restrictions.",
-            "decisionIds": []
-          },
-          "focus.ring-container": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
@@ -15102,12 +15071,12 @@
           "runtime/register/menu.js": "sha256-6CvU7Rei9lC+olXvluxdbCPqh46GrPSvB2MGiudiMTk=",
           "runtime/components/menu.js": "sha256-As/aVex/jKXrmY4x/rG0tVMVUij8ZLPXK0kKS4ZBpSQ=",
           "tokens.css": "sha256-7A9Xv87HbmuVumnQtzllDxHGc2CPnurdpWWuBpEStJg=",
-          "component.css": "sha256-RRVdxAZrggaJeMIbJaSQOVR0IGLOywhm2yTRigJuwYM=",
+          "component.css": "sha256-zD6jRNAjuf7XM9+QaxwzEY+F2cFUrQbgUKNLTCc7Q/Y=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-MRU95stqvOm7gd3wzi8XadrYOLU9MRKqdwFO/bmSaPY=",
           "index.html": "sha256-AJ2jXzyPYjQufetc6mGuf1SQv8HGS9+yyaOcQo9pOIQ=",
           "README.md": "sha256-jPzt7MdgG4yEEJJ6qWZk3Cgw9KNNNHEKkwz/nnKK3co=",
-          "manifest.json": "sha256-0ZrQCR5s5pCdbJjnFhOwh6/SaIfnbGzzDw5zA1ST5u0="
+          "manifest.json": "sha256-fvYtHYd1COEZj/FavW9Fo5PcEOIaI9yRebWxrwhsUag="
         }
       }
     },
@@ -15234,7 +15203,7 @@
         "item.text-disabled": "color.text.disabled",
         "active.bg": "color.interaction.selection.bg",
         "active.text": "color.interaction.selection.text",
-        "active.ring": "color.interaction.focus.ring-container",
+        "active.ring": "color.interaction.focus.ring",
         "check.glyph": "color.text.bright",
         "shortcut.text": "color.text.muted",
         "separator.color": "color.border.divider",
@@ -15282,9 +15251,7 @@
           "density.compact.icon",
           "density.compact.row-height",
           "focus.offset",
-          "focus.offset-container",
           "focus.ring",
-          "focus.ring-container",
           "font.family.mono",
           "font.line-height.ui-md",
           "font.line-height.ui-sm",
@@ -15313,7 +15280,6 @@
           "color.interaction.disabled.bg",
           "color.interaction.drop-target",
           "color.interaction.focus.ring",
-          "color.interaction.focus.ring-container",
           "color.interaction.hover.bg",
           "color.interaction.hover.bg-strong",
           "color.interaction.pressed.bg",
@@ -15355,9 +15321,7 @@
           "density.compact.icon",
           "density.compact.row-height",
           "focus.offset",
-          "focus.offset-container",
           "focus.ring",
-          "focus.ring-container",
           "font.family.mono",
           "font.line-height.ui-md",
           "font.line-height.ui-sm",
@@ -15551,17 +15515,7 @@
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "focus.offset-container": {
-            "action": "use",
-            "reason": "Use within the role's documented scope and restrictions.",
-            "decisionIds": []
-          },
           "focus.ring": {
-            "action": "use",
-            "reason": "Use within the role's documented scope and restrictions.",
-            "decisionIds": []
-          },
-          "focus.ring-container": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
@@ -15653,12 +15607,12 @@
           "runtime/components/menu.js": "sha256-As/aVex/jKXrmY4x/rG0tVMVUij8ZLPXK0kKS4ZBpSQ=",
           "runtime/chunks/navigation-BfNzDYZB.js": "sha256-OhGJWNOz3aZxPAacBgEhAFmBLRt/BGPr7INBjumqyQo=",
           "tokens.css": "sha256-7A9Xv87HbmuVumnQtzllDxHGc2CPnurdpWWuBpEStJg=",
-          "component.css": "sha256-PD1eYJN9P01hUply05UK6oPe1rrte5rDHreL1JOnp4M=",
+          "component.css": "sha256-k4+o5GOHUM88StftYskfdyFUCI7mkb7z/Q98q6IVoLs=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-0SXVO1pxUxzA5mgZzG5YXw21f3G/n81DtP3vy14Nv5M=",
           "index.html": "sha256-nXwk+/iADkSMB6qGYcl8yRJh5+nE6XQAdTdECvt4i64=",
           "README.md": "sha256-ICc5PzI3f6/Kpyf9KXWame8aNgGPR8JKtgBhHc9HrsE=",
-          "manifest.json": "sha256-lQ2UpYQlS2kTjfmCl2sE3rtTNQ6BQkB+ZXhfQE8OPfs="
+          "manifest.json": "sha256-9NHbdHafr9UwBLqJLF5ddS041hMKBftk16inMfQXuP4="
         }
       }
     },
@@ -15784,10 +15738,10 @@
         "dependency.role-color-surface-overlay": "color.surface.overlay",
         "dependency.role-density-comfortable-control-height": "density.comfortable.control-height",
         "dependency.role-density-compact-control-height": "density.compact.control-height",
+        "dependency.role-focus-offset": "focus.offset",
         "dependency.role-radius-none": "radius.none",
         "dependency.role-space-12": "space.12",
         "dependency.role-space-16": "space.16",
-        "dependency.role-space-2": "space.2",
         "dependency.role-space-8": "space.8"
       },
       "status": {
@@ -16420,10 +16374,10 @@
         "dependency.role-color-text-disabled": "color.text.disabled",
         "dependency.role-density-comfortable-control-height": "density.comfortable.control-height",
         "dependency.role-density-compact-control-height": "density.compact.control-height",
+        "dependency.role-focus-offset": "focus.offset",
         "dependency.role-radius-none": "radius.none",
         "dependency.role-space-12": "space.12",
         "dependency.role-space-16": "space.16",
-        "dependency.role-space-2": "space.2",
         "dependency.role-space-8": "space.8"
       },
       "status": {
@@ -16751,9 +16705,9 @@
         "dependency.role-color-text-disabled": "color.text.disabled",
         "dependency.role-density-comfortable-control-height": "density.comfortable.control-height",
         "dependency.role-density-compact-control-height": "density.compact.control-height",
+        "dependency.role-focus-offset": "focus.offset",
         "dependency.role-radius-none": "radius.none",
         "dependency.role-space-12": "space.12",
-        "dependency.role-space-2": "space.2",
         "dependency.role-space-8": "space.8"
       },
       "status": {
@@ -17366,7 +17320,7 @@
         "meta.text": "color.text.muted",
         "selected.bg": "color.interaction.selection.bg",
         "selected.text": "color.interaction.selection.text",
-        "selected.ring": "color.interaction.focus.ring-container"
+        "selected.ring": "color.interaction.focus.ring"
       },
       "status": {
         "implemented": true,
@@ -17395,7 +17349,9 @@
           "density.comfortable.gap",
           "density.compact.control-padding-x",
           "density.compact.gap",
+          "focus.offset",
           "focus.offset-container",
+          "focus.ring",
           "focus.ring-container",
           "font.family.mono",
           "font.line-height.h3",
@@ -17417,6 +17373,7 @@
           "color.border.control",
           "color.border.default",
           "color.interaction.drop-target",
+          "color.interaction.focus.ring",
           "color.interaction.focus.ring-container",
           "color.interaction.hover.bg",
           "color.interaction.selection.bg",
@@ -17443,7 +17400,9 @@
           "density.comfortable.gap",
           "density.compact.control-padding-x",
           "density.compact.gap",
+          "focus.offset",
           "focus.offset-container",
+          "focus.ring",
           "focus.ring-container",
           "font.family.mono",
           "font.line-height.h3",
@@ -17557,7 +17516,17 @@
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
+          "focus.offset": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
           "focus.offset-container": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "focus.ring": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
@@ -17644,12 +17613,12 @@
           "runtime/components/card.js": "sha256-CE1Pt81XkHCmaZj7t3LqXTUnuvHd4E3/Od5t2v07ltA=",
           "runtime/chunks/native-BjBt1sUh.js": "sha256-UbG+1dCvUgpK1/vnx2xDtwwcG1dueRiV1iBEEt9oP7s=",
           "tokens.css": "sha256-7A9Xv87HbmuVumnQtzllDxHGc2CPnurdpWWuBpEStJg=",
-          "component.css": "sha256-Q4LGfIFj0Od7LgvqiZ7pyA0zwH1hvNR2G07s6ZumURU=",
+          "component.css": "sha256-FIugfi7dJgtnME2RJdIYZUQl/3O/WVR1fu23onC7U/M=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-Rc0IwITP8X0cKscYMBt4LgzFbntPHkCAdDQ4xLh2LXs=",
           "index.html": "sha256-2B88t8s0Q7ugu+AiqBFD2B4OGRlJDRiO0Sz6gtWNyJ0=",
           "README.md": "sha256-7NvZudM1FuKwW/ZySKs98FmFwxwir6nLM/lGAvvcI+4=",
-          "manifest.json": "sha256-kFEt+UFVTdZopAlMr+2nhT+uUiQPBdZKfeet2c3c89s="
+          "manifest.json": "sha256-3S0KS6wyJ2cEr9p4M5m0cwANysCtMtlatwNGyvFMngc="
         }
       }
     },
@@ -17746,7 +17715,7 @@
         "row.text-disabled": "color.text.disabled",
         "selected.bg": "color.interaction.selection.bg",
         "selected.text": "color.interaction.selection.text",
-        "selected.ring": "color.interaction.focus.ring-container",
+        "selected.ring": "color.interaction.focus.ring",
         "selected.inactive-bg": "color.interaction.selection.inactive-bg",
         "selected.inactive-text": "color.interaction.selection.inactive-text",
         "check.glyph": "color.interaction.selection.text",
@@ -17765,7 +17734,6 @@
           "color.border.control",
           "color.border.divider",
           "color.interaction.drop-target",
-          "color.interaction.focus.ring-container",
           "color.interaction.hover.bg",
           "color.interaction.selection.bg",
           "color.interaction.selection.inactive-bg",
@@ -17807,7 +17775,6 @@
           "color.border.divider",
           "color.interaction.drop-target",
           "color.interaction.focus.ring",
-          "color.interaction.focus.ring-container",
           "color.interaction.hover.bg",
           "color.interaction.selection.bg",
           "color.interaction.selection.inactive-bg",
@@ -17828,7 +17795,6 @@
           "color.primitive.rose.350",
           "color.primitive.rose.600",
           "color.primitive.rose.700",
-          "color.primitive.rose.800",
           "color.surface.canvas",
           "color.surface.default",
           "color.text.default",
@@ -17882,11 +17848,6 @@
             ]
           },
           "color.interaction.drop-target": {
-            "action": "use",
-            "reason": "Use within the role's documented scope and restrictions.",
-            "decisionIds": []
-          },
-          "color.interaction.focus.ring-container": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
@@ -18068,12 +18029,12 @@
           "runtime/components/list.js": "sha256-X5HE772qpMx/n9b3NU6shv9zZWfmY9cjVn/IPAjFFMY=",
           "runtime/chunks/native-BjBt1sUh.js": "sha256-UbG+1dCvUgpK1/vnx2xDtwwcG1dueRiV1iBEEt9oP7s=",
           "tokens.css": "sha256-7A9Xv87HbmuVumnQtzllDxHGc2CPnurdpWWuBpEStJg=",
-          "component.css": "sha256-/xgDFCnBohM/J6pTxfMAZw3qOQaxK4OzGwdqOPFGBjM=",
+          "component.css": "sha256-rYecTkHR0B1N85CpEe58zzTavkIhRIQVzj50yKfdefA=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-tiKX+fFUPCsBJEryliaQ7y9RhU4zlh8aEqMJ0aSO8Lk=",
           "index.html": "sha256-w1eB6AWS6U0cM/ElyxhXOk1yDvmU7RDilyxFWSKCjJg=",
           "README.md": "sha256-lw1NGV62/UGys6imJuVkK5qPyHaJqiOgSEuHCgehwNc=",
-          "manifest.json": "sha256-Mbo91HKapSqTZrboAQ5bVVtdRg5IwM/J2F43NWQLQxg="
+          "manifest.json": "sha256-21rppk20HlB53c9O71xPkVP4mw04fFxgx1lGu5DD0cM="
         }
       }
     },
@@ -18154,9 +18115,9 @@
         "control.focus": "color.interaction.focus.ring",
         "dependency.role-border-width-default": "border.width.default",
         "dependency.role-color-border-divider": "color.border.divider",
+        "dependency.role-focus-offset": "focus.offset",
         "dependency.role-radius-none": "radius.none",
         "dependency.role-space-12": "space.12",
-        "dependency.role-space-2": "space.2",
         "dependency.role-space-4": "space.4",
         "dependency.role-space-8": "space.8"
       },
@@ -18960,7 +18921,7 @@
         "root.bg-disabled": "color.interaction.disabled.bg",
         "selected.bg": "color.interaction.selection.bg",
         "selected.text": "color.interaction.selection.text",
-        "selected.ring": "color.interaction.focus.ring-container",
+        "selected.ring": "color.interaction.focus.ring",
         "remove.text": "color.text.muted",
         "remove.text-hover": "color.text.bright",
         "remove.bg-hover": "color.interaction.hover.bg-strong"
@@ -18979,7 +18940,6 @@
           "color.border.disabled",
           "color.interaction.disabled.bg",
           "color.interaction.drop-target",
-          "color.interaction.focus.ring-container",
           "color.interaction.hover.bg",
           "color.interaction.hover.bg-strong",
           "color.interaction.pressed.bg",
@@ -19015,7 +18975,6 @@
           "color.interaction.disabled.bg",
           "color.interaction.drop-target",
           "color.interaction.focus.ring",
-          "color.interaction.focus.ring-container",
           "color.interaction.hover.bg",
           "color.interaction.hover.bg-strong",
           "color.interaction.pressed.bg",
@@ -19088,11 +19047,6 @@
             "decisionIds": []
           },
           "color.interaction.drop-target": {
-            "action": "use",
-            "reason": "Use within the role's documented scope and restrictions.",
-            "decisionIds": []
-          },
-          "color.interaction.focus.ring-container": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
@@ -19239,12 +19193,12 @@
           "runtime/components/chip.js": "sha256-zqlDj7D8NyN4xQ/pnlXuOTnA8NlRXPBwW6qG+JcjoDY=",
           "runtime/chunks/overlays-Bw8SSDKz.js": "sha256-YrX9CL2A48QwI7COQQ5anYJLPOxpKrIeyz+jtfp+T+I=",
           "tokens.css": "sha256-7A9Xv87HbmuVumnQtzllDxHGc2CPnurdpWWuBpEStJg=",
-          "component.css": "sha256-iFyJIS3Bc10PbSMnjV3SooMb+Jou/ScbuHozySQFT/Y=",
+          "component.css": "sha256-358eNya4c7h47XJC5dFUZncxpjkl0B9HRfRfxwVS8so=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-yjXdYrZ4DqpcZ/ZDGxD0cgfYY/xqj0qeSkX1dJmVhfY=",
           "index.html": "sha256-k4FZCUqK/d9sBff8dKJJwQW99u70Dw3zXRzcH3da314=",
           "README.md": "sha256-Ay+51qOAHcbN22QHsMfcbrA/66D52crp5OlQCHyMYmg=",
-          "manifest.json": "sha256-4XKGF6PJcshtzLIA8vpOak6ThleZKbz6ZQFHgS46UDw="
+          "manifest.json": "sha256-Q8H52ja9lyGWmgJRf4PF5LnCZDnnfHuopw5riaVv39I="
         }
       }
     },
@@ -19336,10 +19290,10 @@
         "control.bg": "color.surface.input",
         "control.focus": "color.interaction.focus.ring",
         "dependency.role-border-width-default": "border.width.default",
+        "dependency.role-focus-offset": "focus.offset",
         "dependency.role-font-weight-bold": "font.weight.bold",
         "dependency.role-radius-none": "radius.none",
         "dependency.role-space-12": "space.12",
-        "dependency.role-space-2": "space.2",
         "dependency.role-space-32": "space.32"
       },
       "status": {
@@ -19663,7 +19617,7 @@
         "row.bg-hover": "color.interaction.hover.bg",
         "selected.bg": "color.interaction.selection.bg",
         "selected.text": "color.interaction.selection.text",
-        "selected.ring": "color.interaction.focus.ring-container",
+        "selected.ring": "color.interaction.focus.ring",
         "selected.inactive-bg": "color.interaction.selection.inactive-bg",
         "selected.inactive-text": "color.interaction.selection.inactive-text",
         "caption.text": "color.text.muted",
@@ -19683,7 +19637,6 @@
           "color.border.divider",
           "color.border.strong",
           "color.interaction.drop-target",
-          "color.interaction.focus.ring-container",
           "color.interaction.hover.bg",
           "color.interaction.selection.bg",
           "color.interaction.selection.inactive-bg",
@@ -19724,7 +19677,6 @@
           "color.border.strong",
           "color.interaction.drop-target",
           "color.interaction.focus.ring",
-          "color.interaction.focus.ring-container",
           "color.interaction.hover.bg",
           "color.interaction.selection.bg",
           "color.interaction.selection.inactive-bg",
@@ -19796,11 +19748,6 @@
             "decisionIds": []
           },
           "color.interaction.drop-target": {
-            "action": "use",
-            "reason": "Use within the role's documented scope and restrictions.",
-            "decisionIds": []
-          },
-          "color.interaction.focus.ring-container": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
@@ -19977,12 +19924,12 @@
           "runtime/components/table.js": "sha256-CcoLzw/lwTUDE+3sCYBoQQoZAlE++zhK1ZLZELpyYN4=",
           "runtime/chunks/tables-Cjr1EIJz.js": "sha256-K6BF6M6xNawgWdL+NIcBRZmY98j45o69tBI034Ks4Bg=",
           "tokens.css": "sha256-7A9Xv87HbmuVumnQtzllDxHGc2CPnurdpWWuBpEStJg=",
-          "component.css": "sha256-DmLBhpnCbgXzDJZCPV+ichaEGUb1Prot4W7zFauwpVs=",
+          "component.css": "sha256-FsyIsB3w0mFPeVNG2Yq+D6/h7aeVKJpEALxaD4j3afY=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-eTlfzsTldT7TjA25qNYpX+MAAskuYiA9Y+zZW9/B+MU=",
           "index.html": "sha256-A21rR2XTwrPTwfZuz8lsPvFXneXhrFjzL0/Xdpfmo6o=",
           "README.md": "sha256-hZvyqPLVQoQuOKc7t2j0cESQRW84E8XfCL/ad6sXIdw=",
-          "manifest.json": "sha256-Ko18Ralq3p4gphn4yqDmuGLMaLS9nvR5LilmdZIbikE="
+          "manifest.json": "sha256-s3K2MnIRnTkfAy1WFKMoL4efHGv8vdQcKCVTR9N5eso="
         }
       }
     },
@@ -20112,7 +20059,7 @@
         "row.ring": "color.interaction.focus.ring",
         "selected.bg": "color.interaction.selection.bg",
         "selected.text": "color.interaction.selection.text",
-        "selected.ring": "color.interaction.focus.ring-container",
+        "selected.ring": "color.interaction.focus.ring",
         "checkbox.bg": "color.surface.input",
         "checkbox.border": "color.border.control",
         "checkbox.checked-bg": "color.action.primary.bg",
@@ -20147,7 +20094,6 @@
           "color.icon.decorative",
           "color.interaction.disabled.bg",
           "color.interaction.drop-target",
-          "color.interaction.focus.ring-container",
           "color.interaction.hover.bg",
           "color.interaction.hover.bg-strong",
           "color.interaction.pressed.bg",
@@ -20173,9 +20119,7 @@
           "density.compact.icon",
           "density.compact.row-height",
           "focus.offset",
-          "focus.offset-container",
           "focus.ring",
-          "focus.ring-container",
           "font.family.mono",
           "font.line-height.ui-md",
           "font.line-height.ui-sm",
@@ -20211,7 +20155,6 @@
           "color.interaction.disabled.bg",
           "color.interaction.drop-target",
           "color.interaction.focus.ring",
-          "color.interaction.focus.ring-container",
           "color.interaction.hover.bg",
           "color.interaction.hover.bg-strong",
           "color.interaction.pressed.bg",
@@ -20256,9 +20199,7 @@
           "density.compact.icon",
           "density.compact.row-height",
           "focus.offset",
-          "focus.offset-container",
           "focus.ring",
-          "focus.ring-container",
           "font.family.mono",
           "font.line-height.ui-md",
           "font.line-height.ui-sm",
@@ -20355,11 +20296,6 @@
             "decisionIds": []
           },
           "color.interaction.drop-target": {
-            "action": "use",
-            "reason": "Use within the role's documented scope and restrictions.",
-            "decisionIds": []
-          },
-          "color.interaction.focus.ring-container": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
@@ -20489,17 +20425,7 @@
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "focus.offset-container": {
-            "action": "use",
-            "reason": "Use within the role's documented scope and restrictions.",
-            "decisionIds": []
-          },
           "focus.ring": {
-            "action": "use",
-            "reason": "Use within the role's documented scope and restrictions.",
-            "decisionIds": []
-          },
-          "focus.ring-container": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
@@ -20604,12 +20530,12 @@
           "runtime/components/data-table.js": "sha256-Du0JOAv8n9YEK04c217gbbmS25D1Yfx4irEe/DIPLk4=",
           "runtime/chunks/tables-Cjr1EIJz.js": "sha256-K6BF6M6xNawgWdL+NIcBRZmY98j45o69tBI034Ks4Bg=",
           "tokens.css": "sha256-7A9Xv87HbmuVumnQtzllDxHGc2CPnurdpWWuBpEStJg=",
-          "component.css": "sha256-2TdCENoixBvgwEjVQgpx8E12ypXxGtI3pdHlLTL7N28=",
+          "component.css": "sha256-T5PnYnMx2i60rNgYfN/tfLrncLf9cAlC4gsLpnSw/b4=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-FieIuPCt66UIxpdAH0wuPBOrPEVXUqjJfyWMyCdO9nI=",
           "index.html": "sha256-mdaJIGJ1LweEct6N9Nr+hCoVjZXODSmyFsSgII8UMzQ=",
           "README.md": "sha256-bS0eRb53j0VgRsRbFv81sqclvoIS7Uv4m/FIBGXMqTw=",
-          "manifest.json": "sha256-tLW6jSE28E0iCpd+Vehv2jUK2hwZhzFTCx/Jv2OWkTM="
+          "manifest.json": "sha256-YC+eobPLgAutDoOERX3GiBuOt+tmkwZRHligHoQd8VA="
         }
       }
     },
@@ -20692,9 +20618,9 @@
         "dependency.role-border-width-emphasis": "border.width.emphasis",
         "dependency.role-color-border-active": "color.border.active",
         "dependency.role-color-border-divider": "color.border.divider",
+        "dependency.role-focus-offset": "focus.offset",
         "dependency.role-radius-none": "radius.none",
         "dependency.role-space-12": "space.12",
-        "dependency.role-space-2": "space.2",
         "dependency.role-space-4": "space.4"
       },
       "status": {
@@ -21000,12 +20926,12 @@
         "dependency.role-color-chart-axis": "color.chart.axis",
         "dependency.role-color-chart-grid": "color.chart.grid",
         "dependency.role-color-chart-label": "color.chart.label",
+        "dependency.role-focus-offset": "focus.offset",
         "series.primary": "color.chart.series-2",
         "header.text": "color.text.bright",
         "row.text": "color.text.default",
         "dependency.role-radius-none": "radius.none",
         "dependency.role-space-12": "space.12",
-        "dependency.role-space-2": "space.2",
         "dependency.role-space-8": "space.8"
       },
       "status": {
@@ -21343,6 +21269,7 @@
         "control.focus": "color.interaction.focus.ring",
         "dependency.role-border-width-default": "border.width.default",
         "dependency.role-border-width-emphasis": "border.width.emphasis",
+        "dependency.role-focus-offset": "focus.offset",
         "dependency.role-radius-none": "radius.none",
         "dependency.role-space-12": "space.12",
         "dependency.role-space-2": "space.2",
@@ -22128,7 +22055,7 @@
         "danger.text": "color.status.danger.on-fill",
         "danger.button-bg-hover": "color.action.destructive.pressed-bg",
         "action.text": "color.text.link",
-        "action.bg-hover": "color.interaction.hover.bg-strong",
+        "action.bg-hover": "color.interaction.hover.bg",
         "action.text-hover": "color.text.link-hover",
         "close.text": "color.action.tertiary.text",
         "close.bg-hover": "color.action.tertiary.hover-bg",
@@ -22152,7 +22079,7 @@
           "color.border.overlay",
           "color.interaction.drop-target",
           "color.interaction.focus.ring",
-          "color.interaction.hover.bg-strong",
+          "color.interaction.hover.bg",
           "color.interaction.selection.bg",
           "color.interaction.selection.text",
           "color.interaction.text-selection.bg",
@@ -22205,7 +22132,7 @@
           "color.border.overlay",
           "color.interaction.drop-target",
           "color.interaction.focus.ring",
-          "color.interaction.hover.bg-strong",
+          "color.interaction.hover.bg",
           "color.interaction.selection.bg",
           "color.interaction.selection.text",
           "color.interaction.text-selection.bg",
@@ -22222,7 +22149,6 @@
           "color.primitive.paper.100",
           "color.primitive.paper.90",
           "color.primitive.red.100",
-          "color.primitive.red.150",
           "color.primitive.red.350",
           "color.primitive.red.550",
           "color.primitive.red.750",
@@ -22313,7 +22239,7 @@
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "color.interaction.hover.bg-strong": {
+          "color.interaction.hover.bg": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
@@ -22540,12 +22466,12 @@
           "runtime/components/toast.js": "sha256-WIMDZ+G0PKE8LTL9S9wLE1enIZrIXAt4h0Isi5xnGTU=",
           "runtime/chunks/overlays-Bw8SSDKz.js": "sha256-YrX9CL2A48QwI7COQQ5anYJLPOxpKrIeyz+jtfp+T+I=",
           "tokens.css": "sha256-7A9Xv87HbmuVumnQtzllDxHGc2CPnurdpWWuBpEStJg=",
-          "component.css": "sha256-4HWd3QrBBfxsM9OiU3LqQynPtyzbYNRWcilUq6EOOqY=",
+          "component.css": "sha256-uDOVAGMFD+o43PgFLYIr3brOp1t4nrDGrE8jaKF7S2U=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-2DXrOBOlEPzc9p3N5SEbw98qHHSMYTxlOnR6gT91kkU=",
           "index.html": "sha256-pfILKUsTjhG02CF143yBVB1w9s3PoEzh0CXq+YfLKdU=",
           "README.md": "sha256-Gqkqv+2L4+y8mTQfPGpUxoV4B+6QJazzN5XtXWfyj4w=",
-          "manifest.json": "sha256-C+VJrC9kKkmk3tohGGt8OH2C5ycXYI+3Q8byO/rbQjo="
+          "manifest.json": "sha256-bCWPynWl0C2Bz5UPADBaW4C1eOSMaHaXHhVMpceGiNA="
         }
       }
     },
@@ -23246,10 +23172,10 @@
         "dependency.role-border-width-default": "border.width.default",
         "dependency.role-color-border-divider": "color.border.divider",
         "dependency.role-color-surface-raised": "color.surface.raised",
+        "dependency.role-focus-offset": "focus.offset",
         "dependency.role-radius-none": "radius.none",
         "dependency.role-space-12": "space.12",
-        "dependency.role-space-16": "space.16",
-        "dependency.role-space-2": "space.2"
+        "dependency.role-space-16": "space.16"
       },
       "status": {
         "implemented": true,
@@ -23951,10 +23877,10 @@
         "dependency.role-color-surface-overlay": "color.surface.overlay",
         "dependency.role-density-comfortable-control-height": "density.comfortable.control-height",
         "dependency.role-density-compact-control-height": "density.compact.control-height",
+        "dependency.role-focus-offset": "focus.offset",
         "dependency.role-radius-none": "radius.none",
         "dependency.role-space-12": "space.12",
         "dependency.role-space-16": "space.16",
-        "dependency.role-space-2": "space.2",
         "dependency.role-space-8": "space.8"
       },
       "status": {
@@ -26550,9 +26476,9 @@
         "dependency.role-color-text-disabled": "color.text.disabled",
         "dependency.role-density-comfortable-control-height": "density.comfortable.control-height",
         "dependency.role-density-compact-control-height": "density.compact.control-height",
+        "dependency.role-focus-offset": "focus.offset",
         "dependency.role-radius-none": "radius.none",
         "dependency.role-space-12": "space.12",
-        "dependency.role-space-2": "space.2",
         "dependency.role-space-8": "space.8"
       },
       "status": {
@@ -27671,9 +27597,9 @@
         "dependency.role-color-surface-code": "color.surface.code",
         "dependency.role-density-comfortable-control-height": "density.comfortable.control-height",
         "dependency.role-density-compact-control-height": "density.compact.control-height",
+        "dependency.role-focus-offset": "focus.offset",
         "dependency.role-radius-none": "radius.none",
         "dependency.role-space-12": "space.12",
-        "dependency.role-space-2": "space.2",
         "dependency.role-space-8": "space.8"
       },
       "status": {
@@ -28266,7 +28192,7 @@
         "row.ring": "color.interaction.focus.ring",
         "row.bg-selected": "color.interaction.selection.bg",
         "row.text-selected": "color.interaction.selection.text",
-        "row.ring-selected": "color.interaction.focus.ring-container",
+        "row.ring-selected": "color.interaction.focus.ring",
         "header.text": "color.text.bright",
         "status.text": "color.status.danger.text",
         "empty.text": "color.text.muted",
@@ -28300,7 +28226,6 @@
           "color.diagnostic.warning.text",
           "color.diagnostic.warning.underline",
           "color.interaction.drop-target",
-          "color.interaction.focus.ring-container",
           "color.interaction.hover.bg",
           "color.interaction.selection.bg",
           "color.interaction.selection.text",
@@ -28523,11 +28448,6 @@
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "color.interaction.focus.ring-container": {
-            "action": "use",
-            "reason": "Use within the role's documented scope and restrictions.",
-            "decisionIds": []
-          },
           "color.interaction.hover.bg": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -28725,12 +28645,12 @@
           "runtime/components/diagnostics.js": "sha256-oEE2P+tyCuYFS8Z67kakU24ozr9nPJsXvN7ug/nsESs=",
           "runtime/chunks/display-Jm9bAsnb.js": "sha256-qZb1g04piEwY3lfFJwMe+0mXR218ljtVi8mepWxrFv8=",
           "tokens.css": "sha256-7A9Xv87HbmuVumnQtzllDxHGc2CPnurdpWWuBpEStJg=",
-          "component.css": "sha256-dDWaM/BZZlbjdgtgxMzeCy72EU6kAYg4520BizOKwJ0=",
+          "component.css": "sha256-xWB/G9X0gadCbFJ8yqKBaXbBvMPSKyKrVUQR4dZZs88=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-oPPp/R+dnwC1tnH/Td+Hlrs3CRODUkA4Bvq/HK/fAUU=",
           "index.html": "sha256-faTuPIwIaIe118O39CQtFz4nACEFH1MOeuPsBOwpHh0=",
           "README.md": "sha256-zoebnEYS306DsFzwTsEnc2EoKA+8Dm/eyz4eTXdSnAs=",
-          "manifest.json": "sha256-Uaox0zCw4TM5Oboc8eIBPiWer95rhzS24lNzLJbPhoc="
+          "manifest.json": "sha256-n3A7adYFaPqBEZMH83XHNGwVkvhllkBTQV+FLtmNDTs="
         }
       }
     },
@@ -28858,7 +28778,7 @@
         "row.ring": "color.interaction.focus.ring",
         "row.bg-selected": "color.interaction.selection.bg",
         "row.text-selected": "color.interaction.selection.text",
-        "row.ring-selected": "color.interaction.focus.ring-container"
+        "row.ring-selected": "color.interaction.focus.ring"
       },
       "status": {
         "implemented": true,
@@ -28885,7 +28805,6 @@
           "color.diff.removed.emphasis",
           "color.diff.removed.gutter",
           "color.interaction.drop-target",
-          "color.interaction.focus.ring-container",
           "color.interaction.hover.bg",
           "color.interaction.hover.bg-strong",
           "color.interaction.selection.bg",
@@ -29081,11 +29000,6 @@
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "color.interaction.focus.ring-container": {
-            "action": "use",
-            "reason": "Use within the role's documented scope and restrictions.",
-            "decisionIds": []
-          },
           "color.interaction.hover.bg": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -29258,12 +29172,12 @@
           "runtime/components/diff-view.js": "sha256-mc+zZLXtFDZnF4okQ840vLAw4mC40kkmR920bUXfXfo=",
           "runtime/chunks/display-Jm9bAsnb.js": "sha256-qZb1g04piEwY3lfFJwMe+0mXR218ljtVi8mepWxrFv8=",
           "tokens.css": "sha256-7A9Xv87HbmuVumnQtzllDxHGc2CPnurdpWWuBpEStJg=",
-          "component.css": "sha256-CINhuh1mJH0YTlB7/zXqyLF8Lop5tj5bdkyBXCJ5EiA=",
+          "component.css": "sha256-zQ+2X33S+1rlKgj8VvnNJSfS/ujlxlYAFFAC3vC+8MU=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-t7cx4Y+4qhIPiwFbRPz+6U12N/CFATPTfG7/iZf85zs=",
           "index.html": "sha256-qm8fbs91KUEOm2ss0XShYkbQLzgXVk9OpdrVHfg6Wjg=",
           "README.md": "sha256-2/6IFU4JJZ25X3ZvCCwHM1P9pvt3nJHAUfxoS/Ubi/0=",
-          "manifest.json": "sha256-5fsvOa5N0NkT/Iqo5C3AmNGKWBBsDJHKipWny5O9osA="
+          "manifest.json": "sha256-z+BxcKKq1cJGYRwtESbjQpf5ymqtRempRqMUqEY4kKg="
         }
       }
     },
@@ -30648,12 +30562,12 @@
           "runtime/components/settings-panel.js": "sha256-2/vcKktPpt7/9RBfexqEoFAPjNDcISoi6AALg6/CVTw=",
           "runtime/chunks/forms-CE_hP1hg.js": "sha256-uOnoMuSkUbm9C/GfR+PDLYCykyHOQ1Ni7g59c4YMOS0=",
           "tokens.css": "sha256-7A9Xv87HbmuVumnQtzllDxHGc2CPnurdpWWuBpEStJg=",
-          "component.css": "sha256-r6lpkpHPLBV3PjF5i3U2IB4P3UgFe/ivM5Hmmv2p8n4=",
+          "component.css": "sha256-KvYopMeuJv2HW0li1RcLpCJp645gkxeby6o5WD+bx8o=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-Z1ZqDdIXySN8gWG0bvhT8iMaa+GaOyHy/vumYpCsYt8=",
           "index.html": "sha256-o83BpK03vkko3vqQPfArOayVjD634LtFPrmdQbjqbQ8=",
           "README.md": "sha256-Jbd8VDlivmCdwjmixGLdZrE/QQ9xdJyk+UIIOcLDqZE=",
-          "manifest.json": "sha256-4AW9PtFb5qyUC+v2Jaskmz5XccipU/EdT5LYHUKXodM="
+          "manifest.json": "sha256-WJU4OzQNvp6mP478QOWt8+2mRaVVTuyZocEvRs8BcxQ="
         }
       }
     },
@@ -31581,12 +31495,12 @@
           "runtime/components/admin-form.js": "sha256-FVzHg1y71Fg3LptLCSedTH/NQIxijxfYfjfBaYWXGS4=",
           "runtime/chunks/forms-CE_hP1hg.js": "sha256-uOnoMuSkUbm9C/GfR+PDLYCykyHOQ1Ni7g59c4YMOS0=",
           "tokens.css": "sha256-7A9Xv87HbmuVumnQtzllDxHGc2CPnurdpWWuBpEStJg=",
-          "component.css": "sha256-amcWT1w+WuJttN/RUV24Kn+zxpW2jhkP+vTQUX5uVzs=",
+          "component.css": "sha256-Aha0xp86OpN6uUIQCjlXTYdzw2u0p0Y/dxNCx+gMC/s=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-TRLraonRxggrZcfXS9jlN+nTIOpRHiXbMKQNm8NbR2A=",
           "index.html": "sha256-fCyv1GPEoas5phPBo4T3EhrTQ5U3/15ks0AZJQawjDc=",
           "README.md": "sha256-bid+/EA6npftuo0cAZQP6rg+96qu7gNC4h/Klx23PF0=",
-          "manifest.json": "sha256-ETNP7TDxYc7PvdcaGKz1vrdc/6dWrLaA8us80lxtLQ0="
+          "manifest.json": "sha256-0cFh6BAwKorLKq38Qi1CjI8uGgYupJJvet2b/DOatzY="
         }
       }
     },
@@ -31812,7 +31726,6 @@
           "density.compact.icon",
           "density.compact.row-height",
           "focus.offset",
-          "focus.offset-container",
           "focus.offset-invalid",
           "focus.ring",
           "focus.ring-container",
@@ -31914,7 +31827,6 @@
           "density.compact.icon",
           "density.compact.row-height",
           "focus.offset",
-          "focus.offset-container",
           "focus.offset-invalid",
           "focus.ring",
           "focus.ring-container",
@@ -32217,11 +32129,6 @@
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "focus.offset-container": {
-            "action": "use",
-            "reason": "Use within the role's documented scope and restrictions.",
-            "decisionIds": []
-          },
           "focus.offset-invalid": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -32357,12 +32264,12 @@
           "runtime/components/filterable-table.js": "sha256-xbo/MykYle7VwG4ArKqnOAwxD6bA5BruTf9Mi33CxnE=",
           "runtime/chunks/tables-Cjr1EIJz.js": "sha256-K6BF6M6xNawgWdL+NIcBRZmY98j45o69tBI034Ks4Bg=",
           "tokens.css": "sha256-7A9Xv87HbmuVumnQtzllDxHGc2CPnurdpWWuBpEStJg=",
-          "component.css": "sha256-dj5cDmyXz5i45QevW+V9B/MigzYfir4K3+8GUe5PE9o=",
+          "component.css": "sha256-YC1B05BSsIggrfF5/xkh1/hc/k4XIxz/QKMVNwcSd/Y=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-3PbF9wWtnKy3q07M9x690D730biEbSwu20wHAcvPPEE=",
           "index.html": "sha256-L9dRgFL5Tl9EFw9DuTPQaPstK4H0R/A/bzroaL7tvHk=",
           "README.md": "sha256-eYSWLSbTgjyr+5CUJR+E3qhY267Qh6rmF+5P40UanuU=",
-          "manifest.json": "sha256-JcTEcMJYZlTd6uw5LEVmiad0vE34g0sK/7+vqirFgD8="
+          "manifest.json": "sha256-2S7hP420pJdNmeeJUc9IqsTnpSHptV2aRy3IL9jjvtQ="
         }
       }
     },
@@ -32464,7 +32371,7 @@
         "workspace.selected-text": "color.interaction.selection.text",
         "workspace.bg-hover": "color.interaction.hover.bg",
         "workspace.ring": "color.interaction.focus.ring",
-        "workspace.ring-on-selection": "color.interaction.focus.ring-container",
+        "workspace.ring-on-selection": "color.interaction.focus.ring",
         "workspace.urgent-bg": "color.status.danger.fill",
         "workspace.urgent-text": "color.status.danger.on-fill",
         "status.separator": "color.text.muted",
@@ -32536,7 +32443,7 @@
           "color.code.whitespace",
           "color.icon.decorative",
           "color.interaction.drop-target",
-          "color.interaction.focus.ring-container",
+          "color.interaction.focus.ring",
           "color.interaction.hover.bg",
           "color.interaction.pressed.bg",
           "color.interaction.selection.bg",
@@ -32959,7 +32866,7 @@
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
-          "color.interaction.focus.ring-container": {
+          "color.interaction.focus.ring": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
@@ -33337,12 +33244,12 @@
           "runtime/chunks/compositions-D57dCsBz.js": "sha256-PEpI/vGgdD+LSznUd0iedSxxVE+5QxIO7BGKeQnCRjo=",
           "runtime/chunks/navigation-BfNzDYZB.js": "sha256-OhGJWNOz3aZxPAacBgEhAFmBLRt/BGPr7INBjumqyQo=",
           "tokens.css": "sha256-7A9Xv87HbmuVumnQtzllDxHGc2CPnurdpWWuBpEStJg=",
-          "component.css": "sha256-qnsF12iIL9s2blKkBo1Cq0iJ7btji7uOmjqmQId+1pY=",
+          "component.css": "sha256-j6gn6V0mtTIbd0cJHobuNavfKnCi+dJ0Xg8IoZdHp/U=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-r16RBHw/9BhmfwHsOtPnFIkDRIuIAmlN+RpR9z4LXMU=",
           "index.html": "sha256-vsi84+uGu4rv5NlM/V/to85JQlSDYVg0XKREuwBARII=",
           "README.md": "sha256-C0hpJoSU0W6E5VFxM/5nRjno1clSop0NLti9ZjvJiO0=",
-          "manifest.json": "sha256-DHerFbvqjcRpd5y/PPXy6ADxs1R+eLxowrnBuzBvRuM="
+          "manifest.json": "sha256-RTBwBQLyeV3Z3yztEOFvw2Hk3dWF9jDPNGkIMo8j4MM="
         }
       }
     },
@@ -33445,10 +33352,10 @@
         "dependency.role-color-border-selected-indicator": "color.border.selected-indicator",
         "dependency.role-density-comfortable-control-height": "density.comfortable.control-height",
         "dependency.role-density-compact-control-height": "density.compact.control-height",
+        "dependency.role-focus-offset": "focus.offset",
         "dependency.role-radius-none": "radius.none",
         "dependency.role-space-12": "space.12",
         "dependency.role-space-16": "space.16",
-        "dependency.role-space-2": "space.2",
         "dependency.role-space-8": "space.8"
       },
       "status": {
@@ -33987,12 +33894,12 @@
           "runtime/chunks/compositions-D57dCsBz.js": "sha256-PEpI/vGgdD+LSznUd0iedSxxVE+5QxIO7BGKeQnCRjo=",
           "runtime/chunks/navigation-BfNzDYZB.js": "sha256-OhGJWNOz3aZxPAacBgEhAFmBLRt/BGPr7INBjumqyQo=",
           "tokens.css": "sha256-7A9Xv87HbmuVumnQtzllDxHGc2CPnurdpWWuBpEStJg=",
-          "component.css": "sha256-HQsy2js28o5lNk5LMRMrms6tvFJpFh7RJQ0Qu9dGJp0=",
+          "component.css": "sha256-60IrKLgTLsSwBgB+JY3ZbImg8ScUiadmLWRRh9GpshA=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-TbSmPr7cV31g3WqgPi6LboOGQdmgxz/89Tf/3ld2pfU=",
           "index.html": "sha256-ghy6Hidly07DbSb9oIl+42dgKaIRi5V0gVlW8uwsoYs=",
           "README.md": "sha256-pldg7PuzlPHL6J8L3tFRBhM4Mqi8AlcED3V2DXOXZRU=",
-          "manifest.json": "sha256-X2JTkKgCJAhKJQ7Eg//Bjoj8nMWB9cqQ7yChFTOH14E="
+          "manifest.json": "sha256-FmVR0lLbAD6jR0S+jyIzH7HLDH4F9isP/yDIAS2htCs="
         }
       }
     },
@@ -34091,10 +33998,10 @@
         "dependency.role-color-surface-chrome": "color.surface.chrome",
         "dependency.role-density-comfortable-control-height": "density.comfortable.control-height",
         "dependency.role-density-compact-control-height": "density.compact.control-height",
+        "dependency.role-focus-offset": "focus.offset",
         "dependency.role-font-size-h2": "font.size.h2",
         "dependency.role-radius-none": "radius.none",
         "dependency.role-space-12": "space.12",
-        "dependency.role-space-2": "space.2",
         "dependency.role-space-8": "space.8"
       },
       "status": {
@@ -34661,12 +34568,12 @@
           "runtime/chunks/compositions-D57dCsBz.js": "sha256-PEpI/vGgdD+LSznUd0iedSxxVE+5QxIO7BGKeQnCRjo=",
           "runtime/chunks/navigation-BfNzDYZB.js": "sha256-OhGJWNOz3aZxPAacBgEhAFmBLRt/BGPr7INBjumqyQo=",
           "tokens.css": "sha256-7A9Xv87HbmuVumnQtzllDxHGc2CPnurdpWWuBpEStJg=",
-          "component.css": "sha256-9MBnKZorCPkjy8C5p7DaJRs2nXubjPLd2xsbQhXiUU8=",
+          "component.css": "sha256-7CRIHJNTDt06T3ztva5EpY4ytKr+vSsMZHxxolQ/+GU=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-I++zY2714BqcfCh02WgcXCFwujrwXLK4TwP9wII+QE4=",
           "index.html": "sha256-jCDMPy0iYNKdA2sWCK1pFAeKyhEr/jK4IN0ias0Drlc=",
           "README.md": "sha256-6g2tbWoWmdPy5ju9eAR0VdQ5vp0GjEEftnqhmjoP1j4=",
-          "manifest.json": "sha256-R72j3hilAtxGQdqvuci03vdpdCUYde9Z3dq4Rw1DsCc="
+          "manifest.json": "sha256-8HPA/m4bQRmM0HaCiKTayXG+ryly96Ex9sR87wOLabM="
         }
       }
     }

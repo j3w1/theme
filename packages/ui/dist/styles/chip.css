@@ -107,7 +107,7 @@ j3w1-chip .chip-filter[aria-pressed="true"]:hover {
   background: var(--color-interaction-selection-bg);
 }
 j3w1-chip .chip-filter[aria-pressed="true"]:focus-visible {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring);
   outline-offset: var(--focus-offset);
 }
 j3w1-chip .chip-filter:disabled,

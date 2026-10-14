@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — pagination
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-/JUAL10Kqyw1s0kkaIWTd+qO1Dg/8bLQDSr5dPck2Qg=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-qWZiHqlpXwq3jlfIKiKdPuFMa+byn4MrZJAB29nnE1k=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/pagination.json
 spec: spec/components/pagination.md  site: https://j3w1.github.io/theme/reference/#c-pagination
 maturity: stable  priority: R1
@@ -16,7 +16,7 @@ Tokens (resolved):
   link.text-disabled  #8a5559  ({color.text.disabled})  use
   current.bg          #531310  ({color.interaction.selection.bg})  use
   current.text        #f4eeee  ({color.text.on-selection})  use
-  current.ring        #ffa2a7  ({color.interaction.focus.ring-container})  use
+  current.ring        #e53935  ({color.interaction.focus.ring})  use
   gap.text            #bd787d  ({color.text.muted})  use
   status.text         #e99499  ({color.text.default})  use
   status.emphasis     #ffa2a7  ({color.text.bright})  use
@@ -24,7 +24,7 @@ Tokens (resolved):
 States: default, hover, focus-visible, current, disabled
   default: {color.text.default}; no fill, no border [—]
   hover: background → {color.interaction.hover.bg} [cursor: pointer]
-  focus-visible: 1px dashed {color.interaction.focus.ring} at −2px; {color.interaction.focus.ring-container} on the current page [the ring]
+  focus-visible: 1px dashed {color.interaction.focus.ring} at −2px, including the current page [the ring]
   current: fill {color.interaction.selection.bg}, text {color.text.on-selection}; no hover [`aria-current="page"`]
   disabled: {color.text.disabled}; no fill, no hover [`aria-disabled="true"`; no `href`; cursor: not-allowed]
 

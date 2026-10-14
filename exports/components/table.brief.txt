@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — table
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-/JUAL10Kqyw1s0kkaIWTd+qO1Dg/8bLQDSr5dPck2Qg=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-qWZiHqlpXwq3jlfIKiKdPuFMa+byn4MrZJAB29nnE1k=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/table.json
 spec: spec/components/table.md  site: https://j3w1.github.io/theme/reference/#c-table
 maturity: stable  priority: R1
@@ -20,7 +20,7 @@ Tokens (resolved):
   row.bg-hover            #1c0a09  ({color.interaction.hover.bg})  use
   selected.bg             #531310  ({color.interaction.selection.bg})  use
   selected.text           #f4eeee  ({color.interaction.selection.text})  use
-  selected.ring           #ffa2a7  ({color.interaction.focus.ring-container})  use
+  selected.ring           #e53935  ({color.interaction.focus.ring})  use
   selected.inactive-bg    #420f0c  ({color.interaction.selection.inactive-bg})  use
   selected.inactive-text  #e99499  ({color.interaction.selection.inactive-text})  use
   caption.text            #bd787d  ({color.text.muted})  use
@@ -31,7 +31,7 @@ States: default, hover, selected, selected+focus-visible, selected+container-ina
   default: rows on {color.surface.default}; header rule 1px {color.border.strong} [—]
   hover: row → {color.interaction.hover.bg} [cursor: default; hover-capable pointers only]
   selected: row fill {color.interaction.selection.bg}; every cell {color.interaction.selection.text} [`aria-selected="true"` on the row]
-  selected+focus-visible: the fill and a ring in {color.interaction.focus.ring-container} around the row [both visible at once]
+  selected+focus-visible: the fill and 1px dashed {color.interaction.focus.ring} at −2px around the row [both visible at once]
   selected+container-inactive: row fill {color.interaction.selection.inactive-bg} with {color.interaction.selection.inactive-text}; no ring [lightness drop between the two fills]
   sorted: ▲ (ascending) or ▼ (descending) in {color.text.bright} on the sorted header [`aria-sort`; the glyph]
   empty: one full-width cell in {color.text.muted}: "No rows match." [the message text]

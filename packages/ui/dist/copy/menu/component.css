@@ -146,8 +146,8 @@ j3w1-menu .menu-button:focus-visible {
 }
 
 j3w1-menu .menu-item:focus-visible {
-  outline: var(--focus-ring-container);
-  outline-offset: var(--focus-offset-container);
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
 }
 
 j3w1-menu .menu-button:focus:not(:focus-visible),
