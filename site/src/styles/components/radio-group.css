@@ -41,7 +41,7 @@
 
 .radio-group-option {
   display: grid;
-  grid-template-columns: var(--density-icon, 16px) minmax(0, 1fr);
+  grid-template-columns: var(--density-icon, 12px) minmax(0, 1fr);
   align-items: start;
   gap: var(--space-8);
   min-height: var(--space-24);
@@ -51,8 +51,8 @@
 
 .radio-group-control {
   display: inline-grid;
-  width: var(--density-icon, 16px);
-  height: var(--density-icon, 16px);
+  width: var(--density-icon, 12px);
+  height: var(--density-icon, 12px);
 }
 
 .radio-group-control > * {
@@ -61,8 +61,8 @@
 
 .radio-group-input {
   appearance: none;
-  width: var(--density-icon, 16px);
-  height: var(--density-icon, 16px);
+  width: var(--density-icon, 12px);
+  height: var(--density-icon, 12px);
   margin: 0;
   background: var(--color-surface-input);
   border: var(--border-width-default) solid var(--color-border-control);

@@ -20,7 +20,7 @@
   position: relative;
   height: var(--density-comfortable-row-height, 36px);
   min-width: 0;
-  padding: 0 var(--density-control-padding-x, 12px);
+  padding: 0 var(--density-control-padding-x, 8px);
   background: var(--color-surface-default);
   border: 0;
   border-bottom: var(--border-width-default) solid var(--color-border-strong);
@@ -36,7 +36,7 @@
 
 .data-table .data-table-header-select,
 .data-table .data-table-cell-select {
-  width: var(--density-control-height, 32px);
+  width: var(--density-control-height, 24px);
   padding-inline-end: 0;
   text-align: center;
 }
@@ -51,7 +51,7 @@
   align-items: center;
   gap: var(--space-4);
   width: 100%;
-  min-height: var(--density-control-height, 32px);
+  min-height: var(--density-control-height, 24px);
   padding: 0;
   background: transparent;
   border: 0;
@@ -73,8 +73,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: var(--density-icon, 16px);
-  height: var(--density-icon, 16px);
+  width: var(--density-icon, 12px);
+  height: var(--density-icon, 12px);
   margin: 0;
   padding: 0;
   vertical-align: middle;
@@ -109,7 +109,7 @@
 .data-table-checkbox:checked::before {
   content: "✓";
   color: var(--color-action-primary-text);
-  font-size: calc(var(--density-icon, 16px) * 0.75);
+  font-size: calc(var(--density-icon, 12px) * 0.75);
   line-height: 1;
 }
 
@@ -125,7 +125,7 @@
 
 .data-table .data-table-cell {
   min-width: 0;
-  padding: var(--space-4) var(--density-control-padding-x, 12px);
+  padding: var(--space-4) var(--density-control-padding-x, 8px);
   background: transparent;
   border: 0;
   color: inherit;
@@ -217,7 +217,7 @@
 [data-state-selected] .data-table-row-demo-target .data-table-checkbox::before {
   content: "✓";
   color: var(--color-action-primary-text);
-  font-size: calc(var(--density-icon, 16px) * 0.75);
+  font-size: calc(var(--density-icon, 12px) * 0.75);
   line-height: 1;
 }
 

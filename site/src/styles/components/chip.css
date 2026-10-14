@@ -7,7 +7,7 @@
   align-items: center;
   gap: var(--space-4);
   vertical-align: middle;
-  min-height: var(--density-control-height, 32px);
+  min-height: var(--density-control-height, 24px);
   padding: 0 var(--space-8);
   box-sizing: border-box;
   background: var(--color-surface-default);
@@ -40,7 +40,7 @@
   align-items: center;
   justify-content: center;
   align-self: stretch;
-  min-width: calc(var(--density-control-height, 32px) - var(--border-width-emphasis));
+  min-width: calc(var(--density-control-height, 24px) - var(--border-width-emphasis));
   padding: 0 var(--space-4);
   background: transparent;
   border: 0;

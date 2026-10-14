@@ -4,7 +4,7 @@
    state matrix emits. Token variables only. */
 
 .sidebar-nav {
-  --_indent: calc(var(--density-icon, 16px) + var(--space-8));
+  --_indent: calc(var(--density-icon, 12px) + var(--space-8));
   min-width: 0;
   max-width: 15rem;
   padding: var(--space-4) 0;
@@ -36,9 +36,9 @@
   align-items: center;
   gap: var(--space-8);
   width: 100%;
-  min-height: var(--density-row-height, 36px);
-  padding: var(--space-4) var(--density-control-padding-x, 12px);
-  padding-inline-start: calc(var(--density-control-padding-x, 12px) - var(--border-width-emphasis));
+  min-height: var(--density-row-height, 28px);
+  padding: var(--space-4) var(--density-control-padding-x, 8px);
+  padding-inline-start: calc(var(--density-control-padding-x, 8px) - var(--border-width-emphasis));
   box-sizing: border-box;
   background: transparent;
   border: 0;
@@ -54,8 +54,8 @@
 .sidebar-nav-icon {
   display: inline-flex;
   flex: 0 0 auto;
-  width: var(--density-icon, 16px);
-  height: var(--density-icon, 16px);
+  width: var(--density-icon, 12px);
+  height: var(--density-icon, 12px);
   color: var(--color-icon-default);
 }
 

@@ -29,7 +29,7 @@
   align-items: center;
   gap: var(--space-4);
   padding: 0 var(--space-4);
-  min-height: var(--density-control-height, 32px);
+  min-height: var(--density-control-height, 24px);
   font-size: var(--font-size-ui-md);
   line-height: var(--font-line-height-ui-md);
 }
@@ -42,10 +42,10 @@
   fill: none;
 }
 
-/* hover: the strong fill, the explicit near-white hover highlight, a 2px underline in the text colour */
+/* hover (D-027): the plain hover fill, the explicit near-white hover highlight, a 2px underline in the text colour */
 @media (hover: hover) {
   .link:hover {
-    background: var(--color-interaction-hover-bg-strong);
+    background: var(--color-interaction-hover-bg);
     color: var(--color-text-link-hover);
     text-decoration-color: currentColor;
     text-decoration-thickness: var(--border-width-emphasis);
@@ -53,7 +53,7 @@
 }
 
 [data-state-hover] .link {
-  background: var(--color-interaction-hover-bg-strong);
+  background: var(--color-interaction-hover-bg);
   color: var(--color-text-link-hover);
   text-decoration-color: currentColor;
   text-decoration-thickness: var(--border-width-emphasis);

@@ -41,8 +41,8 @@
 
 .fieldset-input {
   min-width: 0;
-  min-height: var(--density-control-height, 32px);
-  padding: 0 var(--density-control-padding-x, 12px);
+  min-height: var(--density-control-height, 24px);
+  padding: 0 var(--density-control-padding-x, 8px);
   background: var(--color-surface-input);
   color: var(--color-text-default);
   border: var(--border-width-default) solid var(--color-border-control);

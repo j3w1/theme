@@ -22,7 +22,7 @@
 .number-field-root {
   display: flex;
   align-items: stretch;
-  min-height: var(--density-control-height, 32px);
+  min-height: var(--density-control-height, 24px);
   background: var(--color-surface-input);
   border: var(--border-width-default) solid var(--color-border-control);
   border-radius: var(--radius-none);
@@ -31,7 +31,7 @@
 .number-field-input {
   flex: 1 1 auto;
   min-width: 0;
-  padding: 0 var(--density-control-padding-x, 12px);
+  padding: 0 var(--density-control-padding-x, 8px);
   background: transparent;
   border: 0;
   color: var(--color-text-default);

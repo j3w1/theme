@@ -92,7 +92,7 @@
 
   .settings-panel-nav .sidebar-nav-list {
     display: flex;
-    gap: var(--density-gap, 4px);
+    gap: var(--density-gap, 2px);
     overflow-x: auto;
     scrollbar-width: thin;
   }
@@ -103,8 +103,8 @@
 
   .settings-panel-nav .sidebar-nav-link {
     width: auto;
-    min-height: var(--density-control-height, 32px);
-    padding: 0 var(--density-control-padding-x, 12px);
+    min-height: var(--density-control-height, 24px);
+    padding: 0 var(--density-control-padding-x, 8px);
     margin-bottom: calc(-1 * var(--border-width-default));
     border-inline-start: 0;
     border-bottom: var(--border-width-emphasis) solid transparent;

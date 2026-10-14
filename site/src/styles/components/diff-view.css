@@ -182,7 +182,7 @@
   display: inline-flex;
   gap: var(--space-4);
   align-items: center;
-  min-height: var(--density-control-height, 32px);
+  min-height: var(--density-control-height, 24px);
   padding: 0 var(--space-4);
   background: transparent;
   border: 0;

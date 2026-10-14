@@ -67,7 +67,7 @@
 .filterable-table-filters {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--density-gap, 4px);
+  gap: var(--density-gap, 2px);
   min-width: 0;
   padding: 0 var(--space-8);
 }
@@ -188,7 +188,7 @@
 [data-state-selected] .filterable-table .filterable-table-row-selected .data-table-checkbox::before {
   content: "✓";
   color: var(--color-action-primary-text);
-  font-size: calc(var(--density-icon, 16px) * 0.75);
+  font-size: calc(var(--density-icon, 12px) * 0.75);
   line-height: 1;
 }
 

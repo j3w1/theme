@@ -6,7 +6,7 @@
    every .button on the portal as an input box. :where(:not([class])) keeps
    each rule at its old specificity and away from component classes. */
 :where([data-j3w1-controls] *)[hidden] { display:none!important; }
-:where([data-j3w1-controls] *):where(button,input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),textarea):where(:not([class])) { min-height:var(--density-control-height,32px); padding:var(--space-8) var(--density-control-padding-x,12px); border:var(--border-width-default) solid var(--color-border-control); border-radius:var(--radius-none); background:var(--color-surface-input); color:var(--color-text-default); font:inherit; }
+:where([data-j3w1-controls] *):where(button,input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),textarea):where(:not([class])) { min-height:var(--density-control-height,24px); padding:var(--space-8) var(--density-control-padding-x,8px); border:var(--border-width-default) solid var(--color-border-control); border-radius:var(--radius-none); background:var(--color-surface-input); color:var(--color-text-default); font:inherit; }
 /* Single-line controls take their height from density.<mode>.control-height, so
    the block padding has to yield to it. Fixed block padding plus the line box
    already exceeded both control heights, which made compact render identically
@@ -19,7 +19,7 @@
 :where([data-j3w1-controls] *):where(fieldset):where(:not([class])) { min-width:0; padding:var(--space-16); border:var(--border-width-default) solid var(--color-border-control); }
 .j3w1-temporal { display:block; min-width:0; max-width:100%; }
 .j3w1-temporal-row { display:flex; align-items:stretch; min-width:0; border:var(--border-width-default) solid var(--color-border-control); background:var(--color-surface-input); }
-.j3w1-temporal-input { min-width:0; width:100%; padding:0 var(--density-control-padding-x,12px); border:0; border-radius:var(--radius-none); background:var(--color-surface-input); color:var(--color-text-default); font:inherit; }
+.j3w1-temporal-input { min-width:0; width:100%; padding:0 var(--density-control-padding-x,8px); border:0; border-radius:var(--radius-none); background:var(--color-surface-input); color:var(--color-text-default); font:inherit; }
 .j3w1-temporal-action { flex:none; min-width:var(--space-32); border:0; border-inline-start:var(--border-width-default) solid var(--color-border-control); border-radius:var(--radius-none); background:var(--color-surface-raised); color:var(--color-text-bright); font:inherit; cursor:pointer; }
 .j3w1-temporal-hint { display:block; margin-block-start:var(--space-4); color:var(--color-text-muted); font-size:var(--font-size-ui-sm); }
 .j3w1-temporal :focus-visible,.j3w1-calendar :focus-visible { outline:var(--focus-ring); outline-offset:var(--focus-offset); }
@@ -43,7 +43,7 @@
 .j3w1-calendar [aria-pressed="true"]:focus-visible { outline:var(--focus-ring-container); }
 .j3w1-calendar button:disabled { color:var(--color-text-disabled); background:var(--color-interaction-disabled-bg); cursor:not-allowed; }
 .j3w1-choice { display: block; min-width: min(12rem, calc(100vw - var(--space-32))); max-width: 100%; color: var(--color-text-default); font: inherit; }
-.j3w1-choice-trigger { display: flex; align-items: center; justify-content: space-between; gap: var(--space-12); width: 100%; min-height: var(--density-control-height, 32px); padding: 0 var(--density-control-padding-x, 12px); border: var(--border-width-default) solid var(--color-border-control); background: var(--color-surface-input); color: var(--color-text-default); border-radius: var(--radius-none); font: inherit; text-align: start; cursor: pointer; }
+.j3w1-choice-trigger { display: flex; align-items: center; justify-content: space-between; gap: var(--space-12); width: 100%; min-height: var(--density-control-height, 24px); padding: 0 var(--density-control-padding-x, 8px); border: var(--border-width-default) solid var(--color-border-control); background: var(--color-surface-input); color: var(--color-text-default); border-radius: var(--radius-none); font: inherit; text-align: start; cursor: pointer; }
 .j3w1-choice-value { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 /* The canonical select and combobox give the chevron a square icon slot; this
    one was a bare glyph, so its em box sat wherever the font put it and it read
@@ -57,7 +57,7 @@
 .j3w1-choice-list { display: block; box-sizing: border-box; min-width: 0; max-width: calc(100vw - var(--space-16)); max-height: 18rem; overflow: auto; margin: 0; padding: 0; background: var(--color-surface-raised); color: var(--color-text-default); border: var(--border-width-default) solid var(--color-border-overlay); border-radius: var(--radius-none); font: inherit; z-index: var(--z-popover); }
 .j3w1-choice-list[popover] { inset: auto; }
 .j3w1-choice-list[hidden] { display: none; }
-.j3w1-choice-option { display: flex; align-items: center; gap: var(--space-8); min-height: var(--density-control-height, 32px); padding: 0 var(--space-8); border-inline-start: var(--border-width-emphasis) solid transparent; cursor: pointer; overflow-wrap: anywhere; }
+.j3w1-choice-option { display: flex; align-items: center; gap: var(--space-8); min-height: var(--density-control-height, 24px); padding: 0 var(--space-8); border-inline-start: var(--border-width-emphasis) solid transparent; cursor: pointer; overflow-wrap: anywhere; }
 .j3w1-choice-check { flex: none; width: var(--icon-size-md); visibility: hidden; }
 .j3w1-choice-option[aria-selected="true"] { background: var(--color-interaction-selection-bg); color: var(--color-interaction-selection-text); border-inline-start-color: var(--color-border-selected-indicator); }
 .j3w1-choice-option[aria-selected="true"] .j3w1-choice-check { visibility: visible; }
@@ -76,10 +76,10 @@
 .select-root:has(.j3w1-choice) > .select-chevron { display: none; }
 :where([data-j3w1-controls] *)::selection { color: var(--color-interaction-text-selection-text); background: var(--color-interaction-text-selection-bg); }
 :where([data-j3w1-controls] *):where(button,input,textarea):where(:not([class])) { accent-color: var(--color-interaction-selection-bg); font: inherit; border-radius: var(--radius-none); }
-input:where([data-j3w1-controls] *)[type="checkbox"]:not([class]),input:where([data-j3w1-controls] *)[type="radio"]:not([class]) { appearance: none; display: inline-grid; place-content: center; width: var(--density-icon, 16px); height: var(--density-icon, 16px); padding: 0; vertical-align: middle; border: var(--border-width-default) solid var(--color-border-control); background: var(--color-surface-input); }
+input:where([data-j3w1-controls] *)[type="checkbox"]:not([class]),input:where([data-j3w1-controls] *)[type="radio"]:not([class]) { appearance: none; display: inline-grid; place-content: center; width: var(--density-icon, 12px); height: var(--density-icon, 12px); padding: 0; vertical-align: middle; border: var(--border-width-default) solid var(--color-border-control); background: var(--color-surface-input); }
 input:where([data-j3w1-controls] *)[type="checkbox"]:not([class]):checked,input:where([data-j3w1-controls] *)[type="radio"]:not([class]):checked { background: var(--color-interaction-selection-bg); color: var(--color-interaction-selection-text); }
-input:where([data-j3w1-controls] *)[type="checkbox"]:not([class]):checked::after { content: '✓'; font-size: calc(var(--density-icon, 16px) * 0.75); line-height: 1; }
-input:where([data-j3w1-controls] *)[type="radio"]:not([class]):checked::after { content: ''; width: calc(var(--density-icon, 16px) / 2); height: calc(var(--density-icon, 16px) / 2); background: var(--color-interaction-selection-text); }
+input:where([data-j3w1-controls] *)[type="checkbox"]:not([class]):checked::after { content: '✓'; font-size: calc(var(--density-icon, 12px) * 0.75); line-height: 1; }
+input:where([data-j3w1-controls] *)[type="radio"]:not([class]):checked::after { content: ''; width: calc(var(--density-icon, 12px) / 2); height: calc(var(--density-icon, 12px) / 2); background: var(--color-interaction-selection-text); }
 input:where([data-j3w1-controls] *)[type="file"]:where(:not([class]))::file-selector-button { font: inherit; padding: var(--space-8) var(--space-12); margin-inline-end: var(--space-12); border: var(--border-width-default) solid var(--color-border-control); border-radius: var(--radius-none); color: var(--color-text-default); background: var(--color-surface-raised); }
 input:where([data-j3w1-controls] *)[type="number"]:where(:not([class])) { appearance: textfield; }
 input:where([data-j3w1-controls] *)[type="number"]:where(:not([class]))::-webkit-inner-spin-button,input:where([data-j3w1-controls] *)[type="number"]:where(:not([class]))::-webkit-outer-spin-button { appearance: none; margin: 0; }

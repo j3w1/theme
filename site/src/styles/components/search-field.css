@@ -20,7 +20,7 @@
 .search-field-root {
   display: flex;
   align-items: center;
-  min-height: var(--density-control-height, 32px);
+  min-height: var(--density-control-height, 24px);
   padding-inline-start: var(--space-8);
   background: var(--color-surface-input);
   color: var(--color-icon-default);

@@ -7,7 +7,7 @@
   gap: var(--space-4);
   min-width: 0;
   max-width: 28rem;
-  padding: var(--density-control-padding-x, 12px);
+  padding: var(--density-control-padding-x, 8px);
   box-sizing: border-box;
   background: var(--color-surface-default);
   border: var(--border-width-default) solid var(--color-border-default);
@@ -44,7 +44,7 @@
 
 .card-group {
   display: grid;
-  gap: var(--density-gap, 4px);
+  gap: var(--density-gap, 2px);
   min-width: 0;
 }
 

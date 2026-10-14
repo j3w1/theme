@@ -34,8 +34,8 @@
   display: block;
   width: 100%;
   min-width: 0;
-  min-height: calc(var(--density-control-height, 32px) * 2);
-  padding: var(--space-4) var(--density-control-padding-x, 12px);
+  min-height: calc(var(--density-control-height, 24px) * 2);
+  padding: var(--space-4) var(--density-control-padding-x, 8px);
   background: transparent;
   border: 0;
   color: var(--color-text-default);

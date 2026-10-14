@@ -21,7 +21,7 @@
 .combobox-root {
   display: flex;
   align-items: stretch;
-  min-height: var(--density-control-height, 32px);
+  min-height: var(--density-control-height, 24px);
   background: var(--color-surface-input);
   border: var(--border-width-default) solid var(--color-border-control);
   border-radius: var(--radius-none);
@@ -30,7 +30,7 @@
 .combobox-input {
   flex: 1 1 auto;
   min-width: 0;
-  padding: 0 var(--density-control-padding-x, 12px);
+  padding: 0 var(--density-control-padding-x, 8px);
   background: transparent;
   border: 0;
   color: var(--color-text-default);
@@ -93,7 +93,7 @@
 }
 
 .combobox-listbox {
-  max-height: calc(8 * var(--density-row-height, 36px));
+  max-height: calc(8 * var(--density-row-height, 28px));
   overflow-y: auto;
   background: var(--color-surface-raised);
   border: var(--border-width-default) solid var(--color-border-overlay);
@@ -104,8 +104,8 @@
 .combobox-option {
   display: flex;
   align-items: center;
-  min-height: var(--density-row-height, 36px);
-  padding: 0 var(--density-control-padding-x, 12px);
+  min-height: var(--density-row-height, 28px);
+  padding: 0 var(--density-control-padding-x, 8px);
   cursor: default;
 }
 
@@ -136,7 +136,7 @@
 
 .combobox-group-heading {
   display: block;
-  padding: var(--space-4) var(--density-control-padding-x, 12px) 0;
+  padding: var(--space-4) var(--density-control-padding-x, 8px) 0;
   color: var(--color-text-subtle);
   font-size: var(--font-size-ui-sm);
   line-height: var(--font-line-height-ui-sm);
@@ -145,8 +145,8 @@
 .combobox-empty {
   display: none;
   align-items: center;
-  min-height: var(--density-row-height, 36px);
-  padding: 0 var(--density-control-padding-x, 12px);
+  min-height: var(--density-row-height, 28px);
+  padding: 0 var(--density-control-padding-x, 8px);
   color: var(--color-text-muted);
   font-style: italic;
 }
