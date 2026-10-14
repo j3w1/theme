@@ -8,7 +8,7 @@ j3w1-badge {
   line-height: var(--font-line-height-ui-md);
 }
 j3w1-badge, j3w1-badge *, j3w1-badge *::before, j3w1-badge *::after { box-sizing: border-box; }
-j3w1-badge button, j3w1-badge input, j3w1-badge select, j3w1-badge textarea { font: inherit; }
+j3w1-badge :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 j3w1-badge ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);
@@ -112,23 +112,6 @@ j3w1-badge .badge-outline {
   background: transparent;
   border-color: var(--_border);
   color: var(--_text);
-}
-j3w1-badge .badge-empty {
-  width: var(--space-8);
-  height: var(--space-8);
-  min-width: 0;
-  padding: 0;
-  gap: 0;
-}
-
-j3w1-badge .badge-empty .badge-glyph,
-j3w1-badge .badge-empty .badge-text {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
 }
 
 @media (forced-colors: active) {

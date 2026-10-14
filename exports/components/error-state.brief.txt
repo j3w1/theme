@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — error-state
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-3G4aCbalbT6N8i2gmsvUrRzjCV81qbdApfSZQTKvz9M=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-/JUAL10Kqyw1s0kkaIWTd+qO1Dg/8bLQDSr5dPck2Qg=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/error-state.json
 spec: spec/components/error-state.md  site: https://j3w1.github.io/theme/reference/#c-error-state
 maturity: stable  priority: R2
@@ -13,7 +13,12 @@ Tokens (resolved):
   root.border                                         #a3676b  ({color.border.control})  use-and-report (D-007)
   heading.text                                        #ffa2a7  ({color.text.bright})  use
   secondary.text                                      #bd787d  ({color.text.muted})  use
-  control.bg                                          #000000  ({color.surface.input})  use
+  control.bg                                          rgb(0 0 0 / 0%)  ({color.action.secondary.bg})  use
+  control.text                                        #ffa2a7  ({color.action.secondary.text})  use
+  control.border                                      #a3676b  ({color.action.secondary.border})  use
+  control.bg-hover                                    #630f0d  ({color.action.secondary.hover-bg})  use
+  control.bg-active                                   #420f0c  ({color.action.secondary.pressed-bg})  use
+  control.border-active                               #e53935  ({color.border.active})  use
   control.focus                                       #e53935  ({color.interaction.focus.ring})  use
   dependency.role-border-width-default                1px  ({border.width.default})  use
   dependency.role-border-width-emphasis               2px  ({border.width.emphasis})  use
@@ -31,7 +36,7 @@ Tokens (resolved):
 State dependency disclosures: D-007
 
 States: default, error, loading, disabled, focus-visible
-  default: Danger border and text heading. [Specific written explanation and error glyph.]
+  default: Danger border and text heading. Its buttons are the secondary button (button.md). [Specific written explanation and error glyph.]
   error: Same explicit failure treatment. [Failure text remains available.]
   loading: Busy status accompanies the existing explanation. [aria-busy and host-provided pending text.]
   disabled: Disabled roles at full opacity. [Native retry button is disabled.]

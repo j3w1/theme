@@ -195,6 +195,7 @@
       "color.interaction.selection.text",
       "color.interaction.text-selection.bg",
       "color.interaction.text-selection.text",
+      "color.status.danger.text",
       "color.surface.canvas",
       "color.surface.input",
       "color.text.bright",
@@ -246,11 +247,13 @@
       "color.primitive.red.200",
       "color.primitive.red.350",
       "color.primitive.red.800",
+      "color.primitive.red.850",
       "color.primitive.rose.300",
       "color.primitive.rose.350",
       "color.primitive.rose.600",
       "color.primitive.rose.700",
       "color.primitive.rose.800",
+      "color.status.danger.text",
       "color.surface.canvas",
       "color.surface.input",
       "color.text.bright",
@@ -359,6 +362,11 @@
         "decisionIds": []
       },
       "color.interaction.text-selection.text": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.status.danger.text": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -484,6 +492,6 @@
   "copy": {
     "directory": "copy/search-field/",
     "manifest": "copy/search-field/manifest.json",
-    "digest": "sha256-gJRyKVv44uZ6GdrXfZtrAUcPc+a7TO7rWMRBNhHOS8U="
+    "digest": "sha256-MlEA1O4jbGz2/0lXtYTXRhzue/GO0CRrdRQUyq10ZFg="
   }
 }

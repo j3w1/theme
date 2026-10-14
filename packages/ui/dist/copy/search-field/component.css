@@ -8,7 +8,7 @@ j3w1-search-field {
   line-height: var(--font-line-height-ui-md);
 }
 j3w1-search-field, j3w1-search-field *, j3w1-search-field *::before, j3w1-search-field *::after { box-sizing: border-box; }
-j3w1-search-field button, j3w1-search-field input, j3w1-search-field select, j3w1-search-field textarea { font: inherit; }
+j3w1-search-field :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 j3w1-search-field ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);
@@ -25,6 +25,66 @@ j3w1-search-field .sr-only {
   border: 0;
 }
 
+j3w1-search-field .combobox-label,
+j3w1-search-field .dialog-field-label,
+j3w1-search-field .field-label,
+j3w1-search-field .fieldset-label,
+j3w1-search-field .file-input-label,
+j3w1-search-field .number-field-label,
+j3w1-search-field .search-field-label,
+j3w1-search-field .select-label,
+j3w1-search-field .text-field-label,
+j3w1-search-field .textarea-label,
+j3w1-search-field .time-picker-label {
+  color: var(--color-text-bright);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+j3w1-search-field .combobox-help,
+j3w1-search-field .date-picker-help,
+j3w1-search-field .dialog-field-help,
+j3w1-search-field .fieldset-help,
+j3w1-search-field .file-input-help,
+j3w1-search-field .number-field-help,
+j3w1-search-field .search-field-help,
+j3w1-search-field .select-help,
+j3w1-search-field .text-field-help,
+j3w1-search-field .textarea-help,
+j3w1-search-field .time-picker-help {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+j3w1-search-field .combobox-message,
+j3w1-search-field .date-picker-message,
+j3w1-search-field .file-input-message,
+j3w1-search-field .number-field-message,
+j3w1-search-field .radio-group-message,
+j3w1-search-field .select-message,
+j3w1-search-field .text-field-message,
+j3w1-search-field .textarea-message,
+j3w1-search-field .time-picker-message {
+  display: none;
+  margin: 0;
+  color: var(--color-status-danger-text);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+j3w1-search-field .combobox-root,
+j3w1-search-field .date-picker-root,
+j3w1-search-field .number-field-root {
+  display: flex;
+  align-items: stretch;
+  min-height: var(--density-control-height, 24px);
+  background: var(--color-surface-input);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+}
+
 j3w1-search-field .search-field {
   display: grid;
   gap: var(--space-4);
@@ -33,16 +93,10 @@ j3w1-search-field .search-field {
   color: var(--color-text-default);
 }
 
-j3w1-search-field .search-field-label {
-  color: var(--color-text-bright);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
-}
-
 j3w1-search-field .search-field-root {
   display: flex;
   align-items: center;
-  min-height: var(--density-control-height, 32px);
+  min-height: var(--density-control-height, 24px);
   padding-inline-start: var(--space-8);
   background: var(--color-surface-input);
   color: var(--color-icon-default);
@@ -130,13 +184,6 @@ j3w1-search-field .search-field-kbd {
   border: var(--border-width-default) solid var(--color-border-default);
   border-radius: var(--radius-none);
   font: inherit;
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
-}
-
-j3w1-search-field .search-field-help {
-  margin: 0;
-  color: var(--color-text-muted);
   font-size: var(--font-size-ui-sm);
   line-height: var(--font-line-height-ui-sm);
 }

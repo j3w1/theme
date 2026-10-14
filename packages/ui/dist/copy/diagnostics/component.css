@@ -8,7 +8,7 @@ j3w1-diagnostics {
   line-height: var(--font-line-height-ui-md);
 }
 j3w1-diagnostics, j3w1-diagnostics *, j3w1-diagnostics *::before, j3w1-diagnostics *::after { box-sizing: border-box; }
-j3w1-diagnostics button, j3w1-diagnostics input, j3w1-diagnostics select, j3w1-diagnostics textarea { font: inherit; }
+j3w1-diagnostics :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 j3w1-diagnostics ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);
@@ -132,8 +132,8 @@ j3w1-diagnostics .diagnostics-header {
   flex-wrap: wrap;
   gap: var(--space-12);
   align-items: baseline;
-  min-height: var(--density-row-height, 36px);
-  padding: 0 var(--density-control-padding-x, 12px);
+  min-height: var(--density-row-height, 28px);
+  padding: 0 var(--density-control-padding-x, 8px);
   border-bottom: var(--border-width-default) solid var(--color-border-divider);
 }
 
@@ -172,8 +172,8 @@ j3w1-diagnostics .diagnostics-row {
   grid-template-columns: auto minmax(0, 1fr) auto auto;
   gap: 0 var(--space-8);
   align-items: baseline;
-  min-height: var(--density-row-height, 36px);
-  padding: var(--space-4) var(--density-control-padding-x, 12px);
+  min-height: var(--density-row-height, 28px);
+  padding: var(--space-4) var(--density-control-padding-x, 8px);
   border-bottom: var(--border-width-default) solid var(--color-border-divider);
   cursor: default;
 }
@@ -199,7 +199,7 @@ j3w1-diagnostics .diagnostics-status,
 j3w1-diagnostics .diagnostics-empty {
   display: none;
   margin: 0;
-  padding: var(--space-4) var(--density-control-padding-x, 12px);
+  padding: var(--space-4) var(--density-control-padding-x, 8px);
 }
 
 j3w1-diagnostics .diagnostics-status {

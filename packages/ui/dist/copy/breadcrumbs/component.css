@@ -8,7 +8,7 @@ j3w1-breadcrumbs {
   line-height: var(--font-line-height-ui-md);
 }
 j3w1-breadcrumbs, j3w1-breadcrumbs *, j3w1-breadcrumbs *::before, j3w1-breadcrumbs *::after { box-sizing: border-box; }
-j3w1-breadcrumbs button, j3w1-breadcrumbs input, j3w1-breadcrumbs select, j3w1-breadcrumbs textarea { font: inherit; }
+j3w1-breadcrumbs :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 j3w1-breadcrumbs ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);
@@ -44,7 +44,7 @@ j3w1-breadcrumbs .breadcrumbs-list {
 j3w1-breadcrumbs .breadcrumbs-item {
   display: inline-flex;
   align-items: center;
-  min-height: var(--density-control-height, 32px);
+  min-height: var(--density-control-height, 24px);
 }
 
 j3w1-breadcrumbs .breadcrumbs-item[hidden] {
@@ -68,8 +68,8 @@ j3w1-breadcrumbs .breadcrumbs-link {
 }
 
 j3w1-breadcrumbs .breadcrumbs-ellipsis {
-  min-width: var(--density-control-height, 32px);
-  min-height: var(--density-control-height, 32px);
+  min-width: var(--density-control-height, 24px);
+  min-height: var(--density-control-height, 24px);
   padding: 0 var(--space-4);
   background: transparent;
   border: 0;

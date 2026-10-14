@@ -8,7 +8,7 @@ j3w1-file-browser {
   line-height: var(--font-line-height-ui-md);
 }
 j3w1-file-browser, j3w1-file-browser *, j3w1-file-browser *::before, j3w1-file-browser *::after { box-sizing: border-box; }
-j3w1-file-browser button, j3w1-file-browser input, j3w1-file-browser select, j3w1-file-browser textarea { font: inherit; }
+j3w1-file-browser :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 j3w1-file-browser ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);
@@ -25,11 +25,136 @@ j3w1-file-browser .sr-only {
   border: 0;
 }
 
-j3w1-file-browser .file-browser {box-sizing:border-box;display:grid;gap:var(--space-12);min-width:0;padding:var(--space-12);background:var(--color-surface-default);color:var(--color-text-default);border:var(--border-width-default) solid var(--color-border-control);border-radius:var(--radius-none);font:inherit}
+j3w1-file-browser .button,
+j3w1-file-browser .dialog-button,
+j3w1-file-browser .empty-state-action,
+j3w1-file-browser .file-input-button,
+j3w1-file-browser button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  min-height: var(--density-control-height, 24px);
+  padding: 0 var(--density-control-padding-x, 8px);
+  margin: 0;
+  background: var(--_bg);
+  color: var(--_fg);
+  border: var(--border-width-default) solid var(--_border);
+  border-radius: var(--radius-none);
+  font: inherit;
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+  white-space: nowrap;
+  cursor: pointer;
+  outline: 0;
+}
+j3w1-file-browser .button,
+j3w1-file-browser .dialog-button.dialog-button-primary {
+  --_bg: var(--color-action-primary-bg);
+  --_fg: var(--color-action-primary-text);
+  --_border: var(--color-action-primary-border);
+  --_bg-hover: var(--color-action-primary-hover-bg);
+  --_fg-hover: var(--color-action-primary-text);
+  --_bg-active: var(--color-action-primary-pressed-bg);
+  --_border-active: var(--color-action-primary-border);
+  --_ring: var(--color-interaction-focus-ring-container);
+}
+
+j3w1-file-browser .button-secondary,
+j3w1-file-browser .dialog-button,
+j3w1-file-browser .empty-state-action,
+j3w1-file-browser .file-input-button,
+j3w1-file-browser button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control) {
+  --_bg: var(--color-action-secondary-bg);
+  --_fg: var(--color-action-secondary-text);
+  --_border: var(--color-action-secondary-border);
+  --_bg-hover: var(--color-action-secondary-hover-bg);
+  --_fg-hover: var(--color-action-secondary-text);
+  --_bg-active: var(--color-action-secondary-pressed-bg);
+  --_border-active: var(--color-border-active);
+  --_ring: var(--color-interaction-focus-ring);
+}
+
+j3w1-file-browser .button-tertiary {
+  --_bg: transparent;
+  --_fg: var(--color-action-tertiary-text);
+  --_border: transparent;
+  --_bg-hover: var(--color-action-tertiary-hover-bg);
+  --_fg-hover: var(--color-action-tertiary-text);
+  --_bg-active: var(--color-interaction-pressed-bg);
+  --_border-active: var(--color-border-active);
+  --_ring: var(--color-interaction-focus-ring);
+}
+
+j3w1-file-browser .button-destructive {
+  --_bg: transparent;
+  --_fg: var(--color-action-destructive-text);
+  --_border: var(--color-action-destructive-border);
+  --_bg-hover: var(--color-action-destructive-hover-bg);
+  --_fg-hover: var(--color-action-destructive-hover-text);
+  --_bg-active: var(--color-action-destructive-pressed-bg);
+  --_border-active: var(--color-action-destructive-border);
+  --_ring: var(--color-interaction-focus-ring);
+}
+j3w1-file-browser .button-destructive-filled,
+j3w1-file-browser .dialog-button.dialog-button-destructive {
+  --_bg: var(--color-action-destructive-filled-bg);
+  --_fg: var(--color-action-destructive-filled-text);
+  --_border: var(--color-action-destructive-border);
+  --_bg-hover: var(--color-action-destructive-hover-bg);
+  --_fg-hover: var(--color-action-destructive-hover-text);
+  --_bg-active: var(--color-action-destructive-pressed-bg);
+  --_border-active: var(--color-action-destructive-border);
+  --_ring: var(--color-action-destructive-filled-text);
+}
+@media (hover: hover) {
+  j3w1-file-browser :is(.button, .dialog-button, .empty-state-action, .file-input-button, button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control)):hover {
+    --_bg: var(--_bg-hover);
+    --_fg: var(--_fg-hover);
+  }
+
+  j3w1-file-browser .button-destructive:hover {
+    --_ring: var(--color-action-destructive-hover-text);
+  }
+}
+j3w1-file-browser :is(.button, .dialog-button, .empty-state-action, .file-input-button, button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control)):active {
+  --_bg: var(--_bg-active);
+  --_fg: var(--_fg-hover);
+  --_border: var(--_border-active);
+}
+j3w1-file-browser :is(.button, .dialog-button, .empty-state-action, button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control)):focus-visible {
+  outline: var(--border-width-default) dashed var(--_ring);
+  outline-offset: var(--focus-offset);
+}
+j3w1-file-browser :is(.button, .dialog-button, .empty-state-action, button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control)):disabled {
+  --_bg: var(--color-interaction-disabled-bg);
+  --_fg: var(--color-text-disabled);
+  --_border: var(--color-border-disabled);
+  --_bg-hover: var(--color-interaction-disabled-bg);
+  --_fg-hover: var(--color-text-disabled);
+  --_bg-active: var(--color-interaction-disabled-bg);
+  --_border-active: var(--color-border-disabled);
+  cursor: not-allowed;
+}
+@media (prefers-reduced-motion: no-preference) {
+  j3w1-file-browser .dialog-button,
+  j3w1-file-browser .empty-state-action,
+  j3w1-file-browser .file-input-button,
+  j3w1-file-browser button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control) {
+    transition: background-color var(--motion-duration-fast);
+  }
+}
+
+@media (forced-colors: active) {
+  j3w1-file-browser :is(.button, .dialog-button, .empty-state-action, button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control)):focus-visible {
+    outline-color: Highlight;
+  }
+}
+
+j3w1-file-browser .file-browser {box-sizing:border-box;display:grid;gap:var(--space-16);min-width:0;padding:var(--space-12);background:var(--color-surface-default);color:var(--color-text-default);border:var(--border-width-default) solid var(--color-border-control);border-radius:var(--radius-none);font:inherit;grid-template-columns:minmax(calc(var(--font-size-ui-md) * 8),1fr) 3fr}
 j3w1-file-browser .file-browser-control {font:inherit;min-height:var(--density-control-height);padding:var(--space-8);background:var(--color-surface-input);color:var(--color-text-default);border:var(--border-width-default) solid var(--color-border-control);border-radius:var(--radius-none)}
-j3w1-file-browser .file-browser :focus-visible {outline:var(--border-width-default) dashed var(--color-interaction-focus-ring);outline-offset:var(--space-2)}
-j3w1-file-browser .file-browser table {width:100%;border-collapse:collapse}j3w1-file-browser .file-browser th,j3w1-file-browser .file-browser td {text-align:start;padding:var(--space-8);border-bottom:var(--border-width-default) solid var(--color-border-divider)}
-j3w1-file-browser .file-browser {grid-template-columns:minmax(calc(var(--font-size-ui-md) * 8),1fr) 3fr;gap:var(--space-16)}j3w1-file-browser .file-browser [aria-selected=true] {border-inline-start:var(--border-width-emphasis) solid var(--color-border-selected-indicator)}j3w1-file-browser .file-browser [data-file-status] {color:var(--color-text-muted)}@media(max-width:640px){j3w1-file-browser .file-browser{grid-template-columns:1fr}}
+j3w1-file-browser .file-browser :focus-visible {outline:var(--focus-ring);outline-offset:var(--focus-offset)}
+j3w1-file-browser .file-browser table {width:100%;border-collapse:collapse}j3w1-file-browser .file-browser th,j3w1-file-browser .file-browser td {text-align:start;padding:var(--space-8);border-bottom:var(--border-width-default) solid var(--color-border-divider)}j3w1-file-browser .file-browser [aria-selected=true] {border-inline-start:var(--border-width-emphasis) solid var(--color-border-selected-indicator)}j3w1-file-browser .file-browser [data-file-status] {color:var(--color-text-muted)}@media(max-width:640px){j3w1-file-browser .file-browser{grid-template-columns:1fr}}
 
 j3w1-file-browser .file-browser thead th {color:var(--color-text-bright)}
 j3w1-file-browser .file-browser tbody {color:var(--color-text-default)}
@@ -67,7 +192,7 @@ j3w1-file-browser .table .table-header {
   position: static;
   height: var(--density-comfortable-row-height, 36px);
   min-width: 0;
-  padding: 0 var(--density-control-padding-x, 12px);
+  padding: 0 var(--density-control-padding-x, 8px);
   background: var(--color-surface-default);
   border: 0;
   border-bottom: var(--border-width-default) solid var(--color-border-strong);
@@ -89,7 +214,7 @@ j3w1-file-browser .table-sort {
   align-items: center;
   gap: var(--space-4);
   width: 100%;
-  min-height: var(--density-control-height, 32px);
+  min-height: var(--density-control-height, 24px);
   padding: 0;
   background: transparent;
   border: 0;
@@ -121,7 +246,7 @@ j3w1-file-browser .table .table-body .table-row:first-child {
 
 j3w1-file-browser .table .table-cell {
   min-width: 0;
-  padding: var(--space-4) var(--density-control-padding-x, 12px);
+  padding: var(--space-4) var(--density-control-padding-x, 8px);
   background: transparent;
   border: 0;
   color: inherit;
@@ -157,6 +282,21 @@ j3w1-file-browser .table-sticky .table-header {
   z-index: var(--z-raised);
   background: var(--color-surface-raised);
   border-bottom-width: var(--border-width-emphasis);
+}
+@media (max-width: 599.98px) {
+  j3w1-file-browser .table :is(.table-header, .table-cell):first-child {
+    position: sticky;
+    inset-inline-start: 0;
+    z-index: var(--z-raised);
+  }
+
+  j3w1-file-browser .table .table-cell:first-child {
+    background: var(--color-surface-default);
+  }
+
+  j3w1-file-browser .table .table-row:is(:hover, [aria-selected="true"]) > .table-cell:first-child {
+    background: inherit;
+  }
 }
 j3w1-file-browser .table-body .table-row:hover {
   background: var(--color-interaction-hover-bg);
@@ -236,8 +376,7 @@ j3w1-file-browser .table-body .table-loading:not([hidden]) {
 }
 
 j3w1-file-browser .tree {box-sizing:border-box;display:grid;gap:var(--space-12);min-width:0;padding:var(--space-12);background:var(--color-surface-default);color:var(--color-text-default);border:var(--border-width-default) solid var(--color-border-control);border-radius:var(--radius-none);font:inherit}
-j3w1-file-browser .tree-control {font:inherit;min-height:var(--density-control-height);padding:var(--space-8);background:var(--color-surface-input);color:var(--color-text-default);border:var(--border-width-default) solid var(--color-border-control);border-radius:var(--radius-none)}
-j3w1-file-browser .tree,j3w1-file-browser .tree [role=group] {list-style:none;padding:0;margin:0}j3w1-file-browser .tree [role=group] {padding-inline-start:var(--space-16)}j3w1-file-browser .tree [data-tree-label] {display:block;padding:var(--space-8);border-inline-start:var(--border-width-emphasis) solid transparent}j3w1-file-browser .tree [aria-expanded]>[data-tree-label]::before {content:'▸ '}j3w1-file-browser .tree [aria-expanded=true]>[data-tree-label]::before {content:'▾ '}j3w1-file-browser .tree [aria-selected=true]>[data-tree-label] {background:var(--color-interaction-selection-bg);color:var(--color-interaction-selection-text);border-inline-start-color:var(--color-border-selected-indicator)}j3w1-file-browser .tree [role=treeitem]:focus-visible>[data-tree-label] {outline:var(--border-width-default) dashed var(--color-interaction-focus-ring);outline-offset:var(--space-2)}j3w1-file-browser .tree [aria-expanded=false]>[role=group] {display:none}j3w1-file-browser .tree [aria-disabled=true]>[data-tree-label] {color:var(--color-text-disabled)}
+j3w1-file-browser .tree,j3w1-file-browser .tree [role=group] {list-style:none;padding:0;margin:0}j3w1-file-browser .tree [role=group] {padding-inline-start:var(--space-16)}j3w1-file-browser .tree [data-tree-label] {display:block;padding:var(--space-8);border-inline-start:var(--border-width-emphasis) solid transparent}j3w1-file-browser .tree [aria-expanded]>[data-tree-label]::before {content:'▸ '}j3w1-file-browser .tree [aria-expanded=true]>[data-tree-label]::before {content:'▾ '}j3w1-file-browser .tree [aria-selected=true]>[data-tree-label] {background:var(--color-interaction-selection-bg);color:var(--color-interaction-selection-text);border-inline-start-color:var(--color-border-selected-indicator)}j3w1-file-browser .tree [role=treeitem]:focus-visible>[data-tree-label] {outline:var(--focus-ring);outline-offset:var(--focus-offset)}j3w1-file-browser .tree [aria-expanded=false]>[role=group] {display:none}j3w1-file-browser .tree [aria-disabled=true]>[data-tree-label] {color:var(--color-text-disabled)}
 
 j3w1-file-browser .tree [aria-selected=true]:focus-visible>[data-tree-label] {outline-color:var(--color-interaction-focus-ring)}
 

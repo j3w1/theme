@@ -8,7 +8,7 @@ j3w1-skip-link {
   line-height: var(--font-line-height-ui-md);
 }
 j3w1-skip-link, j3w1-skip-link *, j3w1-skip-link *::before, j3w1-skip-link *::after { box-sizing: border-box; }
-j3w1-skip-link button, j3w1-skip-link input, j3w1-skip-link select, j3w1-skip-link textarea { font: inherit; }
+j3w1-skip-link :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 j3w1-skip-link ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);
@@ -30,7 +30,7 @@ j3w1-skip-link .skip-link {
   inset-inline-start: var(--space-8);
   top: calc(-1 * var(--space-48));
   z-index: var(--z-skip-link);
-  min-height: var(--density-control-height, 32px);
+  min-height: var(--density-control-height, 24px);
   padding: var(--space-4) var(--space-8);
   box-sizing: border-box;
   background: var(--color-surface-raised);
@@ -48,11 +48,6 @@ j3w1-skip-link .skip-link:focus-visible {
 
 j3w1-skip-link .skip-link:focus:not(:focus-visible) {
   outline: 0;
-}
-j3w1-skip-link .skip-link-demo {
-  position: relative;
-  min-height: calc(var(--density-control-height, 32px) + var(--space-16));
-  overflow: hidden;
 }
 
 @media (forced-colors: active) {

@@ -8,7 +8,7 @@ j3w1-admin-form {
   line-height: var(--font-line-height-ui-md);
 }
 j3w1-admin-form, j3w1-admin-form *, j3w1-admin-form *::before, j3w1-admin-form *::after { box-sizing: border-box; }
-j3w1-admin-form button, j3w1-admin-form input, j3w1-admin-form select, j3w1-admin-form textarea { font: inherit; }
+j3w1-admin-form :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 j3w1-admin-form ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);
@@ -121,21 +121,17 @@ j3w1-admin-form .admin-form[aria-busy="true"] .admin-form-continue {
   }
 }
 
-j3w1-admin-form .button {
-  --_bg: var(--color-action-primary-bg);
-  --_fg: var(--color-action-primary-text);
-  --_border: var(--color-action-primary-border);
-  --_bg-hover: var(--color-action-primary-hover-bg);
-  --_fg-hover: var(--color-action-primary-text);
-  --_bg-active: var(--color-action-primary-pressed-bg);
-  --_border-active: var(--color-action-primary-border);
-  --_ring: var(--color-interaction-focus-ring-container);
+j3w1-admin-form .button,
+j3w1-admin-form .dialog-button,
+j3w1-admin-form .empty-state-action,
+j3w1-admin-form .file-input-button,
+j3w1-admin-form button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-4);
-  min-height: var(--density-control-height, 32px);
-  padding: 0 var(--density-control-padding-x, 12px);
+  min-height: var(--density-control-height, 24px);
+  padding: 0 var(--density-control-padding-x, 8px);
   margin: 0;
   background: var(--_bg);
   color: var(--_fg);
@@ -148,8 +144,23 @@ j3w1-admin-form .button {
   cursor: pointer;
   outline: 0;
 }
+j3w1-admin-form .button,
+j3w1-admin-form .dialog-button.dialog-button-primary {
+  --_bg: var(--color-action-primary-bg);
+  --_fg: var(--color-action-primary-text);
+  --_border: var(--color-action-primary-border);
+  --_bg-hover: var(--color-action-primary-hover-bg);
+  --_fg-hover: var(--color-action-primary-text);
+  --_bg-active: var(--color-action-primary-pressed-bg);
+  --_border-active: var(--color-action-primary-border);
+  --_ring: var(--color-interaction-focus-ring-container);
+}
 
-j3w1-admin-form .button-secondary {
+j3w1-admin-form .button-secondary,
+j3w1-admin-form .dialog-button,
+j3w1-admin-form .empty-state-action,
+j3w1-admin-form .file-input-button,
+j3w1-admin-form button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control) {
   --_bg: var(--color-action-secondary-bg);
   --_fg: var(--color-action-secondary-text);
   --_border: var(--color-action-secondary-border);
@@ -181,7 +192,8 @@ j3w1-admin-form .button-destructive {
   --_border-active: var(--color-action-destructive-border);
   --_ring: var(--color-interaction-focus-ring);
 }
-j3w1-admin-form .button-destructive-filled {
+j3w1-admin-form .button-destructive-filled,
+j3w1-admin-form .dialog-button.dialog-button-destructive {
   --_bg: var(--color-action-destructive-filled-bg);
   --_fg: var(--color-action-destructive-filled-text);
   --_border: var(--color-action-destructive-border);
@@ -190,6 +202,49 @@ j3w1-admin-form .button-destructive-filled {
   --_bg-active: var(--color-action-destructive-pressed-bg);
   --_border-active: var(--color-action-destructive-border);
   --_ring: var(--color-action-destructive-filled-text);
+}
+@media (hover: hover) {
+  j3w1-admin-form :is(.button, .dialog-button, .empty-state-action, .file-input-button, button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control)):hover {
+    --_bg: var(--_bg-hover);
+    --_fg: var(--_fg-hover);
+  }
+
+  j3w1-admin-form .button-destructive:hover {
+    --_ring: var(--color-action-destructive-hover-text);
+  }
+}
+j3w1-admin-form :is(.button, .dialog-button, .empty-state-action, .file-input-button, button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control)):active {
+  --_bg: var(--_bg-active);
+  --_fg: var(--_fg-hover);
+  --_border: var(--_border-active);
+}
+j3w1-admin-form :is(.button, .dialog-button, .empty-state-action, button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control)):focus-visible {
+  outline: var(--border-width-default) dashed var(--_ring);
+  outline-offset: var(--focus-offset);
+}
+j3w1-admin-form :is(.button, .dialog-button, .empty-state-action, button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control)):disabled {
+  --_bg: var(--color-interaction-disabled-bg);
+  --_fg: var(--color-text-disabled);
+  --_border: var(--color-border-disabled);
+  --_bg-hover: var(--color-interaction-disabled-bg);
+  --_fg-hover: var(--color-text-disabled);
+  --_bg-active: var(--color-interaction-disabled-bg);
+  --_border-active: var(--color-border-disabled);
+  cursor: not-allowed;
+}
+@media (prefers-reduced-motion: no-preference) {
+  j3w1-admin-form .dialog-button,
+  j3w1-admin-form .empty-state-action,
+  j3w1-admin-form .file-input-button,
+  j3w1-admin-form button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control) {
+    transition: background-color var(--motion-duration-fast);
+  }
+}
+
+@media (forced-colors: active) {
+  j3w1-admin-form :is(.button, .dialog-button, .empty-state-action, button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control)):focus-visible {
+    outline-color: Highlight;
+  }
 }
 
 j3w1-admin-form .button-icon {
@@ -208,25 +263,6 @@ j3w1-admin-form .button-loading {
 j3w1-admin-form .button-label {
   min-width: 0;
 }
-@media (hover: hover) {
-  j3w1-admin-form .button:hover {
-    --_bg: var(--_bg-hover);
-    --_fg: var(--_fg-hover);
-  }
-
-  j3w1-admin-form .button-destructive:hover {
-    --_ring: var(--color-action-destructive-hover-text);
-  }
-}
-j3w1-admin-form .button:active {
-  --_bg: var(--_bg-active);
-  --_fg: var(--_fg-hover);
-  --_border: var(--_border-active);
-}
-j3w1-admin-form .button:focus-visible {
-  outline: var(--border-width-default) dashed var(--_ring);
-  outline-offset: var(--focus-offset);
-}
 j3w1-admin-form .button[aria-busy="true"] .button-loading {
   display: inline;
 }
@@ -238,16 +274,6 @@ j3w1-admin-form .button[aria-busy="true"] .button-icon {
 j3w1-admin-form .button[aria-busy="true"] {
   cursor: progress;
 }
-j3w1-admin-form .button:disabled {
-  --_bg: var(--color-interaction-disabled-bg);
-  --_fg: var(--color-text-disabled);
-  --_border: var(--color-border-disabled);
-  --_bg-hover: var(--color-interaction-disabled-bg);
-  --_fg-hover: var(--color-text-disabled);
-  --_bg-active: var(--color-interaction-disabled-bg);
-  --_border-active: var(--color-border-disabled);
-  cursor: not-allowed;
-}
 
 @media (prefers-reduced-motion: no-preference) {
   j3w1-admin-form .button {
@@ -256,9 +282,66 @@ j3w1-admin-form .button:disabled {
 }
 
 @media (forced-colors: active) {
-  j3w1-admin-form .button:focus-visible {
-    outline-color: Highlight;
-  }
+}
+
+j3w1-admin-form .combobox-label,
+j3w1-admin-form .dialog-field-label,
+j3w1-admin-form .field-label,
+j3w1-admin-form .fieldset-label,
+j3w1-admin-form .file-input-label,
+j3w1-admin-form .number-field-label,
+j3w1-admin-form .search-field-label,
+j3w1-admin-form .select-label,
+j3w1-admin-form .text-field-label,
+j3w1-admin-form .textarea-label,
+j3w1-admin-form .time-picker-label {
+  color: var(--color-text-bright);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+j3w1-admin-form .combobox-help,
+j3w1-admin-form .date-picker-help,
+j3w1-admin-form .dialog-field-help,
+j3w1-admin-form .fieldset-help,
+j3w1-admin-form .file-input-help,
+j3w1-admin-form .number-field-help,
+j3w1-admin-form .search-field-help,
+j3w1-admin-form .select-help,
+j3w1-admin-form .text-field-help,
+j3w1-admin-form .textarea-help,
+j3w1-admin-form .time-picker-help {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+j3w1-admin-form .combobox-message,
+j3w1-admin-form .date-picker-message,
+j3w1-admin-form .file-input-message,
+j3w1-admin-form .number-field-message,
+j3w1-admin-form .radio-group-message,
+j3w1-admin-form .select-message,
+j3w1-admin-form .text-field-message,
+j3w1-admin-form .textarea-message,
+j3w1-admin-form .time-picker-message {
+  display: none;
+  margin: 0;
+  color: var(--color-status-danger-text);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+j3w1-admin-form .combobox-root,
+j3w1-admin-form .date-picker-root,
+j3w1-admin-form .number-field-root {
+  display: flex;
+  align-items: stretch;
+  min-height: var(--density-control-height, 24px);
+  background: var(--color-surface-input);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
 }
 
 j3w1-admin-form .field {
@@ -268,12 +351,6 @@ j3w1-admin-form .field {
   min-width: 0;
   max-width: calc(var(--font-size-ui-md) * 28);
   color: var(--color-text-default);
-}
-
-j3w1-admin-form .field-label {
-  color: var(--color-text-bright);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
 }
 
 j3w1-admin-form .field-required {
@@ -288,8 +365,8 @@ j3w1-admin-form .field-control {
 
 j3w1-admin-form .field-input {
   min-width: 0;
-  min-height: var(--density-control-height, 32px);
-  padding: 0 var(--density-control-padding-x, 12px);
+  min-height: var(--density-control-height, 24px);
+  padding: 0 var(--density-control-padding-x, 8px);
   background: var(--color-surface-input);
   color: var(--color-text-default);
   border: var(--border-width-default) solid var(--color-border-control);
@@ -364,12 +441,6 @@ j3w1-admin-form .text-field {
   color: var(--color-text-default);
 }
 
-j3w1-admin-form .text-field-label {
-  color: var(--color-text-bright);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
-}
-
 j3w1-admin-form .text-field-required {
   display: none;
   color: var(--color-status-danger-text);
@@ -379,7 +450,7 @@ j3w1-admin-form .text-field-root {
   display: flex;
   min-width: 0;
   align-items: stretch;
-  min-height: var(--density-control-height, 32px);
+  min-height: var(--density-control-height, 24px);
   background: var(--color-surface-input);
   border: var(--border-width-default) solid var(--color-border-control);
   border-radius: var(--radius-none);
@@ -388,7 +459,7 @@ j3w1-admin-form .text-field-root {
 j3w1-admin-form .text-field-input {
   flex: 1 1 auto;
   min-width: 0;
-  padding: 0 var(--density-control-padding-x, 12px);
+  padding: 0 var(--density-control-padding-x, 8px);
   background: transparent;
   border: 0;
   color: var(--color-text-default);
@@ -463,21 +534,6 @@ j3w1-admin-form .text-field-loading {
   align-items: center;
   padding: 0 var(--space-8);
   color: var(--color-text-muted);
-}
-
-j3w1-admin-form .text-field-help {
-  margin: 0;
-  color: var(--color-text-muted);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
-}
-
-j3w1-admin-form .text-field-message {
-  display: none;
-  margin: 0;
-  color: var(--color-status-danger-text);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
 }
 j3w1-admin-form .text-field-root:hover {
   background: var(--color-interaction-hover-bg);
@@ -579,7 +635,7 @@ j3w1-admin-form .checkbox-required {
 
 j3w1-admin-form .checkbox-option {
   display: grid;
-  grid-template-columns: var(--density-icon, 16px) minmax(0, 1fr);
+  grid-template-columns: var(--density-icon, 12px) minmax(0, 1fr);
   align-items: center;
   gap: var(--space-4);
   min-height: var(--space-24);
@@ -589,8 +645,8 @@ j3w1-admin-form .checkbox-option {
 
 j3w1-admin-form .checkbox-control {
   display: inline-grid;
-  width: var(--density-icon, 16px);
-  height: var(--density-icon, 16px);
+  width: var(--density-icon, 12px);
+  height: var(--density-icon, 12px);
   color: var(--color-action-primary-text);
 }
 
@@ -600,8 +656,8 @@ j3w1-admin-form .checkbox-control > * {
 
 j3w1-admin-form .checkbox-input {
   appearance: none;
-  width: var(--density-icon, 16px);
-  height: var(--density-icon, 16px);
+  width: var(--density-icon, 12px);
+  height: var(--density-icon, 12px);
   margin: 0;
   background: var(--color-surface-input);
   border: var(--border-width-default) solid var(--color-border-control);
@@ -613,8 +669,8 @@ j3w1-admin-form .checkbox-input {
 j3w1-admin-form .checkbox-check,
 j3w1-admin-form .checkbox-dash {
   display: none;
-  width: var(--density-icon, 16px);
-  height: var(--density-icon, 16px);
+  width: var(--density-icon, 12px);
+  height: var(--density-icon, 12px);
   stroke: currentColor;
   fill: none;
   pointer-events: none;
@@ -753,7 +809,7 @@ j3w1-admin-form .radio-group-horizontal .radio-group-options {
 
 j3w1-admin-form .radio-group-option {
   display: grid;
-  grid-template-columns: var(--density-icon, 16px) minmax(0, 1fr);
+  grid-template-columns: var(--density-icon, 12px) minmax(0, 1fr);
   align-items: start;
   gap: var(--space-8);
   min-height: var(--space-24);
@@ -763,8 +819,8 @@ j3w1-admin-form .radio-group-option {
 
 j3w1-admin-form .radio-group-control {
   display: inline-grid;
-  width: var(--density-icon, 16px);
-  height: var(--density-icon, 16px);
+  width: var(--density-icon, 12px);
+  height: var(--density-icon, 12px);
 }
 
 j3w1-admin-form .radio-group-control > * {
@@ -773,8 +829,8 @@ j3w1-admin-form .radio-group-control > * {
 
 j3w1-admin-form .radio-group-input {
   appearance: none;
-  width: var(--density-icon, 16px);
-  height: var(--density-icon, 16px);
+  width: var(--density-icon, 12px);
+  height: var(--density-icon, 12px);
   margin: 0;
   background: var(--color-surface-input);
   border: var(--border-width-default) solid var(--color-border-control);
@@ -795,14 +851,6 @@ j3w1-admin-form .radio-group-dot {
 j3w1-admin-form .radio-group-text {
   font-size: var(--font-size-ui-md);
   line-height: var(--font-line-height-ui-md);
-}
-
-j3w1-admin-form .radio-group-message {
-  display: none;
-  margin: 0;
-  color: var(--color-status-danger-text);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
 }
 @media (hover: hover) {
   j3w1-admin-form .radio-group-option:hover .radio-group-input:not(:disabled) {
@@ -873,15 +921,15 @@ j3w1-admin-form .radio-group:disabled .radio-group-legend {
 }
 
 j3w1-admin-form :where([data-j3w1-controls] *)[hidden] { display:none!important; }
-j3w1-admin-form :where([data-j3w1-controls] *):where(button,input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),textarea) { min-height:var(--density-control-height,32px); padding:var(--space-8) var(--density-control-padding-x,12px); border:var(--border-width-default) solid var(--color-border-control); border-radius:var(--radius-none); background:var(--color-surface-input); color:var(--color-text-default); font:inherit; }
-j3w1-admin-form :where([data-j3w1-controls] *):where(button,input:not([type="checkbox"]):not([type="radio"]):not([type="range"])) { padding-block:0; }
-j3w1-admin-form :where([data-j3w1-controls] *):where(button,input,textarea):focus-visible { outline:var(--focus-ring); outline-offset:var(--focus-offset); }
-j3w1-admin-form :where([data-j3w1-controls] *):where(button,input,textarea):disabled { color:var(--color-text-disabled); background:var(--color-interaction-disabled-bg); border-color:var(--color-border-disabled); opacity:1; }
-j3w1-admin-form :where([data-j3w1-controls] *):where(input,textarea)::placeholder { color:var(--color-text-placeholder); opacity:1; }
-j3w1-admin-form :where([data-j3w1-controls] *):where(fieldset) { min-width:0; padding:var(--space-16); border:var(--border-width-default) solid var(--color-border-control); }
+j3w1-admin-form :where([data-j3w1-controls] *):where(button,input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),textarea):where(:not([class])) { min-height:var(--density-control-height,24px); padding:var(--space-8) var(--density-control-padding-x,8px); border:var(--border-width-default) solid var(--color-border-control); border-radius:var(--radius-none); background:var(--color-surface-input); color:var(--color-text-default); font:inherit; }
+j3w1-admin-form :where([data-j3w1-controls] *):where(button,input:not([type="checkbox"]):not([type="radio"]):not([type="range"])):where(:not([class])) { padding-block:0; }
+j3w1-admin-form :where([data-j3w1-controls] *):where(button,input,textarea):where(:not([class])):focus-visible { outline:var(--focus-ring); outline-offset:var(--focus-offset); }
+j3w1-admin-form :where([data-j3w1-controls] *):where(button,input,textarea):where(:not([class])):disabled { color:var(--color-text-disabled); background:var(--color-interaction-disabled-bg); border-color:var(--color-border-disabled); opacity:1; }
+j3w1-admin-form :where([data-j3w1-controls] *):where(input,textarea):where(:not([class]))::placeholder { color:var(--color-text-placeholder); opacity:1; }
+j3w1-admin-form :where([data-j3w1-controls] *):where(fieldset):where(:not([class])) { min-width:0; padding:var(--space-16); border:var(--border-width-default) solid var(--color-border-control); }
 j3w1-admin-form .j3w1-temporal { display:block; min-width:0; max-width:100%; }
 j3w1-admin-form .j3w1-temporal-row { display:flex; align-items:stretch; min-width:0; border:var(--border-width-default) solid var(--color-border-control); background:var(--color-surface-input); }
-j3w1-admin-form .j3w1-temporal-input { min-width:0; width:100%; padding:0 var(--density-control-padding-x,12px); border:0; border-radius:var(--radius-none); background:var(--color-surface-input); color:var(--color-text-default); font:inherit; }
+j3w1-admin-form .j3w1-temporal-input { min-width:0; width:100%; padding:0 var(--density-control-padding-x,8px); border:0; border-radius:var(--radius-none); background:var(--color-surface-input); color:var(--color-text-default); font:inherit; }
 j3w1-admin-form .j3w1-temporal-action { flex:none; min-width:var(--space-32); border:0; border-inline-start:var(--border-width-default) solid var(--color-border-control); border-radius:var(--radius-none); background:var(--color-surface-raised); color:var(--color-text-bright); font:inherit; cursor:pointer; }
 j3w1-admin-form .j3w1-temporal-hint { display:block; margin-block-start:var(--space-4); color:var(--color-text-muted); font-size:var(--font-size-ui-sm); }
 j3w1-admin-form .j3w1-temporal :focus-visible,j3w1-admin-form .j3w1-calendar :focus-visible { outline:var(--focus-ring); outline-offset:var(--focus-offset); }
@@ -905,7 +953,7 @@ j3w1-admin-form .j3w1-calendar [aria-pressed="true"] { background:var(--color-in
 j3w1-admin-form .j3w1-calendar [aria-pressed="true"]:focus-visible { outline:var(--focus-ring-container); }
 j3w1-admin-form .j3w1-calendar button:disabled { color:var(--color-text-disabled); background:var(--color-interaction-disabled-bg); cursor:not-allowed; }
 j3w1-admin-form .j3w1-choice { display: block; min-width: min(calc(var(--font-size-ui-md) * 12), calc(100vw - var(--space-32))); max-width: 100%; color: var(--color-text-default); font: inherit; }
-j3w1-admin-form .j3w1-choice-trigger { display: flex; align-items: center; justify-content: space-between; gap: var(--space-12); width: 100%; min-height: var(--density-control-height, 32px); padding: 0 var(--density-control-padding-x, 12px); border: var(--border-width-default) solid var(--color-border-control); background: var(--color-surface-input); color: var(--color-text-default); border-radius: var(--radius-none); font: inherit; text-align: start; cursor: pointer; }
+j3w1-admin-form .j3w1-choice-trigger { display: flex; align-items: center; justify-content: space-between; gap: var(--space-12); width: 100%; min-height: var(--density-control-height, 24px); padding: 0 var(--density-control-padding-x, 8px); border: var(--border-width-default) solid var(--color-border-control); background: var(--color-surface-input); color: var(--color-text-default); border-radius: var(--radius-none); font: inherit; text-align: start; cursor: pointer; }
 j3w1-admin-form .j3w1-choice-value { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 j3w1-admin-form .j3w1-choice-chevron { flex: none; width: var(--icon-size-md); height: var(--icon-size-md); color: var(--color-text-accent); }
 j3w1-admin-form .j3w1-choice-trigger:hover { background: var(--color-interaction-hover-bg); }
@@ -913,7 +961,7 @@ j3w1-admin-form .j3w1-choice-trigger:focus-visible,j3w1-admin-form .j3w1-choice-
 j3w1-admin-form .j3w1-choice-list { display: block; box-sizing: border-box; min-width: 0; max-width: calc(100vw - var(--space-16)); max-height: calc(var(--font-size-ui-md) * 18); overflow: auto; margin: 0; padding: 0; background: var(--color-surface-raised); color: var(--color-text-default); border: var(--border-width-default) solid var(--color-border-overlay); border-radius: var(--radius-none); font: inherit; z-index: var(--z-popover); }
 j3w1-admin-form .j3w1-choice-list[popover] { inset: auto; }
 j3w1-admin-form .j3w1-choice-list[hidden] { display: none; }
-j3w1-admin-form .j3w1-choice-option { display: flex; align-items: center; gap: var(--space-8); min-height: var(--density-control-height, 32px); padding: 0 var(--space-8); border-inline-start: var(--border-width-emphasis) solid transparent; cursor: pointer; overflow-wrap: anywhere; }
+j3w1-admin-form .j3w1-choice-option { display: flex; align-items: center; gap: var(--space-8); min-height: var(--density-control-height, 24px); padding: 0 var(--space-8); border-inline-start: var(--border-width-emphasis) solid transparent; cursor: pointer; overflow-wrap: anywhere; }
 j3w1-admin-form .j3w1-choice-check { flex: none; width: var(--icon-size-md); visibility: hidden; }
 j3w1-admin-form .j3w1-choice-option[aria-selected="true"] { background: var(--color-interaction-selection-bg); color: var(--color-interaction-selection-text); border-inline-start-color: var(--color-border-selected-indicator); }
 j3w1-admin-form .j3w1-choice-option[aria-selected="true"] .j3w1-choice-check { visibility: visible; }
@@ -927,19 +975,19 @@ j3w1-admin-form .j3w1-choice-error { display: block; color: var(--color-status-d
 j3w1-admin-form .j3w1-choice [aria-invalid="true"] { border: var(--border-width-emphasis) solid var(--color-status-danger-border); }
 j3w1-admin-form .select-root:has(.j3w1-choice) > .select-chevron { display: none; }
 j3w1-admin-form :where([data-j3w1-controls] *)::selection { color: var(--color-interaction-text-selection-text); background: var(--color-interaction-text-selection-bg); }
-j3w1-admin-form :where([data-j3w1-controls] *):where(button,input,textarea) { accent-color: var(--color-interaction-selection-bg); font: inherit; border-radius: var(--radius-none); }
-j3w1-admin-form input:where([data-j3w1-controls] *)[type="checkbox"]:not(.checkbox-input),j3w1-admin-form input:where([data-j3w1-controls] *)[type="radio"]:not(.radio-input):not(.radio-group-input) { appearance: none; display: inline-grid; place-content: center; width: var(--density-icon, 16px); height: var(--density-icon, 16px); padding: 0; vertical-align: middle; border: var(--border-width-default) solid var(--color-border-control); background: var(--color-surface-input); }
-j3w1-admin-form input:where([data-j3w1-controls] *)[type="checkbox"]:not(.checkbox-input):checked,j3w1-admin-form input:where([data-j3w1-controls] *)[type="radio"]:not(.radio-input):not(.radio-group-input):checked { background: var(--color-interaction-selection-bg); color: var(--color-interaction-selection-text); }
-j3w1-admin-form input:where([data-j3w1-controls] *)[type="checkbox"]:not(.checkbox-input):checked::after { content: '✓'; font-size: calc(var(--density-icon, 16px) * 0.75); line-height: 1; }
-j3w1-admin-form input:where([data-j3w1-controls] *)[type="radio"]:not(.radio-input):not(.radio-group-input):checked::after { content: ''; width: calc(var(--density-icon, 16px) / 2); height: calc(var(--density-icon, 16px) / 2); background: var(--color-interaction-selection-text); }
-j3w1-admin-form input:where([data-j3w1-controls] *)[type="file"]::file-selector-button { font: inherit; padding: var(--space-8) var(--space-12); margin-inline-end: var(--space-12); border: var(--border-width-default) solid var(--color-border-control); border-radius: var(--radius-none); color: var(--color-text-default); background: var(--color-surface-raised); }
-j3w1-admin-form input:where([data-j3w1-controls] *)[type="number"] { appearance: textfield; }
-j3w1-admin-form input:where([data-j3w1-controls] *)[type="number"]::-webkit-inner-spin-button,j3w1-admin-form input:where([data-j3w1-controls] *)[type="number"]::-webkit-outer-spin-button { appearance: none; margin: 0; }
-j3w1-admin-form input:where([data-j3w1-controls] *)[type="range"] { appearance:none; background:var(--color-surface-input); }
-j3w1-admin-form input:where([data-j3w1-controls] *)[type="range"]::-webkit-slider-runnable-track { height:var(--space-4); background:var(--color-border-control); }
-j3w1-admin-form input:where([data-j3w1-controls] *)[type="range"]::-moz-range-track { height:var(--space-4); background:var(--color-border-control); }
-j3w1-admin-form input:where([data-j3w1-controls] *)[type="range"]::-webkit-slider-thumb { appearance:none; width:var(--icon-size-md); height:var(--icon-size-md); margin-top:calc((var(--space-4) - var(--icon-size-md)) / 2); border:var(--border-width-default) solid var(--color-border-control); border-radius:var(--radius-none); background:var(--color-action-primary-bg); }
-j3w1-admin-form input:where([data-j3w1-controls] *)[type="range"]::-moz-range-thumb { width:var(--icon-size-md); height:var(--icon-size-md); border:var(--border-width-default) solid var(--color-border-control); border-radius:var(--radius-none); background:var(--color-action-primary-bg); }
+j3w1-admin-form :where([data-j3w1-controls] *):where(button,input,textarea):where(:not([class])) { accent-color: var(--color-interaction-selection-bg); font: inherit; border-radius: var(--radius-none); }
+j3w1-admin-form input:where([data-j3w1-controls] *)[type="checkbox"]:not([class]),j3w1-admin-form input:where([data-j3w1-controls] *)[type="radio"]:not([class]) { appearance: none; display: inline-grid; place-content: center; width: var(--density-icon, 12px); height: var(--density-icon, 12px); padding: 0; vertical-align: middle; border: var(--border-width-default) solid var(--color-border-control); background: var(--color-surface-input); }
+j3w1-admin-form input:where([data-j3w1-controls] *)[type="checkbox"]:not([class]):checked,j3w1-admin-form input:where([data-j3w1-controls] *)[type="radio"]:not([class]):checked { background: var(--color-interaction-selection-bg); color: var(--color-interaction-selection-text); }
+j3w1-admin-form input:where([data-j3w1-controls] *)[type="checkbox"]:not([class]):checked::after { content: '✓'; font-size: calc(var(--density-icon, 12px) * 0.75); line-height: 1; }
+j3w1-admin-form input:where([data-j3w1-controls] *)[type="radio"]:not([class]):checked::after { content: ''; width: calc(var(--density-icon, 12px) / 2); height: calc(var(--density-icon, 12px) / 2); background: var(--color-interaction-selection-text); }
+j3w1-admin-form input:where([data-j3w1-controls] *)[type="file"]:where(:not([class]))::file-selector-button { font: inherit; padding: var(--space-8) var(--space-12); margin-inline-end: var(--space-12); border: var(--border-width-default) solid var(--color-border-control); border-radius: var(--radius-none); color: var(--color-text-default); background: var(--color-surface-raised); }
+j3w1-admin-form input:where([data-j3w1-controls] *)[type="number"]:where(:not([class])) { appearance: textfield; }
+j3w1-admin-form input:where([data-j3w1-controls] *)[type="number"]:where(:not([class]))::-webkit-inner-spin-button,j3w1-admin-form input:where([data-j3w1-controls] *)[type="number"]:where(:not([class]))::-webkit-outer-spin-button { appearance: none; margin: 0; }
+j3w1-admin-form input:where([data-j3w1-controls] *)[type="range"]:where(:not([class])) { appearance:none; background:var(--color-surface-input); }
+j3w1-admin-form input:where([data-j3w1-controls] *)[type="range"]:where(:not([class]))::-webkit-slider-runnable-track { height:var(--space-4); background:var(--color-border-control); }
+j3w1-admin-form input:where([data-j3w1-controls] *)[type="range"]:where(:not([class]))::-moz-range-track { height:var(--space-4); background:var(--color-border-control); }
+j3w1-admin-form input:where([data-j3w1-controls] *)[type="range"]:where(:not([class]))::-webkit-slider-thumb { appearance:none; width:var(--icon-size-md); height:var(--icon-size-md); margin-top:calc((var(--space-4) - var(--icon-size-md)) / 2); border:var(--border-width-default) solid var(--color-border-control); border-radius:var(--radius-none); background:var(--color-action-primary-bg); }
+j3w1-admin-form input:where([data-j3w1-controls] *)[type="range"]:where(:not([class]))::-moz-range-thumb { width:var(--icon-size-md); height:var(--icon-size-md); border:var(--border-width-default) solid var(--color-border-control); border-radius:var(--radius-none); background:var(--color-action-primary-bg); }
 
 j3w1-admin-form .select {
   position: relative;
@@ -948,12 +996,6 @@ j3w1-admin-form .select {
   min-width: 0;
   max-width: calc(var(--font-size-ui-md) * 28);
   color: var(--color-text-default);
-}
-
-j3w1-admin-form .select-label {
-  color: var(--color-text-bright);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
 }
 
 j3w1-admin-form .select-required {
@@ -965,7 +1007,7 @@ j3w1-admin-form .select-root {
   position: relative;
   display: grid;
   min-width: 0;
-  min-height: var(--density-control-height, 32px);
+  min-height: var(--density-control-height, 24px);
   background: var(--color-surface-input);
   color: var(--color-icon-default);
   border: var(--border-width-default) solid var(--color-border-control);
@@ -976,8 +1018,8 @@ j3w1-admin-form .select-control {
   appearance: none;
   width: 100%;
   min-width: 0;
-  min-height: calc(var(--density-control-height, 32px) - 2 * var(--border-width-default));
-  padding: 0 calc(var(--density-control-padding-x, 12px) + var(--icon-size-md) + var(--space-4)) 0 var(--density-control-padding-x, 12px);
+  min-height: calc(var(--density-control-height, 24px) - 2 * var(--border-width-default));
+  padding: 0 calc(var(--density-control-padding-x, 8px) + var(--icon-size-md) + var(--space-4)) 0 var(--density-control-padding-x, 8px);
   margin: 0;
   background: transparent;
   border: 0;
@@ -1002,8 +1044,8 @@ j3w1-admin-form .select-control optgroup {
 }
 
 j3w1-admin-form .select-control option {
-  padding: 0 var(--density-control-padding-x, 12px);
-  min-height: var(--density-row-height, 36px);
+  padding: 0 var(--density-control-padding-x, 8px);
+  min-height: var(--density-row-height, 28px);
 }
 
 j3w1-admin-form .select-control optgroup {
@@ -1017,7 +1059,7 @@ j3w1-admin-form .select-control option:checked {
 
 j3w1-admin-form .select-chevron {
   position: absolute;
-  inset-inline-end: var(--density-control-padding-x, 12px);
+  inset-inline-end: var(--density-control-padding-x, 8px);
   top: 50%;
   width: var(--icon-size-md);
   height: var(--icon-size-md);
@@ -1025,21 +1067,6 @@ j3w1-admin-form .select-chevron {
   stroke: currentColor;
   fill: none;
   pointer-events: none;
-}
-
-j3w1-admin-form .select-help {
-  margin: 0;
-  color: var(--color-text-muted);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
-}
-
-j3w1-admin-form .select-message {
-  display: none;
-  margin: 0;
-  color: var(--color-status-danger-text);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
 }
 @media (hover: hover) {
   j3w1-admin-form .select-root:hover {
@@ -1236,12 +1263,6 @@ j3w1-admin-form .textarea {
   color: var(--color-text-default);
 }
 
-j3w1-admin-form .textarea-label {
-  color: var(--color-text-bright);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
-}
-
 j3w1-admin-form .textarea-required {
   display: none;
   color: var(--color-status-danger-text);
@@ -1259,8 +1280,8 @@ j3w1-admin-form .textarea-input {
   display: block;
   width: 100%;
   min-width: 0;
-  min-height: calc(var(--density-control-height, 32px) * 2);
-  padding: var(--space-4) var(--density-control-padding-x, 12px);
+  min-height: calc(var(--density-control-height, 24px) * 2);
+  padding: var(--space-4) var(--density-control-padding-x, 8px);
   background: transparent;
   border: 0;
   color: var(--color-text-default);
@@ -1289,21 +1310,6 @@ j3w1-admin-form .textarea-count {
   font-size: var(--font-size-ui-sm);
   line-height: var(--font-line-height-ui-sm);
   font-variant-numeric: tabular-nums;
-}
-
-j3w1-admin-form .textarea-help {
-  margin: 0;
-  color: var(--color-text-muted);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
-}
-
-j3w1-admin-form .textarea-message {
-  display: none;
-  margin: 0;
-  color: var(--color-status-danger-text);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
 }
 j3w1-admin-form .textarea-root:hover {
   background: var(--color-interaction-hover-bg);
@@ -1419,16 +1425,10 @@ j3w1-admin-form .fieldset-field {
   min-width: 0;
 }
 
-j3w1-admin-form .fieldset-label {
-  color: var(--color-text-bright);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
-}
-
 j3w1-admin-form .fieldset-input {
   min-width: 0;
-  min-height: var(--density-control-height, 32px);
-  padding: 0 var(--density-control-padding-x, 12px);
+  min-height: var(--density-control-height, 24px);
+  padding: 0 var(--density-control-padding-x, 8px);
   background: var(--color-surface-input);
   color: var(--color-text-default);
   border: var(--border-width-default) solid var(--color-border-control);
@@ -1441,13 +1441,6 @@ j3w1-admin-form .fieldset-input:focus-visible {
   border-color: var(--color-border-active);
   outline: var(--focus-ring);
   outline-offset: var(--focus-offset);
-}
-
-j3w1-admin-form .fieldset-help {
-  margin: 0;
-  color: var(--color-text-muted);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
 }
 j3w1-admin-form .fieldset:disabled .fieldset-legend,
 j3w1-admin-form .fieldset:disabled .fieldset-label {
@@ -1499,7 +1492,7 @@ j3w1-admin-form .table .table-header {
   position: static;
   height: var(--density-comfortable-row-height, 36px);
   min-width: 0;
-  padding: 0 var(--density-control-padding-x, 12px);
+  padding: 0 var(--density-control-padding-x, 8px);
   background: var(--color-surface-default);
   border: 0;
   border-bottom: var(--border-width-default) solid var(--color-border-strong);
@@ -1521,7 +1514,7 @@ j3w1-admin-form .table-sort {
   align-items: center;
   gap: var(--space-4);
   width: 100%;
-  min-height: var(--density-control-height, 32px);
+  min-height: var(--density-control-height, 24px);
   padding: 0;
   background: transparent;
   border: 0;
@@ -1553,7 +1546,7 @@ j3w1-admin-form .table .table-body .table-row:first-child {
 
 j3w1-admin-form .table .table-cell {
   min-width: 0;
-  padding: var(--space-4) var(--density-control-padding-x, 12px);
+  padding: var(--space-4) var(--density-control-padding-x, 8px);
   background: transparent;
   border: 0;
   color: inherit;
@@ -1589,6 +1582,21 @@ j3w1-admin-form .table-sticky .table-header {
   z-index: var(--z-raised);
   background: var(--color-surface-raised);
   border-bottom-width: var(--border-width-emphasis);
+}
+@media (max-width: 599.98px) {
+  j3w1-admin-form .table :is(.table-header, .table-cell):first-child {
+    position: sticky;
+    inset-inline-start: 0;
+    z-index: var(--z-raised);
+  }
+
+  j3w1-admin-form .table .table-cell:first-child {
+    background: var(--color-surface-default);
+  }
+
+  j3w1-admin-form .table .table-row:is(:hover, [aria-selected="true"]) > .table-cell:first-child {
+    background: inherit;
+  }
 }
 j3w1-admin-form .table-body .table-row:hover {
   background: var(--color-interaction-hover-bg);
@@ -1775,6 +1783,9 @@ j3w1-admin-form .form-tool { inline-size: 100%; max-inline-size: calc(var(--font
 j3w1-admin-form .form-tool[hidden], j3w1-admin-form .form-tool [hidden] { display: none !important; }
 j3w1-admin-form .form-tool fieldset { min-inline-size: 0; }
 j3w1-admin-form .form-tool-actions { display: flex; flex-wrap: wrap; gap: var(--space-8); margin-block: var(--space-16); }
+j3w1-admin-form .admin-form.form-tool form { display: grid; gap: var(--space-16); }
+j3w1-admin-form .admin-form.form-tool .form-tool-actions { margin-block: 0; }
+j3w1-admin-form .admin-form.form-tool > [data-status]:empty { position: absolute; }
 j3w1-admin-form .form-tool-fields { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-4); border: 0; padding: 0; margin: 0; }
 j3w1-admin-form .form-field-help { color: var(--color-text-muted); margin: 0; font-size: var(--font-size-ui-sm); }
 j3w1-admin-form .form-tool-summary { margin-block: var(--space-4); }

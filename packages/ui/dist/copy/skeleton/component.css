@@ -8,7 +8,7 @@ j3w1-skeleton {
   line-height: var(--font-line-height-ui-md);
 }
 j3w1-skeleton, j3w1-skeleton *, j3w1-skeleton *::before, j3w1-skeleton *::after { box-sizing: border-box; }
-j3w1-skeleton button, j3w1-skeleton input, j3w1-skeleton select, j3w1-skeleton textarea { font: inherit; }
+j3w1-skeleton :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 j3w1-skeleton ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);
@@ -26,7 +26,7 @@ j3w1-skeleton .sr-only {
 }
 
 j3w1-skeleton .skeleton {box-sizing:border-box;display:grid;gap:var(--space-12);min-width:0;padding:var(--space-12);background:var(--color-surface-default);color:var(--color-text-default);border:var(--border-width-default) solid var(--color-border-control);border-radius:var(--radius-none);font:inherit}
-j3w1-skeleton .skeleton :focus-visible {outline:var(--border-width-default) dashed var(--color-interaction-focus-ring);outline-offset:var(--space-2)}
+j3w1-skeleton .skeleton :focus-visible {outline:var(--focus-ring);outline-offset:var(--focus-offset)}
 j3w1-skeleton .skeleton-block {height:var(--space-16);background:var(--color-surface-raised);border:var(--border-width-default) solid var(--color-border-divider)}j3w1-skeleton .skeleton-short {width:60%}j3w1-skeleton .skeleton[aria-busy=true] {animation:none;transition:none}
 
 j3w1-skeleton [hidden] { display: none !important; }

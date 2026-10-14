@@ -8,7 +8,7 @@ j3w1-card {
   line-height: var(--font-line-height-ui-md);
 }
 j3w1-card, j3w1-card *, j3w1-card *::before, j3w1-card *::after { box-sizing: border-box; }
-j3w1-card button, j3w1-card input, j3w1-card select, j3w1-card textarea { font: inherit; }
+j3w1-card :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 j3w1-card ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);
@@ -30,7 +30,7 @@ j3w1-card .card {
   gap: var(--space-4);
   min-width: 0;
   max-width: calc(var(--font-size-ui-md) * 28);
-  padding: var(--density-control-padding-x, 12px);
+  padding: var(--density-control-padding-x, 8px);
   box-sizing: border-box;
   background: var(--color-surface-default);
   border: var(--border-width-default) solid var(--color-border-default);
@@ -67,7 +67,7 @@ j3w1-card .card-selectable {
 
 j3w1-card .card-group {
   display: grid;
-  gap: var(--density-gap, 4px);
+  gap: var(--density-gap, 2px);
   min-width: 0;
 }
 j3w1-card .card-link:hover,

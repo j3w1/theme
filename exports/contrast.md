@@ -162,6 +162,8 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | Primary content | — | text | `color.text.default` #e99499 | `color.surface.default` #100c0c | 8.48 | 4.5 | pass |
 | Supporting content | — | text | `color.text.muted` #bd787d | `color.surface.default` #100c0c | 5.69 | 4.5 | pass |
 | Control boundary | — | ui | `color.border.control` #a3676b | `color.surface.default` #100c0c | 4.36 | 3 | pass |
+| Button label | — | text | `color.action.secondary.text` #ffa2a7 | `color.surface.default` #100c0c | 10.17 | 4.5 | pass |
+| Button label on hover | — | text | `color.action.secondary.text` #ffa2a7 | `color.action.secondary.hover-bg` #630f0d | 6.84 | 4.5 | pass |
 | button default text | default | text | `color.action.primary.text` #ffa2a7 | `color.action.primary.bg` #7d1310 | 5.57 | 4.5 | pass |
 | button hover text | hover | text | `color.action.primary.text` #ffa2a7 | `color.action.primary.hover-bg` #911410 | 4.75 | 4.5 | pass |
 | button focus-visible text | focus-visible | text | `color.action.primary.text` #ffa2a7 | `color.action.primary.bg` #7d1310 | 5.57 | 4.5 | pass |
@@ -295,11 +297,15 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | Primary content | — | text | `color.text.default` #e99499 | `color.surface.default` #100c0c | 8.48 | 4.5 | pass |
 | Supporting content | — | text | `color.text.muted` #bd787d | `color.surface.default` #100c0c | 5.69 | 4.5 | pass |
 | Control boundary | — | ui | `color.border.control` #a3676b | `color.surface.default` #100c0c | 4.36 | 3 | pass |
+| Button label | — | text | `color.action.secondary.text` #ffa2a7 | `color.surface.default` #100c0c | 10.17 | 4.5 | pass |
+| Button label on hover | — | text | `color.action.secondary.text` #ffa2a7 | `color.action.secondary.hover-bg` #630f0d | 6.84 | 4.5 | pass |
 | compact-dashboard default text | default | text | `color.text.default` #e99499 | `color.surface.default` #100c0c | 8.48 | 4.5 | pass |
 | compact-dashboard default border | default | ui | `color.border.control` #a3676b | `color.surface.default` #100c0c | 4.36 | 3 | pass |
 | Primary content | — | text | `color.text.default` #e99499 | `color.surface.default` #100c0c | 8.48 | 4.5 | pass |
 | Supporting content | — | text | `color.text.muted` #bd787d | `color.surface.default` #100c0c | 5.69 | 4.5 | pass |
 | Control boundary | — | ui | `color.border.control` #a3676b | `color.surface.default` #100c0c | 4.36 | 3 | pass |
+| Button label | — | text | `color.action.secondary.text` #ffa2a7 | `color.surface.default` #100c0c | 10.17 | 4.5 | pass |
+| Button label on hover | — | text | `color.action.secondary.text` #ffa2a7 | `color.action.secondary.hover-bg` #630f0d | 6.84 | 4.5 | pass |
 | data-table default text | default | text | `color.text.default` #e99499 | `color.surface.default` #100c0c | 8.48 | 4.5 | pass |
 | data-table hover text | hover | text | `color.text.default` #e99499 | `color.interaction.hover.bg` #1c0a09 | 8.35 | 4.5 | pass |
 | data-table focus-visible text | focus-visible | text | `color.text.default` #e99499 | `color.surface.default` #100c0c | 8.48 | 4.5 | pass |
@@ -451,6 +457,8 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | Primary content | — | text | `color.text.default` #e99499 | `color.surface.default` #100c0c | 8.48 | 4.5 | pass |
 | Supporting content | — | text | `color.text.muted` #bd787d | `color.surface.default` #100c0c | 5.69 | 4.5 | pass |
 | Control boundary | — | ui | `color.border.control` #a3676b | `color.surface.default` #100c0c | 4.36 | 3 | pass |
+| Button label | — | text | `color.action.secondary.text` #ffa2a7 | `color.surface.default` #100c0c | 10.17 | 4.5 | pass |
+| Button label on hover | — | text | `color.action.secondary.text` #ffa2a7 | `color.action.secondary.hover-bg` #630f0d | 6.84 | 4.5 | pass |
 | empty-state default text | default | text | `color.text.muted` #bd787d | `color.surface.default` #100c0c | 5.69 | 4.5 | pass |
 | heading on the panel surface | — | text | `color.text.bright` #ffa2a7 | `color.surface.default` #100c0c | 10.17 | 4.5 | pass |
 | action text on the panel surface | — | text | `color.action.secondary.text` #ffa2a7 | `color.surface.default` #100c0c | 10.17 | 4.5 | pass |
@@ -462,6 +470,8 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | Primary content | — | text | `color.text.default` #e99499 | `color.surface.default` #100c0c | 8.48 | 4.5 | pass |
 | Supporting content | — | text | `color.text.muted` #bd787d | `color.surface.default` #100c0c | 5.69 | 4.5 | pass |
 | Control boundary | — | ui | `color.border.control` #a3676b | `color.surface.default` #100c0c | 4.36 | 3 | pass |
+| Button label | — | text | `color.action.secondary.text` #ffa2a7 | `color.surface.default` #100c0c | 10.17 | 4.5 | pass |
+| Button label on hover | — | text | `color.action.secondary.text` #ffa2a7 | `color.action.secondary.hover-bg` #630f0d | 6.84 | 4.5 | pass |
 | field default text | default | text | `color.text.bright` #ffa2a7 | `color.surface.default` #100c0c | 10.17 | 4.5 | pass |
 | field required text | required | text | `color.status.danger.text` #f73f35 | `color.surface.default` #100c0c | 5.29 | 4.5 | pass |
 | field invalid text | invalid | text | `color.status.danger.text` #f73f35 | `color.surface.default` #100c0c | 5.29 | 4.5 | pass |
@@ -482,6 +492,8 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | Primary content | — | text | `color.text.default` #e99499 | `color.surface.default` #100c0c | 8.48 | 4.5 | pass |
 | Supporting content | — | text | `color.text.muted` #bd787d | `color.surface.default` #100c0c | 5.69 | 4.5 | pass |
 | Control boundary | — | ui | `color.border.control` #a3676b | `color.surface.default` #100c0c | 4.36 | 3 | pass |
+| Button label | — | text | `color.action.secondary.text` #ffa2a7 | `color.surface.default` #100c0c | 10.17 | 4.5 | pass |
+| Button label on hover | — | text | `color.action.secondary.text` #ffa2a7 | `color.action.secondary.hover-bg` #630f0d | 6.84 | 4.5 | pass |
 | file-input default text | default | text | `color.action.secondary.text` #ffa2a7 | `color.surface.canvas` #000000 | 10.98 | 4.5 | pass |
 | file-input default border | default | ui | `color.action.secondary.border` #a3676b | `color.surface.canvas` #000000 | 4.71 | 3 | pass |
 | file-input hover text | hover | text | `color.action.secondary.text` #ffa2a7 | `color.action.secondary.hover-bg` #630f0d | 6.84 | 4.5 | pass |
@@ -614,6 +626,8 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | Primary content | — | text | `color.text.default` #e99499 | `color.surface.default` #100c0c | 8.48 | 4.5 | pass |
 | Supporting content | — | text | `color.text.muted` #bd787d | `color.surface.default` #100c0c | 5.69 | 4.5 | pass |
 | Control boundary | — | ui | `color.border.control` #a3676b | `color.surface.default` #100c0c | 4.36 | 3 | pass |
+| Button label | — | text | `color.action.secondary.text` #ffa2a7 | `color.surface.default` #100c0c | 10.17 | 4.5 | pass |
+| Button label on hover | — | text | `color.action.secondary.text` #ffa2a7 | `color.action.secondary.hover-bg` #630f0d | 6.84 | 4.5 | pass |
 | number-field default text | default | text | `color.text.default` #e99499 | `color.surface.input` #000000 | 9.16 | 4.5 | pass |
 | number-field default border | default | ui | `color.border.control` #a3676b | `color.surface.input` #000000 | 4.71 | 3 | pass |
 | number-field hover text | hover | text | `color.text.default` #e99499 | `color.interaction.hover.bg` #1c0a09 | 8.35 | 4.5 | pass |
@@ -649,6 +663,8 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | Primary content | — | text | `color.text.default` #e99499 | `color.surface.default` #100c0c | 8.48 | 4.5 | pass |
 | Supporting content | — | text | `color.text.muted` #bd787d | `color.surface.default` #100c0c | 5.69 | 4.5 | pass |
 | Control boundary | — | ui | `color.border.control` #a3676b | `color.surface.default` #100c0c | 4.36 | 3 | pass |
+| Button label | — | text | `color.action.secondary.text` #ffa2a7 | `color.surface.default` #100c0c | 10.17 | 4.5 | pass |
+| Button label on hover | — | text | `color.action.secondary.text` #ffa2a7 | `color.action.secondary.hover-bg` #630f0d | 6.84 | 4.5 | pass |
 | progress default text | default | text | `color.text.default` #e99499 | `color.surface.canvas` #000000 | 9.16 | 4.5 | pass |
 | progress default border | default | ui | `color.border.control` #a3676b | `color.surface.canvas` #000000 | 4.71 | 3 | pass |
 | progress error text | error | text | `color.status.danger.text` #f73f35 | `color.surface.canvas` #000000 | 5.72 | 4.5 | pass |
@@ -685,6 +701,8 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | Primary content | — | text | `color.text.default` #e99499 | `color.surface.default` #100c0c | 8.48 | 4.5 | pass |
 | Supporting content | — | text | `color.text.muted` #bd787d | `color.surface.default` #100c0c | 5.69 | 4.5 | pass |
 | Control boundary | — | ui | `color.border.control` #a3676b | `color.surface.default` #100c0c | 4.36 | 3 | pass |
+| Button label | — | text | `color.action.secondary.text` #ffa2a7 | `color.surface.default` #100c0c | 10.17 | 4.5 | pass |
+| Button label on hover | — | text | `color.action.secondary.text` #ffa2a7 | `color.action.secondary.hover-bg` #630f0d | 6.84 | 4.5 | pass |
 | search-field default text | default | text | `color.text.default` #e99499 | `color.surface.input` #000000 | 9.16 | 4.5 | pass |
 | search-field default border | default | ui | `color.border.control` #a3676b | `color.surface.input` #000000 | 4.71 | 3 | pass |
 | search-field hover text | hover | text | `color.text.default` #e99499 | `color.interaction.hover.bg` #1c0a09 | 8.35 | 4.5 | pass |

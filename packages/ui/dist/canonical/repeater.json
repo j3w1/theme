@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-3G4aCbalbT6N8i2gmsvUrRzjCV81qbdApfSZQTKvz9M=",
+  "sourceDigest": "sha256-/JUAL10Kqyw1s0kkaIWTd+qO1Dg/8bLQDSr5dPck2Qg=",
   "id": "repeater",
   "family": "forms-advanced",
   "maturity": "stable",
@@ -127,6 +127,90 @@
       }
     },
     "control.focus": {
+      "alias": "color.interaction.focus.ring",
+      "value": "#e53935",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "button.bg": {
+      "alias": "color.action.secondary.bg",
+      "value": "rgb(0 0 0 / 0%)",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "button.text": {
+      "alias": "color.action.secondary.text",
+      "value": "#ffa2a7",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "button.border": {
+      "alias": "color.action.secondary.border",
+      "value": "#a3676b",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "button.bg-hover": {
+      "alias": "color.action.secondary.hover-bg",
+      "value": "#630f0d",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "button.bg-active": {
+      "alias": "color.action.secondary.pressed-bg",
+      "value": "#420f0c",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "button.border-active": {
+      "alias": "color.border.active",
+      "value": "#e53935",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "button.focus": {
       "alias": "color.interaction.focus.ring",
       "value": "#e53935",
       "status": "observed",
@@ -274,7 +358,7 @@
   "stateRules": [
     {
       "state": "default",
-      "visual": "named content on the default surface",
+      "visual": "named content on the default surface. Button controls are the secondary button (button.md); inputs keep the input look.",
       "channel": "native text and structure",
       "tokens": {
         "fg": {
@@ -431,6 +515,32 @@
       "fgHex": "#a3676b",
       "bgHex": "#100c0c",
       "ratio": 4.36,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "Button label",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.secondary.text",
+      "bg": "color.surface.default",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#100c0c",
+      "ratio": 10.17,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "Button label on hover",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.secondary.text",
+      "bg": "color.action.secondary.hover-bg",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#630f0d",
+      "ratio": 6.84,
       "pass": true,
       "waiver": null
     }

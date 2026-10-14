@@ -8,7 +8,7 @@ j3w1-list {
   line-height: var(--font-line-height-ui-md);
 }
 j3w1-list, j3w1-list *, j3w1-list *::before, j3w1-list *::after { box-sizing: border-box; }
-j3w1-list button, j3w1-list input, j3w1-list select, j3w1-list textarea { font: inherit; }
+j3w1-list :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 j3w1-list ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);
@@ -41,8 +41,8 @@ j3w1-list .list-option {
   display: flex;
   align-items: center;
   gap: var(--space-8);
-  min-height: var(--density-row-height, 36px);
-  padding: var(--space-2) var(--density-control-padding-x, 12px);
+  min-height: var(--density-row-height, 28px);
+  padding: var(--space-2) var(--density-control-padding-x, 8px);
   box-sizing: border-box;
   border-top: var(--border-width-default) solid var(--color-border-divider);
   color: var(--color-text-default);
@@ -57,7 +57,7 @@ j3w1-list .list-check {
   display: inline-flex;
   justify-content: center;
   flex: 0 0 auto;
-  width: var(--density-icon, 16px);
+  width: var(--density-icon, 12px);
   color: var(--color-interaction-selection-text);
   visibility: hidden;
 }

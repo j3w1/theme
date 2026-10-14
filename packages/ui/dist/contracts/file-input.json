@@ -133,7 +133,18 @@
     "roles": [
       "border.width.default",
       "border.width.emphasis",
+      "color.action.destructive.border",
+      "color.action.destructive.filled-bg",
+      "color.action.destructive.filled-text",
+      "color.action.destructive.hover-bg",
+      "color.action.destructive.hover-text",
+      "color.action.destructive.pressed-bg",
+      "color.action.destructive.text",
       "color.action.primary.bg",
+      "color.action.primary.border",
+      "color.action.primary.hover-bg",
+      "color.action.primary.pressed-bg",
+      "color.action.primary.text",
       "color.action.secondary.bg",
       "color.action.secondary.border",
       "color.action.secondary.hover-bg",
@@ -147,6 +158,7 @@
       "color.border.divider",
       "color.interaction.disabled.bg",
       "color.interaction.drop-target",
+      "color.interaction.focus.ring",
       "color.interaction.focus.ring-container",
       "color.interaction.pressed.bg",
       "color.interaction.selection.bg",
@@ -156,6 +168,7 @@
       "color.status.danger.border",
       "color.status.danger.text",
       "color.surface.canvas",
+      "color.surface.input",
       "color.text.bright",
       "color.text.default",
       "color.text.disabled",
@@ -186,7 +199,18 @@
     "paths": [
       "border.width.default",
       "border.width.emphasis",
+      "color.action.destructive.border",
+      "color.action.destructive.filled-bg",
+      "color.action.destructive.filled-text",
+      "color.action.destructive.hover-bg",
+      "color.action.destructive.hover-text",
+      "color.action.destructive.pressed-bg",
+      "color.action.destructive.text",
       "color.action.primary.bg",
+      "color.action.primary.border",
+      "color.action.primary.hover-bg",
+      "color.action.primary.pressed-bg",
+      "color.action.primary.text",
       "color.action.secondary.bg",
       "color.action.secondary.border",
       "color.action.secondary.hover-bg",
@@ -212,12 +236,16 @@
       "color.primitive.ink.30",
       "color.primitive.ink.40",
       "color.primitive.ink.60",
+      "color.primitive.paper.100",
       "color.primitive.paper.90",
       "color.primitive.red.100",
       "color.primitive.red.150",
       "color.primitive.red.200",
       "color.primitive.red.350",
+      "color.primitive.red.400",
       "color.primitive.red.50",
+      "color.primitive.red.550",
+      "color.primitive.red.750",
       "color.primitive.red.800",
       "color.primitive.red.850",
       "color.primitive.rose.300",
@@ -229,10 +257,12 @@
       "color.status.danger.border",
       "color.status.danger.text",
       "color.surface.canvas",
+      "color.surface.input",
       "color.text.bright",
       "color.text.default",
       "color.text.disabled",
       "color.text.muted",
+      "color.text.on-action",
       "color.text.subtle",
       "density.comfortable.control-height",
       "density.comfortable.control-padding-x",
@@ -267,7 +297,62 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "color.action.destructive.border": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.action.destructive.filled-bg": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.action.destructive.filled-text": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.action.destructive.hover-bg": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.action.destructive.hover-text": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.action.destructive.pressed-bg": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.action.destructive.text": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "color.action.primary.bg": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.action.primary.border": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.action.primary.hover-bg": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.action.primary.pressed-bg": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.action.primary.text": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -341,6 +426,11 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "color.interaction.focus.ring": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "color.interaction.focus.ring-container": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -382,6 +472,11 @@
         "decisionIds": []
       },
       "color.surface.canvas": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "color.surface.input": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -522,6 +617,6 @@
   "copy": {
     "directory": "copy/file-input/",
     "manifest": "copy/file-input/manifest.json",
-    "digest": "sha256-5Gmuw+Lws6C/hsX5DMNrbH5ttf0G0BEWbz8Z1a9MXx4="
+    "digest": "sha256-X08YRjuyyMs/lhABC8jyT6hAh4AhRXBy9nRCGzLest8="
   }
 }

@@ -28,7 +28,7 @@ SOFTWARE.
   line-height: var(--font-line-height-ui-md);
 }
 .j3w1-recipe, .j3w1-recipe *, .j3w1-recipe *::before, .j3w1-recipe *::after { box-sizing: border-box; }
-.j3w1-recipe button, .j3w1-recipe input, .j3w1-recipe select, .j3w1-recipe textarea { font: inherit; }
+.j3w1-recipe :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 .j3w1-recipe ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);

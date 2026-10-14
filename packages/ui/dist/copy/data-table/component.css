@@ -8,7 +8,7 @@ j3w1-data-table {
   line-height: var(--font-line-height-ui-md);
 }
 j3w1-data-table, j3w1-data-table *, j3w1-data-table *::before, j3w1-data-table *::after { box-sizing: border-box; }
-j3w1-data-table button, j3w1-data-table input, j3w1-data-table select, j3w1-data-table textarea { font: inherit; }
+j3w1-data-table :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 j3w1-data-table ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);
@@ -41,7 +41,7 @@ j3w1-data-table .data-table .data-table-header {
   position: relative;
   height: var(--density-comfortable-row-height, 36px);
   min-width: 0;
-  padding: 0 var(--density-control-padding-x, 12px);
+  padding: 0 var(--density-control-padding-x, 8px);
   background: var(--color-surface-default);
   border: 0;
   border-bottom: var(--border-width-default) solid var(--color-border-strong);
@@ -57,7 +57,7 @@ j3w1-data-table .data-table tbody th { color: inherit; font-weight: var(--font-w
 
 j3w1-data-table .data-table .data-table-header-select,
 j3w1-data-table .data-table .data-table-cell-select {
-  width: var(--density-control-height, 32px);
+  width: var(--density-control-height, 24px);
   padding-inline-end: 0;
   text-align: center;
 }
@@ -72,7 +72,7 @@ j3w1-data-table .data-table-sort {
   align-items: center;
   gap: var(--space-4);
   width: 100%;
-  min-height: var(--density-control-height, 32px);
+  min-height: var(--density-control-height, 24px);
   padding: 0;
   background: transparent;
   border: 0;
@@ -92,8 +92,8 @@ j3w1-data-table .data-table-checkbox {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: var(--density-icon, 16px);
-  height: var(--density-icon, 16px);
+  width: var(--density-icon, 12px);
+  height: var(--density-icon, 12px);
   margin: 0;
   padding: 0;
   vertical-align: middle;
@@ -126,7 +126,7 @@ j3w1-data-table .data-table-select-all[aria-checked="mixed"] .data-table-check-g
 j3w1-data-table .data-table-checkbox:checked::before {
   content: "✓";
   color: var(--color-action-primary-text);
-  font-size: calc(var(--density-icon, 16px) * 0.75);
+  font-size: calc(var(--density-icon, 12px) * 0.75);
   line-height: 1;
 }
 
@@ -142,7 +142,7 @@ j3w1-data-table .data-table .data-table-body .data-table-row:first-child {
 
 j3w1-data-table .data-table .data-table-cell {
   min-width: 0;
-  padding: var(--space-4) var(--density-control-padding-x, 12px);
+  padding: var(--space-4) var(--density-control-padding-x, 8px);
   background: transparent;
   border: 0;
   color: inherit;
@@ -284,8 +284,8 @@ j3w1-data-table .menu-button {
   display: inline-flex;
   align-items: center;
   gap: var(--space-4);
-  min-height: var(--density-control-height, 32px);
-  padding: 0 var(--density-control-padding-x, 12px);
+  min-height: var(--density-control-height, 24px);
+  padding: 0 var(--density-control-padding-x, 8px);
   background: var(--color-surface-default);
   border: var(--border-width-default) solid var(--color-border-control);
   border-radius: var(--radius-none);
@@ -334,8 +334,8 @@ j3w1-data-table .menu-item {
   align-items: center;
   gap: var(--space-8);
   width: 100%;
-  min-height: var(--density-row-height, 36px);
-  padding: 0 var(--density-control-padding-x, 12px);
+  min-height: var(--density-row-height, 28px);
+  padding: 0 var(--density-control-padding-x, 8px);
   box-sizing: border-box;
   background: transparent;
   border: 0;
@@ -351,7 +351,7 @@ j3w1-data-table .menu-check {
   display: inline-flex;
   justify-content: center;
   flex: 0 0 auto;
-  width: var(--density-icon, 16px);
+  width: var(--density-icon, 12px);
   color: var(--color-text-bright);
   visibility: hidden;
 }

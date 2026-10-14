@@ -117,7 +117,7 @@ SOFTWARE.
   line-height: var(--font-line-height-ui-md);
 }
 .j3w1-recipe, .j3w1-recipe *, .j3w1-recipe *::before, .j3w1-recipe *::after { box-sizing: border-box; }
-.j3w1-recipe button, .j3w1-recipe input, .j3w1-recipe select, .j3w1-recipe textarea { font: inherit; }
+.j3w1-recipe :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 .j3w1-recipe ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);
@@ -155,6 +155,66 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+.j3w1-recipe .combobox-label,
+.j3w1-recipe .dialog-field-label,
+.j3w1-recipe .field-label,
+.j3w1-recipe .fieldset-label,
+.j3w1-recipe .file-input-label,
+.j3w1-recipe .number-field-label,
+.j3w1-recipe .search-field-label,
+.j3w1-recipe .select-label,
+.j3w1-recipe .text-field-label,
+.j3w1-recipe .textarea-label,
+.j3w1-recipe .time-picker-label {
+  color: var(--color-text-bright);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.j3w1-recipe .combobox-help,
+.j3w1-recipe .date-picker-help,
+.j3w1-recipe .dialog-field-help,
+.j3w1-recipe .fieldset-help,
+.j3w1-recipe .file-input-help,
+.j3w1-recipe .number-field-help,
+.j3w1-recipe .search-field-help,
+.j3w1-recipe .select-help,
+.j3w1-recipe .text-field-help,
+.j3w1-recipe .textarea-help,
+.j3w1-recipe .time-picker-help {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.j3w1-recipe .combobox-message,
+.j3w1-recipe .date-picker-message,
+.j3w1-recipe .file-input-message,
+.j3w1-recipe .number-field-message,
+.j3w1-recipe .radio-group-message,
+.j3w1-recipe .select-message,
+.j3w1-recipe .text-field-message,
+.j3w1-recipe .textarea-message,
+.j3w1-recipe .time-picker-message {
+  display: none;
+  margin: 0;
+  color: var(--color-status-danger-text);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.j3w1-recipe .combobox-root,
+.j3w1-recipe .date-picker-root,
+.j3w1-recipe .number-field-root {
+  display: flex;
+  align-items: stretch;
+  min-height: var(--density-control-height, 24px);
+  background: var(--color-surface-input);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+}
+
 .j3w1-recipe .text-field {
   position: relative;
   display: grid;
@@ -162,12 +222,6 @@ SOFTWARE.
   min-width: 0;
   max-width: calc(var(--font-size-ui-md) * 28);
   color: var(--color-text-default);
-}
-
-.j3w1-recipe .text-field-label {
-  color: var(--color-text-bright);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
 }
 
 .j3w1-recipe .text-field-required {
@@ -179,7 +233,7 @@ SOFTWARE.
   display: flex;
   min-width: 0;
   align-items: stretch;
-  min-height: var(--density-control-height, 32px);
+  min-height: var(--density-control-height, 24px);
   background: var(--color-surface-input);
   border: var(--border-width-default) solid var(--color-border-control);
   border-radius: var(--radius-none);
@@ -188,7 +242,7 @@ SOFTWARE.
 .j3w1-recipe .text-field-input {
   flex: 1 1 auto;
   min-width: 0;
-  padding: 0 var(--density-control-padding-x, 12px);
+  padding: 0 var(--density-control-padding-x, 8px);
   background: transparent;
   border: 0;
   color: var(--color-text-default);
@@ -263,21 +317,6 @@ SOFTWARE.
   align-items: center;
   padding: 0 var(--space-8);
   color: var(--color-text-muted);
-}
-
-.j3w1-recipe .text-field-help {
-  margin: 0;
-  color: var(--color-text-muted);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
-}
-
-.j3w1-recipe .text-field-message {
-  display: none;
-  margin: 0;
-  color: var(--color-status-danger-text);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
 }
 .j3w1-recipe .text-field-root:hover {
   background: var(--color-interaction-hover-bg);

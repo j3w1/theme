@@ -8,7 +8,7 @@ j3w1-chip {
   line-height: var(--font-line-height-ui-md);
 }
 j3w1-chip, j3w1-chip *, j3w1-chip *::before, j3w1-chip *::after { box-sizing: border-box; }
-j3w1-chip button, j3w1-chip input, j3w1-chip select, j3w1-chip textarea { font: inherit; }
+j3w1-chip :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 j3w1-chip ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);
@@ -30,7 +30,7 @@ j3w1-chip .chip {
   align-items: center;
   gap: var(--space-4);
   vertical-align: middle;
-  min-height: var(--density-control-height, 32px);
+  min-height: var(--density-control-height, 24px);
   padding: 0 var(--space-8);
   box-sizing: border-box;
   background: var(--color-surface-default);
@@ -63,7 +63,7 @@ j3w1-chip .chip-remove {
   align-items: center;
   justify-content: center;
   align-self: stretch;
-  min-width: calc(var(--density-control-height, 32px) - var(--border-width-emphasis));
+  min-width: calc(var(--density-control-height, 24px) - var(--border-width-emphasis));
   padding: 0 var(--space-4);
   background: transparent;
   border: 0;

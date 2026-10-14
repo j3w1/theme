@@ -8,7 +8,7 @@ j3w1-tooltip {
   line-height: var(--font-line-height-ui-md);
 }
 j3w1-tooltip, j3w1-tooltip *, j3w1-tooltip *::before, j3w1-tooltip *::after { box-sizing: border-box; }
-j3w1-tooltip button, j3w1-tooltip input, j3w1-tooltip select, j3w1-tooltip textarea { font: inherit; }
+j3w1-tooltip :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 j3w1-tooltip ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);
@@ -36,8 +36,8 @@ j3w1-tooltip .tooltip {
 j3w1-tooltip .tooltip-trigger {
   display: inline-flex;
   align-items: center;
-  min-height: var(--density-control-height, 32px);
-  padding: 0 var(--density-control-padding-x, 12px);
+  min-height: var(--density-control-height, 24px);
+  padding: 0 var(--density-control-padding-x, 8px);
   background: transparent;
   border: var(--border-width-default) solid var(--color-border-control);
   border-radius: var(--radius-none);

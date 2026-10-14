@@ -8,7 +8,7 @@ j3w1-kbd {
   line-height: var(--font-line-height-ui-md);
 }
 j3w1-kbd, j3w1-kbd *, j3w1-kbd *::before, j3w1-kbd *::after { box-sizing: border-box; }
-j3w1-kbd button, j3w1-kbd input, j3w1-kbd select, j3w1-kbd textarea { font: inherit; }
+j3w1-kbd :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 j3w1-kbd ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);
@@ -25,9 +25,8 @@ j3w1-kbd .sr-only {
   border: 0;
 }
 
-j3w1-kbd .kbd {box-sizing:border-box;display:grid;gap:var(--space-12);min-width:0;padding:var(--space-12);background:var(--color-surface-default);color:var(--color-text-default);border:var(--border-width-default) solid var(--color-border-control);border-radius:var(--radius-none);font:inherit}
-j3w1-kbd .kbd :focus-visible {outline:var(--border-width-default) dashed var(--color-interaction-focus-ring);outline-offset:var(--space-2)}
-j3w1-kbd .kbd {display:inline-block;min-width:1.5em;text-align:center;padding:var(--space-2) var(--space-4);font:inherit;border-bottom-width:var(--border-width-emphasis)}
+j3w1-kbd .kbd {box-sizing:border-box;display:inline-block;gap:var(--space-12);min-width:1.5em;padding:var(--space-2) var(--space-4);background:var(--color-surface-default);color:var(--color-text-default);border:var(--border-width-default) solid var(--color-border-control);border-radius:var(--radius-none);font:inherit;text-align:center;border-bottom-width:var(--border-width-emphasis)}
+j3w1-kbd .kbd :focus-visible {outline:var(--focus-ring);outline-offset:var(--focus-offset)}
 
 j3w1-kbd [hidden] { display: none !important; }
 j3w1-kbd .j3w1-visually-hidden {

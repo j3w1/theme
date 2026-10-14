@@ -99,7 +99,6 @@
       "font.line-height.ui-md",
       "font.size.ui-md",
       "radius.none",
-      "space.16",
       "space.32",
       "space.4",
       "space.48",
@@ -137,7 +136,6 @@
       "font.line-height.ui-md",
       "font.size.ui-md",
       "radius.none",
-      "space.16",
       "space.32",
       "space.4",
       "space.48",
@@ -248,11 +246,6 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
-      "space.16": {
-        "action": "use",
-        "reason": "Use within the role's documented scope and restrictions.",
-        "decisionIds": []
-      },
       "space.32": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -289,6 +282,6 @@
   "copy": {
     "directory": "copy/skip-link/",
     "manifest": "copy/skip-link/manifest.json",
-    "digest": "sha256-uEa5l74owvcRPERJE1YhbUKEdSNVBFtokEkwM0nEedo="
+    "digest": "sha256-Cc64YD+9+04pEDbmTkOYQn2WgXyorjjK3s9dPDl4lZk="
   }
 }

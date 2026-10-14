@@ -8,7 +8,7 @@ j3w1-code-editor {
   line-height: var(--font-line-height-ui-md);
 }
 j3w1-code-editor, j3w1-code-editor *, j3w1-code-editor *::before, j3w1-code-editor *::after { box-sizing: border-box; }
-j3w1-code-editor button, j3w1-code-editor input, j3w1-code-editor select, j3w1-code-editor textarea { font: inherit; }
+j3w1-code-editor :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 j3w1-code-editor ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);

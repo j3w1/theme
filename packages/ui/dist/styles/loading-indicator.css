@@ -8,7 +8,7 @@ j3w1-loading-indicator {
   line-height: var(--font-line-height-ui-md);
 }
 j3w1-loading-indicator, j3w1-loading-indicator *, j3w1-loading-indicator *::before, j3w1-loading-indicator *::after { box-sizing: border-box; }
-j3w1-loading-indicator button, j3w1-loading-indicator input, j3w1-loading-indicator select, j3w1-loading-indicator textarea { font: inherit; }
+j3w1-loading-indicator :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 j3w1-loading-indicator ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);
@@ -44,7 +44,7 @@ j3w1-loading-indicator .loading-indicator-block {
   align-items: center;
   justify-content: center;
   gap: var(--space-4);
-  min-height: calc(3 * var(--density-row-height, 36px));
+  min-height: calc(3 * var(--density-row-height, 28px));
   padding: var(--space-16);
   background: var(--color-surface-default);
   border: var(--border-width-default) solid var(--color-border-divider);
