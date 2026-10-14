@@ -1,4 +1,5 @@
 import { issueDraft, issueComposer } from "../../../scripts/lib/issue-draft.mjs";
+import { copyWithStatus } from "./clipboard";
 
 export function initializeIssueDraft(root: HTMLElement) {
   if (root.dataset.initialized) return;
@@ -28,8 +29,8 @@ export function initializeIssueDraft(root: HTMLElement) {
   });
   composer.addEventListener("click", (event) => { if (!reviewed.checked || !body.value) event.preventDefault(); });
   copy.addEventListener("click", async () => {
-    try { await navigator.clipboard.writeText(body.value); status.textContent = "Draft copied."; }
-    catch { body.focus(); body.select(); status.textContent = "Clipboard unavailable. The draft is selected for manual copying."; }
+    const copied = await copyWithStatus(body.value, { status, copied: "Draft copied.", failed: "Clipboard unavailable. The draft is selected for manual copying." });
+    if (!copied) { body.focus(); body.select(); }
   });
   root.querySelector("[data-cancel-issue]")!.addEventListener("click", () => { form.reset(); invalidate(); });
 }

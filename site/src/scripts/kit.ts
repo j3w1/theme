@@ -1,7 +1,7 @@
 import { buildTaskKit, zipTaskKit } from "../../../scripts/lib/task-kit.mjs";
 import { anchorFor } from "../../../scripts/lib/anchors.mjs";
 import { withBase } from "../lib/base";
-import { copyText } from "./clipboard";
+import { copyWithStatus } from "./clipboard";
 const { index, source } = JSON.parse(document.getElementById(anchorFor.kitControl("data"))!.textContent!);
 const form = document.querySelector<HTMLFormElement>("[data-kit-form]")!;
 const status = form.querySelector<HTMLElement>("[data-kit-status]")!;
@@ -41,5 +41,5 @@ form.addEventListener("submit", async (event) => {
   finally { button.disabled = false; }
 });
 document.querySelector("[data-kit-copy]")!.addEventListener("click", async () => {
-  status.textContent = (await copyText(markdown)) ? "Complete Markdown kit copied." : "Clipboard unavailable. Select the Markdown text or download the ZIP.";
+  await copyWithStatus(markdown, { status, copied: "Complete Markdown kit copied.", failed: "Clipboard unavailable. Select the Markdown text or download the ZIP." });
 });
