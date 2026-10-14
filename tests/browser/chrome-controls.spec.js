@@ -5,7 +5,6 @@
    button class, and the tools whose primary action used to lose its fill
    (R-b) show the filled primary. The source half is tests/chrome-controls.test.js. */
 
-import { readdir } from "node:fs/promises";
 import { verification } from "./verification.mjs";
 import { test, expect } from "./evidence-fixture.mjs";
 import { openSpec, rgbToHex } from "./helpers.mjs";
@@ -21,7 +20,9 @@ const { annotation } = verification({
 
 const tokens = await readJson("exports/tokens.resolved.json");
 const token = (path) => tokens.profiles[tokens.defaultProfile].tokens[path].css;
-const comparison = (await readdir("dist/releases", { recursive: true })).filter((file) => file.endsWith("/index.html") && !file.startsWith("specimens/")).sort()[0].replace(/index\.html$/, "");
+const releases = await readJson("site/releases.json");
+const firstRelease = releases.revisions.map((pin) => pin.id).sort()[0];
+const comparison = `${firstRelease}/${firstRelease}/${[...releases.profiles].sort()[0]}/`;
 
 const routes = [
   "", "reference/", "reference/contrast/", "reference/decisions/", "reference/fixtures/", "ports/ghostty/", "foundations/", "components/", "components/button/", "components/dialog/", "components/form-builder/",

@@ -23,6 +23,6 @@ if (form) {
     form.querySelector("[data-port-count]")!.textContent = count + (document.querySelector("[data-port-search]") ? " ports shown" : " mappings shown");
   };
   form.addEventListener("input", () => { apply(); const url = new URL(location.href); if (input.value) url.searchParams.set("q", input.value); else url.searchParams.delete("q"); history.replaceState(null, "", url); });
-  form.addEventListener("reset", () => { input.value = ""; apply(); });
+  form.addEventListener("reset", () => { input.value = ""; apply(); const url = new URL(location.href); url.searchParams.delete("q"); history.replaceState(null, "", url); });
   apply();
 }

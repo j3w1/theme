@@ -47,7 +47,7 @@ test("search retries an HTTP failure and shares its successful request with comm
   await expect(page.locator("#search-count")).toContainText("1 component");
   await page.getByRole("button", { name: "Search the design system", exact: true }).click();
   await page.locator('.site-command [role="combobox"]').fill("text field");
-  await expect(page.locator('.site-command [role="option"]')).toHaveCount(1);
+  await expect(page.locator('.site-command').getByRole('option')).toHaveCount(1);
   expect(attempts).toBe(2);
 });
 
