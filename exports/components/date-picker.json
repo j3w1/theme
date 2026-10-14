@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=",
+  "sourceDigest": "sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=",
   "id": "date-picker",
   "family": "forms-advanced",
   "maturity": "stable",
@@ -358,8 +358,8 @@
   "stateRules": [
     {
       "state": "default",
-      "visual": "Input surface, default text and control border.",
-      "channel": "",
+      "visual": "{color.text.default} on {color.surface.input}, 1px {color.border.control}",
+      "channel": "—",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -403,8 +403,8 @@
     },
     {
       "state": "hover",
-      "visual": "The declared hover fill.",
-      "channel": "",
+      "visual": "background → {color.interaction.hover.bg}",
+      "channel": "hover-capable pointers only",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -448,8 +448,8 @@
     },
     {
       "state": "focus-visible",
-      "visual": "Active border and the canonical focus ring.",
-      "channel": "",
+      "visual": "border → {color.border.active}; the canonical focus ring",
+      "channel": "the ring",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -503,8 +503,8 @@
     },
     {
       "state": "invalid",
-      "visual": "Danger border and a linked message.",
-      "channel": "",
+      "visual": "2px {color.status.danger.border}; a linked message",
+      "channel": "border 1 → 2px; ✕ glyph; `aria-invalid`",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -546,8 +546,8 @@
     },
     {
       "state": "invalid+focus-visible",
-      "visual": "Danger border plus the container focus ring.",
-      "channel": "",
+      "visual": "the danger border and the ring in {color.interaction.focus.ring-container} at −4px",
+      "channel": "double boundary",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -601,14 +601,14 @@
     },
     {
       "state": "disabled",
-      "visual": "Disabled colors; editor and calendar actions unavailable.",
-      "channel": "",
+      "visual": "{color.text.disabled} on {color.interaction.disabled.bg}, border {color.border.disabled}; editor and calendar actions unavailable",
+      "channel": "`disabled`; cursor: not-allowed",
       "tokens": {}
     },
     {
       "state": "read-only",
-      "visual": "Readable canvas text and bottom edge; calendar action unavailable.",
-      "channel": "",
+      "visual": "readable text on {color.surface.canvas}, no box, 1px dotted {color.border.divider} bottom edge; the calendar cannot open",
+      "channel": "`readonly`; dotted edge",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -692,7 +692,7 @@
     "admin-form",
     "filterable-table"
   ],
-  "nonExamples": "An unthemed host popup presented as fully themed. A second named input that duplicates form values. Discarding native constraints, labels or reset behavior. Literal colors, rounded corners, or a selected fill with no distinguishable focus boundary.",
+  "nonExamples": "An unthemed host popup presented as themed. A second named input\nduplicating form values. Dropping native constraints, labels or reset.\nLiteral colours, rounded corners, or a selected fill with no distinct focus\nboundary.",
   "contrast": [
     {
       "label": "date-picker default text",

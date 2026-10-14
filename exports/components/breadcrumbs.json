@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=",
+  "sourceDigest": "sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=",
   "id": "breadcrumbs",
   "family": "navigation",
   "maturity": "stable",
@@ -214,8 +214,8 @@
     },
     {
       "state": "hover",
-      "visual": "link background → {color.interaction.hover.bg-strong}; text → {color.text.link-hover}",
-      "channel": "underline thickens 1px → 2px; cursor",
+      "visual": "link → {color.interaction.hover.bg-strong}, text {color.text.link-hover}",
+      "channel": "underline 1px → 2px; cursor",
       "tokens": {
         "fg": {
           "alias": "color.text.link-hover",
@@ -245,7 +245,7 @@
     },
     {
       "state": "focus-visible",
-      "visual": "ring 1px dashed {color.interaction.focus.ring} at −2px around the link",
+      "visual": "1px dashed {color.interaction.focus.ring} at −2px around the link",
       "channel": "the ring",
       "tokens": {
         "fg": {
@@ -288,7 +288,7 @@
     },
     {
       "state": "current",
-      "visual": "text {color.text.bright}; no underline; no hover",
+      "visual": "{color.text.bright}; no underline; no hover",
       "channel": "`aria-current=\"page\"`; no underline",
       "tokens": {
         "fg": {
@@ -319,8 +319,8 @@
     },
     {
       "state": "truncated",
-      "visual": "the middle levels are replaced by an `…` button in {color.text.default}",
-      "channel": "`aria-expanded=\"false\"` on the button; its label counts the hidden levels",
+      "visual": "middle levels replaced by an `…` button in {color.text.default}",
+      "channel": "`aria-expanded=\"false\"`; its label counts the hidden levels",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -388,7 +388,7 @@
     "settings-panel",
     "filterable-table"
   ],
-  "nonExamples": "Chevrons, arrows or bullets as separators. A trail that ends with the site\nname instead of the current page. The current page drawn as a link with an\nunderline. Automatic truncation by `text-overflow` that hides levels without\na way to reach them. A trail that scrolls horizontally. Uppercase or\nletter-spaced items. Separators that are read aloud.",
+  "nonExamples": "Chevrons, arrows or bullets as separators. A trail ending with the site name\ninstead of the current page. The current page as an underlined link.\n`text-overflow` truncation that hides unreachable levels. A horizontally\nscrolling trail. Uppercase or letter-spaced items. Separators read aloud.",
   "contrast": [
     {
       "label": "breadcrumbs default text",

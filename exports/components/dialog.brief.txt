@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — dialog
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/dialog.json
 spec: spec/components/dialog.md  site: https://j3w1.github.io/theme/reference/#c-dialog
 maturity: stable  priority: R1
@@ -36,11 +36,11 @@ State dependency disclosures: D-008
 States: default, open, closed, focus-trapped, hover, focus-visible, reduced-motion
   default: the dialog open on its backdrop [`open`; the page behind is inert]
   open: as default; opacity 0 → 1 within 150 ms on capable hosts [`open`; focus inside the dialog]
-  closed: nothing: the dialog and its backdrop are absent [no `open`; focus back on the opener]
-  focus-trapped: the dialog itself carries the container ring, 2px solid {color.interaction.focus.ring-container} at −3px, when it holds focus; the note says Tab cycles [Tab never leaves; the note text]
-  hover: Close background → {color.action.tertiary.hover-bg}; other buttons take their tone's hover [cursor: pointer]
-  focus-visible: ring 1px dashed {color.interaction.focus.ring} at −2px on the focused control; primary uses {color.interaction.focus.ring-container}, destructive uses {color.action.destructive.filled-text} (D-015) [the ring]
-  reduced-motion: no opacity transition; the dialog is simply present or absent [`prefers-reduced-motion`]
+  closed: dialog and backdrop absent [no `open`; focus back on the opener]
+  focus-trapped: when it holds focus, the dialog carries the container ring, 2px solid {color.interaction.focus.ring-container} at −3px; the note says Tab cycles [Tab never leaves; the note text]
+  hover: Close → {color.action.tertiary.hover-bg}; other buttons take their tone's hover [cursor: pointer]
+  focus-visible: 1px dashed {color.interaction.focus.ring} at −2px on the focused control; primary uses {color.interaction.focus.ring-container}, destructive {color.action.destructive.filled-text} (D-015) [the ring]
+  reduced-motion: no opacity transition; present or absent [`prefers-reduced-motion`]
 
 Keyboard:
   Tab / Shift+Tab: Cycles through the dialog's focusable elements and never leaves it while open.

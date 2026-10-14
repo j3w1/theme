@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — progress
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/progress.json
 spec: spec/components/progress.md  site: https://j3w1.github.io/theme/reference/#c-progress
 maturity: stable  priority: R1
@@ -21,9 +21,9 @@ Tokens (resolved):
 State dependency disclosures: D-007
 
 States: default, busy, error, reduced-motion
-  default: fill {color.action.primary.bg} on the track; the value text [the native value; the percentage text]
-  busy: the whole track shows static 45° stripes of {color.action.primary.bg} on {color.interaction.pressed.bg}; no value text [`aria-busy`; `aria-valuetext`; the stripe pattern; no animation]
-  error: fill → {color.status.danger.fill}; the label gains the ✕ glyph in {color.status.danger.text}; the detail line says what failed [glyph; worded detail]
+  default: {color.action.primary.bg} fill on the track; the value text [the native value; the percentage text]
+  busy: static 45° stripes of {color.action.primary.bg} on {color.interaction.pressed.bg} across the track; no value text [`aria-busy`; `aria-valuetext`; the stripe pattern; no animation]
+  error: fill → {color.status.danger.fill}; the label gains ✕ in {color.status.danger.text}; the detail line says what failed [glyph; worded detail]
   reduced-motion: identical to default and busy: nothing animates in any state [`prefers-reduced-motion`]
 
 Keyboard:

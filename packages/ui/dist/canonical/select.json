@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=",
+  "sourceDigest": "sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=",
   "id": "select",
   "family": "forms-basic",
   "maturity": "stable",
@@ -414,7 +414,7 @@
     },
     {
       "state": "focus-visible",
-      "visual": "border → {color.border.active}; ring 1px dashed {color.interaction.focus.ring} at −2px",
+      "visual": "border → {color.border.active}; 1px dashed {color.interaction.focus.ring} at −2px",
       "channel": "the ring",
       "tokens": {
         "fg": {
@@ -514,8 +514,8 @@
     },
     {
       "state": "invalid",
-      "visual": "border 2px {color.status.danger.border}; message with the ✕ glyph",
-      "channel": "border width 1 → 2px; glyph; `aria-invalid`",
+      "visual": "2px {color.status.danger.border}; message with ✕",
+      "channel": "border 1 → 2px; glyph; `aria-invalid`",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -557,7 +557,7 @@
     },
     {
       "state": "invalid+focus-visible",
-      "visual": "the 2px danger border and the ring in {color.interaction.focus.ring-container} at −4px",
+      "visual": "2px danger border and {color.interaction.focus.ring-container} ring at −4px",
       "channel": "double boundary",
       "tokens": {
         "fg": {
@@ -612,7 +612,7 @@
     },
     {
       "state": "disabled",
-      "visual": "text and chevron {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}",
+      "visual": "text and chevron {color.text.disabled}; {color.border.disabled}; {color.interaction.disabled.bg}",
       "channel": "`disabled`; cursor: not-allowed",
       "tokens": {}
     }
@@ -676,7 +676,7 @@
     "admin-form",
     "filterable-table"
   ],
-  "nonExamples": "An unthemed browser popup presented as a fully themed implementation. A background-image chevron in\na literal colour. Rounded corners. A select whose first option is blank. A\nselect that triggers navigation on change. Invalid shown by colour alone.\nA glow instead of the ring. Disabling by opacity.",
+  "nonExamples": "An unthemed browser popup presented as fully themed. A background-image\nchevron in a literal colour. Rounded corners. A blank first option. Navigation\non change. Invalid by colour alone. A glow instead of the ring. Disabling by\nopacity.",
   "contrast": [
     {
       "label": "select default text",

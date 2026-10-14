@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — command-palette
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/command-palette.json
 spec: spec/components/command-palette.md  site: https://j3w1.github.io/theme/reference/#c-command-palette
 maturity: stable  priority: R2
@@ -33,11 +33,11 @@ Tokens (resolved):
 State dependency disclosures: D-007
 
 States: default, open, closed, focus-visible, no-results
-  default: One prompt and dense command rows. [Visible names and categories.]
-  open: Square overlay surface and border. [Native modal dialog and active-descendant relationship.]
-  closed: Panel absent. [Opener remains focusable.]
-  focus-visible: Dashed input ring. [Input retains DOM focus while results change.]
-  no-results: Muted zero-results status. [Explicit result count and no active descendant.]
+  default: One prompt, dense command rows. [Visible names and categories.]
+  open: Square overlay surface and border. [Native modal dialog; active-descendant relationship.]
+  closed: Panel absent. [Opener stays focusable.]
+  focus-visible: Dashed input ring. [Input keeps DOM focus while results change.]
+  no-results: Muted zero-results status. [Explicit result count; no active descendant.]
 
 Keyboard:
   Ctrl+K / Cmd+K: Open when the host explicitly enables the shortcut.

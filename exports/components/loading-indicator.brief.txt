@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — loading-indicator
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/loading-indicator.json
 spec: spec/components/loading-indicator.md  site: https://j3w1.github.io/theme/reference/#c-loading-indicator
 maturity: stable  priority: R1
@@ -15,7 +15,7 @@ Tokens (resolved):
 
 States: default, reduced-motion
   default: the static ⋯ and the label [`aria-busy="true"`; the glyph; the worded label]
-  reduced-motion: identical: there is nothing to reduce [`prefers-reduced-motion`]
+  reduced-motion: identical: nothing to reduce [`prefers-reduced-motion`]
 
 Keyboard:
   Tab: Nothing; the indicator is not focusable and never traps focus; the content it replaces keeps its tab stops when it returns.

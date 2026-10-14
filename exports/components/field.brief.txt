@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — field
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/field.json
 spec: spec/components/field.md  site: https://j3w1.github.io/theme/reference/#c-field
 maturity: stable  priority: R1
@@ -24,7 +24,7 @@ States: default, required, invalid, disabled
   default: label {color.text.bright}; help {color.text.muted}; control as its own component [—]
   required: `*` after the label in {color.status.danger.text} plus visually hidden "required" [`required` attribute; the mark]
   invalid: the control's 2px {color.status.danger.border}; message with the ✕ glyph in {color.status.danger.text}; help visually hidden [border width 1 → 2px; glyph; `aria-invalid`]
-  disabled: label and control text {color.text.disabled}; control {color.interaction.disabled.bg} with 1px {color.border.disabled}; help unchanged [`disabled`; cursor: not-allowed]
+  disabled: label and control text {color.text.disabled}; control {color.interaction.disabled.bg}, 1px {color.border.disabled}; help unchanged [`disabled`; cursor: not-allowed]
 
 Keyboard:
   Tab / Shift+Tab: Reaches the control; the label is not a tab stop.

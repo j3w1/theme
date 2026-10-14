@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=",
+  "sourceDigest": "sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=",
   "id": "toast",
   "family": "feedback",
   "maturity": "stable",
@@ -438,7 +438,7 @@
     {
       "state": "hover",
       "visual": "action → {color.interaction.hover.bg-strong} with {color.text.link-hover}; Dismiss → {color.action.tertiary.hover-bg}; the timeout pauses",
-      "channel": "cursor: pointer; underline thickens on the action",
+      "channel": "cursor: pointer; the action's underline thickens",
       "tokens": {
         "fg": {
           "alias": "color.text.link-hover",
@@ -468,7 +468,7 @@
     },
     {
       "state": "focus-visible",
-      "visual": "ring 1px dashed {color.interaction.focus.ring} at −2px on the focused button; on the danger fill the ring takes {color.status.danger.on-fill}; the timeout pauses",
+      "visual": "1px dashed {color.interaction.focus.ring} at −2px on the focused button, {color.status.danger.on-fill} on the danger fill; the timeout pauses",
       "channel": "the ring",
       "tokens": {
         "fg": {
@@ -511,7 +511,7 @@
     },
     {
       "state": "stacked",
-      "visual": "toasts sit in one column with a 4px gap, newest at the end; the last visible toast shows \"+n\" in {color.text.muted} for queued ones",
+      "visual": "one column, 4px gap, newest at the end; the last visible toast shows \"+n\" in {color.text.muted}",
       "channel": "the count text; at most three visible",
       "tokens": {
         "fg": {
@@ -556,7 +556,7 @@
     },
     {
       "state": "reduced-motion",
-      "visual": "no transition; the toast is simply present or absent",
+      "visual": "no transition; present or absent",
       "channel": "`prefers-reduced-motion`; nothing moves",
       "tokens": {
         "fg": {
@@ -648,7 +648,7 @@
     "i3-window-frame",
     "settings-panel"
   ],
-  "nonExamples": "A toast that slides in from an edge. A rounded, shadowed pill. A toast with\nno Dismiss that vanishes after two seconds. A toast that takes focus on\nappearance. Stacking more than three with no count. A form error shown as a\ntoast. Colour-only status without the glyph and worded text.",
+  "nonExamples": "A toast that slides in. A rounded, shadowed pill. No Dismiss and gone in two\nseconds. Taking focus on appearance. More than three stacked with no count. A\nform error as a toast. Colour-only status without the glyph and worded text.",
   "contrast": [
     {
       "label": "toast default text",

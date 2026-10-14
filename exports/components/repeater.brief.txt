@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — repeater
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/repeater.json
 spec: spec/components/repeater.md  site: https://j3w1.github.io/theme/reference/#c-repeater
 maturity: stable  priority: R2
@@ -29,10 +29,10 @@ Tokens (resolved):
 State dependency disclosures: D-007
 
 States: default, empty, focus-visible, disabled
-  default: Named content on the default surface. [Native text and structure.]
-  empty: A muted empty message. [Explicit text and retained Add action.]
-  focus-visible: Dashed focus ring. [Native keyboard focus position.]
-  disabled: Disabled semantic foreground, background and border at full opacity. [Native disabled state blocks activation.]
+  default: named content on the default surface [native text and structure]
+  empty: a muted empty message [explicit text; Add stays]
+  focus-visible: dashed focus ring [native focus position]
+  disabled: disabled foreground, background and border at full opacity [native disabled state blocks activation]
 
 Keyboard:
   Tab / Shift+Tab: Visit fields and row actions in source order.

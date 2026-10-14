@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=",
+  "sourceDigest": "sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=",
   "id": "link",
   "family": "actions",
   "maturity": "stable",
@@ -25,7 +25,7 @@
     "states": 5
   },
   "title": "Link",
-  "summary": "The native anchor for navigation; always underlined in the link-underline role, hover fills with the strong hover surface, the current page carries a 2px indicator bar.",
+  "summary": "The native anchor for navigation; always underlined in the link-underline role, hover fills with the hover surface, the current page carries a 2px indicator bar.",
   "anchors": {
     "site": "https://j3w1.github.io/theme/reference/#c-link",
     "spec": "spec/components/link.md",
@@ -101,8 +101,8 @@
       }
     },
     "root.bg-hover": {
-      "alias": "color.interaction.hover.bg-strong",
-      "value": "#630f0d",
+      "alias": "color.interaction.hover.bg",
+      "value": "#1c0a09",
       "status": "observed",
       "deprecated": false,
       "decisionId": null,
@@ -176,7 +176,7 @@
   "stateRules": [
     {
       "state": "default",
-      "visual": "{color.text.link}; underline 1px {color.text.link-underline} offset 2px",
+      "visual": "{color.text.link}; 1px {color.text.link-underline} underline, offset 2px",
       "channel": "the underline",
       "tokens": {
         "fg": {
@@ -207,8 +207,8 @@
     },
     {
       "state": "hover",
-      "visual": "background → {color.interaction.hover.bg-strong}; text → {color.text.link-hover}; underline 2px in the text colour",
-      "channel": "underline thickens 1px → 2px; cursor: pointer",
+      "visual": "fill {color.interaction.hover.bg} (D-027); text {color.text.link-hover}; underline 2px in the text colour",
+      "channel": "underline 1px → 2px; cursor: pointer",
       "tokens": {
         "fg": {
           "alias": "color.text.link-hover",
@@ -223,8 +223,8 @@
           }
         },
         "bg": {
-          "alias": "color.interaction.hover.bg-strong",
-          "value": "#630f0d",
+          "alias": "color.interaction.hover.bg",
+          "value": "#1c0a09",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -238,7 +238,7 @@
     },
     {
       "state": "focus-visible",
-      "visual": "ring 1px dashed {color.interaction.focus.ring} at −2px; no change to the underline",
+      "visual": "1px dashed {color.interaction.focus.ring} at −2px; underline unchanged",
       "channel": "the ring",
       "tokens": {
         "fg": {
@@ -281,8 +281,8 @@
     },
     {
       "state": "visited",
-      "visual": "{color.text.link}; underline unchanged",
-      "channel": "the underline continues to mark navigation; browsing history does not reduce its visibility",
+      "visual": "as default",
+      "channel": "the underline still marks navigation",
       "tokens": {
         "fg": {
           "alias": "color.text.link",
@@ -312,8 +312,8 @@
     },
     {
       "state": "current",
-      "visual": "text → {color.text.bright}; the underline becomes a 2px {color.border.selected-indicator} bottom border; no hover fill",
-      "channel": "`aria-current=\"page\"`; the bar's 2px weight",
+      "visual": "{color.text.bright}; a 2px {color.border.selected-indicator} bottom border replaces the underline; no hover fill",
+      "channel": "`aria-current=\"page\"`; the 2px bar",
       "tokens": {
         "fg": {
           "alias": "color.text.bright",
@@ -415,10 +415,10 @@
       "kind": "text",
       "min": 4.5,
       "fg": "color.text.link-hover",
-      "bg": "color.interaction.hover.bg-strong",
+      "bg": "color.interaction.hover.bg",
       "fgHex": "#f4eeee",
-      "bgHex": "#630f0d",
-      "ratio": 11.41,
+      "bgHex": "#1c0a09",
+      "ratio": 16.7,
       "pass": true,
       "waiver": null
     },
@@ -545,10 +545,10 @@
       "kind": "ui",
       "min": 3,
       "fg": "color.interaction.focus.ring",
-      "bg": "color.interaction.hover.bg-strong",
+      "bg": "color.interaction.hover.bg",
       "fgHex": "#e53935",
-      "bgHex": "#630f0d",
-      "ratio": 3.1,
+      "bgHex": "#1c0a09",
+      "ratio": 4.53,
       "pass": true,
       "waiver": null
     }

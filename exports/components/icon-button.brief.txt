@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — icon-button
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/icon-button.json
 spec: spec/components/icon-button.md  site: https://j3w1.github.io/theme/reference/#c-icon-button
 maturity: stable  priority: R1
@@ -24,12 +24,12 @@ Tokens (resolved):
   icon.stroke           #e99499  ({color.icon.default})  use
 
 States: default, hover, focus-visible, active, disabled, toggled, toggled+focus-visible
-  default: {color.action.tertiary.text} icon on nothing; transparent 1px border [—]
+  default: {color.action.tertiary.text} icon, no fill; transparent 1px border [—]
   hover: background → {color.action.tertiary.hover-bg} [cursor: pointer; hover-capable pointers only]
-  focus-visible: ring 1px dashed {color.interaction.focus.ring} at −2px [the ring]
+  focus-visible: 1px dashed ring {color.interaction.focus.ring} at −2px [the ring]
   active: background → {color.interaction.pressed.bg}; border → {color.border.active} [border change; no translation]
-  disabled: {color.text.disabled} on {color.interaction.disabled.bg} with 1px {color.border.disabled}; no hover [`disabled`; cursor: not-allowed]
-  toggled: fill {color.interaction.selection.bg} with {color.interaction.selection.text}; border {color.border.selected-indicator}; the icon draws in its filled form [`aria-pressed="true"`; the filled icon shape; the border]
+  disabled: {color.text.disabled} on {color.interaction.disabled.bg}, 1px {color.border.disabled}; no hover [`disabled`; cursor: not-allowed]
+  toggled: {color.interaction.selection.bg} fill, {color.interaction.selection.text}, border {color.border.selected-indicator}; filled icon form [`aria-pressed="true"`; the filled icon shape; the border]
   toggled+focus-visible: the selection fill and a ring in {color.interaction.focus.ring-container} [both visible at once]
 
 Keyboard:

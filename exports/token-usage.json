@@ -3938,8 +3938,7 @@
             {"port":"windows","reason":"Outside Windows visual adapter scope; preserve host semantics.","source":{"file":"ports/windows/mapping.json","pointer":"/unmapped/color.code.hued.number","line":2425}}
           ],
           "uses": [
-            {"kind":"port","component":null,"part":null,"state":null,"variant":null,"surface":null,"nativeKey":"Number.foreground","port":"codex","source":{"file":"ports/codex/mapping.json","pointer":"/mappings/color.code.hued.number/0","line":17}},
-            {"kind":"prose","component":"code-editor","part":null,"state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/code-editor.md","pointer":"body","line":138}}
+            {"kind":"port","component":null,"part":null,"state":null,"variant":null,"surface":null,"nativeKey":"Number.foreground","port":"codex","source":{"file":"ports/codex/mapping.json","pointer":"/mappings/color.code.hued.number/0","line":17}}
           ],
           "contrast": []
         },
@@ -4112,8 +4111,7 @@
             {"port":"windows","reason":"Outside Windows visual adapter scope; preserve host semantics.","source":{"file":"ports/windows/mapping.json","pointer":"/unmapped/color.code.hued.type","line":2430}}
           ],
           "uses": [
-            {"kind":"port","component":null,"part":null,"state":null,"variant":null,"surface":null,"nativeKey":"Type.foreground","port":"codex","source":{"file":"ports/codex/mapping.json","pointer":"/mappings/color.code.hued.type/0","line":29}},
-            {"kind":"prose","component":"code-editor","part":null,"state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/code-editor.md","pointer":"body","line":138}}
+            {"kind":"port","component":null,"part":null,"state":null,"variant":null,"surface":null,"nativeKey":"Type.foreground","port":"codex","source":{"file":"ports/codex/mapping.json","pointer":"/mappings/color.code.hued.type/0","line":29}}
           ],
           "contrast": []
         },
@@ -6637,7 +6635,7 @@
             {"kind":"contrast","component":"diff-view","part":null,"state":"focus-visible","variant":null,"surface":"color.diff.removed.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/diff-view.md","pointer":"/contrast/17","line":87}},
             {"kind":"contrast","component":"drawer","part":null,"state":null,"variant":null,"surface":"color.surface.overlay","nativeKey":null,"port":null,"source":{"file":"spec/components/drawer.md","pointer":"/contrast/3","line":51}},
             {"kind":"contrast","component":"i3-window-frame","part":null,"state":null,"variant":null,"surface":"color.surface.chrome","nativeKey":null,"port":null,"source":{"file":"spec/components/i3-window-frame.md","pointer":"/contrast/6","line":77}},
-            {"kind":"contrast","component":"link","part":null,"state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"/contrast/4","line":46}},
+            {"kind":"contrast","component":"link","part":null,"state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"/contrast/4","line":46}},
             {"kind":"contrast","component":"skip-link","part":null,"state":"focus-visible","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/skip-link.md","pointer":"/contrast/0","line":29}},
             {"kind":"contrast","component":"table","part":null,"state":null,"variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/table.md","pointer":"/contrast/3","line":68}},
             {"kind":"contrast","component":null,"part":null,"state":null,"variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/37","line":41}},
@@ -6766,7 +6764,7 @@
             {"fg":"color.interaction.focus.ring","bg":"color.diff.added.bg","label":"ring on an added row","state":"focus-visible","source":{"file":"spec/components/diff-view.md","pointer":"/contrast/16","line":86}},
             {"fg":"color.interaction.focus.ring","bg":"color.diff.modified.bg","label":"ring on a modified row","state":"focus-visible","source":{"file":"spec/components/diff-view.md","pointer":"/contrast/18","line":88}},
             {"fg":"color.interaction.focus.ring","bg":"color.diff.removed.bg","label":"ring on a removed row","state":"focus-visible","source":{"file":"spec/components/diff-view.md","pointer":"/contrast/17","line":87}},
-            {"fg":"color.interaction.focus.ring","bg":"color.interaction.hover.bg-strong","label":"ring on the hover fill","state":"hover","source":{"file":"spec/components/link.md","pointer":"/contrast/4","line":46}},
+            {"fg":"color.interaction.focus.ring","bg":"color.interaction.hover.bg","label":"ring on the hover fill","state":"hover","source":{"file":"spec/components/link.md","pointer":"/contrast/4","line":46}},
             {"fg":"color.interaction.focus.ring","bg":"color.status.info.tint","label":"alert focus-visible outline","state":"focus-visible","source":{"file":"spec/components/alert.md","pointer":"/stateTokens/focus-visible","line":55}},
             {"fg":"color.interaction.focus.ring","bg":"color.status.info.tint","label":"ring on the info tint","state":"focus-visible","source":{"file":"spec/components/alert.md","pointer":"/contrast/14","line":71}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"file-input focus-visible outline","state":"focus-visible","source":{"file":"spec/components/file-input.md","pointer":"/stateTokens/focus-visible","line":59}},
@@ -6996,6 +6994,7 @@
             {"kind":"contrast","component":"card","part":null,"state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/card.md","pointer":"/contrast/3","line":53}},
             {"kind":"contrast","component":"diagnostics","part":null,"state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/diagnostics.md","pointer":"/contrast/19","line":92}},
             {"kind":"contrast","component":"diagnostics","part":null,"state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/diagnostics.md","pointer":"/contrast/20","line":93}},
+            {"kind":"contrast","component":"link","part":null,"state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"/contrast/4","line":46}},
             {"kind":"contrast","component":"list","part":null,"state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/list.md","pointer":"/contrast/1","line":58}},
             {"kind":"contrast","component":"switch","part":null,"state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/switch.md","pointer":"/contrast/1","line":55}},
             {"kind":"part","component":"breadcrumbs","part":"ellipsis.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/breadcrumbs.md","pointer":"/tokens/ellipsis.bg-hover","line":37}},
@@ -7009,6 +7008,7 @@
             {"kind":"part","component":"diff-view","part":"row.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/diff-view.md","pointer":"/tokens/row.bg-hover","line":57}},
             {"kind":"part","component":"filterable-table","part":"row.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/filterable-table.md","pointer":"/tokens/row.bg-hover","line":53}},
             {"kind":"part","component":"i3-window-frame","part":"workspace.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/i3-window-frame.md","pointer":"/tokens/workspace.bg-hover","line":40}},
+            {"kind":"part","component":"link","part":"root.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"/tokens/root.bg-hover","line":29}},
             {"kind":"part","component":"list","part":"row.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/list.md","pointer":"/tokens/row.bg-hover","line":38}},
             {"kind":"part","component":"menu","part":"button.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/menu.md","pointer":"/tokens/button.bg-hover","line":39}},
             {"kind":"part","component":"multiselect","part":"dependency.role-color-interaction-hover-bg","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/multiselect.md","pointer":"/tokens/dependency.role-color-interaction-hover-bg","line":42}},
@@ -7113,6 +7113,7 @@
             {"kind":"state","component":"diagnostics","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/diagnostics.md","pointer":"/stateTokens/hover/bg","line":66}},
             {"kind":"state","component":"diff-view","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/diff-view.md","pointer":"/stateTokens/hover/bg","line":64}},
             {"kind":"state","component":"filterable-table","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/filterable-table.md","pointer":"/stateTokens/hover/bg","line":75}},
+            {"kind":"state","component":"link","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"/stateTokens/hover/bg","line":37}},
             {"kind":"state","component":"list","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/list.md","pointer":"/stateTokens/hover/bg","line":51}},
             {"kind":"state","component":"number-field","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/number-field.md","pointer":"/stateTokens/hover/bg","line":54}},
             {"kind":"state","component":"pagination","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/pagination.md","pointer":"/stateTokens/hover/bg","line":42}},
@@ -7143,6 +7144,7 @@
             {"fg":"color.border.control","bg":"color.interaction.hover.bg","label":"textarea hover border","state":"hover","source":{"file":"spec/components/textarea.md","pointer":"/stateTokens/hover","line":58}},
             {"fg":"color.border.control","bg":"color.interaction.hover.bg","label":"time-picker hover border","state":"hover","source":{"file":"spec/components/time-picker.md","pointer":"/stateTokens/hover","line":47}},
             {"fg":"color.diagnostic.error.text","bg":"color.interaction.hover.bg","label":"error glyph on hover","state":"hover","source":{"file":"spec/components/diagnostics.md","pointer":"/contrast/20","line":93}},
+            {"fg":"color.interaction.focus.ring","bg":"color.interaction.hover.bg","label":"ring on the hover fill","state":"hover","source":{"file":"spec/components/link.md","pointer":"/contrast/4","line":46}},
             {"fg":"color.text.bright","bg":"color.interaction.hover.bg","label":"title on the hover fill","state":"hover","source":{"file":"spec/components/card.md","pointer":"/contrast/2","line":52}},
             {"fg":"color.text.default","bg":"color.interaction.hover.bg","label":"card hover fg","state":"hover","source":{"file":"spec/components/card.md","pointer":"/stateTokens/hover","line":45}},
             {"fg":"color.text.default","bg":"color.interaction.hover.bg","label":"chip hover fg","state":"hover","source":{"file":"spec/components/chip.md","pointer":"/stateTokens/hover","line":49}},
@@ -7166,6 +7168,7 @@
             {"fg":"color.text.default","bg":"color.interaction.hover.bg","label":"time-picker hover fg","state":"hover","source":{"file":"spec/components/time-picker.md","pointer":"/stateTokens/hover","line":47}},
             {"fg":"color.text.default","bg":"color.interaction.hover.bg","label":"toolbar hover fg","state":"hover","source":{"file":"spec/components/toolbar.md","pointer":"/stateTokens/hover","line":43}},
             {"fg":"color.text.default","bg":"color.interaction.hover.bg","label":"wizard hover fg","state":"hover","source":{"file":"spec/components/wizard.md","pointer":"/stateTokens/hover","line":56}},
+            {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg","label":"link hover fg","state":"hover","source":{"file":"spec/components/link.md","pointer":"/stateTokens/hover","line":37}},
             {"fg":"color.text.muted","bg":"color.interaction.hover.bg","label":"metadata column on the hover fill","state":"hover","source":{"file":"spec/components/list.md","pointer":"/contrast/1","line":58}},
             {"fg":"color.text.muted","bg":"color.interaction.hover.bg","label":"metadata on the hover fill","state":"hover","source":{"file":"spec/components/card.md","pointer":"/contrast/3","line":53}}
           ]
@@ -7202,14 +7205,12 @@
           ],
           "uses": [
             {"kind":"contrast","component":"drawer","part":null,"state":null,"variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/drawer.md","pointer":"/contrast/4","line":52}},
-            {"kind":"contrast","component":"link","part":null,"state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"/contrast/4","line":46}},
             {"kind":"contrast","component":null,"part":null,"state":null,"variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/16","line":20}},
             {"kind":"part","component":"breadcrumbs","part":"link.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/breadcrumbs.md","pointer":"/tokens/link.bg-hover","line":32}},
             {"kind":"part","component":"chip","part":"remove.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/chip.md","pointer":"/tokens/remove.bg-hover","line":46}},
             {"kind":"part","component":"combobox","part":"option.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/combobox.md","pointer":"/tokens/option.bg-hover","line":54}},
             {"kind":"part","component":"diff-view","part":"fold.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/diff-view.md","pointer":"/tokens/fold.bg-hover","line":56}},
             {"kind":"part","component":"drawer","part":"item.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/drawer.md","pointer":"/tokens/item.bg-hover","line":36}},
-            {"kind":"part","component":"link","part":"root.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"/tokens/root.bg-hover","line":29}},
             {"kind":"part","component":"menu","part":"item.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/menu.md","pointer":"/tokens/item.bg-hover","line":46}},
             {"kind":"part","component":"toast","part":"action.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/tokens/action.bg-hover","line":49}},
             {"kind":"port","component":null,"part":null,"state":null,"variant":null,"surface":null,"nativeKey":".theme-dark .menu | --background-modifier-hover","port":"obsidian","source":{"file":"ports/obsidian/mapping.json","pointer":"/mappings/color.interaction.hover.bg-strong/0","line":375}},
@@ -7246,16 +7247,13 @@
             {"kind":"port","component":null,"part":null,"state":null,"variant":null,"surface":null,"nativeKey":"windows-11-settings-styler.resource.ListViewItemBackgroundPointerOver","port":"windows","source":{"file":"ports/windows/mapping.json","pointer":"/mappings/color.interaction.hover.bg-strong/22","line":2011}},
             {"kind":"state","component":"breadcrumbs","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/breadcrumbs.md","pointer":"/stateTokens/hover/bg","line":40}},
             {"kind":"state","component":"combobox","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/combobox.md","pointer":"/stateTokens/hover/bg","line":66}},
-            {"kind":"state","component":"link","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"/stateTokens/hover/bg","line":37}},
             {"kind":"state","component":"menu","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/menu.md","pointer":"/stateTokens/hover/bg","line":58}},
             {"kind":"state","component":"toast","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/stateTokens/hover/bg","line":58}}
           ],
           "contrast": [
-            {"fg":"color.interaction.focus.ring","bg":"color.interaction.hover.bg-strong","label":"ring on the hover fill","state":"hover","source":{"file":"spec/components/link.md","pointer":"/contrast/4","line":46}},
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"breadcrumbs hover fg","state":"hover","source":{"file":"spec/components/breadcrumbs.md","pointer":"/stateTokens/hover","line":40}},
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"combobox hover fg","state":"hover","source":{"file":"spec/components/combobox.md","pointer":"/stateTokens/hover","line":66}},
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"hovered item","state":null,"source":{"file":"spec/components/drawer.md","pointer":"/contrast/4","line":52}},
-            {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"link hover fg","state":"hover","source":{"file":"spec/components/link.md","pointer":"/stateTokens/hover","line":37}},
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"link hover text on strong hover fill","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/16","line":20}},
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"menu hover fg","state":"hover","source":{"file":"spec/components/menu.md","pointer":"/stateTokens/hover","line":58}},
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"toast hover fg","state":"hover","source":{"file":"spec/components/toast.md","pointer":"/stateTokens/hover","line":58}}
@@ -18320,7 +18318,6 @@
             {"kind":"port","component":null,"part":null,"state":null,"variant":null,"surface":null,"nativeKey":"windows-11-taskbar-styler | TextBlock | Foreground","port":"windows","source":{"file":"ports/windows/mapping.json","pointer":"/mappings/color.text.default/3","line":315}},
             {"kind":"port","component":null,"part":null,"state":null,"variant":null,"surface":null,"nativeKey":"windows-11-taskbar-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | PointerOverForeground","port":"windows","source":{"file":"ports/windows/mapping.json","pointer":"/mappings/color.text.default/237","line":549}},
             {"kind":"port","component":null,"part":null,"state":null,"variant":null,"surface":null,"nativeKey":"yellow_FOR_SUBAGENTS_ONLY","port":"claude-code","source":{"file":"ports/claude-code/mapping.json","pointer":"/mappings/color.text.default/3","line":111}},
-            {"kind":"prose","component":"code-editor","part":null,"state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/code-editor.md","pointer":"body","line":138}},
             {"kind":"state","component":"admin-form","part":"fg","state":"default","variant":null,"surface":"color.surface.input","nativeKey":null,"port":null,"source":{"file":"spec/components/admin-form.md","pointer":"/stateTokens/default/fg","line":66}},
             {"kind":"state","component":"avatar","part":"fg","state":"default","variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/avatar.md","pointer":"/stateTokens/default/fg","line":39}},
             {"kind":"state","component":"breadcrumbs","part":"fg","state":"truncated","variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/breadcrumbs.md","pointer":"/stateTokens/truncated/fg","line":43}},
@@ -19170,7 +19167,7 @@
             {"kind":"port","component":null,"part":null,"state":null,"variant":null,"surface":null,"nativeKey":"powertoys.markdown.LINK_HOVER","port":"windows","source":{"file":"ports/windows/mapping.json","pointer":"/mappings/color.text.link-hover/1","line":2018}},
             {"kind":"state","component":"breadcrumbs","part":"fg","state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/breadcrumbs.md","pointer":"/stateTokens/hover/fg","line":40}},
             {"kind":"state","component":"combobox","part":"fg","state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/combobox.md","pointer":"/stateTokens/hover/fg","line":66}},
-            {"kind":"state","component":"link","part":"fg","state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"/stateTokens/hover/fg","line":37}},
+            {"kind":"state","component":"link","part":"fg","state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"/stateTokens/hover/fg","line":37}},
             {"kind":"state","component":"menu","part":"fg","state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/menu.md","pointer":"/stateTokens/hover/fg","line":58}},
             {"kind":"state","component":"toast","part":"fg","state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/stateTokens/hover/fg","line":58}}
           ],
@@ -19178,10 +19175,10 @@
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"breadcrumbs hover fg","state":"hover","source":{"file":"spec/components/breadcrumbs.md","pointer":"/stateTokens/hover","line":40}},
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"combobox hover fg","state":"hover","source":{"file":"spec/components/combobox.md","pointer":"/stateTokens/hover","line":66}},
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"hovered item","state":null,"source":{"file":"spec/components/drawer.md","pointer":"/contrast/4","line":52}},
-            {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"link hover fg","state":"hover","source":{"file":"spec/components/link.md","pointer":"/stateTokens/hover","line":37}},
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"link hover text on strong hover fill","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/16","line":20}},
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"menu hover fg","state":"hover","source":{"file":"spec/components/menu.md","pointer":"/stateTokens/hover","line":58}},
-            {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"toast hover fg","state":"hover","source":{"file":"spec/components/toast.md","pointer":"/stateTokens/hover","line":58}}
+            {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"toast hover fg","state":"hover","source":{"file":"spec/components/toast.md","pointer":"/stateTokens/hover","line":58}},
+            {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg","label":"link hover fg","state":"hover","source":{"file":"spec/components/link.md","pointer":"/stateTokens/hover","line":37}}
           ]
         },
         "color.text.link-underline": {
@@ -20049,8 +20046,7 @@
             {"kind":"port","component":null,"part":null,"state":null,"variant":null,"surface":null,"nativeKey":"desktop:mediaviewFileSizeFg","port":"telegram","source":{"file":"ports/telegram/mapping.json","pointer":"/mappings/color.text.subtle/16","line":560}},
             {"kind":"port","component":null,"part":null,"state":null,"variant":null,"surface":null,"nativeKey":"desktop:msgDateImgFg","port":"telegram","source":{"file":"ports/telegram/mapping.json","pointer":"/mappings/color.text.subtle/15","line":559}},
             {"kind":"port","component":null,"part":null,"state":null,"variant":null,"surface":null,"nativeKey":"subtle","port":"claude-code","source":{"file":"ports/claude-code/mapping.json","pointer":"/mappings/color.text.subtle/1","line":128}},
-            {"kind":"port","component":null,"part":null,"state":null,"variant":null,"surface":null,"nativeKey":"windhawk.resource.TextFillColorTertiary","port":"windows","source":{"file":"ports/windows/mapping.json","pointer":"/mappings/color.text.subtle/0","line":1142}},
-            {"kind":"prose","component":"code-editor","part":null,"state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/code-editor.md","pointer":"body","line":138}}
+            {"kind":"port","component":null,"part":null,"state":null,"variant":null,"surface":null,"nativeKey":"windhawk.resource.TextFillColorTertiary","port":"windows","source":{"file":"ports/windows/mapping.json","pointer":"/mappings/color.text.subtle/0","line":1142}}
           ],
           "contrast": [
             {"fg":"color.text.subtle","bg":"color.surface.canvas","label":"file sizes on the canvas","state":null,"source":{"file":"spec/components/file-input.md","pointer":"/contrast/3","line":66}},
@@ -25554,9 +25550,7 @@
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
-          "uses": [
-            {"kind":"prose","component":"code-editor","part":null,"state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/code-editor.md","pointer":"body","line":138}}
-          ],
+          "uses": [],
           "contrast": []
         },
         "color.code.hued.operator": {
@@ -25686,9 +25680,7 @@
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
-          "uses": [
-            {"kind":"prose","component":"code-editor","part":null,"state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/code-editor.md","pointer":"body","line":138}}
-          ],
+          "uses": [],
           "contrast": []
         },
         "color.code.indent-guide": {
@@ -27590,7 +27582,7 @@
             {"kind":"contrast","component":"diff-view","part":null,"state":"focus-visible","variant":null,"surface":"color.diff.removed.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/diff-view.md","pointer":"/contrast/17","line":87}},
             {"kind":"contrast","component":"drawer","part":null,"state":null,"variant":null,"surface":"color.surface.overlay","nativeKey":null,"port":null,"source":{"file":"spec/components/drawer.md","pointer":"/contrast/3","line":51}},
             {"kind":"contrast","component":"i3-window-frame","part":null,"state":null,"variant":null,"surface":"color.surface.chrome","nativeKey":null,"port":null,"source":{"file":"spec/components/i3-window-frame.md","pointer":"/contrast/6","line":77}},
-            {"kind":"contrast","component":"link","part":null,"state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"/contrast/4","line":46}},
+            {"kind":"contrast","component":"link","part":null,"state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"/contrast/4","line":46}},
             {"kind":"contrast","component":"skip-link","part":null,"state":"focus-visible","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/skip-link.md","pointer":"/contrast/0","line":29}},
             {"kind":"contrast","component":"table","part":null,"state":null,"variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/table.md","pointer":"/contrast/3","line":68}},
             {"kind":"contrast","component":null,"part":null,"state":null,"variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/37","line":41}},
@@ -27694,7 +27686,7 @@
             {"fg":"color.interaction.focus.ring","bg":"color.diff.added.bg","label":"ring on an added row","state":"focus-visible","source":{"file":"spec/components/diff-view.md","pointer":"/contrast/16","line":86}},
             {"fg":"color.interaction.focus.ring","bg":"color.diff.modified.bg","label":"ring on a modified row","state":"focus-visible","source":{"file":"spec/components/diff-view.md","pointer":"/contrast/18","line":88}},
             {"fg":"color.interaction.focus.ring","bg":"color.diff.removed.bg","label":"ring on a removed row","state":"focus-visible","source":{"file":"spec/components/diff-view.md","pointer":"/contrast/17","line":87}},
-            {"fg":"color.interaction.focus.ring","bg":"color.interaction.hover.bg-strong","label":"ring on the hover fill","state":"hover","source":{"file":"spec/components/link.md","pointer":"/contrast/4","line":46}},
+            {"fg":"color.interaction.focus.ring","bg":"color.interaction.hover.bg","label":"ring on the hover fill","state":"hover","source":{"file":"spec/components/link.md","pointer":"/contrast/4","line":46}},
             {"fg":"color.interaction.focus.ring","bg":"color.status.info.tint","label":"alert focus-visible outline","state":"focus-visible","source":{"file":"spec/components/alert.md","pointer":"/stateTokens/focus-visible","line":55}},
             {"fg":"color.interaction.focus.ring","bg":"color.status.info.tint","label":"ring on the info tint","state":"focus-visible","source":{"file":"spec/components/alert.md","pointer":"/contrast/14","line":71}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"file-input focus-visible outline","state":"focus-visible","source":{"file":"spec/components/file-input.md","pointer":"/stateTokens/focus-visible","line":59}},
@@ -27896,6 +27888,7 @@
             {"kind":"contrast","component":"card","part":null,"state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/card.md","pointer":"/contrast/3","line":53}},
             {"kind":"contrast","component":"diagnostics","part":null,"state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/diagnostics.md","pointer":"/contrast/19","line":92}},
             {"kind":"contrast","component":"diagnostics","part":null,"state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/diagnostics.md","pointer":"/contrast/20","line":93}},
+            {"kind":"contrast","component":"link","part":null,"state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"/contrast/4","line":46}},
             {"kind":"contrast","component":"list","part":null,"state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/list.md","pointer":"/contrast/1","line":58}},
             {"kind":"contrast","component":"switch","part":null,"state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/switch.md","pointer":"/contrast/1","line":55}},
             {"kind":"part","component":"breadcrumbs","part":"ellipsis.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/breadcrumbs.md","pointer":"/tokens/ellipsis.bg-hover","line":37}},
@@ -27909,6 +27902,7 @@
             {"kind":"part","component":"diff-view","part":"row.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/diff-view.md","pointer":"/tokens/row.bg-hover","line":57}},
             {"kind":"part","component":"filterable-table","part":"row.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/filterable-table.md","pointer":"/tokens/row.bg-hover","line":53}},
             {"kind":"part","component":"i3-window-frame","part":"workspace.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/i3-window-frame.md","pointer":"/tokens/workspace.bg-hover","line":40}},
+            {"kind":"part","component":"link","part":"root.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"/tokens/root.bg-hover","line":29}},
             {"kind":"part","component":"list","part":"row.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/list.md","pointer":"/tokens/row.bg-hover","line":38}},
             {"kind":"part","component":"menu","part":"button.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/menu.md","pointer":"/tokens/button.bg-hover","line":39}},
             {"kind":"part","component":"multiselect","part":"dependency.role-color-interaction-hover-bg","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/multiselect.md","pointer":"/tokens/dependency.role-color-interaction-hover-bg","line":42}},
@@ -27936,6 +27930,7 @@
             {"kind":"state","component":"diagnostics","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/diagnostics.md","pointer":"/stateTokens/hover/bg","line":66}},
             {"kind":"state","component":"diff-view","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/diff-view.md","pointer":"/stateTokens/hover/bg","line":64}},
             {"kind":"state","component":"filterable-table","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/filterable-table.md","pointer":"/stateTokens/hover/bg","line":75}},
+            {"kind":"state","component":"link","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"/stateTokens/hover/bg","line":37}},
             {"kind":"state","component":"list","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/list.md","pointer":"/stateTokens/hover/bg","line":51}},
             {"kind":"state","component":"number-field","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/number-field.md","pointer":"/stateTokens/hover/bg","line":54}},
             {"kind":"state","component":"pagination","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/pagination.md","pointer":"/stateTokens/hover/bg","line":42}},
@@ -27966,6 +27961,7 @@
             {"fg":"color.border.control","bg":"color.interaction.hover.bg","label":"textarea hover border","state":"hover","source":{"file":"spec/components/textarea.md","pointer":"/stateTokens/hover","line":58}},
             {"fg":"color.border.control","bg":"color.interaction.hover.bg","label":"time-picker hover border","state":"hover","source":{"file":"spec/components/time-picker.md","pointer":"/stateTokens/hover","line":47}},
             {"fg":"color.diagnostic.error.text","bg":"color.interaction.hover.bg","label":"error glyph on hover","state":"hover","source":{"file":"spec/components/diagnostics.md","pointer":"/contrast/20","line":93}},
+            {"fg":"color.interaction.focus.ring","bg":"color.interaction.hover.bg","label":"ring on the hover fill","state":"hover","source":{"file":"spec/components/link.md","pointer":"/contrast/4","line":46}},
             {"fg":"color.text.bright","bg":"color.interaction.hover.bg","label":"title on the hover fill","state":"hover","source":{"file":"spec/components/card.md","pointer":"/contrast/2","line":52}},
             {"fg":"color.text.default","bg":"color.interaction.hover.bg","label":"card hover fg","state":"hover","source":{"file":"spec/components/card.md","pointer":"/stateTokens/hover","line":45}},
             {"fg":"color.text.default","bg":"color.interaction.hover.bg","label":"chip hover fg","state":"hover","source":{"file":"spec/components/chip.md","pointer":"/stateTokens/hover","line":49}},
@@ -27989,6 +27985,7 @@
             {"fg":"color.text.default","bg":"color.interaction.hover.bg","label":"time-picker hover fg","state":"hover","source":{"file":"spec/components/time-picker.md","pointer":"/stateTokens/hover","line":47}},
             {"fg":"color.text.default","bg":"color.interaction.hover.bg","label":"toolbar hover fg","state":"hover","source":{"file":"spec/components/toolbar.md","pointer":"/stateTokens/hover","line":43}},
             {"fg":"color.text.default","bg":"color.interaction.hover.bg","label":"wizard hover fg","state":"hover","source":{"file":"spec/components/wizard.md","pointer":"/stateTokens/hover","line":56}},
+            {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg","label":"link hover fg","state":"hover","source":{"file":"spec/components/link.md","pointer":"/stateTokens/hover","line":37}},
             {"fg":"color.text.muted","bg":"color.interaction.hover.bg","label":"metadata column on the hover fill","state":"hover","source":{"file":"spec/components/list.md","pointer":"/contrast/1","line":58}},
             {"fg":"color.text.muted","bg":"color.interaction.hover.bg","label":"metadata on the hover fill","state":"hover","source":{"file":"spec/components/card.md","pointer":"/contrast/3","line":53}}
           ]
@@ -28019,28 +28016,23 @@
           "unmappedPorts": [],
           "uses": [
             {"kind":"contrast","component":"drawer","part":null,"state":null,"variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/drawer.md","pointer":"/contrast/4","line":52}},
-            {"kind":"contrast","component":"link","part":null,"state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"/contrast/4","line":46}},
             {"kind":"contrast","component":null,"part":null,"state":null,"variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/16","line":20}},
             {"kind":"part","component":"breadcrumbs","part":"link.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/breadcrumbs.md","pointer":"/tokens/link.bg-hover","line":32}},
             {"kind":"part","component":"chip","part":"remove.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/chip.md","pointer":"/tokens/remove.bg-hover","line":46}},
             {"kind":"part","component":"combobox","part":"option.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/combobox.md","pointer":"/tokens/option.bg-hover","line":54}},
             {"kind":"part","component":"diff-view","part":"fold.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/diff-view.md","pointer":"/tokens/fold.bg-hover","line":56}},
             {"kind":"part","component":"drawer","part":"item.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/drawer.md","pointer":"/tokens/item.bg-hover","line":36}},
-            {"kind":"part","component":"link","part":"root.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"/tokens/root.bg-hover","line":29}},
             {"kind":"part","component":"menu","part":"item.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/menu.md","pointer":"/tokens/item.bg-hover","line":46}},
             {"kind":"part","component":"toast","part":"action.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/tokens/action.bg-hover","line":49}},
             {"kind":"state","component":"breadcrumbs","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/breadcrumbs.md","pointer":"/stateTokens/hover/bg","line":40}},
             {"kind":"state","component":"combobox","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/combobox.md","pointer":"/stateTokens/hover/bg","line":66}},
-            {"kind":"state","component":"link","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"/stateTokens/hover/bg","line":37}},
             {"kind":"state","component":"menu","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/menu.md","pointer":"/stateTokens/hover/bg","line":58}},
             {"kind":"state","component":"toast","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/stateTokens/hover/bg","line":58}}
           ],
           "contrast": [
-            {"fg":"color.interaction.focus.ring","bg":"color.interaction.hover.bg-strong","label":"ring on the hover fill","state":"hover","source":{"file":"spec/components/link.md","pointer":"/contrast/4","line":46}},
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"breadcrumbs hover fg","state":"hover","source":{"file":"spec/components/breadcrumbs.md","pointer":"/stateTokens/hover","line":40}},
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"combobox hover fg","state":"hover","source":{"file":"spec/components/combobox.md","pointer":"/stateTokens/hover","line":66}},
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"hovered item","state":null,"source":{"file":"spec/components/drawer.md","pointer":"/contrast/4","line":52}},
-            {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"link hover fg","state":"hover","source":{"file":"spec/components/link.md","pointer":"/stateTokens/hover","line":37}},
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"link hover text on strong hover fill","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/16","line":20}},
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"menu hover fg","state":"hover","source":{"file":"spec/components/menu.md","pointer":"/stateTokens/hover","line":58}},
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"toast hover fg","state":"hover","source":{"file":"spec/components/toast.md","pointer":"/stateTokens/hover","line":58}}
@@ -35662,7 +35654,6 @@
             {"kind":"part","component":"tree","part":"root.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tree.md","pointer":"/tokens/root.text","line":29}},
             {"kind":"part","component":"wizard","part":"step.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/tokens/step.text","line":30}},
             {"kind":"part","component":"wizard","part":"text.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/tokens/text.text","line":42}},
-            {"kind":"prose","component":"code-editor","part":null,"state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/code-editor.md","pointer":"body","line":138}},
             {"kind":"state","component":"admin-form","part":"fg","state":"default","variant":null,"surface":"color.surface.input","nativeKey":null,"port":null,"source":{"file":"spec/components/admin-form.md","pointer":"/stateTokens/default/fg","line":66}},
             {"kind":"state","component":"avatar","part":"fg","state":"default","variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/avatar.md","pointer":"/stateTokens/default/fg","line":39}},
             {"kind":"state","component":"breadcrumbs","part":"fg","state":"truncated","variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/breadcrumbs.md","pointer":"/stateTokens/truncated/fg","line":43}},
@@ -36320,7 +36311,7 @@
             {"kind":"part","component":"toast","part":"action.text-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/tokens/action.text-hover","line":50}},
             {"kind":"state","component":"breadcrumbs","part":"fg","state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/breadcrumbs.md","pointer":"/stateTokens/hover/fg","line":40}},
             {"kind":"state","component":"combobox","part":"fg","state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/combobox.md","pointer":"/stateTokens/hover/fg","line":66}},
-            {"kind":"state","component":"link","part":"fg","state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"/stateTokens/hover/fg","line":37}},
+            {"kind":"state","component":"link","part":"fg","state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"/stateTokens/hover/fg","line":37}},
             {"kind":"state","component":"menu","part":"fg","state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/menu.md","pointer":"/stateTokens/hover/fg","line":58}},
             {"kind":"state","component":"toast","part":"fg","state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/stateTokens/hover/fg","line":58}}
           ],
@@ -36328,10 +36319,10 @@
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"breadcrumbs hover fg","state":"hover","source":{"file":"spec/components/breadcrumbs.md","pointer":"/stateTokens/hover","line":40}},
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"combobox hover fg","state":"hover","source":{"file":"spec/components/combobox.md","pointer":"/stateTokens/hover","line":66}},
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"hovered item","state":null,"source":{"file":"spec/components/drawer.md","pointer":"/contrast/4","line":52}},
-            {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"link hover fg","state":"hover","source":{"file":"spec/components/link.md","pointer":"/stateTokens/hover","line":37}},
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"link hover text on strong hover fill","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/16","line":20}},
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"menu hover fg","state":"hover","source":{"file":"spec/components/menu.md","pointer":"/stateTokens/hover","line":58}},
-            {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"toast hover fg","state":"hover","source":{"file":"spec/components/toast.md","pointer":"/stateTokens/hover","line":58}}
+            {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"toast hover fg","state":"hover","source":{"file":"spec/components/toast.md","pointer":"/stateTokens/hover","line":58}},
+            {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg","label":"link hover fg","state":"hover","source":{"file":"spec/components/link.md","pointer":"/stateTokens/hover","line":37}}
           ]
         },
         "color.text.link-underline": {
@@ -36876,8 +36867,7 @@
             {"kind":"contrast","component":null,"part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/9","line":13}},
             {"kind":"part","component":"combobox","part":"group.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/combobox.md","pointer":"/tokens/group.text","line":59}},
             {"kind":"part","component":"diagnostics","part":"hint.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/diagnostics.md","pointer":"/tokens/hint.text","line":49}},
-            {"kind":"part","component":"file-input","part":"list.size","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/file-input.md","pointer":"/tokens/list.size","line":48}},
-            {"kind":"prose","component":"code-editor","part":null,"state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/code-editor.md","pointer":"body","line":138}}
+            {"kind":"part","component":"file-input","part":"list.size","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/file-input.md","pointer":"/tokens/list.size","line":48}}
           ],
           "contrast": [
             {"fg":"color.text.subtle","bg":"color.surface.canvas","label":"file sizes on the canvas","state":null,"source":{"file":"spec/components/file-input.md","pointer":"/contrast/3","line":66}},
@@ -41518,9 +41508,7 @@
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
-          "uses": [
-            {"kind":"prose","component":"code-editor","part":null,"state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/code-editor.md","pointer":"body","line":138}}
-          ],
+          "uses": [],
           "contrast": []
         },
         "color.code.hued.operator": {
@@ -41650,9 +41638,7 @@
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
-          "uses": [
-            {"kind":"prose","component":"code-editor","part":null,"state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/code-editor.md","pointer":"body","line":138}}
-          ],
+          "uses": [],
           "contrast": []
         },
         "color.code.indent-guide": {
@@ -43632,7 +43618,7 @@
             {"kind":"contrast","component":"diff-view","part":null,"state":"focus-visible","variant":null,"surface":"color.diff.removed.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/diff-view.md","pointer":"/contrast/17","line":87}},
             {"kind":"contrast","component":"drawer","part":null,"state":null,"variant":null,"surface":"color.surface.overlay","nativeKey":null,"port":null,"source":{"file":"spec/components/drawer.md","pointer":"/contrast/3","line":51}},
             {"kind":"contrast","component":"i3-window-frame","part":null,"state":null,"variant":null,"surface":"color.surface.chrome","nativeKey":null,"port":null,"source":{"file":"spec/components/i3-window-frame.md","pointer":"/contrast/6","line":77}},
-            {"kind":"contrast","component":"link","part":null,"state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"/contrast/4","line":46}},
+            {"kind":"contrast","component":"link","part":null,"state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"/contrast/4","line":46}},
             {"kind":"contrast","component":"skip-link","part":null,"state":"focus-visible","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/skip-link.md","pointer":"/contrast/0","line":29}},
             {"kind":"contrast","component":"table","part":null,"state":null,"variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/table.md","pointer":"/contrast/3","line":68}},
             {"kind":"contrast","component":null,"part":null,"state":null,"variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/37","line":41}},
@@ -43736,7 +43722,7 @@
             {"fg":"color.interaction.focus.ring","bg":"color.diff.added.bg","label":"ring on an added row","state":"focus-visible","source":{"file":"spec/components/diff-view.md","pointer":"/contrast/16","line":86}},
             {"fg":"color.interaction.focus.ring","bg":"color.diff.modified.bg","label":"ring on a modified row","state":"focus-visible","source":{"file":"spec/components/diff-view.md","pointer":"/contrast/18","line":88}},
             {"fg":"color.interaction.focus.ring","bg":"color.diff.removed.bg","label":"ring on a removed row","state":"focus-visible","source":{"file":"spec/components/diff-view.md","pointer":"/contrast/17","line":87}},
-            {"fg":"color.interaction.focus.ring","bg":"color.interaction.hover.bg-strong","label":"ring on the hover fill","state":"hover","source":{"file":"spec/components/link.md","pointer":"/contrast/4","line":46}},
+            {"fg":"color.interaction.focus.ring","bg":"color.interaction.hover.bg","label":"ring on the hover fill","state":"hover","source":{"file":"spec/components/link.md","pointer":"/contrast/4","line":46}},
             {"fg":"color.interaction.focus.ring","bg":"color.status.info.tint","label":"alert focus-visible outline","state":"focus-visible","source":{"file":"spec/components/alert.md","pointer":"/stateTokens/focus-visible","line":55}},
             {"fg":"color.interaction.focus.ring","bg":"color.status.info.tint","label":"ring on the info tint","state":"focus-visible","source":{"file":"spec/components/alert.md","pointer":"/contrast/14","line":71}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"file-input focus-visible outline","state":"focus-visible","source":{"file":"spec/components/file-input.md","pointer":"/stateTokens/focus-visible","line":59}},
@@ -43938,6 +43924,7 @@
             {"kind":"contrast","component":"card","part":null,"state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/card.md","pointer":"/contrast/3","line":53}},
             {"kind":"contrast","component":"diagnostics","part":null,"state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/diagnostics.md","pointer":"/contrast/19","line":92}},
             {"kind":"contrast","component":"diagnostics","part":null,"state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/diagnostics.md","pointer":"/contrast/20","line":93}},
+            {"kind":"contrast","component":"link","part":null,"state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"/contrast/4","line":46}},
             {"kind":"contrast","component":"list","part":null,"state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/list.md","pointer":"/contrast/1","line":58}},
             {"kind":"contrast","component":"switch","part":null,"state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/switch.md","pointer":"/contrast/1","line":55}},
             {"kind":"part","component":"breadcrumbs","part":"ellipsis.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/breadcrumbs.md","pointer":"/tokens/ellipsis.bg-hover","line":37}},
@@ -43951,6 +43938,7 @@
             {"kind":"part","component":"diff-view","part":"row.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/diff-view.md","pointer":"/tokens/row.bg-hover","line":57}},
             {"kind":"part","component":"filterable-table","part":"row.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/filterable-table.md","pointer":"/tokens/row.bg-hover","line":53}},
             {"kind":"part","component":"i3-window-frame","part":"workspace.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/i3-window-frame.md","pointer":"/tokens/workspace.bg-hover","line":40}},
+            {"kind":"part","component":"link","part":"root.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"/tokens/root.bg-hover","line":29}},
             {"kind":"part","component":"list","part":"row.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/list.md","pointer":"/tokens/row.bg-hover","line":38}},
             {"kind":"part","component":"menu","part":"button.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/menu.md","pointer":"/tokens/button.bg-hover","line":39}},
             {"kind":"part","component":"multiselect","part":"dependency.role-color-interaction-hover-bg","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/multiselect.md","pointer":"/tokens/dependency.role-color-interaction-hover-bg","line":42}},
@@ -43978,6 +43966,7 @@
             {"kind":"state","component":"diagnostics","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/diagnostics.md","pointer":"/stateTokens/hover/bg","line":66}},
             {"kind":"state","component":"diff-view","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/diff-view.md","pointer":"/stateTokens/hover/bg","line":64}},
             {"kind":"state","component":"filterable-table","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/filterable-table.md","pointer":"/stateTokens/hover/bg","line":75}},
+            {"kind":"state","component":"link","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"/stateTokens/hover/bg","line":37}},
             {"kind":"state","component":"list","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/list.md","pointer":"/stateTokens/hover/bg","line":51}},
             {"kind":"state","component":"number-field","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/number-field.md","pointer":"/stateTokens/hover/bg","line":54}},
             {"kind":"state","component":"pagination","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/pagination.md","pointer":"/stateTokens/hover/bg","line":42}},
@@ -44008,6 +43997,7 @@
             {"fg":"color.border.control","bg":"color.interaction.hover.bg","label":"textarea hover border","state":"hover","source":{"file":"spec/components/textarea.md","pointer":"/stateTokens/hover","line":58}},
             {"fg":"color.border.control","bg":"color.interaction.hover.bg","label":"time-picker hover border","state":"hover","source":{"file":"spec/components/time-picker.md","pointer":"/stateTokens/hover","line":47}},
             {"fg":"color.diagnostic.error.text","bg":"color.interaction.hover.bg","label":"error glyph on hover","state":"hover","source":{"file":"spec/components/diagnostics.md","pointer":"/contrast/20","line":93}},
+            {"fg":"color.interaction.focus.ring","bg":"color.interaction.hover.bg","label":"ring on the hover fill","state":"hover","source":{"file":"spec/components/link.md","pointer":"/contrast/4","line":46}},
             {"fg":"color.text.bright","bg":"color.interaction.hover.bg","label":"title on the hover fill","state":"hover","source":{"file":"spec/components/card.md","pointer":"/contrast/2","line":52}},
             {"fg":"color.text.default","bg":"color.interaction.hover.bg","label":"card hover fg","state":"hover","source":{"file":"spec/components/card.md","pointer":"/stateTokens/hover","line":45}},
             {"fg":"color.text.default","bg":"color.interaction.hover.bg","label":"chip hover fg","state":"hover","source":{"file":"spec/components/chip.md","pointer":"/stateTokens/hover","line":49}},
@@ -44031,6 +44021,7 @@
             {"fg":"color.text.default","bg":"color.interaction.hover.bg","label":"time-picker hover fg","state":"hover","source":{"file":"spec/components/time-picker.md","pointer":"/stateTokens/hover","line":47}},
             {"fg":"color.text.default","bg":"color.interaction.hover.bg","label":"toolbar hover fg","state":"hover","source":{"file":"spec/components/toolbar.md","pointer":"/stateTokens/hover","line":43}},
             {"fg":"color.text.default","bg":"color.interaction.hover.bg","label":"wizard hover fg","state":"hover","source":{"file":"spec/components/wizard.md","pointer":"/stateTokens/hover","line":56}},
+            {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg","label":"link hover fg","state":"hover","source":{"file":"spec/components/link.md","pointer":"/stateTokens/hover","line":37}},
             {"fg":"color.text.muted","bg":"color.interaction.hover.bg","label":"metadata column on the hover fill","state":"hover","source":{"file":"spec/components/list.md","pointer":"/contrast/1","line":58}},
             {"fg":"color.text.muted","bg":"color.interaction.hover.bg","label":"metadata on the hover fill","state":"hover","source":{"file":"spec/components/card.md","pointer":"/contrast/3","line":53}}
           ]
@@ -44061,28 +44052,23 @@
           "unmappedPorts": [],
           "uses": [
             {"kind":"contrast","component":"drawer","part":null,"state":null,"variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/drawer.md","pointer":"/contrast/4","line":52}},
-            {"kind":"contrast","component":"link","part":null,"state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"/contrast/4","line":46}},
             {"kind":"contrast","component":null,"part":null,"state":null,"variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/16","line":20}},
             {"kind":"part","component":"breadcrumbs","part":"link.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/breadcrumbs.md","pointer":"/tokens/link.bg-hover","line":32}},
             {"kind":"part","component":"chip","part":"remove.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/chip.md","pointer":"/tokens/remove.bg-hover","line":46}},
             {"kind":"part","component":"combobox","part":"option.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/combobox.md","pointer":"/tokens/option.bg-hover","line":54}},
             {"kind":"part","component":"diff-view","part":"fold.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/diff-view.md","pointer":"/tokens/fold.bg-hover","line":56}},
             {"kind":"part","component":"drawer","part":"item.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/drawer.md","pointer":"/tokens/item.bg-hover","line":36}},
-            {"kind":"part","component":"link","part":"root.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"/tokens/root.bg-hover","line":29}},
             {"kind":"part","component":"menu","part":"item.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/menu.md","pointer":"/tokens/item.bg-hover","line":46}},
             {"kind":"part","component":"toast","part":"action.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/tokens/action.bg-hover","line":49}},
             {"kind":"state","component":"breadcrumbs","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/breadcrumbs.md","pointer":"/stateTokens/hover/bg","line":40}},
             {"kind":"state","component":"combobox","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/combobox.md","pointer":"/stateTokens/hover/bg","line":66}},
-            {"kind":"state","component":"link","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"/stateTokens/hover/bg","line":37}},
             {"kind":"state","component":"menu","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/menu.md","pointer":"/stateTokens/hover/bg","line":58}},
             {"kind":"state","component":"toast","part":"bg","state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/stateTokens/hover/bg","line":58}}
           ],
           "contrast": [
-            {"fg":"color.interaction.focus.ring","bg":"color.interaction.hover.bg-strong","label":"ring on the hover fill","state":"hover","source":{"file":"spec/components/link.md","pointer":"/contrast/4","line":46}},
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"breadcrumbs hover fg","state":"hover","source":{"file":"spec/components/breadcrumbs.md","pointer":"/stateTokens/hover","line":40}},
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"combobox hover fg","state":"hover","source":{"file":"spec/components/combobox.md","pointer":"/stateTokens/hover","line":66}},
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"hovered item","state":null,"source":{"file":"spec/components/drawer.md","pointer":"/contrast/4","line":52}},
-            {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"link hover fg","state":"hover","source":{"file":"spec/components/link.md","pointer":"/stateTokens/hover","line":37}},
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"link hover text on strong hover fill","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/16","line":20}},
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"menu hover fg","state":"hover","source":{"file":"spec/components/menu.md","pointer":"/stateTokens/hover","line":58}},
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"toast hover fg","state":"hover","source":{"file":"spec/components/toast.md","pointer":"/stateTokens/hover","line":58}}
@@ -51777,7 +51763,6 @@
             {"kind":"part","component":"tree","part":"root.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tree.md","pointer":"/tokens/root.text","line":29}},
             {"kind":"part","component":"wizard","part":"step.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/tokens/step.text","line":30}},
             {"kind":"part","component":"wizard","part":"text.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/tokens/text.text","line":42}},
-            {"kind":"prose","component":"code-editor","part":null,"state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/code-editor.md","pointer":"body","line":138}},
             {"kind":"state","component":"admin-form","part":"fg","state":"default","variant":null,"surface":"color.surface.input","nativeKey":null,"port":null,"source":{"file":"spec/components/admin-form.md","pointer":"/stateTokens/default/fg","line":66}},
             {"kind":"state","component":"avatar","part":"fg","state":"default","variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/avatar.md","pointer":"/stateTokens/default/fg","line":39}},
             {"kind":"state","component":"breadcrumbs","part":"fg","state":"truncated","variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/breadcrumbs.md","pointer":"/stateTokens/truncated/fg","line":43}},
@@ -52438,7 +52423,7 @@
             {"kind":"part","component":"toast","part":"action.text-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/tokens/action.text-hover","line":50}},
             {"kind":"state","component":"breadcrumbs","part":"fg","state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/breadcrumbs.md","pointer":"/stateTokens/hover/fg","line":40}},
             {"kind":"state","component":"combobox","part":"fg","state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/combobox.md","pointer":"/stateTokens/hover/fg","line":66}},
-            {"kind":"state","component":"link","part":"fg","state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"/stateTokens/hover/fg","line":37}},
+            {"kind":"state","component":"link","part":"fg","state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"/stateTokens/hover/fg","line":37}},
             {"kind":"state","component":"menu","part":"fg","state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/menu.md","pointer":"/stateTokens/hover/fg","line":58}},
             {"kind":"state","component":"toast","part":"fg","state":"hover","variant":null,"surface":"color.interaction.hover.bg-strong","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/stateTokens/hover/fg","line":58}}
           ],
@@ -52446,10 +52431,10 @@
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"breadcrumbs hover fg","state":"hover","source":{"file":"spec/components/breadcrumbs.md","pointer":"/stateTokens/hover","line":40}},
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"combobox hover fg","state":"hover","source":{"file":"spec/components/combobox.md","pointer":"/stateTokens/hover","line":66}},
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"hovered item","state":null,"source":{"file":"spec/components/drawer.md","pointer":"/contrast/4","line":52}},
-            {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"link hover fg","state":"hover","source":{"file":"spec/components/link.md","pointer":"/stateTokens/hover","line":37}},
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"link hover text on strong hover fill","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/16","line":20}},
             {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"menu hover fg","state":"hover","source":{"file":"spec/components/menu.md","pointer":"/stateTokens/hover","line":58}},
-            {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"toast hover fg","state":"hover","source":{"file":"spec/components/toast.md","pointer":"/stateTokens/hover","line":58}}
+            {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg-strong","label":"toast hover fg","state":"hover","source":{"file":"spec/components/toast.md","pointer":"/stateTokens/hover","line":58}},
+            {"fg":"color.text.link-hover","bg":"color.interaction.hover.bg","label":"link hover fg","state":"hover","source":{"file":"spec/components/link.md","pointer":"/stateTokens/hover","line":37}}
           ]
         },
         "color.text.link-underline": {
@@ -52997,8 +52982,7 @@
             {"kind":"contrast","component":null,"part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/9","line":13}},
             {"kind":"part","component":"combobox","part":"group.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/combobox.md","pointer":"/tokens/group.text","line":59}},
             {"kind":"part","component":"diagnostics","part":"hint.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/diagnostics.md","pointer":"/tokens/hint.text","line":49}},
-            {"kind":"part","component":"file-input","part":"list.size","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/file-input.md","pointer":"/tokens/list.size","line":48}},
-            {"kind":"prose","component":"code-editor","part":null,"state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/code-editor.md","pointer":"body","line":138}}
+            {"kind":"part","component":"file-input","part":"list.size","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/file-input.md","pointer":"/tokens/list.size","line":48}}
           ],
           "contrast": [
             {"fg":"color.text.subtle","bg":"color.surface.canvas","label":"file sizes on the canvas","state":null,"source":{"file":"spec/components/file-input.md","pointer":"/contrast/3","line":66}},

@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=",
+  "sourceDigest": "sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=",
   "id": "switch",
   "family": "forms-basic",
   "maturity": "stable",
@@ -282,7 +282,7 @@
     },
     {
       "state": "hover",
-      "visual": "track background → {color.interaction.hover.bg}; on track → {color.action.primary.hover-bg}",
+      "visual": "off track → {color.interaction.hover.bg}; on track → {color.action.primary.hover-bg}",
       "channel": "cursor: pointer; hover-capable pointers only",
       "tokens": {
         "bg": {
@@ -315,7 +315,7 @@
     },
     {
       "state": "focus-visible",
-      "visual": "ring 1px dashed {color.interaction.focus.ring} at −2px on the track",
+      "visual": "1px dashed {color.interaction.focus.ring} at −2px on the track",
       "channel": "the ring",
       "tokens": {
         "bg": {
@@ -360,7 +360,7 @@
     },
     {
       "state": "checked",
-      "visual": "track fills {color.action.primary.bg}; thumb {color.action.primary.text} moves to the end; border stays {color.border.control}; the word reads \"On\"",
+      "visual": "track fills {color.action.primary.bg}; thumb {color.action.primary.text} at the end; border stays {color.border.control}; the word reads \"On\"",
       "channel": "`aria-checked=\"true\"`; thumb position; the word",
       "tokens": {
         "fg": {
@@ -391,7 +391,7 @@
     },
     {
       "state": "checked+focus-visible",
-      "visual": "the fill and a ring in {color.interaction.focus.ring-container} on the track",
+      "visual": "the fill and a {color.interaction.focus.ring-container} ring on the track",
       "channel": "position and ring",
       "tokens": {
         "fg": {
@@ -434,13 +434,13 @@
     },
     {
       "state": "disabled",
-      "visual": "track {color.interaction.disabled.bg} with 1px {color.border.disabled}; thumb and name {color.text.disabled}",
+      "visual": "track {color.interaction.disabled.bg}, 1px {color.border.disabled}; thumb and name {color.text.disabled}",
       "channel": "`disabled`; cursor: not-allowed",
       "tokens": {}
     },
     {
       "state": "checked+disabled",
-      "visual": "as disabled with the thumb at the end",
+      "visual": "as disabled, thumb at the end",
       "channel": "`disabled`; `aria-checked=\"true\"`; thumb position",
       "tokens": {}
     }
@@ -485,7 +485,7 @@
   "specimens": [
     "settings-panel"
   ],
-  "nonExamples": "A pill-shaped track or a round thumb. A switch that only takes effect on\nsubmit. A checkbox input styled as a switch. Colour as the only difference\nbetween on and off. A green on colour. A label that reads \"On\" as the name.\nDisabling by opacity. A sliding animation longer than 120ms or one that\nruns under reduced motion.",
+  "nonExamples": "A pill track or round thumb. A switch that applies on submit. A checkbox\ninput styled as a switch. Colour as the only on/off difference. A green on\ncolour. \"On\" as the name. Disabling by opacity. A slide longer than 120ms or\none under reduced motion.",
   "contrast": [
     {
       "label": "switch default border",

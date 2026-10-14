@@ -998,7 +998,7 @@
         "root.text": "color.text.link",
         "root.underline": "color.text.link-underline",
         "root.text-hover": "color.text.link-hover",
-        "root.bg-hover": "color.interaction.hover.bg-strong",
+        "root.bg-hover": "color.interaction.hover.bg",
         "root.ring": "color.interaction.focus.ring",
         "root.text-visited": "color.text.link",
         "root.text-current": "color.text.bright",
@@ -12256,11 +12256,11 @@
       "copy": {
         "directory": "copy/form-builder/",
         "files": {
-          "runtime/register/form-builder.js": "sha256-eM9TDYrxREfT+vaywPQ8TCrx3X7gAB/fXuj8viaqKzM=",
+          "runtime/register/form-builder.js": "sha256-F0r767BWtiWxNnN0zk/Ud9ZJGH4swo0B3Uy77BfNke0=",
           "runtime/chunks/element-C1XeXVYC.js": "sha256-VZkTciWeek3bcBd4h0ngRVGe1X7zMK01xhx5IsNOOQ0=",
           "runtime/chunks/choice-Db_w_BOQ.js": "sha256-Zj9PtQyyZKSATrJYBr7lXlddGGJMBDc5FSnZUWPNAiU=",
-          "runtime/chunks/form-builder-C6Rhfsz6.js": "sha256-CnwUvLr0BCPWw5F9dlDy1D8Y73slv5huNge/LK40+x8=",
-          "runtime/chunks/form-builder-C5Kx5G9b.js": "sha256-H2Zi4dAojDJ5ZF7OQWEPsPaCg3kMBiAVVG1k948Yiuw=",
+          "runtime/chunks/form-builder-BWkGA3xT.js": "sha256-U5PrdrsPp7dpGdrPPpAXobm7h3oI5RrZKSrU49WSnZg=",
+          "runtime/chunks/form-builder-DEfR1jAb.js": "sha256-/HIy+pFnrxu81lcf05LR3CTx6+urAjRh9nR9bgl2wb8=",
           "runtime/chunks/form-workflow-DMGni-Gs.js": "sha256-g3g/Afxx3XsClDK4ZfvWQjZKprT6z7Qp1lULS48F0rY=",
           "runtime/chunks/markup-DeQ4bEMR.js": "sha256-Eyyx7MKBoqXK4i2HaVUQhKUM066L2wIggABt6jAdgas=",
           "tokens.css": "sha256-ATbK8VSmfG5bBZGy+4CWrV8kyfaHrk3f4wtV/sI2Vdw=",
@@ -12269,7 +12269,7 @@
           "element.html": "sha256-vq61pWv0xeMFu0tTsDtRWWpAr16AFefjpz5JTSyF440=",
           "index.html": "sha256-v74xLbiCzhGoMsKDM8vIO3nwDmWQJymihSOqXqvPlkk=",
           "README.md": "sha256-MGlPh4CEW6DLecBSj7Ym9ww3NAGe8r5V9uANRpZLY48=",
-          "manifest.json": "sha256-/AJpK7InIcUrx5C6r4HWc3McmNfuSvcN0bFFLRwFx7s="
+          "manifest.json": "sha256-EtZ3z5PLASh/bX/mjCH4nFH+/3/GKD8/aeJrZ7oMRN8="
         }
       }
     },

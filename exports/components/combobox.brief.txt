@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — combobox
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/combobox.json
 spec: spec/components/combobox.md  site: https://j3w1.github.io/theme/reference/#c-combobox
 maturity: stable  priority: R1
@@ -40,16 +40,16 @@ Tokens (resolved):
 State dependency disclosures: D-007, D-008
 
 States: default, hover, focus-visible, open, closed, selected, invalid, invalid+focus-visible, disabled, no-results
-  default: 1px {color.border.control} on {color.surface.input}; list on {color.surface.raised} with a 1px {color.border.overlay} [—]
-  hover: box background → {color.interaction.hover.bg}; the hovered option → {color.interaction.hover.bg-strong} with {color.text.link-hover} [cursor: text on the box, default on the list]
-  focus-visible: box border → {color.border.active}; ring 1px dashed {color.interaction.focus.ring} at −2px [the ring]
-  open: list visible below the box; toggle glyph rotated 180° [`aria-expanded="true"`; the toggle glyph]
-  closed: list absent; the box unchanged [`aria-expanded="false"`; nothing below the box]
-  selected: the active option filled {color.interaction.selection.bg} with {color.interaction.selection.text} and a 1px dashed ring in {color.interaction.focus.ring-container} [`aria-selected="true"`; `aria-activedescendant`; the ring]
-  invalid: box border 2px {color.status.danger.border}; message with the ✕ glyph [border width 1 → 2px; glyph; `aria-invalid`]
-  invalid+focus-visible: the 2px danger border and the ring in {color.interaction.focus.ring-container} at −4px [double boundary]
-  disabled: text {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}; list never opens [`disabled`; cursor: not-allowed]
-  no-results: the list holds only the empty row in {color.text.muted}, italic [`aria-disabled` row; italic; a polite announcement of zero matches]
+  default: 1px {color.border.control} on {color.surface.input}; list on {color.surface.raised}, 1px {color.border.overlay} [—]
+  hover: box → {color.interaction.hover.bg}; hovered option → {color.interaction.hover.bg-strong} with {color.text.link-hover} [cursor: text on the box, default on the list]
+  focus-visible: box border → {color.border.active}; 1px dashed {color.interaction.focus.ring} at −2px [the ring]
+  open: list below the box; toggle glyph rotated 180° [`aria-expanded="true"`; toggle glyph]
+  closed: no list; box unchanged [`aria-expanded="false"`; nothing below the box]
+  selected: active option filled {color.interaction.selection.bg} with {color.interaction.selection.text}, 1px dashed {color.interaction.focus.ring-container} ring [`aria-selected="true"`; `aria-activedescendant`; the ring]
+  invalid: 2px {color.status.danger.border}; message with ✕ [border 1 → 2px; glyph; `aria-invalid`]
+  invalid+focus-visible: 2px danger border and {color.interaction.focus.ring-container} ring at −4px [double boundary]
+  disabled: {color.text.disabled}, {color.border.disabled}, {color.interaction.disabled.bg}; list never opens [`disabled`; cursor: not-allowed]
+  no-results: only the empty row, {color.text.muted} italic [`aria-disabled` row; italic; polite zero-match announcement]
 
 Keyboard:
   Down / Up: Opens the list if closed; moves the active option, wrapping at either end; the input keeps DOM focus.

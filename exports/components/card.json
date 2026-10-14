@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=",
+  "sourceDigest": "sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=",
   "id": "card",
   "family": "display",
   "maturity": "stable",
@@ -322,8 +322,8 @@
     },
     {
       "state": "selected",
-      "visual": "fill {color.interaction.selection.bg} with {color.interaction.selection.text} on every line",
-      "channel": "`aria-selected=\"true\"`; the fill's on-fill text",
+      "visual": "fill {color.interaction.selection.bg}, {color.interaction.selection.text} on every line",
+      "channel": "`aria-selected=\"true\"`; the on-fill text",
       "tokens": {
         "fg": {
           "alias": "color.interaction.selection.text",
@@ -442,7 +442,7 @@
     "settings-panel",
     "filterable-table"
   ],
-  "nonExamples": "A drop shadow or elevation. Rounded corners. A hover lift or scale. A static\ncard with a hover fill. A card whose only clickable part is an invisible\noverlay. A link card containing buttons. A selected card shown by a border\ncolour alone without the fill and `aria-selected`. Muted metadata left on the\nselection fill.",
+  "nonExamples": "A shadow or elevation. Rounded corners. A hover lift or scale. A hover fill\non a static card. An invisible overlay as the only clickable part. A link\ncard containing buttons. A selected card shown by border colour alone,\nwithout the fill and `aria-selected`. Muted metadata left on the selection\nfill.",
   "contrast": [
     {
       "label": "card default text",
