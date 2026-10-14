@@ -156,6 +156,20 @@
         },
         "$description": "URxvt pixelsize 13."
       },
+      "display": {
+        "$value": {
+          "value": 32,
+          "unit": "px"
+        },
+        "$description": "Page heroes and metric figures on the portal (D-037)."
+      },
+      "title": {
+        "$value": {
+          "value": 24,
+          "unit": "px"
+        },
+        "$description": "Page titles above h1 on the portal (D-037)."
+      },
       "h1": {
         "$value": {
           "value": 20,
@@ -217,6 +231,18 @@
       "terminal": {
         "$value": {
           "value": 19,
+          "unit": "px"
+        }
+      },
+      "display": {
+        "$value": {
+          "value": 40,
+          "unit": "px"
+        }
+      },
+      "title": {
+        "$value": {
+          "value": 32,
           "unit": "px"
         }
       },

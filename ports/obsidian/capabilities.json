@@ -1507,6 +1507,16 @@
       "surface": "host-behavior",
       "reason": "font.size.terminal: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
     },
+    "font.size.display": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "font.size.display: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "font.size.title": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "font.size.title: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
     "font.size.h1": {
       "state": "inherited",
       "surface": "host-behavior",
@@ -1556,6 +1566,16 @@
       "state": "inherited",
       "surface": "host-behavior",
       "reason": "font.line-height.terminal: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "font.line-height.display": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "font.line-height.display: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
+    "font.line-height.title": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "font.line-height.title: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
     },
     "font.line-height.h1": {
       "state": "inherited",

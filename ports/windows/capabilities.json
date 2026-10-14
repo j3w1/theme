@@ -1509,6 +1509,16 @@
       "surface": "unsupported",
       "reason": "Outside Windows visual adapter scope; preserve host semantics."
     },
+    "font.size.display": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "font.size.title": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
     "font.size.h1": {
       "state": "mapped",
       "surface": "powertoys",
@@ -1555,6 +1565,16 @@
       "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "font.line-height.terminal": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "font.line-height.display": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "font.line-height.title": {
       "state": "unsupported",
       "surface": "unsupported",
       "reason": "Outside Windows visual adapter scope; preserve host semantics."

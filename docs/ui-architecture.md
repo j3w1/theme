@@ -14,6 +14,11 @@ acceptance and deployment are in the separate delivery and execution records.
 - The portal and Vue showcase consume those outputs. They carry no second
   component implementation.
 
+**Site chrome.** The portal is built from the same components it documents.
+Chrome uses `comfortable` density and only canonical component classes: actions
+are `.button` in one of the four tones, navigation is `.link`, calls to action
+are `.link-standalone`. Forced states appear only inside specimens.
+
 UI builds keep stable entry paths under `.cache/ui-build` so emitted bytes and
 implementation identities are reproducible. An exclusive `.cache/ui-build.lock`
 coordinates concurrent build and check processes; each waits for the prior

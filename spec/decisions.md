@@ -53,6 +53,7 @@ apply.
 | D-034 | Versioned Windows native and Windhawk adapters | accepted | 2026-09-28 | owner (explicit implementation plan) |
 | D-035 | An accent surface for the user's own content | accepted | 2026-10-06 | owner (Telegram acceptance: own and other people's messages too similar; chose #3d0c0a from a side-by-side comparison) |
 | D-036 | A translucent text-selection tint | accepted | 2026-10-06 | owner (Telegram acceptance: Android text selection barely visible; chose 50% from a side-by-side comparison) |
+| D-037 | Display and title type sizes | proposed | 2026-10-14 | — |
 
 ## D-000 Responsibility split
 
@@ -949,3 +950,20 @@ visible in the message field. Android's text-selection keys had the 12%
 **Status.** accepted · 2026-10-06 · owner, who saw the problem in real use and
 chose 50% from the side-by-side comparison after the review rejected the opaque
 fill.
+
+## D-037 Display and title type sizes
+
+**Decision.** Two type roles join the scale: `font.size.display` with
+`font.line-height.display` (32/40) for page heroes and metric figures, and
+`font.size.title` with `font.line-height.title` (24/32) for page titles above
+h1. Portal pages use them instead of literal sizes; components keep h1–h3.
+
+**Why.** The portal set 48, 32, 24, 22 and 18px outside the token scale. The
+owner chose token sizes over shrinking every heading to h1 (planning,
+2026-10-14).
+
+**Alternatives.** The existing scale only (portal headings shrink to 20px), or
+page-local literal sizes.
+
+**Status.** proposed · 2026-10-14. The owner asked for display type tokens in
+planning; the owner sets the status.
