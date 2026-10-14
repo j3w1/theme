@@ -357,11 +357,13 @@ html:not(.js) .js-only {
   overflow-x: auto;
 }
 
-/* table.md: below 600px a table scrolls in its region with a sticky first
-   column. Its columns keep a readable width instead of wrapping every cell
-   to a few characters. A token path wraps only at its dots (<wbr>), never
-   inside a segment, and keeps one line where there is room. */
-.usage-section .table-cell:first-child {
+/* table.md: a table scrolls in its region, with a sticky first column below
+   600px. Cells wrap at word boundaries only (base.css breaks anywhere), so
+   columns keep a readable width instead of a few characters. A token path
+   wraps only at its dots (<wbr>), never inside a segment, and keeps one line
+   where there is room. */
+.usage-section .table-cell:first-child,
+.site-main .table-scroll > table :is(th, td) {
   overflow-wrap: normal;
 }
 
