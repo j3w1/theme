@@ -1,3 +1,4 @@
+@import "../partials/button.css";
 /* file-input — reference CSS. The native input stays focusable (sr-only
    pattern) and a second label is drawn as the secondary button. Every real
    pseudo-class is paired with the forced-state attribute the state matrix
@@ -51,19 +52,6 @@
   border: 0;
 }
 
-.file-input-button {
-  display: inline-flex;
-  align-items: center;
-  min-height: var(--density-control-height, 32px);
-  padding: 0 var(--density-control-padding-x, 12px);
-  background: var(--color-action-secondary-bg);
-  border: var(--border-width-default) solid var(--color-action-secondary-border);
-  border-radius: var(--radius-none);
-  color: var(--color-action-secondary-text);
-  white-space: nowrap;
-  cursor: pointer;
-}
-
 .file-input-status {
   min-width: 0;
   color: var(--color-text-muted);
@@ -102,7 +90,7 @@
   grid-template-columns: minmax(0, 1fr) auto auto;
   align-items: center;
   column-gap: var(--space-8);
-  min-height: var(--density-row-height, 36px);
+  min-height: var(--density-row-height, 28px);
   border-bottom: var(--border-width-default) solid var(--color-border-divider);
 }
 
@@ -163,14 +151,10 @@
 }
 
 /* hover */
-.file-input-button:hover,
+/* the label is the secondary button from the button partial */
 [data-state-hover] .file-input-button {
-  background: var(--color-action-secondary-hover-bg);
-}
-
-.file-input-button:active {
-  background: var(--color-action-secondary-pressed-bg);
-  border-color: var(--color-border-active);
+  --_bg: var(--_bg-hover);
+  --_fg: var(--_fg-hover);
 }
 
 /* focus-visible: the input has focus; the ring is drawn on its button label */
@@ -226,9 +210,13 @@
 /* disabled */
 .file-input-root:has(.file-input-native:disabled) .file-input-button,
 [data-state-disabled] .file-input-button {
-  background: var(--color-interaction-disabled-bg);
-  border-color: var(--color-border-disabled);
-  color: var(--color-text-disabled);
+  --_bg: var(--color-interaction-disabled-bg);
+  --_fg: var(--color-text-disabled);
+  --_border: var(--color-border-disabled);
+  --_bg-hover: var(--color-interaction-disabled-bg);
+  --_fg-hover: var(--color-text-disabled);
+  --_bg-active: var(--color-interaction-disabled-bg);
+  --_border-active: var(--color-border-disabled);
   cursor: not-allowed;
 }
 
@@ -254,14 +242,7 @@
   display: block;
 }
 
-@media (hover: none) {
-  .file-input-button:hover {
-    background: var(--color-action-secondary-bg);
-  }
-}
-
 @media (prefers-reduced-motion: no-preference) {
-  .file-input-button,
   .file-input-root {
     transition: background-color var(--motion-duration-fast);
   }

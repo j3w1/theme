@@ -1,0 +1,143 @@
+/* The canonical button (button.md): one box, the tones as private colour
+   slots, and the real states. button.css and every component action that is
+   a button under its own class import this file, so each tone has one look
+   wherever it appears. Forced states stay in each component's own file, where
+   the state matrix and the spec validation read them; they rewrite the same
+   slots. Token variables only. */
+
+.button,
+.dialog-button,
+.empty-state-action,
+.file-input-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  min-height: var(--density-control-height, 24px);
+  padding: 0 var(--density-control-padding-x, 8px);
+  margin: 0;
+  background: var(--_bg);
+  color: var(--_fg);
+  border: var(--border-width-default) solid var(--_border);
+  border-radius: var(--radius-none);
+  font: inherit;
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+  white-space: nowrap;
+  cursor: pointer;
+  outline: 0;
+}
+
+/* primary: the only filled tone at rest */
+.button,
+.dialog-button.dialog-button-primary {
+  --_bg: var(--color-action-primary-bg);
+  --_fg: var(--color-action-primary-text);
+  --_border: var(--color-action-primary-border);
+  --_bg-hover: var(--color-action-primary-hover-bg);
+  --_fg-hover: var(--color-action-primary-text);
+  --_bg-active: var(--color-action-primary-pressed-bg);
+  --_border-active: var(--color-action-primary-border);
+  --_ring: var(--color-interaction-focus-ring-container);
+}
+
+.button-secondary,
+.dialog-button,
+.empty-state-action,
+.file-input-button {
+  --_bg: var(--color-action-secondary-bg);
+  --_fg: var(--color-action-secondary-text);
+  --_border: var(--color-action-secondary-border);
+  --_bg-hover: var(--color-action-secondary-hover-bg);
+  --_fg-hover: var(--color-action-secondary-text);
+  --_bg-active: var(--color-action-secondary-pressed-bg);
+  --_border-active: var(--color-border-active);
+  --_ring: var(--color-interaction-focus-ring);
+}
+
+.button-tertiary {
+  --_bg: transparent;
+  --_fg: var(--color-action-tertiary-text);
+  --_border: transparent;
+  --_bg-hover: var(--color-action-tertiary-hover-bg);
+  --_fg-hover: var(--color-action-tertiary-text);
+  --_bg-active: var(--color-interaction-pressed-bg);
+  --_border-active: var(--color-border-active);
+  --_ring: var(--color-interaction-focus-ring);
+}
+
+.button-destructive {
+  --_bg: transparent;
+  --_fg: var(--color-action-destructive-text);
+  --_border: var(--color-action-destructive-border);
+  --_bg-hover: var(--color-action-destructive-hover-bg);
+  --_fg-hover: var(--color-action-destructive-hover-text);
+  --_bg-active: var(--color-action-destructive-pressed-bg);
+  --_border-active: var(--color-action-destructive-border);
+  --_ring: var(--color-interaction-focus-ring);
+}
+
+/* the filled destructive tone is reserved for confirm dialogs */
+.button-destructive-filled,
+.dialog-button.dialog-button-destructive {
+  --_bg: var(--color-action-destructive-filled-bg);
+  --_fg: var(--color-action-destructive-filled-text);
+  --_border: var(--color-action-destructive-border);
+  --_bg-hover: var(--color-action-destructive-hover-bg);
+  --_fg-hover: var(--color-action-destructive-hover-text);
+  --_bg-active: var(--color-action-destructive-pressed-bg);
+  --_border-active: var(--color-action-destructive-border);
+  --_ring: var(--color-action-destructive-filled-text);
+}
+
+/* hover: fills and borders only, on hover-capable pointers */
+@media (hover: hover) {
+  :is(.button, .dialog-button, .empty-state-action, .file-input-button):hover {
+    --_bg: var(--_bg-hover);
+    --_fg: var(--_fg-hover);
+  }
+
+  .button-destructive:hover {
+    --_ring: var(--color-action-destructive-hover-text);
+  }
+}
+
+/* active: a darker fill and the active border; nothing moves */
+:is(.button, .dialog-button, .empty-state-action, .file-input-button):active {
+  --_bg: var(--_bg-active);
+  --_fg: var(--_fg-hover);
+  --_border: var(--_border-active);
+}
+
+/* focus-visible: the dashed ring in the on-fill colour of whatever fill is showing */
+:is(.button, .dialog-button, .empty-state-action):focus-visible {
+  outline: var(--border-width-default) dashed var(--_ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* disabled: the same three roles for every tone; no hover, no opacity */
+:is(.button, .dialog-button, .empty-state-action):disabled {
+  --_bg: var(--color-interaction-disabled-bg);
+  --_fg: var(--color-text-disabled);
+  --_border: var(--color-border-disabled);
+  --_bg-hover: var(--color-interaction-disabled-bg);
+  --_fg-hover: var(--color-text-disabled);
+  --_bg-active: var(--color-interaction-disabled-bg);
+  --_border-active: var(--color-border-disabled);
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .button,
+  .dialog-button,
+  .empty-state-action,
+  .file-input-button {
+    transition: background-color var(--motion-duration-fast);
+  }
+}
+
+@media (forced-colors: active) {
+  :is(.button, .dialog-button, .empty-state-action):focus-visible {
+    outline-color: Highlight;
+  }
+}
