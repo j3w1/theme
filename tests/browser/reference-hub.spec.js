@@ -95,3 +95,10 @@ test("code-editor package and matrix render the same decorative whitespace glyph
   expect(specimen.width).toBeGreaterThan(0);
   expect(await shape(matrix)).toEqual(specimen);
 });
+
+test("composed matrices keep their raw demo's nested wizard styles", scope, async ({ page }) => {
+  await page.goto("components/admin-form/");
+  const step = page.locator('#admin-form-states [data-state="default"] .wizard-step-button').first();
+  await expect(step).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
+  await expect(step).toHaveCSS("border-bottom-width", "2px");
+});
