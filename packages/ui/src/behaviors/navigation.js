@@ -1,4 +1,4 @@
-import { all, enabled, visible, rove, identify, nativeInput, announce, place } from "../internal/dom.js";
+import { keyIndex, all, enabled, visible, rove, identify, nativeInput, announce, place } from "../internal/dom.js";
 
 export function tabs(root, { on }, listOverride) {
   const list = listOverride ?? root.querySelector('[role="tablist"]');
@@ -46,7 +46,7 @@ export function toolbar(root, { on }) {
     const vertical = bar.getAttribute("aria-orientation") === "vertical", rtl = getComputedStyle(bar).direction === "rtl";
     const next = vertical ? "ArrowDown" : rtl ? "ArrowLeft" : "ArrowRight", prev = vertical ? "ArrowUp" : rtl ? "ArrowRight" : "ArrowLeft";
     if (![next, prev, "Home", "End"].includes(event.key)) return;
-    event.preventDefault(); rove(items, event.key === next ? index + 1 : event.key === prev ? index - 1 : event.key === "Home" ? 0 : items.length - 1);
+    event.preventDefault(); rove(items, keyIndex({ key: event.key, index, length: items.length, next, previous: prev }));
   });
   on(bar, "click", event => {
     const button = event.target.closest("button[aria-pressed]");
@@ -142,7 +142,7 @@ export function menu(root, { on }) {
   on(root, "keydown", event => {
     const item = event.target.closest('[role^="menuitem"]'); if (!item) return;
     const list = item.closest('[role="menu"]'), options = items(list), index = options.indexOf(item), rtl = getComputedStyle(list).direction === "rtl";
-    if (["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) { event.preventDefault(); rove(options, event.key === "Home" ? 0 : event.key === "End" ? options.length - 1 : index + (event.key === "ArrowDown" ? 1 : -1)); }
+    if (["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) { event.preventDefault(); rove(options, keyIndex({ key: event.key, index, length: options.length })); }
     else if (event.key === "Escape" || event.key === (rtl ? "ArrowRight" : "ArrowLeft") && list !== main) { event.preventDefault(); event.stopPropagation(); if (list !== main) { closeList(list); controller(list)?.focus(); } else hide(); }
     else if (event.key === (rtl ? "ArrowLeft" : "ArrowRight") && submenu(item)) { event.preventDefault(); showList(submenu(item), item); }
     else if (event.key === "Tab") hide();

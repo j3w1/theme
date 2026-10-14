@@ -1,3 +1,5 @@
+import { escapeHtml as xml } from "../markup.mjs";
+
 /* Pure generators: a context in, file contents out. No clock, no
    filesystem; the caller passes resolvedAt for the lock. The installers and
    the port emitters (scripts/lib/port-artifacts.mjs) share them, so the file
@@ -43,7 +45,6 @@ export const claudeTheme = (ctx) => {
 
 export const claudeThemeText = (ctx) => `${JSON.stringify(claudeTheme(ctx), null, 2)}\n`;
 
-const xml = (s) => String(s).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;");
 
 const plistValue = (value, indent) => {
   const pad = "\t".repeat(indent);

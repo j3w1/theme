@@ -1,6 +1,7 @@
 /* Shared literal parsing and presentation for static HTML and explicit UI
    renderers. No DOM discovery runs in the browser. Colours are data, not roles. */
-export const escapeHtml = (text) => String(text).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+import { escapeHtml } from "./markup.mjs";
+export { escapeHtml } from "./markup.mjs";
 
 export const parseHex = (literal) => {
   if (!/^#(?:[\da-f]{3}|[\da-f]{4}|[\da-f]{6}|[\da-f]{8})$/i.test(literal)) return null;

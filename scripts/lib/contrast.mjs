@@ -6,9 +6,15 @@
    displayed ratio is rounded to two decimals (so 4.4996 reads 4.50 and still
    fails). */
 
-const linear = (c) => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
+import { colorValue, componentsToHex as toHex } from "./color.mjs";
+
+export const linear = (c) => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
 
 export const luminance = ({ components: [r, g, b] }) => 0.2126 * linear(r) + 0.7152 * linear(g) + 0.0722 * linear(b);
+
+export const luminanceRgb = channels => luminance({ components: channels.map(c => c / 255) });
+export const luminanceHex = hex => luminance(colorValue(hex));
+export const contrastHex = (a, b) => ratio(colorValue(a), colorValue(b));
 
 /* Composites `top` (with alpha) over `under` (assumed opaque). */
 export const composite = (top, under) => {
@@ -17,8 +23,6 @@ export const composite = (top, under) => {
   const components = top.components.map((c, i) => c * a + under.components[i] * (1 - a));
   return { colorSpace: "srgb", components, alpha: 1, hex: toHex(components) };
 };
-
-export const toHex = (components) => `#${components.map((c) => Math.round(c * 255).toString(16).padStart(2, "0")).join("")}`;
 
 export const ratio = (fg, bg) => {
   const l1 = luminance(fg);

@@ -5,5 +5,3 @@
 export const BASE = import.meta.env.BASE_URL.replace(/\/?$/, "/");
 
 export const withBase = (path: string): string => `${BASE}${path.replace(/^\//, "")}`;
-
-export const anchor = (id: string): string => `#${id}`;

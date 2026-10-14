@@ -12,7 +12,10 @@ const wrap = (node, tag) => { const parent = node.parentNode, index = parent.chi
 
 function wizardMarkup(variant) {
   const labels = variant === "icons" ? ["Source", "Workspaces", "Bindings", "Review"] : ["Project", "Preferences", "Review"];
-  return `<div class="wizard" aria-label="Set up a local project"><ol class="wizard-steps">${labels.map((label, i) => `<li class="wizard-step"><button class="wizard-step-button" type="button" ${i ? "disabled" : 'aria-current="step"'}><span class="wizard-step-marker" aria-hidden="true">${i + 1}</span><span class="wizard-step-name">${label}</span></button></li>`).join("")}</ol>${labels.map((label, i) => `<section class="wizard-panel" aria-labelledby="wizard-title-${i}" ${i ? "hidden" : ""}><h3 class="wizard-title" id="wizard-title-${i}">Step ${i + 1} of ${labels.length}: ${label}</h3>${i < labels.length - 1 ? `<label for="wizard-value-${i}">${label} name</label><input class="text-field-input" id="wizard-value-${i}" name="step-${i}" required>` : `<p class="wizard-text">All previous values remain available. Complete requests host handling; it does not send a network request.</p>`}</section>`).join("")}<div class="wizard-actions"><button class="wizard-back" type="button">Back</button><button class="wizard-next" type="button">Next / complete</button></div></div>`;
+  return [
+    `<div class="wizard" aria-label="Set up a local project"><ol class="wizard-steps">${labels.map((label, i) => `<li class="wizard-step"><button class="wizard-step-button" type="button" ${i ? "disabled" : 'aria-current="step"'}><span class="wizard-step-marker" aria-hidden="true">${i + 1}</span><span class="wizard-step-name">${label}</span></button></li>`).join("")}</ol>${labels.map((label, i) => `<section class="wizard-panel" aria-labelledby="wizard-title-${i}" ${i ? "hidden" : ""}><h3 class="wizard-title" id="wizard-title-${i}">Step ${i + 1} of ${labels.length}: ${label}</h3>${i < labels.length - 1 ? `<label for="wizard-value-${i}">${label} name</label><input class="text-field-input" id="wizard-value-${i}" name="step-${i}" required>` : `<p class="wizard-text">All previous values remain available. Complete requests host handling; it does not send a network request.</p>`}</section>`).join("")}<div class="wizard-actions"><button class="wizard-back" type="button">Back</button><button class="wizard-next" type="button">Next / complete</button>`,
+    `</div></div>`
+  ].join("");
 }
 
 function widthMenu(index, label) {
@@ -23,15 +26,63 @@ function tableMarkup(id, variant) {
   const data = id !== "table", cls = data ? "data-table" : "table", selectable = data && variant !== "default", resizable = variant === "resizable";
   const columns = ["Project", "Owner", "Status", "Scope"];
   const records = variant === "empty" ? [] : [["Atlas library", "Avery Kim", "Ready", "24"], ["Orion workspace", "Jordan Lee", "In progress", "12"], ["Field notes", "Morgan Noor", "Ready", "38"], ["Signal monitor", "Riley Stone", "Review", "6"]];
-  return `<div class="table-scroller" tabindex="0" role="region" aria-label="Project records"><table class="${cls}" ${variant === "loading" ? 'aria-busy="true"' : ""}><caption class="table-caption">Project records · synthetic fixture</caption><thead class="${cls}-head"><tr>${selectable ? '<th class="data-table-header data-table-header-select" scope="col"><button class="data-table-select-all" type="button" role="checkbox" aria-checked="false" aria-label="Select all rows"><span class="data-table-check-glyph" aria-hidden="true">✓</span></button></th>' : ""}${columns.map((label, i) => `<th class="${cls}-header" scope="col"><button class="${cls}-sort" type="button">${label}<span class="${cls}-sort-glyph" aria-hidden="true">↕</span></button>${resizable ? `<span class="data-table-resize" aria-hidden="true"></span>${widthMenu(i + Number(selectable), label)}` : ""}</th>`).join("")}</tr></thead><tbody class="${cls}-body">${records.map((record, index) => `<tr class="${cls}-row" id="record-${index}" data-status="${record[2]}" ${data ? `aria-selected="false" tabindex="${index === 0 ? "0" : "-1"}"` : ""}>${selectable ? `<td class="data-table-cell data-table-cell-select"><input class="data-table-checkbox" type="checkbox" aria-labelledby="record-name-${index}"></td>` : ""}${record.map((value, i) => `<td class="${cls}-cell" ${i === 0 ? `id="record-name-${index}"` : ""}>${value}</td>`).join("")}</tr>`).join("")}<tr class="${cls}-empty" ${records.length ? "hidden" : ""}><td class="${cls}-empty-cell" colspan="${columns.length + Number(selectable)}">No rows match.</td></tr><tr class="${cls}-loading" ${variant === "loading" ? "" : "hidden"}><td colspan="${columns.length + Number(selectable)}">⋯ Loading rows</td></tr></tbody></table></div>`;
+  const selectionHeader = selectable
+    ? '<th class="data-table-header data-table-header-select" scope="col"><button class="data-table-select-all" type="button" role="checkbox" aria-checked="false" aria-label="Select all rows"><span class="data-table-check-glyph" aria-hidden="true">✓</span></button></th>'
+    : "";
+  const headers = columns.map((label, i) => [
+    `<th class="${cls}-header" scope="col"><button class="${cls}-sort" type="button">${label}`,
+    `<span class="${cls}-sort-glyph" aria-hidden="true">↕</span></button>`,
+    resizable ? `<span class="data-table-resize" aria-hidden="true"></span>${widthMenu(i + Number(selectable), label)}` : "",
+    `</th>`,
+  ].join("")).join("");
+  const rows = records.map((record, index) => {
+    const selectionCell = selectable
+      ? `<td class="data-table-cell data-table-cell-select"><input class="data-table-checkbox" type="checkbox" aria-labelledby="record-name-${index}"></td>`
+      : "";
+    const cells = record.map((value, i) =>
+      `<td class="${cls}-cell" ${i === 0 ? `id="record-name-${index}"` : ""}>${value}</td>`
+    ).join("");
+    return [
+      `<tr class="${cls}-row" id="record-${index}" data-status="${record[2]}" ${data ? `aria-selected="false" tabindex="${index === 0 ? "0" : "-1"}"` : ""}>`,
+      selectionCell, cells, `</tr>`,
+    ].join("");
+  }).join("");
+  return [
+    `<div class="table-scroller" tabindex="0" role="region" aria-label="Project records"><table class="${cls}" ${variant === "loading" ? 'aria-busy="true"' : ""}>`,
+    `<caption class="table-caption">Project records · synthetic fixture</caption><thead class="${cls}-head"><tr>`,
+    selectionHeader, headers, `</tr></thead><tbody class="${cls}-body">`, rows,
+    `<tr class="${cls}-empty" ${records.length ? "hidden" : ""}><td class="${cls}-empty-cell" colspan="${columns.length + Number(selectable)}">No rows match.</td></tr>`,
+    `<tr class="${cls}-loading" ${variant === "loading" ? "" : "hidden"}><td colspan="${columns.length + Number(selectable)}">⋯ Loading rows</td></tr></tbody></table></div>`,
+  ].join("");
 }
 
 function filterableMarkup(variant) {
-  return `<section class="filterable-table" aria-label="Project records"><div class="filterable-table-toolbar"><j3w1-search-field><div class="search-field"><label class="search-field-label" for="records-search">Search projects</label><div class="search-field-root"><input class="search-field-input" id="records-search" type="search"><button class="search-field-clear" type="button" aria-label="Clear search">Clear</button></div></div></j3w1-search-field><label for="records-status">Status<select class="select-control" id="records-status" data-status-filter><option value="all">All statuses</option><option>Ready</option><option>In progress</option><option>Review</option></select></label></div>${tableMarkup("data-table", variant === "default" ? "selectable" : variant)}<p class="filterable-table-count" role="status" data-table-status></p></section>`;
+  return [
+    `<section class="filterable-table" aria-label="Project records"><div class="filterable-table-toolbar"><j3w1-search-field>`,
+    `<div class="search-field"><label class="search-field-label" for="records-search">Search projects</label><div class="search-field-root">`,
+    `<input class="search-field-input" id="records-search" type="search"><button class="search-field-clear" type="button" aria-label="Clear search">Clear</button>`,
+    `</div></div></j3w1-search-field><label for="records-status">Status<select class="select-control" id="records-status" data-status-filter>`,
+    `<option value="all">All statuses</option><option>Ready</option><option>In progress</option><option>Review</option>`,
+    `</select></label></div>${tableMarkup("data-table", variant === "default" ? "selectable" : variant)}<p class="filterable-table-count" role="status" data-table-status></p></section>`
+  ].join("");
 }
 
 function adminMarkup(variant) {
-  return `<section class="admin-form" ${variant === "review" ? 'data-start="review"' : ""}><h2 class="admin-form-title">Project details</h2><p>Review the local values before passing them to your app.</p><form data-native-form><fieldset class="fieldset"><legend>Project information</legend><j3w1-text-field><div class="text-field"><label class="text-field-label" for="project-name">Project name</label><div class="text-field-root"><input class="text-field-input" id="project-name" name="project" value="Atlas library" required></div></div></j3w1-text-field><j3w1-textarea><div class="textarea"><label class="textarea-label" for="project-notes">Notes</label><textarea class="textarea-input" id="project-notes" name="notes" rows="3">A reusable component library.</textarea></div></j3w1-textarea><j3w1-select><div class="select"><label class="select-label" for="project-scope">Scope</label><div class="select-root"><select class="select-control" id="project-scope" name="scope"><option value="library">Library</option><option value="application">Application</option></select></div></div></j3w1-select></fieldset><div class="form-tool-actions"><button class="button" type="submit">Review values</button><button class="button button-secondary" type="reset">Reset</button></div></form><section data-form-review hidden aria-label="Review project values"><h3 tabindex="-1">Review values</h3><table class="table"><caption>Values to pass to the host</caption><tbody></tbody></table><div class="form-tool-actions"><button class="button button-secondary" type="button" data-form-edit>Edit values</button><button class="button" type="button" data-form-confirm>Confirm values</button></div></section><p role="status" data-form-status></p></section>`;
+  return [
+    `<section class="admin-form" ${variant === "review" ? 'data-start="review"' : ""}><h2 class="admin-form-title">Project details</h2><p>Review the local values before passing them to your app.</p>`,
+    `<form data-native-form><fieldset class="fieldset"><legend>Project information</legend><j3w1-text-field><div class="text-field">`,
+    `<label class="text-field-label" for="project-name">Project name</label><div class="text-field-root"><input class="text-field-input" id="project-name" name="project" value="Atlas library" required>`,
+    `</div></div></j3w1-text-field><j3w1-textarea><div class="textarea"><label class="textarea-label" for="project-notes">Notes</label>`,
+    `<textarea class="textarea-input" id="project-notes" name="notes" rows="3">A reusable component library.</textarea>`,
+    `</div></j3w1-textarea><j3w1-select><div class="select"><label class="select-label" for="project-scope">Scope</label>`,
+    `<div class="select-root"><select class="select-control" id="project-scope" name="scope"><option value="library">Library</option>`,
+    `<option value="application">Application</option></select></div></div></j3w1-select></fieldset><div class="form-tool-actions">`,
+    `<button class="button" type="submit">Review values</button><button class="button button-secondary" type="reset">Reset</button>`,
+    `</div></form><section data-form-review hidden aria-label="Review project values"><h3 tabindex="-1">Review values</h3>`,
+    `<table class="table"><caption>Values to pass to the host</caption><tbody></tbody></table><div class="form-tool-actions">`,
+    `<button class="button button-secondary" type="button" data-form-edit>Edit values</button><button class="button" type="button" data-form-confirm>Confirm values</button>`,
+    `</div></section><p role="status" data-form-status></p></section>`
+  ].join("");
 }
 
 export function renderUsage(component, variant, prefix) {
@@ -69,7 +120,13 @@ export function renderUsage(component, variant, prefix) {
   }
   if (component.id === "toolbar" && variant === "overflow") {
     const more = nodes(tree).find(node => hasClass(node, "toolbar-more"));
-    if (more) replace(more, `<j3w1-menu><div class="menu"><button class="toolbar-button toolbar-more" type="button" id="toolbar-more-trigger" aria-haspopup="menu" aria-expanded="false" aria-controls="toolbar-more-menu" tabindex="-1">More</button><ul class="menu-list" role="menu" id="toolbar-more-menu" aria-labelledby="toolbar-more-trigger" hidden><li role="none"><button class="menu-item" type="button" role="menuitem" tabindex="-1" data-action="format">Format</button></li><li role="none"><button class="menu-item" type="button" role="menuitemcheckbox" tabindex="-1" aria-checked="false" data-action="whitespace">Show whitespace</button></li></ul></div></j3w1-menu>`);
+    if (more) replace(more, [
+    `<j3w1-menu><div class="menu"><button class="toolbar-button toolbar-more" type="button" id="toolbar-more-trigger" aria-haspopup="menu" aria-expanded="false" aria-controls="toolbar-more-menu" tabindex="-1">More</button>`,
+    `<ul class="menu-list" role="menu" id="toolbar-more-menu" aria-labelledby="toolbar-more-trigger" hidden><li role="none">`,
+    `<button class="menu-item" type="button" role="menuitem" tabindex="-1" data-action="format">Format</button></li>`,
+    `<li role="none"><button class="menu-item" type="button" role="menuitemcheckbox" tabindex="-1" aria-checked="false" data-action="whitespace">Show whitespace</button>`,
+    `</li></ul></div></j3w1-menu>`
+  ].join(""));
   }
   if (component.id === "i3-window-frame") {
     const list = nodes(tree).find(node => hasClass(node, "i3-window-frame-workspaces"));

@@ -1,3 +1,8 @@
+import { rgb } from "../color.mjs";
+import { contrastHex as contrast } from "../contrast.mjs";
+export { rgb } from "../color.mjs";
+export { luminanceHex as luminance, contrastHex as contrast } from "../contrast.mjs";
+
 /* The terminal specimen. ports/orca/src/specimen.json names ANSI slots,
    tokens, Claude Code roles (fgRole/bgRole, through
    ports/claude-code/host.json) and Codex scopes (fgScope/bgScope, through
@@ -13,22 +18,6 @@ const RESET = `${ESC}0m`;
 /* The six attributes the terminal specification defines, nothing else. */
 const ATTRS = { bold: 1, dim: 2, italic: 3, underline: 4, inverse: 7, strikethrough: 9 };
 
-export const rgb = (hex) => [1, 3, 5].map((i) => Number.parseInt(hex.slice(i, i + 2), 16));
-
-const channel = (c) => {
-  const v = c / 255;
-  return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
-};
-
-export const luminance = (hex) => {
-  const [r, g, b] = rgb(hex).map(channel);
-  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
-};
-
-export const contrast = (a, b) => {
-  const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x);
-  return (hi + 0.05) / (lo + 0.05);
-};
 
 const slotFg = (n) => (n === "default" ? 39 : n < 8 ? 30 + n : 90 + n - 8);
 const slotBg = (n) => (n === "default" ? 49 : n < 8 ? 40 + n : 100 + n - 8);

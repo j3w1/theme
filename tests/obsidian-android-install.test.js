@@ -1,3 +1,4 @@
+import { sha256Hex } from "../scripts/lib/host-install/files.mjs";
 /* The Android installer, ports/obsidian/install-android.sh, run for real
    against scratch vaults. A stub curl serves fixture files (the committed
    dist artifacts unless a case changes them), so nothing reaches the
@@ -8,13 +9,11 @@
 
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
-import { createHash } from "node:crypto";
 import { accessSync, constants, promises as fs } from "node:fs";
-import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 import { readText, repoRoot } from "../scripts/lib/fs.mjs";
-import { scratchDir } from "./helpers/scratch.mjs";
+import { withScratch, scratchDir } from "./helpers/scratch.mjs";
 
 const SCRIPT = path.join(repoRoot, "ports/obsidian/install-android.sh");
 const BASE = "https://j3w1.github.io/theme/ports/obsidian/";
@@ -42,15 +41,10 @@ const SHELLS = [
    ash runs its own applets instead, so there those cases cannot inject a
    fault; they are skipped with that reason rather than passed. */
 const STUB_FREE = "this shell runs its own mv/rm applets, so PATH fault stubs cannot reach it";
-const interposes = async (shell) => {
-  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "j3w1-probe-"));
-  try {
+const interposes = shell => withScratch("j3w1-probe-", async dir => {
     await fs.writeFile(path.join(dir, "mv"), "#!/bin/sh\nexit 7\n", { mode: 0o755 });
     return spawnSync(shell.command, [...shell.args, "-c", "mv a b"], { cwd: dir, env: { PATH: dir } }).status === 7;
-  } finally {
-    await fs.rm(dir, { recursive: true, force: true });
-  }
-};
+});
 for (const shell of SHELLS) shell.interposes = shell.command ? await interposes(shell) : false;
 
 const CURL = `#!/bin/sh
@@ -93,7 +87,7 @@ for arg; do case $arg in */.j3w1-backup-*) exit 1 ;; esac; done
 exec "$REAL_RM" "$@"
 `;
 
-const sha = (bytes) => createHash("sha256").update(bytes).digest("hex");
+const sha = (bytes) => sha256Hex(bytes);
 const snapshot = async (dir) => {
   const out = {};
   const walk = async (rel) => {

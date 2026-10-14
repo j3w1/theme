@@ -1,4 +1,4 @@
-import { all, enabled, visible, rove, identify, nativeInput, make } from "../internal/dom.js";
+import { keyIndex, all, enabled, visible, rove, identify, nativeInput, make } from "../internal/dom.js";
 import { IDREFS } from "../../../../scripts/lib/markup.mjs";
 
 export function tree(root, { on }) {
@@ -35,7 +35,7 @@ export function tree(root, { on }) {
   on(treeRoot, "keydown", event => {
     const item = event.target.closest('[role="treeitem"]'); if (!item) return;
     const options = shown(), index = options.indexOf(item), rtl = getComputedStyle(treeRoot).direction === "rtl";
-    if (["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) { event.preventDefault(); const next = event.key === "Home" ? 0 : event.key === "End" ? options.length - 1 : Math.max(0, Math.min(options.length - 1, index + (event.key === "ArrowDown" ? 1 : -1))); rove(options, next); }
+    if (["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) { event.preventDefault(); const next = keyIndex({ key: event.key, index, length: options.length, wrap: false }); rove(options, next); }
     else if (event.key === (rtl ? "ArrowLeft" : "ArrowRight")) { event.preventDefault(); if (group(item)) { if (item.getAttribute("aria-expanded") !== "true") expand(item.id); else rove(shown(), shown().indexOf(item) + 1); } }
     else if (event.key === (rtl ? "ArrowRight" : "ArrowLeft")) { event.preventDefault(); if (group(item) && item.getAttribute("aria-expanded") === "true") expand(item.id, false); else if (parent(item)) rove(options, options.indexOf(parent(item))); }
     else if (["Enter", " "].includes(event.key)) { event.preventDefault(); activate(item); }

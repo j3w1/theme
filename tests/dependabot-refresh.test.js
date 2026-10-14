@@ -1,3 +1,4 @@
+import { git as queryGit } from "../scripts/tooling/git.mjs";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync, promises as fs } from "node:fs";
@@ -8,7 +9,7 @@ import { isGenerated, isNpmBump, prPaths, refresh, workspacesOf } from "../scrip
 import { plan } from "../scripts/ci/select.mjs";
 import { scratchDir } from "./helpers/scratch.mjs";
 
-const git = (dir, ...args) => execFileSync("git", ["-C", dir, ...args], { encoding: "utf8" }).trim();
+const git = (dir, ...args) => queryGit(args, { cwd: dir });
 const put = async (dir, file, content) => {
   await fs.mkdir(path.dirname(path.join(dir, file)), { recursive: true });
   await fs.writeFile(path.join(dir, file), content);

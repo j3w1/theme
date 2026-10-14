@@ -1,3 +1,4 @@
+import { defaultTokens } from "./helpers/tokens.mjs";
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import {readJson} from '../scripts/lib/fs.mjs';
@@ -9,7 +10,7 @@ const ids=['windows-11-taskbar-styler','windows-11-start-menu-styler',
 test('every supported shell host receives the common menu controls and resource palette',async()=>{
  const host=await readJson('ports/windows/host.json');
  const mapping=await readJson('ports/windows/mapping.json');
- const tokens=(await readJson('exports/tokens.resolved.json')).profiles.default.tokens;
+ const tokens=await defaultTokens();
  assert.deepEqual(host.stylers.map(x=>x.id),ids);
  const expectedResources={MenuFlyoutPresenterBackground:'color.surface.raised',
   MenuFlyoutPresenterBorderBrush:'color.border.overlay',MenuFlyoutSeparatorBackground:'color.border.divider',

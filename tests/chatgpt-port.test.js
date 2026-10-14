@@ -1,8 +1,9 @@
+import { scratchDirSync } from "./helpers/scratch.mjs";
+import { defaultTokens } from "./helpers/tokens.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { mkdtempSync, mkdirSync, writeFileSync } from "node:fs";
-import os from "node:os";
+import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { assertSampleFormat, buildChatgptPresets, chatgptPortProblems, chatgptRoles, readSamples } from "../scripts/lib/chatgpt-port.mjs";
 import { parseCodexTheme, chatgptPresetsSchema, codexThemeSampleSchema, CODEX_THEME_PREFIX } from "../schemas/chatgpt.mjs";
@@ -10,11 +11,11 @@ import { parseCodexTheme, chatgptPresetsSchema, codexThemeSampleSchema, CODEX_TH
 const source = JSON.parse(readFileSync("ports/chatgpt/src/presets.json", "utf8"));
 const built = JSON.parse(readFileSync("ports/chatgpt/dist/presets.json", "utf8"));
 const manifest = JSON.parse(readFileSync("theme.json", "utf8"));
-const tokens = JSON.parse(readFileSync("exports/tokens.resolved.json", "utf8")).profiles.default.tokens;
+const tokens = await defaultTokens();
 const byId = Object.fromEntries(built.presets.map((p) => [p.id, p]));
 const setting = (id, name) => byId[id].settings.find((r) => r.setting === name);
 
-test("Signature: rose text.bright on true black, accent focus ring, contrast 46", () => {
+test("Signature: rose text.bright on true black, accent focus ring, contrast 46", (t) => {
   assert.equal(setting("signature", "Foreground").source, "color.text.bright");
   assert.equal(setting("signature", "Foreground").value, tokens["color.text.bright"].value.hex);
   assert.equal(setting("signature", "Background").value, tokens["color.surface.canvas"].value.hex);
@@ -23,7 +24,7 @@ test("Signature: rose text.bright on true black, accent focus ring, contrast 46"
   assert.equal(byId.signature.recommended, true);
 });
 
-test("Reading: the same with text.default and contrast 52", () => {
+test("Reading: the same with text.default and contrast 52", (t) => {
   assert.equal(setting("reading", "Foreground").source, "color.text.default");
   assert.equal(setting("reading", "Foreground").value, tokens["color.text.default"].value.hex);
   assert.equal(setting("reading", "Contrast").value, "52");
@@ -32,7 +33,7 @@ test("Reading: the same with text.default and contrast 52", () => {
   }
 });
 
-test("host calibration is exact and marked as calibration, not a theme role", () => {
+test("host calibration is exact and marked as calibration, not a theme role", (t) => {
   for (const id of ["signature", "reading"]) {
     for (const [name, value] of [["Mode", "Dark"], ["Theme", "ChatGPT"], ["Reduce motion", "System"], ["Separate light and dark", "Off"], ["Diff markers", "+/-"]]) {
       assert.deepEqual(setting(id, name), { setting: name, value, source: "calibration" });
@@ -42,7 +43,7 @@ test("host calibration is exact and marked as calibration, not a theme role", ()
   }
 });
 
-test("the presets are generated from the source, deterministically", () => {
+test("the presets are generated from the source, deterministically", (t) => {
   const exported = Object.fromEntries(Object.entries(tokens));
   const again = buildChatgptPresets(source, exported, manifest);
   assert.deepEqual(again, built);
@@ -50,7 +51,7 @@ test("the presets are generated from the source, deterministically", () => {
   assert.equal(setting("signature", "Opaque windows").source, "calibration", "the table sets what the import string sets");
 });
 
-test("the emitted strings match the strict schema exactly: a changed, missing or extra field is refused", () => {
+test("the emitted strings match the strict schema exactly: a changed, missing or extra field is refused", (t) => {
   const good = byId.signature.importString;
   assert.ok(good.startsWith(CODEX_THEME_PREFIX));
   const payload = parseCodexTheme(good);
@@ -63,7 +64,7 @@ test("the emitted strings match the strict schema exactly: a changed, missing or
   assert.throws(() => chatgptPresetsSchema.parse({ ...source, extra: true }));
 });
 
-test("the README shows exactly the generated tables and strings", () => {
+test("the README shows exactly the generated tables and strings", (t) => {
   const readme = readFileSync("ports/chatgpt/README.md", "utf8");
   for (const p of built.presets) {
     assert.ok(readme.includes(p.importString), `${p.id} import string`);
@@ -73,54 +74,54 @@ test("the README shows exactly the generated tables and strings", () => {
   assert.match(readme, /rollout/);
 });
 
-const sampleDir = (text) => {
-  const root = mkdtempSync(path.join(os.tmpdir(), "chatgpt-samples-"));
+const sampleDir = (t, text) => {
+  const root = scratchDirSync(t, "chatgpt-samples-");
   mkdirSync(path.join(root, "ports/chatgpt/evidence"), { recursive: true });
   writeFileSync(path.join(root, "ports/chatgpt/evidence/test-build.codex-theme.txt"), text);
   return root;
 };
 
-test("a recorded ChatGPT export with a different format stops generation; the same format passes", () => {
+test("a recorded ChatGPT export with a different format stops generation; the same format passes", (t) => {
   const exported = Object.fromEntries(Object.entries(tokens));
   const same = parseCodexTheme(byId.signature.importString);
   const sameText = `# build: 1.2026.270\n# date: 2026-09-26\n${CODEX_THEME_PREFIX}${JSON.stringify({ ...same, theme: { ...same.theme, accent: "#E53935" } })}\n`;
-  const ok = readSamples(sampleDir(sameText));
+  const ok = readSamples(sampleDir(t, sameText));
   assert.equal(ok.length, 1, "upper-case hex from ChatGPT is accepted in a sample");
   assert.doesNotThrow(() => buildChatgptPresets(source, exported, manifest, { samples: ok }));
   const changed = structuredClone(same);
   changed.theme.foreground = changed.theme.ink;
   delete changed.theme.ink;
   const renamed = `# build: 1.2026.300\n# date: 2026-10-20\n${CODEX_THEME_PREFIX}${JSON.stringify(changed)}\n`;
-  assert.throws(() => readSamples(sampleDir(renamed)), /test-build\.codex-theme\.txt: ChatGPT 1\.2026\.300 \(2026-10-20\) exports a theme format this port does not emit/);
+  assert.throws(() => readSamples(sampleDir(t, renamed)), /test-build\.codex-theme\.txt: ChatGPT 1\.2026\.300 \(2026-10-20\) exports a theme format this port does not emit/);
   assert.throws(() => assertSampleFormat(same, [{ build: "x", date: "2026-10-20", payload: { ...same, extra: 1 } }]), /different theme format/);
-  assert.throws(() => readSamples(sampleDir(`${CODEX_THEME_PREFIX}${JSON.stringify(same)}\n`)), /needs "# build:"/);
+  assert.throws(() => readSamples(sampleDir(t, `${CODEX_THEME_PREFIX}${JSON.stringify(same)}\n`)), /needs "# build:"/);
   assert.ok(codexThemeSampleSchema.safeParse({ ...same, theme: { ...same.theme, accent: "#E53935" } }).success);
 });
 
-test("a role of the wrong kind is refused, not emitted as nonsense", () => {
+test("a role of the wrong kind is refused, not emitted as nonsense", (t) => {
   const exported = Object.fromEntries(Object.entries(tokens));
   assert.throws(() => buildChatgptPresets({ ...source, shared: { ...source.shared, uiFontSize: "color.text.bright" } }, exported, manifest));
   assert.throws(() => buildChatgptPresets({ ...source, shared: { ...source.shared, accent: "font.size.reading" } }, exported, manifest));
 });
 
-test("two settings that share a role both stay mapped", () => {
+test("two settings that share a role both stay mapped", (t) => {
   const shared = { ...source, shared: { ...source.shared, semanticColors: { ...source.shared.semanticColors, skill: source.shared.accent } } };
   assert.deepEqual(chatgptRoles(shared)[source.shared.accent], ["Accent", "theme.accent", "theme.semanticColors.skill"]);
 });
 
-test("a byte-order mark and a bad date in a sample are handled plainly (review r4b)", () => {
+test("a byte-order mark and a bad date in a sample are handled plainly (review r4b)", (t) => {
   const same = parseCodexTheme(byId.signature.importString);
   const line = `${CODEX_THEME_PREFIX}${JSON.stringify(same)}`;
-  assert.equal(readSamples(sampleDir(`\uFEFF# build: b1\n# date: 2026-09-26\n${line}\n`)).length, 1);
-  assert.throws(() => readSamples(sampleDir(`# build: b1\n# date: 26/09/2026\n${line}\n`)), /yyyy-mm-dd/);
+  assert.equal(readSamples(sampleDir(t, `\uFEFF# build: b1\n# date: 2026-09-26\n${line}\n`)).length, 1);
+  assert.throws(() => readSamples(sampleDir(t, `# build: b1\n# date: 26/09/2026\n${line}\n`)), /yyyy-mm-dd/);
 });
 
-test("a sample whose code theme id differs from the source stops generation (review r4b)", () => {
+test("a sample whose code theme id differs from the source stops generation (review r4b)", (t) => {
   const same = parseCodexTheme(byId.signature.importString);
   assert.throws(() => assertSampleFormat(same, [{ build: "b1", date: "2026-09-26", payload: { ...same, codeThemeId: "codex" } }]), /codeThemeId "codex"/);
 });
 
-test("the port leaves experimental or names a tested build only with a recorded export per build (review r4b)", () => {
+test("the port leaves experimental or names a tested build only with a recorded export per build (review r4b)", (t) => {
   const port = JSON.parse(readFileSync("ports/chatgpt/port.json", "utf8"));
   const sample = { build: "1.2026.270", date: "2026-09-26" };
   assert.deepEqual(chatgptPortProblems(port, []), []);
@@ -129,6 +130,6 @@ test("the port leaves experimental or names a tested build only with a recorded 
   assert.equal(chatgptPortProblems({ ...port, testedVersions: ["1.2026.300"] }, [sample]).length, 1);
 });
 
-test("a truncated paste is reported as unreadable, not as a new ChatGPT format (review r6)", () => {
-  assert.throws(() => readSamples(sampleDir(`# build: b1\n# date: 2026-09-26\n${CODEX_THEME_PREFIX}{"theme":\n`)), /is not a readable codex-theme-v1: string/);
+test("a truncated paste is reported as unreadable, not as a new ChatGPT format (review r6)", (t) => {
+  assert.throws(() => readSamples(sampleDir(t, `# build: b1\n# date: 2026-09-26\n${CODEX_THEME_PREFIX}{"theme":\n`)), /is not a readable codex-theme-v1: string/);
 });

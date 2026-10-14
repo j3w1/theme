@@ -2,6 +2,7 @@
 // Proposes generated changes for an npm Dependabot PR. Never stages in the
 // checkout's index or changes the PR; the patch is not a compatibility check.
 
+import { gitBytes } from "../tooling/git.mjs";
 import { execFileSync } from "node:child_process";
 import { appendFileSync, mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
@@ -24,7 +25,7 @@ export const isGenerated = (file) => generatedFiles.has(file) ||
 export const isNpmBump = (paths, workspaces) => paths.some((file) =>
   file === "package.json" || file === "package-lock.json" || workspaces.some((workspace) => file === `${workspace}/package.json`));
 
-const git = (dir, args, options = {}) => execFileSync("git", args, { cwd: dir, maxBuffer: 64 * 1024 * 1024, ...options });
+const git = (dir, args, options = {}) => gitBytes(args, { cwd: dir, maxBuffer: 64 * 1024 * 1024, ...options });
 const lines = (bytes) => bytes.toString("utf8").split("\0").filter(Boolean);
 const sha = (dir, ref) => git(dir, ["rev-parse", "--verify", `${ref}^{commit}`]).toString("utf8").trim();
 

@@ -1,7 +1,7 @@
+import { sha256Hex } from "../scripts/lib/host-install/files.mjs";
 /* Same-input renderer regression. The source prepares 3.1.0 separately;
    these calls retain the 3.0.0 input version to isolate the envelope refactor. */
 import assert from "node:assert/strict";
-import { createHash } from "node:crypto";
 import test from "node:test";
 import { readJson, exists } from "../scripts/lib/fs.mjs";
 import { loadResolvedProfile, toResolvedExport } from "../scripts/lib/tokens.mjs";
@@ -28,5 +28,5 @@ for (const fixture of baseline.files) test(`${fixture.path}: identical 3.0.0 inp
   assert.equal(artifacts.length, 1);
   const bytes = Buffer.from(artifacts[0].text);
   assert.equal(bytes.length, fixture.bytes);
-  assert.equal(createHash("sha256").update(bytes).digest("hex"), fixture.sha256);
+  assert.equal(sha256Hex(bytes), fixture.sha256);
 });

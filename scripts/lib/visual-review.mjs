@@ -1,4 +1,7 @@
 // Local, non-canonical candidate evaluation. No candidate is a public profile.
+import { linear } from "./contrast.mjs";
+import { colorValue } from "./color.mjs";
+export { colorValue } from "./color.mjs";
 import { z } from "zod";
 import { loadProfile, resolveTokens, toCss } from "./tokens.mjs";
 import { readJson, readText, sha256, stableJson } from "./fs.mjs";
@@ -7,19 +10,18 @@ import { loadDeclaredPairs } from "./validators.mjs";
 import { tokenRefsOf } from "./spec.mjs";
 
 export const candidateIds = ["conservative", "balanced", "maximum-legibility"];
-export const candidateNames = ["A — Conservative refinement", "B — Balanced refinement", "C — Maximum legibility"];
+const candidateNames = ["A — Conservative refinement", "B — Balanced refinement", "C — Maximum legibility"];
 const change = z.object({ value: z.string().regex(/^#[0-9a-f]{6}$/), reason: z.string().min(12), tradeoff: z.string().min(12) }).strict();
-export const overlaySchema = z.object({
+const overlaySchema = z.object({
   schemaVersion: z.literal(1), baselineDigest: z.string().startsWith("sha256-"),
   id: z.enum(candidateIds), name: z.string().min(3).max(80).optional(), summary: z.string().min(20),
   changes: z.record(z.string(), change),
 }).strict();
 
-export const colorValue = (hex) => ({ colorSpace: "srgb", components: [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16) / 255), alpha: 1, hex });
 
 // OKLab/OKLCH analytical coordinates; canonical values stay sRGB.
 export const perceptual = ({ components }) => {
-  const [r, g, b] = components.map(c => c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
+  const [r, g, b] = components.map(linear);
   const l = Math.cbrt(0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b);
   const m = Math.cbrt(0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b);
   const s = Math.cbrt(0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b);

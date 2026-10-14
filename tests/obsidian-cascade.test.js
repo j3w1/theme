@@ -1,5 +1,6 @@
 /* Source-derived structural checks on synthetic ancestry/state fixtures.
    No running Obsidian, device, browser or manual accessibility pass is implied. */
+import { colorValue } from "../scripts/lib/color.mjs";
 import assert from "node:assert/strict";
 import test from "node:test";
 import postcss from "postcss";
@@ -17,7 +18,7 @@ const role = name => toCss(resolved.get(name).type, resolved.get(name).resolved)
 const color = hex => {
   if (hex === "rgb(0 0 0 / 0%)") return { colorSpace: "srgb", components: [0, 0, 0], alpha: 0, hex: "#000000" };
   assert.match(hex, /^#[0-9a-f]{6}$/);
-  return { colorSpace: "srgb", components: [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16) / 255), alpha: 1, hex };
+  return colorValue(hex);
 };
 const pair = (fg, bg, min = 4.5) => evaluatePair({ fg: color(fg), bg: color(bg), surface: color(role("color.surface.overlay")), min });
 const nativeCss = version => {
