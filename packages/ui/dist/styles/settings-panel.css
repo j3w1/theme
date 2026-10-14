@@ -1371,12 +1371,12 @@ j3w1-settings-panel .sidebar-nav-link:focus-visible {
 j3w1-settings-panel .sidebar-nav-link:focus:not(:focus-visible) {
   outline: 0;
 }
-j3w1-settings-panel .sidebar-nav-link[aria-current="page"] {
+j3w1-settings-panel .sidebar-nav-link:is([aria-current="page"], [aria-current="true"]) {
   border-inline-start-color: var(--color-border-selected-indicator);
   color: var(--color-text-bright);
 }
 
-j3w1-settings-panel .sidebar-nav-link[aria-current="page"] .sidebar-nav-icon {
+j3w1-settings-panel .sidebar-nav-link:is([aria-current="page"], [aria-current="true"]) .sidebar-nav-icon {
   color: var(--color-text-bright);
 }
 j3w1-settings-panel .sidebar-nav-link[aria-selected="true"] {
@@ -1434,6 +1434,37 @@ j3w1-settings-panel .sidebar-nav-collapsed .sidebar-nav-link {
   padding-inline-start: calc(var(--space-8) - var(--border-width-emphasis));
 }
 
+@media (min-width: 900px) and (max-width: 1279.98px) {
+j3w1-settings-panel .site-rail {
+  max-width: none;
+  width: max-content;
+}
+
+j3w1-settings-panel .site-rail .sidebar-nav-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+j3w1-settings-panel .site-rail .sidebar-nav-chevron {
+  display: none;
+}
+
+j3w1-settings-panel .site-rail .sidebar-nav-sublist {
+  padding-inline-start: 0;
+}
+
+j3w1-settings-panel .site-rail .sidebar-nav-link {
+  justify-content: center;
+  padding-inline: var(--space-8);
+  padding-inline-start: calc(var(--space-8) - var(--border-width-emphasis));
+}
+
+}
+
 @media (hover: none) {
   j3w1-settings-panel .sidebar-nav-link:hover {
     background: transparent;
@@ -1455,7 +1486,7 @@ j3w1-settings-panel .sidebar-nav-collapsed .sidebar-nav-link {
     outline-color: Highlight;
   }
 
-  j3w1-settings-panel .sidebar-nav-link[aria-current="page"] {
+  j3w1-settings-panel .sidebar-nav-link:is([aria-current="page"], [aria-current="true"]) {
     border-inline-start-color: Highlight;
   }
 
