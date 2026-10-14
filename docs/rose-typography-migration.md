@@ -1,9 +1,8 @@
 # Rose typography migration — 4.0.0
 
-D-033 corrects the canonical text hierarchy. Ordinary interface and prose are
-`#e99499`; brighter labels are `#ffa2a7`; content titles and H1–H6 use the new
-`color.text.heading` (`#f4eeee`). `color.text.highlight` is an explicit rare
-highlight. Bold inherits context and never chooses a foreground by weight.
+D-033 makes ordinary interface and prose text rose and gives content headings
+`color.text.heading`; bold inherits its context. This audit classifies every
+former near-white use.
 
 ## Near-white audit
 
@@ -21,9 +20,9 @@ highlight. Bold inherits context and never chooses a foreground by weight.
 | heritage-ansi prompt and extended terminal slot 15 | Historical/profile-specific terminal semantics; retain |
 | Historical decisions, releases and reference evidence | Historical truth; do not rewrite |
 
-Every port classifies the new roles; unsupported host hooks are disclosed.
-Generated values change through tokens and mappings only. No global replacement
-of white literals or changes to syntax/diagnostic palettes is performed.
+Every port classifies the new roles and discloses unsupported host hooks.
+Values change through tokens and mappings only: no global replacement of white
+literals, and no change to syntax or diagnostic palettes.
 
 ## Upgrade
 
