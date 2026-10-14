@@ -1,3 +1,4 @@
+@import "../partials/field.css";
 /* combobox — reference CSS. The list is rendered in flow directly below the
    box (no floating layer in the demonstration). Every real pseudo-class is
    paired with the forced-state attribute the state matrix emits. The
@@ -10,21 +11,6 @@
   min-width: 0;
   max-width: 28rem;
   color: var(--color-text-default);
-}
-
-.combobox-label {
-  color: var(--color-text-bright);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
-}
-
-.combobox-root {
-  display: flex;
-  align-items: stretch;
-  min-height: var(--density-control-height, 24px);
-  background: var(--color-surface-input);
-  border: var(--border-width-default) solid var(--color-border-control);
-  border-radius: var(--radius-none);
 }
 
 .combobox-input {
@@ -149,21 +135,6 @@
   padding: 0 var(--density-control-padding-x, 8px);
   color: var(--color-text-muted);
   font-style: italic;
-}
-
-.combobox-help {
-  margin: 0;
-  color: var(--color-text-muted);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
-}
-
-.combobox-message {
-  display: none;
-  margin: 0;
-  color: var(--color-status-danger-text);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
 }
 
 /* hover on the box */

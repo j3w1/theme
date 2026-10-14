@@ -1,4 +1,5 @@
 @import "../themed-controls.css";
+@import "../partials/field.css";
 /* select — reference CSS. The text-field box around a native <select>
    with the host chevron replaced by a line icon; the open popup stays
    host-rendered. Every real pseudo-class is paired with the forced-state
@@ -11,12 +12,6 @@
   min-width: 0;
   max-width: 28rem;
   color: var(--color-text-default);
-}
-
-.select-label {
-  color: var(--color-text-bright);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
 }
 
 .select-required {
@@ -88,21 +83,6 @@
   stroke: currentColor;
   fill: none;
   pointer-events: none;
-}
-
-.select-help {
-  margin: 0;
-  color: var(--color-text-muted);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
-}
-
-.select-message {
-  display: none;
-  margin: 0;
-  color: var(--color-status-danger-text);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
 }
 
 /* hover */

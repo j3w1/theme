@@ -1,3 +1,4 @@
+@import "../partials/field.css";
 /* search-field — reference CSS. The text-field box around a native search
    input with a magnifier, a clear button, a shortcut hint, a loading glyph
    and a status line. Every real pseudo-class and attribute is paired with
@@ -9,12 +10,6 @@
   min-width: 0;
   max-width: 28rem;
   color: var(--color-text-default);
-}
-
-.search-field-label {
-  color: var(--color-text-bright);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
 }
 
 .search-field-root {
@@ -108,13 +103,6 @@
   border: var(--border-width-default) solid var(--color-border-default);
   border-radius: var(--radius-none);
   font: inherit;
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
-}
-
-.search-field-help {
-  margin: 0;
-  color: var(--color-text-muted);
   font-size: var(--font-size-ui-sm);
   line-height: var(--font-line-height-ui-sm);
 }

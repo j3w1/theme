@@ -1,4 +1,5 @@
 @import "../partials/button.css";
+@import "../partials/field.css";
 /* file-input — reference CSS. The native input stays focusable (sr-only
    pattern) and a second label is drawn as the secondary button. Every real
    pseudo-class is paired with the forced-state attribute the state matrix
@@ -12,12 +13,6 @@
   min-width: 0;
   max-width: 28rem;
   color: var(--color-text-default);
-}
-
-.file-input-label {
-  color: var(--color-text-bright);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
 }
 
 .file-input-root {
@@ -130,21 +125,6 @@
 .file-input-error {
   grid-column: 1 / -1;
   padding-bottom: var(--space-4);
-  color: var(--color-status-danger-text);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
-}
-
-.file-input-help {
-  margin: 0;
-  color: var(--color-text-muted);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
-}
-
-.file-input-message {
-  display: none;
-  margin: 0;
   color: var(--color-status-danger-text);
   font-size: var(--font-size-ui-sm);
   line-height: var(--font-line-height-ui-sm);

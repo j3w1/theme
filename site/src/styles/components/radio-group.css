@@ -1,3 +1,4 @@
+@import "../partials/field.css";
 /* radio-group — reference CSS. The native radio, appearance none, is a
    square box; the inner square stacks over it in the same 16px cell. Every
    real pseudo-class is paired with the forced-state attribute the state
@@ -83,14 +84,6 @@
 .radio-group-text {
   font-size: var(--font-size-ui-md);
   line-height: var(--font-line-height-ui-md);
-}
-
-.radio-group-message {
-  display: none;
-  margin: 0;
-  color: var(--color-status-danger-text);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
 }
 
 /* hover: the box fill only, on hover-capable pointers */

@@ -1,4 +1,5 @@
 @import "../partials/button.css";
+@import "../partials/field.css";
 /* dialog — reference CSS. A native <dialog> rendered open in flow inside a
    wrapper that stands in for ::backdrop; a host uses showModal(), where the
    same rules apply to ::backdrop. Every real pseudo-class is paired with the
@@ -82,12 +83,6 @@
   gap: var(--space-4);
 }
 
-.dialog-field-label {
-  color: var(--color-text-bright);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
-}
-
 .dialog-field-input {
   min-height: var(--density-control-height, 24px);
   padding: 0 var(--density-control-padding-x, 8px);
@@ -103,13 +98,6 @@
   border-color: var(--color-border-active);
   outline: var(--focus-ring);
   outline-offset: var(--focus-offset);
-}
-
-.dialog-field-help {
-  margin: 0;
-  color: var(--color-text-muted);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
 }
 
 .dialog-actions {
@@ -150,7 +138,6 @@
   outline: var(--focus-ring);
   outline-offset: var(--focus-offset);
 }
-
 
 /* open: the native attribute; the matrix re-adds it */
 .dialog[open],
