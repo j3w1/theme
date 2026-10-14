@@ -32,4 +32,13 @@ test("documentation tables keep readable columns and compact copy controls", ver
     expect(await region.evaluate((el) => el.scrollWidth <= el.clientWidth)).toBe(true);
     await page.locator("#t-color-border").screenshot({ path: "test-results/compact-border-table.png" });
   }
+  // Descriptions and the other profile values moved to the token explorer.
+  // Keep the original readable-description constraints at their new home.
+  await page.goto("tokens/", { waitUntil: "networkidle" });
+  const description = page.locator('[data-usage-profile="default"] [data-usage-path="color.border.active"]');
+  const usage = await description.evaluate((row) => ({ width: row.cells[3].getBoundingClientRect().width, height: row.getBoundingClientRect().height, wrap: getComputedStyle(row.cells[3]).overflowWrap }));
+  expect(usage.width).toBeGreaterThanOrEqual(180);
+  expect(usage.height).toBeLessThanOrEqual(112);
+  expect(usage.wrap).toBe("normal");
+
 });

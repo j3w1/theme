@@ -369,8 +369,12 @@ html:not(.js) .js-only {
    wraps only at its dots (<wbr>), never inside a segment, and keeps one line
    where there is room. */
 .usage-section .table-cell:first-child,
-.site-main .table-scroll > table :is(th, td) {
+.site-main :is(.table-scroll, .site-table-wrap) > table :is(th, td) {
   overflow-wrap: normal;
+}
+
+.usage-section .table-cell:last-child {
+  min-width: 24ch;
 }
 
 @media (min-width: 600px) {
