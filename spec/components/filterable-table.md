@@ -131,75 +131,54 @@ compact: false
 
 ## Purpose
 
-A list screen that proves the navigation, display and feedback components
-compose around one data-table: find, filter, select, page. It exists to
-show the states of a whole list screen, including nothing matching and
-still loading, not to prescribe a product.
+Proves that navigation, display and feedback components compose around one
+data-table (find, filter, select, page), including nothing matching and still
+loading. It shows a whole list screen's states; it does not prescribe a
+product.
 
 ## Anatomy
 
-The region landmark; the toolbar on {color.surface.chrome} with the
-search-field, the Filter menu button, the Columns toggle, a separator and the
-primary New button; a row of removable chips (priority: R1, maturity:
-stable); the scroller around the data-table, whose Name header carries
-`aria-sort`, whose rows carry `aria-selected` and a checkbox, and whose last
-column is a status badge (✓ Tested on {color.status.success.fill}, i
-Demonstrated on {color.status.info.fill}); the count in {color.text.muted}
-and the compact pagination. The empty variant adds the empty-state block;
-the loading variant marks the table `aria-busy`. Every part is the
-component's own markup and classes.
+Parts as listed in the anatomy; badges carry ✓ (Tested) and i
+(Demonstrated). Every part is the composed component's own markup and
+classes.
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | rest tokens of every component; Name sorted ascending with its ▲ glyph; Prev disabled | `aria-sort`; the glyph |
-| hover | the pointed row takes {color.interaction.hover.bg}; the toolbar controls and chips keep their own hover on their own pointer events only | cursor |
-| focus-visible | the dashed {color.interaction.focus.ring} on the row holding focus (shown on the third row); the toolbar and chips stay at rest | the ring |
-| selected | two rows take {color.interaction.selection.bg} with {color.interaction.selection.text} and a checked box; the select-all reports mixed with the – glyph | `aria-selected`; ✓ and – glyphs; `aria-checked="mixed"` |
-| no-results | the body is the "No components match" row, the count reads 0 of 43, the search field's status line announces it; the chips stay so the cause is visible | text; `role="status"` |
+| default | each component at rest; Name sorted ascending with ▲; Prev disabled | `aria-sort`; the glyph |
+| hover | the pointed row takes {color.interaction.hover.bg}; toolbar controls and chips hover only on their own pointer events | cursor |
+| focus-visible | dashed {color.interaction.focus.ring} on the focused row (the third in the specimen); toolbar and chips at rest | the ring |
+| selected | two rows in {color.interaction.selection.bg} with {color.interaction.selection.text} and a checked box; select-all mixed with – | `aria-selected`; ✓ and – glyphs; `aria-checked="mixed"` |
+| no-results | the body is the "No components match" row; count reads 0 of 43; the search status line announces it; chips stay so the cause is visible | text; `role="status"` |
 
 The composed components keep their own pressed, sorted, disabled, loading
-and open treatments; this specimen declares only the states the whole
-screen adds to them.
+and open treatments; only the states the whole screen adds are declared here.
 
 ## Keyboard
 
-Landmarks first: the region, the toolbar's search landmark and the
-pagination navigation are offered by name. The toolbar is one stop with
-arrow movement between the search field, Filter, Columns and New (the
-toolbar contract); Escape clears the search. Each chip's Remove button is
-its own stop. The table follows the data-table contract: the first row is
-the stop, arrows move between rows, Space on a row's checkbox toggles it,
-Enter on a header sorts. Next is the last stop; a disabled Prev is not
-focusable.
+As in the key table, following the toolbar and data-table contracts. The
+region, the search landmark and the pagination navigation are offered by
+name. A disabled Prev is not focusable.
 
 ## Accessibility
 
-The search field's visible label is replaced by a visually hidden one so the
-toolbar stays one row; its status line is visually hidden too and announces
-"No components match" through `role="status"`. The count is a second status
-region and changes once per filter. Rows are named by their Name cell
-through `aria-labelledby` on the row checkbox; the select-all is a
-checkbox-role button whose mixed state carries the – glyph. Badges carry
-their glyphs so status survives without colour. Contrast: toolbar text
-8.60:1 on the chrome surface, boundaries 4.42:1, headers 10.10:1, badges
-7.08:1 and 7.13:1 on their fills, the ring 7.48:1 on the selection fill.
+The search field's label and its status line are visually hidden so the
+toolbar stays one row; the status line announces "No components match"
+through `role="status"`. The count is a second status region and changes once
+per filter. Rows are named by their Name cell through `aria-labelledby` on
+the row checkbox. Badge glyphs keep status readable without colour. Text and
+badges meet 4.5:1; boundaries and the ring on the selection fill meet 3:1.
 
 ## Portability
 
-Native table semantics, a toolbar, a menu button and a status region; the
-roving tabindex and the menu need the host's script, every state renders
-without one from the root hooks `data-state-selected` and
-`data-state-no-results` and the table's own `aria-busy`. Hosts without
-container queries wrap the toolbar at the 600px viewport breakpoint. The
-56rem width and the 44rem table minimum are layout of this specimen and not
-rules; the specimen proves composition, not a product.
+Every state renders without script from the root hooks
+`data-state-selected` and `data-state-no-results` and the table's own
+`aria-busy`.
 
 ## Non-examples
 
-A rounded search pill with a magnifier inside a shadowed toolbar. Filter
-chips drawn as pills with a coloured fill per category. Zebra-striped rows.
-A selected row shown by a coloured left bar and no fill. A blue Material
-checkbox. A skeleton shimmer while loading. An infinite scroll with no count
-and no pages.
+A rounded search pill with a magnifier in a shadowed toolbar. Chips as pills
+with a coloured fill per category. Zebra-striped rows. A selected row shown by
+a coloured left bar and no fill. A blue Material checkbox. A skeleton shimmer
+while loading. Infinite scroll with no count and no pages.

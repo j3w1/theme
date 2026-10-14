@@ -131,38 +131,50 @@ compact: false
 
 ## Purpose
 
-Enter a time explicitly or adjust it using themed step buttons. D-025 requires theme-owned web controls rather than browser popup styling.
+Enter a time by typing or with themed step buttons. D-025: theme-owned web
+controls, not browser popup styling.
 
 ## Anatomy
 
-A label, editor, increase/decrease buttons, format hint and validation message. The native time input remains the successful form control and owns its value, defaults and constraints. It is hidden only after enhancement.
+A label, editor, increase and decrease buttons, format hint and validation
+message. The native time input stays the successful form control, owns
+value, defaults and constraints, and is hidden only after enhancement.
 
 ## States
 
-| State | Treatment |
-| --- | --- |
-| default | Input surface, default text and control border. |
-| hover | The declared hover fill. |
-| focus-visible | Active border and the canonical focus ring. |
-| invalid | Danger border and a linked message. |
-| disabled | Disabled colors; editor and step actions unavailable. |
+| State | Visual | Non-colour channel |
+| --- | --- | --- |
+| default | {color.text.default} on {color.surface.input}, 1px {color.border.control} | — |
+| hover | background → {color.interaction.hover.bg} | hover-capable pointers only |
+| focus-visible | border → {color.border.active}; the canonical focus ring | the ring |
+| invalid | 2px {color.status.danger.border}; a linked message | border 1 → 2px; ✕ glyph; `aria-invalid` |
+| disabled | {color.text.disabled} on {color.interaction.disabled.bg}, border {color.border.disabled}; editor and step actions unavailable | `disabled`; cursor: not-allowed |
 
-Use the declared state tokens: default input surface and control border; hover fill; the canonical focus ring; danger border and message for invalid input; disabled colors and unavailable actions. Read-only values remain readable and cannot open a picker or change through step buttons. The date read-only treatment retains the canvas surface and unobtrusive bottom edge.
+A read-only value stays readable and cannot change through the step
+buttons.
 
 ## Keyboard
 
-Type HH:MM or HH:MM:SS in the editor. Tab reaches the named step buttons; Enter/Space activates them. Each step uses the native input step attribute. With step="any", use direct entry and the step buttons remain unavailable.
+As in the key table; the step buttons are named.
 
 ## Accessibility
 
-The visible editor receives the original label, descriptions, required state and error state. Format hints are always available. Native min, max, step and required constraints remain authoritative. Invalid entry focuses the visible editor and exposes a theme-owned message. No host clock popup or browser segment selection is used in the enhanced control. Form reset restores the native defaults.
-
-Automated evidence records its actual browser, states and limitations; it is not a manual screen-reader acceptance.
+The visible editor receives the original label, descriptions, required and
+error state. Format hints are always available. Native min, max, step and
+required stay authoritative. Invalid entry focuses the visible editor and
+shows a theme-owned message. The enhanced control uses no host clock popup
+or browser segment selection. Form reset restores the native defaults.
+Automated evidence records its browser, states and limits and is not a
+manual screen-reader acceptance.
 
 ## Portability
 
-The package and complete copy distribution include the renderer. The public control enhancement applies the same behavior to existing native markup. The no-JavaScript fallback and non-web platform mappings remain native.
+The package and the complete copy distribution include the renderer; the
+public control enhancement applies it to existing native markup. Without
+JavaScript, and on non-web platforms, the control stays native.
 
 ## Non-examples
 
-An unthemed host popup presented as fully themed. A second named input that duplicates form values. Discarding native constraints, labels or reset behavior. Literal colors, rounded corners, or a selected fill with no distinguishable focus boundary.
+An unthemed host popup presented as themed. A second named input
+duplicating form values. Dropping native constraints, labels or reset.
+Literal colours or rounded corners.

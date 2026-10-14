@@ -106,18 +106,16 @@ compact: false
 
 ## Purpose
 
-Find literal text in a read-only code sample. Search, previous and next expose exact match counts and the current match. The component does not execute regexes, mutate source text or provide a code editor backend.
+Finds literal text in a read-only code sample. Searching a list or a site is
+the search-field.
 
 ## Anatomy
 
-- **query:** Labelled search input.
-- **navigation:** Previous and next actions, disabled without matches.
-- **source:** Escaped text with native mark elements.
-- **status:** Current and total match counts.
+Parts as listed in the anatomy.
 
 ## States
 
-| State | Presentation | Non-colour channel |
+| State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | Plain escaped source. | Readable preformatted text. |
 | filled | Match fill; current match has its own marker. | Exact current and total counts. |
@@ -126,9 +124,7 @@ Find literal text in a read-only code sample. Search, previous and next expose e
 
 ## Keyboard
 
-- **Tab / Shift+Tab:** Reach query and match navigation.
-- **Enter / Shift+Enter:** Move to next or previous match.
-- **Escape:** Clear the query and retain focus.
+As in the key table.
 
 ## Accessibility
 

@@ -102,16 +102,16 @@ compact: false
 
 ## Purpose
 
-Explain a failed operation and offer a bounded recovery action. Retrying emits a request; the component does not claim that a service recovered. The host updates content when the actual operation completes.
+Explains a failed operation and asks for an explicit recovery; it never
+claims the service recovered.
 
 ## Anatomy
 
-- **message:** Heading, explanation and text error glyph.
-- **recovery:** Native retry action, disabled while the host request is pending.
+Parts as listed in the anatomy.
 
 ## States
 
-| State | Presentation | Non-colour channel |
+| State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | Danger border and text heading. | Specific written explanation and error glyph. |
 | error | Same explicit failure treatment. | Failure text remains available. |
@@ -121,12 +121,13 @@ Explain a failed operation and offer a bounded recovery action. Retrying emits a
 
 ## Keyboard
 
-- **Tab / Shift+Tab:** Reach the recovery action.
-- **Enter / Space:** Request a retry without moving focus.
+As in the key table.
 
 ## Accessibility
 
-Do not rely only on color or a glyph. Give the retry action a specific name. Announce a newly occurring error in an appropriate host status region, without repeatedly interrupting reading. Keep focus unless recovery requires an explicit next step.
+Never rely on colour or the glyph alone. Give the retry action a specific
+name. Announce a new error in a host status region without repeatedly
+interrupting reading. Keep focus unless recovery needs an explicit next step.
 
 ## Portability
 
@@ -134,4 +135,5 @@ Follows the shared component defaults in `spec/portability.md` (section "Shared 
 
 ## Non-examples
 
-Unlabelled controls, color-only status, drag-only operations, hidden required instructions, stolen focus or an invented service success.
+Unlabelled controls, colour-only status, drag-only operations, hidden required
+instructions, stolen focus or an invented service success.

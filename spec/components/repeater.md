@@ -102,36 +102,38 @@ compact: false
 
 ## Purpose
 
-Repeat native fields from trusted inert HTML. Add, remove and reorder preserve row identities. The host supplies fields and handles submission; the component does not execute a schema or provide persistence. A max attribute bounds the number of rows; the supplied example is limited to ten.
+A variable number of the same native field row in one form; the host owns
+the fields, submission and persistence.
 
 ## Anatomy
 
-- **rows:** Ordered list of independently named field rows.
-- **template:** Trusted native markup cloned on explicit Add.
-- **actions:** Add, remove, move up and move down; no drag-only behavior.
+Parts as listed in the anatomy.
 
 ## States
 
-| State | Presentation | Non-colour channel |
+| State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | Named content on the default surface. | Native text and structure. |
-| empty | A muted empty message. | Explicit text and retained Add action. |
-| focus-visible | Dashed focus ring. | Native keyboard focus position. |
-| disabled | Disabled semantic foreground, background and border at full opacity. | Native disabled state blocks activation. |
+| default | named content on the default surface | native text and structure |
+| empty | a muted empty message | explicit text; Add stays |
+| focus-visible | dashed focus ring | native focus position |
+| disabled | disabled foreground, background and border at full opacity | native disabled state blocks activation |
 
 ## Keyboard
 
-- **Tab / Shift+Tab:** Visit fields and row actions in source order.
-- **Enter / Space:** Add, remove or move a row. Focus follows the affected row or nearest survivor.
+As in the key table; nothing else is bound.
 
 ## Accessibility
 
-Namespace IDs and label/ARIA references for each row. Row identities do not change during reordering. Actions have names and disabled boundary states. Removing a focused row restores focus to a surviving row or Add; announce each explicit operation.
+IDs and label and ARIA references are namespaced per row. Actions are named
+and keep their boundary when disabled. Removing a focused row moves focus to
+a surviving row or to Add; each explicit operation is announced.
 
 ## Portability
 
-Follows the shared component defaults in `spec/portability.md` (section "Shared component defaults").
+Follows the shared component defaults in `spec/portability.md` (section
+"Shared component defaults").
 
 ## Non-examples
 
-Unlabelled controls, color-only status, drag-only operations, hidden required instructions, stolen focus or an invented service success.
+Unlabelled controls. Colour-only status. Drag-only operations. Hidden
+required instructions. Stolen focus. An invented service success.

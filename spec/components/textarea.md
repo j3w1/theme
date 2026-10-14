@@ -106,57 +106,50 @@ compact: false
 
 Free text longer than a line: descriptions, messages, notes. It shares the
 text field's box, states and message so a form reads as one system. Code
-goes in the code-editor component, not a textarea.
+goes in the code-editor component.
 
 ## Anatomy
 
-Label above; the box with the native `<textarea>` inside, at least three
-rows tall, resizable downwards only; the optional count; help; the
-validation message that takes the help slot visually while help stays in the
-DOM.
+Parts as listed in the anatomy, top to bottom: label, box, count, help; the
+message takes the help slot visually while help stays in the DOM.
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | 1px {color.border.control} on {color.surface.input}; text {color.text.default} | — |
-| hover | background → {color.interaction.hover.bg}; border unchanged | cursor: text |
-| focus-visible | border → {color.border.active}; ring 1px dashed {color.interaction.focus.ring} at −2px | the ring |
-| placeholder-shown | placeholder in {color.text.placeholder}, italic | italic |
+| hover | → {color.interaction.hover.bg}; border unchanged | cursor: text |
+| focus-visible | border → {color.border.active}; 1px dashed {color.interaction.focus.ring} at −2px | the ring |
+| placeholder-shown | {color.text.placeholder}, italic | italic |
 | filled | as default with a value | — |
 | required | `*` after the label in {color.status.danger.text} plus visually hidden "required" | `required`; the mark |
-| invalid | border 2px {color.status.danger.border}; message with the ✕ glyph; a count past its limit turns {color.status.danger.text} with the glyph | border width 1 → 2px; glyph; `aria-invalid` |
-| invalid+focus-visible | the 2px danger border and the ring in {color.interaction.focus.ring-container} at −4px | double boundary |
-| disabled | text {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}; no resize handle | `disabled`; cursor: not-allowed |
+| invalid | 2px {color.status.danger.border}; message with ✕; a count past its limit turns {color.status.danger.text} with the glyph | border 1 → 2px; glyph; `aria-invalid` |
+| invalid+focus-visible | the 2px danger border and a {color.interaction.focus.ring-container} ring at −4px | double boundary |
+| disabled | text {color.text.disabled}, border {color.border.disabled}, fill {color.interaction.disabled.bg}; no resize handle | `disabled`; cursor: not-allowed |
 | read-only | no box: 1px dotted {color.border.divider} bottom edge on {color.surface.canvas}; no resize handle; selectable | `readonly`; dotted edge |
 
 Precedence: disabled > invalid > hover; focus-visible is always drawn.
 
 ## Keyboard
 
-Native editing. Enter inserts a line break and never submits. Tab leaves
-the control; a host that needs literal tabs provides a separate command and
-documents it. The count is not focusable.
+As in the key table. A host that needs literal tabs provides a separate
+command and documents it. The count is not focusable.
 
 ## Accessibility
 
-A programmatic label is required. Help, count and message are linked
-through `aria-describedby` in that order. The count is `aria-live="polite"`
-and throttled so it does not announce every keystroke; the limit is stated
-in the help text so it is known before typing. `aria-invalid="true"` only
-after interaction or submit. Contrast as the text field: text 8.65:1,
-placeholder 5.81:1, control border 4.45:1, invalid border 4.69:1, message
-5.40:1.
+A programmatic label is required. `aria-describedby` lists help, count and
+message in that order. The help text states the limit before typing.
+`aria-invalid="true"` only after interaction or submit. Text and placeholder
+meet 4.5:1; control and invalid borders 3:1.
 
 ## Portability
 
-Border, background, outline and `resize: vertical`. Hosts without a resize
-handle grow the box with content up to a maximum and record it. Hosts
-without dashed outlines draw a solid 1px ring.
+Hosts without a resize handle grow the box with content up to a maximum and
+record it. Hosts without dashed outlines draw a solid 1px ring.
 
 ## Non-examples
 
 Horizontal or free resizing. A box narrower than its label column. A count
 that only changes colour past the limit. A glow instead of the dashed ring.
-Rounded corners. An auto-growing box with no maximum. Tab inserting a
-character. Placeholder text as the label. Disabling by opacity.
+Rounded corners. Auto-growing with no maximum. Tab inserting a character.
+Placeholder as the label. Disabling by opacity.

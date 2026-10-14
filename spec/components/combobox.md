@@ -126,34 +126,30 @@ compact: false
 
 ## Purpose
 
-A text input whose value is completed from a list of suggestions. It is the
-right control when the set is large or open-ended (fonts, hosts, tags); a
-closed set of a dozen values is the select component. The demonstration
-renders the list open so every option state is visible without a script.
+A text input completed from a list of suggestions, for large or open-ended
+sets (fonts, hosts, tags); a closed set of a dozen values is `select`. The
+demonstration renders the list open so every option state shows without a
+script.
 
 ## Anatomy
 
-Label above the box; the box with the input and an optional toggle; the
-listbox directly below, on {color.surface.raised} behind a 1px
-{color.border.overlay}; options in {color.text.default}, an optional group
-heading in {color.text.subtle} above a {color.border.divider} rule; the empty
-message in {color.text.muted}; help and validation message below, as in the
-text field.
+Parts as listed in the anatomy; help and validation message behave as in
+`text-field`.
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | 1px {color.border.control} on {color.surface.input}; list on {color.surface.raised} with a 1px {color.border.overlay} | — |
-| hover | box background → {color.interaction.hover.bg}; the hovered option → {color.interaction.hover.bg-strong} with {color.text.link-hover} | cursor: text on the box, default on the list |
-| focus-visible | box border → {color.border.active}; ring 1px dashed {color.interaction.focus.ring} at −2px | the ring |
-| open | list visible below the box; toggle glyph rotated 180° | `aria-expanded="true"`; the toggle glyph |
-| closed | list absent; the box unchanged | `aria-expanded="false"`; nothing below the box |
-| selected | the active option filled {color.interaction.selection.bg} with {color.interaction.selection.text} and a 1px dashed ring in {color.interaction.focus.ring-container} | `aria-selected="true"`; `aria-activedescendant`; the ring |
-| invalid | box border 2px {color.status.danger.border}; message with the ✕ glyph | border width 1 → 2px; glyph; `aria-invalid` |
-| invalid+focus-visible | the 2px danger border and the ring in {color.interaction.focus.ring-container} at −4px | double boundary |
-| disabled | text {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}; list never opens | `disabled`; cursor: not-allowed |
-| no-results | the list holds only the empty row in {color.text.muted}, italic | `aria-disabled` row; italic; a polite announcement of zero matches |
+| default | 1px {color.border.control} on {color.surface.input}; list on {color.surface.raised}, 1px {color.border.overlay} | — |
+| hover | box → {color.interaction.hover.bg}; hovered option → {color.interaction.hover.bg-strong} with {color.text.link-hover} | cursor: text on the box, default on the list |
+| focus-visible | box border → {color.border.active}; 1px dashed {color.interaction.focus.ring} at −2px | the ring |
+| open | list below the box; toggle glyph rotated 180° | `aria-expanded="true"`; toggle glyph |
+| closed | no list; box unchanged | `aria-expanded="false"`; nothing below the box |
+| selected | active option filled {color.interaction.selection.bg} with {color.interaction.selection.text}, 1px dashed {color.interaction.focus.ring-container} ring | `aria-selected="true"`; `aria-activedescendant`; the ring |
+| invalid | 2px {color.status.danger.border}; message with ✕ | border 1 → 2px; glyph; `aria-invalid` |
+| invalid+focus-visible | 2px danger border and {color.interaction.focus.ring-container} ring at −4px | double boundary |
+| disabled | {color.text.disabled}, {color.border.disabled}, {color.interaction.disabled.bg}; list never opens | `disabled`; cursor: not-allowed |
+| no-results | only the empty row, {color.text.muted} italic | `aria-disabled` row; italic; polite zero-match announcement |
 
 Precedence when several apply: disabled > invalid > selected > hover;
 focus-visible is always drawn on the box, and the selection ring on the
@@ -161,40 +157,28 @@ option.
 
 ## Keyboard
 
-DOM focus never leaves the input. Down and Up open the list and move the
-active option, which the input reports through `aria-activedescendant`; Enter
-accepts it; Escape closes the list and, when the list is already closed,
-clears the value. Alt+Down and Alt+Up open and close without changing the
-active option. Home and End move the caret. Tab closes the list and keeps
-whatever is typed. Typing filters the list on every keystroke; the number of
-matches is announced through a polite live region, not by re-reading the list.
+As in the key table. Typing filters on every keystroke; the match count is
+announced through a polite live region, not by re-reading the list.
 
 ## Accessibility
 
-The input carries `role="combobox"`, `aria-autocomplete="list"`,
-`aria-expanded`, `aria-controls` pointing at the listbox and, while an option
-is active, `aria-activedescendant`. The listbox has an accessible name
-(`aria-label` or `aria-labelledby` the field label); options are `role="option"`
-with `aria-selected` on the active one only; groups are `role="group"` with
-`aria-labelledby` their heading. The empty row is a disabled option so the
-list is never empty; the zero-match count is announced through the same polite
-live region as every other count. Contrast: option text 8.43:1 on the
-raised surface, selection text 12.47:1 on the selection fill, the selection ring
-7.48:1 on the fill, the list border 4.57:1 on the raised surface, group
-headings 4.96:1.
+The listbox is named (`aria-label`, or `aria-labelledby` the field label);
+options are `role="option"`, `aria-selected` on the active one only; groups
+are `role="group"` labelled by their heading. The empty row is a disabled
+option so the list is never empty. Text meets 4.5:1; list border and
+selection ring 3:1.
 
 ## Portability
 
-Everything is expressible with background, border and outline; the toggle
-rotation is a transform inside the motion budget. Toolkits with a native
-completion popup use it and map the option fill to the selection roles; the
-list border is the popover frame. Toolkits without `aria-activedescendant`
-move real focus to the option and record the deviation.
+Background, border and outline express everything; the toggle rotation is a
+transform inside the motion budget. A toolkit with a native completion popup
+uses it, mapping the option fill to the selection roles and the list border
+to the popover frame. Without `aria-activedescendant`, real focus moves to the
+option and the deviation is recorded.
 
 ## Non-examples
 
-A select restyled as a combobox. Moving DOM focus into the list on Down. A
-list that floats over the page with a shadow or a rounded frame. Highlighting
-the active option with a colour change of the text alone. A no-results state
-that silently shows the full list. Opening on hover. A list that slides or
-fades in for longer than 150 ms.
+A select restyled as a combobox. DOM focus moving into the list on Down. A
+list floating with a shadow or rounded frame. The active option marked by text
+colour alone. A no-results state that silently shows the full list. Opening
+on hover. A list that slides or fades in for longer than 150 ms.

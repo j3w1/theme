@@ -103,68 +103,47 @@ compact: false
 
 ## Purpose
 
-A settings screen that proves the form components compose without new
-tokens: a section list on the left, one fieldset of preferences on the
-right, and a footer of actions. It exists to show the pieces together under
-every state and at every width, not to prescribe a product.
+Proves the form components compose without new tokens, in every state and
+at every width; it prescribes no product.
 
 ## Anatomy
 
-The region landmark; the sidebar-nav with the open section marked by
-`aria-current` and the 2px {color.border.selected-indicator}; the form
-landmark with its h2 in {color.text.bright} and lead in {color.text.muted};
-one fieldset with a {color.border.divider} edge holding two switches (Hide
-the bar, Smart gaps), a wallpaper select, the bar-label radio-group (中文 /
-English), the inner-gap text-field with a `px` suffix and the bar-module
-checkbox group; a footer rule and the Apply (primary) and Reset (secondary)
-buttons. Every part is the component's own markup and classes.
+Parts as listed in the anatomy; each uses its component's own markup and
+classes.
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | rest tokens of every component on {color.surface.default}; the open section carries the indicator bar | `aria-current` |
-| focus-visible | the dashed {color.interaction.focus.ring} on the control holding focus (shown on the first switch); the other controls stay at rest | the ring |
-| invalid | the inner-gap field takes the 2px {color.status.danger.border} and shows its ✕ message; the other controls stay at rest | border width 1 → 2px; glyph; `aria-invalid` |
+| default | every component's rest tokens on {color.surface.default}; the open section carries the indicator bar | `aria-current` |
+| focus-visible | the dashed {color.interaction.focus.ring} on the focused control (shown on the first switch); others at rest | the ring |
+| invalid | the inner-gap field takes the 2px {color.status.danger.border} and its ✕ message; others at rest | border width 1 → 2px; glyph; `aria-invalid` |
 | busy | Apply shows the static ⋯ glyph in {color.action.primary.text}; the form carries `aria-busy`; nothing shrinks or animates | glyph; `aria-busy`; cursor: progress |
 
 The composed components keep their own hover, checked, disabled and
-read-only treatments; this specimen declares only the states the screen adds
-to them.
+read-only treatments; only the states the screen adds are declared here.
 
 ## Keyboard
 
-Landmarks first: a screen reader's landmark list offers the region, the
-navigation and the form by name. Tab walks the section links, then every
-control in reading order, then Apply and Reset. The radio-group and the
-select move with arrows inside one stop; the numeric field steps with Up and
-Down; switches and checkboxes toggle with Space. Nothing traps focus and
-nothing changes on hover alone.
+As in the key table. Nothing traps focus and nothing changes on hover alone.
 
 ## Accessibility
 
-The region is named by the h2 through `aria-labelledby`; the nav has its own
-label so two navigation landmarks on a page stay distinguishable; the open
-section is `aria-current="page"`. The form is named by the same h2 and
-carries `aria-busy="true"` while Apply is in progress, so the pending state
-is announced without a live region. Every control has a programmatic label;
-every message is linked by `aria-describedby`. Contrast: title 10.10:1 and
-lead 5.66:1 on the panel surface, control boundaries 4.33:1, the indicator
-bar 4.57:1, the danger border 4.69:1 on the input surface.
+The nav has its own label, so two navigation landmarks on a page stay
+distinguishable; the open section is `aria-current="page"`. `aria-busy` on the form announces the pending Apply without
+a live region. Every control has a programmatic label; every message is
+linked by `aria-describedby`. Text meets 4.5:1; control boundaries, the
+indicator bar and the danger border 3:1.
 
 ## Portability
 
-Three landmarks, native controls and a container query; nothing here needs a
-script. A host without container queries collapses the sidebar at the 600px
-viewport breakpoint. The 56rem reference width, the sidebar width and the
-two-column grid belong to this specimen and are not rules; the specimen
-proves composition, not a product. Toolkits port each contained component
-through its own mapping and place them with their native layout.
+The sidebar width is specimen layout too, not a rule. Toolkits port each
+contained component through its own mapping and place them with their native
+layout.
 
 ## Non-examples
 
 A rounded, shadowed settings card. A Material-style app bar above the form.
-Toggle switches with rounded pills or animated thumbs. Section links drawn
-as filled tabs instead of the indicator bar. A red form background to show
-that something is invalid. Applying while the controls are dimmed with
-opacity. A spinner replacing the Apply label.
+Pill switches or animated thumbs. Section links as filled tabs instead of
+the indicator bar. A red form background for invalid. Dimming the controls
+with opacity while applying. A spinner replacing the Apply label.

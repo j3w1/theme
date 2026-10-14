@@ -109,60 +109,49 @@ compact: false
 
 ## Purpose
 
-Filtering a list or table or searching a site. It is the text field's box
-with the parts a search needs: an icon that says what the box is for, a
-clear button, a place for the shortcut that reaches it, a loading glyph
-while results arrive and a status line when nothing matches. A search that
-offers suggestions as you type is the combobox component.
+Filtering a list or table, or searching a site. A search that suggests as you
+type is the combobox.
 
 ## Anatomy
 
-Label above (or visually hidden); the box with the magnifier, the input,
-the clear button and the optional hint; help; the status line. The loading
-glyph takes the magnifier's slot so the box never changes size.
+Parts as listed in the anatomy. The loading glyph takes the magnifier's slot,
+so the box never changes size.
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | 1px {color.border.control} on {color.surface.input}; magnifier {color.icon.default}; text {color.text.default} | the magnifier |
-| hover | background → {color.interaction.hover.bg}; the clear button → {color.action.tertiary.hover-bg} when hovered | cursor: text |
-| focus-visible | border → {color.border.active}; ring 1px dashed {color.interaction.focus.ring} at −2px; the hint hides | the ring |
-| placeholder-shown | placeholder in {color.text.placeholder}, italic; no clear button | italic; the clear button is absent |
-| filled | as default with a value; the clear button is present | the clear button |
-| loading | the static `⋯` glyph in {color.text.muted} replaces the magnifier; the input stays editable | glyph; `aria-busy` |
-| disabled | text and icon {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}; no clear button | `disabled`; cursor: not-allowed |
-| no-results | the status line "No results for …" in {color.text.muted} below the help; the box unchanged | the status text; `role="status"` |
+| hover | background → {color.interaction.hover.bg}; a hovered clear button → {color.action.tertiary.hover-bg} | cursor: text |
+| focus-visible | border → {color.border.active}; 1px dashed {color.interaction.focus.ring} ring at −2px; the hint hides | the ring |
+| placeholder-shown | placeholder in {color.text.placeholder}, italic; no clear button | italic; clear button absent |
+| filled | as default with a value; clear button present | the clear button |
+| loading | static `⋯` in {color.text.muted} replaces the magnifier; input stays editable | glyph; `aria-busy` |
+| disabled | text and icon {color.text.disabled}, border {color.border.disabled}, background {color.interaction.disabled.bg}; no clear button | `disabled`; cursor: not-allowed |
+| no-results | status line "No results for …" in {color.text.muted} below the help; box unchanged | the status text; `role="status"` |
 
-Precedence: disabled > loading > hover; focus-visible is always drawn.
-A search field is never invalid; an empty result is a status, not an error.
+Precedence: disabled > loading > hover; focus-visible is always drawn. A
+search field is never invalid; an empty result is a status, not an error.
 
 ## Keyboard
 
-Escape clears a non-empty value and keeps focus, which is native for
-`type="search"` in most engines and scripted where it is not. The clear
-button is a separate tab stop only while it is visible. The shortcut in the
-hint is bound by the host and never captured while another field has focus.
+Escape-to-clear is native for `type="search"` in most engines and scripted
+where it is not. The host never captures the shortcut while another field has
+focus.
 
 ## Accessibility
 
-A programmatic label is required even when hidden. The landmark
-`role="search"` lets users jump to it. The status line is `role="status"`
-so "No results" is announced once, after the query settles, and the result
-count is announced there too ("12 results"). The magnifier and hint are
-`aria-hidden`; the clear button is named "Clear <label>". Contrast: text
-8.65:1, placeholder 5.81:1, magnifier 8.65:1, glyph 5.81:1, hint 5.81:1,
-control border 4.45:1.
+A programmatic label is required even when hidden. The status line announces
+"No results" once, after the query settles, and the result count there too
+("12 results"). The clear button is named "Clear <label>". Text meets 4.5:1;
+the magnifier, borders and rings 3:1.
 
 ## Portability
 
-The text field plus icons and a status line. Hosts hide their own cancel
-button; hosts that cannot draw the hint omit it and keep the shortcut in the
-tooltip.
+Hosts that cannot draw the hint omit it and keep the shortcut in the tooltip.
 
 ## Non-examples
 
-Rounded or pill-shaped search boxes. A magnifier button that submits
-instead of an icon. A spinner while loading. Results announced on every
-keystroke. "No results" in red or with the ✕ glyph. A clear button that is
-always visible. A search field without a label. Disabling by opacity.
+Rounded or pill-shaped boxes. A magnifier button that submits. A spinner while
+loading. Results announced on every keystroke. "No results" in red or with
+the ✕ glyph. An always-visible clear button. No label. Disabling by opacity.
