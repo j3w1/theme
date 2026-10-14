@@ -2,6 +2,7 @@
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import UiSpecimen from '../UiSpecimen.vue';
+import '@j3w1/ui/styles/link.css';
 const route = useRoute();
 const pages = {
   basic: {title:'Forms that work with the browser.',text:'Native labels, real validation, review and correction.',ids:['admin-form']},
@@ -14,4 +15,22 @@ const pages = {
 };
 const config = computed(() => pages[route.params.kind] ?? pages.basic);
 </script>
-<template><header class="view-heading"><div><p class="eyebrow">WORKSPACE / FORMS & SYSTEM</p><h1 tabindex="-1">{{ config.title }}</h1><p>{{ config.text }}</p></div><a href="../implement/">Consumption guide ↗</a></header><div class="stack"><section v-for="id in config.ids" :key="id" class="panel"><div class="panel-heading"><h2>{{ id }}</h2><a :href="`../components/${id}/`">API and copy files ↗</a></div><UiSpecimen :id="id" /></section></div></template>
+<template>
+  <header class="view-heading">
+    <div>
+      <p class="eyebrow">WORKSPACE / FORMS &amp; SYSTEM</p>
+      <h1 tabindex="-1">{{ config.title }}</h1>
+      <p>{{ config.text }}</p>
+    </div>
+    <j3w1-link><a class="link link-standalone" href="../implement/">Consumption guide ↗</a></j3w1-link>
+  </header>
+  <div class="stack">
+    <section v-for="id in config.ids" :key="id" class="panel">
+      <div class="panel-heading">
+        <h2>{{ id }}</h2>
+        <j3w1-link><a class="link link-standalone" :href="`../components/${id}/`">API and copy files ↗</a></j3w1-link>
+      </div>
+      <UiSpecimen :id="id" />
+    </section>
+  </div>
+</template>
