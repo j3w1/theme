@@ -1,13 +1,11 @@
 # j3w1 theme for Warp (and Orca's Import from YAML)
 
-Status: experimental until a real import into the recorded version is
-evidenced. See `port.json` for scope, `mapping.json` for every native key and
-`capabilities.json` for the reason behind each role that is not mapped.
-
-`dist/j3w1.yaml` is generated from `mapping.json` and the default profile by
-`npm run generate`; never edit it by hand. It uses Warp's custom-theme format,
-which Orca's **Import from YAML** and **Import from Warp** also read. It has
-been checked against Orca 1.4.209's parser. No real Warp import is recorded.
+Status: experimental; no real Warp import is recorded. `port.json` holds the
+scope, `mapping.json` every native key, `capabilities.json` the reason for each
+unmapped role. `dist/j3w1.yaml` is generated from `mapping.json` and the
+default profile by `npm run generate`; never edit it by hand. It uses Warp's
+custom-theme format, which Orca's **Import from YAML** and **Import from Warp**
+also read, and has been checked against Orca 1.4.209's parser.
 
 ## What it themes, and what it does not
 
@@ -32,9 +30,9 @@ been checked against Orca 1.4.209's parser. No real Warp import is recorded.
      folders if needed) and click **Import from Warp**.
 3. With **Theme Mode** on Dark, select **j3w1 theme** under Dark Theme.
 
-Orca gives each file one second to parse, and that includes starting its parser.
-On a busy machine it can report "Theme file took too long to parse" for any
-file. Retry, or use the Orca port (`ports/orca/`), which has no time limit.
+Orca gives each file one second to parse, including starting its parser, so a
+busy machine can report "Theme file took too long to parse" for any file.
+Retry, or use the Orca port (`ports/orca/`), which has no time limit.
 
 ## Install in Warp
 
