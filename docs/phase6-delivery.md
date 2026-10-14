@@ -30,7 +30,7 @@ execution records for the exact artifact and protocol.
   notices and instructions) and *mapping* (the compact canonical contract and
   the deviation workflow, for incompatible or native hosts). Multi-file widgets
   include their transitive dependencies and are never called a self-contained
-  snippet.
+  snippet. Validate multiple instances and coexistence with host styles.
 - **Portal.** A short orientation page replaced the long homepage; the full
   reference moved to `/theme/reference/` with tested migration of old anchors.
   Normative content stays in the first static HTML, and ordinary pages load no
@@ -41,7 +41,8 @@ execution records for the exact artifact and protocol.
   Synthetic, resettable data; drag interactions have a keyboard alternative;
   screens that depend on a service say what they cannot demonstrate. GitHub
   Pages hosts it at `/theme/demo/` with hash routing; Vercel only if a proven
-  Pages limit blocks the agreed experience.
+  Pages limit blocks the agreed experience, linked from the portal. Hosting
+  never justifies cutting the agreed scope.
 
 ## Delivered
 
@@ -63,7 +64,8 @@ execution records for the exact artifact and protocol.
 - At selection, the foundation passed source validation, generation and drift
   checks, 105 source tests, the static build, nine distribution tests and the
   configured browser suite (204 passed, 124 intentionally skipped).
-  Verification-report generation kept all 1,866 specimen files. This is
+  Verification-report generation kept all 1,866 specimen files, and its source
+  and browser checks passed (six browser passes, three intentional skips). This is
   automated foundation evidence, not package acceptance or a manual
   accessibility pass.
 - `npm run ui:consumers` and `npm run test:ui` install a real tarball in

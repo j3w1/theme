@@ -182,6 +182,25 @@ the palette came from, and the three profiles (`default`, `heritage-ansi`,
   how the theme looks, use [design mode](docs/design-mode.md)
   (`npm run design`), a working tool, not a gate.
 
+## Local commands
+
+Run these from a checkout with full Git history (CI uses `fetch-depth: 0`);
+each tool page above states its limits.
+
+- `npm run task:kit -- --components <ids> --task "<task>" --integration-id <id> --integration-version <n> --out <new-dir>`
+  writes a task kit; `--ref` takes a full commit or release tag, `--mode minimal`
+  omits only the optional recipes. The legacy `consumption:kit` refuses an
+  existing directory, so pick a new `--out` for each rerun.
+- `npm run release:compare -- --from <tag|commit> --to <tag|commit> --out <new-dir>`
+  compares two pinned revisions; `--profile` picks one common profile and
+  `--migrations <file>` names explicit role renames. Comparable revisions are
+  the reviewed pins in `site/releases.json`.
+- `npm run parity:private -- --config <file outside the repository>` runs the
+  private parity harness ([protocol](templates/private-parity/README.md)); with
+  no target it prints a not-run record.
+- Browser tests use port 4173; set `PW_PORT` to a free port (for example
+  `PW_PORT=4174 npm run test:browser`) when another checkout is testing.
+
 ## Repository map
 
 | Path | Owns |

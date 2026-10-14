@@ -65,8 +65,9 @@ report ready.
 
 The route, width and scale selects are the j3w1 combobox from `packages/ui`,
 served under `/ui/`. The route picker must not be an `<input list>`, and the
-text field beside it has no `list` attribute: Chrome draws that popup as
-unstyled OS chrome.
+text field beside it has no `list` attribute: Chrome draws that popup as OS
+chrome that drops the author colours and filters the options, and a
+`<datalist>` popup cannot be styled at all.
 
 ## Comparison modes
 

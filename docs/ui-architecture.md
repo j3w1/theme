@@ -126,7 +126,8 @@ Source checks, generated drift checks, static build checks, browser execution,
 packed installation, copying and release deployment are separate gates. Site
 evidence is tied to the exact built specimen bytes; package evidence also
 identifies the packed tarball and the external fixture bytes. Scripted fixtures
-are reported apart from real agent-run acceptance, and manual screen-reader and
+are reported apart from real agent-run acceptance, infrastructure alone is not
+a release, and manual screen-reader and
 physical-device results need their own recorded protocols.
 
 ## Payload budgets

@@ -418,7 +418,7 @@ slot 6 is coral `#ff7a66`, not `#bb696c`; the prompt gets
 attributes and escapes amber `#c9973f`; types and properties blue `#7e9ebb`;
 operators bright rose `#ffa2a7`. Keywords, tags, comments, variables and
 punctuation keep `code.syntax`. Every hued role reaches 7.08:1 or more on the
-code background and 5.74:1 or more in an editor selection. The reference editor
+code background (operators 10.37:1) and 5.74:1 or more in an editor selection. The reference editor
 and other consumers keep `code.syntax.*`; a host opts in by mapping
 `code.hued.*`, as the Codex port does. This extends D-001's code-group allowance
 to these roles; `extended` stays proposed.
@@ -511,8 +511,8 @@ First recorded as D-035 and renumbered before merge (see D-035).
 - Two global contrast pairs composite over the canvas only, with float alpha
   (`#480a08`): default text 6.91, bright 8.28. The raised and accent figures are
   enforced by the Telegram port's tests. Links are not a declared pair, because
-  waivers are for decorative graphics only; their limit is recorded in
-  `spec/accessibility.md`, Limitations.
+  waivers are for decorative graphics only; their limit (4.31 over the canvas)
+  is recorded here and in `spec/accessibility.md`, Limitations.
 - Hosts that recolour selected text use `text-selection.bg` with
   `text-selection.text`. The Telegram port gives Android text selection the
   tint; Desktop keeps `selection.bg` with near-white selected text. Every port

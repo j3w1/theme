@@ -61,7 +61,13 @@ them. A recommendation is a design hypothesis, not approval.
 The tests cover synchronization, form recovery, launcher keyboard and focus,
 responsive layout, RTL, motion, forced colors, static boards and isolation from
 public distribution. The repository check loop still applies; its evidence
-describes the public site, not these local candidates.
+describes the public site, not these local candidates. The full public browser
+suite also checks revision-pinned source links and task-kit packaging: build a
+clean committed candidate with `GITHUB_SHA` set to its full commit, as hosted
+CI does. An unpinned local build omits those links and disables packaging, so
+it cannot pass those assertions; keep the failed run and rebuild from the
+committed candidate. Never weaken the assertions or stamp a dirty build as a
+published revision.
 
 No font is downloaded or bundled and no private reference source or asset is
 copied. The Vue screen is an original preview from canonical roles and existing
