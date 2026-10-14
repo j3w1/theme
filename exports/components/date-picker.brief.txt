@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — date-picker
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/date-picker.json
 spec: spec/components/date-picker.md  site: https://j3w1.github.io/theme/reference/#c-date-picker
 maturity: stable  priority: R1
@@ -35,13 +35,13 @@ Tokens (resolved):
 State dependency disclosures: D-007
 
 States: default, hover, focus-visible, invalid, invalid+focus-visible, disabled, read-only
-  default: Input surface, default text and control border.
-  hover: The declared hover fill.
-  focus-visible: Active border and the canonical focus ring.
-  invalid: Danger border and a linked message.
-  invalid+focus-visible: Danger border plus the container focus ring.
-  disabled: Disabled colors; editor and calendar actions unavailable.
-  read-only: Readable canvas text and bottom edge; calendar action unavailable.
+  default: {color.text.default} on {color.surface.input}, 1px {color.border.control} [—]
+  hover: background → {color.interaction.hover.bg} [hover-capable pointers only]
+  focus-visible: border → {color.border.active}; the canonical focus ring [the ring]
+  invalid: 2px {color.status.danger.border}; a linked message [border 1 → 2px; ✕ glyph; `aria-invalid`]
+  invalid+focus-visible: the danger border and the ring in {color.interaction.focus.ring-container} at −4px [double boundary]
+  disabled: {color.text.disabled} on {color.interaction.disabled.bg}, border {color.border.disabled}; editor and calendar actions unavailable [`disabled`; cursor: not-allowed]
+  read-only: readable text on {color.surface.canvas}, no box, 1px dotted {color.border.divider} bottom edge; the calendar cannot open [`readonly`; dotted edge]
 
 Keyboard:
   Tab / Shift+Tab: Moves through the editor, calendar trigger and other controls.

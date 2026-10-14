@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=",
+  "sourceDigest": "sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=",
   "id": "diagnostics",
   "family": "developer",
   "maturity": "stable",
@@ -455,7 +455,7 @@
   "stateRules": [
     {
       "state": "default",
-      "visual": "ranges decorated as above on {color.code.bg}; the error row filled {color.diagnostic.error.bg}; panel rows on {color.surface.default} with 1px {color.border.divider} between them",
+      "visual": "ranges decorated on {color.code.bg}; the error row filled {color.diagnostic.error.bg}; panel rows on {color.surface.default}, 1px {color.border.divider} between",
       "channel": "underline pattern; glyph",
       "tokens": {
         "fg": {
@@ -500,7 +500,7 @@
     },
     {
       "state": "hover",
-      "visual": "panel row background → {color.interaction.hover.bg}; inline ranges unchanged (the hover tooltip is a host surface)",
+      "visual": "panel row → {color.interaction.hover.bg}; inline ranges unchanged (the hover tooltip is a host surface)",
       "channel": "cursor: default on rows",
       "tokens": {
         "fg": {
@@ -531,7 +531,7 @@
     },
     {
       "state": "focus-visible",
-      "visual": "the active row: 1px dashed {color.interaction.focus.ring} at −2px; inline box: the container ring 2px {color.interaction.focus.ring-container} at −3px",
+      "visual": "active row: 1px dashed {color.interaction.focus.ring} at −2px; inline box: 2px {color.interaction.focus.ring-container} at −3px",
       "channel": "the ring",
       "tokens": {
         "fg": {
@@ -605,7 +605,7 @@
     },
     {
       "state": "selected+focus-visible",
-      "visual": "the selection fill and a 1px dashed ring in {color.interaction.focus.ring-container}",
+      "visual": "the selection fill and a 1px dashed {color.interaction.focus.ring-container} ring",
       "channel": "both at once",
       "tokens": {
         "fg": {
@@ -648,7 +648,7 @@
     },
     {
       "state": "error",
-      "visual": "the provider failed: a `role=status` line with `✕` in {color.status.danger.text} above the stale rows; the inline stripe shows the same `✕` at its top",
+      "visual": "provider failed: a `role=status` line with `✕` in {color.status.danger.text} above the stale rows; the stripe shows the same `✕` at its top",
       "channel": "glyph; live announcement",
       "tokens": {
         "fg": {
@@ -679,7 +679,7 @@
     },
     {
       "state": "empty",
-      "visual": "no problems: rows and stripe marks hidden; `✓ No problems` in {color.text.muted} with the glyph in {color.status.success.text}; inline decorations removed",
+      "visual": "rows, stripe marks and inline decorations removed; `✓ No problems` in {color.text.muted}, glyph in {color.status.success.text}",
       "channel": "glyph; the absence of decoration",
       "tokens": {
         "fg": {
@@ -762,7 +762,7 @@
   "specimens": [
     "i3-window-frame"
   ],
-  "nonExamples": "Red-only errors without the `✕` glyph or the wavy pattern. A wavy underline\nfor every severity, which leaves the pattern meaningless. Purple or cyan for\ninfo and hint. A hover on a panel row that changes only the text colour. A\nselected row whose glyph keeps its severity colour on the red fill (2.47:1).\nA panel row with a rounded highlight or a left accent bar instead of the fill.\nRemoving the error line background to \"calm\" the editor.",
+  "nonExamples": "Red-only errors without `✕` or the wavy pattern. Wavy for every severity.\nPurple or cyan for info and hint. A row hover that changes only text colour.\nA selected row whose glyph keeps its severity colour on the fill. A rounded\nhighlight or left accent bar instead of the row fill. Removing the error line\nfill to \"calm\" the editor.",
   "contrast": [
     {
       "label": "diagnostics default text",

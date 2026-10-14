@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-C1XeXVYC.js";
-import { r as developerView } from "../chunks/display-dj9YaBfn.js";
+import { t as J3w1Element } from "../chunks/element-Dovcr9Ky.js";
+import { r as developerView } from "../chunks/display-Jm9bAsnb.js";
 //#region .cache/ui-build/entries/components/terminal.js
 var J3w1Terminal = class extends J3w1Element {
 	static componentId = "terminal";
 	static version = "4.0.0";
-	static implementationId = "sha256-YtjoIQGA3MHvquAi/l7AGweWpTNBe/ruD7iYJIEkkoc=";
+	static implementationId = "sha256-vnYvMfEFdH6UbGXHQ5OrfeJTspczt8hiaTWYnXnhlJc=";
 	static connect = developerView;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

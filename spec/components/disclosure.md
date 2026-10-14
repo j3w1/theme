@@ -99,16 +99,15 @@ compact: false
 
 ## Purpose
 
-Reveal supporting content with native details and summary. Essential instructions stay outside a collapsed disclosure. The summary supplies a complete accessible name; content remains in normal reading order.
+Reveals optional supporting content on request.
 
 ## Anatomy
 
-- **details:** Native expanded state and content container.
-- **summary:** Visible name and native disclosure marker.
+Parts as listed in the anatomy.
 
 ## States
 
-| State | Presentation | Non-colour channel |
+| State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | Named content on the default surface. | Native text and structure. |
 | expanded | Expanded content and native marker. | Native open state exposes the content. |
@@ -117,12 +116,11 @@ Reveal supporting content with native details and summary. Essential instruction
 
 ## Keyboard
 
-- **Tab / Shift+Tab:** Reach the summary and expanded interactive content.
-- **Enter / Space:** Toggle native details.
+As in the key table.
 
 ## Accessibility
 
-Keep the native marker and summary semantics. Do not add a competing aria-expanded value. Required instructions and the portal's normative content are never placed only inside a disclosure.
+Keep the native marker and summary semantics; add no competing aria-expanded value. Required instructions and the portal's normative content are never placed only inside a disclosure.
 
 ## Portability
 

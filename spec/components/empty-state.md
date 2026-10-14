@@ -70,18 +70,13 @@ compact: false
 
 ## Purpose
 
-A region with nothing in it says so, and says what would fill it. It
-replaces a blank pane, an empty table body or a list with no rows after a
-filter, and it offers the one action that changes that when there is one.
-A failure is the error state; a wait is the loading indicator.
+Replaces a blank pane, an empty table body or a filtered-out list: it says
+what is empty and offers the one action that changes it, when there is one. A
+failure is the error state; a wait is the loading indicator.
 
 ## Anatomy
 
-The block on {color.surface.default} inside a 1px {color.border.divider},
-content centred; the glyph in {color.icon.decorative}; the heading in
-{color.text.bright}; the sentence in {color.text.muted}; the optional
-secondary action in {color.action.secondary.text} with a 1px
-{color.action.secondary.border}.
+Parts as listed in the anatomy.
 
 ## States
 
@@ -89,34 +84,30 @@ secondary action in {color.action.secondary.text} with a 1px
 | --- | --- | --- |
 | default | glyph, heading and sentence centred; the action, when present, below them | the worded heading; the action is a real button |
 
-The block has no states of its own; the action takes the secondary
-button's hover and ring.
+No states of its own; the action takes the secondary button's hover and ring.
 
 ## Keyboard
 
-Only the action is in the tab order. When a filter empties a list that had
-focus inside it, focus moves to the heading of the region, not into the
-empty state, so the person hears where they are.
+As in the key table. When a filter empties a list that had focus inside it,
+focus moves to the region's heading, not into the empty state, so the person
+hears where they are.
 
 ## Accessibility
 
-The heading is a real heading at the level the region uses, so the empty
-state appears in the outline; the sentence follows it in the reading order.
-The glyph is `aria-hidden`. When content becomes empty after an action
-(filter, delete), a polite live region announces the heading text. The
-action is never the only route: filters can also be cleared where they were
-set. Contrast: heading 10.10:1, sentence 5.66:1, action text 10.10:1 and its
-border 4.33:1 on the panel surface.
+The heading is a real heading at the region's level, so the empty state
+appears in the outline; the sentence follows it in reading order. When
+content becomes empty after an action (filter, delete), a polite live region
+announces the heading text. The action is never the only route: filters can
+also be cleared where they were set. Text meets 4.5:1; the action border 3:1.
 
 ## Portability
 
-Text and one optional button. Toolkits with a status page use it with the
-glyph as text; toolkits with only a placeholder string add the action as a
-separate button below the view.
+A toolkit with only a placeholder string adds the action as a separate button
+below the view.
 
 ## Non-examples
 
-An illustration or mascot. A primary (filled) call to action. A blank pane.
-A greyed-out table header with no message. A message that only says "No
-data". A heading in the accent red. An empty state that appears while
-loading. Centred text in a rounded card with a shadow.
+An illustration or mascot. A primary (filled) call to action. A blank pane. A
+greyed-out table header with no message. Only "No data". A heading in the
+accent red. An empty state shown while loading. Centred text in a rounded,
+shadowed card.

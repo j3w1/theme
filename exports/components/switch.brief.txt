@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — switch
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/switch.json
 spec: spec/components/switch.md  site: https://j3w1.github.io/theme/reference/#c-switch
 maturity: stable  priority: R1
@@ -27,12 +27,12 @@ State dependency disclosures: D-007
 
 States: default, hover, focus-visible, checked, checked+focus-visible, disabled, checked+disabled
   default: track 1px {color.border.control} on {color.surface.input}; thumb {color.text.default} at the start [thumb position]
-  hover: track background → {color.interaction.hover.bg}; on track → {color.action.primary.hover-bg} [cursor: pointer; hover-capable pointers only]
-  focus-visible: ring 1px dashed {color.interaction.focus.ring} at −2px on the track [the ring]
-  checked: track fills {color.action.primary.bg}; thumb {color.action.primary.text} moves to the end; border stays {color.border.control}; the word reads "On" [`aria-checked="true"`; thumb position; the word]
-  checked+focus-visible: the fill and a ring in {color.interaction.focus.ring-container} on the track [position and ring]
-  disabled: track {color.interaction.disabled.bg} with 1px {color.border.disabled}; thumb and name {color.text.disabled} [`disabled`; cursor: not-allowed]
-  checked+disabled: as disabled with the thumb at the end [`disabled`; `aria-checked="true"`; thumb position]
+  hover: off track → {color.interaction.hover.bg}; on track → {color.action.primary.hover-bg} [cursor: pointer; hover-capable pointers only]
+  focus-visible: 1px dashed {color.interaction.focus.ring} at −2px on the track [the ring]
+  checked: track fills {color.action.primary.bg}; thumb {color.action.primary.text} at the end; border stays {color.border.control}; the word reads "On" [`aria-checked="true"`; thumb position; the word]
+  checked+focus-visible: the fill and a {color.interaction.focus.ring-container} ring on the track [position and ring]
+  disabled: track {color.interaction.disabled.bg}, 1px {color.border.disabled}; thumb and name {color.text.disabled} [`disabled`; cursor: not-allowed]
+  checked+disabled: as disabled, thumb at the end [`disabled`; `aria-checked="true"`; thumb position]
 
 Keyboard:
   Tab / Shift+Tab: Moves focus to and from the switch.

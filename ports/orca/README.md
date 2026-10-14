@@ -2,8 +2,7 @@
 
 Gives Orca's terminal the j3w1 colours: the sixteen terminal colours,
 background, text, cursor, selection, the pane divider and the terminal font.
-Everything for Orca is in this folder. Status: experimental (no recorded
-import evidence yet).
+Status: experimental (no recorded import evidence).
 
 You need Windows, [PowerShell 7.4 or later](https://learn.microsoft.com/powershell/scripting/install/installing-powershell-on-windows)
 (`winget install Microsoft.PowerShell`), Orca started at least once, and the
@@ -31,9 +30,9 @@ Release v3.0.0 (commit `f0e9e25a00357c0b47ae3d1392b87e5bc0aa91e6`).
    ```
 <!-- install:end -->
 
-If Orca is still open, the installer does not touch Orca's settings (Orca
-would overwrite them). It writes only the Ghostty file and prints three steps
-to finish in Orca:
+If Orca is still open, the installer leaves Orca's settings alone (Orca would
+overwrite them), writes only the Ghostty file and prints three steps to finish
+in Orca:
 
 1. Settings > Terminal > Import from Ghostty > Apply Changes
 2. Settings > Terminal > Color Contrast > Off
@@ -46,7 +45,7 @@ in the repository README, save it as `%APPDATA%\ghostty\config.ghostty` (back
 up any `config.ghostty` or `config` already there: Orca merges every Ghostty
 config it finds), then in Orca choose Settings > Terminal > Import from
 Ghostty > Apply Changes. On macOS or Linux use `~/.config/ghostty/config.ghostty`.
-This route has no backup or restore.
+No backup or restore on this route.
 
 ## Update
 
@@ -54,9 +53,9 @@ This route has no backup or restore.
 When a newer release is out, open this page on the site's Ports page or on the repository's main branch: its Install command names the newest release. Quit Orca and paste it. It downloads that release, applies it and runs the checks.
 <!-- update:end -->
 
-The Install command of a newer release applies it over this one and keeps the
+A newer release's Install command applies over this one and keeps the
 backups. To move to a specific release tag, or back to an older one, run
-`Update-J3w1OrcaTheme.ps1 -Version` with that tag from the release folder: it
+`Update-J3w1OrcaTheme.ps1 -Version` with that tag from the release folder; it
 shows what changes, key by key, before it writes. Tags before v3.0.0 have no
 installer and are refused.
 
@@ -99,8 +98,8 @@ earlier value is unknown.
   - `terminalDividerColorDark` and `terminalDividerColorLight`: the pane divider
     (`color.border.divider`, use-and-report under D-008; every run says so).
   - `terminalFontFamily`: `SauceCodePro NFM`.
-  - `leftSidebarAppearanceMode` = Match Terminal, because the owner asked for
-    it. It is the only part of Orca's window that can follow the terminal.
+  - `leftSidebarAppearanceMode` = Match Terminal, at the owner's request; it
+    is the only part of Orca's window that can follow the terminal.
 - **`%APPDATA%\ghostty\config.ghostty`**: one marked block. Every line outside
   it is kept, byte for byte. A symbolic link is written through and stays a
   link. A file with two marked blocks is refused until you delete one.
@@ -114,10 +113,10 @@ earlier value is unknown.
   - `current\`: the last record, the Ghostty block and `theme.lock.orca.json`.
   - `backups\<time>\`: one record per run, plus a copy of `config.ghostty`
     when the run changed it. Records name only the installer's keys.
-  - `pre-kit\orca-data.json`: one full copy of Orca's settings from before the
-    first run that wrote anything. It holds your whole private Orca store. It
-    is never overwritten and restore never uses it; delete it when you no
-    longer want it.
+  - `pre-kit\orca-data.json`: one full copy of Orca's settings (your whole
+    private Orca store) from before the first run that wrote anything; never
+    overwritten and never used by restore. Delete it when you no longer want
+    it.
 
 Every value comes from the commit in the install command. The export must
 match `exports/digests.json` from the same commit when it is downloaded and
@@ -166,12 +165,11 @@ only, `J3W1_KIT_TEST_SOURCE=worktree` lets a plain folder be the source; such
 a run is marked not verified and writes no lock. Run from a clone, the scripts
 read git objects at HEAD, so commit before you run the tests.
 
-To mark this port `verified`, import it into a recorded Orca version, record
-the version, OS, font, scaling and artifact digest as a real-import protocol
-under `evidence/` (validated by `schemas/json/port-import-evidence.schema.json`
-and bound to the current `portSubject`), and add the version to
-`testedVersions`. A parse check is not an import.
+To mark this port `verified`, record a real import into a recorded Orca
+version (version, OS, font, scaling, artifact digest) as described in
+[Capability details and import verification](../README.md#capability-details-and-import-verification),
+and add the version to `testedVersions`.
 
 To change what Orca shows, change the specification through a `proposed`
-entry in `spec/decisions.md`. Pointing `host.json` at a different role is a
+entry in `spec/decisions.md`; pointing `host.json` at a different role is a
 specification change too.

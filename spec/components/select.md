@@ -110,18 +110,14 @@ compact: true
 
 ## Purpose
 
-Choosing one option, or several, from a fixed list. D-025 requires theme-owned
-choice surfaces in web applications. The native select remains the form-value
-and constraint source. A searchable or asynchronous list is the separate
-combobox component.
+One or several options from a fixed list. D-025 requires theme-owned choice
+surfaces in web applications; the native select stays the form-value and
+constraint source. A searchable or asynchronous list is `combobox`.
 
 ## Anatomy
 
-Label above; a theme-owned trigger and listbox for single choices, or an
-always-visible multiselectable listbox. Each selected option has a check mark
-and the canonical selection fill. The hidden native `<select>` retains its
-name, options, current values and defaults. Help and validation are linked
-to the visible control. Without JavaScript the original native control is visible.
+Each selected option has a check mark and the selection fill. The hidden
+native `<select>` keeps its name, options, current values and defaults.
 
 ## States
 
@@ -129,49 +125,44 @@ to the visible control. Without JavaScript the original native control is visibl
 | --- | --- | --- |
 | default | 1px {color.border.control} on {color.surface.input}; value {color.text.default}; chevron {color.icon.default} | the chevron |
 | hover | background → {color.interaction.hover.bg}; border unchanged | cursor: default; hover-capable pointers only |
-| focus-visible | border → {color.border.active}; ring 1px dashed {color.interaction.focus.ring} at −2px | the ring |
+| focus-visible | border → {color.border.active}; 1px dashed {color.interaction.focus.ring} at −2px | the ring |
 | required | `*` after the label in {color.status.danger.text} plus visually hidden "required" | `required`; the mark |
-| invalid | border 2px {color.status.danger.border}; message with the ✕ glyph | border width 1 → 2px; glyph; `aria-invalid` |
-| invalid+focus-visible | the 2px danger border and the ring in {color.interaction.focus.ring-container} at −4px | double boundary |
-| disabled | text and chevron {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg} | `disabled`; cursor: not-allowed |
+| invalid | 2px {color.status.danger.border}; message with ✕ | border 1 → 2px; glyph; `aria-invalid` |
+| invalid+focus-visible | 2px danger border and {color.interaction.focus.ring-container} ring at −4px | double boundary |
+| disabled | text and chevron {color.text.disabled}; {color.border.disabled}; {color.interaction.disabled.bg} | `disabled`; cursor: not-allowed |
 
-Inside the theme-owned list, a selected option is
-{color.interaction.selection.bg} with {color.interaction.selection.text} and
-group labels are {color.text.muted} on {color.surface.raised}. Precedence:
-disabled > invalid > hover; focus-visible is always drawn.
+In the list, a selected option is {color.interaction.selection.bg} with
+{color.interaction.selection.text}; group labels {color.text.muted} on
+{color.surface.raised}. Precedence: disabled > invalid > hover; focus-visible
+is always drawn.
 
 ## Keyboard
 
-The single control follows the select-only combobox pattern: arrows open and
-move the active option, Home/End reach the ends, typing finds an option, and
-Enter/Space commits. Escape and Tab close without committing. Multiple choices
-use arrows, Space or click to toggle, Shift with arrows for a range, and
-Ctrl/Command+A to select or clear all enabled choices. No modifier is required
-for ordinary multiple selection. The native fallback uses host keyboard behavior.
+As in the key table, plus Home/End to the ends of the single list. Ordinary
+multiple selection needs no modifier. The native fallback keeps host
+behaviour.
 
 ## Accessibility
 
-A programmatic label is required; the first option is a real choice or a
-placeholder option that is `disabled` and `selected` with text such as
-"Choose a workspace", never an empty string. `aria-invalid="true"` only after
-interaction or submit. Help and message through `aria-describedby`. The
-themed popup uses the declared contrast roles. The visible control receives
-the label, required/invalid state and descriptions. A failed native constraint
-focuses that visible control and exposes a theme-owned error. Disabled options,
-optgroups and fieldsets remain unavailable. Current values and defaults survive
+A programmatic label is required. The first option is a real choice or a
+`disabled` `selected` placeholder with text ("Choose a workspace"), never
+empty. `aria-invalid="true"` only after interaction or submit. The visible
+control carries the label, required and invalid state, and descriptions
+(help and message via `aria-describedby`). A failed native constraint focuses
+the visible control and shows a theme-owned error. Disabled options,
+optgroups and fieldsets stay unavailable. Values and defaults survive
 reconnection, programmatic updates and form reset. Automated evidence records
-its actual environments; it does not imply a manual screen-reader pass.
+its real environments and implies no manual screen-reader pass.
 
 ## Portability
 
-Use the packaged behavior and complete copy closure for web implementations.
-The supported enhancement can apply the same renderer to existing selects
-without moving them or duplicating form values. Native platforms keep the
-mappings listed above; no-JavaScript pages expose the native fallback.
+Web implementations use the packaged behaviour and its complete copy closure.
+The enhancement can apply the same renderer to existing selects without
+moving them or duplicating form values.
 
 ## Non-examples
 
-An unthemed browser popup presented as a fully themed implementation. A background-image chevron in
-a literal colour. Rounded corners. A select whose first option is blank. A
-select that triggers navigation on change. Invalid shown by colour alone.
-A glow instead of the ring. Disabling by opacity.
+An unthemed browser popup presented as fully themed. A background-image
+chevron in a literal colour. Rounded corners. A blank first option. Navigation
+on change. Invalid by colour alone. A glow instead of the ring. Disabling by
+opacity.

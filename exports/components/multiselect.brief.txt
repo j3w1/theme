@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — multiselect
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/multiselect.json
 spec: spec/components/multiselect.md  site: https://j3w1.github.io/theme/reference/#c-multiselect
 maturity: stable  priority: R2
@@ -50,7 +50,7 @@ States: default, checked, focus-visible, disabled, no-results
   checked: Selected fill and a check indicator. [Native checked state.]
   focus-visible: Dashed focus ring. [Native keyboard focus position.]
   disabled: Disabled semantic foreground, background and border at full opacity. [Native disabled state blocks activation.]
-  no-results: Muted result count. [Zero-results text; existing selected values remain selected.]
+  no-results: Muted result count. [Zero-results text; selected values stay selected.]
 
 Keyboard:
   Tab / Shift+Tab: Visit search, clear and each visible enabled checkbox.

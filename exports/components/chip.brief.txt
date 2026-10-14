@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — chip
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/chip.json
 spec: spec/components/chip.md  site: https://j3w1.github.io/theme/reference/#c-chip
 maturity: stable  priority: R1
@@ -27,11 +27,11 @@ State dependency disclosures: D-007
 
 States: default, hover, focus-visible, selected, selected+focus-visible, disabled
   default: 1px {color.border.control} on {color.surface.default}; text {color.text.default} [—]
-  hover: background → {color.interaction.hover.bg}; the remove button → {color.interaction.hover.bg-strong} with {color.text.bright} [cursor: pointer]
-  focus-visible: ring 1px dashed {color.interaction.focus.ring} at −2px on the chip or on the remove button [the ring]
-  selected: fill {color.interaction.selection.bg}; text and glyph {color.interaction.selection.text}; the border takes the fill colour [`aria-pressed="true"`; the ✓ glyph]
-  selected+focus-visible: the fill and the ring in {color.interaction.focus.ring-container} [both visible at once]
-  disabled: text {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}; no hover [`disabled`; cursor: not-allowed]
+  hover: background → {color.interaction.hover.bg}; remove button → {color.interaction.hover.bg-strong} with {color.text.bright} [cursor: pointer]
+  focus-visible: 1px dashed {color.interaction.focus.ring} at −2px on the chip or the remove button [the ring]
+  selected: fill {color.interaction.selection.bg}; text and glyph {color.interaction.selection.text}; border takes the fill colour [`aria-pressed="true"`; the ✓ glyph]
+  selected+focus-visible: the fill and a {color.interaction.focus.ring-container} ring [both visible at once]
+  disabled: {color.text.disabled}, {color.border.disabled}, {color.interaction.disabled.bg}; no hover [`disabled`; cursor: not-allowed]
 
 Keyboard:
   Tab / Shift+Tab: Reaches a filter chip, or the remove button of a removable chip; static chips are skipped.

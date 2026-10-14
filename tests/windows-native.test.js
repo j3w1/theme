@@ -1,7 +1,7 @@
+import { scratchDirSync } from "./helpers/scratch.mjs";
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import fs from 'node:fs';
-import os from 'node:os';
 import path from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {repoRoot} from '../scripts/lib/fs.mjs';
@@ -30,8 +30,7 @@ function compile(compiler,args){
  assert.equal(result.status,0,result.stdout+'\n'+result.stderr);
 }
 for(const mod of settings.bundledMods)test(`complete native DLL link: ${mod.id}`,options,t=>{
- const tools=toolchain(),folder=fs.mkdtempSync(path.join(os.tmpdir(),'j3w1-native-link-'));
- t.after(()=>fs.rmSync(folder,{recursive:true,force:true}));
+ const tools=toolchain(),folder=scratchDirSync(t, 'j3w1-native-link-');
  const file=path.join(source,mod.path),output=path.join(folder,mod.id+'.dll');
  compile(tools.compiler,['-shared','-DWH_MOD',tools.library,file,'-include','windhawk_api.h',...libraries(file),'-o',output]);
  assert.ok(fs.statSync(output).size>0);
@@ -47,8 +46,7 @@ for(const [name,mod] of [
  ['markdown-background','j3w1-powertoys-markdown'],
  ['preview-host','j3w1-powertoys-markdown'],
 ])test(`native offscreen regression: ${name}`,options,t=>{
- const tools=toolchain(),folder=fs.mkdtempSync(path.join(os.tmpdir(),'j3w1-native-regression-'));
- t.after(()=>fs.rmSync(folder,{recursive:true,force:true}));
+ const tools=toolchain(),folder=scratchDirSync(t, 'j3w1-native-regression-');
  const file=path.join(repoRoot,`tests/windows-${name}-native.cpp`),output=path.join(folder,name+'.exe');
  // Synthetic test executables run outside Windhawk's ModsRuntime. Link their
  // C++ runtime statically so they do not depend on Windhawk's DLL search path.
@@ -58,8 +56,7 @@ for(const [name,mod] of [
 });
 
 for(const [id,define] of [['j3w1-calculator','1'],['j3w1-notepad-native','0']])test('native app worker shutdown: '+id,options,t=>{
- const tools=toolchain(),folder=fs.mkdtempSync(path.join(os.tmpdir(),'j3w1-native-lifetime-'));
- t.after(()=>fs.rmSync(folder,{recursive:true,force:true}));
+ const tools=toolchain(),folder=scratchDirSync(t, 'j3w1-native-lifetime-');
  const file=path.join(repoRoot,'tests/windows-app-lifetime-native.cpp'),output=path.join(folder,id+'.exe');
  compile(tools.compiler,['-static','-DJ3W1_TEST_CALCULATOR='+define,file,...libraries(path.join(source,'dist/'+id+'.wh.cpp')),'-o',output]);
  for(const state of ['exit-active','exit-completed','unload','reconfigure']){
@@ -69,8 +66,7 @@ for(const [id,define] of [['j3w1-calculator','1'],['j3w1-notepad-native','0']])t
 });
 
 test('native Notepad editor preservation',options,t=>{
- const tools=toolchain(),folder=fs.mkdtempSync(path.join(os.tmpdir(),'j3w1-native-editor-'));
- t.after(()=>fs.rmSync(folder,{recursive:true,force:true}));
+ const tools=toolchain(),folder=scratchDirSync(t, 'j3w1-native-editor-');
  const output=path.join(folder,'notepad-editor.exe');
  compile(tools.compiler,['-static',path.join(repoRoot,'tests/windows-notepad-editor-native.cpp'),...libraries(path.join(source,'dist/j3w1-notepad-native.wh.cpp')),'-ldwrite','-o',output]);
  const result=spawnSync(output,[],{encoding:'utf8',windowsHide:true,timeout:30000});
@@ -78,8 +74,7 @@ test('native Notepad editor preservation',options,t=>{
 });
 
 test('native Calculator clock and ownership restoration',options,t=>{
- const tools=toolchain(),folder=fs.mkdtempSync(path.join(os.tmpdir(),'j3w1-native-calculator-'));
- t.after(()=>fs.rmSync(folder,{recursive:true,force:true}));
+ const tools=toolchain(),folder=scratchDirSync(t, 'j3w1-native-calculator-');
  const output=path.join(folder,'calculator-ownership.exe');
  compile(tools.compiler,['-static',path.join(repoRoot,'tests/windows-calculator-ownership-native.cpp'),...libraries(path.join(source,'dist/j3w1-calculator.wh.cpp')),'-o',output]);
  for(const state of ['resource-scaling','background-transition-ownership','hover-state-palette','button-style-dispatch','cached-color-frame','composite-button-scope','clock-lifecycle','animation-frame','resource-ownership']){
@@ -88,8 +83,7 @@ test('native Calculator clock and ownership restoration',options,t=>{
  }
 });
 test('native Terminal chrome ownership and worker shutdown',options,t=>{
- const tools=toolchain(),folder=fs.mkdtempSync(path.join(os.tmpdir(),'j3w1-native-terminal-'));
- t.after(()=>fs.rmSync(folder,{recursive:true,force:true}));
+ const tools=toolchain(),folder=scratchDirSync(t, 'j3w1-native-terminal-');
  const output=path.join(folder,'terminal-chrome.exe');
  compile(tools.compiler,['-static',path.join(repoRoot,'tests/windows-terminal-chrome-native.cpp'),...libraries(path.join(source,'dist/j3w1-terminal-chrome.wh.cpp')),'-o',output]);
  for(const state of ['resource-scaling','popup-load-lifecycle','background-transition-ownership','hover-state-palette','legacy-boundary','legacy-ownership','legacy-lifecycle']){
@@ -100,8 +94,7 @@ test('native Terminal chrome ownership and worker shutdown',options,t=>{
 
 
 for(const [id,paint] of [['j3w1-notepad-chrome','0'],['j3w1-paint-chrome','1']])test('native WinUI chrome ownership and worker shutdown: '+id,options,t=>{
- const tools=toolchain(),folder=fs.mkdtempSync(path.join(os.tmpdir(),'j3w1-native-notepad-chrome-'));
- t.after(()=>fs.rmSync(folder,{recursive:true,force:true}));
+ const tools=toolchain(),folder=scratchDirSync(t, 'j3w1-native-notepad-chrome-');
  const output=path.join(folder,'notepad-chrome.exe');
  compile(tools.compiler,['-static','-DJ3W1_TEST_PAINT='+paint,path.join(repoRoot,'tests/windows-winui-chrome-native.cpp'),...libraries(path.join(source,'dist/'+id+'.wh.cpp')),'-o',output]);
  for(const state of ['resource-scaling','paint-type-filter','popup-load-lifecycle',...(paint==='1'?['preopen-menu-ownership']:[]),'paint-split-edge-ownership','background-transition-ownership','hover-state-palette','split-parent-bindings','window-backing-ownership','cached-color-frame','composite-button-scope','partial-init','state-ownership','resource-ownership','closed-source-backdrop','retired-control-capacity','retired-control-retry','keytip-ownership','cleanup-retry','public-caption-scope','public-caption-ownership','public-caption-window-ownership',...(paint==='1'?['paint-chrome-admission']:['notepad-chrome-admission']),'backing-admission','captured-native-backdrop',...(paint==='0'?['existing-caption-default-reset']:[]),'native-caption-capture','backdrop-passthrough','discovery-admission','discovery-lifecycle','exit-active','exit-completed','unload','reconfigure']){
@@ -111,8 +104,7 @@ for(const [id,paint] of [['j3w1-notepad-chrome','0'],['j3w1-paint-chrome','1']])
 });
 
 test('native Explorer stock folder rendering and cache lifetime',options,t=>{
- const tools=toolchain(),folder=fs.mkdtempSync(path.join(os.tmpdir(),'j3w1-native-folder-'));
- t.after(()=>fs.rmSync(folder,{recursive:true,force:true}));
+ const tools=toolchain(),folder=scratchDirSync(t, 'j3w1-native-folder-');
  const output=path.join(folder,'folder.exe');
  compile(tools.compiler,['-static',path.join(repoRoot,'tests/windows-folder-glyph-native.cpp'),...libraries(path.join(source,'dist/j3w1-explorer-native.wh.cpp')),'-o',output]);
  // Real initialization must see the same supported Windows version as Explorer.
@@ -122,8 +114,7 @@ test('native Explorer stock folder rendering and cache lifetime',options,t=>{
 });
 
 test('native Settings CoreWindow discovery and ownership',options,t=>{
- const tools=toolchain(),folder=fs.mkdtempSync(path.join(os.tmpdir(),'j3w1-native-settings-'));
- t.after(()=>fs.rmSync(folder,{recursive:true,force:true}));
+ const tools=toolchain(),folder=scratchDirSync(t, 'j3w1-native-settings-');
  const output=path.join(folder,'settings-startup.exe');
  compile(tools.compiler,['-static','-municode',path.join(repoRoot,'tests/windows-settings-startup-native.cpp'),'-lbcrypt','-luser32','-o',output]);
  const result=spawnSync(output,[],{encoding:'utf8',windowsHide:true,timeout:30000});

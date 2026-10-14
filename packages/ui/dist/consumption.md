@@ -23,9 +23,11 @@ complete maintained markup on the component's page.
 Keep the exact package version and your package-manager lockfile in source
 control.
 
+<!-- ui-install:start -->
 ```sh
-npm install --save-exact @j3w1/ui@3.1.0
+npm install --save-exact @j3w1/ui@4.0.0
 ```
+<!-- ui-install:end -->
 
 That command needs npm publication, which is an owner release action. Before
 publication:
@@ -34,9 +36,11 @@ publication:
 2. Check it against its published digest.
 3. Install the local file:
 
+<!-- ui-tarball:start -->
 ```sh
-npm install --save-exact ./j3w1-ui-3.1.0.tgz
+npm install --save-exact ./j3w1-ui-4.0.0.tgz
 ```
+<!-- ui-tarball:end -->
 
 The repository builds this same artifact with `npm run ui:build` and
 `npm run ui:pack`. Never use a branch URL in place of a release pin. Do not
@@ -250,10 +254,12 @@ Styling:
 
 ## Copy a complete bundle
 
+<!-- ui-copy:start -->
 ```sh
-npx --package=@j3w1/ui@3.1.0 j3w1-ui copy dialog --out ./vendor/j3w1/dialog
-npx --package=@j3w1/ui@3.1.0 j3w1-ui kit --components text-field,button,dialog --out ./vendor/j3w1/task
+npx --package=@j3w1/ui@4.0.0 j3w1-ui copy dialog --out ./vendor/j3w1/dialog
+npx --package=@j3w1/ui@4.0.0 j3w1-ui kit --components text-field,button,dialog --out ./vendor/j3w1/task
 ```
+<!-- ui-copy:end -->
 
 - Installed from a tarball: run the installed `j3w1-ui` binary instead of npx.
 - The CLI checks all source bytes before it writes. It rejects unknown components

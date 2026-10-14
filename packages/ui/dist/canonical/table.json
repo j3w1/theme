@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=",
+  "sourceDigest": "sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=",
   "id": "table",
   "family": "display",
   "maturity": "stable",
@@ -325,8 +325,8 @@
     },
     {
       "state": "hover",
-      "visual": "row background → {color.interaction.hover.bg}",
-      "channel": "cursor: default; only on hover-capable pointers",
+      "visual": "row → {color.interaction.hover.bg}",
+      "channel": "cursor: default; hover-capable pointers only",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -461,7 +461,7 @@
     },
     {
       "state": "sorted",
-      "visual": "the sorted header shows ▲ (ascending) or ▼ (descending) in {color.text.bright}",
+      "visual": "▲ (ascending) or ▼ (descending) in {color.text.bright} on the sorted header",
       "channel": "`aria-sort`; the glyph",
       "tokens": {
         "fg": {
@@ -492,7 +492,7 @@
     },
     {
       "state": "empty",
-      "visual": "the body is one full-width cell in {color.text.muted}: \"No rows match.\"",
+      "visual": "one full-width cell in {color.text.muted}: \"No rows match.\"",
       "channel": "the message text",
       "tokens": {
         "fg": {
@@ -523,7 +523,7 @@
     },
     {
       "state": "loading",
-      "visual": "the body is one full-width cell with the static `⋯` glyph in {color.text.muted}; the header stays",
+      "visual": "one full-width cell with the static `⋯` glyph in {color.text.muted}; the header stays",
       "channel": "`aria-busy=\"true\"`; the glyph; no animation",
       "tokens": {
         "fg": {
@@ -595,7 +595,7 @@
     "filterable-table",
     "settings-panel"
   ],
-  "nonExamples": "Zebra striping. A rounded or bordered table frame. A selected row marked by\na left bar (that is navigation, not selection). Header text in caption size\nor uppercase. Sorting shown by colour alone without `aria-sort` and a glyph.\nAn animated spinner while loading. An empty state that removes the header.\nText truncated with no way to read the full value. A hover fill on a\ntouch device.",
+  "nonExamples": "Zebra striping. A rounded or bordered frame. A selected row marked by a\nleft bar (that is navigation). Header text in caption size or uppercase.\nSorting by colour alone without `aria-sort` and a glyph. An animated\nspinner. An empty state that removes the header. Truncated text with no way\nto read the full value. Hover fill on touch.",
   "contrast": [
     {
       "label": "table default text",

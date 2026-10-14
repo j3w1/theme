@@ -83,7 +83,7 @@
     "root.text": "color.text.link",
     "root.underline": "color.text.link-underline",
     "root.text-hover": "color.text.link-hover",
-    "root.bg-hover": "color.interaction.hover.bg-strong",
+    "root.bg-hover": "color.interaction.hover.bg",
     "root.ring": "color.interaction.focus.ring",
     "root.text-visited": "color.text.link",
     "root.text-current": "color.text.bright",
@@ -322,6 +322,6 @@
   "copy": {
     "directory": "copy/link/",
     "manifest": "copy/link/manifest.json",
-    "digest": "sha256-9RCBHV2eK/OPYH+iLaWZUBLLRL/3/Db67A/AA/gLtVA="
+    "digest": "sha256-3HLwWPQ4f3n5kWRcOa538HFBnmCshfVhVu3YDi6njKI="
   }
 }

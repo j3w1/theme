@@ -8,10 +8,13 @@ import { formatIssues } from "./schema-issues.mjs";
 import { BODY_SECTIONS, componentSchema } from "../../schemas/component.mjs";
 import { docSchema, familySchema } from "../../schemas/doc.mjs";
 
+export const frontmatterPattern = /^---\n([\s\S]*?)\n---\n?([\s\S]*)$/;
+export const decisionHeadingPattern = /^## (D-\d{3}) (.+)$/m;
+
 export class SpecError extends Error {}
 
 export const splitFrontmatter = (source, file) => {
-  const match = source.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
+  const match = source.match(frontmatterPattern);
   if (!match) throw new SpecError(`${file}: missing YAML frontmatter`);
   let data;
   try {
@@ -118,8 +121,9 @@ export const loadDecisions = async () => {
     const row = line.match(/^\| (D-\d{3}) \| (.+?) \| (proposed|accepted|rejected|superseded) \| (\S+) \| (.+?) \|$/);
     if (row) decisions.set(row[1], { title: row[2], status: row[3], date: row[4], by: row[5] });
   }
+  const headings = new Set([...source.matchAll(new RegExp(decisionHeadingPattern.source, "gm"))].map(match => match[1]));
   for (const id of decisions.keys()) {
-    if (!source.includes(`\n## ${id} `)) throw new SpecError(`spec/decisions.md: ${id} is in the table but has no section`);
+    if (!headings.has(id)) throw new SpecError(`spec/decisions.md: ${id} is in the table but has no section`);
   }
   return decisions;
 };

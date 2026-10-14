@@ -1,11 +1,13 @@
+import { readJsonWithBom as read } from "./helpers/json.mjs";
+import { defaultTokens } from "./helpers/tokens.mjs";
+import { scratchDirSync } from "./helpers/scratch.mjs";
+import { sha256Hex } from "../scripts/lib/host-install/files.mjs";
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import {parse} from 'jsonc-parser';
 import fs from 'node:fs';
-import os from 'node:os';
 import path from 'node:path';
 import {spawnSync} from 'node:child_process';
-import {createHash} from 'node:crypto';
 import {repoRoot,readJson} from '../scripts/lib/fs.mjs';
 import {assertPortArtifacts} from '../scripts/lib/port-artifacts.mjs';
 import {CURSOR_NAMES,windowsStyleValue,windowsWebContentStyles,validateWindowsStylerTarget} from '../scripts/lib/windows-port.mjs';
@@ -14,8 +16,8 @@ import {flattenStylerSettings,stylerSettings} from '../ports/windows/src/compati
 
 const source=path.join(repoRoot,'ports/windows');
 const runtime=path.join(source,'dist/runtime.cjs');
-const sha=b=>createHash('sha256').update(b).digest('hex');
-const read=p=>JSON.parse(fs.readFileSync(p,'utf8').replace(/^\uFEFF/,''));
+const sha=b=>sha256Hex(b);
+
 const readConfig=p=>{const errors=[];const value=parse(fs.readFileSync(p,'utf8').replace(/^\uFEFF/,''),errors,{allowTrailingComma:true});assert.deepEqual(errors,[],`Invalid settings: ${p}`);return value;};
 const write=(p,x)=>{fs.mkdirSync(path.dirname(p),{recursive:true});fs.writeFileSync(p,typeof x==='string'?x:JSON.stringify(x,null,2)+'\n');};
 
@@ -71,8 +73,7 @@ test('Search presentation cannot hide controls, accept scripts or substitute lit
   assert.throws(()=>windowsWebContentStyles([{target:'.suggestion .details',styles:{},presentation:{'background-color':fill}}],value),/Unsupported Search presentation/);
 });
 function fixture(t) {
- const state=fs.mkdtempSync(path.join(os.tmpdir(),'j3w1-windows-test-'));
- t.after(()=>fs.rmSync(state,{recursive:true,force:true}));
+ const state=scratchDirSync(t, 'j3w1-windows-test-');
  const terminal=path.join(state,'fixture/terminal/settings.json');
  const before='\uFEFF{\n // keep this comment\n "profiles": {"list": [{"guid":"one","commandline":"keep-one","font":{"size":17},"colorScheme":"j3w1zsh"},{"guid":"two","commandline":"keep-two"}]},\n "keybindings": [{"command":"paste","keys":"ctrl+v"}],\n}\n';
  write(terminal,before);
@@ -102,8 +103,7 @@ test('Windows manifest covers every binary and executable artifact byte exactly'
 
 test('Windows native values, Terminal ANSI and styler selectors resolve from canonical roles',async()=>{
  const host=await readJson('ports/windows/host.json');
- const resolved=await readJson('exports/tokens.resolved.json');
- const tokens=resolved.profiles.default.tokens;
+ const tokens=await defaultTokens();
  const settings=await readJson('ports/windows/dist/windows-settings.json');
  for(const [key,role]of Object.entries(host.roles))assert.equal(settings.values[key],tokens[role].css,key);
  const terminal=await readJson('ports/windows/dist/terminal-fragment.json');
@@ -116,7 +116,7 @@ test('Windows native values, Terminal ANSI and styler selectors resolve from can
 
 test('Settings resource overrides retain shared brushes and stay isolated from other stylers',async()=>{
  const host=await readJson('ports/windows/host.json');
- const tokens=(await readJson('exports/tokens.resolved.json')).profiles.default.tokens;
+ const tokens=await defaultTokens();
  const settings=host.stylers.find(m=>m.id==='windows-11-settings-styler');
  const expected={SystemControlFocusVisualPrimaryBrush:'color.interaction.focus.ring',SystemControlFocusVisualSecondaryBrush:'color.surface.canvas',FocusStrokeColorOuterBrush:'color.interaction.focus.ring',FocusStrokeColorInnerBrush:'color.surface.canvas',ToolTipBackground:'color.surface.raised',ToolTipForeground:'color.text.default',ToolTipBorderBrush:'color.border.overlay',ToolTipBackgroundBrush:'color.surface.raised',ToolTipForegroundBrush:'color.text.default'};
  Object.assign(expected,{ProgressBarBackground:'color.interaction.pressed.bg',ProgressBarForeground:'color.action.primary.bg',ProgressBarBorderBrush:'color.border.control',ToggleSwitchContentForeground:'color.text.default',ToggleSwitchContentForegroundDisabled:'color.text.disabled',ToggleSwitchHeaderForeground:'color.text.default',ToggleSwitchHeaderForegroundDisabled:'color.text.disabled',ToggleSwitchKnobStrokeOn:'color.border.control'});
@@ -214,7 +214,7 @@ test('Calculator uses an exact package and separate primary, disabled and intera
 
 test('Explorer marquee settings encode canonical alpha and module compatibility',async()=>{
  const settings=await readJson('ports/windows/dist/j3w1-explorer-native.json');
- const tokens=(await readJson('exports/tokens.resolved.json')).profiles.default.tokens;
+ const tokens=await defaultTokens();
  for(const [key,role] of Object.entries((await readJson('ports/windows/host.json')).nativeExplorer)){
   if(key==='version')continue;
   assert.equal(settings[key],windowsStyleValue(key,{type:tokens[role].type,resolved:tokens[role].value}));
@@ -229,7 +229,7 @@ test('Explorer marquee settings encode canonical alpha and module compatibility'
 
 test('Explorer submenu stays on the hover palette while its child flyout is open',async()=>{
  const config=await readJson('ports/windows/dist/windows-11-file-explorer-styler.json');
- const tokens=(await readJson('exports/tokens.resolved.json')).profiles.default.tokens;
+ const tokens=await defaultTokens();
  for(const [target,opened,hover,normal,disabled] of [
   ['MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates','SubMenuOpened','PointerOver','Normal','Disabled'],
   ['AppBarButton > Grid#Root@CommonStates > Border#AppBarButtonInnerBorder','OverflowSubMenuOpened','OverflowPointerOver','OverflowNormal','OverflowDisabled'],
@@ -247,7 +247,7 @@ test('Explorer submenu stays on the hover palette while its child flyout is open
 
 test('toast actions use the secondary palette across native states without changing content or geometry',async()=>{
  const payload=await readJson('ports/windows/dist/windows-11-notification-center-styler.json');
- const tokens=(await readJson('exports/tokens.resolved.json')).profiles.default.tokens;
+ const tokens=await defaultTokens();
  const button=payload.controlStyles.find(t=>t.target==='Button#VerbButton');
  const presenter=payload.controlStyles.find(t=>t.target==='Button#VerbButton > ContentPresenter@CommonStates');
  const expected=(key,role)=>`${key}=${windowsStyleValue(key,{type:tokens[role].type,resolved:tokens[role].value})}`;
@@ -317,7 +317,7 @@ test('malformed settings fail preflight before any theme write',t=>{
 });
 test('concurrent lifecycle and directory junction targets are refused',t=>{
  const f=fixture(t);write(path.join(f.state,'lifecycle.lock'),{pid:process.pid});assert.match(f.run('Apply').stderr,/Another lifecycle/);fs.unlinkSync(path.join(f.state,'lifecycle.lock'));
- const outside=fs.mkdtempSync(path.join(os.tmpdir(),'j3w1-outside-'));t.after(()=>fs.rmSync(outside,{recursive:true,force:true}));fs.symlinkSync(outside,path.join(f.state,'assets'),process.platform==='win32'?'junction':'dir');assert.match(f.run('Apply').stderr,/Reparse\/symlink/);assert.deepEqual(fs.readdirSync(outside),[]);
+ const outside=scratchDirSync(t, 'j3w1-outside-');fs.symlinkSync(outside,path.join(f.state,'assets'),process.platform==='win32'?'junction':'dir');assert.match(f.run('Apply').stderr,/Reparse\/symlink/);assert.deepEqual(fs.readdirSync(outside),[]);
 });
 
 test('named theme and layout edits preserve later additions and detect duplicate identities',t=>{
@@ -451,7 +451,7 @@ test('recoverable lock-screen image is journaled and restored; later image edits
 });
 
 test('compact cursors use a black body and canonical red edge with visible bounded hotspots',async()=>{
- const tokens=(await readJson('exports/tokens.resolved.json')).profiles.default.tokens;
+ const tokens=await defaultTokens();
  const black=tokens['color.surface.canvas'].css,red=tokens['color.border.active'].css;
  const colors=new Set([black,red]);
  for(const name of CURSOR_NAMES){
@@ -992,7 +992,7 @@ test('Paint preopening menu styles retain native structure and join the existing
 test('Quick Settings maps its own media, toggle and slider states without changing actions or content',async()=>{
  const host=await readJson('ports/windows/host.json');
  const mapping=await readJson('ports/windows/mapping.json');
- const tokens=(await readJson('exports/tokens.resolved.json')).profiles.default.tokens;
+ const tokens=await defaultTokens();
  const id='windows-11-notification-center-styler';
  const config=host.stylers.find(m=>m.id===id);
  const payload=await readJson('ports/windows/dist/'+id+'.json');

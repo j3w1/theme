@@ -13,8 +13,8 @@
       "scripts/lib/recipe-generator.mjs": "sha256-73WV6IUzUVgC3oyFESbgawkTU9o6mh+rKtZx8HgdZeA=",
       "scripts/lib/recipe-css.mjs": "sha256-dA/5L61Tsn+Gkmz/syAd689Z5IyuShpluZ1NfgXcZ/c=",
       "scripts/lib/recipe-markup.mjs": "sha256-pxTFKTEWI1f86ScNw0e2ZfSFkdba5Zs6a7GhmMbIUUQ=",
-      "scripts/lib/markup.mjs": "sha256-/jd6ncIZAtDpNgML1FKkJn4mFJitU4mSXE9DLLvt2EI=",
-      "spec/components/dialog.md": "sha256-zKmPZU3GdJ1IPYbCO6KY7oizbzzKXSdlw3ujXc+R3bE=",
+      "scripts/lib/markup.mjs": "sha256-Q4GrS5/TfnQrne2fRpWZceL3aF1ShKxaf5QWic7Yj4c=",
+      "spec/components/dialog.md": "sha256-b2BJ7XMfsSQhSxJZxHIyIrj+hdFOaPEoaAHbQBWKOpQ=",
       "spec/components/dialog.demo.html": "sha256-m9m1JcXKJ5j3f0rxR1fojmkYvtgzUnhgWBPA0iI6cSM=",
       "site/src/styles/recipe-foundation.css": "sha256-siLjKAkNj84Wa0+Xz5Vf2yj9DT9k0K/Swy/cwHNrvYo=",
       "site/src/styles/components/dialog.css": "sha256-JYVSY/qlwfi+ygYj4vWspfmxxphd5Oor8V5aF0k94D8=",
@@ -23,7 +23,7 @@
       "tokens/semantic.tokens.json": "sha256-jbrikW294TIEdB7rAiqlLPAiLUy2CMyLT/opZiVe/E0=",
       "tokens/foundations.tokens.json": "sha256-e5OLoStuVryktzLt5O1yFmTb1CR3DcgqccWy5SdB2fw="
     },
-    "digest": "sha256-rGmI15TyvMxO8spWUF+5eZKe7AY/PEAFRjjtWy4dmbE=",
+    "digest": "sha256-gz1UowQjsLdaag66qu8qoZUGRZK+k3AMCySXAGK81xQ=",
     "revisionPolicy": "Resolve these paths at the same pinned commit as this manifest. The hosted source viewer identifies its supplying commit; generated source files contain content digests, never a floating revision claim."
   },
   "dependencies": {
@@ -476,6 +476,6 @@
     "example.html": "sha256-4W9jw4/GPrhd2VhxlZXF91t2yanib4VIWbJ18XomB0I=",
     "two-instances.html": "sha256-KqTTacdBcUnD+k4PYaBYhC74nsIJ1Twu1IOaDjQdoFI=",
     "LICENSE.md": "sha256-vVf/G6WKJRqbyGZCppbAxMh+UAJdSzaPt5xWUujehyU=",
-    "README.md": "sha256-JtVWLmJ6VdsYRA9228KVpvrqV8PdIsYeyo8w2Vm0DOM="
+    "README.md": "sha256-kVJSmPC03GwKEw3Z98nmIxueDycJXcT+Igu1NTe/wUo="
   }
 }

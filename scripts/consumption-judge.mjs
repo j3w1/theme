@@ -9,6 +9,7 @@
    with the component's stateRules. Exit code 1 on any failure; the judge is
    never loosened to make a run pass (tests/consumption/PROTOCOL.md). */
 
+import { rgbToHex, rgbCssToHex } from "./lib/color.mjs";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { readJson, repoRoot } from "./lib/fs.mjs";
@@ -56,7 +57,7 @@ const normalise = (value) => {
   const v = value.trim().toLowerCase();
   const rgb = v.match(/^rgba?\(\s*(\d+)[\s,]+(\d+)[\s,]+(\d+)(?:[\s,/]+([\d.]+%?))?\s*\)$/);
   if (rgb) {
-    const hex = `#${[rgb[1], rgb[2], rgb[3]].map((n) => Number(n).toString(16).padStart(2, "0")).join("")}`;
+    const hex = rgbToHex(rgb.slice(1, 4));
     if (rgb[4] === undefined) return hex;
     const alpha = rgb[4].endsWith("%") ? Number(rgb[4].slice(0, -1)) / 100 : Number(rgb[4]);
     return alpha >= 1 ? hex : `rgb(${rgb[1]} ${rgb[2]} ${rgb[3]} / ${Math.round(alpha * 100)}%)`;
@@ -115,10 +116,6 @@ if (browser && findings.length === 0) {
   await page.goto(`file://${path.resolve(resultPath)}`);
   const rules = Object.fromEntries(component.stateRules.map((r) => [r.state, r.tokens]));
   computed = await page.evaluate((states) => {
-    const toHex = (rgb) => {
-      const m = rgb.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
-      return m ? `#${[m[1], m[2], m[3]].map((n) => Number(n).toString(16).padStart(2, "0")).join("")}` : rgb;
-    };
     const out = {};
     for (const state of states) {
       const wrapper = document.querySelector(`[data-state="${state.replace(/"/g, '\\"')}"]`);
@@ -137,11 +134,14 @@ if (browser && findings.length === 0) {
       const outlineStyle = pick((s) => s.outlineStyle !== "none" && parseFloat(s.outlineWidth) > 0, cs);
       const bgStyle = pick((s) => s.backgroundColor !== "rgba(0, 0, 0, 0)", cs);
       const placeholder = state.includes("placeholder-shown") && "value" in control && control.value === "" ? getComputedStyle(control, "::placeholder").color : null;
-      out[state] = { color: toHex(placeholder ?? cs.color), background: toHex(bgStyle.backgroundColor), border: toHex(borderStyle.borderTopColor), outline: toHex(outlineStyle.outlineColor), outlineStyle: outlineStyle.outlineStyle, radius: borderStyle.borderRadius };
+      out[state] = { color: placeholder ?? cs.color, background: bgStyle.backgroundColor, border: borderStyle.borderTopColor, outline: outlineStyle.outlineColor, outlineStyle: outlineStyle.outlineStyle, radius: borderStyle.borderRadius };
     }
     return out;
   }, component.states);
   await b.close();
+  for (const entry of Object.values(computed)) {
+    for (const key of ["color", "background", "border", "outline"]) entry[key] = rgbCssToHex(entry[key]);
+  }
   for (const [state, expected] of Object.entries(rules)) {
     const actual = computed[state];
     if (!actual || !expected) continue;

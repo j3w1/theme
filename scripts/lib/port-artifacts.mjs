@@ -8,6 +8,7 @@
    published file and an installed one come from one implementation; their
    mapping.json must agree with host.json key for key. */
 
+import { hexOf as tokenHex } from "./color.mjs";
 import { chatgptAppearance, chatgptRoles, CHATGPT_SOURCE } from "./chatgpt-port.mjs";
 import { stringify } from "yaml";
 import { exists, readJson, stableJson, writeOrCheck } from "./fs.mjs";
@@ -30,8 +31,8 @@ export const WARP_YAML_KEYS = ["accent", "cursor", "background", "foreground",
 export const GHOSTTY_KEYS = ["background", "foreground", "cursor-color", "cursor-text", "selection-background", "selection-foreground",
   ...Array.from({ length: 16 }, (_, i) => `palette[${i}]`), "split-divider-color", "font-family", "font-size"];
 
-// Relative luminance of a #rrggbb colour, as Warp and Orca use it to tell dark from light.
-export const luminance = (hex) => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255).reduce((sum, c, i) => sum + c * [0.2126, 0.7152, 0.0722][i], 0);
+// Weighted encoded sRGB brightness used by Warp and Orca to classify dark themes.
+export const encodedBrightness = (hex) => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255).reduce((sum, c, i) => sum + c * [0.2126, 0.7152, 0.0722][i], 0);
 
 /* Native key → value, for the keys an emitter knows, each written once.
    `convert` turns a resolved token into the native value or throws. */
@@ -49,7 +50,7 @@ const nativeValues = ({ port, mapping, resolved }, keys, convert) => {
   return values;
 };
 const hexOf = (port, role, token) => {
-  const value = token.type === "color" ? toCss(token.type, token.resolved) : null;
+  const value = (token.resolved?.alpha ?? 1) < 1 ? null : tokenHex(token);
   if (!/^#[0-9a-f]{6}$/.test(value ?? "")) throw new Error(`ports/${port.id}: ${role} is not an opaque colour`);
   return value;
 };
@@ -62,7 +63,7 @@ const warpYaml = ({ manifest, port, mapping, resolved }) => {
   const theme = { name: "j3w1 theme" };
   for (const key of WARP_YAML_KEYS) {
     if (!values.has(key)) continue;
-    if (key === "terminal_colors.normal.black") theme.details = luminance(values.get("background")) < 0.5 ? "darker" : "lighter";
+    if (key === "terminal_colors.normal.black") theme.details = encodedBrightness(values.get("background")) < 0.5 ? "darker" : "lighter";
     const parts = key.split(".");
     let node = theme;
     for (const part of parts.slice(0, -1)) node = node[part] ??= {};
@@ -201,8 +202,8 @@ export const portArtifactsGenerator = {
    role and Codex scope resolved to its token, so the Windows installer reads
    one folder. Every token it names must be an eligible role of the default
    profile. */
-export const SPECIMEN_SOURCE = "ports/orca/src/specimen.json";
-export const SPECIMEN_FILE = "ports/orca/install/specimen.json";
+const SPECIMEN_SOURCE = "ports/orca/src/specimen.json";
+const SPECIMEN_FILE = "ports/orca/install/specimen.json";
 export const installerSpecimenGenerator = {
   name: "installer specimen",
   async run({ manifest, profiles, defaultId, check }) {

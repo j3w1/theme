@@ -104,67 +104,53 @@ compact: false
 
 ## Purpose
 
-A form too long for one screen, split into ordered steps that are validated
-one at a time. The stepper shows where the person is and which steps are
-complete; the panel holds the current step; Back and Next move through the
-sequence. Steps are not tabs: a future step is unreachable until the steps
-before it pass.
+A form too long for one screen, split into ordered steps validated one at a
+time. Steps are not tabs: a future step is unreachable until the steps before
+it pass.
 
 ## Anatomy
 
-The stepper, an ordered list of step buttons over a {color.border.divider}
-rule; each step's marker and name; the panel on {color.surface.default} with
-its "Step n of m" heading in {color.text.bright}; the actions row with Back
-(secondary) and Next (primary, {color.action.primary.bg} with
-{color.action.primary.text}).
+Parts as listed in the anatomy; the panel heading reads "Step n of m".
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | steps in {color.text.default}; complete steps carry the ✓ in {color.status.success.text} | the ✓ glyph; the numbers |
-| hover | step background → {color.interaction.hover.bg}; Next → {color.action.primary.hover-bg}; Back → {color.action.secondary.hover-bg} | cursor: pointer |
-| focus-visible | ring 1px dashed {color.interaction.focus.ring} at −2px; on Next's fill the ring takes {color.interaction.focus.ring-container} | the ring |
+| default | steps in {color.text.default}; complete steps carry ✓ in {color.status.success.text} | the ✓ glyph; the numbers |
+| hover | step → {color.interaction.hover.bg}; Next → {color.action.primary.hover-bg}; Back → {color.action.secondary.hover-bg} | cursor: pointer |
+| focus-visible | 1px dashed {color.interaction.focus.ring} ring at −2px; {color.interaction.focus.ring-container} on Next's fill | the ring |
 | current | 2px {color.border.selected-indicator} under the step; name in {color.text.bright} | `aria-current="step"`; the indicator bar; the heading reads "Step n of m" |
 | disabled | a future step in {color.text.disabled}; no hover | `disabled`; cursor: not-allowed; skipped by Tab |
-| invalid | the step's marker becomes ✕ in {color.status.danger.text}; its indicator takes {color.status.danger.border}; the panel shows the message | glyph; message text; `aria-invalid` on the failing fields |
-| busy | Next shows the static ⋯ glyph before its label and does not respond; size unchanged | `aria-busy` on the wizard; the glyph; cursor: progress |
+| invalid | marker becomes ✕ in {color.status.danger.text}; indicator {color.status.danger.border}; the panel shows the message | glyph; message text; `aria-invalid` on the failing fields |
+| busy | Next shows the static ⋯ before its label and ignores activation; size unchanged | `aria-busy` on the wizard; the glyph; cursor: progress |
 
-Precedence when several apply: disabled > busy > invalid > current > hover;
-focus-visible is always drawn.
+Precedence: disabled > busy > invalid > current > hover; focus-visible is
+always drawn.
 
 ## Keyboard
 
-Tab walks the enabled step buttons in order, then the panel's fields, then
-Back and Next. Enter or Space on a reachable step goes to it; on Next it
-validates the panel, and on failure moves focus to the first invalid field,
-on success advances and moves focus to the new panel heading. Back never
-validates. There is no arrow-key navigation between steps, because the
+As in the key table. A failed Next moves focus to the first invalid field; a
+successful one to the new panel heading. No arrow keys between steps: the
 stepper is a list of buttons, not a tablist.
 
 ## Accessibility
 
-The wizard is a region named by `aria-label`; the stepper is an `<ol>` so
-count and position are announced; the current step carries
-`aria-current="step"`; complete steps append visually hidden ", complete";
-unreachable steps are `disabled`, not `aria-disabled`, because they cannot be
-activated. The panel is a `<section>` named by its heading, which receives
-focus after each step change. Validation failures are announced through the
-form's live region and the ✕ marker; `aria-busy` marks the wizard while Next
-is in progress. Contrast: step text 8.65:1, current name 10.37:1, complete
-marker 7.13:1, indicator 4.69:1, Next text 9.28:1 on its fill, ring 5.57:1 on
-the primary fill, future step text 3.33:1 (exempt).
+The wizard is a region named by `aria-label`; the `<ol>` announces count and
+position. Complete steps append a visually hidden ", complete". Unreachable
+steps are `disabled`, not `aria-disabled`, because they cannot be activated.
+Validation failures are announced through the form's live region and the ✕
+marker. Text meets 4.5:1; the indicator and rings 3:1; future step text is
+exempt (house floor 3:1).
 
 ## Portability
 
-Everything is text, a 2px bottom border and the button tones; no icon font
-(the markers are text glyphs). Toolkits with a native assistant use its page
-list and map the indicator to the current page; toolkits with none draw the
-stepper as a row of buttons and record any deviation in the indicator width.
+Text, a 2px bottom border and the button tones; markers are text glyphs, no
+icon font. A toolkit without a native assistant draws the stepper as a row of
+buttons and records any deviation in the indicator width.
 
 ## Non-examples
 
-Tabs restyled as steps. A progress bar in place of the stepper. Circles with
-connecting lines that need a rounded radius. Future steps that look enabled
-and reject the click. A spinner on Next. Colour-only completion marks.
-Validation that blocks Back. Animated slides between panels.
+Tabs restyled as steps. A progress bar instead of the stepper. Circles with
+connecting lines that need a radius. Future steps that look enabled and
+reject the click. A spinner on Next. Colour-only completion marks. Validation
+that blocks Back. Animated slides between panels.

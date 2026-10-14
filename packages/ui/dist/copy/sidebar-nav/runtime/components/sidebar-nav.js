@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-C1XeXVYC.js";
-import { n as disclosure } from "../chunks/navigation-Dt8ap-9J.js";
+import { t as J3w1Element } from "../chunks/element-Dovcr9Ky.js";
+import { n as disclosure } from "../chunks/navigation-BfNzDYZB.js";
 //#region .cache/ui-build/entries/components/sidebar-nav.js
 var J3w1SidebarNav = class extends J3w1Element {
 	static componentId = "sidebar-nav";
 	static version = "4.0.0";
-	static implementationId = "sha256-7P+xFrwVfLOcV9jD54m5q0GPgMxEknJwkB/ex41V9/E=";
+	static implementationId = "sha256-rKjBWaKv0/VZBCTIvYNnUx/X/HyPypn7MJrL9+nt6cM=";
 	static connect = disclosure;
 	static upgradeProperties = [
 		"disabled",

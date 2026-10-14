@@ -107,17 +107,14 @@ compact: false
 
 ## Purpose
 
-Entering a bounded number: a gap in pixels, a timeout in milliseconds, a
-count. The theme replaces the host spinner, which is tiny and inconsistent,
-with two square buttons that are real tab stops. Free-form numeric text such
-as a version or an identifier is a text field with `inputmode`.
+Entering a bounded number: a gap in pixels, a timeout, a count. The host
+spinner, tiny and inconsistent, gives way to two square buttons that are
+real tab stops. Free-form numeric text (a version, an identifier) is a
+`text-field` with `inputmode`.
 
 ## Anatomy
 
-Label above; the box; the input with digits aligned to the end; the
-optional unit; the stepper with + over −, each button half the control
-height and at least 24px wide; help stating the range; the validation
-message.
+Parts as listed in the anatomy; each stepper button is at least 24px wide.
 
 ## States
 
@@ -125,40 +122,36 @@ message.
 | --- | --- | --- |
 | default | 1px {color.border.control} on {color.surface.input}; digits {color.text.default}; unit {color.text.muted}; stepper glyphs {color.action.tertiary.text} | — |
 | hover | background → {color.interaction.hover.bg}; a hovered stepper button → {color.action.tertiary.hover-bg} | cursor: text on the input, pointer on the buttons |
-| focus-visible | border → {color.border.active}; ring 1px dashed {color.interaction.focus.ring} at −2px on the box, or on the focused stepper button | the ring |
-| invalid | border 2px {color.status.danger.border}; message with the ✕ glyph | border width 1 → 2px; glyph; `aria-invalid` |
+| focus-visible | border → {color.border.active}; 1px dashed {color.interaction.focus.ring} at −2px on the box or the focused stepper button | the ring |
+| invalid | 2px {color.status.danger.border}; message with the ✕ glyph | border 1 → 2px; glyph; `aria-invalid` |
 | invalid+focus-visible | the 2px danger border and the ring in {color.interaction.focus.ring-container} at −4px | double boundary |
 | disabled | text, unit and glyphs {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}; buttons disabled | `disabled`; cursor: not-allowed |
-| read-only | no box: 1px dotted {color.border.divider} bottom edge on {color.surface.canvas}; the stepper is hidden | `readonly`; dotted edge; no buttons |
+| read-only | no box: 1px dotted {color.border.divider} bottom edge on {color.surface.canvas}; stepper hidden | `readonly`; dotted edge; no buttons |
 
 Precedence: disabled > invalid > hover; focus-visible is always drawn.
 
 ## Keyboard
 
-Native arrow stepping inside the input; the stepper buttons are ordinary
-buttons after it in the tab order and call `stepUp()` / `stepDown()`.
-Typing a value outside the range is allowed and reported as invalid on
-blur or submit, never clamped silently.
+A value outside the range may be typed; it is reported invalid on blur or
+submit, never clamped silently.
 
 ## Accessibility
 
-A programmatic label is required. The unit is `aria-hidden` and repeated in
-the label or help ("Inner gap (px)"), so it is never lost. Stepper buttons
-are named "Increase <label>" and "Decrease <label>". Help states min, max
-and step before the user types. `aria-invalid` only after interaction or
-submit. Contrast: digits 8.65:1, unit 5.81:1, glyphs 8.65:1, control border
-4.45:1, invalid border 4.69:1.
+A programmatic label is required. The `aria-hidden` unit is repeated in the
+label or help ("Inner gap (px)"). Help states min, max and step before the
+user types. `aria-invalid` only after interaction or submit. Text meets
+4.5:1; borders 3:1.
 
 ## Portability
 
-The text field's box plus two buttons; the host spinner is hidden with the
-engine's pseudo-elements and `appearance: textfield`. Hosts whose spin
-buttons cannot be replaced style them square in the same colours and record
-it.
+The `text-field` box plus two buttons; the host spinner is hidden with the
+engine's pseudo-elements and `appearance: textfield`. A host whose spin
+buttons cannot be replaced styles them square in the same colours and
+records it.
 
 ## Non-examples
 
 The host's default spinner. Round or overlapping stepper buttons. A value
-clamped silently on blur. Left-aligned digits. A unit typed into the value.
-A number field for phone numbers, postcodes or identifiers. Invalid shown by
-colour alone. Disabling by opacity.
+clamped silently. Left-aligned digits. A unit typed into the value. A number
+field for phone numbers, postcodes or identifiers. Invalid by colour alone.
+Disabling by opacity.

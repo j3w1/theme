@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — compact-dashboard
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/compact-dashboard.json
 spec: spec/components/compact-dashboard.md  site: https://j3w1.github.io/theme/reference/#c-compact-dashboard
 maturity: stable  priority: R2
@@ -28,9 +28,9 @@ Tokens (resolved):
 State dependency disclosures: D-007
 
 States: default, loading, empty, focus-visible
-  default: Square metric panels and readable tables. [Metric names, exact values and status text.]
-  loading: Busy boundary with existing content retained. [aria-busy and host-provided loading status.]
-  empty: Explicit absence of records. [Empty message; metric zero differs from unknown.]
+  default: Square metric panels, readable tables. [Metric names, exact values, status text.]
+  loading: Busy boundary; existing content kept. [`aria-busy` and host-provided loading status.]
+  empty: Explicit absence of records. [Empty message; a zero metric differs from an unknown one.]
   focus-visible: Dashed action outline. [Native keyboard focus.]
 
 Keyboard:

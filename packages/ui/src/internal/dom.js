@@ -19,6 +19,13 @@ export function announce(root, message) {
 }
 export function identify(root, node, suffix) { if (node && !node.id) node.id = `${root.id}-${suffix}`; return node?.id; }
 export function nativeInput(input, type = "input") { input.dispatchEvent(new Event(type, { bubbles: true })); }
+export function keyIndex({ key, index, length, next = "ArrowDown", previous = "ArrowUp", wrap = true }) {
+  if (key === "Home") return 0;
+  if (key === "End") return length - 1;
+  const target = index + (key === next ? 1 : key === previous ? -1 : 0);
+  return wrap ? (target + length) % length : Math.max(0, Math.min(length - 1, target));
+}
+
 export function rove(items, index, focus = true) {
   if (!items.length) return null;
   const next = items[(index + items.length) % items.length];

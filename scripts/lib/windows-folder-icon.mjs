@@ -1,3 +1,4 @@
+import { rgb as hexRgb } from "./color.mjs";
 // Original folder artwork, generated from semantic colors. No Windows asset is
 // copied or patched. Multi-size ICO frames keep the native tab/front silhouette.
 export const folderGeometry={
@@ -6,7 +7,7 @@ export const folderGeometry={
  open:[[5,12],[31,12],[27,28],[1,28]],
 };
 export function folderIconFile(fill, edge, open=false) {
- const rgb=hex=>hex.slice(1).match(/../g).map(x=>parseInt(x,16));
+ const rgb=hexRgb;
  const colors=[rgb(edge),rgb(fill)];
  const sizes=[16,20,24,32,40,48,64,96,128,256];
  const images=sizes.map(size=>{

@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — tooltip
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/tooltip.json
 spec: spec/components/tooltip.md  site: https://j3w1.github.io/theme/reference/#c-tooltip
 maturity: stable  priority: R1
@@ -20,11 +20,11 @@ Tokens (resolved):
 State dependency disclosures: D-008
 
 States: default, hover, focus-visible, open, closed
-  default: trigger at rest; the popup shown for the demonstration [`aria-describedby` on the trigger]
-  hover: trigger background → {color.action.tertiary.hover-bg}; the popup appears after 300 ms [cursor: pointer; the popup itself]
-  focus-visible: ring 1px dashed {color.interaction.focus.ring} at −2px on the trigger; the popup appears at once [the ring; the popup]
-  open: the popup visible, 1px {color.border.overlay} on {color.surface.raised} [the popup is present in the accessibility tree]
-  closed: the popup absent; the trigger unchanged [`hidden`; the description is still read from the DOM]
+  default: trigger at rest; popup shown for the demonstration [`aria-describedby` on the trigger]
+  hover: trigger background → {color.action.tertiary.hover-bg}; popup after 300 ms [cursor: pointer; the popup]
+  focus-visible: 1px dashed {color.interaction.focus.ring} at −2px on the trigger; popup at once [the ring; the popup]
+  open: popup visible, 1px {color.border.overlay} on {color.surface.raised} [popup in the accessibility tree]
+  closed: popup absent; trigger unchanged [`hidden`; the description is still read from the DOM]
 
 Keyboard:
   Tab: Focusing the trigger shows the tooltip; leaving it hides the tooltip.

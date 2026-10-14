@@ -60,53 +60,46 @@ compact: false
 
 ## Purpose
 
-Marks the moment between a request and its result when there is nothing to
-measure: a list that is being fetched, a field that is being validated. The
-theme has no spinner; the same static ⋯ glyph that a loading control shows
-appears here beside a worded label, and the container says it is busy.
+Marks the wait between a request and its result when there is nothing to
+measure: a list being fetched, a field being validated. There is no spinner;
+the static ⋯ a loading control shows appears here beside a worded label.
 
 ## Anatomy
 
-The busy container; the glyph in {color.text.muted}; the label in
-{color.text.default}. Inline, the two follow the text they qualify; as a
-block, they sit centred on {color.surface.default} inside a
-{color.border.divider} edge where the content will appear.
+Inline, glyph and label follow the text they qualify; as a block they sit
+centred, inside a {color.border.divider} edge, where the content will appear.
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | the static ⋯ and the label | `aria-busy="true"`; the glyph; the worded label |
-| reduced-motion | identical: there is nothing to reduce | `prefers-reduced-motion` |
+| reduced-motion | identical: nothing to reduce | `prefers-reduced-motion` |
 
-The indicator has no hover, focus or disabled state; it is not a control.
+Not a control: no hover, focus or disabled state.
 
 ## Keyboard
 
-None. The indicator is never focusable. When loading replaces content that
-had focus, focus moves to the container's heading or to the indicator's
-parent region, never to the indicator itself, and returns to the result when
-it arrives.
+Never focusable. When loading replaces content that had focus, focus moves to
+the container's heading or parent region, never the indicator, and returns to
+the result when it arrives.
 
 ## Accessibility
 
-The container is `role="status"` with `aria-busy="true"` while loading, so
-assistive technology can wait for the subtree to settle and announce the
-label once. The glyph is `aria-hidden`; the label is a real sentence with the
-object named ("Loading fonts") and is visible in both variants; a host that
-must hide it inline keeps it visually hidden, never absent. Because nothing moves, there is no
-`prefers-reduced-motion` branch to get wrong. Contrast: label 8.65:1 on the
-canvas and 8.43:1 on the panel surface; glyph 5.81:1 and 5.66:1.
+`aria-busy` lets assistive technology wait for the subtree to settle and
+announce the label once. The label names the object ("Loading fonts"); a host
+that must hide it inline keeps it visually hidden, never absent. Nothing
+moves, so there is no reduced-motion branch to get wrong. Label and glyph meet
+4.5:1.
 
 ## Portability
 
-Text only. Toolkits with a spinner widget do not use it; the glyph and label
-are a plain label. Hosts that insist on an activity indicator record the
-deviation and keep it under the 150 ms motion budget with a reduced-motion
-branch.
+Text only; a toolkit's spinner widget is not used. A host that insists on an
+activity indicator records the deviation and keeps it within the 150 ms
+motion budget with a reduced-motion branch.
 
 ## Non-examples
 
-A spinner or rotating ring. Animated dots. A shimmering skeleton. A full-page
-overlay that blocks input for a fetch. A glyph with no label. An indicator
-that takes focus. A dimmed container at reduced opacity.
+A spinner or rotating ring. Animated dots. A shimmering skeleton. A
+full-page overlay blocking input for a fetch. A glyph with no label. An
+indicator that takes focus. A dimmed, reduced-opacity container.

@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — admin-form
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/admin-form.json
 spec: spec/components/admin-form.md  site: https://j3w1.github.io/theme/reference/#c-admin-form
 maturity: stable  priority: R1
@@ -49,10 +49,10 @@ Tokens (resolved):
 State dependency disclosures: D-007
 
 States: default, invalid, busy, disabled
-  default: rest tokens of every component on {color.surface.default}; the current step carries the indicator bar, future steps are disabled [`aria-current="step"`]
-  invalid: the name and hostname fields take the 2px {color.status.danger.border} and show their ✕ messages; the current step's marker becomes ✕; a danger alert on {color.status.danger.tint} summarising the two fields replaces the notice; the other fields stay at rest [border width 1 → 2px; glyphs; `aria-invalid`; `role="alert"`]
-  busy: Continue shows the static ⋯ glyph in {color.action.primary.text}; the form carries `aria-busy`; nothing shrinks or animates [glyph; `aria-busy`; cursor: progress]
-  disabled: every control takes its component's disabled treatment ({color.text.disabled}, {color.border.disabled}, {color.interaction.disabled.bg}); labels and review keys dim; no hover anywhere [`disabled` on the wrapping fieldset; cursor: not-allowed; never opacity]
+  default: every component's rest tokens on {color.surface.default}; the current step carries the indicator bar, future steps are disabled [`aria-current="step"`]
+  invalid: name and hostname take the 2px {color.status.danger.border} and ✕ messages; the current step's marker becomes ✕; a danger summary on {color.status.danger.tint} naming the two fields replaces the notice; other fields stay at rest [border 1 → 2px; glyphs; `aria-invalid`; `role="alert"`]
+  busy: Continue shows the static ⋯ in {color.action.primary.text}; nothing shrinks or animates [glyph; `aria-busy` on the form; cursor: progress]
+  disabled: every control takes its component's disabled treatment ({color.text.disabled}, {color.border.disabled}, {color.interaction.disabled.bg}); labels and review keys dim; no hover [`disabled` on the wrapping fieldset; cursor: not-allowed; never opacity]
 
 Keyboard:
   Tab / Shift+Tab: Breadcrumb links, the reachable step buttons, then every field in reading order, then Back, Save draft and Continue; the file-input's native input is the stop and its button label is drawn with the ring.

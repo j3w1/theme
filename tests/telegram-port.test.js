@@ -1,4 +1,5 @@
 // Native format and semantic contracts; these are not real-import evidence.
+import { luminanceRgb as luminance } from "../scripts/lib/contrast.mjs";
 import assert from "node:assert/strict";
 import test from "node:test";
 import { readFile } from "node:fs/promises";
@@ -327,7 +328,6 @@ test("wallpaper, solid bubbles, rose messages, chrome emphasis and avatars keep 
     for (const key of [incoming, outgoing]) for (const end of wallpaper) assert.notDeepEqual(rgba(target, key), end, `${target}:${key} differs from the wallpaper`);
     // Lightness ladder: wallpaper < incoming < outgoing, so both bubbles read
     // as raised shapes over the whole wallpaper gradient.
-    const luminance = ([r, g, b]) => [r, g, b].map(v => { v /= 255; return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }).reduce((sum, v, i) => sum + v * [0.2126, 0.7152, 0.0722][i], 0);
     assert.ok(Math.max(...wallpaper.map(luminance)) < luminance(rgba(target, incoming)), `${target}: incoming is lighter than the wallpaper`);
     assert.ok(luminance(rgba(target, incoming)) < luminance(rgba(target, outgoing)), `${target}: outgoing is lighter than incoming`);
   }
@@ -349,7 +349,6 @@ test("on-fill foregrounds retain contrast, near-white stays restricted and inter
   assert.equal(effective("desktop", "historyFileThumbRadialFg").role, "color.text.highlight", "the thumbnail radial control inherits the same contrast-critical highlight");
   // Near-white by relative luminance, not by literal value, so a token change
   // cannot silently widen it. Bright rose (text.bright) stays well below.
-  const luminance = ([r, g, b]) => [r, g, b].map(v => { v /= 255; return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }).reduce((sum, v, i) => sum + v * [0.2126, 0.7152, 0.0722][i], 0);
   // Fills a near-white glyph may sit on, plus the dark media scrim behind
   // loader icons over photos.
   const fills = new Set(["color.action.primary.bg", "color.action.primary.hover-bg", "color.action.primary.pressed-bg", "color.interaction.selection.bg", "color.interaction.selection.inactive-bg", "color.interaction.hover.bg-strong", "color.status.danger.fill", "color.interaction.text-selection.bg", "color.surface.backdrop"]);

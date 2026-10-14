@@ -1,13 +1,13 @@
+import { scratchDirSync } from "./helpers/scratch.mjs";
+import { sha256Hex } from "../scripts/lib/host-install/files.mjs";
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import {createHash} from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
-import os from 'node:os';
 import {spawnSync} from 'node:child_process';
 import {repoRoot} from '../scripts/lib/fs.mjs';
 import {settingsStylerSource} from '../ports/windows/src/settings-styler-source.mjs';
-const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
+const hash=bytes=>sha256Hex(bytes);
 const fixture=Buffer.from('// retained license\n// @compilerOptions -lcomctl32 -lole32\nHWND GetCoreWnd() { return nullptr; }\nPTP_TIMER g_statsTimer;\nBOOL Wh_ModInit() {\n    retainedInit();\n}\nvoid Wh_ModUninit() { retainedRestore(GetCoreWnd()); }\n');
 const replacement='namespace j3w1Settings { bool Admit(); }\nHWND GetCoreWnd() { return ownedWindow(); }';
 test('Settings source adaptation preserves license, initialization and shared restore lookup',()=>{
@@ -43,8 +43,7 @@ test('Generated Settings startup admission pins both executable and XAML binary'
 });
 
 test('Settings derived source journals both pins, restores the prior adapter, and refuses altered cache',t=>{
- const state=fs.mkdtempSync(path.join(os.tmpdir(),'j3w1-settings-source-'));
- t.after(()=>fs.rmSync(state,{recursive:true,force:true}));
+ const state=scratchDirSync(t, 'j3w1-settings-source-');
  const source=path.join(state,'source');fs.cpSync(path.join(repoRoot,'ports/windows'),source,{recursive:true});
  const write=(file,value)=>{fs.mkdirSync(path.dirname(file),{recursive:true});fs.writeFileSync(file,typeof value==='string'?value:JSON.stringify(value));};
  const read=file=>JSON.parse(fs.readFileSync(file,'utf8'));

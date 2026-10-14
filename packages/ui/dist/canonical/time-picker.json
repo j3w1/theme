@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=",
+  "sourceDigest": "sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=",
   "id": "time-picker",
   "family": "forms-advanced",
   "maturity": "stable",
@@ -228,8 +228,8 @@
   "stateRules": [
     {
       "state": "default",
-      "visual": "Input surface, default text and control border.",
-      "channel": "",
+      "visual": "{color.text.default} on {color.surface.input}, 1px {color.border.control}",
+      "channel": "—",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -273,8 +273,8 @@
     },
     {
       "state": "hover",
-      "visual": "The declared hover fill.",
-      "channel": "",
+      "visual": "background → {color.interaction.hover.bg}",
+      "channel": "hover-capable pointers only",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -318,8 +318,8 @@
     },
     {
       "state": "focus-visible",
-      "visual": "Active border and the canonical focus ring.",
-      "channel": "",
+      "visual": "border → {color.border.active}; the canonical focus ring",
+      "channel": "the ring",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -373,8 +373,8 @@
     },
     {
       "state": "invalid",
-      "visual": "Danger border and a linked message.",
-      "channel": "",
+      "visual": "2px {color.status.danger.border}; a linked message",
+      "channel": "border 1 → 2px; ✕ glyph; `aria-invalid`",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -416,8 +416,8 @@
     },
     {
       "state": "disabled",
-      "visual": "Disabled colors; editor and step actions unavailable.",
-      "channel": "",
+      "visual": "{color.text.disabled} on {color.interaction.disabled.bg}, border {color.border.disabled}; editor and step actions unavailable",
+      "channel": "`disabled`; cursor: not-allowed",
       "tokens": {}
     }
   ],
@@ -463,7 +463,7 @@
     "admin-form",
     "settings-panel"
   ],
-  "nonExamples": "An unthemed host popup presented as fully themed. A second named input that duplicates form values. Discarding native constraints, labels or reset behavior. Literal colors, rounded corners, or a selected fill with no distinguishable focus boundary.",
+  "nonExamples": "An unthemed host popup presented as themed. A second named input\nduplicating form values. Dropping native constraints, labels or reset.\nLiteral colours or rounded corners.",
   "contrast": [
     {
       "label": "time-picker default text",

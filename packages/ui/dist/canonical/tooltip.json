@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=",
+  "sourceDigest": "sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=",
   "id": "tooltip",
   "family": "feedback",
   "maturity": "stable",
@@ -175,7 +175,7 @@
   "stateRules": [
     {
       "state": "default",
-      "visual": "trigger at rest; the popup shown for the demonstration",
+      "visual": "trigger at rest; popup shown for the demonstration",
       "channel": "`aria-describedby` on the trigger",
       "tokens": {
         "fg": {
@@ -220,8 +220,8 @@
     },
     {
       "state": "hover",
-      "visual": "trigger background → {color.action.tertiary.hover-bg}; the popup appears after 300 ms",
-      "channel": "cursor: pointer; the popup itself",
+      "visual": "trigger background → {color.action.tertiary.hover-bg}; popup after 300 ms",
+      "channel": "cursor: pointer; the popup",
       "tokens": {
         "fg": {
           "alias": "color.action.tertiary.text",
@@ -251,7 +251,7 @@
     },
     {
       "state": "focus-visible",
-      "visual": "ring 1px dashed {color.interaction.focus.ring} at −2px on the trigger; the popup appears at once",
+      "visual": "1px dashed {color.interaction.focus.ring} at −2px on the trigger; popup at once",
       "channel": "the ring; the popup",
       "tokens": {
         "fg": {
@@ -294,8 +294,8 @@
     },
     {
       "state": "open",
-      "visual": "the popup visible, 1px {color.border.overlay} on {color.surface.raised}",
-      "channel": "the popup is present in the accessibility tree",
+      "visual": "popup visible, 1px {color.border.overlay} on {color.surface.raised}",
+      "channel": "popup in the accessibility tree",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -339,7 +339,7 @@
     },
     {
       "state": "closed",
-      "visual": "the popup absent; the trigger unchanged",
+      "visual": "popup absent; trigger unchanged",
       "channel": "`hidden`; the description is still read from the DOM",
       "tokens": {}
     }
@@ -389,7 +389,7 @@
     "i3-window-frame",
     "filterable-table"
   ],
-  "nonExamples": "A rounded bubble with an arrow. A tooltip with a shadow or a fade longer\nthan 150 ms. A tooltip as the only accessible name of an icon button. A\ntooltip with a link or a button inside. One that opens on focus but not on\nhover, or on hover with no delay. A title attribute. A tooltip that follows\nthe pointer.",
+  "nonExamples": "A rounded bubble with an arrow. A shadow, or a fade longer than 150 ms. The\ntooltip as an icon button's only accessible name. A link or button inside.\nOpening on focus but not hover, or on hover with no delay. A `title`\nattribute. Following the pointer.",
   "contrast": [
     {
       "label": "tooltip default text",

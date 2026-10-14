@@ -100,35 +100,36 @@ compact: false
 
 ## Purpose
 
-Set a numeric value with a native range input and a visible output. The input retains min, max, step, disabled, name/value submission and form reset. Platform track geometry is a native rendering boundary; the semantic accent and focus roles remain explicit.
+A bounded numeric value on a native slider with a visible output.
 
 ## Anatomy
 
-- **label:** Visible label linked to the input.
-- **input:** Native range control with caller-specified bounds.
-- **output:** Current numeric value linked using for.
+Parts as listed in the anatomy.
 
 ## States
 
-| State | Presentation | Non-colour channel |
+| State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | Named content on the default surface. | Native text and structure. |
-| focus-visible | Dashed focus ring. | Native keyboard focus position. |
-| disabled | Disabled semantic foreground, background and border at full opacity. | Native disabled state blocks activation. |
+| default | named content on the default surface | native text and structure |
+| focus-visible | dashed focus ring | native focus position |
+| disabled | disabled foreground, background and border at full opacity | native disabled state blocks activation |
 
 ## Keyboard
 
-- **Tab / Shift+Tab:** Reach and leave the slider.
-- **Arrow keys / Home / End:** Use native stepping, minimum and maximum behavior.
+Native, as in the key table.
 
 ## Accessibility
 
-Retain the input's accessible name and native value semantics. The visible output does not replace its label. Put units in the label or help text. No value changes solely from receiving focus.
+The input keeps its accessible name and native value semantics; the output
+never replaces the label. Units go in the label or help text. Focus alone
+never changes the value.
 
 ## Portability
 
-Follows the shared component defaults in `spec/portability.md` (section "Shared component defaults").
+Follows the shared component defaults in `spec/portability.md` (section
+"Shared component defaults").
 
 ## Non-examples
 
-Unlabelled controls, color-only status, drag-only operations, hidden required instructions, stolen focus or an invented service success.
+Unlabelled controls. Colour-only status. Drag-only operations. Hidden
+required instructions. Stolen focus. An invented service success.

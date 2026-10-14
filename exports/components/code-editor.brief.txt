@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — code-editor
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/code-editor.json
 spec: spec/components/code-editor.md  site: https://j3w1.github.io/theme/reference/#c-code-editor
 maturity: stable  priority: R1
@@ -47,11 +47,11 @@ State dependency disclosures: D-007
 
 States: default, focus-visible, selected, selected+container-inactive, current, read-only
   default: code on {color.code.bg}; comments italic; invalid text wavy-underlined in {color.code.syntax.invalid}; deprecated text struck through [italic, wavy underline, line-through]
-  focus-visible: container ring 2px {color.interaction.focus.ring-container} at −3px; a 1px {color.code.caret} bar; the caret line filled {color.code.current-line} across gutter and text; its number in {color.code.line-number-active} [the ring; the caret bar]
-  selected: the range filled {color.code.selection-bg}; syntax colours kept [the range is announced through the host's selection; the fill spans line ends]
-  selected+container-inactive: the same range in {color.interaction.selection.inactive-bg} with {color.interaction.selection.inactive-text}; no caret, no ring [lightness drop between the two fills]
-  current: both characters of the matched pair outlined 1px solid {color.code.bracket-match} [the outline is a box, not a colour change]
-  read-only: gutter drops to {color.surface.sunken} behind the same line numbers; the gutter rule becomes dotted; no caret is drawn [`aria-readonly`; dotted rule; missing caret]
+  focus-visible: 2px {color.interaction.focus.ring-container} ring at −3px; 1px {color.code.caret} bar; caret line filled {color.code.current-line} across gutter and text, its number {color.code.line-number-active} [the ring; the caret bar]
+  selected: range filled {color.code.selection-bg}; syntax colours kept [the host's selection is announced; the fill spans line ends]
+  selected+container-inactive: same range in {color.interaction.selection.inactive-bg} with {color.interaction.selection.inactive-text}; no caret, no ring [lightness drop between the two fills]
+  current: both characters of the matched pair outlined 1px solid {color.code.bracket-match} [an outline box, not a colour change]
+  read-only: gutter on {color.surface.sunken}, same line numbers; dotted gutter rule; no caret [`aria-readonly`; dotted rule; no caret]
 
 Keyboard:
   (host): The host editor owns every key; the theme changes no binding, no caret behaviour and no selection model.

@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=",
+  "sourceDigest": "sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=",
   "id": "field",
   "family": "forms-basic",
   "maturity": "stable",
@@ -285,7 +285,7 @@
     },
     {
       "state": "disabled",
-      "visual": "label and control text {color.text.disabled}; control {color.interaction.disabled.bg} with 1px {color.border.disabled}; help unchanged",
+      "visual": "label and control text {color.text.disabled}; control {color.interaction.disabled.bg}, 1px {color.border.disabled}; help unchanged",
       "channel": "`disabled`; cursor: not-allowed",
       "tokens": {}
     }
@@ -330,7 +330,7 @@
     "admin-form",
     "settings-panel"
   ],
-  "nonExamples": "A floating label inside the control. A label to the left of the control.\nPlaceholder text as the only label. An error shown by a red border alone. A\nmessage that replaces the help text in the DOM. A required mark that is only\na colour change. An asterisk with no text alternative. Two controls in one\nfield.",
+  "nonExamples": "A floating label inside the control. A label left of the control.\nPlaceholder as the only label. An error shown by a red border alone. A\nmessage that replaces the help in the DOM. A colour-only required mark. An\nasterisk with no text alternative. Two controls in one field.",
   "contrast": [
     {
       "label": "field default text",

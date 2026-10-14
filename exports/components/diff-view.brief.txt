@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — diff-view
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/diff-view.json
 spec: spec/components/diff-view.md  site: https://j3w1.github.io/theme/reference/#c-diff-view
 maturity: stable  priority: R1
@@ -37,12 +37,12 @@ Tokens (resolved):
 State dependency disclosures: D-007
 
 States: default, hover, selected, focus-visible, expanded, collapsed
-  default: added rows {color.diff.added.bg} with `+` in {color.diff.added.gutter}; removed {color.diff.removed.bg} with `−` in {color.diff.removed.gutter}; modified {color.diff.modified.bg} with `~` in {color.diff.modified.gutter}; hunk rows {color.diff.header-bg}; conflicts in a 3px double {color.diff.conflict-border} [the markers; the double border]
-  hover: the row's number and marker cells → {color.interaction.hover.bg}; the text cell keeps its fill [cursor: default; only on hover-capable pointers]
-  selected: the whole row filled {color.interaction.selection.bg} with {color.interaction.selection.text}; the marker stays [`aria-current` (or `:target` for a permalinked line); the marker glyph]
-  focus-visible: 1px dashed {color.interaction.focus.ring} at −2px around the row; on a selected row the ring is {color.interaction.focus.ring-container} [the ring]
-  expanded: the folded `<tbody>` is shown; the chevron points down; the button reads "Hide 12 unchanged lines" [`aria-expanded="true"`; the rows appear]
-  collapsed: the folded `<tbody>` is hidden; the chevron points to the inline end; "… 12 unchanged lines" [`aria-expanded="false"`; the ellipsis]
+  default: added {color.diff.added.bg}, `+` in {color.diff.added.gutter}; removed {color.diff.removed.bg}, `−` in {color.diff.removed.gutter}; modified {color.diff.modified.bg}, `~` in {color.diff.modified.gutter}; hunks {color.diff.header-bg}; conflicts in a 3px double {color.diff.conflict-border} [the markers; the double border]
+  hover: number and marker cells → {color.interaction.hover.bg}; the text cell keeps its fill [cursor: default; hover-capable pointers only]
+  selected: whole row {color.interaction.selection.bg} with {color.interaction.selection.text}; the marker stays [`aria-current` (or `:target` for a permalinked line); the marker glyph]
+  focus-visible: 1px dashed {color.interaction.focus.ring} at −2px around the row; {color.interaction.focus.ring-container} on a selected row [the ring]
+  expanded: folded `<tbody>` shown; chevron down; "Hide 12 unchanged lines" [`aria-expanded="true"`; the rows appear]
+  collapsed: folded `<tbody>` hidden; chevron to the inline end; "… 12 unchanged lines" [`aria-expanded="false"`; the ellipsis]
 
 Keyboard:
   Tab / Shift+Tab: Moves between the fold buttons and any row the host makes focusable; rows are not stops in a plain table.

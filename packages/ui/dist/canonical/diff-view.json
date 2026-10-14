@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=",
+  "sourceDigest": "sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=",
   "id": "diff-view",
   "family": "developer",
   "maturity": "stable",
@@ -391,7 +391,7 @@
   "stateRules": [
     {
       "state": "default",
-      "visual": "added rows {color.diff.added.bg} with `+` in {color.diff.added.gutter}; removed {color.diff.removed.bg} with `−` in {color.diff.removed.gutter}; modified {color.diff.modified.bg} with `~` in {color.diff.modified.gutter}; hunk rows {color.diff.header-bg}; conflicts in a 3px double {color.diff.conflict-border}",
+      "visual": "added {color.diff.added.bg}, `+` in {color.diff.added.gutter}; removed {color.diff.removed.bg}, `−` in {color.diff.removed.gutter}; modified {color.diff.modified.bg}, `~` in {color.diff.modified.gutter}; hunks {color.diff.header-bg}; conflicts in a 3px double {color.diff.conflict-border}",
       "channel": "the markers; the double border",
       "tokens": {
         "fg": {
@@ -436,8 +436,8 @@
     },
     {
       "state": "hover",
-      "visual": "the row's number and marker cells → {color.interaction.hover.bg}; the text cell keeps its fill",
-      "channel": "cursor: default; only on hover-capable pointers",
+      "visual": "number and marker cells → {color.interaction.hover.bg}; the text cell keeps its fill",
+      "channel": "cursor: default; hover-capable pointers only",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -467,7 +467,7 @@
     },
     {
       "state": "selected",
-      "visual": "the whole row filled {color.interaction.selection.bg} with {color.interaction.selection.text}; the marker stays",
+      "visual": "whole row {color.interaction.selection.bg} with {color.interaction.selection.text}; the marker stays",
       "channel": "`aria-current` (or `:target` for a permalinked line); the marker glyph",
       "tokens": {
         "fg": {
@@ -498,7 +498,7 @@
     },
     {
       "state": "focus-visible",
-      "visual": "1px dashed {color.interaction.focus.ring} at −2px around the row; on a selected row the ring is {color.interaction.focus.ring-container}",
+      "visual": "1px dashed {color.interaction.focus.ring} at −2px around the row; {color.interaction.focus.ring-container} on a selected row",
       "channel": "the ring",
       "tokens": {
         "fg": {
@@ -541,7 +541,7 @@
     },
     {
       "state": "expanded",
-      "visual": "the folded `<tbody>` is shown; the chevron points down; the button reads \"Hide 12 unchanged lines\"",
+      "visual": "folded `<tbody>` shown; chevron down; \"Hide 12 unchanged lines\"",
       "channel": "`aria-expanded=\"true\"`; the rows appear",
       "tokens": {
         "fg": {
@@ -572,7 +572,7 @@
     },
     {
       "state": "collapsed",
-      "visual": "the folded `<tbody>` is hidden; the chevron points to the inline end; \"… 12 unchanged lines\"",
+      "visual": "folded `<tbody>` hidden; chevron to the inline end; \"… 12 unchanged lines\"",
       "channel": "`aria-expanded=\"false\"`; the ellipsis",
       "tokens": {
         "fg": {
@@ -646,7 +646,7 @@
   "specimens": [
     "i3-window-frame"
   ],
-  "nonExamples": "Red and green fills with no `+`/`−` marker. Word-level changes drawn as a\nbright fill that pushes the text below 4.5:1. A removed line rendered in\n`text.disabled` or struck through as a whole. Collapsed hunks that are only\nvisually clipped and still read out. Conflict blocks in purple. Hover that\nrecolours the code text. Round-cornered hunk cards floating on the page. A\nselected row that drops the marker because \"the colour says it\".",
+  "nonExamples": "Red and green fills without `+`/`−`. Word-level changes as a bright fill\nthat pushes text below 4.5:1. A removed line in `text.disabled` or struck\nthrough whole. Collapsed hunks only visually clipped and still read out.\nPurple conflict blocks. Hover that recolours the code text. Round-cornered\nhunk cards. A selected row that drops the marker.",
   "contrast": [
     {
       "label": "diff-view default text",

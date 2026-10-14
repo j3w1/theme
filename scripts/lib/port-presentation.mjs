@@ -1,8 +1,10 @@
+import manifest from "../../theme.json" with { type: "json" };
+const siteBase = manifest.site.base.replace(/\/?$/, "/");
 import { escapeHtml as esc } from "./hex-literals.mjs";
 // Where the site serves a port's importable file, relative to the site base:
 // ports/<id>/<file name>. The README table and the Ports page share it.
 export const portDownloadPath = (id, file) => `ports/${id}/${file.split("/").at(-1)}`;
-export const renderPortCatalogue = (catalogue, { base = "/theme/", revision = null } = {}) => {
+export const renderPortCatalogue = (catalogue, { base = siteBase, revision = null } = {}) => {
   if (revision !== null && !/^[a-f0-9]{40}$/.test(revision)) throw new Error("Port source links need an immutable revision");
   const source = (file, raw = false) => revision ? (raw ? "https://raw.githubusercontent.com/j3w1/theme/" : "https://github.com/j3w1/theme/blob/") + revision + "/" + file.split("/").map(encodeURIComponent).join("/") : null;
   const link = (text, file, raw = false) => source(file, raw) ? '<a href="' + esc(source(file, raw)) + '">' + esc(text) + "</a>" : esc(text);

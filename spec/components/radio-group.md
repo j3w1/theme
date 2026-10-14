@@ -105,29 +105,24 @@ compact: true
 
 ## Purpose
 
-One choice out of a few visible options. Below two options a checkbox or
-switch is used; above roughly six, a select. The radios are square, as every
-control in this theme is, and are told apart from checkboxes by the inner
-square instead of the ✓ glyph and by arrow-key movement instead of separate
-tab stops.
+One choice among two to roughly six visible options; fewer is a checkbox or
+switch, more a select. It differs from a checkbox by the inner square
+instead of ✓ and by arrow keys instead of separate tab stops.
 
 ## Anatomy
 
-A `<fieldset>` whose `<legend>` asks the question; a list of `<label>` rows
-each holding the native input, drawn as a 16px square with `appearance:
-none`, and its text; the validation message at the end. The inner square is
-a real element stacked over the input in the same cell.
+Parts as listed in the anatomy.
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | 16px square, 1px {color.border.control} on {color.surface.input}; text {color.text.default} | — |
-| hover | box background → {color.interaction.hover.bg}; a checked box → {color.action.primary.hover-bg} | cursor: pointer; hover-capable pointers only |
-| focus-visible | ring 1px dashed {color.interaction.focus.ring} at −2px around the box | the ring |
-| checked | box fills {color.action.primary.bg}; an 8px inner square in {color.action.primary.text}; border stays {color.border.control} | the inner square; `checked` |
+| hover | box → {color.interaction.hover.bg}; a checked box → {color.action.primary.hover-bg} | cursor: pointer; hover-capable pointers only |
+| focus-visible | 1px dashed {color.interaction.focus.ring} ring at −2px around the box | the ring |
+| checked | box fills {color.action.primary.bg}; 8px inner square in {color.action.primary.text}; border stays {color.border.control} | the inner square; `checked` |
 | checked+focus-visible | the fill and a ring in {color.interaction.focus.ring-container} | inner square and ring |
-| disabled | boxes {color.interaction.disabled.bg} with 1px {color.border.disabled}; inner square and text {color.text.disabled} | `disabled`; cursor: not-allowed |
+| disabled | boxes {color.interaction.disabled.bg}, 1px {color.border.disabled}; inner square and text {color.text.disabled} | `disabled`; cursor: not-allowed |
 | invalid | every box border 2px {color.status.danger.border}; message with the ✕ glyph | border width 1 → 2px; glyph; `aria-invalid` |
 | required | `*` after the legend in {color.status.danger.text} plus visually hidden "required" | `required`; the mark |
 
@@ -136,31 +131,26 @@ drawn.
 
 ## Keyboard
 
-Native. The group is one tab stop; the arrow keys move both focus and the
-check, so moving through a group changes the value. That is why a radio
-group never triggers navigation or a request on change; the value is read on
-submit or through an explicit action.
+Native and one tab stop. Arrows move focus and the check together, so a
+radio group never navigates or sends a request on change; the value is read
+on submit or through an explicit action.
 
 ## Accessibility
 
-The legend is read before each option and is the group's name. Options
-share a `name`. The message is linked with `aria-describedby` on the
-fieldset and `aria-invalid` is set on the inputs after submit. A group with
-no default checked radio must have a required mark or a "none" option, so
-the empty state is intentional. Contrast: text 8.43:1, inner square 9.28:1
-on the fill, box edge 4.45:1 on the input surface and 4.33:1 against the
-panel when checked, ring 4.69:1, container ring 5.57:1.
+The legend names the group and is read before each option. `aria-invalid` is
+set on the inputs after submit. A group with no default checked radio has a
+required mark or a "none" option, so the empty state is intentional. Text
+meets 4.5:1; box edges, the inner square and rings 3:1.
 
 ## Portability
 
-Square, border, fill and one inner square; no pseudo-element is needed.
-Hosts that insist on a circular radio indicator record the deviation rather
-than replacing the control with a custom widget.
+Square, border, fill and one inner square; no pseudo-element. A host that
+insists on a circular indicator records the deviation instead of replacing
+the control with a custom widget.
 
 ## Non-examples
 
-Circular radios. A checked state shown by border colour alone with no inner
-square. Radios that submit or navigate on change. A group with no legend or
-with the legend rendered as a label on one option. Separate tab stops per
-radio. One radio on its own. Disabling by opacity. A div with
-`role="radiogroup"` built from spans.
+Circular radios. Checked shown by border colour alone, without the inner
+square. Submitting or navigating on change. No legend, or the legend as one
+option's label. A tab stop per radio. A lone radio. Disabling by opacity. A
+div with `role="radiogroup"` built from spans.

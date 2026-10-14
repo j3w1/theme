@@ -1,3 +1,4 @@
+import { defaultTokens } from "./helpers/tokens.mjs";
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import {readJson} from '../scripts/lib/fs.mjs';
@@ -7,7 +8,7 @@ test('text-command and suggestion backings are shared once in every shell host a
  const host=await readJson('ports/windows/host.json');
  const mapping=await readJson('ports/windows/mapping.json');
  const variants=(await readJson('ports/windows/dist/windows-settings.json')).stylerVariants;
- const tokens=(await readJson('exports/tokens.resolved.json')).profiles.default.tokens;
+ const tokens=await defaultTokens();
  const frameKeys=['CommandBarFlyoutBackground','CommandBarFlyoutBorderBrush','CommandBarOverflowPresenterBackground',
   'FlyoutPresenterBackground','FlyoutPresenterBorderBrush','AutoSuggestBoxSuggestionsListBackground','AutoSuggestBoxSuggestionsListBorderBrush'];
  const targets=['Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar',
@@ -79,7 +80,7 @@ test('detached Settings search backings replace acrylic without changing content
  const host=await readJson('ports/windows/host.json');
  const settings=host.stylers.find(x=>x.id==='windows-11-settings-styler');
  const mapping=await readJson('ports/windows/mapping.json');
- const tokens=(await readJson('exports/tokens.resolved.json')).profiles.default.tokens;
+ const tokens=await defaultTokens();
  const payload=await readJson('ports/windows/dist/'+settings.id+'.json');
  const backing=target=>[...host.menuTargets,...settings.targets].find(x=>x.target===target);
  // The status popup owns a Border; the suggestions popup owns a Grid. Its

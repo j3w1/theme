@@ -101,30 +101,24 @@ compact: false
 
 ## Purpose
 
-Lets the user choose one or several rows from a short, visible set. A list
-is a listbox: it holds a selection, it does not navigate. Rows that lead
-somewhere are sidebar-nav; rows with columns are a table; a long set that
-needs filtering is a combobox.
+Choose one or several rows from a short, visible set. It holds a selection
+and never navigates: rows that lead somewhere are `sidebar-nav`, rows with
+columns a `table`, a long set that needs filtering a `combobox`.
 
 ## Anatomy
 
-A `ul` with `role="listbox"` framed by 1px {color.border.control} on
-{color.surface.default}. Each option is one row: a check gutter, the label in
-{color.text.default}, and in the metadata variant a trailing column in
-{color.text.muted}. Rows are separated by 1px {color.border.divider}. A
-selected row is filled with {color.interaction.selection.bg}; every part of
-it, including the metadata and the ✓ glyph, takes
-{color.interaction.selection.text}.
+Parts as listed in the anatomy; on a selected row every part, metadata and
+✓ included, takes {color.interaction.selection.text}.
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | text {color.text.default}; no fill; the check gutter empty | — |
+| default | text {color.text.default}; no fill; check gutter empty | — |
 | hover | background → {color.interaction.hover.bg} | cursor: pointer |
-| focus-visible | ring 1px dashed {color.interaction.focus.ring} at −2px on the option | the ring |
+| focus-visible | 1px dashed {color.interaction.focus.ring} at −2px on the option | the ring |
 | selected | fill {color.interaction.selection.bg}; text and glyph {color.interaction.selection.text} | `aria-selected="true"`; the ✓ glyph |
-| selected+focus-visible | the fill and the ring in {color.interaction.focus.ring-container} | both visible at once |
+| selected+focus-visible | the fill and a ring in {color.interaction.focus.ring-container} | both visible at once |
 | selected+container-inactive | fill {color.interaction.selection.inactive-bg} with {color.interaction.selection.inactive-text}; no ring | lightness drop between the two fills; the glyph stays |
 | disabled | text {color.text.disabled}; no fill; no hover; still reachable by arrow keys | `aria-disabled="true"`; cursor: not-allowed |
 
@@ -132,36 +126,28 @@ Precedence: disabled > selected > hover; focus-visible is always drawn.
 
 ## Keyboard
 
-Roving tabindex: the selected option (or the first) has `tabindex="0"`, the
-rest `-1`, so the list costs one tab stop. Up and Down move; in single
-selection the selection follows focus, in multiple selection Space toggles
-and Shift with the arrows extends. Home and End jump; Ctrl+A selects all in a
-multi-select list; typing jumps to the next matching label. Disabled options
-are reachable and announced, never skipped silently.
+The list costs one tab stop (`tabindex="0"` on the selected or first
+option, `-1` on the rest). Disabled options are reached and announced, never
+skipped.
 
 ## Accessibility
 
-`aria-label` or `aria-labelledby` on the listbox; `aria-multiselectable`
-when several may be chosen; `aria-selected` on every option, including
-`"false"`. The ✓ glyph is `aria-hidden`; `aria-selected` is the state.
-Metadata is inside the option so it is read with the label. Contrast: text
-8.43:1, metadata 5.66:1, selected text 12.47:1 on the fill, inactive selection
-7.02:1, ring 4.57:1 on the surface and 7.48:1 on the fill, frame 4.33:1. Rows
-are at least 24 CSS pixels tall with the check gutter as the leading target
-area.
+`aria-label` or `aria-labelledby` names the listbox; every option carries
+`aria-selected`, including `"false"`. The ✓ is `aria-hidden`;
+`aria-selected` is the state. Metadata sits inside the option so it is read
+with the label. Text meets 4.5:1; frame and rings 3:1. Rows are at least 24
+CSS pixels tall, with the check gutter as the leading target area.
 
 ## Portability
 
-Rows with a background, a glyph gutter and an outline; nothing else. Hosts
-with a native list view take the fill, the inactive fill and the divider
-colour and keep their keyboard model. The inactive fill applies when the
-list's window or pane loses focus, which a web page detects through
-`:focus-within` on the pane.
+Rows with a background, a glyph gutter and an outline; nothing else. Native
+list views take the fill, inactive fill and divider colour and keep their
+own keyboard model. The inactive fill applies when the list's window or pane
+loses focus; the web detects it with `:focus-within` on the pane.
 
 ## Non-examples
 
-A selected row marked by a border or a check alone without the fill. Rounded
-row highlights. Muted metadata left on the selection fill. A list where every
-row is a tab stop. A list that navigates on selection. Disabled rows removed
-from the arrow-key order. Hover that changes the text colour. A list without
-a frame on the canvas.
+A selected row marked by a border or check without the fill. Rounded row
+highlights. Muted metadata left on the selection fill. Every row a tab stop.
+Navigating on selection. Disabled rows removed from the arrow-key order.
+Hover that changes text colour. A frameless list on the canvas.

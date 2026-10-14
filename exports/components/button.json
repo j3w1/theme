@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=",
+  "sourceDigest": "sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=",
   "id": "button",
   "family": "actions",
   "maturity": "stable",
@@ -497,7 +497,7 @@
     },
     {
       "state": "focus-visible",
-      "visual": "ring 1px dashed at −2px: {color.interaction.focus.ring-container} on the primary fill, {color.interaction.focus.ring} on the outline tones, {color.action.destructive.hover-text} on the destructive hover fill",
+      "visual": "1px dashed ring at −2px: {color.interaction.focus.ring-container} on the primary fill, {color.interaction.focus.ring} on the outline tones, {color.action.destructive.hover-text} on the destructive hover fill",
       "channel": "the ring",
       "tokens": {
         "fg": {
@@ -540,7 +540,7 @@
     },
     {
       "state": "active",
-      "visual": "primary → {color.action.primary.pressed-bg}; secondary → {color.action.secondary.pressed-bg}; tertiary → {color.interaction.pressed.bg}; destructive → {color.action.destructive.pressed-bg}; primary keeps {color.action.primary.border}, secondary and tertiary use {color.border.active}, destructive keeps {color.action.destructive.border} (D-015)",
+      "visual": "fill: primary {color.action.primary.pressed-bg}, secondary {color.action.secondary.pressed-bg}, tertiary {color.interaction.pressed.bg}, destructive {color.action.destructive.pressed-bg}; border: primary and destructive keep theirs, secondary and tertiary take {color.border.active} (D-015)",
       "channel": "border change on secondary and tertiary; no translation or scale",
       "tokens": {
         "fg": {
@@ -571,13 +571,13 @@
     },
     {
       "state": "disabled",
-      "visual": "{color.text.disabled} on {color.interaction.disabled.bg} with 1px {color.border.disabled}, every tone alike; no hover or active styling",
+      "visual": "{color.text.disabled} on {color.interaction.disabled.bg}, 1px {color.border.disabled}, every tone alike; no hover or active styling",
       "channel": "`disabled`; cursor: not-allowed; never opacity",
       "tokens": {}
     },
     {
       "state": "loading",
-      "visual": "size unchanged; the static `⋯` glyph replaces the icon; the button keeps its tone and stays focusable but ignores activation",
+      "visual": "size and tone unchanged; the static `⋯` glyph replaces the icon; stays focusable, ignores activation",
       "channel": "glyph; `aria-busy`",
       "tokens": {
         "fg": {
@@ -650,7 +650,7 @@
     "settings-panel",
     "filterable-table"
   ],
-  "nonExamples": "Rounded corners or pill shapes. Two filled buttons in one view. A red\nfilled destructive button at rest. A hover that only changes text colour.\nTranslating or scaling the button on press. A spinner inside the button.\nDisabling with opacity. A `<div>` or `<a>` styled as a button. A gradient or\nshadow to suggest depth.",
+  "nonExamples": "Rounded or pill shapes. Two filled buttons in one view. A red filled\ndestructive button at rest. A hover that only changes text colour.\nTranslating or scaling on press. A spinner inside the button. Disabling with\nopacity. A `<div>` or `<a>` styled as a button. A gradient or shadow for\ndepth.",
   "contrast": [
     {
       "label": "button default text",

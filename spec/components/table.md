@@ -107,70 +107,55 @@ compact: true
 
 ## Purpose
 
-Shows records as rows and attributes as columns so they can be compared
-down a column. The table is for reading; a table with selection
-checkboxes, resizable columns and a toolbar is the data-table. A single
-column of rows is a list.
+Records as rows, attributes as columns, compared down a column. For
+reading only: selection, resizing and a toolbar make it a `data-table`; a
+single column of rows is a `list`.
 
 ## Anatomy
 
-A collapsed native table on {color.surface.default} with no outer border.
-The header row is {color.text.bright} above a 1px {color.border.strong} rule
-(2px when the header is sticky, on {color.surface.raised}); sortable headers
-wrap their label in a button and show ▲ or ▼ when sorted. Body rows are the
-row height, separated by 1px {color.border.divider}, text in
-{color.text.default}; numeric cells are end-aligned with tabular numbers.
-An optional caption in {color.text.muted} sits above. Two special rows,
-hidden unless needed, span every column: the empty message and the loading
-glyph.
+Parts as listed in the anatomy; the sticky header sits on
+{color.surface.raised}.
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | rows on {color.surface.default}; header rule 1px {color.border.strong} | — |
-| hover | row background → {color.interaction.hover.bg} | cursor: default; only on hover-capable pointers |
+| hover | row → {color.interaction.hover.bg} | cursor: default; hover-capable pointers only |
 | selected | row fill {color.interaction.selection.bg}; every cell {color.interaction.selection.text} | `aria-selected="true"` on the row |
 | selected+focus-visible | the fill and a ring in {color.interaction.focus.ring-container} around the row | both visible at once |
 | selected+container-inactive | row fill {color.interaction.selection.inactive-bg} with {color.interaction.selection.inactive-text}; no ring | lightness drop between the two fills |
-| sorted | the sorted header shows ▲ (ascending) or ▼ (descending) in {color.text.bright} | `aria-sort`; the glyph |
-| empty | the body is one full-width cell in {color.text.muted}: "No rows match." | the message text |
-| loading | the body is one full-width cell with the static `⋯` glyph in {color.text.muted}; the header stays | `aria-busy="true"`; the glyph; no animation |
+| sorted | ▲ (ascending) or ▼ (descending) in {color.text.bright} on the sorted header | `aria-sort`; the glyph |
+| empty | one full-width cell in {color.text.muted}: "No rows match." | the message text |
+| loading | one full-width cell with the static `⋯` glyph in {color.text.muted}; the header stays | `aria-busy="true"`; the glyph; no animation |
 
 Precedence: loading > empty; selected > hover; focus-visible is always
 drawn.
 
 ## Keyboard
 
-A plain table has no row focus: Tab reaches the sort buttons in the header
-and any control inside a cell. Enter or Space on a sort button cycles
-ascending, descending. Tables whose rows are targets (row links, row
-selection) are the data-table and add row focus there.
+As in the key table. Rows that are targets (row links, row selection) make
+it a `data-table`, which adds row focus.
 
 ## Accessibility
 
-`caption` or `aria-labelledby` names the table; `th scope="col"` on every
-header and `scope="row"` on a row header column. `aria-sort` on the sorted
-`th`, `none` or absent elsewhere; the glyph is `aria-hidden`. The empty and
-loading rows are real rows so the table stays a table; `aria-busy="true"`
-on the table while loading and a live region for the outcome. Contrast:
-body text 8.43:1, header 10.10:1, caption and empty message 5.66:1, selected
-text 12.47:1 on the fill, inactive 7.02:1, ring 7.48:1 on the fill, sort ring
-4.57:1. Rows are at least 24 CSS pixels tall; sort buttons fill the header
-cell.
+`caption` or `aria-labelledby` names the table; `scope="row"` on a row
+header column. `aria-sort` is `none` or absent on unsorted headers; the
+glyph is `aria-hidden`. Empty and loading rows are real rows; a live region
+reports the loading outcome. Text meets 4.5:1; rings 3:1. Rows are at least
+24 CSS pixels tall; sort buttons fill the header cell.
 
 ## Portability
 
 Row backgrounds, one border under the header, one between rows, an outline
-on a selected row. Toolkits with a native table view take the rule, the
-divider and the two fills. Hosts that cannot draw an outline on a row draw
-the ring as an inset 1px border and record it.
+on a selected row. Native table views take the rule, the divider and the two
+fills. A host that cannot outline a row draws the ring as an inset 1px
+border and records it.
 
 ## Non-examples
 
-Zebra striping. A rounded or bordered table frame. A selected row marked by
-a left bar (that is navigation, not selection). Header text in caption size
-or uppercase. Sorting shown by colour alone without `aria-sort` and a glyph.
-An animated spinner while loading. An empty state that removes the header.
-Text truncated with no way to read the full value. A hover fill on a
-touch device.
+Zebra striping. A rounded or bordered frame. A selected row marked by a
+left bar (that is navigation). Header text in caption size or uppercase.
+Sorting by colour alone without `aria-sort` and a glyph. An animated
+spinner. An empty state that removes the header. Truncated text with no way
+to read the full value. Hover fill on touch.

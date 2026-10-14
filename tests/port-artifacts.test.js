@@ -13,7 +13,7 @@ import test from "node:test";
 import { parse } from "yaml";
 import { readJson, readText } from "../scripts/lib/fs.mjs";
 import { validatePorts } from "../scripts/lib/validators.mjs";
-import { assertHostMapping, GHOSTTY_KEYS, hostEntries, PORT_EMITTERS, WARP_YAML_KEYS, luminance } from "../scripts/lib/port-artifacts.mjs";
+import { assertHostMapping, GHOSTTY_KEYS, hostEntries, PORT_EMITTERS, WARP_YAML_KEYS, encodedBrightness } from "../scripts/lib/port-artifacts.mjs";
 import { parsePlist } from "../scripts/lib/host-install/plist.mjs";
 import { downloadsTable } from "../scripts/lib/exports.mjs";
 import { PORT_FORMATS } from "../schemas/port.mjs";
@@ -119,7 +119,7 @@ for (const entry of ports.filter(({ port }) => !["obsidian-theme", "windows-them
       // Orca's Import from YAML: hex colours, background + foreground + an ANSI slot, dark below 0.55.
       for (const key of WARP_YAML_KEYS) if (at(key)) assert.match(at(key), /^#[0-9a-f]{6}$/);
       assert.equal(WARP_YAML_KEYS.filter((key) => key.startsWith("terminal_colors.")).map(at).filter(Boolean).length, 16);
-      assert.ok(luminance(theme.background) < 0.55);
+      assert.ok(encodedBrightness(theme.background) < 0.55);
     } else {
       const got = ghostty(text);
       assert.deepEqual([...got.keys()].sort(), [...want.keys()].sort());

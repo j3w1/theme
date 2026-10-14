@@ -104,35 +104,36 @@ compact: false
 
 ## Purpose
 
-Compose a small operational overview from named metrics, a complete chart and a records table. All figures are caller data. Synthetic fixtures are labelled; the component does not fetch data or infer business health.
+A small operational overview of caller data; it fetches nothing and infers no
+business health.
 
 ## Anatomy
 
-- **metrics:** Terms and values pair each metric name with its number.
-- **activity:** Chart retains its full textual data table.
-- **records:** Native rows include named actions and explicit status words.
+Parts as listed in the anatomy.
 
 ## States
 
-| State | Presentation | Non-colour channel |
+| State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | Square metric panels and readable tables. | Metric names, exact values and status text. |
-| loading | Busy boundary with existing content retained. | aria-busy and host-provided loading status. |
-| empty | Explicit absence of records. | Empty message; metric zero differs from unknown. |
+| default | Square metric panels, readable tables. | Metric names, exact values, status text. |
+| loading | Busy boundary; existing content kept. | `aria-busy` and host-provided loading status. |
+| empty | Explicit absence of records. | Empty message; a zero metric differs from an unknown one. |
 | focus-visible | Dashed action outline. | Native keyboard focus. |
 
 ## Keyboard
 
-- **Tab / Shift+Tab:** Visit record actions and any scrollable data region.
-- **Enter / Space:** Request the chosen record through an event.
+As in the key table; nothing else is bound.
 
 ## Accessibility
 
-Keep metrics as term/value pairs, tables labelled and all chart data visible. Do not use a color-only health score. Busy status does not manufacture a completed refresh. The host decides how unknown metrics are described, rather than silently displaying zero.
+Metrics stay term/value pairs, tables are labelled and all chart data stays
+visible. No colour-only health score. Busy status never implies a completed
+refresh. The host words unknown metrics; never show them silently as zero.
 
 ## Portability
 
-Follows the shared component defaults in `spec/portability.md` (section "Shared component defaults").
+Follows the shared component defaults in `spec/portability.md` (section
+"Shared component defaults").
 
 ## Non-examples
 

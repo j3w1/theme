@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — time-picker
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/time-picker.json
 spec: spec/components/time-picker.md  site: https://j3w1.github.io/theme/reference/#c-time-picker
 maturity: stable  priority: R1
@@ -25,11 +25,11 @@ Tokens (resolved):
 State dependency disclosures: D-007
 
 States: default, hover, focus-visible, invalid, disabled
-  default: Input surface, default text and control border.
-  hover: The declared hover fill.
-  focus-visible: Active border and the canonical focus ring.
-  invalid: Danger border and a linked message.
-  disabled: Disabled colors; editor and step actions unavailable.
+  default: {color.text.default} on {color.surface.input}, 1px {color.border.control} [—]
+  hover: background → {color.interaction.hover.bg} [hover-capable pointers only]
+  focus-visible: border → {color.border.active}; the canonical focus ring [the ring]
+  invalid: 2px {color.status.danger.border}; a linked message [border 1 → 2px; ✕ glyph; `aria-invalid`]
+  disabled: {color.text.disabled} on {color.interaction.disabled.bg}, border {color.border.disabled}; editor and step actions unavailable [`disabled`; cursor: not-allowed]
 
 Keyboard:
   Tab / Shift+Tab: Moves between the time editor, step buttons and other controls.

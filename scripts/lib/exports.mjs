@@ -11,10 +11,10 @@ import { portDownloadPath } from "./port-presentation.mjs";
 
 const RAW = (manifest, rev) => manifest.sourceRevision.rawBase.replace("{rev}", rev);
 
-export const tagFor = (manifest) => `v${manifest.version}`;
+const tagFor = (manifest) => `v${manifest.version}`;
 
 /* The region between <!-- @compact:start --> and <!-- @compact:end -->, or the whole body. */
-export const compactRegion = (body) => {
+const compactRegion = (body) => {
   const m = body.match(/<!--\s*@compact:start\s*-->([\s\S]*?)<!--\s*@compact:end\s*-->/);
   return (m ? m[1] : body).trim();
 };
@@ -54,7 +54,7 @@ const foundationRows = (resolved, { filter = null } = {}) => {
   return rows;
 };
 
-export const shiftHeadings = (markdown, by = 1) => markdown.replace(/^(#{1,5}) /gm, (m, hashes) => `${"#".repeat(Math.min(6, hashes.length + by))} `);
+const shiftHeadings = (markdown, by = 1) => markdown.replace(/^(#{1,5}) /gm, (m, hashes) => `${"#".repeat(Math.min(6, hashes.length + by))} `);
 
 const stateRulesOf = (component) => {
   const table = component.sections.get("States") ?? "";
@@ -315,7 +315,7 @@ export const downloadsTable = (manifest, ports) =>
       ]
     : ["No application theme files are published yet."];
 
-export const catalogueTable = (catalogue) => [
+const catalogueTable = (catalogue) => [
   "| Reference | Kind | Where | What it does not prove |",
   "| --- | --- | --- | --- |",
   ...catalogue.entries.map((e) => `| ${e.title} | ${e.kind} | ${e.source ? `\`${e.source.repository}\` \`${e.source.path}\`` : `\`${e.path}\``} | ${e.notes} |`),

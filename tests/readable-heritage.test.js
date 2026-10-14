@@ -1,26 +1,19 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { loadTokenExports } from "./helpers/tokens.mjs";
+import { hexOf as tokenHex } from "../scripts/lib/color.mjs";
+import { contrastHex as contrast } from "../scripts/lib/contrast.mjs";
 import { HERITAGE_ANSI } from "../schemas/roles.mjs";
 
 /* D-029: the default profile carries the readable heritage sixteen and two
    lifted syntax reds; heritage-ansi keeps the historical values exactly. */
 
-const resolved = JSON.parse(await readFile(new URL("../exports/tokens.resolved.json", import.meta.url), "utf8"));
+const resolved = await loadTokenExports();
 const hexOf = (profile, path) => {
   const token = resolved.profiles[profile].tokens[path];
   assert.ok(token, `${profile}: ${path} exists`);
-  return token.value.hex;
+  return tokenHex(token);
 };
-const luminance = (hex) => {
-  const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255).map((c) => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4));
-  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
-};
-const contrast = (a, b) => {
-  const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x);
-  return (hi + 0.05) / (lo + 0.05);
-};
-
 const HERITAGE_SYNTAX = { keyword: "#f73f35", tag: "#f73f35", property: "#e53935", heading: "#e53935", invalid: "#e53935" };
 
 test("heritage-ansi keeps every terminal slot and the lifted syntax reds at their historical values", () => {

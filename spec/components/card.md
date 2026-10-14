@@ -89,18 +89,14 @@ compact: false
 
 ## Purpose
 
-Groups a small unit of content — a title, a line or two, a metadata line —
-so it reads as one thing. A card is static by default; it becomes a link
-when the whole unit leads somewhere, and an option when the user picks among
-several units. A card is not a dialog, not a form and not a table row.
+Groups a title, a line or two and a metadata line so they read as one
+thing. Static by default; a link when the whole unit leads somewhere, an
+option when the user picks among units. Not a dialog, a form or a table row.
 
 ## Anatomy
 
-A 1px {color.border.default} edge on {color.surface.default}, no shadow, no
-radius. Inside, a title in {color.text.bright}, body text in
-{color.text.default}, metadata in {color.text.muted}. Padding is 12px in
-`comfortable` and 8px in `compact` density. A link card is one anchor around
-the same content; a selectable card is an option inside a listbox group.
+Parts as listed in the anatomy. Padding 12px in `comfortable`, 8px in
+`compact`.
 
 ## States
 
@@ -109,42 +105,34 @@ the same content; a selectable card is an option inside a listbox group.
 | default | 1px {color.border.default} on {color.surface.default} | — |
 | hover | link and selectable cards only: background → {color.interaction.hover.bg}; border → {color.border.control} | cursor: pointer; the border lightens from decorative to control |
 | focus-visible | container ring 2px solid {color.interaction.focus.ring-container} at −3px | the ring |
-| selected | fill {color.interaction.selection.bg} with {color.interaction.selection.text} on every line | `aria-selected="true"`; the fill's on-fill text |
+| selected | fill {color.interaction.selection.bg}, {color.interaction.selection.text} on every line | `aria-selected="true"`; the on-fill text |
 | selected+focus-visible | the fill and the 2px ring in {color.interaction.focus.ring-container} | both visible at once |
 
-A static card has no hover and no focus: nothing happens on a pointer and it
-is not in the tab order.
+A static card has no hover and no focus, and is not in the tab order.
 
 ## Keyboard
 
-A link card is one tab stop and Enter follows it; controls inside a link
-card are not allowed (a link cannot contain a button). A selectable group is
-a listbox with roving tabindex: Tab lands on the selected card, the arrow
-keys move and select, Space toggles in a multi-select group. A static card
-that contains controls contributes those controls to the tab order and
-nothing else.
+A link card may hold no controls (a link cannot contain a button). A static
+card contributes only the controls it contains to the tab order.
 
 ## Accessibility
 
 A static card is an `article` with a heading when it stands alone, or a
-`section` inside a list. A link card names itself from its content and the
-title comes first so it is read first. Selectable cards are `role="option"`
-inside `role="listbox"` with `aria-label`; `aria-selected` on each option.
-Contrast: title 10.10:1, body 8.43:1, metadata 5.66:1 on the card; on the
-selection fill every line switches to the on-fill text (12.47:1) because muted
-text would fall to 4.19:1. The ring is 10.10:1 on the card and 7.48:1 on the
-fill.
+`section` inside a list. A link card names itself from its content, title
+first. A selectable group's listbox carries `aria-label`. On the selection
+fill every line takes the on-fill text, because muted text would fall below
+4.5:1. Text meets 4.5:1; the ring 3:1 on the card and on the fill.
 
 ## Portability
 
-A bordered box with a background and an outline. Toolkits that add a shadow
-to their frames remove it. Hosts without container outlines draw the ring
-as a 2px inner border and record it.
+A bordered box with a background and an outline. Toolkits that shadow their
+frames remove it. A host without container outlines draws the ring as a 2px
+inner border and records it.
 
 ## Non-examples
 
-A drop shadow or elevation. Rounded corners. A hover lift or scale. A static
-card with a hover fill. A card whose only clickable part is an invisible
-overlay. A link card containing buttons. A selected card shown by a border
-colour alone without the fill and `aria-selected`. Muted metadata left on the
-selection fill.
+A shadow or elevation. Rounded corners. A hover lift or scale. A hover fill
+on a static card. An invisible overlay as the only clickable part. A link
+card containing buttons. A selected card shown by border colour alone,
+without the fill and `aria-selected`. Muted metadata left on the selection
+fill.

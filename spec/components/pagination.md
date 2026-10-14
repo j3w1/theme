@@ -81,59 +81,47 @@ compact: false
 
 ## Purpose
 
-Moves through a result set that is split into pages. Pagination is for sets
-whose size is known; use a "load more" button or infinite scroll for feeds,
-and a range field for jumping to an arbitrary offset.
+Moves through a paged result set of known size. Feeds use a "load more"
+button or infinite scroll; jumping to an arbitrary offset is a range field.
 
 ## Anatomy
 
-A `nav` labelled "Pagination" holding a `ul`: previous, the page links with
-an aria-hidden `…` gap where pages are skipped, next. Every page link is a
-square target in {color.text.default} with no border; the current page is
-filled with {color.interaction.selection.bg} and {color.text.on-selection}.
-The compact variant keeps previous and next and replaces the numbers with
-"3 of 12", the current number in {color.text.bright}.
+Parts as listed in the anatomy; page links have no border.
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | text {color.text.default}; no fill; no border | — |
+| default | {color.text.default}; no fill, no border | — |
 | hover | background → {color.interaction.hover.bg} | cursor: pointer |
-| focus-visible | ring 1px dashed {color.interaction.focus.ring} at −2px; on the current page the ring is {color.interaction.focus.ring-container} | the ring |
-| current | fill {color.interaction.selection.bg}; text {color.text.on-selection}; no hover | `aria-current="page"` |
-| disabled | text {color.text.disabled}; no fill; no hover | `aria-disabled="true"`; no `href`; cursor: not-allowed |
+| focus-visible | 1px dashed {color.interaction.focus.ring} at −2px; {color.interaction.focus.ring-container} on the current page | the ring |
+| current | fill {color.interaction.selection.bg}, text {color.text.on-selection}; no hover | `aria-current="page"` |
+| disabled | {color.text.disabled}; no fill, no hover | `aria-disabled="true"`; no `href`; cursor: not-allowed |
 
-Pressing a link uses {color.interaction.pressed.bg} for the duration of the
-press only.
+A link shows {color.interaction.pressed.bg} only while pressed.
 
 ## Keyboard
 
-Plain links in document order: previous, the pages, next. A disabled end has
-no `href`, so it is not a tab stop and cannot be activated. The current page
-remains a link to itself so a keyboard user can reload it.
+As in the key table. The current page stays a link to itself so a keyboard
+user can reload it.
 
 ## Accessibility
 
-`aria-label="Pagination"` on the `nav`; a second pagination on the same page
-gets a distinct label. Previous and next carry a visible word, not just a
-glyph, and `aria-label` gives the target page number when it is known
-("Previous page, 2"). The gap is `aria-hidden`; the list count tells a screen
-reader how many links follow. Contrast: link text 8.43:1, current text 12.47:1
-on the selection fill, ring-container 7.48:1 on the fill, disabled 3.24:1
-(exempt). Targets are at least 24×24 CSS pixels in `compact` density.
+A second pagination on the same page gets a distinct label. Previous and next
+carry a visible word, not just a glyph; `aria-label` gives the target page
+when known ("Previous page, 2"). The list count tells a screen reader how many
+links follow. Text meets 4.5:1 and the ring 3:1; disabled ends are exempt
+(house floor 3:1). Targets are at least 24×24 CSS pixels in `compact`.
 
 ## Portability
 
-Links with a background and an outline; nothing else. Hosts that cannot
-remove `href` from a disabled link use a disabled button for the ends and
-record it. The compact variant is plain text and two links and ports
-anywhere.
+Links with a background and an outline; nothing else. A host that cannot
+remove `href` from a disabled link uses a disabled button for the ends and
+records it. The compact variant is plain text and two links.
 
 ## Non-examples
 
 Rounded or circular page buttons. A border around every page link. The
-current page marked by colour or bold alone without `aria-current`. Previous
-and next as glyph-only links without a label. A disabled end that still has
-an `href`. Pagination that hides the last page number. A row that scrolls
-horizontally.
+current page marked by colour or bold alone, without `aria-current`.
+Glyph-only previous and next. A disabled end with an `href`. Hiding the last
+page number. A horizontally scrolling row.

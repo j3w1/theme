@@ -51,57 +51,56 @@ compact: false
 
 ## Purpose
 
-Build a bounded reference form from text, textarea, select, checkbox and radio
-fields in the [interactive builder](https://j3w1.github.io/theme/builder/). D-021 remains proposed. This
-draft component does not promote new tokens, roles, profiles or native ports.
+Build a bounded reference form in the
+[interactive builder](https://j3w1.github.io/theme/builder/). D-021 remains
+proposed; this draft promotes no tokens, roles, profiles or native ports.
 
 ## Anatomy
 
-Each field has a stable ID, label, help, required flag and, for select/radio,
-stable option IDs and labels. Add and remove fields, edit definitions and move
-them with explicit Move up / Move down buttons. Saving an edit validates the
-complete proposed definition before replacing the current one.
+Each field has a stable ID, label, help, required flag and, for select and
+radio, stable option IDs and labels. Saving an edit validates the whole
+proposed definition before replacing the current one.
 
-The preview uses the same canonical field renderer and validation model as
-the validation-recovery composition. Changing a definition clears preview
-values and errors. Merely moving focus or typing a preview value does not
-change the definition. Preview state is separate from schema state.
+The preview uses the canonical field renderer and validation model of the
+validation-recovery composition. Changing a definition clears preview values
+and errors; moving focus or typing a preview value never changes the
+definition.
 
 ## States
 
-The empty state displays an explanation and an add action. An invalid import or definition
-edit reports a corrective message and leaves the current definition intact.
-Unavailable movement buttons are disabled at the list boundaries. The default state
-shows the ordered definition and preview. The static specimen represents the
-definition; interactive execution evidence is recorded separately.
+The empty state shows an explanation and an add action. An invalid import or edit
+reports a corrective message and keeps the current definition. Move buttons
+are disabled at the list boundaries. Default shows the ordered definition and
+preview. The static specimen shows the definition; interactive execution
+evidence is recorded separately.
 
 ## Keyboard
 
-All operations use native controls. No drag operation is required. Move actions
-keep focus on the moved field's controls. Removing a field focuses the next
-remaining field or the add control. Import and reset return to the add control.
-Preview submit focuses its error summary; links target stable field control IDs.
+No drag is required. Moving keeps focus on the moved field's controls;
+removing focuses the next remaining field or the add control; import and
+reset return to the add control. Preview submit focuses its error summary,
+whose links target stable field control IDs.
 
 ## Accessibility
 
 Use the canonical label, help and error associations, required markers and
-radio fieldset/legend semantics. Stable IDs survive JSON round trips and field
-reordering. Imported strings are text, never markup. No manual screen-reader
-pass is claimed by test presence.
+radio fieldset/legend semantics. Stable IDs survive JSON round trips and
+reordering. Imported strings are text, never markup. Test presence claims no
+manual screen-reader pass.
 
 ## Portability
 
 Definition schema version 1 pins theme name, version, default profile and
-constituent component content digest. Accept at most 64 KiB, 20 fields, 20
-options per choice field, 120-character labels and 400-character help. Preview
-text is limited to 2000 characters. Unknown keys, duplicate IDs, unsupported
-kinds, invalid choices and mismatched theme identity are rejected atomically.
-An old content identity requires an explicit migration outside this tool.
+constituent component content digest. Limits: 64 KiB, 20 fields, 20 options
+per choice field, 120-character labels, 400-character help, 2000-character
+preview text. Unknown keys, duplicate IDs, unsupported kinds, invalid choices
+and mismatched theme identity are rejected atomically. An old content
+identity needs an explicit migration outside this tool.
 
-Everything stays in memory. Only explicit Download definition creates a file,
-containing the schema and no entered values. Reset clears the definition and
-preview. There is no autosave, network submission, schema execution, arbitrary
-HTML/CSS/JavaScript or imported validation expression.
+Everything stays in memory; only Download definition creates a file, with the
+schema and no entered values. Reset clears definition and preview. No
+autosave, network submission, schema execution, arbitrary HTML/CSS/JavaScript
+or imported validation expression.
 
 ## Non-examples
 

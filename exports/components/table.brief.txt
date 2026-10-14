@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — table
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/table.json
 spec: spec/components/table.md  site: https://j3w1.github.io/theme/reference/#c-table
 maturity: stable  priority: R1
@@ -29,13 +29,13 @@ Tokens (resolved):
 
 States: default, hover, selected, selected+focus-visible, selected+container-inactive, sorted, empty, loading
   default: rows on {color.surface.default}; header rule 1px {color.border.strong} [—]
-  hover: row background → {color.interaction.hover.bg} [cursor: default; only on hover-capable pointers]
+  hover: row → {color.interaction.hover.bg} [cursor: default; hover-capable pointers only]
   selected: row fill {color.interaction.selection.bg}; every cell {color.interaction.selection.text} [`aria-selected="true"` on the row]
   selected+focus-visible: the fill and a ring in {color.interaction.focus.ring-container} around the row [both visible at once]
   selected+container-inactive: row fill {color.interaction.selection.inactive-bg} with {color.interaction.selection.inactive-text}; no ring [lightness drop between the two fills]
-  sorted: the sorted header shows ▲ (ascending) or ▼ (descending) in {color.text.bright} [`aria-sort`; the glyph]
-  empty: the body is one full-width cell in {color.text.muted}: "No rows match." [the message text]
-  loading: the body is one full-width cell with the static `⋯` glyph in {color.text.muted}; the header stays [`aria-busy="true"`; the glyph; no animation]
+  sorted: ▲ (ascending) or ▼ (descending) in {color.text.bright} on the sorted header [`aria-sort`; the glyph]
+  empty: one full-width cell in {color.text.muted}: "No rows match." [the message text]
+  loading: one full-width cell with the static `⋯` glyph in {color.text.muted}; the header stays [`aria-busy="true"`; the glyph; no animation]
 
 Keyboard:
   Tab / Shift+Tab: Moves between the sort buttons and any controls inside cells; rows themselves are not tab stops in a plain table.

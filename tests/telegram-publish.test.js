@@ -1,8 +1,8 @@
+import { scratchDir } from "./helpers/scratch.mjs";
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import path from "node:path";
-import os from "node:os";
 import { spawnSync } from "node:child_process";
 import { parse } from "yaml";
 import { converge, digest, run, redactor, stateDirectory, atomicJson, gitAdapter, parseArgs, liveTransport } from "../ports/telegram/publish.mjs";
@@ -64,8 +64,7 @@ const core = (transport, extra = {}) => converge({ transport, artifacts, cloud, 
 const writes = transport => transport.events.filter(e => ["create", "update", "upload"].includes(e[0]));
 
 async function fixture(t, { configured = true, transport = mock(), localCloud = cloud } = {}) {
-  const root = await fs.mkdtemp(path.join(os.tmpdir(), "telegram-publisher-"));
-  t.after(() => fs.rm(root, { recursive: true, force: true }));
+  const root = await scratchDir(t, "telegram-publisher-");
   const repo = path.join(root, "repo");
   const stateRoot = path.join(root, "private");
   await fs.mkdir(path.join(repo, "ports/telegram"), { recursive: true });

@@ -37,3 +37,6 @@ export const namespaceMarkup = (tree, decorate, { strict = true, renameNames = f
     }
   });
 };
+
+/* Text and attribute escaping shared by HTML and XML renderers. */
+export const escapeHtml = (text) => String(text).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);

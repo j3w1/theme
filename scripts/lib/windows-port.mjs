@@ -1,3 +1,4 @@
+import { rgb as hexRgb } from "./color.mjs";
 import {renderWindowsTemplate} from "./windows-template.mjs";
 import {folderIconFile,folderGeometry} from './windows-folder-icon.mjs';
 /* Windows native artifacts. Host definitions own selectors; tokens own colors.
@@ -6,7 +7,7 @@ import { toCss } from './tokens.mjs';
 import {windowsMarkdownArtifacts} from './windows-markdown.mjs';
 import { stableJson, repoRoot } from './fs.mjs';
 import { readFileSync } from 'node:fs';
-import { createHash } from 'node:crypto';
+import { sha256Hex } from './host-install/files.mjs';
 import { buildSync } from 'esbuild';
 import path from 'node:path';
 
@@ -44,8 +45,8 @@ export function windowsWebContentStyles(items,val) {
   return {target:t.target,styles};
  });
 }
-const rgb = hex => [1,3,5].map(i => Number.parseInt(hex.slice(i,i+2),16));
-export const wallpaperBmp = hex => {
+const rgb=hexRgb;
+const wallpaperBmp = hex => {
   const b=Buffer.alloc(58); b.write('BM'); b.writeUInt32LE(58,2); b.writeUInt32LE(54,10);
   b.writeUInt32LE(40,14); b.writeInt32LE(1,18); b.writeInt32LE(1,22); b.writeUInt16LE(1,26); b.writeUInt16LE(24,28); b.writeUInt32LE(4,34);
   const [r,g,blue]=rgb(hex); b[54]=blue;b[55]=g;b[56]=r;return b;
@@ -102,7 +103,7 @@ function cursorImage(name,size,foreground,outline) {
   const dib=Buffer.alloc(40);dib.writeUInt32LE(40);dib.writeInt32LE(size,4);dib.writeInt32LE(size*2,8);dib.writeUInt16LE(1,12);dib.writeUInt16LE(32,14);dib.writeUInt32LE(rgba.length+mask.length,20);
   return {data:Buffer.concat([dib,rgba,mask]),hot:hot.map(v=>Math.round((inset+v*artworkScale)*scale))};
 }
-export function cursorFile(name,foreground,outline){
+function cursorFile(name,foreground,outline){
  const sizes=[32,48,64,96],head=Buffer.alloc(6+16*sizes.length);head.writeUInt16LE(2,2);head.writeUInt16LE(sizes.length,4);let offset=head.length;const data=[];
  sizes.forEach((size,i)=>{const img=cursorImage(name,size,foreground,outline),n=6+16*i;head[n]=size;head[n+1]=size;head.writeUInt16LE(img.hot[0],n+4);head.writeUInt16LE(img.hot[1],n+6);head.writeUInt32LE(img.data.length,n+8);head.writeUInt32LE(offset,n+12);offset+=img.data.length;data.push(img.data);});return Buffer.concat([head,...data]);
 }
@@ -174,7 +175,7 @@ export function windowsArtifacts({manifest,host,resolved}){
  const nativeSource=renderWindowsTemplate(readFileSync(path.join(repoRoot,'ports/windows/src/j3w1-explorer-native.wh.cpp.in'),'utf8'),substitutions,'native source');
  artifacts.push({path:`dist/${id}.wh.cpp`,text:nativeSource});
  json(`${id}.json`,nativeSettings);
- const bundledMods=[{id,version:native.version,path:`dist/${id}.wh.cpp`,sha256:createHash('sha256').update(nativeSource).digest('hex')}];
+ const bundledMods=[{id,version:native.version,path:`dist/${id}.wh.cpp`,sha256:sha256Hex(nativeSource)}];
  const preview=host.monacoPreview,previewId='j3w1-powertoys-preview';
  if(!/^\d+\.\d+\.\d+\.\d+$/.test(preview.hostVersion)||! /^[a-f0-9]{64}$/.test(preview.templateSha256))throw Error('Preview requires exact host and template identities');
  const previewParts=preview.hostVersion.split('.');
@@ -192,7 +193,7 @@ export function windowsArtifacts({manifest,host,resolved}){
  artifacts.push({path:`dist/${previewId}.wh.cpp`,text:previewSource});
  // Windhawk stores checkbox settings as integer strings (1/0).
  json(`${previewId}.json`,{enabled:1});
- bundledMods.push({id:previewId,version:preview.version,path:`dist/${previewId}.wh.cpp`,sha256:createHash('sha256').update(previewSource).digest('hex')});
+ bundledMods.push({id:previewId,version:preview.version,path:`dist/${previewId}.wh.cpp`,sha256:sha256Hex(previewSource)});
  const calculator=host.calculator,calculatorId='j3w1-calculator';
  const calculatorPackageVersion=calculator.packageFullName.split('_')[1];
  if(calculator.buttonStyleTarget!==
@@ -214,14 +215,14 @@ export function windowsArtifacts({manifest,host,resolved}){
  const calculatorSource=renderWindowsTemplate(readFileSync(path.join(repoRoot,'ports/windows/src/j3w1-calculator.wh.cpp.in'),'utf8'),calculatorSubs,'Calculator source');
  artifacts.push({path:`dist/${calculatorId}.wh.cpp`,text:calculatorSource});
  json(`${calculatorId}.json`,{enabled:1});
- bundledMods.push({id:calculatorId,version:calculator.version,path:`dist/${calculatorId}.wh.cpp`,sha256:createHash('sha256').update(calculatorSource).digest('hex')});
+ bundledMods.push({id:calculatorId,version:calculator.version,path:`dist/${calculatorId}.wh.cpp`,sha256:sha256Hex(calculatorSource)});
  const notepad=host.notepadNative,notepadId='j3w1-notepad-native';
  if(!/^Microsoft\.WindowsNotepad_\d+\.\d+\.\d+\.\d+_x64__8wekyb3d8bbwe$/.test(notepad.packageFullName)||! /^[a-f0-9]{64}$/.test(notepad.editorSha256))throw Error('Notepad editor requires exact package and binary identities');
  const notepadSubs={VERSION:notepad.version,PACKAGE_FULL_NAME:notepad.packageFullName,EDITOR_SHA256:notepad.editorSha256};
  for(const [key,role] of Object.entries(notepad.roles))notepadSubs[key]='RGB('+rgb(val(role)).join(',')+')';
  const notepadSource=renderWindowsTemplate(readFileSync(path.join(repoRoot,'ports/windows/src/j3w1-notepad-native.wh.cpp.in'),'utf8'),notepadSubs,'Notepad source');
  artifacts.push({path:'dist/'+notepadId+'.wh.cpp',text:notepadSource});json(notepadId+'.json',{enabled:1});
- bundledMods.push({id:notepadId,version:notepad.version,path:'dist/'+notepadId+'.wh.cpp',sha256:createHash('sha256').update(notepadSource).digest('hex')});
+ bundledMods.push({id:notepadId,version:notepad.version,path:'dist/'+notepadId+'.wh.cpp',sha256:sha256Hex(notepadSource)});
 
  for(const [chrome,chromeId,label,exe,packagePattern,nativeClass,rootClasses,clsid] of [
   [host.notepadChrome,'j3w1-notepad-chrome','Notepad','Notepad.exe',/^Microsoft\.WindowsNotepad_\d+\.\d+\.\d+\.\d+_x64__8wekyb3d8bbwe$/,'Notepad',['NotepadXamlUI.MainMenuBar','NotepadXamlUI.StatusBar','NotepadXamlUI.TabsBar','NotepadXamlUI.NotepadSettingsPage'],'0x9f12b9c4,0x7b9d,0x489f,{0x8e,0x31,0x4a,0x81,0x10,0x32,0x6b,0xc4}'],
@@ -284,12 +285,12 @@ export function windowsArtifacts({manifest,host,resolved}){
   if(legacy)chromeSource=chromeSource.replaceAll('Microsoft::UI::Xaml','Windows::UI::Xaml').replaceAll('L"Microsoft.UI.Xaml.','L"Windows.UI.Xaml.');
   if(legacy)chromeSource=chromeSource.replace('type==L"Windows.UI.Xaml.Controls.SplitButton"||type==L"Windows.UI.Xaml.Controls.SplitButton"','type==L"Microsoft.UI.Xaml.Controls.SplitButton"||type==L"Windows.UI.Xaml.Controls.SplitButton"');
   artifacts.push({path:'dist/'+chromeId+'.wh.cpp',text:chromeSource});json(chromeId+'.json',{enabled:1});
-  bundledMods.push({id:chromeId,version:chrome.version,path:'dist/'+chromeId+'.wh.cpp',sha256:createHash('sha256').update(chromeSource).digest('hex')});
+  bundledMods.push({id:chromeId,version:chrome.version,path:'dist/'+chromeId+'.wh.cpp',sha256:sha256Hex(chromeSource)});
  }
  const markdown=windowsMarkdownArtifacts(host,resolved);
  artifacts.push({path:`dist/${markdown.id}.wh.cpp`,text:markdown.source},{path:'dist/markdown-theme.css',text:markdown.css});
  json(`${markdown.id}.json`,{enabled:1});
- bundledMods.push({id:markdown.id,version:markdown.version,path:`dist/${markdown.id}.wh.cpp`,sha256:createHash('sha256').update(markdown.source).digest('hex')});
+ bundledMods.push({id:markdown.id,version:markdown.version,path:`dist/${markdown.id}.wh.cpp`,sha256:sha256Hex(markdown.source)});
  const startup=host.settingsStartup;
  const dependencies=JSON.parse(readFileSync(path.join(repoRoot,'ports/windows/dependencies.json'),'utf8'));
  if(startup.sourceSha256!==dependencies.mods.find(m=>m.id==='windows-11-settings-styler')?.sha256
@@ -325,8 +326,8 @@ export function windowsArtifacts({manifest,host,resolved}){
  artifacts.push({path:'dist/j3w1.theme',text:`; Generated j3w1 ${manifest.version}\n[Theme]\nDisplayName=j3w1\n[Control Panel\\Colors]\nBackground=${rgb(val('color.surface.desktop')).join(' ')}\n[Control Panel\\Desktop]\nWallpaper=${themeAssets}\\j3w1-wallpaper.bmp\nTileWallpaper=0\nWallpaperStyle=10\n[Control Panel\\Cursors]\n${themeCursors}\nDefaultValue=j3w1\n[VisualStyles]\nPath=%ResourceDir%\\Themes\\Aero\\Aero.msstyles\nColorStyle=NormalColor\nSize=NormalSize\nColorizationColor=0XFF${val('color.border.active').slice(1).toUpperCase()}\nAutoColorization=0\nSystemMode=Dark\nAppMode=Dark\n[MasterThemeSelector]\nMTSM=DABJDKT\n`});
  const runtime=buildSync({entryPoints:[path.join(repoRoot,'ports/windows/src/runtime.mjs')],bundle:true,mainFields:['module','main'],platform:'node',target:'node24',format:'cjs',write:false,legalComments:'eof'}).outputFiles[0].text;
  artifacts.push({path:'dist/runtime.cjs',text:runtime});
- const files=artifacts.map(a=>({path:a.path,sha256:createHash('sha256').update(a.bytes??a.text).digest('hex')}));
- for(const name of ['install.ps1','adapter.ps1','lockscreen.ps1','dependencies.json','host.json'])files.push({path:name,sha256:createHash('sha256').update(readFileSync(path.join(repoRoot,'ports/windows',name))).digest('hex')});
+ const files=artifacts.map(a=>({path:a.path,sha256:sha256Hex(a.bytes??a.text)}));
+ for(const name of ['install.ps1','adapter.ps1','lockscreen.ps1','dependencies.json','host.json'])files.push({path:name,sha256:sha256Hex(readFileSync(path.join(repoRoot,'ports/windows',name)))});
  json('install-manifest.json',{schemaVersion:1,version:manifest.version,files});
  return artifacts;
 }

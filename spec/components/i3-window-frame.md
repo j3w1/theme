@@ -125,80 +125,52 @@ compact: false
 
 ## Purpose
 
-The frame the palette was tuned in: an i3 bar, tiled windows with 1px
-pixel borders, 14/−2 gaps, a tabbed container and one floating window. It
-proves that the terminal and code-editor components sit inside window
-chrome drawn from the same roles, and it records the workstation's geometry
-as reference metrics. It is a specimen of composition, not a desktop.
+The frame the palette was tuned in. It proves that the terminal and
+code-editor components sit in window chrome drawn from the same roles, and it
+records the workstation's geometry as reference metrics. A specimen of
+composition, not a desktop: only i3 and sway ports draw this frame.
 
 ## Anatomy
 
-The region on {color.surface.desktop}; the 28px bar on
-{color.surface.chrome} with the workspace tablist (the visible workspace on
-{color.interaction.selection.bg}) and the i3status group in Chinese with
-its clock in {color.text.bright}; the workspace grid with the reference
-gaps; each window a focusable group behind a 1px {color.border.default}
-frame, {color.border.active} when focused, with a 23px title bar in
-{color.text.muted} on {color.surface.chrome} that turns {color.text.bright}
-on {color.surface.chrome-alt} when focused; the terminal or code-editor as
-the client with its own boundary given up to the frame. Tabbed: the titles
-form a tablist whose visible tab carries the 2px
-{color.border.selected-indicator}. Floating: the editor sits above the
-terminal behind {color.border.overlay} with {shadow.floating}, the only
-shadow in the theme.
+Parts as listed in the anatomy.
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | the terminal window focused: {color.border.active} frame and the bright title; the editor at rest; workspace 1 filled | the title text; `aria-selected` |
-| focus-visible | the 2px {color.interaction.focus.ring-container} ring at −3px inside the focused window or container; the client draws no second ring | the ring |
-| selected | workspace 2 takes the selection fill with {color.interaction.selection.text}; workspace 1 drops to rest | `aria-selected` |
-| container-inactive | no window has focus: every frame {color.border.default}, every title {color.text.muted} on {color.surface.chrome}, the tab indicator {color.border.selected-indicator-inactive}, no caret | lightness drop; no caret |
-| error | workspace 3 is urgent: {color.status.danger.fill} with {color.status.danger.on-fill} and a trailing ! | the ! mark; "urgent" read to assistive technology |
+| default | terminal window focused: {color.border.active} frame, bright title; editor at rest; workspace 1 filled | the title text; `aria-selected` |
+| focus-visible | 2px {color.interaction.focus.ring-container} ring at −3px inside the focused window or container; the client draws no second ring | the ring |
+| selected | workspace 2 takes the selection fill with {color.interaction.selection.text}; workspace 1 at rest | `aria-selected` |
+| container-inactive | no window focused: every frame {color.border.default}, every title {color.text.muted} on {color.surface.chrome}, tab indicator {color.border.selected-indicator-inactive}, no caret | lightness drop; no caret |
+| error | workspace 3 urgent: {color.status.danger.fill} with {color.status.danger.on-fill} and a trailing ! | the ! mark; "urgent" read to assistive technology |
 
 The clients keep their own states (the terminal's busy cursor, the editor's
-selection and read-only gutter); this specimen declares only the states the
-frame adds around them.
+selection and read-only gutter); only the states the frame adds are declared
+here.
 
 ## Keyboard
 
-The workspace tablist is one stop with arrow movement; Enter or Space shows
-a workspace. Each window is a focusable group so the frame itself can hold
-focus, as i3 focuses a container; Tab then enters the client, whose own
-contract applies (the terminal log, the read-only editor textbox). In the
-tabbed variant the tab list is one stop and only the visible panel's client
-follows. Mod+h j k l and Mod+1..9 belong to the window manager and are
-documented, not reimplemented. Nothing traps focus.
+As in the key table. A window group can hold focus itself, as i3 focuses a
+container. Nothing traps focus.
 
 ## Accessibility
 
-The region names its workspace and layout. The bar is a group holding a
-named tablist and a status group in `lang="zh"`, whose Nerd Font glyphs
-are `aria-hidden` so only the labels are read. Every window is a named
-group; the focused one says so in its name and the floating one too.
-Urgency carries the ! mark and a visually hidden "urgent". Contrast:
-workspace names 8.60:1 and the clock 10.31:1 on the bar, focused titles
-10.01:1, rest titles 5.77:1, the focused frame 4.97:1 and the ring 10.37:1
-on the window surface, the urgent fill 4.12:1 against the bar with 4.58:1
-text on it.
+The region names its workspace and layout. The workspace tablist is named;
+the status group is `lang="zh"`;
+its Nerd Font glyphs are `aria-hidden`, so only the labels are read. Every
+window is a named group; the focused and the floating window say so in their
+names. Urgency carries the ! mark and a visually hidden "urgent". Text meets
+4.5:1; frames, the ring and the urgent fill 3:1.
 
 ## Portability
 
-Groups, a tablist and the clients' own roles; every state renders from the
-root hooks without a script. The i3 geometry — bar 28px, titles 23px, gaps
-14px inner and −2px outer — is reproduced with private variables on this
-specimen's root only. Those numbers are reference metrics of the
-workstation, recorded so a port of the i3 configuration matches it; they
-are not tokens and not a rule for any other application, which keeps its
-own window manager, bar and gaps. The specimen proves composition, not a
-product; only i3 and sway ports draw this frame.
+The geometry is recorded so a port of the i3 configuration matches the
+workstation; any other application keeps its own window manager, bar and
+gaps.
 
 ## Non-examples
 
-A window with rounded corners or a title bar gradient. A focused window
-that glows or blurs its neighbours. A shadow under a tiled window; the only
-shadow is the floating one. Gaps of 14/−2 forced into an unrelated
-application's layout. A workspace indicator drawn as a red underline
-instead of the selection fill. Traffic-light close buttons in the title
-bar. A translucent bar.
+Rounded corners or a title-bar gradient. A focused window that glows or
+blurs its neighbours. A shadow under a tiled window. 14/−2 gaps forced into
+an unrelated application. A red underline instead of the selection fill for
+the workspace. Traffic-light buttons in the title bar. A translucent bar.

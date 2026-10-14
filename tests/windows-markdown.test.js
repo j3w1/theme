@@ -1,14 +1,15 @@
+import { defaultTokens } from "./helpers/tokens.mjs";
+import { sha256Hex } from "../scripts/lib/host-install/files.mjs";
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
-import {createHash} from 'node:crypto';
 import {repoRoot} from '../scripts/lib/fs.mjs';
 import {windowsMarkdownArtifacts} from '../scripts/lib/windows-markdown.mjs';
 
 const port=path.join(repoRoot,'ports/windows');
 const host=JSON.parse(fs.readFileSync(path.join(port,'host.json'),'utf8'));
-const tokens=JSON.parse(fs.readFileSync(path.join(repoRoot,'exports/tokens.resolved.json'),'utf8')).profiles.default.tokens;
+const tokens=await defaultTokens();
 const resolved=new Map(Object.entries(tokens).map(([role,t])=>[role,{type:t.type,resolved:t.value}]));
 
 test('Markdown renders digits in token and digest placeholders and stays in every admitted CSS extent',()=>{
@@ -29,7 +30,7 @@ test('Markdown source and palette are manifest-pinned and participate in managed
  const manifest=JSON.parse(fs.readFileSync(path.join(port,'dist/install-manifest.json'),'utf8'));
  const mod=settings.bundledMods.find(m=>m.id==='j3w1-powertoys-markdown');assert.ok(mod);
  for(const file of [mod.path,'dist/j3w1-powertoys-markdown.json','dist/markdown-theme.css']){
-  const digest=createHash('sha256').update(fs.readFileSync(path.join(port,file))).digest('hex');
+  const digest=sha256Hex(fs.readFileSync(path.join(port,file)));
   assert.equal(manifest.files.find(f=>f.path===file)?.sha256,digest);
   if(file===mod.path)assert.equal(mod.sha256,digest);
  }

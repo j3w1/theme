@@ -562,7 +562,7 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | Supporting content | — | text | `color.text.muted` #bd787d | `color.surface.default` #100c0c | 5.69 | 4.5 | pass |
 | Control boundary | — | ui | `color.border.control` #a3676b | `color.surface.default` #100c0c | 4.36 | 3 | pass |
 | link default text | default | text | `color.text.link` #f73f35 | `color.surface.canvas` #000000 | 5.72 | 4.5 | pass |
-| link hover text | hover | text | `color.text.link-hover` #f4eeee | `color.interaction.hover.bg-strong` #630f0d | 11.41 | 4.5 | pass |
+| link hover text | hover | text | `color.text.link-hover` #f4eeee | `color.interaction.hover.bg` #1c0a09 | 16.70 | 4.5 | pass |
 | link focus-visible text | focus-visible | text | `color.text.link` #f73f35 | `color.surface.canvas` #000000 | 5.72 | 4.5 | pass |
 | link focus-visible outline | focus-visible | ui | `color.interaction.focus.ring` #e53935 | `color.surface.canvas` #000000 | 4.97 | 3 | pass |
 | link visited text | visited | text | `color.text.link` #f73f35 | `color.surface.canvas` #000000 | 5.72 | 4.5 | pass |
@@ -572,7 +572,7 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | underline on the panel | — | ui | `color.text.link-underline` #dc282e | `color.surface.default` #100c0c | 4.06 | 3 | pass |
 | link text on the panel | — | text | `color.text.link` #f73f35 | `color.surface.default` #100c0c | 5.29 | 4.5 | pass |
 | link text on raised surfaces | — | text | `color.text.link` #f73f35 | `color.surface.raised` #160b0b | 5.26 | 4.5 | pass |
-| ring on the hover fill | hover | ui | `color.interaction.focus.ring` #e53935 | `color.interaction.hover.bg-strong` #630f0d | 3.10 | 3 | pass |
+| ring on the hover fill | hover | ui | `color.interaction.focus.ring` #e53935 | `color.interaction.hover.bg` #1c0a09 | 4.53 | 3 | pass |
 | list default text | default | text | `color.text.default` #e99499 | `color.surface.default` #100c0c | 8.48 | 4.5 | pass |
 | list default border | default | ui | `color.border.control` #a3676b | `color.surface.default` #100c0c | 4.36 | 3 | pass |
 | list hover text | hover | text | `color.text.default` #e99499 | `color.interaction.hover.bg` #1c0a09 | 8.35 | 4.5 | pass |

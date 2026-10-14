@@ -79,57 +79,48 @@ compact: false
 
 ## Purpose
 
-Shows where the current page sits in a hierarchy and lets the user jump to
-any ancestor. Breadcrumbs are secondary navigation: they never replace the
-sidebar or the page title, and they are omitted on the root page.
+Where the current page sits in a hierarchy, with a jump to any ancestor.
+Secondary navigation: never a replacement for the sidebar or page title, and
+omitted on the root page.
 
 ## Anatomy
 
-A `nav` labelled "Breadcrumb" wrapping an `ol`. Each ancestor is a link in
-{color.text.link} with a 1px {color.text.link-underline}; a `/` separator in
-{color.text.muted} follows every item but the last; the last item is the
-current page in {color.text.bright} with `aria-current="page"`. When the
-trail is deeper than the space allows, the middle levels collapse behind an
-ellipsis button that names how many levels it hides.
+Parts as listed in the anatomy; the separator follows every item but the last.
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | links {color.text.link}, 1px underline; separators {color.text.muted}; current {color.text.bright} | underline on links; none on the current page |
-| hover | link background → {color.interaction.hover.bg-strong}; text → {color.text.link-hover} | underline thickens 1px → 2px; cursor |
-| focus-visible | ring 1px dashed {color.interaction.focus.ring} at −2px around the link | the ring |
-| current | text {color.text.bright}; no underline; no hover | `aria-current="page"`; no underline |
-| truncated | the middle levels are replaced by an `…` button in {color.text.default} | `aria-expanded="false"` on the button; its label counts the hidden levels |
+| hover | link → {color.interaction.hover.bg-strong}, text {color.text.link-hover} | underline 1px → 2px; cursor |
+| focus-visible | 1px dashed {color.interaction.focus.ring} at −2px around the link | the ring |
+| current | {color.text.bright}; no underline; no hover | `aria-current="page"`; no underline |
+| truncated | middle levels replaced by an `…` button in {color.text.default} | `aria-expanded="false"`; its label counts the hidden levels |
 
 ## Keyboard
 
-Every ancestor link is a tab stop in trail order. The ellipsis button is a tab
-stop that discloses the hidden levels in place on Enter or Space and sets its
-own `aria-expanded`; focus stays on the button so the newly revealed links are
-the next Tab presses.
+As in the key table. The ellipsis button discloses the hidden levels in place
+on Enter or Space; focus stays on it, so the revealed links are the next Tab
+stops.
 
 ## Accessibility
 
-`aria-label="Breadcrumb"` on the `nav`, translated. The separator is
-`aria-hidden` so nothing voices "slash"; the list structure gives the count.
-`aria-current="page"` marks the last item whether or not it is a link. Hidden
-levels stay in the DOM under the ellipsis (`hidden` until disclosed) so a
-find-in-page still reaches them. Contrast: link text 10.10:1, current
-10.10:1, separator 5.66:1, underline 4.57:1 on the panel surface. Each link
-is at least 24 CSS pixels tall through its line box and padding.
+The `nav` label "Breadcrumb" is translated. The `aria-hidden` separator keeps
+"slash" unspoken; the list gives the count. `aria-current="page"` marks the
+last item, link or not. Hidden levels stay in the DOM (`hidden` until
+disclosed) so find-in-page reaches them. Text meets 4.5:1; underline and ring
+3:1. Each link is at least 24 CSS pixels tall through line box and padding.
 
 ## Portability
 
-Plain inline links and text; the only requirement is an inline-start margin
-on the separator that flips in RTL. Toolkits without an underline draw the
-link in the link colour and record the deviation. The ellipsis disclosure is
-optional; hosts without it show the full trail and let it wrap.
+Plain inline links and text; the separator needs only an inline-start margin
+that flips in RTL. Without an underline, a toolkit draws the link in the link
+colour and records the deviation. The ellipsis is optional; without it the
+full trail shows and wraps.
 
 ## Non-examples
 
-Chevrons, arrows or bullets as separators. A trail that ends with the site
-name instead of the current page. The current page drawn as a link with an
-underline. Automatic truncation by `text-overflow` that hides levels without
-a way to reach them. A trail that scrolls horizontally. Uppercase or
-letter-spaced items. Separators that are read aloud.
+Chevrons, arrows or bullets as separators. A trail ending with the site name
+instead of the current page. The current page as an underlined link.
+`text-overflow` truncation that hides unreachable levels. A horizontally
+scrolling trail. Uppercase or letter-spaced items. Separators read aloud.
