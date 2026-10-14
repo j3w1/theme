@@ -24,7 +24,7 @@ const token = (path) => tokens.profiles[tokens.defaultProfile].tokens[path].css;
 const comparison = (await readdir("dist/releases", { recursive: true })).filter((file) => file.endsWith("/index.html") && !file.startsWith("specimens/")).sort()[0].replace(/index\.html$/, "");
 
 const routes = [
-  "", "foundations/", "components/", "components/button/", "components/dialog/", "components/form-builder/",
+  "", "reference/", "reference/contrast/", "reference/decisions/", "reference/fixtures/", "ports/ghostty/", "foundations/", "components/", "components/button/", "components/dialog/", "components/form-builder/",
   "patterns/", "patterns/validation-recovery/", "tokens/", "tokens/color.action.primary.bg/", "tools/",
   "implement/", "agents/", "ports/", "releases/", `releases/${comparison}`, "recipes/",
   "recipes/button/", "kit/", "builder/", "workbench/", "workbench/button/", "report/", "figma/", "no-such-page/",
@@ -32,7 +32,7 @@ const routes = [
 
 /* Specimens, live examples, previews with their own density, and the parts
    the choice and date renderers draw for a select or date input. */
-const OUTSIDE_CHROME = "[data-specimen], .site-example, template, [inert], [data-density], .j3w1-choice, .j3w1-temporal, .j3w1-calendar";
+const OUTSIDE_CHROME = "[data-specimen], .site-example, template, [inert], [data-density]:not(html), .j3w1-choice, .j3w1-temporal, .j3w1-calendar";
 
 const survey = (page, outside) => page.evaluate((outside) => {
   const box = (el) => {
