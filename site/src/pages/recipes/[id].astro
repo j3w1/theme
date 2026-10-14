@@ -21,7 +21,7 @@ const template = read("template.html");
 <SiteLayout title={`${id} recipe`} description="A standalone reference generated from the canonical default specimen." revision>
   <div class="site-actions">
     <a class="link link-standalone" href={withBase("recipes/")}>All recipes</a>
-    <a class="link link-standalone" href={`${withBase("reference/")}#${anchorFor.component(id)}`}>Component specification</a>
+    <a class="link link-standalone" href={`${withBase(`components/${id}/`)}#${anchorFor.component(id)}`}>Component specification</a>
   </div>
   <section class="site-section">
     <h2>Behavior and limitations</h2>

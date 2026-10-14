@@ -1,0 +1,17 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import { renderPortCatalogue } from "../../../../scripts/lib/port-presentation.mjs";
+import { anchorFor } from "../../../../scripts/lib/anchors.mjs";
+import catalogue from "../../../../exports/port-capabilities.json";
+import { withBase } from "../../lib/base";
+import { usageRevision } from "../../lib/revision";
+import "../../styles/components/text-field.css";
+export function getStaticPaths() { return catalogue.ports.map((port) => ({ params: { id: port.id }, props: { port } })); }
+const { port } = Astro.props;
+const markup = renderPortCatalogue({ ports: [port] }, { base: withBase(""), revision: usageRevision });
+---
+<SiteLayout title={port.displayName} description="Installation, supported surfaces, declared semantic mappings and import evidence." revision>
+  <p><a class="link" href={withBase("ports/")}>All ports</a> · <a class="link" href={withBase(`reference/#${anchorFor.doc("portability")}`)}>Portability rules</a></p>
+  <div data-port-content set:html={markup} />
+  <script>import "../../scripts/ports-filter";</script>
+</SiteLayout>

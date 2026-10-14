@@ -4,6 +4,7 @@
    in the token tables, so nothing is lost without JavaScript. */
 
 import { anchorFor } from "../../../scripts/lib/anchors.mjs";
+import { loadStaticJson } from "./search-loader";
 import { renderHexText, escapeHtml } from "../../../scripts/lib/hex-literals.mjs";
 import { withBase } from "../lib/base";
 type Row = [css: string, aliasOf: string, status: string, description: string, eligibility: { action: string; reason: string; decisionIds: string[] }, deprecated: boolean | string];
@@ -12,9 +13,10 @@ type Data = { defaultProfile: string; version: string; profiles: Record<string, 
 
 export const initInspector = (): void => {
   const box = document.getElementById("inspector");
-  const raw = document.getElementById("j3w1-tokens")?.textContent;
-  if (!box || !raw) return;
-  const data = JSON.parse(raw) as Data;
+  const source = box?.dataset.inspectorSource;
+  if (!box || !source) return;
+  let data: Data;
+  const load = async () => { data = await loadStaticJson<Data>(source); return data; };
   const preview = document.createElement("div");
   preview.id = "hex-popup";
   preview.className = "inspector hex-popup";
@@ -43,11 +45,14 @@ export const initInspector = (): void => {
     popup.style.top = `${rect.bottom + 6 + popup.offsetHeight > innerHeight ? Math.max(8, rect.top - popup.offsetHeight - 6) : rect.bottom + 6}px`;
   };
   const placePreview = () => placeByPointer(preview, pointer);
-  document.addEventListener("pointermove", (event) => {
+  document.addEventListener("pointermove", async (event) => {
     const target = event.target instanceof Element ? event.target.closest<HTMLElement>(".hex-swatch[data-token-matches]") : null;
     if (!target || box.contains(target) || !["mouse", "pen"].includes(event.pointerType)) { closePreview(); return; }
     pointer = { x: event.clientX, y: event.clientY };
     if (circle !== target) {
+      circle = target;
+      try { await load(); } catch { closePreview(); return; }
+      if (circle !== target) return;
       const matches = data.colorIndex[target.dataset.tokenMatches ?? ""] ?? [];
       preview.innerHTML = `<p>Exact value matches; equality does not assign a role.</p><ul>${matches.map((match) => `<li>${escapeHtml(match.profile)}: <code>${escapeHtml(match.path)}</code></li>`).join("")}</ul>`;
       circle = target;
@@ -79,18 +84,21 @@ export const initInspector = (): void => {
   let current: HTMLElement | null = null;
   const text = (value: string) => renderHexText(value, data.colorIndex);
 
-  const show = (target: HTMLElement, byPointer = false) => {
+  const show = async (target: HTMLElement, byPointer = false) => {
     if (box.contains(target)) return;
+    current = target;
+    try { await load(); } catch { return; }
+    if (current !== target) return;
     const path = target.dataset.token ?? "";
     const profiles = Object.entries(data.profiles);
     const main = data.profiles[data.defaultProfile]?.[path];
     if (target.dataset.tokenMatches) {
       const matches = data.colorIndex[target.dataset.tokenMatches] ?? [];
-      box.innerHTML = `<p>Exact value matches; equality does not assign a role.</p><ul>${matches.map((match) => `<li>${escapeHtml(match.profile)}: <a href="#${anchorFor.token(match.path)}"><code>${escapeHtml(match.path)}</code></a></li>`).join("")}</ul>`;
+      box.innerHTML = `<p>Exact value matches; equality does not assign a role.</p><ul>${matches.map((match) => `<li>${escapeHtml(match.profile)}: <a href="${withBase("tokens/")}#${anchorFor.token(match.path)}"><code>${escapeHtml(match.path)}</code></a></li>`).join("")}</ul>`;
     } else {
       if (!main) return;
-      const rows = profiles.map(([id, tokens]) => `<dt>${escapeHtml(id)}</dt><dd><code>${text(tokens[path]?.[0] ?? "—")}</code> ${escapeHtml(tokens[path]?.[2] ?? "unresolved")} ${tokens[path]?.[4].action ?? "blocked"}${tokens[path]?.[5] ? " deprecated" : ""} ${(tokens[path]?.[4].decisionIds ?? []).map((id) => `<a href="#${anchorFor.decision(id)}">${id}</a>`).join(" ")}</dd>`).join("");
-      box.innerHTML = `<dl><dt>role</dt><dd><code>${escapeHtml(path)}</code></dd><dt>css</dt><dd><code>--${escapeHtml(path.replaceAll(".", "-"))}</code></dd>${rows}<dt>alias of</dt><dd><code>${escapeHtml(main[1] || "—")}</code></dd><dt>status</dt><dd>${escapeHtml(main[2])}</dd>${main[3] ? `<dt>use</dt><dd>${text(main[3])}</dd>` : ""}<dt>anchor</dt><dd><a href="#${anchorFor.token(path)}">#${anchorFor.token(path)}</a></dd></dl>`;
+      const rows = profiles.map(([id, tokens]) => `<dt>${escapeHtml(id)}</dt><dd><code>${text(tokens[path]?.[0] ?? "—")}</code> ${escapeHtml(tokens[path]?.[2] ?? "unresolved")} ${tokens[path]?.[4].action ?? "blocked"}${tokens[path]?.[5] ? " deprecated" : ""} ${(tokens[path]?.[4].decisionIds ?? []).map((id) => `<a href="${withBase("reference/decisions/")}#${anchorFor.decision(id)}">${id}</a>`).join(" ")}</dd>`).join("");
+      box.innerHTML = `<dl><dt>role</dt><dd><code>${escapeHtml(path)}</code></dd><dt>css</dt><dd><code>--${escapeHtml(path.replaceAll(".", "-"))}</code></dd>${rows}<dt>alias of</dt><dd><code>${escapeHtml(main[1] || "—")}</code></dd><dt>status</dt><dd>${escapeHtml(main[2])}</dd>${main[3] ? `<dt>use</dt><dd>${text(main[3])}</dd>` : ""}<dt>anchor</dt><dd><a href="${withBase("reference/")}#${anchorFor.token(path)}">#${anchorFor.token(path)}</a></dd></dl>`;
     }
     if (main) {
       const link = document.createElement("a");
@@ -118,7 +126,7 @@ export const initInspector = (): void => {
     if (!target) return;
     pointer = { x: event.clientX, y: event.clientY };
     if (target === current) placeByPointer(box, pointer);
-    else show(target, true);
+    else void show(target, true);
   });
   document.addEventListener("mouseout", (event) => {
     const target = (event.target as HTMLElement).closest<HTMLElement>("[data-token]");
@@ -127,19 +135,18 @@ export const initInspector = (): void => {
   document.addEventListener("focusin", (event) => {
     const target = (event.target as HTMLElement).closest<HTMLElement>("[data-token]");
     /* Keyboard focus has no pointer to follow; anchor to the element. */
-    if (target) show(target, false);
+    if (target) void show(target, false);
     else if (!box.contains(event.target as Node)) hide();
   });
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && !box.hidden) hide();
   });
-  document.querySelectorAll<HTMLElement>("[data-token]").forEach((el) => {
-    if (!el.hasAttribute("tabindex")) el.tabIndex = 0;
-    el.setAttribute("aria-describedby", "inspector");
-  });
+  /* Native role links in tables/grids already have a keyboard stop. Prose
+     references remain readable text; do not add thousands of duplicate stops. */
+  document.querySelectorAll<HTMLElement>("a[data-token]").forEach((el) => { el.setAttribute("aria-describedby", "inspector"); });
   /* A native token link can receive focus before this enhancement loads.
      Preserve that focus and restore the missed inspector, without refocusing. */
   const focused = document.activeElement instanceof HTMLElement
     ? document.activeElement.closest<HTMLElement>("[data-token]") : null;
-  if (focused) show(focused, false);
+  if (focused) void show(focused, false);
 };

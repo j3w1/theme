@@ -15,7 +15,7 @@ const colors = Object.entries(data.tokens.default).filter(([, token]: any) => to
 ---
 <section class="workbench" data-workbench data-workbench-data={JSON.stringify(metadata)} data-preview-url={withBase(`preview/${c.id}/`)}>
   <div class="site-actions">
-    <a class="link link-standalone" href={`${withBase("reference/")}#${anchorFor.component(c.id)}`}>Component specification</a>
+    <a class="link link-standalone" href={`${withBase(`components/${c.id}/`)}#${anchorFor.component(c.id)}`}>Component specification</a>
     <a class="link link-standalone" href={withBase(`preview/${c.id}/`)} data-open-preview>Open isolated preview</a>
   </div>
   <p>Controls use maintained specimens. A forced focus ring is a visual simulation; it does not move keyboard focus. Profile previews keep their published approval status. Sample text stays in this page unless explicitly included in a shared link.</p>

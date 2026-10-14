@@ -35,7 +35,7 @@ test("the frame agent is injected before </body> or appended, and names its side
 test("the live side decorates exactly the routes the build decorates", () => {
   const index = { "#e53935": ["color.accent"] };
   assert.equal(hexIndexForRoute("index.html", index), index);
-  assert.equal(hexIndexForRoute("reference/index.html", index), index);
+  for (const route of ["reference/index.html", "reference/contrast/index.html", "reference/decisions/index.html", "reference/fixtures/index.html"]) assert.equal(hexIndexForRoute(route, index), index);
   assert.equal(hexIndexForRoute("tokens/color-text-default/index.html", index), index);
   assert.equal(hexIndexForRoute("components/button/index.html", index), index);
   assert.deepEqual(hexIndexForRoute("releases/v0-1-0/workbench/default/index.html", index), {});

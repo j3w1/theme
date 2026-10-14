@@ -17,21 +17,21 @@ const { docs, families, extra } = Astro.props;
     <summary>Contents</summary>
     <ol>
       {docs.map((d) => (
-        <li><a href={`#${anchors.doc(d.id)}`}>{d.title}</a></li>
+        <li><a class="sidebar-nav-link toc-link" href={`#${anchors.doc(d.id)}`}>{d.title}</a></li>
       ))}
       {families.map((f) => (
         <li>
           <div class="toc-family">{f.title}</div>
-          <a href={`#${anchors.family(f.id)}`}>{f.title}</a>
+          <a class="sidebar-nav-link toc-link" href={`#${anchors.family(f.id)}`}>{f.title}</a>
           <ol>
             {f.components.map((c) => (
-              <li><a href={`#${anchors.component(c.id)}`} data-toc-component={c.id}>{c.name}</a></li>
+              <li><a class="sidebar-nav-link toc-link" href={`#${anchors.component(c.id)}`} data-toc-component={c.id}>{c.name}</a></li>
             ))}
           </ol>
         </li>
       ))}
       {extra.map((e) => (
-        <li><a href={`#${e.id}`}>{e.title}</a></li>
+        <li><a class="sidebar-nav-link toc-link" href={`#${e.id}`}>{e.title}</a></li>
       ))}
     </ol>
   </details>

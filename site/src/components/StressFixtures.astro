@@ -55,7 +55,7 @@ const cols = Array.from({ length: 12 }, (_, i) => `col${i + 1}`);
           {strings.map((s) => (
             <div lang={s.lang} dir={s.dir} class="fixture-cell">
               <div set:html={field(`fx-i18n-${s.lang}`, s.label, s.help, s.action)} />
-              <button type="button" class="btn">{s.action}</button>
+              <button type="button" class="button button-secondary">{s.action}</button>
             </div>
           ))}
         </div>
@@ -75,8 +75,8 @@ const cols = Array.from({ length: 12 }, (_, i) => `col${i + 1}`);
       )}
       {f.id === "FX-DENSITY" && (
         <div class="fixture-grid">
-          <div class="fixture-cell" data-density="compact"><span class="fixture-frame-label">compact</span><div set:html={field("fx-compact", "Inner gap", "24px control.", "14")} /><button type="button" class="btn">Apply</button></div>
-          <div class="fixture-cell" data-density="comfortable"><span class="fixture-frame-label">comfortable</span><div set:html={field("fx-comfortable", "Inner gap", "32px control.", "14")} /><button type="button" class="btn">Apply</button></div>
+          <div class="fixture-cell" data-density="compact"><span class="fixture-frame-label">compact</span><div set:html={field("fx-compact", "Inner gap", "24px control.", "14")} /><button type="button" class="button button-secondary">Apply</button></div>
+          <div class="fixture-cell" data-density="comfortable"><span class="fixture-frame-label">comfortable</span><div set:html={field("fx-comfortable", "Inner gap", "32px control.", "14")} /><button type="button" class="button button-secondary">Apply</button></div>
         </div>
       )}
       {f.id === "FX-OVERFLOW" && (

@@ -10,12 +10,6 @@ code { overflow-wrap: anywhere; }
 form { margin-block: var(--space-16); }
 label { display: inline-block; margin: var(--space-8); }
 select { border: var(--border-width-default) solid var(--color-border-control); background: var(--color-surface-input); color: var(--color-text-default); font: inherit; min-height: var(--density-compact-control-height); border-radius: var(--radius-none); }
-/* The report is a standalone generated page that loads no component CSS
-   (scripts/lib/verification-report.mjs). Its one action, the reset button,
-   mirrors the canonical secondary button at compact density. */
-button { min-height: var(--density-compact-control-height); padding: 0 var(--density-compact-control-padding-x); border: var(--border-width-default) solid var(--color-action-secondary-border); border-radius: var(--radius-none); background: var(--color-action-secondary-bg); color: var(--color-action-secondary-text); font: inherit; cursor: pointer; }
-button:hover { background: var(--color-action-secondary-hover-bg); }
-button:active { background: var(--color-action-secondary-pressed-bg); border-color: var(--color-border-active); }
 :focus-visible { outline: var(--focus-ring); outline-offset: var(--focus-offset); }
 [hidden] { display: none; }
 @media print { #filters { display: none; } .scroll { overflow: visible; } }

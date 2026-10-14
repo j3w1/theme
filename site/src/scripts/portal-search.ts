@@ -1,3 +1,4 @@
+import { loadSearchIndex } from "./search-loader";
 import { renderHexText } from "../../../scripts/lib/hex-literals.mjs";
 
 const root = document.querySelector<HTMLElement>("[data-search-index]");
@@ -27,16 +28,13 @@ if (root) {
     input.setAttribute("aria-busy", "true");
     pending = (async () => {
       try {
-        const response = await fetch(indexUrl);
-        if (!response.ok) throw new Error("Index unavailable");
-        const entries = await response.json();
-        if (!Array.isArray(entries)) throw new Error("Invalid index");
+        const { entries } = await loadSearchIndex();
         const fragment = document.createDocumentFragment();
         for (const entry of entries) {
-          if (typeof entry.id !== "string" || !/^[a-z0-9-]+$/.test(entry.id) || typeof entry.category !== "string" || typeof entry.label !== "string" || typeof entry.href !== "string" || (entry.value !== undefined && typeof entry.value !== "string")) throw new Error("Invalid command");
+          if (typeof entry.id !== "string" || !/^[a-z0-9-]+$/.test(entry.commandId) || typeof entry.category !== "string" || typeof entry.label !== "string" || typeof entry.href !== "string" || (entry.value !== undefined && typeof entry.value !== "string")) throw new Error("Invalid command");
           const target = commandTarget(entry.href);
           const option = document.createElement("li");
-          option.id = entry.id; option.setAttribute("role", "option"); option.tabIndex = -1; option.dataset.action = target.href;
+          option.id = entry.commandId; option.setAttribute("role", "option"); option.tabIndex = -1; option.dataset.action = target.href;
           const category = document.createElement("span"); category.className = "site-command-category"; category.textContent = entry.category + " ";
           const label = document.createElement("span"); label.className = "site-command-label"; label.textContent = entry.label;
           if (entry.value) { const value = document.createElement("small"); value.className = "site-command-value"; value.innerHTML = renderHexText(" " + entry.value); label.append(value); }

@@ -57,15 +57,7 @@ const targetsButton = (selector) => {
 const LOOK = /^(background|border|padding)(-|$)/;
 const RESET = new Set(["font", "color", "border-radius"]);
 
-/* Reviewed exceptions, each with its reason and its exact selectors. */
-const EXCEPTIONS = {
-  /* The reference page's own chrome until it moves to SiteLayout; its
-     components still render .btn and .copy-button. Remove with them. */
-  "site/src/styles/site.css": { selectors: new Set([".btn", ".btn:hover", ".btn:active", ".btn-quiet", ".btn-quiet:hover", ".copy-button", ".copy-button:hover", '.copy-button[data-copied="true"]']) },
-  /* The verification report is a standalone generated page that loads no
-     component CSS; its reset button may only mirror the secondary tone. */
-  "site/src/styles/verification.css": { selectors: new Set(["button", "button:hover", "button:active"]), values: /^var\(--(color-action-secondary-[\w-]+|color-border-active|density-compact-[\w-]+|border-width-default|radius-none)\)$/ },
-};
+const EXCEPTIONS = {};
 
 const rulesOf = async (file) => {
   const rules = [];
@@ -99,11 +91,10 @@ test("no chrome stylesheet declares a button look; base.css only resets", async 
   assert.deepEqual(problems, [], "button looks belong in site/src/styles/components (or the shared partial they import)");
 });
 
-test("the reference-only exception stays on the reference page", async () => {
-  const importers = (await listFiles("site/src", { filter: (f) => /\.(astro|ts)$/.test(f) }));
-  const users = [];
-  for (const file of importers) if (/styles\/site\.css["']/.test(await readText(file))) users.push(file);
-  assert.deepEqual(users.sort(), ["site/src/layouts/SpecLayout.astro", "site/src/pages/preview/[id].astro"]);
+test("retired reference control classes and layout have no source users", async () => {
+  for (const file of await listFiles("site/src", { filter: (file) => /\.(astro|css|ts)$/.test(file) })) {
+    assert.doesNotMatch(await readText(file), /class="(?:btn|copy-button)\b|SpecLayout/, file);
+  }
 });
 
 test("component partials are imported only by component stylesheets", async () => {

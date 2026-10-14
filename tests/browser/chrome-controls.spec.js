@@ -81,3 +81,21 @@ for (const route of ["builder/", "patterns/validation-recovery/"]) {
     expect(rgbToHex(await primary.evaluate((el) => getComputedStyle(el).backgroundColor))).toBe(token("color.action.primary.bg"));
   });
 }
+
+
+test("the section is current and the rail collapses to accessible icons from 900 to 1280px", { annotation }, async ({ page }, info) => {
+  test.skip(info.project.name !== "desktop", "Responsive rail at explicit widths.");
+  await page.setViewportSize({ width: 1024, height: 900 });
+  await page.goto("components/button/");
+  const rail = page.getByRole("navigation", { name: "Site", exact: true });
+  const link = rail.getByRole("link", { name: "Components", exact: true });
+  await expect(link).toHaveAttribute("aria-current", "true");
+  await expect(link).toHaveAttribute("title", "Components");
+  expect(await rail.evaluate((el) => el.getBoundingClientRect().width)).toBe(48);
+  expect(await link.locator(".sidebar-nav-label").evaluate((el) => el.getBoundingClientRect().width)).toBe(1);
+  await link.focus(); await expect(link).toBeFocused();
+  await expect(link).toHaveCSS("border-inline-start-width", "2px");
+  await page.setViewportSize({ width: 1440, height: 900 });
+  expect(await rail.evaluate((el) => el.getBoundingClientRect().width)).toBe(240);
+  expect(await link.locator(".sidebar-nav-label").evaluate((el) => el.getBoundingClientRect().width)).toBeGreaterThan(1);
+});

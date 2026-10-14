@@ -16,6 +16,8 @@ import "../styles/components/breadcrumbs.css";
 import "../styles/components/card.css";
 import "../styles/components/table.css";
 import "../styles/chrome.css";
+import "../styles/site.css";
+import "../styles/print.css";
 import { withBase } from "../lib/base";
 import { theme } from "../lib/theme";
 import { usageRevision } from "../lib/revision";
@@ -74,7 +76,7 @@ const section = flat.filter((entry) => entry.path && here.startsWith(entry.path)
 const trail = section ? [section.parent, section].filter((entry): entry is Entry => !!entry && entry.path !== here) : [];
 const crumbs = breadcrumbs && here ? [{ path: "", label: "Overview" }, ...trail] : [];
 const open = (entry: Entry) => !!entry.children?.some((child) => here.startsWith(child.path)) || here.startsWith(entry.path) && !!entry.children;
-const current = (path: string) => (path === here ? "page" : undefined);
+const current = (path: string): "page" | "true" | undefined => path === here ? "page" : path && (here.startsWith(path) || navigation.find((entry) => entry.path === path)?.children?.some((child) => here.startsWith(child.path))) ? "true" : undefined;
 
 const commands = [...flat.map(({ path, label }) => [path, label]), ["demo/", "Vue application demo"]];
 const id = (name: string) => anchorFor.uiExample("portal", name);
@@ -146,12 +148,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
       <nav class="sidebar-nav site-rail" aria-label="Site">
         <ul class="sidebar-nav-list">
           {navigation.map((entry) => <li class="sidebar-nav-item">
-            <a class="sidebar-nav-link" href={withBase(entry.path)} aria-current={current(entry.path)}>
+            <a class="sidebar-nav-link" title={entry.label} href={withBase(entry.path)} aria-current={current(entry.path)}>
               <span class="sidebar-nav-icon" aria-hidden="true"><svg viewBox="0 0 16 16" width="16" height="16" focusable="false"><path d={icons[entry.icon!]} /></svg></span>
               <span class="sidebar-nav-label">{entry.label}</span>
             </a>
             {entry.children && open(entry) && <ul class="sidebar-nav-list sidebar-nav-sublist">
-              {entry.children.map((child) => <li class="sidebar-nav-item"><a class="sidebar-nav-link" href={withBase(child.path)} aria-current={current(child.path)}><span class="sidebar-nav-label">{child.label}</span></a></li>)}
+              {entry.children.map((child) => <li class="sidebar-nav-item"><a class="sidebar-nav-link" title={child.label} href={withBase(child.path)} aria-current={current(child.path)}><span class="sidebar-nav-icon" aria-hidden="true"><svg viewBox="0 0 16 16" width="16" height="16" focusable="false"><path d={icons.tools} /></svg></span><span class="sidebar-nav-label">{child.label}</span></a></li>)}
             </ul>}
           </li>)}
         </ul>
@@ -184,12 +186,20 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     </div>
     <script type="module" is:inline src={withBase("ui/register/drawer.js")}></script>
     <script type="module" is:inline src={withBase("ui/register/command-palette.js")}></script>
+    <div class="inspector" id="inspector" role="dialog" aria-label="Token inspector" data-inspector-source={withBase("tokens/inspector.json")} hidden></div>
     <script>
+      import { initInspector } from "../scripts/inspector";
       import { enhanceControls } from "@j3w1/ui/enhance/choice";
       import { initCopy } from "../scripts/copy";
       import "../scripts/portal-search";
       initCopy();
-      enhanceControls(document.querySelector("main")!);
+      initInspector();
+      /* Native state specimens must keep the exact maintained markup. */
+      const main = document.querySelector<HTMLElement>("main")!;
+      if (main.querySelector(".matrix")) {
+        const controls = main.querySelector<HTMLElement>("#controls");
+        if (controls) enhanceControls(controls);
+      } else enhanceControls(main);
     </script>
   </body>
 </html>

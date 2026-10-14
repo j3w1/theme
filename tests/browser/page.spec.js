@@ -124,9 +124,7 @@ test.describe("the specification page", () => {
 
   test("enhancements: search narrows the contents, family filter hides sections, density and profile persist, reset clears", verification({component: "page", category: "enhancements", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
     test.skip(!only(testInfo, "desktop"), "scripts on desktop");
-    /* Two themed comboboxes and a reload of a 4.4MB page do not fit the default
-       budget; the axe scan raises its own for the same reason. No assertion is
-       relaxed. */
+    /* Exercise both themed specimen controls, persistence and a reload. */
     test.setTimeout(120_000);
     const context = page.context();
     await context.grantPermissions(["clipboard-read", "clipboard-write"]);
@@ -138,11 +136,13 @@ test.describe("the specification page", () => {
        setting persists. */
     await expect(page.locator("#controls .j3w1-choice-trigger").first()).toBeVisible({ timeout: 30_000 });
     await chooseThemed(page, "density", "comfortable");
-    await expect(page.locator("html")).toHaveAttribute("data-density", "comfortable");
+    await expect(page.locator("html")).toHaveAttribute("data-demo-density", "comfortable");
+    await expect(page.locator("html")).toHaveAttribute("data-density", "compact");
     await chooseThemed(page, "profile", "heritage-ansi");
     await expect(page.locator(".ladder").first()).toHaveAttribute("data-profile", "heritage-ansi");
     await page.reload({ waitUntil: "networkidle" });
-    await expect(page.locator("html")).toHaveAttribute("data-density", "comfortable");
+    await expect(page.locator("html")).toHaveAttribute("data-demo-density", "comfortable");
+    await expect(page.locator("html")).toHaveAttribute("data-density", "compact");
     const keys = await page.evaluate(() => Object.keys(localStorage));
     expect(keys.every((k) => k.startsWith("j3w1-theme:"))).toBe(true);
     await page.locator("#search").fill("focus ring");

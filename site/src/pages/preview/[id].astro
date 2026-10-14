@@ -19,7 +19,7 @@ const id = data.contract.id;
 <html lang="en" data-density="compact" data-profile="default">
   <head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>{data.contract.name} isolated preview · j3w1</title></head>
   <body class="preview-page" data-preview-data={JSON.stringify(metadata)}>
-    <header class="preview-heading"><a href={withBase(`workbench/${id}/`)} target="_top">{data.contract.name} workbench</a> · <a href={`${withBase("reference/")}#${anchorFor.component(id)}`} target="_top">Specification</a> · <a href={withBase(`exports/components/${id}.json`)}>Machine contract</a><p data-preview-revision>{data.revision ? `Build ${data.revision}` : "Local unpinned build"} · Theme {data.themeVersion} · <code>{data.sourceDigest}</code></p></header>
+    <header class="preview-heading"><a href={withBase(`workbench/${id}/`)} target="_top">{data.contract.name} workbench</a> · <a href={`${withBase(`components/${id}/`)}#${anchorFor.component(id)}`} target="_top">Specification</a> · <a href={withBase(`exports/components/${id}.json`)}>Machine contract</a><p data-preview-revision>{data.revision ? `Build ${data.revision}` : "Local unpinned build"} · Theme {data.themeVersion} · <code>{data.sourceDigest}</code></p></header>
     <main>
     <h1 class="preview-title">{data.contract.name} isolated specimen</h1>
     <p class="preview-note" data-preview-note>Canonical static specimen. Native browser controls work; scripted behavior requires JavaScript.</p>

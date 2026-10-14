@@ -31,7 +31,12 @@ test("component sections, exports, contents entries and the search index agree",
     const section = html.match(new RegExp(`<section class="component" id="c-${id}"[^>]*>`))[0];
     const cov = coverage.components[id];
     assert.ok(section.includes(`data-family="${cov.family}"`), `${id} family`);
-    if (cov.demonstrated) assert.ok(html.includes(`id="${id}-states"`), `${id} state matrix rendered`);
+    const detail = await readText(`dist/components/${id}/index.html`);
+    if (cov.demonstrated) {
+      assert.equal((detail.match(/class="matrix"/g) ?? []).length, 1, `${id}: one full matrix`);
+      assert.ok(detail.includes(`id="${anchorFor.states(id)}"`), `${id} detail state matrix`);
+      assert.ok(html.includes(`id="${anchorFor.states(id)}" data-legacy-target href="/theme/components/${id}/#${anchorFor.states(id)}"`), `${id}: static matrix link on hub`);
+    }
   }
 });
 

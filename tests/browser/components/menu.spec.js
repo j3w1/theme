@@ -9,7 +9,7 @@ const VARIANTS = 3;
 
 test.describe("menu", () => {
   test("the state matrix renders every declared state for every variant", verification({component: "menu", category: "rendering", states: ["default", "hover", "focus-visible", "open", "closed", "disabled", "checked", "selected"], variants: ["default", "with-submenu", "with-checks"], note: "Presence and selected structural assertions only; not behavioral verification of every state."}), async ({ page }) => {
-    await openSpec(page, "#c-menu");
+    await openSpec(page, "components/menu/#c-menu");
     for (const state of STATES) {
       const cells = page.locator(`#menu-states [data-state="${state}"]`);
       await expect(cells).toHaveCount(VARIANTS);
@@ -23,7 +23,7 @@ test.describe("menu", () => {
 
   test("the menu surface, the active item fill and the ring on the button", verification({component: "menu", category: "appearance", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs"), "computed styles are the same without scripts; keep one run");
-    await openSpec(page, "#c-menu");
+    await openSpec(page, "components/menu/#c-menu");
     const live = page.locator('#menu-states [data-state="default"]').first();
     const list = live.locator('[role="menu"]');
     const button = live.locator(".menu-button");
@@ -66,7 +66,7 @@ test.describe("menu", () => {
 
   test("structure: the button owns the menu and one item is in the tab order", verification({component: "menu", category: "structure", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
     test.skip(only(testInfo, "narrow", "zoom200"), "one structural check");
-    await openSpec(page, "#c-menu");
+    await openSpec(page, "components/menu/#c-menu");
     const live = page.locator('#menu-states [data-state="default"]').first();
     await expect(live.locator(".menu-button")).toHaveAttribute("aria-haspopup", "menu");
     await expect(live.locator(".menu-button")).toHaveAttribute("aria-expanded", "true");

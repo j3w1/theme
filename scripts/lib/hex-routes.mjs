@@ -7,7 +7,7 @@ export const HEX_DECORATION = Object.freeze({
   /* Single pages. */
   pages: ["index.html", "reference/index.html"],
   /* Every HTML file under these trees, with today's token matches. */
-  trees: ["tokens/", "ports/", "recipes/", "kit/", "workbench/", "preview/", "components/", "foundations/", "tools/", "patterns/", "builder/", "figma/", "implement/", "agents/"],
+  trees: ["reference/", "tokens/", "ports/", "recipes/", "kit/", "workbench/", "preview/", "components/", "foundations/", "tools/", "patterns/", "builder/", "figma/", "implement/", "agents/"],
   /* Historical literals keep their exact fill without today's token matches. */
   historicalTrees: ["releases/"],
   /* Reconstructed specimens keep their exact, digest-recorded bytes. */

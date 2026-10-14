@@ -1,10 +1,14 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { parse } from "parse5";
-import { readText } from "../../scripts/lib/fs.mjs";
+import { hexIndexForRoute } from "../../scripts/lib/hex-routes.mjs";
+import { listFiles, readText } from "../../scripts/lib/fs.mjs";
 
 test("every eligible built-page literal has one adjacent swatch and matching fill", async () => {
-  const tree = parse(await readText("dist/reference/index.html"));
+  let total = 0;
+  for (const file of await listFiles("dist", { filter: (file) => file.endsWith(".html") })) {
+  if (hexIndexForRoute(file.slice("dist/".length), {}) === null) continue;
+  const tree = parse(await readText(file));
   let text = "";
   const previews = [];
   const attr = (n, key) => n.attrs?.find((a) => a.name === key)?.value;
@@ -30,8 +34,10 @@ test("every eligible built-page literal has one adjacent swatch and matching fil
   };
   visit(tree);
   const literals = [...text.matchAll(/(?<![\w#/@.-])#(?:[a-f\d]{8}|[a-f\d]{6}|[a-f\d]{4}|[a-f\d]{3})(?![\w/-])/gi)].filter((m) => !/(?:[a-z][\w+.-]*:\/\/|mailto:)[^\s<>"']*$/i.test(text.slice(Math.max(0, text.lastIndexOf("\n", m.index)), m.index)));
-  assert.ok(literals.length > 1000, "audit covers prose, component tables and contrast report");
+  total += literals.length;
   const expected = literals.map((m) => ({ end: m.index + m[0].length, hex: m[0] }));
-  assert.equal(previews.length, expected.length, `preview count ${previews.length}, literal count ${expected.length}`);
+  assert.equal(previews.length, expected.length, `${file}: preview count ${previews.length}, literal count ${expected.length}`);
   for (let i = 0; i < expected.length; i++) assert.deepEqual(previews[i], expected[i], `literal ${i}: ${text.slice(expected[i].end - 50, expected[i].end + 50)}`);
+  }
+  assert.ok(total > 1000, "audit covers every decorated page, including prose, tables and contrast pairs");
 });

@@ -17,7 +17,7 @@ const primary = usageIndex.profiles.default.tokens[path];
   <div class="site-actions">
     <a class="link link-standalone" href={withBase(`tokens/?query=${encodeURIComponent(path)}`)}>Find related usage</a>
     <a class="link link-standalone" href={`${withBase("reference/")}#${anchorFor.token(path)}`}>Specification anchor</a>
-    <a class="link link-standalone" href={`${withBase("reference/")}#contrast-report`}>Measured contrast report (default profile)</a>
+    <a class="link link-standalone" href={`${withBase("reference/contrast/")}#contrast-report`}>Measured contrast report (default profile)</a>
     <a class="link link-standalone" href={withBase(`report/?token=${encodeURIComponent(path)}`)}>Report an issue with this token</a>
   </div>
   <div class="site-actions js-only">
@@ -37,7 +37,7 @@ const primary = usageIndex.profiles.default.tokens[path];
         <div><dt>Resolved value</dt><dd><code>{token.css}</code></dd></div>
         <div><dt>Status</dt><dd>{token.status}{token.deprecated && ` · deprecated: ${token.deprecated}`}</dd></div>
         <div><dt>Consumption</dt><dd>{token.eligibility.action} — {token.eligibility.reason}</dd></div>
-        <div><dt>Decisions</dt><dd>{token.eligibility.decisionIds.length ? token.eligibility.decisionIds.map((id) => <a class="link" href={`${withBase("reference/")}#${anchorFor.decision(id)}`}>{id} </a>) : "None pending."}</dd></div>
+        <div><dt>Decisions</dt><dd>{token.eligibility.decisionIds.length ? token.eligibility.decisionIds.map((id) => <a class="link" href={`${withBase("reference/decisions/")}#${anchorFor.decision(id)}`}>{id} </a>) : "None pending."}</dd></div>
         <div><dt>Source</dt><dd><SourceLink source={token.source} /></dd></div>
         <div><dt>Alias chain</dt><dd>{token.aliases.length ? token.aliases.map((alias) => <><a class="link" href={tokenUrl(alias)}><code>{alias}</code></a> </>) : "Literal value; no alias dependencies."}</dd></div>
         <div><dt>Used by aliases</dt><dd>{token.usedByAliases.length ? token.usedByAliases.map((alias) => <><a class="link" href={tokenUrl(alias)}><code>{alias}</code></a> </>) : "No declared aliases depend on this role."}</dd></div>
@@ -50,7 +50,7 @@ const primary = usageIndex.profiles.default.tokens[path];
           <thead><tr><th class="table-header" scope="col">Consumer / kind</th><th class="table-header" scope="col">Part / variant</th><th class="table-header" scope="col">State / surface</th><th class="table-header" scope="col">Source declaration</th></tr></thead>
           <tbody class="table-body">
             {token.uses.map((use) => <tr class="table-row">
-              <td class="table-cell">{use.component ? <a class="link" href={`${withBase("reference/")}#${anchorFor.component(use.component)}`}>{use.component}</a> : use.port ?? "Shared rule"} · {use.kind}{use.nativeKey && <code>{use.nativeKey}</code>}</td>
+              <td class="table-cell">{use.component ? <a class="link" href={`${withBase(`components/${use.component}/`)}#${anchorFor.component(use.component)}`}>{use.component}</a> : use.port ?? "Shared rule"} · {use.kind}{use.nativeKey && <code>{use.nativeKey}</code>}</td>
               <td class="table-cell">{use.part ?? "—"}{use.variant && ` · ${use.variant}`}</td>
               <td class="table-cell">{use.state ?? "—"}{use.surface && <> · <a class="link" href={tokenUrl(use.surface)}>{use.surface}</a></>}</td>
               <td class="table-cell"><SourceLink source={use.source} /></td>

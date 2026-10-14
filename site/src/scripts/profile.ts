@@ -4,7 +4,7 @@
 
 import { KEYS, get, set } from "./storage";
 
-const targets = () => document.querySelectorAll<HTMLElement>(".demo, .ladder, .spec-rows, .border-set, .status-set");
+const targets = () => document.querySelectorAll<HTMLElement>("[data-specimen], .demo, .ladder, .spec-rows, .border-set, .status-set");
 
 export const apply = (id: string) => {
   document.documentElement.setAttribute("data-demo-profile", id);

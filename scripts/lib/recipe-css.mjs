@@ -4,16 +4,16 @@ import { cssVar, toCss } from "./tokens.mjs";
 import { eligibilityOf } from "./eligibility.mjs";
 
 export const RECIPE_SCOPE = ".j3w1-recipe";
-export const scopeRecipeCss = (source, { removeClasses = [] } = {}) => {
+export const scopeRecipeCss = (source, { removeClasses = [], scope = RECIPE_SCOPE, keepStates = false } = {}) => {
   const root = postcss.parse(source);
   root.walkComments((comment) => comment.remove());
   root.walkAtRules((rule) => {
     if (!["media", "supports", "container"].includes(rule.name)) throw new Error(`Unsupported recipe CSS dependency: @${rule.name}`);
   });
   root.walkRules((rule) => {
-    const selectors = rule.selectors.filter((s) => !s.includes("[data-state-") && !removeClasses.some((name) => s.includes(`.${name}`)));
+    const selectors = rule.selectors.filter((s) => (keepStates || !s.includes("[data-state-")) && !removeClasses.some((name) => s.includes(`.${name}`)));
     if (!selectors.length) return rule.remove();
-    rule.selectors = selectors.map((s) => s === "&" ? RECIPE_SCOPE : `${RECIPE_SCOPE} ${s}`);
+    rule.selectors = selectors.map((s) => s === "&" ? scope : `${scope} ${s}`);
   });
   root.walkDecls((decl) => {
     const value = valueParser(decl.value);

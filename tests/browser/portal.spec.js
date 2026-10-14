@@ -27,7 +27,7 @@ test("portal retains specification content and opens its compact command utility
 test("legacy homepage hashes migrate to the complete reference", { annotation }, async ({ page }, info) => {
   test.skip(info.project.name === "nojs", "No-JS readers use the static full-reference link; automatic hash migration requires JavaScript.");
   await page.goto("./#c-dialog");
-  await expect(page).toHaveURL(/\/reference\/#c-dialog$/);
+  await expect(page).toHaveURL(/\/components\/dialog\/#c-dialog$/);
   await expect(page.locator("#c-dialog")).toBeVisible();
 });
 

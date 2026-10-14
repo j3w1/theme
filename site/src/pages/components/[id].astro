@@ -1,5 +1,14 @@
 ---
-import { getCollection, render } from "astro:content";
+import { getCollection } from "astro:content";
+import ComponentSection from "../../components/ComponentSection.astro";
+import SelectField from "../../components/fields/SelectField.astro";
+import { profiles } from "../../lib/theme";
+import { repoRoot } from "../../../../scripts/lib/fs.mjs";
+import { cssSourceClosure } from "../../../../scripts/lib/ui-distribution.mjs";
+import { scopeRecipeCss } from "../../../../scripts/lib/recipe-css.mjs";
+import { definitions } from "../../../../packages/ui/src/catalogue.mjs";
+import "../../styles/site.css";
+import "../../styles/print.css";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import { withBase } from "../../lib/base";
 import { anchorFor } from "../../../../scripts/lib/anchors.mjs";
@@ -13,7 +22,12 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const id = entry.id;
 const item = implementations.components.find((c) => c.id === id)!;
-const { Content } = await render(entry);
+const demoModules = import.meta.glob("/spec/components/*.demo.html", { query: "?raw", import: "default", eager: true }) as Record<string, string>;
+const demo = demoModules[`/spec/components/${id}.demo.html`] ?? null;
+const dependencies = [id, ...item.styleDependencies];
+const styleEntries = [...dependencies.map((name) => `components/${name}.css`), ...dependencies.flatMap((name) => definitions[name]?.extraStyles ?? []).map((file) => file.replace(/^site\/src\/styles\//, ""))];
+const matrixSources = await cssSourceClosure(`${repoRoot}/site/src/styles`, styleEntries);
+const matrixCss = [...matrixSources.values()].map((source) => scopeRecipeCss(source, { scope: `.reference-matrix-${id}`, keepStates: true })).join("\n");
 const variants = examples[id];
 const imports = `import '@j3w1/ui/tokens.css';\nimport '@j3w1/ui/styles/${id}.css';\nimport '@j3w1/ui/register/${id}';`;
 const install = `npm install --save-exact @j3w1/ui@${item.version}`;
@@ -27,7 +41,7 @@ const links = [
 ];
 ---
 <SiteLayout title={item.name} description={entry.data.summary}>
-  <Fragment slot="head"><link rel="stylesheet" href={withBase(`ui/styles/${id}.css`)} /></Fragment>
+  <Fragment slot="head"><link rel="stylesheet" href={withBase(`ui/styles/${id}.css`)} /><style is:inline set:html={matrixCss} /></Fragment>
   <p class="site-note">{entry.data.maturity} · light DOM · {item.version}. {item.domReason} {id === "form-builder" && "The bounded form-builder contract remains draft; D-021 has not been promoted."}</p>
   <div class="site-actions">
     {links.map(([path, label]) => <a class="link link-standalone" href={withBase(path)}>{label}</a>)}
@@ -77,12 +91,18 @@ const links = [
   <section class="site-section">
     <h2>Dependencies and verification</h2>
     <p>Registered components: {item.dependencies.length ? item.dependencies.join(", ") : "none"}. Style dependencies: {item.styleDependencies.length ? item.styleDependencies.join(", ") : "none"}.</p>
-    <p>Package presence establishes an available implementation. Actual passes depend on the tested artifact and environment. <a class="link" href={withBase(`verification/#${anchorFor.verification(id)}`)}>Read specification execution evidence</a>; <a class="link" href={withBase("verification/ui.json")}>read packed-consumer evidence</a>; <a class="link" href={withBase(`reference/#${anchorFor.component(id)}`)}>inspect the complete state matrix</a>.</p>
+    <p>Package presence establishes an available implementation. Actual passes depend on the tested artifact and environment. <a class="link" href={withBase(`verification/#${anchorFor.verification(id)}`)}>Read specification execution evidence</a>; <a class="link" href={withBase("verification/ui.json")}>read packed-consumer evidence</a>; <a class="link" href={`#${anchorFor.states(id)}`}>inspect the complete state matrix</a>.</p>
     <p><a class="link link-standalone" href={withBase("ui/manifest.json")}>Full implementation manifest, API and token dependency closure</a></p>
   </section>
-  <section class="site-prose" id={anchorFor.component(id)}>
+  <section class="site-section">
     <h2>Canonical specification</h2>
-    <Content />
+    <div class="controls js-only" id="controls">
+      <SelectField id="density" label="Specimen density"><option value="compact">compact</option><option value="comfortable">comfortable</option></SelectField>
+      <SelectField id="profile" label="Specimen profile">{Object.entries(profiles).map(([id, p]) => <option value={id}>{id} ({p.status})</option>)}</SelectField>
+      <button class="button button-tertiary" type="button" id="reset">Reset page preferences</button>
+    </div>
+    <ComponentSection entry={entry} demo={demo} />
   </section>
+  <script>import "../../scripts/main";</script>
   <script type="module" is:inline src={withBase(`ui/register/${id}.js`)}></script>
 </SiteLayout>

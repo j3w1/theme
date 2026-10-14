@@ -34,7 +34,7 @@ const defs = coverageLedger.definitions as Record<string, string>;
         <tbody>
           {rows.map(([id, c]) => (
             <tr>
-              <td><a href={`#c-${id}`}><code>{id}</code></a> · <a href={`${withBase("verification/")}#${anchors.verification(id)}`}>evidence</a></td>
+              <td><a href={withBase(`components/${id}/#${anchors.component(id)}`)}><code>{id}</code></a> · <a href={`${withBase("verification/")}#${anchors.verification(id)}`}>evidence</a></td>
               <td>{c.family}</td>
               <td>{c.priority}</td>
               <td>{c.specified ? <span class="status-pass">yes</span> : "—"}</td>

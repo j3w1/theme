@@ -5,14 +5,15 @@ import ComponentSection from "./ComponentSection.astro";
 interface Props {
   family: { id: string; title: string; description: string };
   entries: any[];
-  demos: Record<string, string>;
+  demos?: Record<string, string>;
+  compact?: boolean;
 }
 
-const { family, entries, demos } = Astro.props;
+const { family, entries, demos = {}, compact = false } = Astro.props;
 ---
 
 <section class="family" id={anchors.family(family.id)} data-family={family.id}>
   <h2>{family.title}</h2>
   <p class="family-description">{family.description}</p>
-  {entries.map((entry) => <ComponentSection entry={entry} demo={demos[entry.data.id] ?? null} />)}
+  {entries.map((entry) => <ComponentSection compact={compact} entry={entry} demo={demos[entry.data.id] ?? null} />)}
 </section>

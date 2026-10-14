@@ -146,12 +146,13 @@ test("inspector restores token focus established before its script loads", verif
 test("inspector uses generated previews and retains all token matches without new tab stops", verification({component: "page", category: "enhancements", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
   test.skip(!only(testInfo, "desktop"), "one enhanced inspector");
   await openSpec(page);
-  await page.locator('[data-token="color.interaction.focus.ring"]').first().focus();
+  await page.locator('a[data-token="color.interaction.focus.ring"]').first().focus();
   await expect(page.locator("#inspector .hex-swatch")).not.toHaveCount(0);
   expect(await page.locator("#inspector .hex-swatch[tabindex]").count()).toBe(0);
   await page.keyboard.press("Escape");
   const swatch = page.locator('.hex-swatch[data-hex="#e53935"][data-token-matches]').first();
-  const matches = await swatch.evaluate((el) => JSON.parse(document.getElementById("j3w1-tokens").textContent).colorIndex[el.getAttribute("data-token-matches")]);
+  const data = await (await page.request.get("tokens/inspector.json")).json();
+  const matches = data.colorIndex[await swatch.getAttribute("data-token-matches")];
   expect(matches.length).toBeGreaterThan(1);
   await swatch.hover();
   await expect(page.locator("#hex-popup")).toContainText("equality does not assign a role");
@@ -196,7 +197,7 @@ test("color popup follows only its circle and revalidates stationary hover on sc
   await swatch.hover();
   await page.keyboard.press("Escape");
   await expect(popup).toBeHidden();
-  await page.locator('[data-token="color.interaction.focus.ring"]').first().focus();
+  await page.locator('a[data-token="color.interaction.focus.ring"]').first().focus();
   await expect(page.locator("#inspector")).toBeVisible();
   await page.keyboard.press("Escape");
   await expect(page.locator("#inspector")).toBeHidden();

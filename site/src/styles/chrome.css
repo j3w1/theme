@@ -142,6 +142,11 @@
   }
 }
 
+@media (min-width: 900px) and (max-width: 1279.98px) {
+  :root { --_rail: var(--space-48); }
+  .site-rail { width: 100%; }
+}
+
 /* Below 900px the rail becomes the drawer; without JavaScript it stays in
    the page, above the content. */
 @media (max-width: 899.98px) {

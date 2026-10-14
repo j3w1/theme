@@ -5,7 +5,7 @@ import SelectField from "../../components/fields/SelectField.astro";
 import Checkbox from "../../components/fields/Checkbox.astro";
 import { usageIndex, tokenUrl } from "../../lib/usage";
 import { anchorFor } from "../../../../scripts/lib/anchors.mjs";
-import { queryIndexOf } from "../../../../scripts/lib/usage-query.mjs";
+import { withBase } from "../../lib/base";
 
 const tokens = Object.values(usageIndex.profiles.default.tokens);
 const uses = tokens.flatMap((t) => t.uses);
@@ -42,8 +42,8 @@ const fields = {
       <table class="table">
         <thead><tr><th class="table-header" scope="col">Role</th><th class="table-header" scope="col">Value</th><th class="table-header" scope="col">Eligibility</th><th class="table-header" scope="col">Documented use</th></tr></thead>
         <tbody class="table-body">
-          {Object.values(data.tokens).map((token) => <tr class="table-row" data-usage-path={token.path}>
-            <td class="table-cell"><a class="link" href={tokenUrl(token.path)}><code>{token.path.split(".").map((segment, index) => <>{index > 0 && <>.<wbr /></>}{segment}</>)}</code></a></td>
+          {Object.values(data.tokens).map((token) => <tr class="table-row" data-usage-path={token.path} id={profile === "default" ? anchorFor.token(token.path) : undefined}>
+            <td class="table-cell"><a class="link" href={tokenUrl(token.path)} data-token={token.path}><code>{token.path.split(".").map((segment, index) => <>{index > 0 && <>.<wbr /></>}{segment}</>)}</code></a></td>
             <td class="table-cell"><code>{token.css}</code></td>
             <td class="table-cell">{token.status} · {token.eligibility.action}{token.deprecated && " · deprecated"}</td>
             <td class="table-cell">{token.description ?? "No role description declared."}</td>
@@ -52,6 +52,6 @@ const fields = {
       </table>
     </div>
   </section>)}
-  <script type="application/json" id="usage-data" set:html={JSON.stringify(queryIndexOf(usageIndex)).replaceAll("<", "\\u003c")} />
+  <div id="usage-data" data-source={withBase("tokens/query.json")}></div>
   <script>import "../../scripts/usage";</script>
 </SiteLayout>

@@ -9,7 +9,7 @@ const VARIANTS = 2;
 
 test.describe("tabs", () => {
   test("the state matrix renders every declared state for every variant", verification({component: "tabs", category: "rendering", states: ["default", "hover", "focus-visible", "selected", "selected+focus-visible", "selected+container-inactive", "disabled"], variants: ["default", "overflow"], note: "Presence and selected structural assertions only; not behavioral verification of every state."}), async ({ page }) => {
-    await openSpec(page, "#c-tabs");
+    await openSpec(page, "components/tabs/#c-tabs");
     for (const state of STATES) {
       const cells = page.locator(`#tabs-states [data-state="${state}"]`);
       await expect(cells).toHaveCount(VARIANTS);
@@ -21,7 +21,7 @@ test.describe("tabs", () => {
 
   test("the selected tab is a 2px indicator bar with bright text, and the ring sits on it", verification({component: "tabs", category: "appearance", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs"), "computed styles are the same without scripts; keep one run");
-    await openSpec(page, "#c-tabs");
+    await openSpec(page, "components/tabs/#c-tabs");
     const live = page.locator('#tabs-states [data-state="default"]').first();
     const selected = live.locator('[role="tab"][aria-selected="true"]');
     const rest = live.locator('[role="tab"][aria-selected="false"]').first();
@@ -55,7 +55,7 @@ test.describe("tabs", () => {
 
   test("roving tabindex: exactly one tab is in the tab order and it is the selected one", verification({component: "tabs", category: "structure", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
     test.skip(only(testInfo, "narrow", "zoom200"), "one walk is enough");
-    await openSpec(page, "#c-tabs");
+    await openSpec(page, "components/tabs/#c-tabs");
     const live = page.locator('#tabs-states [data-state="default"]').first();
     await expect(live.locator('[role="tab"][tabindex="0"]')).toHaveCount(1);
     await expect(live.locator('[role="tab"][tabindex="0"]')).toHaveAttribute("aria-selected", "true");

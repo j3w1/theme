@@ -1,55 +1,5 @@
-/* Page chrome: header, table of contents, sections, token tables, state
-   matrices, inspector, controls. Token variables only. */
-
-.page {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 0;
-  min-height: 100vh;
-}
-
-.site-header {
-  border-bottom: var(--border-width-default) solid var(--color-border-strong);
-  border-top: var(--border-width-emphasis) solid var(--color-interaction-focus-ring);
-  background: var(--color-surface-chrome);
-  padding: var(--space-16);
-}
-
-.site-header .lede {
-  color: var(--color-text-prose);
-  font-size: var(--font-size-reading);
-  line-height: var(--font-line-height-reading);
-  max-width: 72ch;
-  margin: var(--space-8) 0 0;
-}
-
-.stamp {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-4) var(--space-12);
-  margin: var(--space-8) 0 0;
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
-  color: var(--color-text-muted);
-}
-
-.stamp code {
-  color: var(--color-text-default);
-}
-
-.banner {
-  margin: var(--space-12) 0 0;
-  padding: var(--space-8) var(--space-12);
-  border: var(--border-width-default) solid var(--color-status-warning-border);
-  background: var(--color-status-warning-tint);
-  color: var(--color-status-warning-text);
-  max-width: 88ch;
-}
-
-.banner::before {
-  content: "! ";
-  font-weight: var(--font-weight-bold);
-}
+/* Reference content tables, specimens and token information. The shared
+   SiteLayout owns the chrome; actions use canonical component classes. */
 
 .controls {
   display: flex;
@@ -57,32 +7,6 @@
   gap: var(--space-8);
   align-items: end;
   margin-top: var(--space-12);
-}
-
-.controls label {
-  display: grid;
-  gap: var(--space-2);
-  font-size: var(--font-size-ui-sm);
-  color: var(--color-text-muted);
-}
-
-.controls input[type="search"],
-.controls select {
-  min-height: var(--density-control-height, 24px);
-  padding: 0 var(--space-8);
-  background: var(--color-surface-input);
-  color: var(--color-text-default);
-  border: var(--border-width-default) solid var(--color-border-control);
-}
-
-.controls input[type="search"]:hover,
-.controls select:hover {
-  background: var(--color-interaction-hover-bg);
-}
-
-.controls input[type="search"]:focus-visible,
-.controls select:focus-visible {
-  border-color: var(--color-border-active);
 }
 
 .controls fieldset {
@@ -107,51 +31,9 @@
   color: var(--color-text-default);
 }
 
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-4);
-  min-height: var(--density-control-height, 24px);
-  padding: 0 var(--space-12);
-  border: var(--border-width-default) solid var(--color-border-control);
-  background: var(--color-action-secondary-bg);
-  color: var(--color-action-secondary-text);
-  cursor: pointer;
-}
-
-.btn:hover {
-  background: var(--color-action-secondary-hover-bg);
-}
-
-.btn:active {
-  background: var(--color-action-secondary-pressed-bg);
-  border-color: var(--color-border-active);
-}
-
-.btn-quiet {
-  border-color: transparent;
-  color: var(--color-action-tertiary-text);
-}
-
-.btn-quiet:hover {
-  background: var(--color-action-tertiary-hover-bg);
-}
-
 .live-count {
   font-size: var(--font-size-ui-sm);
   color: var(--color-text-muted);
-}
-
-.js-only {
-  display: none;
-}
-
-html.js .js-only {
-  display: revert;
-}
-
-html.js .controls.js-only {
-  display: flex;
 }
 
 .layout {
@@ -161,7 +43,7 @@ html.js .controls.js-only {
 
 @media screen and (min-width: 900px) {
   .layout {
-    grid-template-columns: 17rem minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -172,17 +54,6 @@ html.js .controls.js-only {
   line-height: var(--font-line-height-ui-sm);
 }
 
-@media screen and (min-width: 900px) {
-  .toc {
-    position: sticky;
-    top: 0;
-    align-self: start;
-    max-height: 100vh;
-    overflow-y: auto;
-    border-bottom: 0;
-    border-right: var(--border-width-default) solid var(--color-border-divider);
-  }
-}
 
 .toc summary {
   padding: var(--space-8) var(--space-12);
@@ -215,25 +86,6 @@ html.js .controls.js-only {
   margin: 0;
 }
 
-.toc a {
-  display: block;
-  padding: var(--space-2) var(--space-12);
-  color: var(--color-text-default);
-  text-decoration: none;
-  border-left: var(--border-width-emphasis) solid transparent;
-}
-
-/* D-027: the plain hover fill */
-.toc a:hover {
-  color: var(--color-text-link-hover);
-  background: var(--color-interaction-hover-bg);
-}
-
-.toc a[aria-current="true"] {
-  border-left-color: var(--color-border-selected-indicator);
-  color: var(--color-text-bright);
-}
-
 .toc .toc-family {
   padding: var(--space-8) var(--space-12) var(--space-2);
   color: var(--color-text-muted);
@@ -244,12 +96,6 @@ html.js .controls.js-only {
 
 .toc ol ol a {
   padding-left: var(--space-24);
-}
-
-main {
-  padding: var(--space-16);
-  max-width: var(--layout-app-max);
-  min-width: 0;
 }
 
 .doc,
@@ -409,8 +255,8 @@ main {
 .profile-token-table th { white-space: nowrap; }
 .profile-token-table .eligibility { margin-top: var(--space-4); }
 .token-table td:first-child { white-space: normal; }
-.token-table:not(.profile-token-table) { min-width: 60rem; }
-.token-table:not(.profile-token-table) td:last-child { min-width: 24ch; }
+.compact-token-table { min-width: 48rem; }
+.compact-token-table td:nth-child(2) { min-width: 24ch; }
 
 .contrast-table { min-width: 88rem; }
 .contrast-table td:first-child,
@@ -432,28 +278,6 @@ main {
   flex-wrap: wrap;
   gap: var(--space-4);
   align-items: center;
-}
-
-.copy-button {
-  flex: none;
-  white-space: nowrap;
-  padding: 0 var(--space-4);
-  min-height: var(--density-compact-control-height);
-  border: var(--border-width-default) solid var(--color-border-divider);
-  background: transparent;
-  color: var(--color-text-muted);
-  cursor: pointer;
-  font-size: var(--font-size-caption);
-}
-
-.copy-button:hover {
-  color: var(--color-text-bright);
-  background: var(--color-interaction-hover-bg);
-}
-
-.copy-button[data-copied="true"] {
-  color: var(--color-status-success-text);
-  border-color: var(--color-status-success-border);
 }
 
 .matrix {
@@ -534,14 +358,6 @@ main {
   overflow-wrap: anywhere;
 }
 
-.site-footer {
-  border-top: var(--border-width-default) solid var(--color-border-divider);
-  padding: var(--space-16);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
-  color: var(--color-text-muted);
-}
-
 .export-links {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(18rem, 100%), 1fr));
@@ -593,3 +409,22 @@ main {
 .eligibility { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); font-size: var(--font-size-caption); line-height: var(--font-line-height-caption); }
 .eligibility > * { white-space: nowrap; }
 .inspector { max-height: 60vh; overflow: auto; }
+
+/* Hub contents occupy normal flow; families and components form a compact
+   static index. Details remain on their own pages. */
+.toc > details > ol { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+.toc ol ol { padding-inline-start: var(--space-12); }
+.reference-content { min-width: 0; padding-block-start: var(--space-32); }
+.reference-content .component { margin-bottom: var(--space-12); padding: var(--space-12); }
+.reference-content .component p { margin-block: var(--space-8); }
+.component-links, .primitive-index { display: flex; flex-wrap: wrap; gap: var(--space-4) var(--space-12); }
+.component-links { font-size: var(--font-size-ui-sm); line-height: var(--font-line-height-ui-sm); }
+.component-inventory { color: var(--color-text-muted); font-size: var(--font-size-ui-sm); }
+.decision-index { columns: 2 28ch; }
+.banner { padding: var(--space-8); border-inline-start: var(--border-width-emphasis) solid var(--color-border-strong); }
+[aria-current="true"].toc-link { border-inline-start-color: var(--color-border-selected-indicator); }
+@media print {
+  .controls, [data-copy], [data-copy-brief] { display: none !important; }
+  .toc { position: static; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; color: var(--color-text-muted); font-size: var(--font-size-caption); }
+}
