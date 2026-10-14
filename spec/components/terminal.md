@@ -188,11 +188,16 @@ can expose.
 
 ## Portability
 
+Hosts that set the palette (Orca, Ghostty, Warp, CE Devbox's shell palette)
+share one; the prompt is the one deliberate heritage-style exception, set in
+24-bit {color.terminal.prompt-bg} and {color.terminal.prompt-text} whatever
+the slots carry. CE Devbox's shell palette and its Agnoster directory and
+virtualenv segments follow in that repository (D-029, D-032).
+
 Any sixteen-slot emulator holds these values byte for byte; port evidence
 records whether bold-as-bright is off and whether cursor and selection keys
 exist. A port carries the slots unchanged; it may recommend `LS_COLORS` or a
-prompt configuration (the path segment draws in 24-bit colour, untouched by
-the slots) but never changes slots to compensate. Cursor shape is the
+prompt configuration but never changes slots to compensate. Cursor shape is the
 user's; the theme supplies only its colour.
 
 ## Non-examples
