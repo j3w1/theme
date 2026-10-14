@@ -207,8 +207,10 @@ a metric of the reference implementation, not a rule.
 
 ## Spacing and density (D-009)
 
-Spacing steps: 0, 1, 2, 4, 8, 12, 16, 24, 32, 48 px. Set a density mode with
-`data-density` on any subtree:
+Spacing steps: 0, 1, 2, 4, 8, 12, 16, 24, 32, 48 px. `compact` is the default
+density (D-038): it applies wherever no `data-density` is set, in components,
+the site and copied bundles. Set `data-density="comfortable"` on any subtree to
+opt in to the larger mode:
 
 | Mode | Control | Row | Type | Horizontal padding | Gaps | Use |
 | --- | --- | --- | --- | --- | --- | --- |

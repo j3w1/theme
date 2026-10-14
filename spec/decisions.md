@@ -55,6 +55,7 @@ they add something stated nowhere else. Entries are ordered by topic.
 | D-009 | Density modes `compact` and `comfortable` as tokens | proposed | 2026-09-06 | — |
 | D-033 | Rose prose, semantic content headings and inherited bold | accepted | 2026-09-28 | owner (explicit implementation plan) |
 | D-037 | Display and title type sizes | proposed | 2026-10-14 | — |
+| D-038 | Compact is the default density | accepted | 2026-10-14 | owner (explicit instruction at the G1 design review) |
 
 ### Interaction and components
 
@@ -589,6 +590,22 @@ owner chose token sizes over shrinking every heading to h1 (planning,
 
 **Status.** proposed · 2026-10-14. The owner asked for display type tokens in
 planning; the owner sets the status.
+
+## D-038 Compact is the default density
+
+**Decision.** `compact` is the default density for components, the site and
+copied bundles: the density variables carry the compact values wherever no
+`data-density` is set. `comfortable` stays available as an opt-in on any
+subtree. The site chrome is compact.
+
+**Why.** The owner, reviewing the redesigned site: "keep components compacted
+by default, j3w1/theme default is compacted components", and "if it is not
+stated that default is compaction, then standardize it in j3w1/theme". Before
+this, only `[data-density]` blocks defined the variables, so unset subtrees fell
+back to per-component values that were the comfortable ones.
+
+**Status.** accepted · 2026-10-14 · owner (explicit instruction at the G1
+design review). Builds on D-009 (proposed), which defines the two modes.
 
 ## D-006 Focus-ring rule
 

@@ -360,7 +360,7 @@
   --z-toast: 40;
   --z-skip-link: 1000;
 }
-[data-density="compact"] {
+:root, [data-density="compact"] {
   --density-control-height: 24px;
   --density-row-height: 28px;
   --density-control-padding-x: 8px;

@@ -28,7 +28,7 @@ export const recipeGenerator = {
       const componentCss = cssNotice + (await Promise.all(recipe.styles.map(async (file) => scopeRecipeCss(await readText(file), recipe)))).join("\n");
       const tokenBundle = recipeTokenCss([foundation, componentCss], profiles.get(defaultId), manifest.profiles.find((p) => p.id === defaultId));
       const tokenCss = cssNotice + tokenBundle.css;
-      const instance = (prefix) => `<div class="j3w1-recipe" data-density="comfortable">\n${instantiateRecipe(markup, prefix)}</div>`;
+      const instance = (prefix) => `<div class="j3w1-recipe" data-density="compact">\n${instantiateRecipe(markup, prefix)}</div>`;
       const html = (prefixes) => `<!doctype html>\n<!-- ${credit} -->\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>j3w1 ${recipe.id} reference</title>\n<style>\n${tokenCss}\n${foundation}\n${componentCss}</style>\n</head><body>\n${prefixes.map(instance).join("\n")}\n</body></html>\n`;
       const outputs = {
         "markup.html": `<!-- ${credit} -->\n${instance("example")}\n`,

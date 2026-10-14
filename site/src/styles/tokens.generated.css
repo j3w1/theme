@@ -427,7 +427,7 @@
   --color-chart-series-4: #7e9ebb;
 }
 
-[data-density="compact"] {
+:root, [data-density="compact"] {
   --density-control-height: 24px;
   --density-row-height: 28px;
   --density-control-padding-x: 8px;

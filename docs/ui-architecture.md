@@ -15,7 +15,7 @@ and deployment are in the separate delivery and execution records.
   component implementation.
 
 **Site chrome.** The portal is built from the components it documents. Chrome
-uses `comfortable` density and only canonical component classes: actions are
+uses the default `compact` density (D-038) and only canonical component classes: actions are
 `.button` in one of the four tones, navigation is `.link`, calls to action are
 `.link-standalone`. Forced states appear only inside specimens.
 

@@ -38,7 +38,8 @@ export const buildCss = ({ profiles, defaultId }) => {
 export const buildDensityCss = (resolved) => {
   const lines = [];
   for (const mode of ["compact", "comfortable"]) {
-    lines.push(`[data-density="${mode}"] {`);
+    // compact is the default density: it also applies where no data-density is set (D-038).
+    lines.push(mode === "compact" ? `:root, [data-density="compact"] {` : `[data-density="${mode}"] {`);
     for (const key of ["control-height", "row-height", "control-padding-x", "icon", "gap"]) {
       const token = resolved.get(`density.${mode}.${key}`);
       lines.push(`  --density-${key}: ${toCss(token.type, token.resolved)};`);
