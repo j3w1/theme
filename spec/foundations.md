@@ -16,7 +16,7 @@ content sits on the canvas or on:
 - `default` (`#100c0c`) for panels and cards;
 - `raised` (`#160b0b`) for sticky headers, menus and popovers;
 - `overlay` for dialogs and drawers;
-- `accent` (`#3d0c0a`) for the user's own content set apart from its neighbours, such as outgoing chat messages; secondary text on it uses `text.muted`, never `text.subtle` (D-035);
+- `accent` (`#3d0c0a`) for the user's own content set apart from its neighbours, such as outgoing chat messages; secondary text on it uses `text.muted`, never `text.subtle`. Red links cap its brightness: at this hue it stays at or below `#3f0c0a` (D-035);
 - `sunken` (`#000000`) for reading and detail panes;
 - `input` for form-control fills;
 - `chrome` and `chrome-alt` for window frames and bars.
@@ -41,10 +41,10 @@ Never tint photos, video, document content or user-defined data colours.
 | `text.link` | `#f73f35` | links, always underlined, distinct from rose body and headings (D-024); hover is near-white `text.link-hover` on `interaction.hover.bg` (D-027) |
 
 Ratios per surface are in the contrast report. `#a3676b` and `#7d1310` are
-never text roles in `default`, even on a darker background; they serve as
-`border.control`, `icon.decorative`, `status.neutral.fill` and
-`border.disabled`. Metadata and comments people need to read use
-`text.subtle`, not a graphic colour.
+never text roles in `default`, even on a darker background (D-003); they serve
+as `border.control`, `icon.decorative`, `status.neutral.fill`,
+`chart.series.4`, `border.disabled` and `code.whitespace`. Metadata and
+comments people need to read use `text.subtle`, not a graphic colour.
 
 ## Borders
 
@@ -180,6 +180,9 @@ Inside an editor selection some syntax roles fall below 4.5:1; see
 Terminal slots:
 
 - `heritage-ansi` carries the sixteen `Xresources` slots exactly.
+  `color.primitive.ansi.*` keeps those values byte for byte; lifted values
+  live in `color.primitive.ansi-readable.*`, and `heritage-ansi` pins every
+  changed role back to the heritage primitive (D-029).
 - `default` carries the readable heritage sixteen (D-029): every slot that
   fell below the text floor keeps its hue and saturation and gains lightness,
   except slot 6, which is coral `#ff7a66` (D-032). Slots 1–7 and 9–15 reach
