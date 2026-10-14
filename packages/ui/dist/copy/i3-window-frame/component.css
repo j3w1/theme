@@ -523,6 +523,10 @@ j3w1-i3-window-frame .code-editor-ws {
   color: var(--color-code-whitespace);
 }
 
+j3w1-i3-window-frame .code-editor-ws::before {
+  content: attr(data-whitespace);
+}
+
 j3w1-i3-window-frame .code-editor-fold {
   display: inline-block;
   padding: 0 var(--space-4);
