@@ -115,7 +115,7 @@ const colors = Object.entries(data.tokens.default).filter(([, token]: any) => to
     <div class="motion-specimens">
       {["default", "hover"].map((state) => <div class="table-scroll" tabindex="0" role="region" aria-label={`${state} motion endpoint`}>
         <h3>{state}</h3>
-        <div aria-hidden="true" set:html={`<div ${stateAttributes(state)}>${renderSpecimenMarkup(fragments.default, `motion-${c.id}-${state}`, { state, inert: true })}</div>`} />
+        <div aria-hidden="true" data-specimen set:html={`<div ${stateAttributes(state)}>${renderSpecimenMarkup(fragments.default, `motion-${c.id}-${state}`, { state, inert: true })}</div>`} />
       </div>)}
     </div>
   </div>}
