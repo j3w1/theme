@@ -65,3 +65,10 @@ test("demonstration fragments resolve locally while historical records and stric
   assert.doesNotMatch(historical, /id="demo-record"/);
   assert.throws(() => namespaceMarkup(parseFragment('<label for="missing">Label</label>'), (id) => id), /Unresolved markup ID reference/);
 });
+
+test("code-editor whitespace remains decorative while historical bytes stay exact", async () => {
+  const { renderSpecimenMarkup } = await import("../scripts/lib/specimen-markup.mjs");
+  const source = '<span class="code-editor-ws" aria-hidden="true">··</span>';
+  assert.equal(renderSpecimenMarkup(source, "graphic"), '<span class="code-editor-ws" aria-hidden="true" data-whitespace="··"></span>');
+  assert.equal(renderSpecimenMarkup(source, "record", { decorations: false }), source);
+});

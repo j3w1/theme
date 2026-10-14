@@ -1,6 +1,6 @@
 import { parseFragment, serialize } from "parse5";
 import { splitVariants } from "../../../scripts/lib/spec.mjs";
-import { attribute, setAttribute, removeAttribute, hasClass, namespaceMarkup, walkMarkup } from "../../../scripts/lib/markup.mjs";
+import { attribute, setAttribute, removeAttribute, hasClass, renderDecorativeWhitespace, namespaceMarkup, walkMarkup } from "../../../scripts/lib/markup.mjs";
 import { anchorFor } from "../../../scripts/lib/anchors.mjs";
 import { escapeHtml as esc } from "../../../scripts/lib/hex-literals.mjs";
 import { builderMarkup } from "./examples/form-markup.mjs";
@@ -182,6 +182,7 @@ export function renderUsage(component, variant, prefix) {
   const known = new Set(nodes(tree).map(node => attribute(node, "id")).filter(Boolean));
   const targets = new Set(nodes(tree).map(node => attribute(node, "href")).filter(href => href?.startsWith("#") && href.length > 1).map(href => href.slice(1)).filter(id => !known.has(id)));
   for (const id of targets) append(tree, `<p id="${esc(id)}" tabindex="-1" class="j3w1-example-target">Example destination: ${esc(id.replaceAll("-", " "))}</p>`);
+  renderDecorativeWhitespace(tree);
   namespaceMarkup(tree, id => anchorFor.uiExample(prefix, id), { strict: false, renameNames: component.id !== "form-builder" });
   const attributes = component.id === "repeater" ? ' max="10"' : "";
   return `<j3w1-${component.id} id="${prefix}"${attributes}>${serialize(tree)}</j3w1-${component.id}>`;

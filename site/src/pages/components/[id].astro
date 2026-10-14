@@ -53,28 +53,28 @@ const links = [
       <div class="site-example" data-specimen set:html={markup}></div>
       <div class="site-source">
         <div class="site-source-bar">Markup<button class="button button-tertiary" type="button" data-copy={markup}>Copy markup</button></div>
-        <pre class="site-code"><code>{markup}</code></pre>
+        <pre class="site-code" tabindex="0" role="region" aria-label={`${item.name} ${variant} markup`}><code>{markup}</code></pre>
       </div>
     </section>)}
   </section>
   <section class="site-section">
     <h2>Install and register</h2>
     <p>Use the exact version. If npm publication is pending, install the release tarball from the <a class="link" href={withBase("implement/")}>installation guide</a>.</p>
-    <pre class="site-code"><code>{install}</code></pre>
-    <pre class="site-code"><code>{imports}</code></pre>
+    <pre class="site-code" tabindex="0" role="region" aria-label={`${item.name} installation command`}><code>{install}</code></pre>
+    <pre class="site-code" tabindex="0" role="region" aria-label={`${item.name} registration imports`}><code>{imports}</code></pre>
     <p>Insert the maintained markup above after loading these imports. Its native children provide accessible names and form behavior; the empty custom tag alone does not create a control.</p>
     <p><a class="link link-standalone" href={withBase("implement/")}>Vue SFC, React, Astro and plain HTML integration →</a></p>
   </section>
   <section class="site-section">
     <h2>Copy the complete implementation</h2>
-    <pre class="site-code"><code>{copy}</code></pre>
+    <pre class="site-code" tabindex="0" role="region" aria-label={`${item.name} copy command`}><code>{copy}</code></pre>
     <p>The CLI verifies every file before writing and refuses overwrites. Serve the output over HTTP and open <code>index.html</code>. Keep its modules, CSS, tokens and licence notices together.</p>
   </section>
   <section class="site-section">
     <h2>Public API</h2>
     {["attributes", "properties", "methods", "events"].map((kind) => <>
       <h3>{kind}</h3>
-      <div class="site-table-wrap">
+      <div class="site-table-wrap" tabindex="0" role="region" aria-label={`${item.name} ${kind} API`}>
         <table class="table">
           <thead><tr><th class="table-header" scope="col">Name</th><th class="table-header" scope="col">Type / signature</th><th class="table-header" scope="col">Meaning</th></tr></thead>
           <tbody class="table-body">

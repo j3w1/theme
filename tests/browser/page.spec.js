@@ -6,6 +6,9 @@ import { promises as fs } from "node:fs";
 import { openSpec, only, rgbToHex } from "./helpers.mjs";
 
 
+const referenceInventory = JSON.parse(await fs.readFile("spec/inventory.json", "utf8"));
+const referenceRoutes = ["reference/", ...referenceInventory.components.map(({ id }) => `components/${id}/`), "reference/contrast/", "reference/decisions/", "reference/fixtures/", "tokens/"];
+
 /* The page's own selects are themed, so the native control is hidden and the
    visible combobox is what a reader operates. Driven by keyboard: it is a real
    user path, and it does not depend on a control handle staying valid across
@@ -84,10 +87,8 @@ test.describe("the specification page", () => {
       const all = await tagRules(page);
       expect(all).toContain("color-contrast");
       const rules = all.filter(pick);
-      const inventory = JSON.parse(await fs.readFile("spec/inventory.json", "utf8"));
-      const routes = ["reference/", ...inventory.components.map(({ id }) => `components/${id}/`), "reference/contrast/", "reference/decisions/", "reference/fixtures/", "tokens/"];
       await fs.mkdir("test-results", { recursive: true });
-      for (const route of routes) {
+      for (const route of referenceRoutes) {
         if (route !== "reference/") await page.goto(route, { waitUntil: "networkidle" });
         // The former reference displayed every profile together. Scan all of
         // those static tables, including the profiles the explorer filters.
@@ -106,28 +107,34 @@ test.describe("the specification page", () => {
 
   test("reflow: no horizontal page scroll at 360px and at 200% text zoom", verification({component: "page", category: "reflow", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
     test.skip(!only(testInfo, "narrow", "zoom200"), "reflow projects only");
+    test.setTimeout(180_000); // Complete the split reference; each navigation retains its own timeout.
     await openSpec(page);
-    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
-    expect(overflow).toBeLessThanOrEqual(0);
-    await page.evaluate(() => {
-      document.documentElement.style.fontSize = "200%";
-    });
-    await page.waitForTimeout(50);
-    const zoomed = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
-    expect(zoomed).toBeLessThanOrEqual(0);
+    for (const route of referenceRoutes) {
+      if (route !== "reference/") await page.goto(route, { waitUntil: "networkidle" });
+      const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+      expect(overflow, route).toBeLessThanOrEqual(0);
+      await page.evaluate(() => { document.documentElement.style.fontSize = "200%"; });
+      await page.waitForTimeout(50);
+      const zoomed = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+      expect(zoomed, route).toBeLessThanOrEqual(0);
+    }
   });
 
   test("reduced motion: every transition and animation is effectively instant", verification({component: "page", category: "motion", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
     test.skip(!only(testInfo, "desktop"), "one check is enough");
     await page.emulateMedia({ reducedMotion: "reduce" });
+    test.setTimeout(180_000); // Every moved component and document is still covered.
     await openSpec(page);
-    const slow = await page.evaluate(() =>
-      [...document.querySelectorAll("main *")]
-        .map((el) => getComputedStyle(el))
-        .filter((s) => s.transitionDuration.split(",").some((d) => parseFloat(d) > 0.01) || s.animationDuration.split(",").some((d) => parseFloat(d) > 0.01))
-        .length,
-    );
-    expect(slow).toBe(0);
+    for (const route of referenceRoutes) {
+      if (route !== "reference/") await page.goto(route, { waitUntil: "networkidle" });
+      const slow = await page.evaluate(() =>
+        [...document.querySelectorAll("main *")]
+          .map((el) => getComputedStyle(el))
+          .filter((s) => s.transitionDuration.split(",").some((d) => parseFloat(d) > 0.01) || s.animationDuration.split(",").some((d) => parseFloat(d) > 0.01))
+          .length,
+      );
+      expect(slow, route).toBe(0);
+    }
   });
 
   test("enhancements: search narrows the contents, family filter hides sections, density and profile persist, reset clears", verification({component: "page", category: "enhancements", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {

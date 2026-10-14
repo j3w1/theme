@@ -59,3 +59,14 @@ export const resolveDemonstrationLinks = (tree) => {
     else { setAttribute(node, "id", target); ids.add(target); }
   });
 };
+
+/* Whitespace markers are decorative graphics (code-editor.md), not code text.
+   Keep their exact glyphs and inherited token colour in a CSS pseudo-element. */
+export const renderDecorativeWhitespace = (tree) => walkMarkup(tree, (node) => {
+  if (!hasClass(node, "code-editor-ws") || attribute(node, "aria-hidden") !== "true") return;
+  if (!(node.childNodes ?? []).every((child) => child.nodeName === "#text")) return;
+  const glyphs = (node.childNodes ?? []).map((child) => child.value).join("");
+  if (!/^[· ]+$/.test(glyphs)) return;
+  setAttribute(node, "data-whitespace", glyphs);
+  node.childNodes = [];
+});
