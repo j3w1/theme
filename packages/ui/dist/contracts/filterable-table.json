@@ -220,7 +220,6 @@
       "density.compact.icon",
       "density.compact.row-height",
       "focus.offset",
-      "focus.offset-container",
       "focus.offset-invalid",
       "focus.ring",
       "focus.ring-container",
@@ -322,7 +321,6 @@
       "density.compact.icon",
       "density.compact.row-height",
       "focus.offset",
-      "focus.offset-container",
       "focus.offset-invalid",
       "focus.ring",
       "focus.ring-container",
@@ -625,11 +623,6 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
-      "focus.offset-container": {
-        "action": "use",
-        "reason": "Use within the role's documented scope and restrictions.",
-        "decisionIds": []
-      },
       "focus.offset-invalid": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -756,6 +749,6 @@
   "copy": {
     "directory": "copy/filterable-table/",
     "manifest": "copy/filterable-table/manifest.json",
-    "digest": "sha256-JcTEcMJYZlTd6uw5LEVmiad0vE34g0sK/7+vqirFgD8="
+    "digest": "sha256-2S7hP420pJdNmeeJUc9IqsTnpSHptV2aRy3IL9jjvtQ="
   }
 }

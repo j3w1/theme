@@ -55,7 +55,6 @@ tokens:
   dependency.role-radius-none: radius.none
   dependency.role-space-12: space.12
   dependency.role-space-16: space.16
-  dependency.role-space-2: space.2
   dependency.role-space-24: space.24
   dependency.role-space-4: space.4
   dependency.role-space-8: space.8

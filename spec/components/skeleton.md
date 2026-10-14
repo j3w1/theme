@@ -31,10 +31,10 @@ tokens:
   dependency.role-border-width-default: border.width.default
   dependency.role-color-border-divider: color.border.divider
   dependency.role-color-surface-raised: color.surface.raised
+  dependency.role-focus-offset: focus.offset
   dependency.role-radius-none: radius.none
   dependency.role-space-12: space.12
   dependency.role-space-16: space.16
-  dependency.role-space-2: space.2
 stateTokens:
   default:
     fg: color.text.default

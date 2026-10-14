@@ -58,7 +58,7 @@ tokens:
   row.ring: color.interaction.focus.ring
   row.bg-selected: color.interaction.selection.bg
   row.text-selected: color.interaction.selection.text
-  row.ring-selected: color.interaction.focus.ring-container
+  row.ring-selected: color.interaction.focus.ring
 stateTokens:
   default: { fg: color.text.default, bg: color.code.bg, border: color.border.control }
   hover: { fg: color.text.default, bg: color.interaction.hover.bg }
@@ -86,7 +86,7 @@ contrast:
   - { fg: color.interaction.focus.ring, bg: color.diff.added.bg, min: 3, kind: ui, state: focus-visible, label: "ring on an added row" }
   - { fg: color.interaction.focus.ring, bg: color.diff.removed.bg, min: 3, kind: ui, state: focus-visible, label: "ring on a removed row" }
   - { fg: color.interaction.focus.ring, bg: color.diff.modified.bg, min: 3, kind: ui, state: focus-visible, label: "ring on a modified row" }
-  - { fg: color.interaction.focus.ring-container, bg: color.interaction.selection.bg, min: 3, kind: ui, state: focus-visible, label: "ring on the selected row" }
+  - { fg: color.interaction.focus.ring, bg: color.interaction.selection.bg, min: 3, kind: ui, state: focus-visible, label: "ring on the selected row" }
   - { fg: color.text.link, bg: color.diff.header-bg, label: "fold button text" }
 anatomy:
   - part: root
@@ -158,7 +158,7 @@ class="diff-view-folded" hidden>`. Line numbers use {color.text.muted}, not
 | default | added {color.diff.added.bg}, `+` in {color.diff.added.gutter}; removed {color.diff.removed.bg}, `−` in {color.diff.removed.gutter}; modified {color.diff.modified.bg}, `~` in {color.diff.modified.gutter}; hunks {color.diff.header-bg}; conflicts in a 3px double {color.diff.conflict-border} | the markers; the double border |
 | hover | number and marker cells → {color.interaction.hover.bg}; the text cell keeps its fill | cursor: default; hover-capable pointers only |
 | selected | whole row {color.interaction.selection.bg} with {color.interaction.selection.text}; the marker stays | `aria-current` (or `:target` for a permalinked line); the marker glyph |
-| focus-visible | 1px dashed {color.interaction.focus.ring} at −2px around the row; {color.interaction.focus.ring-container} on a selected row | the ring |
+| focus-visible | 1px dashed {color.interaction.focus.ring} at −2px around the row, including a selected row | the ring |
 | expanded | folded `<tbody>` shown; chevron down; "Hide 12 unchanged lines" | `aria-expanded="true"`; the rows appear |
 | collapsed | folded `<tbody>` hidden; chevron to the inline end; "… 12 unchanged lines" | `aria-expanded="false"`; the ellipsis |
 

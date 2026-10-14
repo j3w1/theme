@@ -96,7 +96,7 @@
     "link.text-disabled": "color.text.disabled",
     "current.bg": "color.interaction.selection.bg",
     "current.text": "color.text.on-selection",
-    "current.ring": "color.interaction.focus.ring-container",
+    "current.ring": "color.interaction.focus.ring",
     "gap.text": "color.text.muted",
     "status.text": "color.text.default",
     "status.emphasis": "color.text.bright"
@@ -111,7 +111,7 @@
     "roles": [
       "border.width.emphasis",
       "color.interaction.drop-target",
-      "color.interaction.focus.ring-container",
+      "color.interaction.focus.ring",
       "color.interaction.hover.bg",
       "color.interaction.pressed.bg",
       "color.interaction.selection.bg",
@@ -150,7 +150,6 @@
       "border.width.emphasis",
       "color.interaction.drop-target",
       "color.interaction.focus.ring",
-      "color.interaction.focus.ring-container",
       "color.interaction.hover.bg",
       "color.interaction.pressed.bg",
       "color.interaction.selection.bg",
@@ -207,7 +206,7 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
-      "color.interaction.focus.ring-container": {
+      "color.interaction.focus.ring": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -378,6 +377,6 @@
   "copy": {
     "directory": "copy/pagination/",
     "manifest": "copy/pagination/manifest.json",
-    "digest": "sha256-3G/au93/wXZHi4zG+oLtFj9YCYDe3yx0teB27oEpLYY="
+    "digest": "sha256-zDt5OOHa/vu0wBtxh8xWe8JSXUu8J/5evpDRTFQQBps="
   }
 }

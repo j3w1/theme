@@ -29,7 +29,7 @@ tokens:
   link.text: color.text.link
   link.underline: color.text.link-underline
   link.text-hover: color.text.link-hover
-  link.bg-hover: color.interaction.hover.bg-strong
+  link.bg-hover: color.interaction.hover.bg
   link.ring: color.interaction.focus.ring
   current.text: color.text.bright
   separator.text: color.text.muted
@@ -37,7 +37,7 @@ tokens:
   ellipsis.bg-hover: color.interaction.hover.bg
 stateTokens:
   default: { fg: color.text.link, bg: color.surface.default }
-  hover: { fg: color.text.link-hover, bg: color.interaction.hover.bg-strong }
+  hover: { fg: color.text.link-hover, bg: color.interaction.hover.bg }
   focus-visible: { fg: color.text.link, bg: color.surface.default, outline: color.interaction.focus.ring }
   current: { fg: color.text.bright, bg: color.surface.default }
   truncated: { fg: color.text.default, bg: color.surface.default }
@@ -92,7 +92,7 @@ Parts as listed in the anatomy; the separator follows every item but the last.
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | links {color.text.link}, 1px underline; separators {color.text.muted}; current {color.text.bright} | underline on links; none on the current page |
-| hover | link → {color.interaction.hover.bg-strong}, text {color.text.link-hover} | underline 1px → 2px; cursor |
+| hover | link → {color.interaction.hover.bg}, text {color.text.link-hover} | underline 1px → 2px; cursor |
 | focus-visible | 1px dashed {color.interaction.focus.ring} at −2px around the link | the ring |
 | current | {color.text.bright}; no underline; no hover | `aria-current="page"`; no underline |
 | truncated | middle levels replaced by an `…` button in {color.text.default} | `aria-expanded="false"`; its label counts the hidden levels |

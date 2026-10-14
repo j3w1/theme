@@ -3,7 +3,7 @@
 Android uses the same theme as desktop: the same `manifest.json` and
 `theme.css`, installed into the vault's own theme folder. Only the way the
 files get there differs. **No Android import of this port is recorded yet.**
-The helper below is tested in Linux shells (bash and dash), not on a device.
+The helper below is tested in Linux shells (sh, dash and BusyBox sh), not on a device.
 Status, the Windows route and the implementation notes are in the
 [README](README.md).
 

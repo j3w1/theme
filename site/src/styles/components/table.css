@@ -179,11 +179,11 @@
   background: var(--color-interaction-selection-bg);
 }
 
-/* selected + focus-visible: the ring recolours on the fill */
+/* selected + focus-visible: the ordinary ring stays on the fill */
 .table-row[aria-selected="true"]:focus-visible,
 .table-row[aria-selected="true"]:focus-within,
 [data-state-selected][data-state-focus-visible] .table-row-demo-target {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring);
   outline-offset: var(--focus-offset);
 }
 

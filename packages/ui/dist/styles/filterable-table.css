@@ -339,7 +339,7 @@ j3w1-filterable-table .data-table .data-table-row[aria-selected="true"]:hover {
 }
 j3w1-filterable-table .data-table .data-table-row[aria-selected="true"]:focus-visible,
 j3w1-filterable-table .data-table .data-table-row:has(.data-table-checkbox:checked):focus-visible {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring);
   outline-offset: var(--focus-offset);
 }
 j3w1-filterable-table .data-table .data-table-header[aria-sort="ascending"] .data-table-sort-glyph,
@@ -518,8 +518,8 @@ j3w1-filterable-table .menu-button:focus-visible {
 }
 
 j3w1-filterable-table .menu-item:focus-visible {
-  outline: var(--focus-ring-container);
-  outline-offset: var(--focus-offset-container);
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
 }
 
 j3w1-filterable-table .menu-button:focus:not(:focus-visible),
@@ -1026,7 +1026,7 @@ j3w1-filterable-table .table-row[aria-selected="true"]:hover {
 }
 j3w1-filterable-table .table-row[aria-selected="true"]:focus-visible,
 j3w1-filterable-table .table-row[aria-selected="true"]:focus-within {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring);
   outline-offset: var(--focus-offset);
 }
 j3w1-filterable-table .table[data-container-inactive] .table-row[aria-selected="true"] {

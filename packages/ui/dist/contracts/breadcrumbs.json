@@ -84,7 +84,7 @@
     "link.text": "color.text.link",
     "link.underline": "color.text.link-underline",
     "link.text-hover": "color.text.link-hover",
-    "link.bg-hover": "color.interaction.hover.bg-strong",
+    "link.bg-hover": "color.interaction.hover.bg",
     "link.ring": "color.interaction.focus.ring",
     "current.text": "color.text.bright",
     "separator.text": "color.text.muted",
@@ -103,7 +103,6 @@
       "border.width.emphasis",
       "color.interaction.drop-target",
       "color.interaction.hover.bg",
-      "color.interaction.hover.bg-strong",
       "color.interaction.selection.bg",
       "color.interaction.selection.text",
       "color.interaction.text-selection.bg",
@@ -137,7 +136,6 @@
       "color.interaction.drop-target",
       "color.interaction.focus.ring",
       "color.interaction.hover.bg",
-      "color.interaction.hover.bg-strong",
       "color.interaction.selection.bg",
       "color.interaction.selection.text",
       "color.interaction.text-selection.bg",
@@ -147,7 +145,6 @@
       "color.primitive.ink.40",
       "color.primitive.paper.90",
       "color.primitive.red.100",
-      "color.primitive.red.150",
       "color.primitive.red.350",
       "color.primitive.red.750",
       "color.primitive.red.800",
@@ -195,11 +192,6 @@
         "decisionIds": []
       },
       "color.interaction.hover.bg": {
-        "action": "use",
-        "reason": "Use within the role's documented scope and restrictions.",
-        "decisionIds": []
-      },
-      "color.interaction.hover.bg-strong": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -340,6 +332,6 @@
   "copy": {
     "directory": "copy/breadcrumbs/",
     "manifest": "copy/breadcrumbs/manifest.json",
-    "digest": "sha256-rD6d8qZYpY4aZ5AHpGeougPOU/dRm+P5dCCHS/EtfbM="
+    "digest": "sha256-ueISJuY31tOa5XV3BZcJ0JRiWkClTX+lyFKzdCvc+uc="
   }
 }

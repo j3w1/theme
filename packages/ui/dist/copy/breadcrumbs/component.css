@@ -79,7 +79,7 @@ j3w1-breadcrumbs .breadcrumbs-ellipsis {
   cursor: pointer;
 }
 j3w1-breadcrumbs .breadcrumbs-link:hover {
-  background: var(--color-interaction-hover-bg-strong);
+  background: var(--color-interaction-hover-bg);
   color: var(--color-text-link-hover);
   text-decoration-thickness: var(--border-width-emphasis);
 }

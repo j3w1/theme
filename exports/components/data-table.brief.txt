@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — data-table
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-/JUAL10Kqyw1s0kkaIWTd+qO1Dg/8bLQDSr5dPck2Qg=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-qWZiHqlpXwq3jlfIKiKdPuFMa+byn4MrZJAB29nnE1k=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/data-table.json
 spec: spec/components/data-table.md  site: https://j3w1.github.io/theme/reference/#c-data-table
 maturity: stable  priority: R1
@@ -18,7 +18,7 @@ Tokens (resolved):
   row.ring             #e53935  ({color.interaction.focus.ring})  use
   selected.bg          #531310  ({color.interaction.selection.bg})  use
   selected.text        #f4eeee  ({color.interaction.selection.text})  use
-  selected.ring        #ffa2a7  ({color.interaction.focus.ring-container})  use
+  selected.ring        #e53935  ({color.interaction.focus.ring})  use
   checkbox.bg          #000000  ({color.surface.input})  use
   checkbox.border      #a3676b  ({color.border.control})  use-and-report (D-007)
   checkbox.checked-bg  #7d1310  ({color.action.primary.bg})  use
@@ -33,7 +33,7 @@ States: default, hover, focus-visible, selected, selected+focus-visible, sorted,
   hover: row → {color.interaction.hover.bg}; a resize handle → {color.border.active} [cursor: default on rows, col-resize on handles]
   focus-visible: 1px dashed {color.interaction.focus.ring} at −2px around the focused row or control [the ring]
   selected: row fill {color.interaction.selection.bg}; every cell {color.interaction.selection.text}; row checkbox checked [`aria-selected="true"`; the checked box]
-  selected+focus-visible: the fill and a ring in {color.interaction.focus.ring-container} [both visible at once]
+  selected+focus-visible: the fill and 1px dashed {color.interaction.focus.ring} at −2px [both visible at once]
   sorted: ▲ or ▼ in {color.text.bright} on the sorted header [`aria-sort`; the glyph]
   mixed: select-all on {color.action.primary.bg} with the – glyph [`aria-checked="mixed"`; the glyph]
   empty: one full-width cell in {color.text.muted}: "No rows match."; header and controls stay [the message text]

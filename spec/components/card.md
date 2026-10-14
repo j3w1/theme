@@ -39,19 +39,19 @@ tokens:
   meta.text: color.text.muted
   selected.bg: color.interaction.selection.bg
   selected.text: color.interaction.selection.text
-  selected.ring: color.interaction.focus.ring-container
+  selected.ring: color.interaction.focus.ring
 stateTokens:
   default: { fg: color.text.default, bg: color.surface.default }
   hover: { fg: color.text.default, bg: color.interaction.hover.bg, border: color.border.control }
   focus-visible: { fg: color.text.default, bg: color.surface.default, outline: color.interaction.focus.ring-container }
   selected: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg }
-  selected+focus-visible: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg, outline: color.interaction.focus.ring-container }
+  selected+focus-visible: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg, outline: color.interaction.focus.ring }
 contrast:
   - { fg: color.text.bright, bg: color.surface.default, label: "title on the card" }
   - { fg: color.text.muted, bg: color.surface.default, label: "metadata on the card" }
   - { fg: color.text.bright, bg: color.interaction.hover.bg, state: hover, label: "title on the hover fill" }
   - { fg: color.text.muted, bg: color.interaction.hover.bg, state: hover, label: "metadata on the hover fill" }
-  - { fg: color.border.default, bg: color.surface.default, min: 1, kind: ui, label: "card edge (decorative; the card is not a control at rest)", waiver: "the default border groups content; a link or selectable card gains border.control on hover and the container ring on focus" }
+  - { fg: color.border.default, bg: color.surface.default, min: 1, kind: ui, label: "card edge (decorative; the card is not a control at rest)", waiver: "the default border groups content; interactive cards gain border.control on hover and a focus ring; selected cards use the ordinary ring" }
 anatomy:
   - part: root
     description: The article, anchor or option; 1px border.default on surface.default; no shadow, no radius.
@@ -106,7 +106,7 @@ Parts as listed in the anatomy. Padding 12px in `comfortable`, 8px in
 | hover | link and selectable cards only: background → {color.interaction.hover.bg}; border → {color.border.control} | cursor: pointer; the border lightens from decorative to control |
 | focus-visible | container ring 2px solid {color.interaction.focus.ring-container} at −3px | the ring |
 | selected | fill {color.interaction.selection.bg}, {color.interaction.selection.text} on every line | `aria-selected="true"`; the on-fill text |
-| selected+focus-visible | the fill and the 2px ring in {color.interaction.focus.ring-container} | both visible at once |
+| selected+focus-visible | the fill and 1px dashed {color.interaction.focus.ring} at −2px | both visible at once |
 
 A static card has no hover and no focus, and is not in the tab order.
 
@@ -126,8 +126,8 @@ fill every line takes the on-fill text, because muted text would fall below
 ## Portability
 
 A bordered box with a background and an outline. Toolkits that shadow their
-frames remove it. A host without container outlines draws the ring as a 2px
-inner border and records it.
+frames remove it. A host without outlines draws a 2px inner border for the container ring,
+1px for the selected card, and records it.
 
 ## Non-examples
 

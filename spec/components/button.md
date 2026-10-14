@@ -64,7 +64,7 @@ stateTokens:
   active: { fg: color.action.primary.text, bg: color.action.primary.pressed-bg }
   loading: { fg: color.action.primary.text, bg: color.action.primary.bg }
 contrast:
-  - { fg: color.action.primary.bg, bg: color.surface.default, min: 3, kind: ui, label: "primary fill against the panel (decorative; the label identifies the button)", waiver: "the fill is not the boundary of the control; the label text at 9.28:1 identifies it, and hover, active and focus each add a second channel" }
+  - { fg: color.action.primary.bg, bg: color.surface.default, min: 3, kind: ui, label: "primary fill against the panel (decorative; the label identifies the button)", waiver: "the fill is not the boundary of the control; the label text identifies it, and hover, active and focus each add a second channel" }
   - { fg: color.action.secondary.text, bg: color.action.secondary.bg, label: "secondary text at rest" }
   - { fg: color.action.secondary.border, bg: color.action.secondary.bg, min: 3, kind: ui, label: "secondary border at rest" }
   - { fg: color.action.secondary.text, bg: color.action.secondary.hover-bg, state: hover, label: "secondary text on the hover fill" }

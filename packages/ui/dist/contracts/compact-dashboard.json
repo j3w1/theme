@@ -93,10 +93,10 @@
     "dependency.role-color-surface-chrome": "color.surface.chrome",
     "dependency.role-density-comfortable-control-height": "density.comfortable.control-height",
     "dependency.role-density-compact-control-height": "density.compact.control-height",
+    "dependency.role-focus-offset": "focus.offset",
     "dependency.role-font-size-h2": "font.size.h2",
     "dependency.role-radius-none": "radius.none",
     "dependency.role-space-12": "space.12",
-    "dependency.role-space-2": "space.2",
     "dependency.role-space-8": "space.8"
   },
   "status": {
@@ -653,6 +653,6 @@
   "copy": {
     "directory": "copy/compact-dashboard/",
     "manifest": "copy/compact-dashboard/manifest.json",
-    "digest": "sha256-R72j3hilAtxGQdqvuci03vdpdCUYde9Z3dq4Rw1DsCc="
+    "digest": "sha256-8HPA/m4bQRmM0HaCiKTayXG+ryly96Ex9sR87wOLabM="
   }
 }

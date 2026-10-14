@@ -113,7 +113,7 @@
     "root.bg-disabled": "color.interaction.disabled.bg",
     "selected.bg": "color.interaction.selection.bg",
     "selected.text": "color.interaction.selection.text",
-    "selected.ring": "color.interaction.focus.ring-container",
+    "selected.ring": "color.interaction.focus.ring",
     "remove.text": "color.text.muted",
     "remove.text-hover": "color.text.bright",
     "remove.bg-hover": "color.interaction.hover.bg-strong"
@@ -132,7 +132,6 @@
       "color.border.disabled",
       "color.interaction.disabled.bg",
       "color.interaction.drop-target",
-      "color.interaction.focus.ring-container",
       "color.interaction.hover.bg",
       "color.interaction.hover.bg-strong",
       "color.interaction.pressed.bg",
@@ -168,7 +167,6 @@
       "color.interaction.disabled.bg",
       "color.interaction.drop-target",
       "color.interaction.focus.ring",
-      "color.interaction.focus.ring-container",
       "color.interaction.hover.bg",
       "color.interaction.hover.bg-strong",
       "color.interaction.pressed.bg",
@@ -241,11 +239,6 @@
         "decisionIds": []
       },
       "color.interaction.drop-target": {
-        "action": "use",
-        "reason": "Use within the role's documented scope and restrictions.",
-        "decisionIds": []
-      },
-      "color.interaction.focus.ring-container": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -386,6 +379,6 @@
   "copy": {
     "directory": "copy/chip/",
     "manifest": "copy/chip/manifest.json",
-    "digest": "sha256-4XKGF6PJcshtzLIA8vpOak6ThleZKbz6ZQFHgS46UDw="
+    "digest": "sha256-Q8H52ja9lyGWmgJRf4PF5LnCZDnnfHuopw5riaVv39I="
   }
 }

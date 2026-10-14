@@ -48,10 +48,10 @@ tokens:
   dependency.role-color-surface-overlay: color.surface.overlay
   dependency.role-density-comfortable-control-height: density.comfortable.control-height
   dependency.role-density-compact-control-height: density.compact.control-height
+  dependency.role-focus-offset: focus.offset
   dependency.role-radius-none: radius.none
   dependency.role-space-12: space.12
   dependency.role-space-16: space.16
-  dependency.role-space-2: space.2
   dependency.role-space-8: space.8
 stateTokens:
   default:

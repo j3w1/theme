@@ -221,11 +221,11 @@
   line-height: 1;
 }
 
-/* selected + focus-visible: the ring takes the on-fill colour */
+/* selected + focus-visible: the ordinary ring stays on the selection fill */
 .data-table .data-table-row[aria-selected="true"]:focus-visible,
 .data-table .data-table-row:has(.data-table-checkbox:checked):focus-visible,
 [data-state-selected][data-state-focus-visible] .data-table-row-demo-target {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring);
   outline-offset: var(--focus-offset);
 }
 

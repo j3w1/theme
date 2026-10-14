@@ -60,7 +60,7 @@ stateTokens:
   drop-target: { fg: color.text.default, bg: color.interaction.marquee, border: color.interaction.drop-target }
   invalid: { fg: color.action.secondary.text, bg: color.surface.canvas, border: color.status.danger.border }
 contrast:
-  - { fg: color.action.secondary.border, bg: color.surface.canvas, min: 3, kind: ui, state: hover, label: "hovered button boundary against the canvas outside it", waiver: "inside the hover fill the control border measures 2.94:1; the boundary is judged against the canvas on its outer side (4.45:1), and the fill change is itself the hover signal" }
+  - { fg: color.action.secondary.border, bg: color.surface.canvas, min: 3, kind: ui, state: hover, label: "hovered button boundary against the canvas outside it", waiver: "inside the hover fill the control border falls below the floor; the boundary is judged against the canvas on its outer side, and the fill change is itself the hover signal" }
   - { fg: color.interaction.drop-target, bg: color.surface.canvas, min: 3, kind: ui, label: "drop-zone dashed border at rest" }
   - { fg: color.text.muted, bg: color.surface.canvas, label: "status, hint and help text on the canvas" }
   - { fg: color.text.subtle, bg: color.surface.canvas, label: "file sizes on the canvas" }

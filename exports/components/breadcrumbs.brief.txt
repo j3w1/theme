@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — breadcrumbs
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-/JUAL10Kqyw1s0kkaIWTd+qO1Dg/8bLQDSr5dPck2Qg=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-qWZiHqlpXwq3jlfIKiKdPuFMa+byn4MrZJAB29nnE1k=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/breadcrumbs.json
 spec: spec/components/breadcrumbs.md  site: https://j3w1.github.io/theme/reference/#c-breadcrumbs
 maturity: stable  priority: R1
@@ -12,7 +12,7 @@ Tokens (resolved):
   link.text          #f73f35  ({color.text.link})  use
   link.underline     #dc282e  ({color.text.link-underline})  use
   link.text-hover    #f4eeee  ({color.text.link-hover})  use
-  link.bg-hover      #630f0d  ({color.interaction.hover.bg-strong})  use
+  link.bg-hover      #1c0a09  ({color.interaction.hover.bg})  use
   link.ring          #e53935  ({color.interaction.focus.ring})  use
   current.text       #ffa2a7  ({color.text.bright})  use
   separator.text     #bd787d  ({color.text.muted})  use
@@ -21,7 +21,7 @@ Tokens (resolved):
 
 States: default, hover, focus-visible, current, truncated
   default: links {color.text.link}, 1px underline; separators {color.text.muted}; current {color.text.bright} [underline on links; none on the current page]
-  hover: link → {color.interaction.hover.bg-strong}, text {color.text.link-hover} [underline 1px → 2px; cursor]
+  hover: link → {color.interaction.hover.bg}, text {color.text.link-hover} [underline 1px → 2px; cursor]
   focus-visible: 1px dashed {color.interaction.focus.ring} at −2px around the link [the ring]
   current: {color.text.bright}; no underline; no hover [`aria-current="page"`; no underline]
   truncated: middle levels replaced by an `…` button in {color.text.default} [`aria-expanded="false"`; its label counts the hidden levels]

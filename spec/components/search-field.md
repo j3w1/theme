@@ -61,7 +61,7 @@ contrast:
   - { fg: color.action.tertiary.text, bg: color.surface.input, label: "clear glyph on the input surface" }
   - { fg: color.action.tertiary.text, bg: color.action.tertiary.hover-bg, state: hover, label: "clear glyph on its hover fill" }
   - { fg: color.text.muted, bg: color.surface.default, label: "help and no-results status on the panel surface" }
-  - { fg: color.border.default, bg: color.surface.input, min: 1, kind: ui, label: "kbd hint edge (decorative)", waiver: "the hint is not a control; its text at 5.81:1 carries the meaning" }
+  - { fg: color.border.default, bg: color.surface.input, min: 1, kind: ui, label: "kbd hint edge (decorative)", waiver: "the hint is not a control; its text carries the meaning" }
   - { fg: color.text.disabled, bg: color.interaction.disabled.bg, min: 3, kind: ui, state: disabled, label: "disabled text (exempt; house floor 3:1)" }
   - { fg: color.border.disabled, bg: color.interaction.disabled.bg, min: 1, kind: ui, state: disabled, label: "disabled border (exempt)", waiver: "disabled controls are exempt from 1.4.11" }
 anatomy:

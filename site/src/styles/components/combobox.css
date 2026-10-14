@@ -101,13 +101,13 @@
   color: var(--color-text-link-hover);
 }
 
-/* selected: the active descendant carries the selection fill and a ring in
-   the fill's on-fill colour, because focus stays on the input */
+/* selected: the active descendant carries the selection fill and the ordinary ring,
+   because focus stays on the input */
 .combobox-option[aria-selected="true"],
 [data-state-selected] .combobox-option[aria-selected="true"] {
   background: var(--color-interaction-selection-bg);
   color: var(--color-interaction-selection-text);
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring);
   outline-offset: var(--focus-offset);
 }
 

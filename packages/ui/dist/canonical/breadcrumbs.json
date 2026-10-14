@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-/JUAL10Kqyw1s0kkaIWTd+qO1Dg/8bLQDSr5dPck2Qg=",
+  "sourceDigest": "sha256-qWZiHqlpXwq3jlfIKiKdPuFMa+byn4MrZJAB29nnE1k=",
   "id": "breadcrumbs",
   "family": "navigation",
   "maturity": "stable",
@@ -108,8 +108,8 @@
       }
     },
     "link.bg-hover": {
-      "alias": "color.interaction.hover.bg-strong",
-      "value": "#630f0d",
+      "alias": "color.interaction.hover.bg",
+      "value": "#1c0a09",
       "status": "observed",
       "deprecated": false,
       "decisionId": null,
@@ -214,7 +214,7 @@
     },
     {
       "state": "hover",
-      "visual": "link → {color.interaction.hover.bg-strong}, text {color.text.link-hover}",
+      "visual": "link → {color.interaction.hover.bg}, text {color.text.link-hover}",
       "channel": "underline 1px → 2px; cursor",
       "tokens": {
         "fg": {
@@ -230,8 +230,8 @@
           }
         },
         "bg": {
-          "alias": "color.interaction.hover.bg-strong",
-          "value": "#630f0d",
+          "alias": "color.interaction.hover.bg",
+          "value": "#1c0a09",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -409,10 +409,10 @@
       "kind": "text",
       "min": 4.5,
       "fg": "color.text.link-hover",
-      "bg": "color.interaction.hover.bg-strong",
+      "bg": "color.interaction.hover.bg",
       "fgHex": "#f4eeee",
-      "bgHex": "#630f0d",
-      "ratio": 11.41,
+      "bgHex": "#1c0a09",
+      "ratio": 16.7,
       "pass": true,
       "waiver": null
     },

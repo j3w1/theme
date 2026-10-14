@@ -129,7 +129,7 @@
 
 .toast-action:hover,
 [data-state-hover] .toast-action {
-  background: var(--color-interaction-hover-bg-strong);
+  background: var(--color-interaction-hover-bg);
   color: var(--color-text-link-hover);
   text-decoration-thickness: 2px;
 }

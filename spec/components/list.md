@@ -41,7 +41,7 @@ tokens:
   row.text-disabled: color.text.disabled
   selected.bg: color.interaction.selection.bg
   selected.text: color.interaction.selection.text
-  selected.ring: color.interaction.focus.ring-container
+  selected.ring: color.interaction.focus.ring
   selected.inactive-bg: color.interaction.selection.inactive-bg
   selected.inactive-text: color.interaction.selection.inactive-text
   check.glyph: color.interaction.selection.text
@@ -51,7 +51,7 @@ stateTokens:
   hover: { fg: color.text.default, bg: color.interaction.hover.bg }
   focus-visible: { fg: color.text.default, bg: color.surface.default, outline: color.interaction.focus.ring }
   selected: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg }
-  selected+focus-visible: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg, outline: color.interaction.focus.ring-container }
+  selected+focus-visible: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg, outline: color.interaction.focus.ring }
   selected+container-inactive: { fg: color.interaction.selection.inactive-text, bg: color.interaction.selection.inactive-bg }
 contrast:
   - { fg: color.text.muted, bg: color.surface.default, label: "metadata column on the list surface" }
@@ -118,7 +118,7 @@ Parts as listed in the anatomy; on a selected row every part, metadata and
 | hover | background → {color.interaction.hover.bg} | cursor: pointer |
 | focus-visible | 1px dashed {color.interaction.focus.ring} at −2px on the option | the ring |
 | selected | fill {color.interaction.selection.bg}; text and glyph {color.interaction.selection.text} | `aria-selected="true"`; the ✓ glyph |
-| selected+focus-visible | the fill and a ring in {color.interaction.focus.ring-container} | both visible at once |
+| selected+focus-visible | the fill and 1px dashed {color.interaction.focus.ring} at −2px | both visible at once |
 | selected+container-inactive | fill {color.interaction.selection.inactive-bg} with {color.interaction.selection.inactive-text}; no ring | lightness drop between the two fills; the glyph stays |
 | disabled | text {color.text.disabled}; no fill; no hover; still reachable by arrow keys | `aria-disabled="true"`; cursor: not-allowed |
 

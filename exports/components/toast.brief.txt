@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — toast
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-/JUAL10Kqyw1s0kkaIWTd+qO1Dg/8bLQDSr5dPck2Qg=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-qWZiHqlpXwq3jlfIKiKdPuFMa+byn4MrZJAB29nnE1k=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/toast.json
 spec: spec/components/toast.md  site: https://j3w1.github.io/theme/reference/#c-toast
 maturity: stable  priority: R1
@@ -28,7 +28,7 @@ Tokens (resolved):
   danger.text             #f9faf9  ({color.status.danger.on-fill})  use
   danger.button-bg-hover  #ae1914  ({color.action.destructive.pressed-bg})  use
   action.text             #f73f35  ({color.text.link})  use
-  action.bg-hover         #630f0d  ({color.interaction.hover.bg-strong})  use
+  action.bg-hover         #1c0a09  ({color.interaction.hover.bg})  use
   action.text-hover       #f4eeee  ({color.text.link-hover})  use
   close.text              #e99499  ({color.action.tertiary.text})  use
   close.bg-hover          #1c0a09  ({color.action.tertiary.hover-bg})  use
@@ -39,7 +39,7 @@ State dependency disclosures: D-008
 
 States: default, hover, focus-visible, stacked, reduced-motion
   default: canvas surface, 1px overlay border, glyph in the status text colour [the glyph; the worded text]
-  hover: action → {color.interaction.hover.bg-strong} with {color.text.link-hover}; Dismiss → {color.action.tertiary.hover-bg}; the timeout pauses [cursor: pointer; the action's underline thickens]
+  hover: action → {color.interaction.hover.bg} with {color.text.link-hover}; Dismiss → {color.action.tertiary.hover-bg}; the timeout pauses [cursor: pointer; the action's underline thickens]
   focus-visible: 1px dashed {color.interaction.focus.ring} at −2px on the focused button, {color.status.danger.on-fill} on the danger fill; the timeout pauses [the ring]
   stacked: one column, 4px gap, newest at the end; the last visible toast shows "+n" in {color.text.muted} [the count text; at most three visible]
   reduced-motion: no transition; present or absent [`prefers-reduced-motion`; nothing moves]

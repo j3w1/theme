@@ -123,7 +123,7 @@
   color: var(--color-text-link-hover);
 }
 
-/* focus-visible: the ring on the button; on items it follows the fill */
+/* focus-visible: the ordinary ring on the button and selected items */
 .menu-button:focus-visible,
 [data-state-focus-visible] .menu-button {
   outline: var(--focus-ring);
@@ -131,8 +131,8 @@
 }
 
 .menu-item:focus-visible {
-  outline: var(--focus-ring-container);
-  outline-offset: var(--focus-offset-container);
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
 }
 
 .menu-button:focus:not(:focus-visible),

@@ -46,7 +46,7 @@ tokens:
   row.bg-hover: color.interaction.hover.bg
   selected.bg: color.interaction.selection.bg
   selected.text: color.interaction.selection.text
-  selected.ring: color.interaction.focus.ring-container
+  selected.ring: color.interaction.focus.ring
   selected.inactive-bg: color.interaction.selection.inactive-bg
   selected.inactive-text: color.interaction.selection.inactive-text
   caption.text: color.text.muted
@@ -56,7 +56,7 @@ stateTokens:
   default: { fg: color.text.default, bg: color.surface.default }
   hover: { fg: color.text.default, bg: color.interaction.hover.bg }
   selected: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg }
-  selected+focus-visible: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg, outline: color.interaction.focus.ring-container }
+  selected+focus-visible: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg, outline: color.interaction.focus.ring }
   selected+container-inactive: { fg: color.interaction.selection.inactive-text, bg: color.interaction.selection.inactive-bg }
   sorted: { fg: color.text.bright, bg: color.surface.default }
   empty: { fg: color.text.muted, bg: color.surface.default }
@@ -123,7 +123,7 @@ Parts as listed in the anatomy; the sticky header sits on
 | default | rows on {color.surface.default}; header rule 1px {color.border.strong} | — |
 | hover | row → {color.interaction.hover.bg} | cursor: default; hover-capable pointers only |
 | selected | row fill {color.interaction.selection.bg}; every cell {color.interaction.selection.text} | `aria-selected="true"` on the row |
-| selected+focus-visible | the fill and a ring in {color.interaction.focus.ring-container} around the row | both visible at once |
+| selected+focus-visible | the fill and 1px dashed {color.interaction.focus.ring} at −2px around the row | both visible at once |
 | selected+container-inactive | row fill {color.interaction.selection.inactive-bg} with {color.interaction.selection.inactive-text}; no ring | lightness drop between the two fills |
 | sorted | ▲ (ascending) or ▼ (descending) in {color.text.bright} on the sorted header | `aria-sort`; the glyph |
 | empty | one full-width cell in {color.text.muted}: "No rows match." | the message text |

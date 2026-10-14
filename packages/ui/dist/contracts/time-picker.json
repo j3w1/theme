@@ -137,6 +137,7 @@
     "hover",
     "focus-visible",
     "invalid",
+    "invalid+focus-visible",
     "disabled"
   ],
   "dependencies": [],
@@ -146,6 +147,7 @@
     "root.bg-hover": "color.interaction.hover.bg",
     "root.border-focus": "color.border.active",
     "root.ring": "color.interaction.focus.ring",
+    "root.ring-invalid": "color.interaction.focus.ring-container",
     "root.border-invalid": "color.status.danger.border",
     "root.border-disabled": "color.border.disabled",
     "root.bg-disabled": "color.interaction.disabled.bg",

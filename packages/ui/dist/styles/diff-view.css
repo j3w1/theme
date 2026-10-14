@@ -245,7 +245,7 @@ j3w1-diff-view .diff-view-row:focus-visible {
 }
 
 j3w1-diff-view .diff-view-row[aria-current="true"]:focus-visible {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring);
   outline-offset: var(--focus-offset);
 }
 j3w1-diff-view .diff-view-fold[aria-expanded="true"] .diff-view-chevron {

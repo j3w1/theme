@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-/JUAL10Kqyw1s0kkaIWTd+qO1Dg/8bLQDSr5dPck2Qg=",
+  "sourceDigest": "sha256-qWZiHqlpXwq3jlfIKiKdPuFMa+byn4MrZJAB29nnE1k=",
   "id": "code-editor",
   "family": "developer",
   "maturity": "stable",
@@ -1072,6 +1072,32 @@
       "ratio": 5.1,
       "pass": true,
       "waiver": null
+    },
+    {
+      "label": "comment syntax decoration inside the selection",
+      "state": "selected",
+      "kind": "ui",
+      "min": 4.5,
+      "fg": "color.code.syntax.comment",
+      "bg": "color.code.selection-bg",
+      "fgHex": "#ad7175",
+      "bgHex": "#420f0c",
+      "ratio": 4.13,
+      "pass": false,
+      "waiver": "syntax colour is decoration; the short-lived selection preserves syntax roles, and comment falls below the text floor on this recorded selection value"
+    },
+    {
+      "label": "type syntax decoration inside the selection",
+      "state": "selected",
+      "kind": "ui",
+      "min": 4.5,
+      "fg": "color.code.syntax.type",
+      "bg": "color.code.selection-bg",
+      "fgHex": "#b37175",
+      "bgHex": "#420f0c",
+      "ratio": 4.24,
+      "pass": false,
+      "waiver": "syntax colour is decoration; the short-lived selection preserves syntax roles, and type falls below the text floor on this recorded selection value"
     },
     {
       "label": "muted string text inside the selection",

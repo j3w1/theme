@@ -102,8 +102,8 @@ j3w1-card .card-selectable[aria-selected="true"]:hover {
   border-color: var(--color-interaction-selection-bg);
 }
 j3w1-card .card-selectable[aria-selected="true"]:focus-visible {
-  outline: var(--focus-ring-container);
-  outline-offset: var(--focus-offset-container);
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
 }
 
 @media (hover: none) {

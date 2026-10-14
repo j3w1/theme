@@ -184,7 +184,7 @@ j3w1-table .table-row[aria-selected="true"]:hover {
 }
 j3w1-table .table-row[aria-selected="true"]:focus-visible,
 j3w1-table .table-row[aria-selected="true"]:focus-within {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring);
   outline-offset: var(--focus-offset);
 }
 j3w1-table .table[data-container-inactive] .table-row[aria-selected="true"] {

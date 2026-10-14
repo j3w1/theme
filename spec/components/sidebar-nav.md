@@ -43,7 +43,7 @@ tokens:
   current.text: color.text.bright
   selected.bg: color.interaction.selection.bg
   selected.text: color.interaction.selection.text
-  selected.ring: color.interaction.focus.ring-container
+  selected.ring: color.interaction.focus.ring
   selected.inactive-bg: color.interaction.selection.inactive-bg
   selected.inactive-text: color.interaction.selection.inactive-text
   icon.stroke: color.icon.default
@@ -58,7 +58,7 @@ stateTokens:
   expanded: { fg: color.text.default, bg: color.surface.default }
   collapsed: { fg: color.text.default, bg: color.surface.default }
 contrast:
-  - { fg: color.interaction.focus.ring-container, bg: color.interaction.selection.bg, min: 3, kind: ui, state: selected, label: "ring on a selected item when focused" }
+  - { fg: color.interaction.focus.ring, bg: color.interaction.selection.bg, min: 3, kind: ui, state: selected, label: "ring on a selected item when focused" }
   - { fg: color.icon.decorative, bg: color.surface.default, min: 1, kind: ui, label: "group chevron (decorative; aria-expanded carries the state)", waiver: "the chevron duplicates aria-expanded and the visible children; it is not the only channel" }
   - { fg: color.border.divider, bg: color.surface.default, min: 1, kind: ui, label: "rail edge (decorative)", waiver: "the edge separates the rail from the canvas; the links are the targets" }
 anatomy:
@@ -115,7 +115,7 @@ inline-end edge; otherwise parts as listed in the anatomy.
 | hover | → {color.interaction.hover.bg} | cursor: pointer |
 | focus-visible | 1px dashed {color.interaction.focus.ring} at −2px | the ring |
 | current | 2px {color.border.selected-indicator} inline-start bar; text {color.text.bright} | `aria-current="page"`; the bar |
-| selected | {color.interaction.selection.bg} with {color.interaction.selection.text}; ring {color.interaction.focus.ring-container} when focused | `aria-selected` on a listbox-style rail; the on-fill text |
+| selected | {color.interaction.selection.bg} with {color.interaction.selection.text}; 1px dashed {color.interaction.focus.ring} at −2px when focused | `aria-selected` on a listbox-style rail; the on-fill text |
 | selected+container-inactive | {color.interaction.selection.inactive-bg} with {color.interaction.selection.inactive-text}; no ring | lightness drop between the two fills |
 | expanded | chevron rotated 90°; sublist shown | `aria-expanded="true"`; the children are present |
 | collapsed | labels visually hidden; icons centred; current bar and fills unchanged | labels remain for assistive technology and as tooltips |

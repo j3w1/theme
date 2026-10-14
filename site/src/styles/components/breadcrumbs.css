@@ -59,7 +59,7 @@
 /* hover: links take the strong hover fill and the underline thickens */
 .breadcrumbs-link:hover,
 [data-state-hover] .breadcrumbs-link-demo-target {
-  background: var(--color-interaction-hover-bg-strong);
+  background: var(--color-interaction-hover-bg);
   color: var(--color-text-link-hover);
   text-decoration-thickness: var(--border-width-emphasis);
 }

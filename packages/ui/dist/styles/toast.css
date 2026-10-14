@@ -144,7 +144,7 @@ j3w1-toast .toast-close:hover {
 }
 
 j3w1-toast .toast-action:hover {
-  background: var(--color-interaction-hover-bg-strong);
+  background: var(--color-interaction-hover-bg);
   color: var(--color-text-link-hover);
   text-decoration-thickness: 2px;
 }

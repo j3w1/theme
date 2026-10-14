@@ -1,5 +1,5 @@
 /* list — reference CSS. An APG listbox; the selected option is the
-   selection fill with a check glyph, and the ring recolours on the fill.
+   selection fill with a check glyph, and the ordinary ring stays on the fill.
    Every pseudo-class is paired with the forced-state attribute the state
    matrix emits. Token variables only. */
 
@@ -94,10 +94,10 @@
   background: var(--color-interaction-selection-bg);
 }
 
-/* selected + focus-visible: the ring takes the on-fill colour */
+/* selected + focus-visible: the ordinary ring stays on the selection fill */
 .list-option[aria-selected="true"]:focus-visible,
 [data-state-selected][data-state-focus-visible] .list-option-demo-target {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring);
   outline-offset: var(--focus-offset);
 }
 

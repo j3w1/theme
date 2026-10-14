@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — i3-window-frame
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-/JUAL10Kqyw1s0kkaIWTd+qO1Dg/8bLQDSr5dPck2Qg=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-qWZiHqlpXwq3jlfIKiKdPuFMa+byn4MrZJAB29nnE1k=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/i3-window-frame.json
 spec: spec/components/i3-window-frame.md  site: https://j3w1.github.io/theme/reference/#c-i3-window-frame
 maturity: stable  priority: R1
@@ -18,7 +18,7 @@ Tokens (resolved):
   workspace.selected-text      #f4eeee  ({color.interaction.selection.text})  use
   workspace.bg-hover           #1c0a09  ({color.interaction.hover.bg})  use
   workspace.ring               #e53935  ({color.interaction.focus.ring})  use
-  workspace.ring-on-selection  #ffa2a7  ({color.interaction.focus.ring-container})  use
+  workspace.ring-on-selection  #e53935  ({color.interaction.focus.ring})  use
   workspace.urgent-bg          #dc282e  ({color.status.danger.fill})  use
   workspace.urgent-text        #f9faf9  ({color.status.danger.on-fill})  use
   status.separator             #bd787d  ({color.text.muted})  use
@@ -44,7 +44,7 @@ Tokens (resolved):
 States: default, focus-visible, selected, container-inactive, error
   default: terminal window focused: {color.border.active} frame, bright title; editor at rest; workspace 1 filled [the title text; `aria-selected`]
   focus-visible: 2px {color.interaction.focus.ring-container} ring at −3px inside the focused window or container; the client draws no second ring [the ring]
-  selected: workspace 2 takes the selection fill with {color.interaction.selection.text}; workspace 1 at rest [`aria-selected`]
+  selected: workspace 2 takes the selection fill with {color.interaction.selection.text}, 1px dashed {color.interaction.focus.ring} at −2px when focused; workspace 1 at rest [`aria-selected`]
   container-inactive: no window focused: every frame {color.border.default}, every title {color.text.muted} on {color.surface.chrome}, tab indicator {color.border.selected-indicator-inactive}, no caret [lightness drop; no caret]
   error: workspace 3 urgent: {color.status.danger.fill} with {color.status.danger.on-fill} and a trailing ! [the ! mark; "urgent" read to assistive technology]
 
