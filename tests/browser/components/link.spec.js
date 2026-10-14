@@ -49,7 +49,7 @@ test.describe("link", () => {
 
     const hovered = await paint(page.locator('#link-states [data-state="hover"] a.link').first());
     expect(rgbToHex(hovered.color)).toBe(token("color.text.link-hover"));
-    expect(rgbToHex(hovered.bg)).toBe(token("color.interaction.hover.bg-strong"));
+    expect(rgbToHex(hovered.bg)).toBe(token("color.interaction.hover.bg"));
     expect(hovered.thickness).toBe("2px");
 
     await link.focus();
