@@ -98,16 +98,15 @@ compact: false
 
 ## Purpose
 
-Group related independent actions without turning them into an exclusive choice. Each button keeps its native type, accessible name and tab stop. Application effects belong to the host.
+Groups related, independent actions without making them an exclusive choice.
 
 ## Anatomy
 
-- **group:** Labelled group that wraps its buttons.
-- **actions:** Independent buttons in source order.
+Parts as listed in the anatomy.
 
 ## States
 
-| State | Presentation | Non-colour channel |
+| State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | Named content on the default surface. | Native text and structure. |
 | focus-visible | Dashed focus ring. | Native keyboard focus position. |
@@ -115,12 +114,12 @@ Group related independent actions without turning them into an exclusive choice.
 
 ## Keyboard
 
-- **Tab / Shift+Tab:** Visit each enabled button.
-- **Enter / Space:** Activate the focused native button.
+As in the key table; no arrow-key navigation is added.
 
 ## Accessibility
 
-Use role=group with a visible or accessible label. Buttons retain distinct names and native disabled behavior. A button group does not add arrow-key navigation or selection semantics.
+`role=group` with a visible or accessible label. Buttons keep distinct names
+and native disabled behaviour; the group adds no selection semantics.
 
 ## Portability
 
@@ -128,4 +127,5 @@ Follows the shared component defaults in `spec/portability.md` (section "Shared 
 
 ## Non-examples
 
-Unlabelled controls, color-only status, drag-only operations, hidden required instructions, stolen focus or an invented service success.
+Unlabelled controls, colour-only status, drag-only operations, hidden required
+instructions, stolen focus or an invented service success.

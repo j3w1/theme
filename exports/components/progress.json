@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=",
+  "sourceDigest": "sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=",
   "id": "progress",
   "family": "feedback",
   "maturity": "stable",
@@ -187,7 +187,7 @@
   "stateRules": [
     {
       "state": "default",
-      "visual": "fill {color.action.primary.bg} on the track; the value text",
+      "visual": "{color.action.primary.bg} fill on the track; the value text",
       "channel": "the native value; the percentage text",
       "tokens": {
         "fg": {
@@ -232,13 +232,13 @@
     },
     {
       "state": "busy",
-      "visual": "the whole track shows static 45° stripes of {color.action.primary.bg} on {color.interaction.pressed.bg}; no value text",
+      "visual": "static 45° stripes of {color.action.primary.bg} on {color.interaction.pressed.bg} across the track; no value text",
       "channel": "`aria-busy`; `aria-valuetext`; the stripe pattern; no animation",
       "tokens": {}
     },
     {
       "state": "error",
-      "visual": "fill → {color.status.danger.fill}; the label gains the ✕ glyph in {color.status.danger.text}; the detail line says what failed",
+      "visual": "fill → {color.status.danger.fill}; the label gains ✕ in {color.status.danger.text}; the detail line says what failed",
       "channel": "glyph; worded detail",
       "tokens": {
         "fg": {
@@ -325,7 +325,7 @@
     "admin-form",
     "i3-window-frame"
   ],
-  "nonExamples": "A spinner. Animated or \"barber-pole\" stripes. A shimmering skeleton in place\nof a bar. A circular ring. A rounded pill-shaped bar. Colour-only failure\nwithout the glyph and text. A bar with no label. A bar that blocks input.",
+  "nonExamples": "A spinner. Animated or barber-pole stripes. A shimmering skeleton instead of\na bar. A circular ring. A rounded pill bar. Colour-only failure without the\nglyph and text. A bar with no label. A bar that blocks input.",
   "contrast": [
     {
       "label": "progress default text",

@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=",
+  "sourceDigest": "sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=",
   "id": "code-editor",
   "family": "developer",
   "maturity": "stable",
@@ -540,7 +540,7 @@
     },
     {
       "state": "focus-visible",
-      "visual": "container ring 2px {color.interaction.focus.ring-container} at −3px; a 1px {color.code.caret} bar; the caret line filled {color.code.current-line} across gutter and text; its number in {color.code.line-number-active}",
+      "visual": "2px {color.interaction.focus.ring-container} ring at −3px; 1px {color.code.caret} bar; caret line filled {color.code.current-line} across gutter and text, its number {color.code.line-number-active}",
       "channel": "the ring; the caret bar",
       "tokens": {
         "fg": {
@@ -583,8 +583,8 @@
     },
     {
       "state": "selected",
-      "visual": "the range filled {color.code.selection-bg}; syntax colours kept",
-      "channel": "the range is announced through the host's selection; the fill spans line ends",
+      "visual": "range filled {color.code.selection-bg}; syntax colours kept",
+      "channel": "the host's selection is announced; the fill spans line ends",
       "tokens": {
         "fg": {
           "alias": "color.code.syntax.variable",
@@ -614,7 +614,7 @@
     },
     {
       "state": "selected+container-inactive",
-      "visual": "the same range in {color.interaction.selection.inactive-bg} with {color.interaction.selection.inactive-text}; no caret, no ring",
+      "visual": "same range in {color.interaction.selection.inactive-bg} with {color.interaction.selection.inactive-text}; no caret, no ring",
       "channel": "lightness drop between the two fills",
       "tokens": {
         "fg": {
@@ -646,7 +646,7 @@
     {
       "state": "current",
       "visual": "both characters of the matched pair outlined 1px solid {color.code.bracket-match}",
-      "channel": "the outline is a box, not a colour change",
+      "channel": "an outline box, not a colour change",
       "tokens": {
         "fg": {
           "alias": "color.code.syntax.variable",
@@ -688,8 +688,8 @@
     },
     {
       "state": "read-only",
-      "visual": "gutter drops to {color.surface.sunken} behind the same line numbers; the gutter rule becomes dotted; no caret is drawn",
-      "channel": "`aria-readonly`; dotted rule; missing caret",
+      "visual": "gutter on {color.surface.sunken}, same line numbers; dotted gutter rule; no caret",
+      "channel": "`aria-readonly`; dotted rule; no caret",
       "tokens": {
         "fg": {
           "alias": "color.code.line-number",
@@ -759,7 +759,7 @@
   "specimens": [
     "i3-window-frame"
   ],
-  "nonExamples": "Rainbow syntax in the reference editor, or any hue outside the three bounded\nones (the opt-in `code.hued.*` roles of D-030 carry them for hosts that want\nhue differentiation). A blinking or animated caret in the reference.\nA selection that recolours the text to white and loses the syntax roles. A\ncurrent-line highlight brighter than the selection. A bracket match drawn as\na background fill, which reads as a selection. Line numbers in the decorative\n`#7d1310`. A glow, gradient or rounded corner on the editor box. Removing the\nhost's focus indicator without drawing the container ring.",
+  "nonExamples": "Rainbow syntax in the reference, or any hue beyond the three bounded ones\n(hosts opt into `code.hued.*`, D-030). A blinking or animated caret in the\nreference. A selection that turns text white and drops the syntax roles. A\ncurrent line brighter than the selection. A bracket match as a background\nfill, which reads as a selection. Line numbers in a decorative colour. A glow,\ngradient or rounded corner on the box. Removing the host's focus indicator\nwithout drawing the container ring.",
   "contrast": [
     {
       "label": "code-editor default text",

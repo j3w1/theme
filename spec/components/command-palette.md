@@ -116,40 +116,37 @@ compact: false
 
 ## Purpose
 
-Find and invoke local commands from a compact square floating utility panel. One prompt filters dense rows with category labels. Results are caller-supplied links or bounded actions; no remote search occurs. The host may opt into Ctrl+K or Cmd+K.
+Finds and invokes local commands; navigation the site requires stays
+available outside the palette, without JavaScript.
 
 ## Anatomy
 
-- **trigger:** Named native button opens the utility panel.
-- **prompt:** Labelled combobox input retains focus while navigating results.
-- **results:** Listbox results include category and command text.
-- **dialog:** Native modal dialog provides containment and return.
+Parts as listed in the anatomy.
 
 ## States
 
-| State | Presentation | Non-colour channel |
+| State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | One prompt and dense command rows. | Visible names and categories. |
-| open | Square overlay surface and border. | Native modal dialog and active-descendant relationship. |
-| closed | Panel absent. | Opener remains focusable. |
-| focus-visible | Dashed input ring. | Input retains DOM focus while results change. |
-| no-results | Muted zero-results status. | Explicit result count and no active descendant. |
+| default | One prompt, dense command rows. | Visible names and categories. |
+| open | Square overlay surface and border. | Native modal dialog; active-descendant relationship. |
+| closed | Panel absent. | Opener stays focusable. |
+| focus-visible | Dashed input ring. | Input keeps DOM focus while results change. |
+| no-results | Muted zero-results status. | Explicit result count; no active descendant. |
 
 ## Keyboard
 
-- **Ctrl+K / Cmd+K:** Open when the host explicitly enables the shortcut.
-- **Up / Down:** Move the active result while retaining input focus.
-- **Enter:** Invoke the active enabled result and close.
-- **Escape:** Close and restore the opener.
-- **Tab / Shift+Tab:** Cycle through native modal controls.
+As in the key table. Shortcuts are never intercepted globally unless the host
+opts in, and one Escape closes the palette.
 
 ## Accessibility
 
-Combine native modal focus behavior with the editable combobox pattern. Result names include their category and command text; selection uses the approved selected roles. Escape closes once and restores focus. Required site navigation remains available outside the palette without JavaScript. Do not globally intercept shortcuts unless the host opts in.
+Each result's name includes its category and command text. Selection uses the
+approved selected roles.
 
 ## Portability
 
-Follows the shared component defaults in `spec/portability.md` (section "Shared component defaults").
+Follows the shared component defaults in `spec/portability.md` (section
+"Shared component defaults").
 
 ## Non-examples
 

@@ -97,57 +97,46 @@ compact: false
 ## Purpose
 
 Names a status or shows a count next to the thing it describes. A badge is
-read-only: it never opens, toggles or removes anything. An interactive
-label is a chip; a message with a status is an alert.
+read-only: it never opens, toggles or removes anything. An interactive label
+is a chip; a message with a status is an alert.
 
 ## Anatomy
 
-An inline span in caption type with 2px by 8px padding and square corners.
-Status badges fill with `color.status.<status>.fill` and use the matching
-`on-fill` text, preceded by the status glyph: ✕ danger, ! warning, ✓ success,
-i info, · neutral. Outline badges have no fill, the `text` colour and a 1px
-`border` in the same status. The count badge is a number on
-{color.action.primary.bg} in {color.action.primary.text} with a visually
-hidden unit. An empty badge is an 8px square dot in the status fill with a
-name.
+Parts as listed in the anatomy. The glyphs are ✕ danger, ! warning, ✓
+success, i info and · neutral.
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | fill, glyph and text for the status; or the outline form | the glyph; the text |
-| empty | an 8px square dot in the status fill; the glyph and text visually hidden | `role="img"` with `aria-label`, or the hidden text; the dot's position beside its subject |
+| empty | an 8px square dot in the status fill; glyph and text visually hidden | `role="img"` with `aria-label`, or the hidden text; the dot's position beside its subject |
 
-A badge has no hover, focus, pressed or disabled state because it is not a
-control.
+No hover, focus, pressed or disabled state: a badge is not a control.
 
 ## Keyboard
 
-None. A badge is never focusable. When a badge summarises something the
-user can act on, the action lives in the neighbouring control and the badge
-is part of that control's name or description.
+None. When a badge summarises something the user can act on, the action lives
+in the neighbouring control and the badge is part of that control's name or
+description.
 
 ## Accessibility
 
-The glyph is `aria-hidden` and the text carries the meaning, so a screen
-reader hears "Failed", not "cross Failed". Count badges include their unit
-as visually hidden text ("12 unread"). An empty badge, a dot, carries
-`role="img"` and `aria-label` or wraps hidden text; a dot with no name is
-decoration and must be `aria-hidden`. Contrast: on-fill text 4.58:1 (danger),
-7.54:1 (warning), 7.13:1 (success), 7.08:1 (info), 4.71:1 (neutral); outline
-text 5.26:1 to 7.34:1; borders and dots at least 4.04:1 on the panel surface.
-Badges are not targets, so no minimum size applies beyond legibility at 11px
-caption type.
+The text carries the meaning, so a reader hears "Failed", not "cross Failed".
+The count's hidden unit reads as "12 unread". An empty badge may wrap hidden
+text instead of `aria-label`; a dot with no name is decoration and must be
+`aria-hidden`. Text meets 4.5:1; outline borders and dots 3:1 on the panel
+surface. Badges are not targets, so no size minimum applies beyond legibility
+at 11px caption type.
 
 ## Portability
 
-A filled or outlined span with a glyph. Toolkits without background colours
-on labels use the outline form. Hosts without the glyph characters use the
-nearest available (x, !, check mark, i, bullet) and record it.
+Toolkits without background colours on labels use the outline form. Hosts
+without the glyph characters use the nearest available (x, !, check mark, i,
+bullet) and record it.
 
 ## Non-examples
 
-Rounded or pill badges. A badge that is clickable. A status shown by colour
-without its glyph. A count badge that hides its unit from assistive
-technology. Purple, cyan or magenta statuses. A badge in body type. A badge
-whose text wraps. A dot without a name.
+Rounded or pill badges. A clickable badge. A status by colour without its
+glyph. A count unit hidden from assistive technology. Purple, cyan or magenta
+statuses. A badge in body type. Wrapping text. A dot without a name.

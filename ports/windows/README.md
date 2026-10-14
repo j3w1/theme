@@ -3,7 +3,9 @@
 Black surfaces, rose text, red accents and small black/red cursors, generated
 from the canonical j3w1 tokens. This port is **experimental**. Full styling
 requires an exact supported Windows 11 x64 host; it does not theme every
-application. See [current coverage and remaining visual gaps](COVERAGE.md).
+application. [Coverage](COVERAGE.md) lists implemented surfaces, owner
+acceptances and open checks; [Compatibility](COMPATIBILITY.md) holds exact host
+boundaries, technical details, developer/offline instructions and history.
 
 ## Install
 
@@ -19,30 +21,27 @@ application. See [current coverage and remaining visual gaps](COVERAGE.md).
 Install commands appear here once v4.0.0 is released.
 <!-- install:end -->
 
-No Git, separate setup script or manual runtime installation is needed. Setup
-reuses compatible standalone PowerShell, Node and verified cached dependencies
-when available. It downloads required pinned dependencies only when needed.
-The whole installation does not require an administrator shell or a change to
-the system execution policy. Managed-device policy may still prevent execution.
+No Git, administrator shell, execution-policy change or manual runtime
+installation is needed; managed-device policy may still prevent execution.
+Setup reuses compatible standalone PowerShell, Node and verified cached
+dependencies, and downloads pinned dependencies only when needed. Windows
+Terminal and PowerToys are optional existing-app integrations; setup does not
+install them.
 
-Use the Windows PowerShell supplied with Windows. A Microsoft Store PowerShell
-process can retain its package context even when it starts another executable;
-the installer refuses that context before downloads or theme changes. See
-[the runtime boundary](COMPATIBILITY.md#runtime-registry-boundary).
+Microsoft Store PowerShell is refused before any download or theme change,
+because a process can keep its package context even when it starts another
+executable. See [the runtime boundary](COMPATIBILITY.md#runtime-registry-boundary).
 
 On a supported host, setup chooses **Full** styling. Otherwise it explains the
 limit and offers **Native** mode: personalization, wallpaper, cursors and
-supported existing app settings. Native mode omits the shell styling adapters.
-Pressing Enter cancels; nothing silently falls back. Verified downloads may
-remain after cancellation, but theme settings are unchanged.
+supported existing app settings, without the shell styling adapters. Pressing
+Enter cancels; nothing silently falls back. Verified downloads may remain after
+cancellation, but theme settings are unchanged.
 
-Windows Terminal and PowerToys are optional existing-app integrations; setup
-does not install those apps. Required dependencies are obtained automatically.
-
-**Testing an unpublished PR:** use the full immutable commit supplied with the
-reviewed candidate, rather than a branch URL. The
-[developer instructions](COMPATIBILITY.md#developer-and-offline-installation)
-cover that route. A draft candidate is not a published release.
+**Testing an unpublished PR:** use the full immutable commit of the reviewed
+candidate, not a branch URL, through the
+[developer instructions](COMPATIBILITY.md#developer-and-offline-installation).
+A draft candidate is not a published release.
 
 ## Update and test
 
@@ -50,27 +49,25 @@ cover that route. A draft candidate is not a published release.
 Install commands appear here once v4.0.0 is released.
 <!-- update:end -->
 
-Run the Install command for the desired release. The same script applies the
-changes and runs Test; repeating the same revision is safe. Updates are explicit.
-Close Settings and other app settings windows first, and reopen affected apps
-afterward. Setup does not close applications or restart your computer.
+Updates are explicit: run the Install command for the desired release, after
+closing Settings and app settings windows as for installation. It applies the
+changes and runs Test; repeating the same revision is safe. Setup does not close
+applications or restart your computer.
 
-To check the installed theme again, run the **Test** command printed by setup.
-The exact commands are saved in:
+The **Test** command printed by setup checks managed files, settings, the
+running engine and compatibility. It does not check appearance: a passing Test
+does not establish that every window or interaction state renders correctly.
+The printed commands are saved in:
 
 ```text
 %LOCALAPPDATA%\j3w1-theme\windows\recovery-commands.txt
 ```
 
-Test checks managed files, settings, the running engine and compatibility.
-Check the appearance separately; a passing Test does not establish that every
-window or interaction state renders correctly.
-
 ## Undo
 
-Choose **one** of the recovery commands printed by setup or saved in
-`recovery-commands.txt`. Every command runs the same `install.ps1`; no separate
-rollback script, revision selection or runtime path is needed.
+Run **one** of the recovery commands printed by setup or saved in
+`recovery-commands.txt`. Each runs the same `install.ps1`; no separate rollback
+script, revision selection or runtime path is needed.
 
 | Action | Result |
 | --- | --- |
@@ -82,16 +79,17 @@ rollback script, revision selection or runtime path is needed.
 Install commands appear here once v4.0.0 is released.
 <!-- restore:end -->
 
-Recovery works offline with the saved release and runtime. Keep the state
-directory: its journal, backups and verified cache are needed for restoration.
-Commands are saved before settings change, including when the first installation
-fails. After updates or `Restore -Latest`, they follow the remaining installed
-version automatically.
+Recovery works offline from the saved release and runtime, so keep the state
+directory: its journal, backups and verified cache are needed. The commands are
+saved before settings change, even if the first installation fails, and after
+updates or `Restore -Latest` they follow the remaining installed version.
 
-Original-state restoration can take several minutes after many updates. Wait
-for the final result. Later user edits are preserved as reported conflicts;
-resolve those locally and rerun the same command. Shared tools, fonts and
-recovery data are retained. See [interrupted recovery](COMPATIBILITY.md#recovery)
+Original-state restoration can take several minutes after many updates; wait
+for the final result. Later user edits are preserved as reported conflicts:
+resolve them locally and rerun the same command. Shared tools, fonts and
+recovery data are retained. Where Notepad's original caption color was
+unreadable, rollback resets it to the Windows default, so a previous custom
+caption override can be lost. See [interrupted recovery](COMPATIBILITY.md#recovery)
 for missing-cache, lock or conflict handling.
 
 ## What changes
@@ -106,8 +104,6 @@ for missing-cache, lock or conflict handling.
 | Windows Terminal | Existing supported settings plus Full-mode tab/menu chrome; commands, shortcuts and text sizes are preserved |
 | Existing PowerToys utilities | Supported FancyZones, Always On Top and Command Palette settings; optional layouts are added without assigning them |
 
-Full mode also installs a current-user sign-in compatibility guard. A changed or
-unreadable fingerprint refuses styling; the guard does not download updates.
 Desktop icons, shortcuts, window placement, existing layouts and unrelated
 settings are preserved. Customized folder and shortcut icons keep their own
 registrations. Explorer is not force-restarted to refresh icons.
@@ -115,185 +111,78 @@ registrations. Explorer is not force-restarted to refresh icons.
 ## Named Windows theme and active engine
 
 Setup applies native personalization and installs `j3w1-managed.theme` beside
-your other Windows themes. Selecting its name in the Personalization gallery
-is currently a separate action: open
-`%LOCALAPPDATA%\Microsoft\Windows\Themes\j3w1-managed.theme`, then select it
-if Windows opens the gallery. That gallery selection is outside the setup
-journal; the managed file and applied personalization have journaled recovery.
+your other Windows themes. To select it by name in the Personalization gallery,
+open `%LOCALAPPDATA%\Microsoft\Windows\Themes\j3w1-managed.theme`, then select
+it if Windows opens the gallery. That selection is outside the setup journal;
+the managed file and applied personalization have journaled recovery.
 
-Full setup starts the retained Windhawk engine. Test fails if that engine is
-stopped. Repeating installation of the same revision can restart it without
-recompiling unchanged adapters; it preserves reported settings conflicts.
+Full setup starts the retained Windhawk engine; Test fails if it is stopped.
+Reinstalling the same revision can restart it without recompiling unchanged
+adapters and preserves reported settings conflicts.
 
-At sign-in, Full mode uses one managed shortcut in your Startup folder to invoke
-the same installer's compatibility guard with the retained runtime and explicit
-state path. Setup replaces its previous registry startup command, which could
-exceed Windows' 260-character Run-key limit. The shortcut and removal of the old
-entry share normal journaled Update, Restore and Uninstall recovery. Setup does
-not create another public script, scheduled task or background watcher. A manual
-guard invocation remains separate from acceptance after an actual new sign-in.
+Full mode also installs a current-user sign-in compatibility guard: one managed
+shortcut in your Startup folder runs the same installer's guard with the
+retained runtime and explicit state path. A changed or unreadable fingerprint
+refuses styling; the guard does not download updates. The shortcut replaces the
+previous registry startup command, which could exceed Windows' 260-character
+Run-key limit, and both changes share the journaled Update, Restore and
+Uninstall recovery. Setup creates no other public script, scheduled task or
+background watcher. A manual guard run is not acceptance of an actual new sign-in.
 
 ## Remaining limits
 
-The owner confirmed that Paint's Selection and Brushes buttons, including their
-dropdown arrows, keep black/red/rose hover and pointer-exit colors with the
-permanent correction installed. The installed hardware volume popup and
-input-language picker were also accepted. These confirmations cover those
-recorded states; they do not establish complete Windows-wide appearance.
+Setup or Test success does not change these limits. Native behavior and
+accessibility settings take priority. Owner confirmations cover only their
+recorded states, not complete Windows-wide appearance; the current list is in
+[Coverage](COVERAGE.md#current-owner-scope-and-historical-evidence). Other app
+states, notification action buttons, fresh native preview startup and
+DPI/accessibility variants still need acceptance, and no sign-in or clean-PC
+Full installation is claimed. Paint's gray drawing surround is host-owned and
+excluded from recoloring by the owner; an opaque viewport background would cover
+the artwork.
 
-The owner also confirmed completed small and large Markdown previews after
-rollback/reapply: both retain black backgrounds and the improved rose reading
-formatting. Preview startup frames remain a separate acceptance check.
-
-Notepad now admits an existing native header through its exact package/runtime
-adapter. If its original caption color is unknown, rollback resets that caption
-to Windows' default under the owner-approved Notepad-only policy; a previous
-custom caption override could be lost. Captured originals still restore exactly.
-The public caption API remains excluded because it covered the custom tabs on
-the recorded host. After Update, Test, Latest Restore, baseline verification
-and reapply, the owner confirmed the existing first header is black, with
-unobstructed tabs and all three native window buttons visible. Paint's surrounding drawing workspace is still gray; an opaque viewport
-background is not an acceptable fix because it can cover the artwork.
-
-Other app states, notification action buttons, fresh native preview startup,
-DPI/accessibility variants, sign-in and a clean-PC Full installation still need
-acceptance. White native Explorer window-button symbols were accepted by the
-owner. Native behavior and accessibility settings take priority.
-
-[Coverage](COVERAGE.md) lists implemented surfaces and unresolved checks.
-[Compatibility](COMPATIBILITY.md) retains exact host boundaries, technical
-details, developer/offline instructions and historical observations. These
-limits do not change when setup or Test succeeds.
-
-
-### Quick Settings and taskbar popup surfaces
-
-The owner's screenshot showed a gray media card, gray brightness/volume
-tracks and thumbs, and orange checked quick-action tiles while the outer
-Quick Settings frame and labels were already themed. The previous configuration
-omitted those separate native controls. The existing pinned notification styler
-now maps the media backing and L1 layers to the black canvas, the paginated
-toggle presenters' normal/hover/pressed/checked/disabled states to the canonical
-switch palette, and the named media and footer buttons to their state palette.
-Slider resources are local to this styler; scoped track and thumb selectors
-map the visible parts. Native slider values, media playback, connectivity,
-rotation settings, labels, artwork, target sizes, navigation and focus remain
-host-owned. No global accent setting, diagnostic adapter or second installer
-is added. The same public install.ps1 transaction restores these settings.
-
-The taskbar right-click menu and hidden-icons overflow panel now use the raised
-surface, square edges and overlay border through the existing taskbar styler.
-Menu rest, hover, pressed, disabled and submenu-open states and separators use
-their canonical roles. Menu resource overrides are now shared across the five shell stylers. Icons,
-menu actions, popup placement, control dimensions and native focus are preserved.
-
-These configuration and preservation checks do not establish installed rendering
-acceptance. First-open, pointer-exit, disabled, focus, high-contrast and DPI
-behavior still need bounded native checks. Slider thumb silhouettes remain
-native; no replacement drawing or artwork overlay is used.
-
-
-### Deferred chrome island discovery
-
-The owner supplied gray Windows Terminal profile and tab-menu screenshots.
-Source inspection found a startup defect: a pending named chrome control was
-retried against the entire XamlRoot content, then removed from the pending list.
-Terminal's generic document page is intentionally outside the chrome allowlist,
-so that retry could discard the tab/menu root. Deferred discovery now uses the
-same bounded root selection as immediate discovery. It retains the named chrome
-control or its topmost admitted ancestor in the same XamlRoot. A generic page,
-foreign root, terminal pane, drawing surface or document does not grant admission.
-The exact package/runtime checks, existing restoration path and public installer
-are retained. Synthetic native checks exercise generic content, admitted parents,
-foreign roots and bounded cyclic ancestry. Installed menu rendering still needs
-acceptance; this source defect does not by itself explain every gray menu frame.
-
-
-### Paint toolbar menus before opening
-
-The recorded Paint package creates its File/Edit/View `MenuBarItemFlyout` on
-the loaded `ContentButton` before opening; its presenter style is initially
-unset. The existing Paint adapter now prepares that exact owned toolbar endpoint
-with the mapped raised surface, rose foreground, overlay border and a null
-system backdrop. The native template, dimensions, items, actions and keyboard
-behavior remain unchanged. It admits only the same-root AppChrome/MenuBarItem
-chain on its UI thread, with normal accessibility state; custom styles,
-bindings, unrelated controls and menus already open at first discovery are
-left to the host. Rollback restores the unset local value while preserving later
-application replacements. Failed writes retain their receipt for cleanup retry. Retired owners return their
-style through the same bounded refresh path before receipts are released.
-The null backdrop setter uses the public property/value accessors: the
-two-argument WinUI constructor rejects null and previously caused the toolbar
-to return to native gray. Detached construction, style assignment and native
-presenter application passed on the recorded runtime. Installed first-open
-assessment remains separate; this does not establish startup-frame timing,
-submenu or whole-application acceptance.
-
-### Popup discovery before Loaded
-
-Notepad, Paint and Terminal menu styling now keeps track of permitted popup
-controls discovered before their templates are ready. It applies the existing
-palette when those controls load, then removes the callback. The same installer
-restores this change. Native ownership and cleanup checks are separate from
-installed first-open appearance; remaining visual limits stay recorded above.
+Recent corrections and their own open checks are recorded in Coverage:
+[Quick Settings and taskbar popup surfaces](COVERAGE.md#quick-settings-and-taskbar-popup-surfaces),
+[deferred chrome island discovery](COVERAGE.md#deferred-chrome-island-discovery),
+[Paint toolbar menus before opening](COVERAGE.md#paint-toolbar-menus-before-opening),
+[popup discovery before Loaded](COVERAGE.md#popup-discovery-before-loaded) and
+[Settings search frame geometry](COVERAGE.md#settings-search-frame-geometry).
 
 ### Shared shell context menus
 
-Start and Search, notification center, Settings, Explorer and the taskbar now
-consume one Windows XAML menu recipe. It covers the presenter and its template
-border, ordinary/check/submenu items, separators, shortcut hints, and normal,
-hover, pressed, disabled and submenu-open colors. The rules match native menu
-control types, not command text or the location where a menu opens. Native
-menu sizing, commands, icons and keyboard focus remain owned by Windows.
+Start and Search, notification center, Settings, Explorer and the taskbar share
+one Windows XAML menu recipe, and all five pinned shell stylers share its
+resource palette. It covers the presenter and its template border,
+ordinary/check/submenu items, separators and shortcut hints in normal, hover,
+pressed, disabled and submenu-open states. Rules match native control types,
+not command text or where a menu opens; sizing, commands, icons and keyboard
+focus stay native. Notepad, Paint and Terminal use the same roles through the
+separate WinUI app adapter, and classic Explorer menus keep their native drawing
+adapter, because these families need different host interfaces. This covers
+the supported hosts only; no single Windows accent setting recolors every
+third-party or custom-drawn menu.
 
-The resource palette is shared by all five pinned shell stylers. The same
-semantic roles remain in the separate WinUI app adapter used by Notepad, Paint
-and Terminal; classic Explorer menus retain their native drawing adapter.
-These rendering families require different host interfaces. This is shared
-coverage of the supported hosts, not a claim that one Windows accent setting
-recolors every third-party or custom-drawn menu. The existing compatibility
-checks and the single public install.ps1 update/restore transaction still apply.
-
-Source checks establish common rules and token mappings. Screenshots of the
-previous gray menus establish the defect; installed first-open, hover-exit,
-high-contrast and DPI appearance still require their own assessment.
-
-### Text commands and search suggestions
-
-Textbox command menus use a command-bar flyout, rather than the ordinary
-MenuFlyout template. All five shell stylers now share the command flyout's
-raised background, overlay border, command foreground, shortcut hints,
-separators, and normal, hover, pressed, disabled and checked resource colors.
-The observed WinUI 2 command-bar class and its native overflow presenter use
-one common recipe. Explorer's earlier local command-flyout rules are folded
-into that recipe; its ordinary toolbar background remains separate.
-
-Standard suggestion containers and FlyoutPresenter backings use the same
-raised surface and overlay frame. Settings' recorded custom search wrapper
-uses a native flyout and list-item presenters; its row palette preserves the
-selected dark-red fill across hover and restores the raised fill on pointer
-exit. The mappings do not set widths, offsets, command labels, keyboard
-behavior, or popup placement. Installation and restoration still use only
-install.ps1. Rendered assessment is separate from source and lifecycle checks.
-
-See Microsoft's [command-bar flyout template](https://github.com/microsoft/microsoft-ui-xaml/blob/v2.8.7/dev/CommandBarFlyout/CommandBarFlyout_themeresources.xaml)
+Textbox command menus use a command-bar flyout, not the ordinary MenuFlyout
+template. The five shell stylers share one recipe for it and its native overflow
+presenter: raised background, overlay border, command foreground, shortcut
+hints, separators, and normal, hover, pressed, disabled and checked colors.
+Explorer's earlier local command-flyout rules are folded into it; its ordinary
+toolbar background stays separate. Standard suggestion containers and
+FlyoutPresenter backings use the same raised surface and overlay frame.
+Settings' custom search wrapper keeps the selected dark-red fill across hover
+and restores the raised fill on pointer exit. No mapping sets widths, offsets,
+command labels, keyboard behavior or popup placement. See Microsoft's
+[command-bar flyout template](https://github.com/microsoft/microsoft-ui-xaml/blob/v2.8.7/dev/CommandBarFlyout/CommandBarFlyout_themeresources.xaml)
 and [suggestion template](https://github.com/microsoft/microsoft-ui-xaml/blob/v2.8.7/dev/AutoSuggestBox/AutoSuggestBox_themeresources.xaml)
 for the distinct resource keys and native frame ownership.
 
-### Settings search frame geometry
-
-The supported Settings search template wraps its TextBox in
-`StackPanel#SettingsCommandSearchBoxBackground`. That parent retains a native
-rounded radius and clips the otherwise square input frame. The scoped mapping
-sets only this parent's radius to `radius.none`. It does not add another border
-or change the wrapper's fill, layout, input, suggestions, or focus behavior.
-The existing native input states keep the ordinary and active frame colors.
-Update and rollback use the same public install.ps1 transaction.
+Source checks establish the common rules and token mappings; screenshots of the
+earlier gray menus establish the defect. Installed first-open, hover-exit,
+high-contrast and DPI appearance still need their own assessment.
 
 ### Shared source generation
 
 Calculator and the WinUI chrome adapters share the owned theme-refresh and
-control-resource templates. Template substitution uses one checked renderer;
-each generated Windhawk source remains standalone for its pinned compiler.
-Refactors must preserve the emitted adapter bytes when their behavior is
-unchanged. The public installer and rollback contracts are unaffected.
+control-resource templates, substituted by one checked renderer; each generated
+Windhawk source stays standalone for its pinned compiler. Refactors must
+preserve the emitted adapter bytes when behavior is unchanged.

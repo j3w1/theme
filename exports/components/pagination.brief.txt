@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — pagination
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/pagination.json
 spec: spec/components/pagination.md  site: https://j3w1.github.io/theme/reference/#c-pagination
 maturity: stable  priority: R1
@@ -22,11 +22,11 @@ Tokens (resolved):
   status.emphasis     #ffa2a7  ({color.text.bright})  use
 
 States: default, hover, focus-visible, current, disabled
-  default: text {color.text.default}; no fill; no border [—]
+  default: {color.text.default}; no fill, no border [—]
   hover: background → {color.interaction.hover.bg} [cursor: pointer]
-  focus-visible: ring 1px dashed {color.interaction.focus.ring} at −2px; on the current page the ring is {color.interaction.focus.ring-container} [the ring]
-  current: fill {color.interaction.selection.bg}; text {color.text.on-selection}; no hover [`aria-current="page"`]
-  disabled: text {color.text.disabled}; no fill; no hover [`aria-disabled="true"`; no `href`; cursor: not-allowed]
+  focus-visible: 1px dashed {color.interaction.focus.ring} at −2px; {color.interaction.focus.ring-container} on the current page [the ring]
+  current: fill {color.interaction.selection.bg}, text {color.text.on-selection}; no hover [`aria-current="page"`]
+  disabled: {color.text.disabled}; no fill, no hover [`aria-disabled="true"`; no `href`; cursor: not-allowed]
 
 Keyboard:
   Tab / Shift+Tab: Moves through previous, each page link and next in order; a disabled end has no href and is not a stop.

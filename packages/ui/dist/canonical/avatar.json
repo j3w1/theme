@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=",
+  "sourceDigest": "sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=",
   "id": "avatar",
   "family": "display",
   "maturity": "stable",
@@ -213,7 +213,7 @@
   "stateRules": [
     {
       "state": "default",
-      "visual": "Initials or loaded image.",
+      "visual": "Initials or the loaded image.",
       "channel": "Full name on the image container.",
       "tokens": {
         "fg": {
@@ -258,14 +258,14 @@
     },
     {
       "state": "loading",
-      "visual": "Fallback remains visible.",
-      "channel": "No loss of the full accessible name while loading.",
+      "visual": "Fallback stays visible.",
+      "channel": "Full accessible name kept.",
       "tokens": {}
     },
     {
       "state": "error",
-      "visual": "Fallback remains visible.",
-      "channel": "Image failure does not remove the entity name.",
+      "visual": "Fallback stays visible.",
+      "channel": "Full accessible name kept.",
       "tokens": {}
     }
   ],

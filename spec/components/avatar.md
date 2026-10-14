@@ -92,33 +92,34 @@ compact: false
 
 ## Purpose
 
-Identify a person or entity with an optional caller-owned image and text fallback. The component ships no image service or assets. Failed images restore the fallback and retain the full accessible name.
+Identifies a person or entity; the caller owns the image.
 
 ## Anatomy
 
-- **frame:** Square bounded image area with a border.
-- **fallback:** Caller-supplied initials, backed by the full accessible name.
-- **image:** Optional image; failed loading restores the text fallback.
+Parts as listed in the anatomy.
 
 ## States
 
-| State | Presentation | Non-colour channel |
+| State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | Initials or loaded image. | Full name on the image container. |
-| loading | Fallback remains visible. | No loss of the full accessible name while loading. |
-| error | Fallback remains visible. | Image failure does not remove the entity name. |
+| default | Initials or the loaded image. | Full name on the image container. |
+| loading | Fallback stays visible. | Full accessible name kept. |
+| error | Fallback stays visible. | Full accessible name kept. |
 
 ## Keyboard
 
-- **Tab:** No additional tab stop. An enclosing link remains native.
+As in the key table; nothing is bound.
 
 ## Accessibility
 
-Use one full accessible name, avoiding duplicate announcements from image alt and fallback text. Initials alone do not adequately identify a person. A decorative avatar beside an equivalent visible name may be aria-hidden.
+One full accessible name, never announced twice by image alt and fallback
+text; initials alone do not identify a person. A decorative avatar beside an
+equivalent visible name may be `aria-hidden`.
 
 ## Portability
 
-Follows the shared component defaults in `spec/portability.md` (section "Shared component defaults").
+Follows the shared component defaults in `spec/portability.md` (section
+"Shared component defaults").
 
 ## Non-examples
 

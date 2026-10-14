@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — fieldset
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/fieldset.json
 spec: spec/components/fieldset.md  site: https://j3w1.github.io/theme/reference/#c-fieldset
 maturity: stable  priority: R1
@@ -22,7 +22,7 @@ Tokens (resolved):
 
 States: default, disabled
   default: 1px {color.border.divider} border; legend {color.text.bright}; fields as their own components [the border and the legend]
-  disabled: legend and labels {color.text.disabled}; every control inside takes its own disabled treatment ({color.interaction.disabled.bg}, {color.border.disabled}); the border unchanged [`disabled` on the fieldset; cursor: not-allowed on the controls]
+  disabled: legend and labels {color.text.disabled}; each control takes its own disabled treatment ({color.interaction.disabled.bg}, {color.border.disabled}); border unchanged [`disabled` on the fieldset; cursor: not-allowed on the controls]
 
 Keyboard:
   Tab / Shift+Tab: Moves through the fields inside in document order; the legend is not a tab stop.

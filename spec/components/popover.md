@@ -100,16 +100,15 @@ compact: false
 
 ## Purpose
 
-Disclose a non-modal supporting panel near its trigger. Interactive content follows ordinary tab order. Escape and outside activation dismiss; focus is not trapped. Use the native Popover API when available with an equivalent documented fallback.
+Supporting content beside its trigger that never blocks the page.
 
 ## Anatomy
 
-- **trigger:** Native button with expanded state and panel relationship.
-- **panel:** Named supporting content and optional visible close action.
+Parts as listed in the anatomy.
 
 ## States
 
-| State | Presentation | Non-colour channel |
+| State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | Named trigger. | Button semantics and accessible name. |
 | open | Square overlay surface and border. | aria-expanded=true; panel is reachable. |
@@ -118,17 +117,18 @@ Disclose a non-modal supporting panel near its trigger. Interactive content foll
 
 ## Keyboard
 
-- **Enter / Space:** Toggle from the trigger.
-- **Tab / Shift+Tab:** Move through ordinary controls without trapping focus.
-- **Escape:** Close and restore the trigger.
+As in the key table.
 
 ## Accessibility
 
-Keep essential instructions outside collapsed panels. Use a visible label or aria-label for the panel. Do not add aria-modal or a focus trap. Native automatic dismissal and the fallback both synchronize expanded state.
+Keep essential instructions outside collapsed panels. Name the panel with a
+visible label or `aria-label`. No `aria-modal` and no focus trap. Native
+automatic dismissal and the fallback both synchronise the expanded state.
 
 ## Portability
 
-Follows the shared component defaults in `spec/portability.md` (section "Shared component defaults").
+Follows the shared component defaults in `spec/portability.md` (section
+"Shared component defaults").
 
 ## Non-examples
 

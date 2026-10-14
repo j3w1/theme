@@ -53,52 +53,45 @@ compact: false
 
 ## Purpose
 
-Lets a keyboard user bypass the header, navigation and toolbars in one
-press. It satisfies WCAG 2.4.1 for pages that have repeated blocks before
-the content; a page with nothing before `main` does not need one.
+Lets a keyboard user bypass the header, navigation and toolbars in one press,
+satisfying WCAG 2.4.1. A page with nothing before `main` does not need one.
 
 ## Anatomy
 
-One anchor, first in the body, with `href` pointing at the `main` landmark.
-It is a small raised card: {color.surface.raised}, 1px {color.border.overlay},
-text {color.text.bright}, at the top inline-start corner at `z.skip-link`.
-Off-screen at rest (a negative top), on-screen while focused.
+A small raised card: {color.surface.raised}, 1px {color.border.overlay}, text
+{color.text.bright}.
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | off-screen; nothing is painted | the link is still in the tab order and the accessibility tree |
-| focus-visible | appears in the top corner; ring 1px dashed {color.interaction.focus.ring} at −2px | the link appears; the ring |
+| default | off-screen; nothing painted | still in the tab order and the accessibility tree |
+| focus-visible | appears in the top corner; 1px dashed {color.interaction.focus.ring} ring at −2px | the link appears; the ring |
 
-There is no hover state: a pointer cannot reach it while it is hidden, and
-once visible it behaves as a link.
+No hover state: a pointer cannot reach the hidden link, and once visible it
+behaves as a link.
 
 ## Keyboard
 
-Tab from the top of the document reaches it first. Enter moves focus to
-`main`, which carries `tabindex="-1"` so the browser's focus actually lands
-there and the next Tab continues inside the content. Tab away hides it again.
+As in the key table; after Enter the next Tab continues inside the content.
 
 ## Accessibility
 
-The link text names the destination ("Skip to content"), translated. Hiding
-uses position only, so the link remains in the accessibility tree; `display:
-none`, `visibility: hidden` and `aria-hidden` all defeat it. The reveal is an
-instant position change: nothing slides, so reduced motion needs no special
-case. Contrast: text 10.10:1 on the raised surface, frame 4.57:1,
-ring 4.57:1. The visible target is at least 24 CSS pixels tall.
+The link text names the destination ("Skip to content"), translated.
+`aria-hidden` defeats it as surely as `display: none` or `visibility: hidden`.
+The reveal is an instant position change, so reduced motion needs no special
+case. Text meets 4.5:1; frame and ring 3:1. The visible target is at least 24
+CSS pixels tall.
 
 ## Portability
 
-Web-only. Frameworks that render their own header keep this exact markup
-first in the body; a host stylesheet that removes outlines must restore the
-ring here. The reference site uses this component for its own skip link.
+Web-only. Frameworks that render their own header keep this exact markup first
+in the body; a host stylesheet that removes outlines must restore the ring
+here. The reference site uses this component for its own skip link.
 
 ## Non-examples
 
-A skip link that is always visible. One hidden with `display: none` or
-`visibility: hidden`. One that is not the first tab stop. One that points at
-an element without `tabindex="-1"`, so focus does not move. A skip link
-that slides in from the side and causes horizontal scroll while hidden. A
-rounded pill. One rendered without the frame on the canvas.
+Always visible. Hidden with `display: none` or `visibility: hidden`. Not the
+first tab stop. Pointing at an element without `tabindex="-1"`, so focus does
+not move. Sliding in from the side and causing horizontal scroll while hidden.
+A rounded pill. Rendered without the frame on the canvas.

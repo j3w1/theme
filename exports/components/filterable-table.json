@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=",
+  "sourceDigest": "sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=",
   "id": "filterable-table",
   "family": "composed",
   "maturity": "stable",
@@ -584,7 +584,7 @@
   "stateRules": [
     {
       "state": "default",
-      "visual": "rest tokens of every component; Name sorted ascending with its ▲ glyph; Prev disabled",
+      "visual": "each component at rest; Name sorted ascending with ▲; Prev disabled",
       "channel": "`aria-sort`; the glyph",
       "tokens": {
         "fg": {
@@ -615,7 +615,7 @@
     },
     {
       "state": "hover",
-      "visual": "the pointed row takes {color.interaction.hover.bg}; the toolbar controls and chips keep their own hover on their own pointer events only",
+      "visual": "the pointed row takes {color.interaction.hover.bg}; toolbar controls and chips hover only on their own pointer events",
       "channel": "cursor",
       "tokens": {
         "fg": {
@@ -646,7 +646,7 @@
     },
     {
       "state": "focus-visible",
-      "visual": "the dashed {color.interaction.focus.ring} on the row holding focus (shown on the third row); the toolbar and chips stay at rest",
+      "visual": "dashed {color.interaction.focus.ring} on the focused row (the third in the specimen); toolbar and chips at rest",
       "channel": "the ring",
       "tokens": {
         "fg": {
@@ -689,7 +689,7 @@
     },
     {
       "state": "selected",
-      "visual": "two rows take {color.interaction.selection.bg} with {color.interaction.selection.text} and a checked box; the select-all reports mixed with the – glyph",
+      "visual": "two rows in {color.interaction.selection.bg} with {color.interaction.selection.text} and a checked box; select-all mixed with –",
       "channel": "`aria-selected`; ✓ and – glyphs; `aria-checked=\"mixed\"`",
       "tokens": {
         "fg": {
@@ -720,7 +720,7 @@
     },
     {
       "state": "no-results",
-      "visual": "the body is the \"No components match\" row, the count reads 0 of 43, the search field's status line announces it; the chips stay so the cause is visible",
+      "visual": "the body is the \"No components match\" row; count reads 0 of 43; the search status line announces it; chips stay so the cause is visible",
       "channel": "text; `role=\"status\"`",
       "tokens": {
         "fg": {
@@ -802,7 +802,7 @@
     "pagination"
   ],
   "specimens": [],
-  "nonExamples": "A rounded search pill with a magnifier inside a shadowed toolbar. Filter\nchips drawn as pills with a coloured fill per category. Zebra-striped rows.\nA selected row shown by a coloured left bar and no fill. A blue Material\ncheckbox. A skeleton shimmer while loading. An infinite scroll with no count\nand no pages.",
+  "nonExamples": "A rounded search pill with a magnifier in a shadowed toolbar. Chips as pills\nwith a coloured fill per category. Zebra-striped rows. A selected row shown by\na coloured left bar and no fill. A blue Material checkbox. A skeleton shimmer\nwhile loading. Infinite scroll with no count and no pages.",
   "contrast": [
     {
       "label": "filterable-table default text",

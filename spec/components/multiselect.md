@@ -123,34 +123,32 @@ compact: false
 
 ## Purpose
 
-Select zero or more named values using a labelled native checkbox list. Local search filters visible choices without clearing selections. Successful checkboxes retain repeated native form keys. Clear selection is an explicit action.
+Select zero or more named values from a searchable native checkbox list.
 
 ## Anatomy
 
-- **group:** Fieldset and legend name the choice.
-- **filter:** Labelled search input filters option labels.
-- **options:** Native checkboxes remain selected when filtered out.
-- **status:** Visible count distinguishes matching options from selected values.
+Parts as listed in the anatomy.
 
 ## States
 
-| State | Presentation | Non-colour channel |
+| State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | Named content on the default surface. | Native text and structure. |
 | checked | Selected fill and a check indicator. | Native checked state. |
 | focus-visible | Dashed focus ring. | Native keyboard focus position. |
 | disabled | Disabled semantic foreground, background and border at full opacity. | Native disabled state blocks activation. |
-| no-results | Muted result count. | Zero-results text; existing selected values remain selected. |
+| no-results | Muted result count. | Zero-results text; selected values stay selected. |
 
 ## Keyboard
 
-- **Tab / Shift+Tab:** Visit search, clear and each visible enabled checkbox.
-- **Space:** Toggle the focused checkbox.
-- **Escape:** Clear a non-empty query without clearing selection.
+As in the key table.
 
 ## Accessibility
 
-Keep labels and native checkbox semantics. Hidden choices leave the focus order but retain checked form values. Announce matching and selected counts, including zero. Required selection policy belongs to the host; marking every checkbox required would require every option.
+Keep labels and native checkbox semantics. Filtered-out choices leave the
+focus order but keep their checked form values. Announce matching and
+selected counts, including zero. Required-selection policy belongs to the
+host; marking every checkbox required would require every option.
 
 ## Portability
 

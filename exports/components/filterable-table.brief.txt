@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — filterable-table
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/filterable-table.json
 spec: spec/components/filterable-table.md  site: https://j3w1.github.io/theme/reference/#c-filterable-table
 maturity: stable  priority: R1
@@ -52,11 +52,11 @@ Tokens (resolved):
   pagination.disabled      #8a5559  ({color.text.disabled})  use
 
 States: default, hover, focus-visible, selected, no-results
-  default: rest tokens of every component; Name sorted ascending with its ▲ glyph; Prev disabled [`aria-sort`; the glyph]
-  hover: the pointed row takes {color.interaction.hover.bg}; the toolbar controls and chips keep their own hover on their own pointer events only [cursor]
-  focus-visible: the dashed {color.interaction.focus.ring} on the row holding focus (shown on the third row); the toolbar and chips stay at rest [the ring]
-  selected: two rows take {color.interaction.selection.bg} with {color.interaction.selection.text} and a checked box; the select-all reports mixed with the – glyph [`aria-selected`; ✓ and – glyphs; `aria-checked="mixed"`]
-  no-results: the body is the "No components match" row, the count reads 0 of 43, the search field's status line announces it; the chips stay so the cause is visible [text; `role="status"`]
+  default: each component at rest; Name sorted ascending with ▲; Prev disabled [`aria-sort`; the glyph]
+  hover: the pointed row takes {color.interaction.hover.bg}; toolbar controls and chips hover only on their own pointer events [cursor]
+  focus-visible: dashed {color.interaction.focus.ring} on the focused row (the third in the specimen); toolbar and chips at rest [the ring]
+  selected: two rows in {color.interaction.selection.bg} with {color.interaction.selection.text} and a checked box; select-all mixed with – [`aria-selected`; ✓ and – glyphs; `aria-checked="mixed"`]
+  no-results: the body is the "No components match" row; count reads 0 of 43; the search status line announces it; chips stay so the cause is visible [text; `role="status"`]
 
 Keyboard:
   Tab / Shift+Tab: Into the toolbar (the search input is its stop), then each chip's Remove button, then the table (the first row is its stop), then Next.

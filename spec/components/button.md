@@ -114,20 +114,16 @@ compact: true
 
 ## Purpose
 
-The push button that triggers an action. Four tones and no more: `primary`
-is the single filled button in a view, `secondary` is the outline for every
-other action, `tertiary` is the ghost for low-emphasis and toolbar actions,
-`destructive` is an outline in the danger tone that fills on hover. A
-destructive button also requires a confirmation step or an undo affordance;
-the colour is not the safeguard. Navigation is a link, not a button.
+Triggers an action; navigation is a link. Four tones only, and one `primary`
+per view; `secondary` serves every other action, `tertiary` low-emphasis and
+toolbar actions. A `destructive` button also needs a confirmation step or an
+undo; the colour is not the safeguard.
 
 ## Anatomy
 
-A native `<button>`; optional leading icon; the label. The loading glyph
-occupies the icon slot so the size never changes. A filled destructive
-modifier (`.button-destructive-filled`, {color.action.destructive.filled-bg}
-with {color.action.destructive.filled-text}) exists only inside confirm
-dialogs.
+The filled destructive modifier (`.button-destructive-filled`,
+{color.action.destructive.filled-bg} with
+{color.action.destructive.filled-text}) exists only inside confirm dialogs.
 
 ## States
 
@@ -135,49 +131,39 @@ dialogs.
 | --- | --- | --- |
 | default | primary: {color.action.primary.bg} fill, {color.action.primary.text}, 1px {color.action.primary.border}; secondary: 1px {color.action.secondary.border}, {color.action.secondary.text}; tertiary: {color.action.tertiary.text}, no border; destructive: 1px {color.action.destructive.border}, {color.action.destructive.text} | — |
 | hover | primary → {color.action.primary.hover-bg}; secondary → {color.action.secondary.hover-bg}; tertiary → {color.action.tertiary.hover-bg}; destructive fills {color.action.destructive.hover-bg} with {color.action.destructive.hover-text} | cursor: pointer; hover-capable pointers only |
-| focus-visible | ring 1px dashed at −2px: {color.interaction.focus.ring-container} on the primary fill, {color.interaction.focus.ring} on the outline tones, {color.action.destructive.hover-text} on the destructive hover fill | the ring |
-| active | primary → {color.action.primary.pressed-bg}; secondary → {color.action.secondary.pressed-bg}; tertiary → {color.interaction.pressed.bg}; destructive → {color.action.destructive.pressed-bg}; primary keeps {color.action.primary.border}, secondary and tertiary use {color.border.active}, destructive keeps {color.action.destructive.border} (D-015) | border change on secondary and tertiary; no translation or scale |
-| disabled | {color.text.disabled} on {color.interaction.disabled.bg} with 1px {color.border.disabled}, every tone alike; no hover or active styling | `disabled`; cursor: not-allowed; never opacity |
-| loading | size unchanged; the static `⋯` glyph replaces the icon; the button keeps its tone and stays focusable but ignores activation | glyph; `aria-busy` |
+| focus-visible | 1px dashed ring at −2px: {color.interaction.focus.ring-container} on the primary fill, {color.interaction.focus.ring} on the outline tones, {color.action.destructive.hover-text} on the destructive hover fill | the ring |
+| active | fill: primary {color.action.primary.pressed-bg}, secondary {color.action.secondary.pressed-bg}, tertiary {color.interaction.pressed.bg}, destructive {color.action.destructive.pressed-bg}; border: primary and destructive keep theirs, secondary and tertiary take {color.border.active} (D-015) | border change on secondary and tertiary; no translation or scale |
+| disabled | {color.text.disabled} on {color.interaction.disabled.bg}, 1px {color.border.disabled}, every tone alike; no hover or active styling | `disabled`; cursor: not-allowed; never opacity |
+| loading | size and tone unchanged; the static `⋯` glyph replaces the icon; stays focusable, ignores activation | glyph; `aria-busy` |
 
 Precedence: disabled > loading > active > hover; focus-visible is always
 drawn.
 
-The primary edge stays unchanged when pressed (D-015). Its exact role is
-`root.border-active` in the part map, just as `root.border` names the rest
-edge. The default-tone state contrast map checks the text against the
-pressed fill; it does not substitute `color.border.active` for this
-unchanged edge. The existing primary-action contrast declaration identifies
-the labelled button through its text, not through the fill's boundary.
-
 ## Keyboard
 
-Native. Enter and Space activate; nothing else is bound. A loading button
-stays in the tab order so focus is not lost mid-action, and the host ignores
-activation until `aria-busy` clears.
+Native; nothing else is bound. A loading button keeps its tab stop so focus
+is not lost mid-action.
 
 ## Accessibility
 
-The accessible name is the label text; an icon-only button is the
-icon-button component. Never `aria-disabled` on a button that should be
-skipped, and never `disabled` on a button whose reason a user needs to
-discover: prefer keeping it enabled and explaining on activation. Contrast:
-primary 9.28:1, secondary 10.37:1, tertiary 8.65:1, destructive 5.40:1 at
-rest and 4.58:1 on the hover fill; every outline border ≥ 4.45:1; rings ≥
-3:1 on every fill they sit on. The target is at least 24×24 CSS pixels in
-`compact` density with 4px between neighbours.
+The accessible name is the label; an icon-only button is `icon-button`.
+Never `aria-disabled` on a button that should be skipped. When a user needs
+to discover why an action is unavailable, keep the button enabled and
+explain on activation instead of disabling it. Text meets 4.5:1 and borders
+and rings 3:1 on every fill they sit on. Target at least 24×24 CSS pixels in
+`compact`, with 4px between neighbours.
 
 ## Portability
 
 Fill, border and outline express every state; no gradient, shadow or
-transform is used. Hosts without dashed outlines draw a solid 1px ring in the
-same colour and record the deviation. Hosts that cannot recolour the ring on
-a fill draw it outside the fill at +1px.
+transform. A host without dashed outlines draws a solid 1px ring in the same
+colour and records the deviation; one that cannot recolour the ring on a
+fill draws it outside the fill at +1px.
 
 ## Non-examples
 
-Rounded corners or pill shapes. Two filled buttons in one view. A red
-filled destructive button at rest. A hover that only changes text colour.
-Translating or scaling the button on press. A spinner inside the button.
-Disabling with opacity. A `<div>` or `<a>` styled as a button. A gradient or
-shadow to suggest depth.
+Rounded or pill shapes. Two filled buttons in one view. A red filled
+destructive button at rest. A hover that only changes text colour.
+Translating or scaling on press. A spinner inside the button. Disabling with
+opacity. A `<div>` or `<a>` styled as a button. A gradient or shadow for
+depth.

@@ -91,33 +91,37 @@ compact: false
 
 ## Purpose
 
-Reserve approximate layout space while a named region loads. Decorative blocks are hidden from accessibility APIs. A separate status describes loading. The skeleton is static and never shimmers.
+Reserves approximate layout space while a named region loads. Static; it
+never shimmers.
 
 ## Anatomy
 
-- **status:** Text names what is loading.
-- **blocks:** Decorative square placeholders retain approximate dimensions.
+Parts as listed in the anatomy.
 
 ## States
 
-| State | Presentation | Non-colour channel |
+| State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | Static decorative blocks. | Named loading status. |
-| loading | Raised surface blocks; no opacity fade. | aria-busy on the region. |
-| reduced-motion | Same static presentation. | No information depends on movement. |
+| default | static decorative blocks | named loading status |
+| loading | raised-surface blocks; no opacity fade | `aria-busy` on the region |
+| reduced-motion | the same static presentation | no information depends on movement |
 
 ## Keyboard
 
-- **Tab:** No new tab stops or focus capture.
+Adds no tab stop and captures no focus.
 
 ## Accessibility
 
-Apply aria-busy to the region being updated and provide a concise status. Decorative blocks are aria-hidden. Do not remove the focused control merely to show a skeleton. Replacement content must keep a sensible reading order.
+`aria-busy` goes on the region being updated, with a concise status;
+blocks are `aria-hidden`. Never remove the focused control just to show a
+skeleton. Replacement content keeps a sensible reading order.
 
 ## Portability
 
-Follows the shared component defaults in `spec/portability.md` (section "Shared component defaults").
+Follows the shared component defaults in `spec/portability.md` (section
+"Shared component defaults").
 
 ## Non-examples
 
-Unlabelled controls, color-only status, drag-only operations, hidden required instructions, stolen focus or an invented service success.
+Unlabelled controls. Colour-only status. Drag-only operations. Hidden
+required instructions. Stolen focus. An invented service success.

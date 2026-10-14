@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=",
+  "sourceDigest": "sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=",
   "id": "command-palette",
   "family": "navigation",
   "maturity": "stable",
@@ -328,7 +328,7 @@
   "stateRules": [
     {
       "state": "default",
-      "visual": "One prompt and dense command rows.",
+      "visual": "One prompt, dense command rows.",
       "channel": "Visible names and categories.",
       "tokens": {
         "fg": {
@@ -374,25 +374,25 @@
     {
       "state": "open",
       "visual": "Square overlay surface and border.",
-      "channel": "Native modal dialog and active-descendant relationship.",
+      "channel": "Native modal dialog; active-descendant relationship.",
       "tokens": {}
     },
     {
       "state": "closed",
       "visual": "Panel absent.",
-      "channel": "Opener remains focusable.",
+      "channel": "Opener stays focusable.",
       "tokens": {}
     },
     {
       "state": "focus-visible",
       "visual": "Dashed input ring.",
-      "channel": "Input retains DOM focus while results change.",
+      "channel": "Input keeps DOM focus while results change.",
       "tokens": {}
     },
     {
       "state": "no-results",
       "visual": "Muted zero-results status.",
-      "channel": "Explicit result count and no active descendant.",
+      "channel": "Explicit result count; no active descendant.",
       "tokens": {}
     }
   ],

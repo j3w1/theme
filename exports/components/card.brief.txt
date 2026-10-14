@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — card
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/card.json
 spec: spec/components/card.md  site: https://j3w1.github.io/theme/reference/#c-card
 maturity: stable  priority: R1
@@ -25,7 +25,7 @@ States: default, hover, focus-visible, selected, selected+focus-visible
   default: 1px {color.border.default} on {color.surface.default} [—]
   hover: link and selectable cards only: background → {color.interaction.hover.bg}; border → {color.border.control} [cursor: pointer; the border lightens from decorative to control]
   focus-visible: container ring 2px solid {color.interaction.focus.ring-container} at −3px [the ring]
-  selected: fill {color.interaction.selection.bg} with {color.interaction.selection.text} on every line [`aria-selected="true"`; the fill's on-fill text]
+  selected: fill {color.interaction.selection.bg}, {color.interaction.selection.text} on every line [`aria-selected="true"`; the on-fill text]
   selected+focus-visible: the fill and the 2px ring in {color.interaction.focus.ring-container} [both visible at once]
 
 Keyboard:

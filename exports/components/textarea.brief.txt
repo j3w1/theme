@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — textarea
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/textarea.json
 spec: spec/components/textarea.md  site: https://j3w1.github.io/theme/reference/#c-textarea
 maturity: stable  priority: R1
@@ -35,14 +35,14 @@ State dependency disclosures: D-007
 
 States: default, hover, focus-visible, placeholder-shown, filled, required, invalid, invalid+focus-visible, disabled, read-only
   default: 1px {color.border.control} on {color.surface.input}; text {color.text.default} [—]
-  hover: background → {color.interaction.hover.bg}; border unchanged [cursor: text]
-  focus-visible: border → {color.border.active}; ring 1px dashed {color.interaction.focus.ring} at −2px [the ring]
-  placeholder-shown: placeholder in {color.text.placeholder}, italic [italic]
+  hover: → {color.interaction.hover.bg}; border unchanged [cursor: text]
+  focus-visible: border → {color.border.active}; 1px dashed {color.interaction.focus.ring} at −2px [the ring]
+  placeholder-shown: {color.text.placeholder}, italic [italic]
   filled: as default with a value [—]
   required: `*` after the label in {color.status.danger.text} plus visually hidden "required" [`required`; the mark]
-  invalid: border 2px {color.status.danger.border}; message with the ✕ glyph; a count past its limit turns {color.status.danger.text} with the glyph [border width 1 → 2px; glyph; `aria-invalid`]
-  invalid+focus-visible: the 2px danger border and the ring in {color.interaction.focus.ring-container} at −4px [double boundary]
-  disabled: text {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}; no resize handle [`disabled`; cursor: not-allowed]
+  invalid: 2px {color.status.danger.border}; message with ✕; a count past its limit turns {color.status.danger.text} with the glyph [border 1 → 2px; glyph; `aria-invalid`]
+  invalid+focus-visible: the 2px danger border and a {color.interaction.focus.ring-container} ring at −4px [double boundary]
+  disabled: text {color.text.disabled}, border {color.border.disabled}, fill {color.interaction.disabled.bg}; no resize handle [`disabled`; cursor: not-allowed]
   read-only: no box: 1px dotted {color.border.divider} bottom edge on {color.surface.canvas}; no resize handle; selectable [`readonly`; dotted edge]
 
 Keyboard:

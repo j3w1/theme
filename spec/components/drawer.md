@@ -86,20 +86,13 @@ compact: false
 
 ## Purpose
 
-A panel that opens from the side to hold navigation or a task on narrow
-screens, or a secondary form on wide ones. It is a modal dialog with a
-different shape: full height, anchored to the start or end edge, with a
-single visible border on the edge that faces the page. Below 900px the
-sidebar collapses into a drawer; above it, a drawer holds tasks that need
-more room than a dialog.
+A modal dialog shaped as a full-height side panel, for navigation or a task.
+Below 900px the sidebar collapses into a drawer; above it, a drawer holds
+tasks that need more room than a dialog.
 
 ## Anatomy
 
-The backdrop, {color.surface.backdrop} over the page; the panel on
-{color.surface.overlay} with a 1px {color.border.overlay} on its inner edge;
-the header with the title in {color.text.bright} and Close; the body, rows
-divided by {color.border.divider}. The demonstration renders the panel inside
-a stage of fixed height standing in for the viewport.
+Parts as listed in the anatomy; the overlay border is the only visible edge.
 
 ## States
 
@@ -107,41 +100,35 @@ a stage of fixed height standing in for the viewport.
 | --- | --- | --- |
 | default | the panel open at its edge on the backdrop | `open`; the page behind is inert |
 | open | as default; opacity 0 → 1 within 150 ms on capable hosts; never a slide | `open`; focus inside the panel |
-| closed | nothing: the panel and the backdrop are absent | no `open`; focus back on the opener |
-| focus-trapped | the panel carries the container ring, 2px solid {color.interaction.focus.ring-container} at −3px, when it holds focus; the note says Tab cycles | Tab never leaves; the note text |
-| reduced-motion | no opacity transition; the panel is simply present or absent | `prefers-reduced-motion` |
+| closed | panel and backdrop absent | no `open`; focus back on the opener |
+| focus-trapped | while it holds focus, the panel carries the 2px solid {color.interaction.focus.ring-container} ring at −3px; the note says Tab cycles | Tab never leaves; the note text |
+| reduced-motion | no opacity transition; present or absent | `prefers-reduced-motion` |
 
-Items inside the drawer take the states of the list or navigation they
-belong to; Close takes the tertiary button's hover and ring.
+Items take the states of their list or navigation; Close takes the tertiary
+button's hover and ring.
 
 ## Keyboard
 
-Tab and Shift+Tab cycle inside the panel; the page behind is inert. Escape
-closes and returns focus to the opener. Enter or Space on a navigation item
-navigates and closes. On open, focus goes to the first focusable element,
-which is the first item or Close.
+As in the key table. On open, focus goes to the first focusable element, the
+first item or Close.
 
 ## Accessibility
 
-The panel is named by its title through `aria-labelledby`. `showModal()`
-supplies the top layer and inertness; the theme never re-implements the trap
-on a non-modal element or on a plain aside. The backdrop is decorative; a
-click on it may close the drawer only because Close is also present. Both
-edges use logical properties, so the panel and its border mirror in RTL with
-no extra rules. Contrast: text 7.92:1 and title 9.49:1 on the overlay
-surface, the border 4.30:1, the ring 4.30:1, hovered items 11.41:1 on the
-strong hover fill.
+Named by its title through `aria-labelledby`. Never re-implement the trap on
+a non-modal element or a plain aside. The backdrop is decorative; a click on
+it may close the drawer only because Close is also present. Logical
+properties mirror the panel and its border in RTL. Text meets 4.5:1; the
+border and ring 3:1.
 
 ## Portability
 
-A full-height box with one border and a dimmed backdrop. Toolkits without a
-top layer draw the backdrop as a full-window overlay under the panel;
-toolkits with a native sidebar keep it non-modal and record that it is a
-sidebar, not a drawer.
+Toolkits without a top layer draw the backdrop as a full-window overlay under
+the panel; toolkits with a native sidebar keep it non-modal and record that it
+is a sidebar, not a drawer.
 
 ## Non-examples
 
-A panel that slides in from the edge. A drawer with a shadow or a rounded
-inner corner. A drawer that is a plain aside with a hand-written focus trap.
-A bottom sheet with a drag handle. A drawer with no Close button. A drawer
-that stays open under a dialog. A translucent panel over page content.
+A panel that slides in. A shadow or a rounded inner corner. A plain aside
+with a hand-written focus trap. A bottom sheet with a drag handle. No Close
+button. A drawer that stays open under a dialog. A translucent panel over page
+content.

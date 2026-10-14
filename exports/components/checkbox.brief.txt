@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — checkbox
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/checkbox.json
 spec: spec/components/checkbox.md  site: https://j3w1.github.io/theme/reference/#c-checkbox
 maturity: stable  priority: R1
@@ -29,14 +29,14 @@ State dependency disclosures: D-007
 
 States: default, hover, focus-visible, checked, mixed, checked+focus-visible, checked+disabled, disabled, invalid, required
   default: 16px box, 1px {color.border.control} on {color.surface.input}; text {color.text.default} [—]
-  hover: box background → {color.interaction.hover.bg}; checked box → {color.action.primary.hover-bg} [cursor: pointer; hover-capable pointers only]
-  focus-visible: ring 1px dashed {color.interaction.focus.ring} at −2px around the box [the ring]
-  checked: box fills {color.action.primary.bg}; ✓ in {color.action.primary.text}; border stays {color.border.control} [the ✓ glyph; `checked`]
-  mixed: box fills {color.action.primary.bg}; – in {color.action.primary.text} [the – glyph; `indeterminate` / `aria-checked="mixed"`]
-  checked+focus-visible: the fill and a ring in {color.interaction.focus.ring-container} [glyph and ring]
-  checked+disabled: box {color.interaction.disabled.bg} with 1px {color.border.disabled}; ✓ and text in {color.text.disabled} [glyph; `disabled`; cursor: not-allowed]
-  disabled: box {color.interaction.disabled.bg} with 1px {color.border.disabled}; text {color.text.disabled} [`disabled`; cursor: not-allowed]
-  invalid: box border 2px {color.status.danger.border}; message with the ✕ glyph [border width 1 → 2px; glyph; `aria-invalid`]
+  hover: box → {color.interaction.hover.bg}; checked box → {color.action.primary.hover-bg} [cursor: pointer; hover-capable pointers only]
+  focus-visible: 1px dashed {color.interaction.focus.ring} ring at −2px around the box [the ring]
+  checked: fill {color.action.primary.bg}; ✓ in {color.action.primary.text}; border stays {color.border.control} [✓ glyph; `checked`]
+  mixed: fill {color.action.primary.bg}; – in {color.action.primary.text} [– glyph; `indeterminate` / `aria-checked="mixed"`]
+  checked+focus-visible: the fill plus a {color.interaction.focus.ring-container} ring [glyph and ring]
+  checked+disabled: box {color.interaction.disabled.bg}, 1px {color.border.disabled}; ✓ and text {color.text.disabled} [glyph; `disabled`; cursor: not-allowed]
+  disabled: box {color.interaction.disabled.bg}, 1px {color.border.disabled}; text {color.text.disabled} [`disabled`; cursor: not-allowed]
+  invalid: 2px {color.status.danger.border} box border; message with the ✕ glyph [border 1 → 2px; glyph; `aria-invalid`]
   required: `*` after the text or legend in {color.status.danger.text} plus visually hidden "required" [`required`; the mark]
 
 Keyboard:

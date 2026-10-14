@@ -72,18 +72,13 @@ compact: false
 
 ## Purpose
 
-The wrapper that gives every control the same label, description and error
-treatment. Controls specify their box; the field specifies what sits above
-and below it and how they are linked. Every form control in this theme is
-rendered inside a field or a fieldset.
+Gives every control the same label, description and error treatment: the
+control specifies its box, the field what sits above and below it and how
+they are linked. Every form control renders inside a field or a fieldset.
 
 ## Anatomy
 
-Label above the control, always stacked; the control slot; help text
-below in {color.text.muted}; the validation message, which takes the help
-slot visually while help stays in the DOM and `aria-describedby` lists both.
-The required mark is present in the markup and shown only when the control
-is required.
+Parts as listed in the anatomy.
 
 ## States
 
@@ -92,34 +87,29 @@ is required.
 | default | label {color.text.bright}; help {color.text.muted}; control as its own component | — |
 | required | `*` after the label in {color.status.danger.text} plus visually hidden "required" | `required` attribute; the mark |
 | invalid | the control's 2px {color.status.danger.border}; message with the ✕ glyph in {color.status.danger.text}; help visually hidden | border width 1 → 2px; glyph; `aria-invalid` |
-| disabled | label and control text {color.text.disabled}; control {color.interaction.disabled.bg} with 1px {color.border.disabled}; help unchanged | `disabled`; cursor: not-allowed |
+| disabled | label and control text {color.text.disabled}; control {color.interaction.disabled.bg}, 1px {color.border.disabled}; help unchanged | `disabled`; cursor: not-allowed |
 
 Precedence: disabled > invalid; required is shown in every state.
 
 ## Keyboard
 
-The field adds no behaviour. Clicking the label focuses the control
-(native `for`). Focus order inside the field is the control's own.
+Adds no behaviour; clicking the label focuses the control (native `for`).
 
 ## Accessibility
 
-Every control has a programmatic label; placeholder text is never the
-label. Help and message are linked with `aria-describedby` in that order so
-the description is read before the error. `aria-invalid="true"` is set only
-after interaction or submit. The message keeps its glyph so the state is not
-colour-only. Contrast: label 10.10:1, help 5.66:1, message 5.26:1 on the
-panel surface; disabled label 3.24:1 (exempt).
+Every control has a programmatic label; placeholder text is never the label.
+The message keeps its glyph, so the state is not colour-only. Text meets
+4.5:1; disabled text is exempt, with a house floor of 3:1.
 
 ## Portability
 
-Plain block layout; the only pseudo-element is nothing, the mark is real
-markup. Hosts without `aria-describedby` put help and message in the
-control's tooltip or accessible description and record it.
+No pseudo-elements: the required mark is real markup. Hosts without
+`aria-describedby` put help and message in the control's tooltip or
+accessible description and record it.
 
 ## Non-examples
 
-A floating label inside the control. A label to the left of the control.
-Placeholder text as the only label. An error shown by a red border alone. A
-message that replaces the help text in the DOM. A required mark that is only
-a colour change. An asterisk with no text alternative. Two controls in one
-field.
+A floating label inside the control. A label left of the control.
+Placeholder as the only label. An error shown by a red border alone. A
+message that replaces the help in the DOM. A colour-only required mark. An
+asterisk with no text alternative. Two controls in one field.

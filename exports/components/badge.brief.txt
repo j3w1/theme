@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — badge
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/badge.json
 spec: spec/components/badge.md  site: https://j3w1.github.io/theme/reference/#c-badge
 maturity: stable  priority: R1
@@ -33,7 +33,7 @@ Tokens (resolved):
 
 States: default, empty
   default: fill, glyph and text for the status; or the outline form [the glyph; the text]
-  empty: an 8px square dot in the status fill; the glyph and text visually hidden [`role="img"` with `aria-label`, or the hidden text; the dot's position beside its subject]
+  empty: an 8px square dot in the status fill; glyph and text visually hidden [`role="img"` with `aria-label`, or the hidden text; the dot's position beside its subject]
 
 ARIA: native span; an empty badge is role="img" with aria-label
 Responsive: A badge never wraps; the surrounding line wraps around it. Long labels are a design error, not a truncation case. RTL keeps the glyph at the inline start.

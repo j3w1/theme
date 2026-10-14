@@ -74,59 +74,49 @@ compact: false
 
 ## Purpose
 
-A few words that explain a control without being its name: what an icon
-button does, which shortcut opens it, why it is disabled. It is a description
-only. Anything a person must read to use the control belongs in the control
-or its label, and anything interactive is a popover.
+Describes a control without being its name: what an icon button does, its
+shortcut, why it is disabled. Anything needed to use the control belongs in
+the control or its label; anything interactive is a popover.
 
 ## Anatomy
 
-The trigger and the popup. The popup is {color.surface.raised} behind a 1px
-{color.border.overlay}, text in {color.text.default}, optional shortcut in a
-`kbd` with {color.text.bright} inside a 1px {color.border.control}; no arrow,
-no shadow, no radius. The demonstration renders it in flow below the trigger.
+Parts as listed in the anatomy; no arrow, shadow or radius.
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | trigger at rest; the popup shown for the demonstration | `aria-describedby` on the trigger |
-| hover | trigger background → {color.action.tertiary.hover-bg}; the popup appears after 300 ms | cursor: pointer; the popup itself |
-| focus-visible | ring 1px dashed {color.interaction.focus.ring} at −2px on the trigger; the popup appears at once | the ring; the popup |
-| open | the popup visible, 1px {color.border.overlay} on {color.surface.raised} | the popup is present in the accessibility tree |
-| closed | the popup absent; the trigger unchanged | `hidden`; the description is still read from the DOM |
+| default | trigger at rest; popup shown for the demonstration | `aria-describedby` on the trigger |
+| hover | trigger background → {color.action.tertiary.hover-bg}; popup after 300 ms | cursor: pointer; the popup |
+| focus-visible | 1px dashed {color.interaction.focus.ring} at −2px on the trigger; popup at once | the ring; the popup |
+| open | popup visible, 1px {color.border.overlay} on {color.surface.raised} | popup in the accessibility tree |
+| closed | popup absent; trigger unchanged | `hidden`; the description is still read from the DOM |
 
-The popup itself has no hover, pressed or focus state: it is not
-interactive.
+The popup has no hover, pressed or focus state; it is not interactive.
 
 ## Keyboard
 
-Focus on the trigger shows the tooltip without delay; moving focus away
-hides it. Escape hides it and does nothing else, so a dialog behind the
-trigger does not close. The popup never receives focus and contains no
-focusable element.
+As in the key table. Escape does nothing else, so a dialog behind the
+trigger stays open. The popup never receives focus and contains nothing
+focusable.
 
 ## Accessibility
 
-The trigger points at the popup with `aria-describedby`, so the description
-is available whether or not the popup is shown; the popup is `role="tooltip"`.
-It opens on hover and on focus, stays open while the pointer is over the
-trigger or the popup (WCAG 1.4.13: hoverable, dismissible, persistent), and
-closes on Escape. The trigger has its own accessible name; the tooltip never
-supplies it. Touch has no hover: the description is available through a
-long-press or is shown inline. Contrast: text 8.43:1 on the raised surface,
-shortcut 10.10:1, border 4.57:1.
+The popup stays open while the pointer is over the trigger or the popup
+(WCAG 1.4.13: hoverable, dismissible, persistent). The trigger has its own
+accessible name; the tooltip never supplies it. Touch has no hover: offer the
+description by long-press or inline. Text meets 4.5:1; the popup border and
+the shortcut border 3:1.
 
 ## Portability
 
-A box with a border and text; placement is the host's positioning primitive.
-Toolkits with a native tooltip use it with the tokens for border and
-background and record any radius they cannot remove.
+A bordered box of text; placement is the host's positioning primitive. A
+toolkit with a native tooltip uses it with the border and background tokens
+and records any radius it cannot remove.
 
 ## Non-examples
 
-A rounded bubble with an arrow. A tooltip with a shadow or a fade longer
-than 150 ms. A tooltip as the only accessible name of an icon button. A
-tooltip with a link or a button inside. One that opens on focus but not on
-hover, or on hover with no delay. A title attribute. A tooltip that follows
-the pointer.
+A rounded bubble with an arrow. A shadow, or a fade longer than 150 ms. The
+tooltip as an icon button's only accessible name. A link or button inside.
+Opening on focus but not hover, or on hover with no delay. A `title`
+attribute. Following the pointer.

@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=",
+  "sourceDigest": "sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=",
   "id": "icon-button",
   "family": "actions",
   "maturity": "stable",
@@ -234,7 +234,7 @@
   "stateRules": [
     {
       "state": "default",
-      "visual": "{color.action.tertiary.text} icon on nothing; transparent 1px border",
+      "visual": "{color.action.tertiary.text} icon, no fill; transparent 1px border",
       "channel": "—",
       "tokens": {
         "fg": {
@@ -296,7 +296,7 @@
     },
     {
       "state": "focus-visible",
-      "visual": "ring 1px dashed {color.interaction.focus.ring} at −2px",
+      "visual": "1px dashed ring {color.interaction.focus.ring} at −2px",
       "channel": "the ring",
       "tokens": {
         "fg": {
@@ -382,13 +382,13 @@
     },
     {
       "state": "disabled",
-      "visual": "{color.text.disabled} on {color.interaction.disabled.bg} with 1px {color.border.disabled}; no hover",
+      "visual": "{color.text.disabled} on {color.interaction.disabled.bg}, 1px {color.border.disabled}; no hover",
       "channel": "`disabled`; cursor: not-allowed",
       "tokens": {}
     },
     {
       "state": "toggled",
-      "visual": "fill {color.interaction.selection.bg} with {color.interaction.selection.text}; border {color.border.selected-indicator}; the icon draws in its filled form",
+      "visual": "{color.interaction.selection.bg} fill, {color.interaction.selection.text}, border {color.border.selected-indicator}; filled icon form",
       "channel": "`aria-pressed=\"true\"`; the filled icon shape; the border",
       "tokens": {
         "fg": {
@@ -499,7 +499,7 @@
     "filterable-table",
     "i3-window-frame"
   ],
-  "nonExamples": "A circle. An icon button without an accessible name. A toggle that changes\nits label instead of `aria-pressed`. A hover that recolours the icon alone.\nAn emoji or icon-font glyph in place of the SVG. A toggled state shown by\ncolour alone with a line icon. A shadow or scale on press.",
+  "nonExamples": "A circle. No accessible name. A toggle that changes its label instead of\n`aria-pressed`. A hover that recolours only the icon. An emoji or icon-font\nglyph instead of the SVG. A toggled state shown by colour alone with a line\nicon. A shadow or scale on press.",
   "contrast": [
     {
       "label": "icon-button default text",

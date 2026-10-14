@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — menu
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/menu.json
 spec: spec/components/menu.md  site: https://j3w1.github.io/theme/reference/#c-menu
 maturity: stable  priority: R1
@@ -31,14 +31,14 @@ Tokens (resolved):
 State dependency disclosures: D-007, D-008
 
 States: default, hover, focus-visible, open, closed, disabled, checked, selected
-  default: the button at rest; the list on {color.surface.raised} with the {color.border.overlay} frame [—]
-  hover: item background → {color.interaction.hover.bg-strong}; text → {color.text.link-hover} [cursor: pointer]
-  focus-visible: ring 1px dashed {color.interaction.focus.ring} at −2px on the button; on the active item the ring is {color.interaction.focus.ring-container} [the ring]
-  open: button fill {color.interaction.pressed.bg} with 1px {color.border.active}; the list shown [`aria-expanded="true"`; the list is present]
-  closed: the button at rest; the list hidden [`aria-expanded="false"`; the list is absent from the tree]
-  disabled: item text {color.text.disabled}; no hover; still focusable by arrow keys when `aria-disabled` [`aria-disabled="true"`; cursor: not-allowed]
-  checked: the ✓ glyph in {color.text.bright} in the gutter [`aria-checked="true"`; the glyph]
-  selected: the active item: fill {color.interaction.selection.bg} with {color.interaction.selection.text} [focus is on the item; `aria-activedescendant` where used]
+  default: button at rest; list on {color.surface.raised} in the {color.border.overlay} frame [—]
+  hover: item → {color.interaction.hover.bg-strong}, text {color.text.link-hover} [cursor: pointer]
+  focus-visible: 1px dashed {color.interaction.focus.ring} at −2px on the button; {color.interaction.focus.ring-container} on the active item [the ring]
+  open: button {color.interaction.pressed.bg} with 1px {color.border.active}; list shown [`aria-expanded="true"`; list present]
+  closed: button at rest; list hidden [`aria-expanded="false"`; list absent from the tree]
+  disabled: item text {color.text.disabled}; no hover; still reachable by arrow keys when `aria-disabled` [`aria-disabled="true"`; cursor: not-allowed]
+  checked: ✓ in {color.text.bright} in the gutter [`aria-checked="true"`; the glyph]
+  selected: active item filled {color.interaction.selection.bg} with {color.interaction.selection.text} [focus on the item; `aria-activedescendant` where used]
 
 Keyboard:
   Enter / Space / Down: On the button, opens the menu and focuses the first item; Up opens it and focuses the last.

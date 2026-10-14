@@ -93,28 +93,26 @@ compact: false
 
 ## Purpose
 
-A setting that turns on or off the moment it is toggled: notifications,
-wrap lines, follow system theme. A choice that is only applied on submit is
-a checkbox. The switch is a button because it acts; it is not a form field.
+A setting that applies the moment it is toggled: notifications, wrap lines,
+follow system theme. A choice applied on submit is a checkbox. The switch is
+a button because it acts; it is not a form field.
 
 ## Anatomy
 
-A `<button role="switch">`; inside it the track, a 32×16px box with square
-corners, and the thumb, a 10px square that sits at the start when off and
-at the end when on. The with-labels variant adds a visible name before the
-button and an "Off" / "On" word after the track.
+Parts as listed in the anatomy; the thumb sits at the start when off and at
+the end when on.
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | track 1px {color.border.control} on {color.surface.input}; thumb {color.text.default} at the start | thumb position |
-| hover | track background → {color.interaction.hover.bg}; on track → {color.action.primary.hover-bg} | cursor: pointer; hover-capable pointers only |
-| focus-visible | ring 1px dashed {color.interaction.focus.ring} at −2px on the track | the ring |
-| checked | track fills {color.action.primary.bg}; thumb {color.action.primary.text} moves to the end; border stays {color.border.control}; the word reads "On" | `aria-checked="true"`; thumb position; the word |
-| checked+focus-visible | the fill and a ring in {color.interaction.focus.ring-container} on the track | position and ring |
-| disabled | track {color.interaction.disabled.bg} with 1px {color.border.disabled}; thumb and name {color.text.disabled} | `disabled`; cursor: not-allowed |
-| checked+disabled | as disabled with the thumb at the end | `disabled`; `aria-checked="true"`; thumb position |
+| hover | off track → {color.interaction.hover.bg}; on track → {color.action.primary.hover-bg} | cursor: pointer; hover-capable pointers only |
+| focus-visible | 1px dashed {color.interaction.focus.ring} at −2px on the track | the ring |
+| checked | track fills {color.action.primary.bg}; thumb {color.action.primary.text} at the end; border stays {color.border.control}; the word reads "On" | `aria-checked="true"`; thumb position; the word |
+| checked+focus-visible | the fill and a {color.interaction.focus.ring-container} ring on the track | position and ring |
+| disabled | track {color.interaction.disabled.bg}, 1px {color.border.disabled}; thumb and name {color.text.disabled} | `disabled`; cursor: not-allowed |
+| checked+disabled | as disabled, thumb at the end | `disabled`; `aria-checked="true"`; thumb position |
 
 The thumb moves without animation by default; a host may transition
 `transform` for at most 120ms under `prefers-reduced-motion:
@@ -123,29 +121,25 @@ always drawn.
 
 ## Keyboard
 
-Space and Enter toggle. Nothing else is bound; there is no arrow-key
-movement between switches. Focus never moves as a result of toggling.
+As in the key table; no arrow keys between switches. Toggling never moves
+focus.
 
 ## Accessibility
 
-`role="switch"` on a native button gives the correct name, role and value
-with the button's own keyboard handling; only `aria-checked` is scripted.
-The name states what is on ("Wrap long lines"), never the current value;
-the "Off" / "On" word is `aria-hidden` because assistive technology reads
-`aria-checked`. The state is also carried by thumb position and, in the
-with-labels variant, the word. Contrast: thumb 8.65:1 on the off track,
-9.28:1 on the on track; track edge 4.45:1; ring 4.69:1 off, 5.57:1 on.
+On a native button only `aria-checked` is scripted. The name states what is
+on ("Wrap long lines"), never the current value. Thumb position and, with
+labels, the word also carry the state. The thumb and track edge meet 3:1,
+the ring 3:1 off and on.
 
 ## Portability
 
-Two nested rectangles, a border and a fill; the thumb position is layout,
-not a transform, so it survives hosts with no animation. Hosts with a native
-switch use it, square it, and map the two fills.
+The thumb position is layout, not a transform, so it survives hosts with no
+animation. Hosts with a native switch use it, square it, and map the two
+fills.
 
 ## Non-examples
 
-A pill-shaped track or a round thumb. A switch that only takes effect on
-submit. A checkbox input styled as a switch. Colour as the only difference
-between on and off. A green on colour. A label that reads "On" as the name.
-Disabling by opacity. A sliding animation longer than 120ms or one that
-runs under reduced motion.
+A pill track or round thumb. A switch that applies on submit. A checkbox
+input styled as a switch. Colour as the only on/off difference. A green on
+colour. "On" as the name. Disabling by opacity. A slide longer than 120ms or
+one under reduced motion.

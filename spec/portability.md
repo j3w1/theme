@@ -15,8 +15,8 @@ a file that changes one does not claim the others. A port never:
 - overwrites a user's whole settings file;
 - replaces keybindings, credentials or unrelated preferences.
 
-It installs under a unique name next to the host's defaults and documents how
-to roll back.
+It installs under a unique name beside the host's defaults and documents the
+rollback.
 
 ## What every port must reproduce
 
@@ -48,9 +48,9 @@ percentage means something only with its denominator.
 
 ## Shared component defaults
 
-A component whose Portability section links here follows these rules. Its
-frontmatter `responsive` and `portability.nativeFallbacks` fields carry the
-same rules for the exports.
+Components whose Portability section links here follow these rules; their
+`responsive` and `portability.nativeFallbacks` fields carry them into the
+exports.
 
 - Wrap labels and actions without changing source order.
 - Use logical spacing in RTL.
@@ -92,7 +92,7 @@ placeholder directory. `templates/port/` is a starting aid when work begins.
   convention. Unsafe or duplicate paths and missing/extra outputs fail before
   any port artifact is written. Obsidian emits a manifest and CSS together;
   Telegram emits Android text and a Desktop zip.
-- The README downloads table links each file at the release tag, and the site
+- The README downloads table links each file at the release tag; the site
   serves a copy at `ports/<slug>/<file>`.
 
 For JetBrains, an editor scheme (`.icls`) and a UI theme plugin are separate
@@ -104,7 +104,7 @@ tested version before mapping.
 ## The reference implementation
 
 `j3w1/j3w1.github.io` is the flagship web implementation and the source of the
-observed values. This repository does not scrape it at build time, and nothing
-synchronises in either direction. A later integration pins a release of this
-theme in that site through a separate reviewed change, and records its own
-site-specific values (window-manager geometry, wallpaper gradients) as such.
+observed values. Nothing is scraped at build time or synchronised in either
+direction. An integration there pins a release of this theme through a
+separate reviewed change and records its site-specific values (window-manager
+geometry, wallpaper gradients) as such.

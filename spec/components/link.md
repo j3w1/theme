@@ -6,7 +6,7 @@ maturity: stable
 priority: R1
 since: 0.1.0
 order: 30
-summary: The native anchor for navigation; always underlined in the link-underline role, hover fills with the strong hover surface, the current page carries a 2px indicator bar.
+summary: The native anchor for navigation; always underlined in the link-underline role, hover fills with the hover surface, the current page carries a 2px indicator bar.
 native: true
 aria:
   pattern: native <a href>
@@ -26,7 +26,7 @@ tokens:
   root.text: color.text.link
   root.underline: color.text.link-underline
   root.text-hover: color.text.link-hover
-  root.bg-hover: color.interaction.hover.bg-strong
+  root.bg-hover: color.interaction.hover.bg
   root.ring: color.interaction.focus.ring
   root.text-visited: color.text.link
   root.text-current: color.text.bright
@@ -34,7 +34,7 @@ tokens:
   icon.stroke: color.icon.default
 stateTokens:
   default: { fg: color.text.link, bg: color.surface.canvas }
-  hover: { fg: color.text.link-hover, bg: color.interaction.hover.bg-strong }
+  hover: { fg: color.text.link-hover, bg: color.interaction.hover.bg }
   focus-visible: { fg: color.text.link, bg: color.surface.canvas, outline: color.interaction.focus.ring }
   visited: { fg: color.text.link, bg: color.surface.canvas }
   current: { fg: color.text.bright, bg: color.surface.canvas, border: color.border.selected-indicator }
@@ -43,7 +43,7 @@ contrast:
   - { fg: color.text.link-underline, bg: color.surface.default, min: 3, kind: ui, label: "underline on the panel" }
   - { fg: color.text.link, bg: color.surface.default, label: "link text on the panel" }
   - { fg: color.text.link, bg: color.surface.raised, label: "link text on raised surfaces" }
-  - { fg: color.interaction.focus.ring, bg: color.interaction.hover.bg-strong, min: 3, kind: ui, state: hover, label: "ring on the hover fill" }
+  - { fg: color.interaction.focus.ring, bg: color.interaction.hover.bg, min: 3, kind: ui, state: hover, label: "ring on the hover fill" }
 anatomy:
   - part: root
     description: The native <a href>; 1px underline in text.link-underline offset 2px; no padding inline, 0 4px standalone.
@@ -71,52 +71,47 @@ compact: true
 
 ## Purpose
 
-Navigation to another document, section or resource. A link never performs
-an action on the current page; that is a button. Links are recognisable by
-the persistent underline as well as strong red {color.text.link}, distinct
-from rose body text and headings (D-024).
+Navigation to another document, section or resource; an action on the
+current page is a button. A link is recognised by its persistent underline as
+well as strong red {color.text.link}, distinct from rose body text and
+headings (D-024).
 
 ## Anatomy
 
-A native `<a href>`. Inline: text plus the 1px underline. Standalone: the
-same with a trailing arrow icon and a little horizontal padding so the hover
-fill has room. Current: `aria-current="page"`, brighter text and a 2px bar
-replacing the underline.
+Parts as listed in the anatomy; the current link has no underline, only its
+2px bar.
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | {color.text.link}; underline 1px {color.text.link-underline} offset 2px | the underline |
-| hover | background → {color.interaction.hover.bg-strong}; text → {color.text.link-hover}; underline 2px in the text colour | underline thickens 1px → 2px; cursor: pointer |
-| focus-visible | ring 1px dashed {color.interaction.focus.ring} at −2px; no change to the underline | the ring |
-| visited | {color.text.link}; underline unchanged | the underline continues to mark navigation; browsing history does not reduce its visibility |
-| current | text → {color.text.bright}; the underline becomes a 2px {color.border.selected-indicator} bottom border; no hover fill | `aria-current="page"`; the bar's 2px weight |
+| default | {color.text.link}; 1px {color.text.link-underline} underline, offset 2px | the underline |
+| hover | fill {color.interaction.hover.bg} (D-027); text {color.text.link-hover}; underline 2px in the text colour | underline 1px → 2px; cursor: pointer |
+| focus-visible | 1px dashed {color.interaction.focus.ring} at −2px; underline unchanged | the ring |
+| visited | as default | the underline still marks navigation |
+| current | {color.text.bright}; a 2px {color.border.selected-indicator} bottom border replaces the underline; no hover fill | `aria-current="page"`; the 2px bar |
 
 Precedence: current > hover; focus-visible is always drawn.
 
 ## Keyboard
 
-Native. Enter follows the link; Space never does. Skip links and in-page
-links move focus to their target, which needs `tabindex="-1"` when it is not
-focusable.
+As in the key table. An in-page or skip-link target that is not focusable
+takes `tabindex="-1"` so focus moves to it.
 
 ## Accessibility
 
-The link text describes the destination on its own ("Release notes", never
-"here"). Same destination, same text. `aria-current="page"` marks the
-current document in navigation and nothing else. Links that open a new
-window say so in text. Link text meets 4.5:1 on canvas, panel and raised
-surfaces; the underline meets 3:1. The generated contrast report records exact
-ratios for the current profile, including hover text and focus. Inline targets are exempt
-from the 24×24 minimum; standalone links reach it through their line box.
+Link text names the destination on its own ("Release notes", never "here");
+same destination, same text. `aria-current="page"` marks the current document
+in navigation and nothing else. A link that opens a new window says so in
+text. Text meets 4.5:1 on canvas, panel and raised surfaces; the underline
+3:1. Inline links are exempt from the 24×24 target minimum; standalone links
+reach it through their line box.
 
 ## Portability
 
-Colour, underline thickness, background and outline; the arrow is an inline
-SVG in currentColor. Hosts that cannot thicken an underline invert the link on
-hover instead and record it. Hosts without `aria-current` expose the current
-link as selected.
+The arrow is an inline SVG in currentColor. A host that cannot thicken an
+underline inverts the link on hover instead and records it. A host without `aria-current` exposes the current link as
+selected.
 
 ## Non-examples
 

@@ -176,40 +176,52 @@ compact: false
 
 ## Purpose
 
-Choose a date by explicit text entry or a themed calendar. A range is two separately labeled date controls. D-025 requires theme-owned web controls rather than browser popup styling.
+Choose a date by typing or from a themed calendar; a range is two
+separately labelled date controls. D-025: theme-owned web controls, not
+browser popup styling.
 
 ## Anatomy
 
-A label, editor, calendar trigger, format hint and validation message. The native date input remains the successful form control and owns its value, defaults and constraints. It is hidden only after enhancement.
+A label, editor, calendar trigger, format hint and validation message. The
+native date input stays the successful form control, owns value, defaults
+and constraints, and is hidden only after enhancement.
 
 ## States
 
-| State | Treatment |
-| --- | --- |
-| default | Input surface, default text and control border. |
-| hover | The declared hover fill. |
-| focus-visible | Active border and the canonical focus ring. |
-| invalid | Danger border and a linked message. |
-| invalid+focus-visible | Danger border plus the container focus ring. |
-| disabled | Disabled colors; editor and calendar actions unavailable. |
-| read-only | Readable canvas text and bottom edge; calendar action unavailable. |
-
-Use the declared state tokens: default input surface and control border; hover fill; the canonical focus ring; danger border and message for invalid input; disabled colors and unavailable actions. Read-only values remain readable and cannot open a picker or change through step buttons. The date read-only treatment retains the canvas surface and unobtrusive bottom edge.
+| State | Visual | Non-colour channel |
+| --- | --- | --- |
+| default | {color.text.default} on {color.surface.input}, 1px {color.border.control} | — |
+| hover | background → {color.interaction.hover.bg} | hover-capable pointers only |
+| focus-visible | border → {color.border.active}; the canonical focus ring | the ring |
+| invalid | 2px {color.status.danger.border}; a linked message | border 1 → 2px; ✕ glyph; `aria-invalid` |
+| invalid+focus-visible | the danger border and the ring in {color.interaction.focus.ring-container} at −4px | double boundary |
+| disabled | {color.text.disabled} on {color.interaction.disabled.bg}, border {color.border.disabled}; editor and calendar actions unavailable | `disabled`; cursor: not-allowed |
+| read-only | readable text on {color.surface.canvas}, no box, 1px dotted {color.border.divider} bottom edge; the calendar cannot open | `readonly`; dotted edge |
 
 ## Keyboard
 
-Alt+Down opens the calendar. Arrows move by a day or week, Home/End reach week boundaries, and PageUp/PageDown change months. Enter/Space chooses a focused date. Escape closes and restores editor focus. Tab leaves normally; the calendar is a nonmodal popup.
+Arrows move by a day or a week. Tab leaves normally; the calendar is a
+nonmodal popup.
 
 ## Accessibility
 
-The visible editor receives the original label, descriptions, required state and error state. Format hints are always available. Native min, max, step and required constraints remain authoritative. Invalid entry focuses the visible editor and exposes a theme-owned message. Calendar selection is a fill; keyboard focus is a separate ring. Disabled dates cannot be selected. The range validates that its end is not before its start. Form reset restores the native defaults.
-
-Automated evidence records its actual browser, states and limitations; it is not a manual screen-reader acceptance.
+The visible editor receives the original label, descriptions, required and
+error state. Format hints are always available. Native min, max, step and
+required stay authoritative. Invalid entry focuses the visible editor and
+shows a theme-owned message. Calendar selection is a fill, focus a separate
+ring. Disabled dates cannot be chosen. A range rejects an end before its
+start. Form reset restores the native defaults. Automated evidence records
+its browser, states and limits and is not a manual screen-reader acceptance.
 
 ## Portability
 
-The package and complete copy distribution include the renderer. The public control enhancement applies the same behavior to existing native markup. The no-JavaScript fallback and non-web platform mappings remain native.
+The package and the complete copy distribution include the renderer; the
+public control enhancement applies it to existing native markup. Without
+JavaScript, and on non-web platforms, the control stays native.
 
 ## Non-examples
 
-An unthemed host popup presented as fully themed. A second named input that duplicates form values. Discarding native constraints, labels or reset behavior. Literal colors, rounded corners, or a selected fill with no distinguishable focus boundary.
+An unthemed host popup presented as themed. A second named input
+duplicating form values. Dropping native constraints, labels or reset.
+Literal colours, rounded corners, or a selected fill with no distinct focus
+boundary.

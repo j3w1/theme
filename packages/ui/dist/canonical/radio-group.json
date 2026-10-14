@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=",
+  "sourceDigest": "sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=",
   "id": "radio-group",
   "family": "forms-basic",
   "maturity": "stable",
@@ -305,7 +305,7 @@
     },
     {
       "state": "hover",
-      "visual": "box background → {color.interaction.hover.bg}; a checked box → {color.action.primary.hover-bg}",
+      "visual": "box → {color.interaction.hover.bg}; a checked box → {color.action.primary.hover-bg}",
       "channel": "cursor: pointer; hover-capable pointers only",
       "tokens": {
         "bg": {
@@ -338,7 +338,7 @@
     },
     {
       "state": "focus-visible",
-      "visual": "ring 1px dashed {color.interaction.focus.ring} at −2px around the box",
+      "visual": "1px dashed {color.interaction.focus.ring} ring at −2px around the box",
       "channel": "the ring",
       "tokens": {
         "bg": {
@@ -383,7 +383,7 @@
     },
     {
       "state": "checked",
-      "visual": "box fills {color.action.primary.bg}; an 8px inner square in {color.action.primary.text}; border stays {color.border.control}",
+      "visual": "box fills {color.action.primary.bg}; 8px inner square in {color.action.primary.text}; border stays {color.border.control}",
       "channel": "the inner square; `checked`",
       "tokens": {
         "fg": {
@@ -457,7 +457,7 @@
     },
     {
       "state": "disabled",
-      "visual": "boxes {color.interaction.disabled.bg} with 1px {color.border.disabled}; inner square and text {color.text.disabled}",
+      "visual": "boxes {color.interaction.disabled.bg}, 1px {color.border.disabled}; inner square and text {color.text.disabled}",
       "channel": "`disabled`; cursor: not-allowed",
       "tokens": {}
     },
@@ -573,7 +573,7 @@
     "settings-panel",
     "admin-form"
   ],
-  "nonExamples": "Circular radios. A checked state shown by border colour alone with no inner\nsquare. Radios that submit or navigate on change. A group with no legend or\nwith the legend rendered as a label on one option. Separate tab stops per\nradio. One radio on its own. Disabling by opacity. A div with\n`role=\"radiogroup\"` built from spans.",
+  "nonExamples": "Circular radios. Checked shown by border colour alone, without the inner\nsquare. Submitting or navigating on change. No legend, or the legend as one\noption's label. A tab stop per radio. A lone radio. Disabling by opacity. A\ndiv with `role=\"radiogroup\"` built from spans.",
   "contrast": [
     {
       "label": "radio-group default border",

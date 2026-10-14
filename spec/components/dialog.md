@@ -109,21 +109,16 @@ compact: true
 
 ## Purpose
 
-A question or a small task that must be answered before the page continues:
-confirm a destructive action, name a new profile, sign in again. It takes
-the whole screen's attention, so it is short, has a clear title, and always
-offers a way out. The demonstration renders the dialog open in flow, with a
-wrapper standing in for the backdrop; a host always uses `showModal()`.
+A question or small task the page cannot continue without: confirm a
+destructive action, name a new profile, sign in again. It takes the whole
+screen's attention, so it is short, clearly titled and always offers a way
+out.
 
 ## Anatomy
 
-The backdrop, {color.surface.backdrop} over the page; the dialog on
-{color.surface.overlay} behind a 1px {color.border.overlay}; the header with
-the title in {color.text.bright} and Close; the body in {color.text.default};
-the actions row. Confirmation semantics do not prescribe action tone (D-015):
-ordinary confirmations use primary. A destructive confirmation uses the filled destructive button,
-{color.action.destructive.filled-bg} with {color.action.destructive.filled-text};
-the form dialog holds a labelled text field on {color.surface.input}.
+Confirmations take no fixed tone (D-015): an ordinary one uses primary, a
+destructive one the filled destructive button. The form variant holds a
+labelled text field on {color.surface.input}.
 
 ## States
 
@@ -131,47 +126,39 @@ the form dialog holds a labelled text field on {color.surface.input}.
 | --- | --- | --- |
 | default | the dialog open on its backdrop | `open`; the page behind is inert |
 | open | as default; opacity 0 → 1 within 150 ms on capable hosts | `open`; focus inside the dialog |
-| closed | nothing: the dialog and its backdrop are absent | no `open`; focus back on the opener |
-| focus-trapped | the dialog itself carries the container ring, 2px solid {color.interaction.focus.ring-container} at −3px, when it holds focus; the note says Tab cycles | Tab never leaves; the note text |
-| hover | Close background → {color.action.tertiary.hover-bg}; other buttons take their tone's hover | cursor: pointer |
-| focus-visible | ring 1px dashed {color.interaction.focus.ring} at −2px on the focused control; primary uses {color.interaction.focus.ring-container}, destructive uses {color.action.destructive.filled-text} (D-015) | the ring |
-| reduced-motion | no opacity transition; the dialog is simply present or absent | `prefers-reduced-motion` |
+| closed | dialog and backdrop absent | no `open`; focus back on the opener |
+| focus-trapped | when it holds focus, the dialog carries the container ring, 2px solid {color.interaction.focus.ring-container} at −3px; the note says Tab cycles | Tab never leaves; the note text |
+| hover | Close → {color.action.tertiary.hover-bg}; other buttons take their tone's hover | cursor: pointer |
+| focus-visible | 1px dashed {color.interaction.focus.ring} at −2px on the focused control; primary uses {color.interaction.focus.ring-container}, destructive {color.action.destructive.filled-text} (D-015) | the ring |
+| reduced-motion | no opacity transition; present or absent | `prefers-reduced-motion` |
 
 A dialog is never disabled; a busy dialog disables its confirm button and
 shows the ⋯ glyph on it.
 
 ## Keyboard
 
-Tab and Shift+Tab cycle inside the dialog; nothing behind it is reachable.
-Escape closes and cancels, and focus returns to the opener. Enter submits a
-form dialog; elsewhere it only activates the focused button, so a
-destructive confirm is never triggered by Enter on the dialog itself. On
-open, focus goes to the first focusable element, or to the dialog when the
-first element is destructive; on close, back to the opener.
+As in the key table. Enter on the dialog itself never triggers a destructive
+confirm. On open, focus goes to the first focusable element, or to the
+dialog when that element is destructive.
 
 ## Accessibility
 
-The dialog is named by its title through `aria-labelledby` and described by
-its first paragraph through `aria-describedby`. Confirmations use
-`role="alertdialog"`. `showModal()` makes the rest of the page inert and
-supplies the top layer; the theme never re-implements the trap on a
-non-modal dialog. The backdrop is decorative and not a click target for
-cancel unless Close is also present. Contrast: text 7.92:1 and title 9.49:1
-on the overlay surface, the overlay border 4.30:1, secondary buttons 6.84:1
-on hover, destructive confirm text 4.58:1 on its fill, the container ring
-9.49:1.
+Title and first paragraph link through `aria-labelledby` and
+`aria-describedby`. The theme never re-implements the trap
+on a non-modal dialog. The backdrop is decorative and cancels on click only
+when Close is also present. Text meets 4.5:1; the overlay border and rings
+3:1.
 
 ## Portability
 
-A box, a border, a dimmed backdrop and the button tones. Toolkits with a
-native modal window use it with the overlay border on the frame and record
-that the backdrop is the host's. Toolkits without a top layer draw the
-backdrop as a full-window overlay under the dialog.
+A toolkit with a native modal window uses it with the overlay border on the
+frame and records that the backdrop is the host's; one without a top layer
+draws the backdrop as a full-window overlay under the dialog.
 
 ## Non-examples
 
-A glowing or shadowed card. Rounded corners. A dialog that slides or scales
-in. `<dialog>` shown with `show()` and a hand-written focus trap. A dialog
-with no title, or with the title only in the accessible name. A destructive
-confirm as the default Enter action. A backdrop that closes the dialog with
-no Close button. A dialog stacked on a dialog.
+A glowing or shadowed card. Rounded corners. Sliding or scaling in.
+`<dialog>` shown with `show()` and a hand-written trap. No title, or the
+title only in the accessible name. A destructive confirm as the default
+Enter action. A backdrop that closes the dialog with no Close button. A
+dialog stacked on a dialog.

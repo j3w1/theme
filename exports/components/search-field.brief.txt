@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — search-field
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/search-field.json
 spec: spec/components/search-field.md  site: https://j3w1.github.io/theme/reference/#c-search-field
 maturity: stable  priority: R1
@@ -32,13 +32,13 @@ State dependency disclosures: D-007
 
 States: default, hover, focus-visible, placeholder-shown, filled, loading, disabled, no-results
   default: 1px {color.border.control} on {color.surface.input}; magnifier {color.icon.default}; text {color.text.default} [the magnifier]
-  hover: background → {color.interaction.hover.bg}; the clear button → {color.action.tertiary.hover-bg} when hovered [cursor: text]
-  focus-visible: border → {color.border.active}; ring 1px dashed {color.interaction.focus.ring} at −2px; the hint hides [the ring]
-  placeholder-shown: placeholder in {color.text.placeholder}, italic; no clear button [italic; the clear button is absent]
-  filled: as default with a value; the clear button is present [the clear button]
-  loading: the static `⋯` glyph in {color.text.muted} replaces the magnifier; the input stays editable [glyph; `aria-busy`]
-  disabled: text and icon {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}; no clear button [`disabled`; cursor: not-allowed]
-  no-results: the status line "No results for …" in {color.text.muted} below the help; the box unchanged [the status text; `role="status"`]
+  hover: background → {color.interaction.hover.bg}; a hovered clear button → {color.action.tertiary.hover-bg} [cursor: text]
+  focus-visible: border → {color.border.active}; 1px dashed {color.interaction.focus.ring} ring at −2px; the hint hides [the ring]
+  placeholder-shown: placeholder in {color.text.placeholder}, italic; no clear button [italic; clear button absent]
+  filled: as default with a value; clear button present [the clear button]
+  loading: static `⋯` in {color.text.muted} replaces the magnifier; input stays editable [glyph; `aria-busy`]
+  disabled: text and icon {color.text.disabled}, border {color.border.disabled}, background {color.interaction.disabled.bg}; no clear button [`disabled`; cursor: not-allowed]
+  no-results: status line "No results for …" in {color.text.muted} below the help; box unchanged [the status text; `role="status"`]
 
 Keyboard:
   Tab / Shift+Tab: Input, then the clear button when it is visible.

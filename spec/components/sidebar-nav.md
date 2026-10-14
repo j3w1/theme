@@ -98,69 +98,55 @@ compact: false
 
 ## Purpose
 
-Moves between the sections of an application. The sidebar is the primary
-navigation of a settings panel, an admin area or a documentation site; tabs
-switch views inside one section, and a tree browses data rather than
-sections.
+Moves between the sections of an application: the primary navigation of a
+settings panel, admin area or documentation site. Tabs switch views inside
+one section; a tree browses data, not sections.
 
 ## Anatomy
 
 A `nav` on {color.surface.default} with a 1px {color.border.divider}
-inline-end edge. Each link is one row: an icon slot, a label in
-{color.text.default}, and a transparent 2px inline-start edge. The current
-link colours that edge with {color.border.selected-indicator} and its text
-with {color.text.bright}. Groups are buttons with a chevron in
-{color.icon.decorative}; their children sit in a sublist indented by one icon
-width. Collapsed, the rail keeps the icons and hides the labels visually.
+inline-end edge; otherwise parts as listed in the anatomy.
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | text {color.text.default}; no fill; transparent inline-start edge | — |
-| hover | background → {color.interaction.hover.bg} | cursor: pointer |
-| focus-visible | ring 1px dashed {color.interaction.focus.ring} at −2px | the ring |
+| hover | → {color.interaction.hover.bg} | cursor: pointer |
+| focus-visible | 1px dashed {color.interaction.focus.ring} at −2px | the ring |
 | current | 2px {color.border.selected-indicator} inline-start bar; text {color.text.bright} | `aria-current="page"`; the bar |
-| selected | fill {color.interaction.selection.bg} with {color.interaction.selection.text}; the ring in {color.interaction.focus.ring-container} when focused | `aria-selected` on a listbox-style rail; the fill's on-fill text |
-| selected+container-inactive | fill {color.interaction.selection.inactive-bg} with {color.interaction.selection.inactive-text}; no ring | lightness drop between the two fills |
-| expanded | the group's chevron rotated 90°; its sublist shown | `aria-expanded="true"`; the children are present |
-| collapsed | labels visually hidden; icons centred; the current bar and fills unchanged | the labels remain for assistive technology and as tooltips |
+| selected | {color.interaction.selection.bg} with {color.interaction.selection.text}; ring {color.interaction.focus.ring-container} when focused | `aria-selected` on a listbox-style rail; the on-fill text |
+| selected+container-inactive | {color.interaction.selection.inactive-bg} with {color.interaction.selection.inactive-text}; no ring | lightness drop between the two fills |
+| expanded | chevron rotated 90°; sublist shown | `aria-expanded="true"`; the children are present |
+| collapsed | labels visually hidden; icons centred; current bar and fills unchanged | labels remain for assistive technology and as tooltips |
 
 `current` is where the user is; `selected` is what the user chose in a rail
-that drives a detail pane. A rail is one or the other, never both at once.
+that drives a detail pane. A rail is one or the other, never both.
 
 ## Keyboard
 
-Every link and every group button is a tab stop in document order; children
-of a closed group are hidden and skipped. Enter follows a link; Enter or Space
-toggles a group and leaves focus on the button. There is no arrow-key model:
-the rail is a list of links, not a tree, so the native tab order is the whole
-contract.
+As in the key table; toggling a group leaves focus on its button. No arrow
+keys: the rail is a list of links, not a tree.
 
 ## Accessibility
 
-`aria-label` on the `nav` distinguishes it from other landmarks. The current
-link carries `aria-current="page"`; a rail that drives a detail pane uses a
-listbox with `aria-selected` instead of links. Group buttons carry
-`aria-expanded` and `aria-controls`; the sublist is `hidden` until expanded
-so its links leave the tab order. Collapsed labels use a clip-rect hiding, not
-`display: none`, so names survive; icon-only links also get a `title`.
-Contrast: text 8.43:1, current text 10.10:1, indicator 4.57:1, selection text
-12.47:1 on the fill, inactive selection 7.02:1. Rows are at least 24 CSS pixels
-tall in `compact` density.
+`aria-label` on the `nav` distinguishes the landmark. A rail that drives a
+detail pane is a listbox with `aria-selected`, not links. A closed sublist is
+`hidden`, so its links leave the tab order. Collapsed labels are clipped, not
+`display: none`, so names survive; icon-only links also get a `title`. Text
+meets 4.5:1; the indicator 3:1. Rows are at least 24 CSS pixels tall in
+`compact`.
 
 ## Portability
 
-A border-inline-start, a background and an outline; the chevron is an SVG.
-Toolkits without logical borders draw the bar on the left in LTR and on the
-right in RTL explicitly. The collapsed rail is a width change and a hidden
-label; hosts that cannot hide labels while keeping their names show the full
-rail.
+The chevron is an SVG. Toolkits without logical borders draw the bar on the
+left in LTR and on the right in RTL explicitly. Hosts that cannot hide labels while keeping their
+names show the full rail.
 
 ## Non-examples
 
 A filled or rounded current item. The indicator on the inline-end edge. A
-current item marked by bold text alone. Labels removed from the DOM when
-collapsed. A group whose children stay in the tab order while hidden. A rail
-that scrolls horizontally. Icon-only links with no accessible name. Hover that
-changes the text colour.
+current item marked by bold alone. Labels removed from the DOM when
+collapsed. Hidden children left in the tab order. A rail that scrolls
+horizontally. Icon-only links without an accessible name. Hover that changes
+the text colour.

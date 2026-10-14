@@ -93,32 +93,32 @@ compact: false
 
 ## Purpose
 
-Present named facts as semantic terms and descriptions. Terms remain adjacent to their values in source order. A narrow view stacks the term above its value.
+Named facts as term and value pairs.
 
 ## Anatomy
 
-- **list:** Native description list.
-- **term:** Concise name for a fact.
-- **value:** Text, links or semantic inline content.
+Parts as listed in the anatomy.
 
 ## States
 
-| State | Presentation | Non-colour channel |
+| State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | Two aligned columns. | Native term and description relationships. |
 | stacked | One column at narrow widths. | Each term immediately precedes its value. |
 
 ## Keyboard
 
-- **Tab / Shift+Tab:** Visit links in values. Plain facts are not tab stops.
+As in the key table.
 
 ## Accessibility
 
-Use dt and dd rather than a grid of unrelated paragraphs. Long values wrap without clipping. Preserve meaningful link text and do not make every value keyboard focusable.
+Use `dt` and `dd`, not a grid of unrelated paragraphs. Long values wrap
+without clipping. Keep link text meaningful.
 
 ## Portability
 
-Follows the shared component defaults in `spec/portability.md` (section "Shared component defaults").
+Follows the shared component defaults in `spec/portability.md` (section
+"Shared component defaults").
 
 ## Non-examples
 

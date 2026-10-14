@@ -112,66 +112,52 @@ compact: false
 ## Purpose
 
 Choosing one or more files from the host. The native input keeps the host
-chooser, its keyboard behaviour and its security model; the theme replaces
-only the input's own rendering with a button-styled label, adds an optional
-drop zone, and lists what was chosen with any per-file error.
+chooser, its keyboard and its security model; the theme replaces only its
+rendering.
 
 ## Anatomy
 
-The field label; the root row (or the drop zone) holding the button-styled
-label and the status text; the hidden-but-focusable native input; an optional
-list of chosen files, each with name, size in {color.text.subtle} and a
-remove button, one of which may carry the ✕ glyph and an error in
-{color.status.danger.text}; a static striped progress bar while uploading;
-help and validation message below.
+Parts as listed in the anatomy; help and message sit below the root.
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | button: 1px {color.action.secondary.border} outline, text {color.action.secondary.text}; zone: 1px dashed {color.interaction.drop-target} | — |
-| hover | button background → {color.action.secondary.hover-bg}; border unchanged | cursor: pointer |
-| focus-visible | ring 1px dashed {color.interaction.focus.ring} at −2px on the button (the input has focus) | the ring |
-| drop-target | root fill {color.interaction.marquee}; border 1px dashed {color.interaction.drop-target} | dashed pattern; the hint text changes to "Release to add" |
-| invalid | button border 2px {color.status.danger.border}; message with the ✕ glyph; a failed row shows its own ✕ | border width 1 → 2px; glyphs; `aria-invalid` |
-| disabled | button text {color.text.disabled}, border {color.border.disabled}, background {color.interaction.disabled.bg}; the zone's dashes take {color.border.disabled}; no hover | `disabled`; cursor: not-allowed |
-| loading | a static bar of 45° stripes, {color.action.primary.bg} on {color.interaction.pressed.bg}, below the row; the button stays enabled | `aria-busy`; the status text reads "Uploading n files"; no animation |
+| hover | button → {color.action.secondary.hover-bg}; border unchanged | cursor: pointer |
+| focus-visible | 1px dashed {color.interaction.focus.ring} at −2px on the button (the input has focus) | the ring |
+| drop-target | root fill {color.interaction.marquee}; 1px dashed {color.interaction.drop-target} border | dashed pattern; hint reads "Release to add" |
+| invalid | button border 2px {color.status.danger.border}; message with ✕; a failed row shows its own ✕ | border 1 → 2px; glyphs; `aria-invalid` |
+| disabled | button text {color.text.disabled}, border {color.border.disabled}, fill {color.interaction.disabled.bg}; zone dashes {color.border.disabled}; no hover | `disabled`; cursor: not-allowed |
+| loading | static 45° stripes, {color.action.primary.bg} on {color.interaction.pressed.bg}, below the row; the button stays enabled | `aria-busy`; status reads "Uploading n files"; no animation |
 
-Precedence when several apply: disabled > loading > invalid > drop-target >
-hover; focus-visible is always drawn.
+Precedence: disabled > loading > invalid > drop-target > hover;
+focus-visible is always drawn.
 
 ## Keyboard
 
-Tab reaches the native input, which is drawn as the button; Enter or Space
-opens the host chooser; Escape in the chooser returns to the input. Each
-remove button in the list is its own tab stop after the input, and Delete or
-Backspace on it acts like Enter. Dropping is a pointer gesture only and never
-the sole way to add a file.
+As in the key table; closing the chooser returns focus to the input.
+Dropping is pointer-only and never the sole way to add a file.
 
 ## Accessibility
 
-The native input is hidden with the `sr-only` pattern, never `display: none`
-or `visibility: hidden`, so it keeps focus and the host chooser. It is named
-by both labels ("Attachments" and "Choose files"), and `aria-describedby`
-lists help and message. The status text and the list are announced through a
-polite live region after a choice; per-file errors are in the row text, not
-only in colour. The drop zone has no role and no `tabindex`; `aria-busy` on
-the root marks uploading. Contrast: button text 10.37:1 on the canvas and
-6.84:1 on the hover fill, button border 4.45:1, drop-target border 4.69:1 on
-the canvas and 4.52:1 on the marquee fill, status and help 5.81:1, sizes
-5.10:1, danger text 5.40:1.
+Hide the input with `sr-only`, never `display: none` or `visibility: hidden`,
+so it keeps focus and the chooser. Both labels name it ("Attachments",
+"Choose files"); `aria-describedby` lists help and message. The status and
+list are announced through a polite live region after a choice; per-file
+errors are in the row text. The drop zone has no role and no `tabindex`.
+Text meets 4.5:1; borders 3:1.
 
 ## Portability
 
-The button is the secondary button of the actions family; the zone is a
-dashed border and a translucent fill; the stripes are a repeating gradient
-(or a hatched brush). Toolkits without drag-and-drop omit the zone and keep
-the button; toolkits without a translucent fill composite the marquee over the
-canvas and record the value.
+The button is the secondary button of the actions family; the stripes are a
+repeating gradient or a hatched brush. Toolkits without drag-and-drop omit
+the zone and keep the button; without a translucent fill, composite the
+marquee over the canvas and record the value.
 
 ## Non-examples
 
-A hidden input with `display: none` and a button that clicks it by script. A
-drop zone that is the only way to add files. A rounded, dotted, animated
-"pulsing" zone. A spinner while uploading. A progress bar that animates its
-stripes. Errors shown by a red file name alone. Disabling by opacity.
+`display: none` on the input and a button that clicks it by script. A drop
+zone as the only way to add files. A rounded, dotted or pulsing zone. A
+spinner, or animated stripes, while uploading. Errors shown by a red file
+name alone. Disabling by opacity.

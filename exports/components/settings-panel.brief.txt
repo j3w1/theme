@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — settings-panel
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/settings-panel.json
 spec: spec/components/settings-panel.md  site: https://j3w1.github.io/theme/reference/#c-settings-panel
 maturity: stable  priority: R1
@@ -37,9 +37,9 @@ Tokens (resolved):
 State dependency disclosures: D-007
 
 States: default, focus-visible, invalid, busy
-  default: rest tokens of every component on {color.surface.default}; the open section carries the indicator bar [`aria-current`]
-  focus-visible: the dashed {color.interaction.focus.ring} on the control holding focus (shown on the first switch); the other controls stay at rest [the ring]
-  invalid: the inner-gap field takes the 2px {color.status.danger.border} and shows its ✕ message; the other controls stay at rest [border width 1 → 2px; glyph; `aria-invalid`]
+  default: every component's rest tokens on {color.surface.default}; the open section carries the indicator bar [`aria-current`]
+  focus-visible: the dashed {color.interaction.focus.ring} on the focused control (shown on the first switch); others at rest [the ring]
+  invalid: the inner-gap field takes the 2px {color.status.danger.border} and its ✕ message; others at rest [border width 1 → 2px; glyph; `aria-invalid`]
   busy: Apply shows the static ⋯ glyph in {color.action.primary.text}; the form carries `aria-busy`; nothing shrinks or animates [glyph; `aria-busy`; cursor: progress]
 
 Keyboard:

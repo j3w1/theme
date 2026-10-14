@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — text-field
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-A8qTv0rg9VovOZiB0cmF8A7kuS2/y4E3gJfch4++GQc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-d+uEY8Cq+FtpPAnsal5YulkwjxrQZvb56HXJhZJfwhY=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/text-field.json
 spec: spec/components/text-field.md  site: https://j3w1.github.io/theme/reference/#c-text-field
 maturity: stable  priority: R1
@@ -38,18 +38,18 @@ State dependency disclosures: D-007
 States: default, hover, focus-visible, placeholder-shown, filled, required, invalid, invalid+focus-visible, invalid+hover, disabled, disabled+filled, read-only, read-only+focus-visible, loading
   default: 1px {color.border.control} on {color.surface.input}; text {color.text.default} [—]
   hover: background → {color.interaction.hover.bg}; border unchanged [cursor: text]
-  focus-visible: border → {color.border.active}; ring 1px dashed {color.interaction.focus.ring} at −2px [the ring]
+  focus-visible: border → {color.border.active}; 1px dashed {color.interaction.focus.ring} ring at −2px [the ring]
   placeholder-shown: placeholder in {color.text.placeholder}, italic [italic]
   filled: as default with a value [—]
   required: `*` after the label in {color.status.danger.text} plus visually hidden "required" [`required` attribute; the mark]
-  invalid: border 2px {color.status.danger.border}; message with the ✕ glyph [border width 1 → 2px; glyph; `aria-invalid`]
-  invalid+focus-visible: the 2px danger border and a 1px dashed ring in {color.interaction.focus.ring-container} at −4px (the control form, recoloured; never the 2px container form) [double boundary]
+  invalid: 2px {color.status.danger.border}; message with the ✕ glyph [border 1 → 2px; glyph; `aria-invalid`]
+  invalid+focus-visible: the 2px danger border plus a 1px dashed {color.interaction.focus.ring-container} ring at −4px (the control form recoloured, never the 2px container form) [double boundary]
   invalid+hover: as invalid with the hover background [cursor]
-  disabled: text {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}; no hover; the label and help keep their colours [`disabled`; cursor: not-allowed]
+  disabled: text {color.text.disabled}, border {color.border.disabled}, background {color.interaction.disabled.bg}; no hover; label and help keep their colours [`disabled`; cursor: not-allowed]
   disabled+filled: as disabled with a value [`disabled`]
   read-only: no box: 1px dotted {color.border.divider} bottom edge on {color.surface.canvas}; text {color.text.default}; focusable and selectable [`readonly`; dotted edge]
-  read-only+focus-visible: the dotted {color.border.divider} edge unchanged, plus the dashed ring at −2px [the ring]
-  loading: size unchanged; a static `⋯` glyph in {color.text.muted} inside the box after the input and before any trailing action; input remains editable [glyph; `aria-busy`]
+  read-only+focus-visible: the dotted edge unchanged, plus the dashed ring at −2px [the ring]
+  loading: size unchanged; static `⋯` in {color.text.muted} after the input, before any trailing action; still editable [glyph; `aria-busy`]
 
 Keyboard:
   Tab / Shift+Tab: Moves focus in and out; affix actions (clear, reveal, stepper) are separate tab stops after the input.
