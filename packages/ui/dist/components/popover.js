@@ -1,10 +1,10 @@
 import { t as J3w1Element } from "../chunks/element-Dovcr9Ky.js";
-import { r as popover } from "../chunks/overlays-Bw8SSDKz.js";
+import { r as popover } from "../chunks/overlays-BwgpF4jI.js";
 //#region .cache/ui-build/entries/components/popover.js
 var J3w1Popover = class extends J3w1Element {
 	static componentId = "popover";
 	static version = "4.0.0";
-	static implementationId = "sha256-8KG7XOC5HTOmJW+CysUIXfhkV3COWEwpPzmG6HXdN80=";
+	static implementationId = "sha256-544d7ON825LY8X5xEBzRzpHfZ1h2hjozJQ8CIUd0dwQ=";
 	static connect = popover;
 	static upgradeProperties = [
 		"disabled",

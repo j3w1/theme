@@ -261,7 +261,7 @@ j3w1-number-field .number-field:has(.number-field-input[aria-invalid="true"]) .n
 }
 j3w1-number-field .number-field-root:has(.number-field-input[aria-invalid="true"]:focus-visible) {
   border-color: var(--color-status-danger-border);
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring-contrast);
   outline-offset: var(--focus-offset-invalid);
 }
 j3w1-number-field .number-field-root:has(.number-field-input:disabled) {

@@ -69,6 +69,7 @@ SOFTWARE.
   --focus-offset: -2px;
   --focus-offset-invalid: -4px;
   --focus-ring: 1px dashed #e53935;
+  --focus-ring-contrast: 1px dashed #ffa2a7;
   --font-family-mono: "SauceCodePro NFM", "Source Code Pro", "Cascadia Mono", "Consolas", "Liberation Mono", "DejaVu Sans Mono", monospace;
   --font-line-height-ui-md: 18px;
   --font-line-height-ui-sm: 16px;
@@ -349,7 +350,7 @@ SOFTWARE.
 }
 .j3w1-recipe .text-field-root:has(.text-field-input[aria-invalid="true"]:focus-visible) {
   border-color: var(--color-status-danger-border);
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring-contrast);
   outline-offset: var(--focus-offset-invalid);
 }
 .j3w1-recipe .text-field-root:has(.text-field-input:disabled) {

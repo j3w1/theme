@@ -49,6 +49,7 @@ ordered by topic.
 | D-032 | Coral slot 6 and a fixed prompt background | accepted | 2026-09-26 | owner (explicit selection of coral and the PowerShell prompt look) |
 | D-035 | An accent surface for the user's own content | accepted | 2026-10-06 | owner (Telegram acceptance: own and other people's messages too similar; chose #3d0c0a from a side-by-side comparison) |
 | D-036 | A translucent text-selection tint | accepted | 2026-10-06 | owner (Telegram acceptance: Android text selection barely visible; chose 50% from a side-by-side comparison) |
+| D-039 | Code and terminal backgrounds: two pairs, two scopes | accepted | 2026-10-15 | owner (explicit choice: keep both, scope them) |
 
 ### Typography and density
 
@@ -68,6 +69,7 @@ ordered by topic.
 | D-015 | Clarify component mappings exposed by consumption acceptance | proposed | 2026-09-07 | — |
 | D-024 | Distinguish links from body text and headings | accepted | 2026-09-08 | owner (explicit preview correction) |
 | D-025 | Theme interactive controls throughout the portal and demo | accepted | 2026-09-09 | owner (explicit native-control replacement request) |
+| D-040 | One contrast focus ring for fills and invalid fields | accepted | 2026-10-15 | owner (explicit choice: one role, focus.ring-contrast) |
 
 ### Site, tools and distribution
 
@@ -200,30 +202,9 @@ check); the rules above still hold.
 
 ## D-031 Select the checks a change needs; shard the deployment matrix
 
-**Decision.** CI is `select` → checks → `release-gate`. The rules stay here:
-no spec section or guide owns CI, and `scripts/ci/select.mjs` and `AGENTS.md`
-carry only parts.
-
-- `select` reads the changed paths and `scripts/ci/proofs.json`; a path gets
-  cheaper only when a rule claims it. Unclaimed paths and control files
-  (workflows, the selector and registry, `package.json`, the lockfile, the
-  Playwright configs) run every check. On a pull request the base commit's
-  control list also applies, so a change cannot make itself cheaper. A file a
-  browser spec imports runs that spec and counts as a site change.
-- A pull request runs only the selected checks, unit tests and build in
-  parallel; browser subsets write no evidence (D-028).
-- A push to `main` that changes the site runs the whole matrix in shards
-  (desktop in four parts; projects read from the Playwright config), with
-  packed consumers in parallel. Blob reports merge once into the evidence
-  reporter, which refuses a missing shard or configured test; then the
-  verification report and deployment. No site change, no deployment. Changed
-  paths count from the last commit that reached Pages.
-- `release-gate`, the only required check, recomputes the plan from Git with
-  the same code and checks each job ran as planned and passed.
-- `fullyParallel`, two workers per CI job, zero retries. The page axe scan is
-  two tests (colour contrast; every other rule) covering exactly the tagged
-  rules. Only an unnarrowed `playwright test`, or the merge of every shard,
-  writes evidence.
+**Decision.** CI is `select` → checks → `release-gate`: a change runs the
+checks its changed paths need, and a push to `main` that changes the site
+runs the whole matrix in shards before it deploys. Rules: `docs/ci.md`.
 
 **Why.** `main` ran every check whatever changed: a terminal-kit-only change
 took 63 minutes to deploy, and the browser suite ran on one worker for 24.7
@@ -478,6 +459,23 @@ r11 found the over-the-text limit after the owner's choice.
 chose 50% from the side-by-side comparison after the review rejected the opaque
 fill.
 
+## D-039 Code and terminal backgrounds: two pairs, two scopes
+
+**Decision.** Both pairs stay, with their values. `surface.code` and
+`surface.terminal` (pure black, D-023) are what a static code block or a
+terminal pane sits on; `code.bg` and `terminal.bg` (`#0c0909`) fill the inside
+of an editor and a terminal's cell grid, where `terminal.bg` equals ANSI 0.
+Rule: `spec/foundations.md`, Code and terminal.
+
+**Why.** Both pairs carried the same descriptions ("Editor background",
+"Terminal background") with different values, so a consumer could not tell
+which to use. Rejected: merging into pure black, which changes the terminal
+background of the four terminal ports (Claude Code, Ghostty, Orca, Warp) and
+Obsidian's code background; merging into `#0c0909`, which partly reverses
+D-023 and changes the code block Windows maps from `surface.code`.
+
+**Status.** accepted · 2026-10-15 · owner, choosing "Keep both, scope them".
+
 ## D-009 Density modes
 
 **Decision.** Density modes are tokens, set with `data-density` on any
@@ -632,6 +630,22 @@ command-search field. Rejected: advisory option CSS (keeps the blue
 selection) and one-off dropdowns (duplicate behaviour).
 
 **Status.** accepted · 2026-09-09 · owner.
+
+## D-040 One contrast focus ring for fills and invalid fields
+
+**Decision.** A composite role, `focus.ring-contrast`: the 1px dashed control
+ring in `interaction.focus.ring-container`. Controls on a fill (checked,
+mixed, primary) and invalid fields beside the danger border use it wherever
+the ordinary red ring would merge with what is under or beside it; containers
+keep `focus.ring-container`. Rendering is unchanged. Rule:
+`spec/foundations.md`, rule 2 and the state table.
+
+**Why.** Twelve component stylesheets wrote the same ring out longhand. A role
+names it once for every consumer and port. Rejected: keeping it written out;
+`focus.ring-on-fill`, which would misname the eight invalid-field uses.
+
+**Status.** accepted · 2026-10-15 · owner, choosing a new role and then the
+name `focus.ring-contrast` for all twelve uses. Builds on D-006 (proposed).
 
 ## D-016 Pinned release comparison report and historical rendering
 

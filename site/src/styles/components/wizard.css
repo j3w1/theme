@@ -158,7 +158,7 @@
 
 .wizard-next:focus-visible,
 [data-state-focus-visible] .wizard-next {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring-contrast);
   outline-offset: var(--focus-offset);
 }
 

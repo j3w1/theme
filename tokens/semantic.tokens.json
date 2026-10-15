@@ -113,7 +113,7 @@
       },
       "code": {
         "$value": "{color.primitive.ink.0}",
-        "$description": "Editor background.",
+        "$description": "Surface a static code block sits on, such as a document's pre: pure black like the canvas (D-023, D-039).",
         "$extensions": {
           "io.github.j3w1.theme": {
             "status": "approved",
@@ -125,7 +125,7 @@
       },
       "terminal": {
         "$value": "{color.primitive.ink.0}",
-        "$description": "Terminal background.",
+        "$description": "Surface of a pane that hosts a terminal, around its cell grid (D-023, D-039).",
         "$extensions": {
           "io.github.j3w1.theme": {
             "status": "approved",
@@ -781,7 +781,7 @@
     "code": {
       "bg": {
         "$value": "{color.primitive.ink.20}",
-        "$description": "Editor background."
+        "$description": "Background inside a code editor, diff view or diagnostics list (D-039)."
       },
       "current-line": {
         "$value": "{color.primitive.ink.40}",
@@ -1260,7 +1260,7 @@
     "terminal": {
       "bg": {
         "$value": "{color.primitive.ink.20}",
-        "$description": "Terminal background."
+        "$description": "Terminal background. It fills a terminal's cell grid and equals ANSI 0 (D-039)."
       },
       "fg": {
         "$value": "{color.primitive.rose.700}",

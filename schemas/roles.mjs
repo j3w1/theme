@@ -51,7 +51,7 @@ export const REQUIRED_FOUNDATION_ROLES = [
   ...under("font.line-height", ["ui-sm", "ui-md", "ui-lg", "reading", "code", "terminal", "display", "title", "h1", "h2", "h3", "caption"]),
   "font.letter-spacing.terminal",
   ...["compact", "comfortable"].flatMap((d) => under(`density.${d}`, ["control-height", "row-height", "control-padding-x", "icon", "gap"])),
-  ...under("focus", ["ring", "ring-container", "offset", "offset-container", "offset-invalid"]),
+  ...under("focus", ["ring", "ring-container", "ring-contrast", "offset", "offset-container", "offset-invalid"]),
   ...under("motion.duration", ["fast", "base", "slow"]),
   "shadow.floating",
   ...under("layout", ["measure", "content-max", "app-max"]),

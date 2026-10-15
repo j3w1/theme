@@ -1664,6 +1664,11 @@
       "surface": "unsupported",
       "reason": "Outside Windows visual adapter scope; preserve host semantics."
     },
+    "focus.ring-contrast": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
     "focus.offset": {
       "state": "mapped",
       "surface": "shell",

@@ -1494,6 +1494,11 @@
       "surface": "outside-terminal",
       "reason": "Not a colour; a terminal theme file carries colours only."
     },
+    "focus.ring-contrast": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Not a colour; a terminal theme file carries colours only."
+    },
     "font.family.mono": {
       "state": "inherited",
       "surface": "terminal-font",

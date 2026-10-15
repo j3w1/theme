@@ -59,7 +59,7 @@ keyboard:
     action: Act on the trigger as usual; the tooltip hides on activation.
 responsive: The popup is at most 24rem wide and wraps; it flips to the side with room and is never clipped by the viewport; at 320px it is as wide as the viewport minus the gutter. RTL mirrors the placement and keeps the shortcut at the end.
 portability:
-  web: "the trigger carries aria-describedby to a <div role=tooltip>; visibility toggles the hidden attribute after a 300 ms open delay and no close delay; positioned with anchor positioning or a popover at z.popover; the tooltip is never the only place a control's name lives."
+  web: "the trigger carries aria-describedby to a <div role=tooltip>; visibility toggles the hidden attribute after a 300 ms open delay, and hides 300 ms after the pointer leaves trigger and popup; positioned with anchor positioning or a popover at z.popover; the tooltip is never the only place a control's name lives."
   nativeFallbacks:
     - GTK4 tooltip-text; the host draws it with the overlay border through the tooltip css node.
     - Qt QToolTip stylesheet; border and background from the tokens; no rounded corners.
@@ -87,7 +87,7 @@ Parts as listed in the anatomy; no arrow, shadow or radius.
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | trigger at rest; popup shown for the demonstration | `aria-describedby` on the trigger |
-| hover | trigger background → {color.action.tertiary.hover-bg}; popup after 300 ms | cursor: pointer; the popup |
+| hover | trigger background → {color.action.tertiary.hover-bg}; popup after 300 ms; it hides 300 ms after the pointer leaves trigger and popup | cursor: pointer; the popup |
 | focus-visible | 1px dashed {color.interaction.focus.ring} at −2px on the trigger; popup at once | the ring; the popup |
 | open | popup visible, 1px {color.border.overlay} on {color.surface.raised} | popup in the accessibility tree |
 | closed | popup absent; trigger unchanged | `hidden`; the description is still read from the DOM |

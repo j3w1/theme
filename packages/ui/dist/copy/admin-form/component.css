@@ -566,7 +566,7 @@ j3w1-admin-form .text-field:has(.text-field-input[aria-invalid="true"]) .text-fi
 }
 j3w1-admin-form .text-field-root:has(.text-field-input[aria-invalid="true"]:focus-visible) {
   border-color: var(--color-status-danger-border);
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring-contrast);
   outline-offset: var(--focus-offset-invalid);
 }
 j3w1-admin-form .text-field-root:has(.text-field-input:disabled) {
@@ -722,7 +722,7 @@ j3w1-admin-form .checkbox-input:focus-visible {
 }
 j3w1-admin-form .checkbox-input:checked:focus-visible,
 j3w1-admin-form .checkbox-input:indeterminate:focus-visible {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring-contrast);
   outline-offset: var(--focus-offset);
 }
 j3w1-admin-form .checkbox:has(.checkbox-input:required) .checkbox-required {
@@ -873,7 +873,7 @@ j3w1-admin-form .radio-group-input:focus-visible {
   outline-offset: var(--focus-offset);
 }
 j3w1-admin-form .radio-group-input:checked:focus-visible {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring-contrast);
   outline-offset: var(--focus-offset);
 }
 j3w1-admin-form .radio-group:has(.radio-group-input:required) .radio-group-required {
@@ -1101,7 +1101,7 @@ j3w1-admin-form .select:has(.select-control[aria-invalid="true"]) .select-help {
 }
 j3w1-admin-form .select-root:has(.select-control[aria-invalid="true"]:focus-visible) {
   border-color: var(--color-status-danger-border);
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring-contrast);
   outline-offset: var(--focus-offset-invalid);
 }
 j3w1-admin-form .select-root:has(.select-control:disabled) {
@@ -1219,7 +1219,7 @@ j3w1-admin-form .switch:focus-visible .switch-track {
 }
 
 j3w1-admin-form .switch[aria-checked="true"]:focus-visible .switch-track {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring-contrast);
   outline-offset: var(--focus-offset);
 }
 j3w1-admin-form .switch:disabled {
@@ -1346,7 +1346,7 @@ j3w1-admin-form .textarea:has(.textarea-input[aria-invalid="true"]) .textarea-he
 }
 j3w1-admin-form .textarea-root:has(.textarea-input[aria-invalid="true"]:focus-visible) {
   border-color: var(--color-status-danger-border);
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring-contrast);
   outline-offset: var(--focus-offset-invalid);
 }
 j3w1-admin-form .textarea-root:has(.textarea-input:disabled) {

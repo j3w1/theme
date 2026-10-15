@@ -145,6 +145,7 @@
       "density.compact.icon",
       "focus.offset",
       "focus.ring",
+      "focus.ring-contrast",
       "font.family.mono",
       "font.line-height.ui-md",
       "font.line-height.ui-sm",
@@ -207,6 +208,7 @@
       "density.compact.icon",
       "focus.offset",
       "focus.ring",
+      "focus.ring-contrast",
       "font.family.mono",
       "font.line-height.ui-md",
       "font.line-height.ui-sm",
@@ -374,6 +376,11 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "focus.ring-contrast": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "font.family.mono": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -445,6 +452,6 @@
   "copy": {
     "directory": "copy/segmented-control/",
     "manifest": "copy/segmented-control/manifest.json",
-    "digest": "sha256-U8QmrR6N2BeyWJK8mugWaa5YUyIDeprteAt3NLlb4o8="
+    "digest": "sha256-G1CXVYEMtIIBQkaQDCMfY8eE3/BTOs1PLkNMfE1S0i8="
   }
 }

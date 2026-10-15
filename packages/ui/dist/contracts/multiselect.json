@@ -191,6 +191,7 @@
       "density.compact.icon",
       "focus.offset",
       "focus.ring",
+      "focus.ring-contrast",
       "font.family.mono",
       "font.line-height.caption",
       "font.line-height.ui-md",
@@ -283,6 +284,7 @@
       "density.compact.icon",
       "focus.offset",
       "focus.ring",
+      "focus.ring-contrast",
       "font.family.mono",
       "font.line-height.caption",
       "font.line-height.ui-md",
@@ -558,6 +560,11 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "focus.ring-contrast": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "font.family.mono": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -644,6 +651,6 @@
   "copy": {
     "directory": "copy/multiselect/",
     "manifest": "copy/multiselect/manifest.json",
-    "digest": "sha256-JO0I7l2R7lmALfslDFelOHRv+78GSN5i+QKxxHtGjqo="
+    "digest": "sha256-WLNk02zbl7ejlxNDb1VMCw8PT1jX0Ms54lwRfvRFp+g="
   }
 }

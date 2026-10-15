@@ -402,6 +402,23 @@
       },
       "$description": "outline on focusable containers."
     },
+    "ring-contrast": {
+      "$type": "border",
+      "$value": {
+        "color": "{color.interaction.focus.ring-container}",
+        "width": "{border.width.default}",
+        "style": "dashed"
+      },
+      "$description": "outline where the ordinary red ring would merge with what is under or beside it: controls on a fill and invalid fields beside the danger border; the control ring in the container colour (D-040).",
+      "$extensions": {
+        "io.github.j3w1.theme": {
+          "status": "approved",
+          "approval": {
+            "decision": "D-040"
+          }
+        }
+      }
+    },
     "offset": {
       "$type": "dimension",
       "$value": {

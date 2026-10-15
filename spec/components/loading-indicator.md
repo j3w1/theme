@@ -87,8 +87,8 @@ the result when it arrives.
 ## Accessibility
 
 `aria-busy` lets assistive technology wait for the subtree to settle and
-announce the label once. The label names the object ("Loading fonts"); a host
-that must hide it inline keeps it visually hidden, never absent. Nothing
+announce the label once. The label names the object ("Loading fonts") and is
+always visible, inline as in a block; the glyph never appears without it. Nothing
 moves, so there is no reduced-motion branch to get wrong. Label and glyph meet
 4.5:1.
 

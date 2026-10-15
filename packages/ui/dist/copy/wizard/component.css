@@ -169,7 +169,7 @@ j3w1-wizard .wizard-back:focus-visible {
 }
 
 j3w1-wizard .wizard-next:focus-visible {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring-contrast);
   outline-offset: var(--focus-offset);
 }
 j3w1-wizard .wizard-step-button[aria-current="step"] {
@@ -441,7 +441,7 @@ j3w1-wizard .text-field:has(.text-field-input[aria-invalid="true"]) .text-field-
 }
 j3w1-wizard .text-field-root:has(.text-field-input[aria-invalid="true"]:focus-visible) {
   border-color: var(--color-status-danger-border);
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring-contrast);
   outline-offset: var(--focus-offset-invalid);
 }
 j3w1-wizard .text-field-root:has(.text-field-input:disabled) {

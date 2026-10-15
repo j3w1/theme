@@ -266,7 +266,7 @@ j3w1-select .select:has(.select-control[aria-invalid="true"]) .select-help {
 }
 j3w1-select .select-root:has(.select-control[aria-invalid="true"]:focus-visible) {
   border-color: var(--color-status-danger-border);
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring-contrast);
   outline-offset: var(--focus-offset-invalid);
 }
 j3w1-select .select-root:has(.select-control:disabled) {
