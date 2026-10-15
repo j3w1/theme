@@ -13,7 +13,8 @@
 - **Hover popups stay reachable.** The token inspector and the tooltip keep
   their popup open while the pointer crosses to it, so a long inspector can be
   scrolled; leaving both closes it after 300 ms, never while keyboard focus
-  is inside it (WCAG 1.4.13). The passive hex preview is unchanged.
+  is on its trigger or inside it (WCAG 1.4.13). The passive hex preview is
+  unchanged.
 - **Specs.** A loading indicator's label is always visible. The progress spec
   no longer suggests a track that fails 3:1. CI selection rules moved from
   D-031 to `docs/ci.md`.

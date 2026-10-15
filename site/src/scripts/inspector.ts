@@ -57,7 +57,7 @@ export const initInspector = (): void => {
       preview.innerHTML = `<p>Exact value matches; equality does not assign a role.</p><ul>${matches.map((match) => `<li>${escapeHtml(match.profile)}: <code>${escapeHtml(match.path)}</code></li>`).join("")}</ul>`;
       circle = target;
     }
-    hide();
+    if (!holdsFocus()) hide();
     preview.hidden = false;
     placePreview();
   });
@@ -91,6 +91,10 @@ export const initInspector = (): void => {
   const HIDE_DELAY = 300;
   let hideTimer = 0;
   const keep = () => { clearTimeout(hideTimer); hideTimer = 0; };
+  const holdsFocus = () => {
+    const active = document.activeElement;
+    return !!active && active !== document.body && (box.contains(active) || !!current?.contains(active));
+  };
   const show = async (target: HTMLElement, byPointer = false) => {
     if (box.contains(target)) return;
     keep();
@@ -126,13 +130,15 @@ export const initInspector = (): void => {
     current = null;
   };
   const hideSoon = () => {
+    /* Pointer movement never takes away a panel whose token or content holds
+       keyboard focus, nor cancels its pending keyboard open. */
+    if (holdsFocus()) return;
     /* Still loading: nothing is shown yet, so leaving cancels the open. */
     if (box.hidden) { current = null; return; }
     if (hideTimer) return;
     hideTimer = window.setTimeout(() => {
       hideTimer = 0;
-      /* Pointer movement never takes away a panel that holds keyboard focus. */
-      if (!box.contains(document.activeElement)) hide();
+      if (!holdsFocus()) hide();
     }, HIDE_DELAY);
   };
   box.addEventListener("pointerenter", keep);

@@ -248,7 +248,7 @@ A popup opened by hovering follows the pointer:
   or link stays reachable and open while the pointer is inside it.
 - Either kind closes when the pointer leaves both the trigger and the popup;
   the reachable kind waits 300 ms first, so the pointer can cross between
-  them, and stays while keyboard focus is inside it.
+  them, and stays while keyboard focus is on its trigger or inside it.
 
 Opened from the keyboard, the same popup anchors to its trigger: below it, or
 above when there is no room below. This is a placement rule only; what opens a

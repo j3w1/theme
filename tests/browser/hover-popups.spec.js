@@ -89,6 +89,31 @@ test("the inspector stays while keyboard focus is inside it, whatever the pointe
   await page.waitForTimeout(500);
   await expect(inspector).toBeVisible();
   await expect(link).toBeFocused();
+  /* The passive hex preview of a swatch in the token's row does not take it away either. */
+  const swatch = token.locator("xpath=ancestor::tr").locator(".hex-swatch").first();
+  const s = await swatch.boundingBox();
+  await page.mouse.move(s.x + s.width / 2, s.y + s.height / 2);
+  await expect(page.locator("#hex-popup")).toBeVisible();
+  await expect(inspector).toBeVisible();
+  await expect(link).toBeFocused();
+});
+
+test("a keyboard open survives the pointer leaving while the inspector data loads", verification({ component: "page", category: "keyboard", states: ["focus-visible"], variants: [], note: "Token hovered, then focused, while the first data request is held; the pointer leaves before the response. The focused token must still get its inspector. Automated Chromium only." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "pointer and focus on desktop");
+  let release;
+  const held = new Promise((resolve) => { release = resolve; });
+  await page.route("**/tokens/inspector.json", async (route) => { await held; await route.continue(); });
+  await page.goto("components/button/", { waitUntil: "domcontentloaded" });
+  const token = page.locator("main a[data-token]").first();
+  await token.scrollIntoViewIfNeeded();
+  const start = await token.boundingBox();
+  await page.mouse.move(start.x + 2, start.y + start.height / 2);
+  await page.mouse.move(start.x + 4, start.y + start.height / 2);
+  await token.focus();
+  await page.mouse.move(2, 2, { steps: 4 });
+  release();
+  await expect(page.locator("#inspector")).toBeVisible();
+  await expect(token).toBeFocused();
 });
 
 test("a tooltip stays open while the pointer crosses to its popup", verification({ component: "tooltip", category: "enhancements", states: ["hover"], variants: ["default"], note: "First live tooltip on its component page: hover opens it, a diagonal move onto the wider popup keeps it, leaving both closes it. Pointer only." }), async ({ page }, testInfo) => {
