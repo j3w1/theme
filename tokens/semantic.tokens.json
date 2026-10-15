@@ -1260,7 +1260,7 @@
     "terminal": {
       "bg": {
         "$value": "{color.primitive.ink.20}",
-        "$description": "Background behind a terminal's cell grid; equals ANSI 0 (D-039)."
+        "$description": "Terminal background. It fills a terminal's cell grid and equals ANSI 0 (D-039)."
       },
       "fg": {
         "$value": "{color.primitive.rose.700}",
