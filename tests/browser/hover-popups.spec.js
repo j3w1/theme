@@ -211,13 +211,48 @@ test("a keyboard-opened inspector follows its token on scroll and stays inside a
   };
   await page.mouse.wheel(0, 120);
   await expect.poll(overlaps).toBe(false);
-  /* At 360px the page reflows and the token moves; bring it back into view
-     (focus stays on it) and the anchored panel fits inside the gutter. */
-  await page.setViewportSize({ width: 360, height: 700 });
-  await token.scrollIntoViewIfNeeded();
-  await expect.poll(async () => {
+  const inGutter = async (width, height) => {
     const p = await inspector.boundingBox();
-    return p.x >= 8 && p.x + p.width <= 352 && p.y >= 8 && p.y + p.height <= 692 && !(await overlaps());
-  }).toBe(true);
+    return p.x >= 8 && p.x + p.width <= width - 8 && p.y >= 8 && p.y + p.height <= height - 8;
+  };
+  /* The token scrolls out of view above: the panel stays inside the gutter. */
+  await token.evaluate((el) => window.scrollBy(0, el.getBoundingClientRect().bottom + 300));
+  const desk = page.viewportSize();
+  await expect.poll(() => inGutter(desk.width, desk.height)).toBe(true);
+  await token.evaluate((el) => window.scrollBy(0, el.getBoundingClientRect().top - 200));
+  /* At 360px the page reflows and the token moves away: the panel stays inside
+     the gutter; brought back into view, the token is not covered. */
+  await page.setViewportSize({ width: 360, height: 700 });
+  await expect.poll(() => inGutter(360, 700)).toBe(true);
+  await token.scrollIntoViewIfNeeded();
+  await expect.poll(async () => (await inGutter(360, 700)) && !(await overlaps())).toBe(true);
   await expect(token).toBeFocused();
+});
+
+test("an inspector under the pointer stays inside a viewport that narrows", verification({ component: "page", category: "reflow", states: [], variants: [], note: "Inspector opened by pointer, pointer resting on the panel, viewport narrowed to 360px: the panel stays inside the 8px gutter. Pointer only." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "pointer hover on desktop");
+  await page.goto("components/button/", { waitUntil: "networkidle" });
+  const token = page.locator("main a[data-token]").first();
+  await token.scrollIntoViewIfNeeded();
+  await token.evaluate((el) => window.scrollBy(0, el.getBoundingClientRect().top - 60));
+  const start = await token.boundingBox();
+  await page.mouse.move(start.x + 2, start.y + start.height / 2);
+  await page.mouse.move(start.x + 4, start.y + start.height / 2);
+  const inspector = page.locator("#inspector");
+  await expect(inspector).toBeVisible();
+  const box = await inspector.boundingBox();
+  await page.mouse.move(box.x + box.width / 2, box.y + Math.min(box.height / 2, 24), { steps: 10 });
+  await page.setViewportSize({ width: 360, height: 700 });
+  /* Right after the resize the panel is clamped inside the gutter, never
+     clipped. The pointer now lies outside the narrower viewport, so the panel
+     then closes after the grace period, as the hover popup rule says. */
+  const inGutterOrClosed = () => inspector.evaluate((el) => {
+    const r = el.getBoundingClientRect();
+    return el.hidden || (r.left >= 8 && r.right <= innerWidth - 8 && r.top >= 8 && r.bottom <= innerHeight - 8);
+  });
+  /* Let the resize event and its repositioning frame run, then sample until
+     the grace period has passed: visible means inside the gutter. */
+  await page.waitForTimeout(100);
+  for (let i = 0; i < 6; i++) { expect(await inGutterOrClosed()).toBe(true); await page.waitForTimeout(60); }
+  await expect(inspector).toBeHidden();
 });

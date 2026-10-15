@@ -33,16 +33,32 @@ export const initInspector = (): void => {
      and never touch the edge. A popup opened from the keyboard has no pointer
      and anchors to its element instead — see placeByElement. */
   const axis = (point: number, size: number, limit: number) => Math.max(8, Math.min(point + 8 + size <= limit - 8 ? point + 8 : point - size - 8, limit - size - 8));
+  /* A fixed popup left near the right edge shrinks to the space left, so
+     measure it at the gutter, where it takes its natural size. */
+  const naturalSize = (popup: HTMLElement) => {
+    popup.style.left = "8px";
+    popup.style.top = "8px";
+    return popup.getBoundingClientRect();
+  };
   const placeByPointer = (popup: HTMLElement, at: { x: number; y: number }) => {
-    const { width, height } = popup.getBoundingClientRect();
+    const { width, height } = naturalSize(popup);
     popup.style.left = `${axis(at.x, width, innerWidth)}px`;
     popup.style.top = `${axis(at.y, height, innerHeight)}px`;
   };
   const placeByElement = (popup: HTMLElement, target: HTMLElement) => {
     const rect = target.getBoundingClientRect();
-    const width = Math.min(384, innerWidth - 16);
+    const { width, height } = naturalSize(popup);
+    const top = rect.bottom + 6 + height > innerHeight - 8 ? rect.top - height - 6 : rect.bottom + 6;
     popup.style.left = `${Math.max(8, Math.min(rect.left, innerWidth - width - 8))}px`;
-    popup.style.top = `${rect.bottom + 6 + popup.offsetHeight > innerHeight - 8 ? Math.max(8, rect.top - popup.offsetHeight - 6) : rect.bottom + 6}px`;
+    /* Anchored, but never outside the 8px gutter, even when the token scrolls away. */
+    popup.style.top = `${Math.max(8, Math.min(top, innerHeight - height - 8))}px`;
+  };
+  /* Keeps a popup where it is, moved only as far as the gutter requires. */
+  const clampToViewport = (popup: HTMLElement) => {
+    const { left, top } = popup.getBoundingClientRect();
+    const { width, height } = naturalSize(popup);
+    popup.style.left = `${Math.max(8, Math.min(left, innerWidth - width - 8))}px`;
+    popup.style.top = `${Math.max(8, Math.min(top, innerHeight - height - 8))}px`;
   };
   const placePreview = () => placeByPointer(preview, pointer);
   document.addEventListener("pointermove", async (event) => {
@@ -154,8 +170,10 @@ export const initInspector = (): void => {
     if (box.hidden || !current || placeFrame) return;
     placeFrame = requestAnimationFrame(() => {
       placeFrame = 0;
-      if (box.hidden || !current || box.matches(":hover")) return;
-      if (byPointerPlaced) placeByPointer(box, pointer);
+      if (box.hidden || !current) return;
+      /* Under the pointer the panel stays where the reader is, inside the gutter. */
+      if (box.matches(":hover")) clampToViewport(box);
+      else if (byPointerPlaced) placeByPointer(box, pointer);
       else placeByElement(box, current);
     });
   };
