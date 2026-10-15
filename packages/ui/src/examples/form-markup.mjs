@@ -2,7 +2,18 @@ import { anchorFor } from "../../../../scripts/lib/anchors.mjs";
 import { escapeHtml as esc } from "../../../../scripts/lib/hex-literals.mjs";
 
 export function workflowMarkup(prefix) {
-  return `<section class="admin-form form-tool" data-workflow="${esc(prefix)}" hidden><h2 class="admin-form-title">Try the local workflow</h2><p>Values stay in this page. Reset clears them. No save request is sent.</p><form novalidate><div class="alert alert-danger form-tool-summary" data-errors role="alert" tabindex="-1" hidden></div><fieldset class="form-tool-fields" data-fields aria-label="Enter values"></fieldset><div class="form-tool-actions"><button class="button" type="submit" data-event="submit">Review values</button></div></form><table data-review class="table" hidden></table><p data-status role="status" tabindex="-1" id="${anchorFor.formField(prefix, "workflow", "status")}"></p><div class="form-tool-actions"><button class="button button-secondary" type="button" data-event="edit" hidden>Edit values</button><button class="button button-secondary" type="button" data-event="confirm" hidden>Simulate save</button><button class="button button-secondary" type="button" data-event="complete" hidden>Complete simulation</button><button class="button button-tertiary" type="button" data-event="reset">Reset values</button></div></section>`;
+  return `<section class="admin-form form-tool" data-workflow="${esc(prefix)}" hidden>`
+    + `<h2 class="admin-form-title">Try the local workflow</h2><p>Values stay in this page. Reset clears them. No save request is sent.</p>`
+    + `<form novalidate><div class="alert alert-danger form-tool-summary" data-errors role="alert" tabindex="-1" hidden>`
+    + `</div><fieldset class="form-tool-fields" data-fields aria-label="Enter values">`
+    + `</fieldset><div class="form-tool-actions"><button class="button" type="submit" data-event="submit">Review values</button>`
+    + `</div></form><table data-review class="table" hidden></table>`
+    + `<p data-status role="status" tabindex="-1" id="${anchorFor.formField(prefix, "workflow", "status")}">`
+    + `</p><div class="form-tool-actions"><button class="button button-secondary" type="button" data-event="edit" hidden>Edit values</button>`
+    + `<button class="button button-secondary" type="button" data-event="confirm" hidden>Simulate save</button>`
+    + `<button class="button button-secondary" type="button" data-event="complete" hidden>Complete simulation</button>`
+    + `<button class="button button-tertiary" type="button" data-event="reset">Reset values</button>`
+    + `</div></section>`;
 }
 
 export function builderMarkup(prefix) {

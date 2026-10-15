@@ -244,16 +244,7 @@
   overflow-wrap: anywhere;
 }
 
-.profile-token-table {
-  table-layout: fixed;
-  min-width: 68rem;
-}
 
-.profile-token-table .token-path-column { width: 28%; }
-.profile-token-table .token-profile-column { width: 16%; }
-.profile-token-table .token-use-column { width: 24%; }
-.profile-token-table th { white-space: nowrap; }
-.profile-token-table .eligibility { margin-top: var(--space-4); }
 .token-table td:first-child { white-space: normal; }
 .compact-token-table { min-width: 48rem; }
 .compact-token-table td:nth-child(2) { min-width: 24ch; }

@@ -161,14 +161,30 @@
           "value": 32,
           "unit": "px"
         },
-        "$description": "Page heroes and metric figures on the portal (D-037)."
+        "$description": "Page heroes and metric figures on the portal (D-037).",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "proposed",
+            "approval": {
+              "decision": "D-037"
+            }
+          }
+        }
       },
       "title": {
         "$value": {
           "value": 24,
           "unit": "px"
         },
-        "$description": "Page titles above h1 on the portal (D-037)."
+        "$description": "Page titles above h1 on the portal (D-037).",
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "proposed",
+            "approval": {
+              "decision": "D-037"
+            }
+          }
+        }
       },
       "h1": {
         "$value": {
@@ -238,12 +254,28 @@
         "$value": {
           "value": 40,
           "unit": "px"
+        },
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "proposed",
+            "approval": {
+              "decision": "D-037"
+            }
+          }
         }
       },
       "title": {
         "$value": {
           "value": 32,
           "unit": "px"
+        },
+        "$extensions": {
+          "io.github.j3w1.theme": {
+            "status": "proposed",
+            "approval": {
+              "decision": "D-037"
+            }
+          }
         }
       },
       "h1": {

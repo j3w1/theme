@@ -2,6 +2,34 @@
 
 ## [Unreleased]
 
+- **Display and title type sizes** (D-037, proposed): `font.size.display`
+  32/40 and `font.size.title` 24/32 with their line heights, for page heroes
+  and metric figures. They export as use-and-report until D-037 is decided.
+- **Compact is the default density** (D-038). `:root` and bare recipe
+  wrappers carry the compact density values; `data-density="comfortable"`
+  opts in. A consumer that relied on the old comfortable default sets it.
+- **Components follow the accepted decisions.** Focus rings sit at −2px
+  (D-006). A selected item takes the ordinary 1px dashed ring on the
+  selection fill, and links hover on `interaction.hover.bg` (D-027).
+  Composite actions reuse the button tone slots; field parts share one
+  partial.
+- **Site.** One shell built from the documented components, one primary
+  action per view, and calls to action as standalone links. `/reference/`
+  is a static hub (about 0.5 MB, from 4.6 MB); state matrices, token tables
+  and computed contrast pairs live on `/components/<id>/`, and the contrast
+  report, decision log and fixtures on their own `/reference/` pages. Every
+  published anchor still resolves. Copying a value moved from the reference
+  tables to each token's page, `/tokens/<path>/`.
+- **Documentation.** The decision log is grouped by topic and keeps the
+  choice, reason and status; each rule lives in the spec section it governs.
+  README, guides and component specs state each fact once.
+- **Fixed.** The install guide pins the released package version. Control
+  enhancement no longer restyles component buttons. Contents search and the
+  family filter keep each other's results, and search retries a failed index
+  load. Copy labels cannot stick. Every visible hex value has its swatch.
+  The token inspector adds no tab stops and 404 ships no inspector data.
+  Generated form workflows have one primary action. Spec prose no longer
+  states contrast ratios by hand; the computed report carries them.
 - **`color.surface.accent`** (D-035). A new surface for the user's own content,
   such as outgoing chat messages, on the new primitive `color.primitive.red.40`
   (`#3d0c0a`), chosen by the owner from a side-by-side comparison; links keep

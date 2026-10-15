@@ -7099,13 +7099,15 @@
           "css": "32px",
           "aliasOf": null,
           "description": "Page heroes and metric figures on the portal (D-037).",
-          "status": "observed",
+          "status": "proposed",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-037",
           "eligibility": {
-            "action": "use",
-            "reason": "Use within the role's documented scope and restrictions.",
-            "decisionIds": []
+            "action": "use-and-report",
+            "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+            "decisionIds": [
+              "D-037"
+            ]
           }
         },
         "font.size.title": {
@@ -7117,13 +7119,15 @@
           "css": "24px",
           "aliasOf": null,
           "description": "Page titles above h1 on the portal (D-037).",
-          "status": "observed",
+          "status": "proposed",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-037",
           "eligibility": {
-            "action": "use",
-            "reason": "Use within the role's documented scope and restrictions.",
-            "decisionIds": []
+            "action": "use-and-report",
+            "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+            "decisionIds": [
+              "D-037"
+            ]
           }
         },
         "font.size.h1": {
@@ -7315,13 +7319,15 @@
           "css": "40px",
           "aliasOf": null,
           "description": null,
-          "status": "observed",
+          "status": "proposed",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-037",
           "eligibility": {
-            "action": "use",
-            "reason": "Use within the role's documented scope and restrictions.",
-            "decisionIds": []
+            "action": "use-and-report",
+            "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+            "decisionIds": [
+              "D-037"
+            ]
           }
         },
         "font.line-height.title": {
@@ -7333,13 +7339,15 @@
           "css": "32px",
           "aliasOf": null,
           "description": null,
-          "status": "observed",
+          "status": "proposed",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-037",
           "eligibility": {
-            "action": "use",
-            "reason": "Use within the role's documented scope and restrictions.",
-            "decisionIds": []
+            "action": "use-and-report",
+            "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+            "decisionIds": [
+              "D-037"
+            ]
           }
         },
         "font.line-height.h1": {
@@ -15213,13 +15221,15 @@
           "css": "32px",
           "aliasOf": null,
           "description": "Page heroes and metric figures on the portal (D-037).",
-          "status": "observed",
+          "status": "proposed",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-037",
           "eligibility": {
             "action": "historical-only",
             "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
-            "decisionIds": []
+            "decisionIds": [
+              "D-037"
+            ]
           }
         },
         "font.size.title": {
@@ -15231,13 +15241,15 @@
           "css": "24px",
           "aliasOf": null,
           "description": "Page titles above h1 on the portal (D-037).",
-          "status": "observed",
+          "status": "proposed",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-037",
           "eligibility": {
             "action": "historical-only",
             "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
-            "decisionIds": []
+            "decisionIds": [
+              "D-037"
+            ]
           }
         },
         "font.size.h1": {
@@ -15429,13 +15441,15 @@
           "css": "40px",
           "aliasOf": null,
           "description": null,
-          "status": "observed",
+          "status": "proposed",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-037",
           "eligibility": {
             "action": "historical-only",
             "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
-            "decisionIds": []
+            "decisionIds": [
+              "D-037"
+            ]
           }
         },
         "font.line-height.title": {
@@ -15447,13 +15461,15 @@
           "css": "32px",
           "aliasOf": null,
           "description": null,
-          "status": "observed",
+          "status": "proposed",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-037",
           "eligibility": {
             "action": "historical-only",
             "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
-            "decisionIds": []
+            "decisionIds": [
+              "D-037"
+            ]
           }
         },
         "font.line-height.h1": {
@@ -23387,13 +23403,15 @@
           "css": "32px",
           "aliasOf": null,
           "description": "Page heroes and metric figures on the portal (D-037).",
-          "status": "observed",
+          "status": "proposed",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-037",
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
-            "decisionIds": []
+            "decisionIds": [
+              "D-037"
+            ]
           }
         },
         "font.size.title": {
@@ -23405,13 +23423,15 @@
           "css": "24px",
           "aliasOf": null,
           "description": "Page titles above h1 on the portal (D-037).",
-          "status": "observed",
+          "status": "proposed",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-037",
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
-            "decisionIds": []
+            "decisionIds": [
+              "D-037"
+            ]
           }
         },
         "font.size.h1": {
@@ -23603,13 +23623,15 @@
           "css": "40px",
           "aliasOf": null,
           "description": null,
-          "status": "observed",
+          "status": "proposed",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-037",
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
-            "decisionIds": []
+            "decisionIds": [
+              "D-037"
+            ]
           }
         },
         "font.line-height.title": {
@@ -23621,13 +23643,15 @@
           "css": "32px",
           "aliasOf": null,
           "description": null,
-          "status": "observed",
+          "status": "proposed",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-037",
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
-            "decisionIds": []
+            "decisionIds": [
+              "D-037"
+            ]
           }
         },
         "font.line-height.h1": {

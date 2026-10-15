@@ -83,11 +83,15 @@ test("ids are unique, every contents link has a target, and nothing normative hi
   const idSet = new Set(ids);
   const toc = html.match(/<nav class="toc"[\s\S]*?<\/nav>/)[0];
   for (const m of toc.matchAll(/href="#([^"]+)"/g)) assert.ok(idSet.has(m[1]), `contents link #${m[1]}`);
-  const normativePages = [html, ...await Promise.all((await listFiles("dist/components", { filter: (file) => file.endsWith(".html") })).map(readText))];
-  for (const page of normativePages) for (const block of page.matchAll(/<details[\s\S]*?<\/details>/g)) {
+  // Normative content lives on the hub and every page it moved to: reference
+  // detail pages, component pages and the token pages. None may hide it in <details>.
+  const htmlFiles = async (dir) => listFiles(dir, { filter: (file) => file.endsWith(".html") });
+  const normativeFiles = [...await htmlFiles("dist/reference"), ...await htmlFiles("dist/components"), ...await htmlFiles("dist/tokens")];
+  assert.ok(normativeFiles.length > 400, `normative pages scanned: ${normativeFiles.length}`);
+  for (const file of normativeFiles) for (const block of (await readText(file)).matchAll(/<details[\s\S]*?<\/details>/g)) {
     const inner = block[0];
     if (inner.includes('class="toc"') || inner.includes("<summary>Contents")) continue;
-    assert.doesNotMatch(inner, /<h3|class="token-table"|class="matrix"|class="component"/, "normative content inside <details>");
+    assert.doesNotMatch(inner, /<h[1-6][\s>]|<table[\s>]|class="[^"]*(token-table|matrix|component)[^"]*"/, `normative content inside <details> in ${file}`);
   }
   for (const id of ["identity", "foundations", "accessibility", "portability", "decisions"]) assert.ok(idSet.has(anchorFor.doc(id)), id);
   assert.ok(idSet.has("for-agents") && idSet.has("references") && idSet.has("contrast-report") && idSet.has("coverage-ledger"));

@@ -176,7 +176,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/breakpoint/lg",
-            "line": 485
+            "line": 517
           },
           "provenance": null,
           "aliases": [],
@@ -211,7 +211,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/breakpoint/md",
-            "line": 479
+            "line": 511
           },
           "provenance": null,
           "aliases": [],
@@ -246,7 +246,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/breakpoint/sm",
-            "line": 473
+            "line": 505
           },
           "provenance": null,
           "aliases": [],
@@ -281,7 +281,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/breakpoint/xs",
-            "line": 466
+            "line": 498
           },
           "provenance": null,
           "aliases": [],
@@ -20223,7 +20223,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/density/comfortable/control-height",
-            "line": 321
+            "line": 353
           },
           "provenance": null,
           "aliases": [],
@@ -20272,7 +20272,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/density/comfortable/control-padding-x",
-            "line": 333
+            "line": 365
           },
           "provenance": null,
           "aliases": [],
@@ -20307,7 +20307,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/density/comfortable/gap",
-            "line": 345
+            "line": 377
           },
           "provenance": null,
           "aliases": [],
@@ -20342,7 +20342,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/density/comfortable/icon",
-            "line": 339
+            "line": 371
           },
           "provenance": null,
           "aliases": [],
@@ -20377,7 +20377,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/density/comfortable/row-height",
-            "line": 327
+            "line": 359
           },
           "provenance": null,
           "aliases": [],
@@ -20412,7 +20412,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/density/compact/control-height",
-            "line": 289
+            "line": 321
           },
           "provenance": null,
           "aliases": [],
@@ -20461,7 +20461,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/density/compact/control-padding-x",
-            "line": 301
+            "line": 333
           },
           "provenance": null,
           "aliases": [],
@@ -20498,7 +20498,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/density/compact/gap",
-            "line": 313
+            "line": 345
           },
           "provenance": null,
           "aliases": [],
@@ -20533,7 +20533,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/density/compact/icon",
-            "line": 307
+            "line": 339
           },
           "provenance": null,
           "aliases": [],
@@ -20568,7 +20568,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/density/compact/row-height",
-            "line": 295
+            "line": 327
           },
           "provenance": null,
           "aliases": [],
@@ -20604,7 +20604,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/focus/offset",
-            "line": 373
+            "line": 405
           },
           "provenance": null,
           "aliases": [],
@@ -20659,7 +20659,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/focus/offset-container",
-            "line": 381
+            "line": 413
           },
           "provenance": null,
           "aliases": [],
@@ -20695,7 +20695,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/focus/offset-invalid",
-            "line": 389
+            "line": 421
           },
           "provenance": null,
           "aliases": [],
@@ -20730,7 +20730,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/focus/ring",
-            "line": 355
+            "line": 387
           },
           "provenance": null,
           "aliases": [
@@ -20771,7 +20771,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/focus/ring-container",
-            "line": 364
+            "line": 396
           },
           "provenance": null,
           "aliases": [
@@ -20858,7 +20858,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/letter-spacing/terminal",
-            "line": 276
+            "line": 308
           },
           "provenance": null,
           "aliases": [],
@@ -20893,7 +20893,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/caption",
-            "line": 267
+            "line": 299
           },
           "provenance": null,
           "aliases": [],
@@ -20928,7 +20928,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/code",
-            "line": 225
+            "line": 241
           },
           "provenance": null,
           "aliases": [],
@@ -20954,19 +20954,26 @@
           "css": "40px",
           "variable": "--font-line-height-display",
           "description": null,
-          "status": "observed",
+          "status": "proposed",
           "deprecated": false,
           "eligibility": {
-            "action": "use",
-            "reason": "Use within the role's documented scope and restrictions.",
-            "decisionIds": []
+            "action": "use-and-report",
+            "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+            "decisionIds": [
+              "D-037"
+            ]
           },
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/display",
-            "line": 237
+            "line": 253
           },
-          "provenance": null,
+          "provenance": {
+            "status": "proposed",
+            "approval": {
+              "decision": "D-037"
+            }
+          },
           "aliases": [],
           "usedByAliases": [],
           "unmappedPorts": [
@@ -20999,7 +21006,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/h1",
-            "line": 249
+            "line": 281
           },
           "provenance": null,
           "aliases": [],
@@ -21035,7 +21042,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/h2",
-            "line": 255
+            "line": 287
           },
           "provenance": null,
           "aliases": [],
@@ -21071,7 +21078,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/h3",
-            "line": 261
+            "line": 293
           },
           "provenance": null,
           "aliases": [],
@@ -21107,7 +21114,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/reading",
-            "line": 219
+            "line": 235
           },
           "provenance": null,
           "aliases": [],
@@ -21143,7 +21150,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/terminal",
-            "line": 231
+            "line": 247
           },
           "provenance": null,
           "aliases": [],
@@ -21168,19 +21175,26 @@
           "css": "32px",
           "variable": "--font-line-height-title",
           "description": null,
-          "status": "observed",
+          "status": "proposed",
           "deprecated": false,
           "eligibility": {
-            "action": "use",
-            "reason": "Use within the role's documented scope and restrictions.",
-            "decisionIds": []
+            "action": "use-and-report",
+            "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+            "decisionIds": [
+              "D-037"
+            ]
           },
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/title",
-            "line": 243
+            "line": 267
           },
-          "provenance": null,
+          "provenance": {
+            "status": "proposed",
+            "approval": {
+              "decision": "D-037"
+            }
+          },
           "aliases": [],
           "usedByAliases": [],
           "unmappedPorts": [
@@ -21213,7 +21227,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/ui-lg",
-            "line": 213
+            "line": 229
           },
           "provenance": null,
           "aliases": [],
@@ -21248,7 +21262,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/ui-md",
-            "line": 207
+            "line": 223
           },
           "provenance": null,
           "aliases": [],
@@ -21286,7 +21300,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/ui-sm",
-            "line": 201
+            "line": 217
           },
           "provenance": null,
           "aliases": [],
@@ -21324,7 +21338,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/size/caption",
-            "line": 191
+            "line": 207
           },
           "provenance": null,
           "aliases": [],
@@ -21385,19 +21399,26 @@
           "css": "32px",
           "variable": "--font-size-display",
           "description": "Page heroes and metric figures on the portal (D-037).",
-          "status": "observed",
+          "status": "proposed",
           "deprecated": false,
           "eligibility": {
-            "action": "use",
-            "reason": "Use within the role's documented scope and restrictions.",
-            "decisionIds": []
+            "action": "use-and-report",
+            "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+            "decisionIds": [
+              "D-037"
+            ]
           },
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/size/display",
             "line": 159
           },
-          "provenance": null,
+          "provenance": {
+            "status": "proposed",
+            "approval": {
+              "decision": "D-037"
+            }
+          },
           "aliases": [],
           "usedByAliases": [],
           "unmappedPorts": [
@@ -21430,7 +21451,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/size/h1",
-            "line": 173
+            "line": 189
           },
           "provenance": null,
           "aliases": [],
@@ -21466,7 +21487,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/size/h2",
-            "line": 179
+            "line": 195
           },
           "provenance": null,
           "aliases": [],
@@ -21503,7 +21524,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/size/h3",
-            "line": 185
+            "line": 201
           },
           "provenance": null,
           "aliases": [],
@@ -21601,19 +21622,26 @@
           "css": "24px",
           "variable": "--font-size-title",
           "description": "Page titles above h1 on the portal (D-037).",
-          "status": "observed",
+          "status": "proposed",
           "deprecated": false,
           "eligibility": {
-            "action": "use",
-            "reason": "Use within the role's documented scope and restrictions.",
-            "decisionIds": []
+            "action": "use-and-report",
+            "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+            "decisionIds": [
+              "D-037"
+            ]
           },
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/size/title",
-            "line": 166
+            "line": 174
           },
-          "provenance": null,
+          "provenance": {
+            "status": "proposed",
+            "approval": {
+              "decision": "D-037"
+            }
+          },
           "aliases": [],
           "usedByAliases": [],
           "unmappedPorts": [
@@ -21830,7 +21858,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/icon/size/lg",
-            "line": 508
+            "line": 540
           },
           "provenance": null,
           "aliases": [],
@@ -21865,7 +21893,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/icon/size/md",
-            "line": 502
+            "line": 534
           },
           "provenance": null,
           "aliases": [],
@@ -21903,7 +21931,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/icon/size/sm",
-            "line": 496
+            "line": 528
           },
           "provenance": null,
           "aliases": [],
@@ -21938,7 +21966,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/icon/stroke",
-            "line": 515
+            "line": 547
           },
           "provenance": null,
           "aliases": [],
@@ -21973,7 +22001,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/layout/app-max",
-            "line": 455
+            "line": 487
           },
           "provenance": null,
           "aliases": [],
@@ -22008,7 +22036,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/layout/content-max",
-            "line": 447
+            "line": 479
           },
           "provenance": null,
           "aliases": [],
@@ -22044,7 +22072,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/layout/measure",
-            "line": 442
+            "line": 474
           },
           "provenance": null,
           "aliases": [],
@@ -22080,7 +22108,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/motion/duration/base",
-            "line": 407
+            "line": 439
           },
           "provenance": null,
           "aliases": [],
@@ -22115,7 +22143,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/motion/duration/fast",
-            "line": 401
+            "line": 433
           },
           "provenance": null,
           "aliases": [],
@@ -22150,7 +22178,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/motion/duration/slow",
-            "line": 413
+            "line": 445
           },
           "provenance": null,
           "aliases": [],
@@ -22377,7 +22405,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/shadow/floating",
-            "line": 424
+            "line": 456
           },
           "provenance": null,
           "aliases": [
@@ -22830,7 +22858,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/z/canvas",
-            "line": 526
+            "line": 558
           },
           "provenance": null,
           "aliases": [],
@@ -22865,7 +22893,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/z/dialog",
-            "line": 538
+            "line": 570
           },
           "provenance": null,
           "aliases": [],
@@ -22902,7 +22930,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/z/drawer",
-            "line": 535
+            "line": 567
           },
           "provenance": null,
           "aliases": [],
@@ -22939,7 +22967,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/z/popover",
-            "line": 532
+            "line": 564
           },
           "provenance": null,
           "aliases": [],
@@ -22976,7 +23004,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/z/raised",
-            "line": 529
+            "line": 561
           },
           "provenance": null,
           "aliases": [],
@@ -23011,7 +23039,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/z/skip-link",
-            "line": 544
+            "line": 576
           },
           "provenance": null,
           "aliases": [],
@@ -23046,7 +23074,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/z/toast",
-            "line": 541
+            "line": 573
           },
           "provenance": null,
           "aliases": [],
@@ -23172,7 +23200,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/breakpoint/lg",
-            "line": 485
+            "line": 517
           },
           "provenance": null,
           "aliases": [],
@@ -23197,7 +23225,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/breakpoint/md",
-            "line": 479
+            "line": 511
           },
           "provenance": null,
           "aliases": [],
@@ -23222,7 +23250,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/breakpoint/sm",
-            "line": 473
+            "line": 505
           },
           "provenance": null,
           "aliases": [],
@@ -23247,7 +23275,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/breakpoint/xs",
-            "line": 466
+            "line": 498
           },
           "provenance": null,
           "aliases": [],
@@ -37196,7 +37224,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/density/comfortable/control-height",
-            "line": 321
+            "line": 353
           },
           "provenance": null,
           "aliases": [],
@@ -37235,7 +37263,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/density/comfortable/control-padding-x",
-            "line": 333
+            "line": 365
           },
           "provenance": null,
           "aliases": [],
@@ -37260,7 +37288,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/density/comfortable/gap",
-            "line": 345
+            "line": 377
           },
           "provenance": null,
           "aliases": [],
@@ -37285,7 +37313,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/density/comfortable/icon",
-            "line": 339
+            "line": 371
           },
           "provenance": null,
           "aliases": [],
@@ -37310,7 +37338,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/density/comfortable/row-height",
-            "line": 327
+            "line": 359
           },
           "provenance": null,
           "aliases": [],
@@ -37335,7 +37363,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/density/compact/control-height",
-            "line": 289
+            "line": 321
           },
           "provenance": null,
           "aliases": [],
@@ -37374,7 +37402,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/density/compact/control-padding-x",
-            "line": 301
+            "line": 333
           },
           "provenance": null,
           "aliases": [],
@@ -37399,7 +37427,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/density/compact/gap",
-            "line": 313
+            "line": 345
           },
           "provenance": null,
           "aliases": [],
@@ -37424,7 +37452,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/density/compact/icon",
-            "line": 307
+            "line": 339
           },
           "provenance": null,
           "aliases": [],
@@ -37449,7 +37477,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/density/compact/row-height",
-            "line": 295
+            "line": 327
           },
           "provenance": null,
           "aliases": [],
@@ -37474,7 +37502,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/focus/offset",
-            "line": 373
+            "line": 405
           },
           "provenance": null,
           "aliases": [],
@@ -37519,7 +37547,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/focus/offset-container",
-            "line": 381
+            "line": 413
           },
           "provenance": null,
           "aliases": [],
@@ -37544,7 +37572,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/focus/offset-invalid",
-            "line": 389
+            "line": 421
           },
           "provenance": null,
           "aliases": [],
@@ -37569,7 +37597,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/focus/ring",
-            "line": 355
+            "line": 387
           },
           "provenance": null,
           "aliases": [
@@ -37600,7 +37628,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/focus/ring-container",
-            "line": 364
+            "line": 396
           },
           "provenance": null,
           "aliases": [
@@ -37653,7 +37681,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/letter-spacing/terminal",
-            "line": 276
+            "line": 308
           },
           "provenance": null,
           "aliases": [],
@@ -37678,7 +37706,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/caption",
-            "line": 267
+            "line": 299
           },
           "provenance": null,
           "aliases": [],
@@ -37703,7 +37731,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/code",
-            "line": 225
+            "line": 241
           },
           "provenance": null,
           "aliases": [],
@@ -37718,19 +37746,26 @@
           "css": "40px",
           "variable": "--font-line-height-display",
           "description": null,
-          "status": "observed",
+          "status": "proposed",
           "deprecated": false,
           "eligibility": {
             "action": "historical-only",
             "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
-            "decisionIds": []
+            "decisionIds": [
+              "D-037"
+            ]
           },
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/display",
-            "line": 237
+            "line": 253
           },
-          "provenance": null,
+          "provenance": {
+            "status": "proposed",
+            "approval": {
+              "decision": "D-037"
+            }
+          },
           "aliases": [],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -37753,7 +37788,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/h1",
-            "line": 249
+            "line": 281
           },
           "provenance": null,
           "aliases": [],
@@ -37778,7 +37813,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/h2",
-            "line": 255
+            "line": 287
           },
           "provenance": null,
           "aliases": [],
@@ -37803,7 +37838,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/h3",
-            "line": 261
+            "line": 293
           },
           "provenance": null,
           "aliases": [],
@@ -37828,7 +37863,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/reading",
-            "line": 219
+            "line": 235
           },
           "provenance": null,
           "aliases": [],
@@ -37853,7 +37888,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/terminal",
-            "line": 231
+            "line": 247
           },
           "provenance": null,
           "aliases": [],
@@ -37868,19 +37903,26 @@
           "css": "32px",
           "variable": "--font-line-height-title",
           "description": null,
-          "status": "observed",
+          "status": "proposed",
           "deprecated": false,
           "eligibility": {
             "action": "historical-only",
             "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
-            "decisionIds": []
+            "decisionIds": [
+              "D-037"
+            ]
           },
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/title",
-            "line": 243
+            "line": 267
           },
-          "provenance": null,
+          "provenance": {
+            "status": "proposed",
+            "approval": {
+              "decision": "D-037"
+            }
+          },
           "aliases": [],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -37903,7 +37945,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/ui-lg",
-            "line": 213
+            "line": 229
           },
           "provenance": null,
           "aliases": [],
@@ -37928,7 +37970,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/ui-md",
-            "line": 207
+            "line": 223
           },
           "provenance": null,
           "aliases": [],
@@ -37956,7 +37998,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/ui-sm",
-            "line": 201
+            "line": 217
           },
           "provenance": null,
           "aliases": [],
@@ -37984,7 +38026,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/size/caption",
-            "line": 191
+            "line": 207
           },
           "provenance": null,
           "aliases": [],
@@ -38024,19 +38066,26 @@
           "css": "32px",
           "variable": "--font-size-display",
           "description": "Page heroes and metric figures on the portal (D-037).",
-          "status": "observed",
+          "status": "proposed",
           "deprecated": false,
           "eligibility": {
             "action": "historical-only",
             "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
-            "decisionIds": []
+            "decisionIds": [
+              "D-037"
+            ]
           },
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/size/display",
             "line": 159
           },
-          "provenance": null,
+          "provenance": {
+            "status": "proposed",
+            "approval": {
+              "decision": "D-037"
+            }
+          },
           "aliases": [],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -38059,7 +38108,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/size/h1",
-            "line": 173
+            "line": 189
           },
           "provenance": null,
           "aliases": [],
@@ -38084,7 +38133,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/size/h2",
-            "line": 179
+            "line": 195
           },
           "provenance": null,
           "aliases": [],
@@ -38111,7 +38160,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/size/h3",
-            "line": 185
+            "line": 201
           },
           "provenance": null,
           "aliases": [],
@@ -38176,19 +38225,26 @@
           "css": "24px",
           "variable": "--font-size-title",
           "description": "Page titles above h1 on the portal (D-037).",
-          "status": "observed",
+          "status": "proposed",
           "deprecated": false,
           "eligibility": {
             "action": "historical-only",
             "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
-            "decisionIds": []
+            "decisionIds": [
+              "D-037"
+            ]
           },
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/size/title",
-            "line": 166
+            "line": 174
           },
-          "provenance": null,
+          "provenance": {
+            "status": "proposed",
+            "approval": {
+              "decision": "D-037"
+            }
+          },
           "aliases": [],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -38344,7 +38400,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/icon/size/lg",
-            "line": 508
+            "line": 540
           },
           "provenance": null,
           "aliases": [],
@@ -38369,7 +38425,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/icon/size/md",
-            "line": 502
+            "line": 534
           },
           "provenance": null,
           "aliases": [],
@@ -38397,7 +38453,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/icon/size/sm",
-            "line": 496
+            "line": 528
           },
           "provenance": null,
           "aliases": [],
@@ -38422,7 +38478,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/icon/stroke",
-            "line": 515
+            "line": 547
           },
           "provenance": null,
           "aliases": [],
@@ -38447,7 +38503,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/layout/app-max",
-            "line": 455
+            "line": 487
           },
           "provenance": null,
           "aliases": [],
@@ -38472,7 +38528,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/layout/content-max",
-            "line": 447
+            "line": 479
           },
           "provenance": null,
           "aliases": [],
@@ -38497,7 +38553,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/layout/measure",
-            "line": 442
+            "line": 474
           },
           "provenance": null,
           "aliases": [],
@@ -38522,7 +38578,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/motion/duration/base",
-            "line": 407
+            "line": 439
           },
           "provenance": null,
           "aliases": [],
@@ -38547,7 +38603,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/motion/duration/fast",
-            "line": 401
+            "line": 433
           },
           "provenance": null,
           "aliases": [],
@@ -38572,7 +38628,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/motion/duration/slow",
-            "line": 413
+            "line": 445
           },
           "provenance": null,
           "aliases": [],
@@ -38642,7 +38698,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/shadow/floating",
-            "line": 424
+            "line": 456
           },
           "provenance": null,
           "aliases": [
@@ -38984,7 +39040,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/z/canvas",
-            "line": 526
+            "line": 558
           },
           "provenance": null,
           "aliases": [],
@@ -39009,7 +39065,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/z/dialog",
-            "line": 538
+            "line": 570
           },
           "provenance": null,
           "aliases": [],
@@ -39036,7 +39092,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/z/drawer",
-            "line": 535
+            "line": 567
           },
           "provenance": null,
           "aliases": [],
@@ -39063,7 +39119,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/z/popover",
-            "line": 532
+            "line": 564
           },
           "provenance": null,
           "aliases": [],
@@ -39090,7 +39146,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/z/raised",
-            "line": 529
+            "line": 561
           },
           "provenance": null,
           "aliases": [],
@@ -39115,7 +39171,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/z/skip-link",
-            "line": 544
+            "line": 576
           },
           "provenance": null,
           "aliases": [],
@@ -39140,7 +39196,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/z/toast",
-            "line": 541
+            "line": 573
           },
           "provenance": null,
           "aliases": [],
@@ -39256,7 +39312,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/breakpoint/lg",
-            "line": 485
+            "line": 517
           },
           "provenance": null,
           "aliases": [],
@@ -39281,7 +39337,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/breakpoint/md",
-            "line": 479
+            "line": 511
           },
           "provenance": null,
           "aliases": [],
@@ -39306,7 +39362,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/breakpoint/sm",
-            "line": 473
+            "line": 505
           },
           "provenance": null,
           "aliases": [],
@@ -39331,7 +39387,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/breakpoint/xs",
-            "line": 466
+            "line": 498
           },
           "provenance": null,
           "aliases": [],
@@ -53463,7 +53519,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/density/comfortable/control-height",
-            "line": 321
+            "line": 353
           },
           "provenance": null,
           "aliases": [],
@@ -53502,7 +53558,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/density/comfortable/control-padding-x",
-            "line": 333
+            "line": 365
           },
           "provenance": null,
           "aliases": [],
@@ -53527,7 +53583,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/density/comfortable/gap",
-            "line": 345
+            "line": 377
           },
           "provenance": null,
           "aliases": [],
@@ -53552,7 +53608,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/density/comfortable/icon",
-            "line": 339
+            "line": 371
           },
           "provenance": null,
           "aliases": [],
@@ -53577,7 +53633,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/density/comfortable/row-height",
-            "line": 327
+            "line": 359
           },
           "provenance": null,
           "aliases": [],
@@ -53602,7 +53658,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/density/compact/control-height",
-            "line": 289
+            "line": 321
           },
           "provenance": null,
           "aliases": [],
@@ -53641,7 +53697,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/density/compact/control-padding-x",
-            "line": 301
+            "line": 333
           },
           "provenance": null,
           "aliases": [],
@@ -53666,7 +53722,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/density/compact/gap",
-            "line": 313
+            "line": 345
           },
           "provenance": null,
           "aliases": [],
@@ -53691,7 +53747,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/density/compact/icon",
-            "line": 307
+            "line": 339
           },
           "provenance": null,
           "aliases": [],
@@ -53716,7 +53772,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/density/compact/row-height",
-            "line": 295
+            "line": 327
           },
           "provenance": null,
           "aliases": [],
@@ -53741,7 +53797,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/focus/offset",
-            "line": 373
+            "line": 405
           },
           "provenance": null,
           "aliases": [],
@@ -53786,7 +53842,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/focus/offset-container",
-            "line": 381
+            "line": 413
           },
           "provenance": null,
           "aliases": [],
@@ -53811,7 +53867,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/focus/offset-invalid",
-            "line": 389
+            "line": 421
           },
           "provenance": null,
           "aliases": [],
@@ -53836,7 +53892,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/focus/ring",
-            "line": 355
+            "line": 387
           },
           "provenance": null,
           "aliases": [
@@ -53867,7 +53923,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/focus/ring-container",
-            "line": 364
+            "line": 396
           },
           "provenance": null,
           "aliases": [
@@ -53920,7 +53976,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/letter-spacing/terminal",
-            "line": 276
+            "line": 308
           },
           "provenance": null,
           "aliases": [],
@@ -53945,7 +54001,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/caption",
-            "line": 267
+            "line": 299
           },
           "provenance": null,
           "aliases": [],
@@ -53970,7 +54026,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/code",
-            "line": 225
+            "line": 241
           },
           "provenance": null,
           "aliases": [],
@@ -53985,19 +54041,26 @@
           "css": "40px",
           "variable": "--font-line-height-display",
           "description": null,
-          "status": "observed",
+          "status": "proposed",
           "deprecated": false,
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
-            "decisionIds": []
+            "decisionIds": [
+              "D-037"
+            ]
           },
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/display",
-            "line": 237
+            "line": 253
           },
-          "provenance": null,
+          "provenance": {
+            "status": "proposed",
+            "approval": {
+              "decision": "D-037"
+            }
+          },
           "aliases": [],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -54020,7 +54083,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/h1",
-            "line": 249
+            "line": 281
           },
           "provenance": null,
           "aliases": [],
@@ -54045,7 +54108,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/h2",
-            "line": 255
+            "line": 287
           },
           "provenance": null,
           "aliases": [],
@@ -54070,7 +54133,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/h3",
-            "line": 261
+            "line": 293
           },
           "provenance": null,
           "aliases": [],
@@ -54095,7 +54158,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/reading",
-            "line": 219
+            "line": 235
           },
           "provenance": null,
           "aliases": [],
@@ -54120,7 +54183,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/terminal",
-            "line": 231
+            "line": 247
           },
           "provenance": null,
           "aliases": [],
@@ -54135,19 +54198,26 @@
           "css": "32px",
           "variable": "--font-line-height-title",
           "description": null,
-          "status": "observed",
+          "status": "proposed",
           "deprecated": false,
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
-            "decisionIds": []
+            "decisionIds": [
+              "D-037"
+            ]
           },
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/title",
-            "line": 243
+            "line": 267
           },
-          "provenance": null,
+          "provenance": {
+            "status": "proposed",
+            "approval": {
+              "decision": "D-037"
+            }
+          },
           "aliases": [],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -54170,7 +54240,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/ui-lg",
-            "line": 213
+            "line": 229
           },
           "provenance": null,
           "aliases": [],
@@ -54195,7 +54265,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/ui-md",
-            "line": 207
+            "line": 223
           },
           "provenance": null,
           "aliases": [],
@@ -54223,7 +54293,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/line-height/ui-sm",
-            "line": 201
+            "line": 217
           },
           "provenance": null,
           "aliases": [],
@@ -54251,7 +54321,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/size/caption",
-            "line": 191
+            "line": 207
           },
           "provenance": null,
           "aliases": [],
@@ -54291,19 +54361,26 @@
           "css": "32px",
           "variable": "--font-size-display",
           "description": "Page heroes and metric figures on the portal (D-037).",
-          "status": "observed",
+          "status": "proposed",
           "deprecated": false,
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
-            "decisionIds": []
+            "decisionIds": [
+              "D-037"
+            ]
           },
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/size/display",
             "line": 159
           },
-          "provenance": null,
+          "provenance": {
+            "status": "proposed",
+            "approval": {
+              "decision": "D-037"
+            }
+          },
           "aliases": [],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -54326,7 +54403,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/size/h1",
-            "line": 173
+            "line": 189
           },
           "provenance": null,
           "aliases": [],
@@ -54351,7 +54428,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/size/h2",
-            "line": 179
+            "line": 195
           },
           "provenance": null,
           "aliases": [],
@@ -54378,7 +54455,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/size/h3",
-            "line": 185
+            "line": 201
           },
           "provenance": null,
           "aliases": [],
@@ -54443,19 +54520,26 @@
           "css": "24px",
           "variable": "--font-size-title",
           "description": "Page titles above h1 on the portal (D-037).",
-          "status": "observed",
+          "status": "proposed",
           "deprecated": false,
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
-            "decisionIds": []
+            "decisionIds": [
+              "D-037"
+            ]
           },
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/font/size/title",
-            "line": 166
+            "line": 174
           },
-          "provenance": null,
+          "provenance": {
+            "status": "proposed",
+            "approval": {
+              "decision": "D-037"
+            }
+          },
           "aliases": [],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -54611,7 +54695,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/icon/size/lg",
-            "line": 508
+            "line": 540
           },
           "provenance": null,
           "aliases": [],
@@ -54636,7 +54720,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/icon/size/md",
-            "line": 502
+            "line": 534
           },
           "provenance": null,
           "aliases": [],
@@ -54664,7 +54748,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/icon/size/sm",
-            "line": 496
+            "line": 528
           },
           "provenance": null,
           "aliases": [],
@@ -54689,7 +54773,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/icon/stroke",
-            "line": 515
+            "line": 547
           },
           "provenance": null,
           "aliases": [],
@@ -54714,7 +54798,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/layout/app-max",
-            "line": 455
+            "line": 487
           },
           "provenance": null,
           "aliases": [],
@@ -54739,7 +54823,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/layout/content-max",
-            "line": 447
+            "line": 479
           },
           "provenance": null,
           "aliases": [],
@@ -54764,7 +54848,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/layout/measure",
-            "line": 442
+            "line": 474
           },
           "provenance": null,
           "aliases": [],
@@ -54789,7 +54873,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/motion/duration/base",
-            "line": 407
+            "line": 439
           },
           "provenance": null,
           "aliases": [],
@@ -54814,7 +54898,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/motion/duration/fast",
-            "line": 401
+            "line": 433
           },
           "provenance": null,
           "aliases": [],
@@ -54839,7 +54923,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/motion/duration/slow",
-            "line": 413
+            "line": 445
           },
           "provenance": null,
           "aliases": [],
@@ -54909,7 +54993,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/shadow/floating",
-            "line": 424
+            "line": 456
           },
           "provenance": null,
           "aliases": [
@@ -55251,7 +55335,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/z/canvas",
-            "line": 526
+            "line": 558
           },
           "provenance": null,
           "aliases": [],
@@ -55276,7 +55360,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/z/dialog",
-            "line": 538
+            "line": 570
           },
           "provenance": null,
           "aliases": [],
@@ -55303,7 +55387,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/z/drawer",
-            "line": 535
+            "line": 567
           },
           "provenance": null,
           "aliases": [],
@@ -55330,7 +55414,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/z/popover",
-            "line": 532
+            "line": 564
           },
           "provenance": null,
           "aliases": [],
@@ -55357,7 +55441,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/z/raised",
-            "line": 529
+            "line": 561
           },
           "provenance": null,
           "aliases": [],
@@ -55382,7 +55466,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/z/skip-link",
-            "line": 544
+            "line": 576
           },
           "provenance": null,
           "aliases": [],
@@ -55407,7 +55491,7 @@
           "source": {
             "file": "tokens/foundations.tokens.json",
             "pointer": "/z/toast",
-            "line": 541
+            "line": 573
           },
           "provenance": null,
           "aliases": [],

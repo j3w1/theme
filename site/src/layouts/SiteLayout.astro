@@ -46,6 +46,12 @@ const icons = {
   ports: "M3 8h10M9 4l4 4l-4 4",
   releases: "M8 2.5a5.5 5.5 0 1 0 0 11a5.5 5.5 0 1 0 0-11zM8 5v3l2 2",
   reference: "M3 2.5h10v11H3zM6 2.5v11M8 5.5h3M8 8h3",
+  workbench: "M2.5 3h11v7.5h-11zM5.5 13.5h5M8 10.5v3",
+  builder: "M2.5 3h11v3.5h-11zM2.5 9.5h11V13h-11z",
+  kit: "M2.5 5.5L8 2.5l5.5 3v5L8 13.5l-5.5-3zM2.5 5.5L8 8.5l5.5-3M8 8.5v5",
+  recipes: "M3.5 2.5h7l2 2v9h-9zM5.5 7h5M5.5 9.5h5M5.5 12h3",
+  figma: "M2.5 5.5h4v5h-4zM9.5 5.5h4v5h-4zM6.5 8h3",
+  report: "M3.5 13.5v-11M3.5 3h8l-2 2.5l2 2.5h-8",
 };
 
 type Entry = { path: string; label: string; icon?: keyof typeof icons; children?: Entry[] };
@@ -56,12 +62,12 @@ const navigation: Entry[] = [
   { path: "patterns/", label: "Patterns", icon: "patterns" },
   { path: "tokens/", label: "Tokens", icon: "tokens" },
   { path: "tools/", label: "Tools", icon: "tools", children: [
-    { path: "workbench/", label: "Workbench" },
-    { path: "builder/", label: "Form builder" },
-    { path: "kit/", label: "Task kit" },
-    { path: "recipes/", label: "Recipes" },
-    { path: "figma/", label: "Figma bridge" },
-    { path: "report/", label: "Report an issue" },
+    { path: "workbench/", icon: "workbench", label: "Workbench" },
+    { path: "builder/", icon: "builder", label: "Form builder" },
+    { path: "kit/", icon: "kit", label: "Task kit" },
+    { path: "recipes/", icon: "recipes", label: "Recipes" },
+    { path: "figma/", icon: "figma", label: "Figma bridge" },
+    { path: "report/", icon: "report", label: "Report an issue" },
   ] },
   { path: "implement/", label: "Implement", icon: "implement" },
   { path: "agents/", label: "For agents", icon: "agents" },
@@ -153,7 +159,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
               <span class="sidebar-nav-label">{entry.label}</span>
             </a>
             {entry.children && open(entry) && <ul class="sidebar-nav-list sidebar-nav-sublist">
-              {entry.children.map((child) => <li class="sidebar-nav-item"><a class="sidebar-nav-link" title={child.label} href={withBase(child.path)} aria-current={current(child.path)}><span class="sidebar-nav-icon" aria-hidden="true"><svg viewBox="0 0 16 16" width="16" height="16" focusable="false"><path d={icons.tools} /></svg></span><span class="sidebar-nav-label">{child.label}</span></a></li>)}
+              {entry.children.map((child) => <li class="sidebar-nav-item"><a class="sidebar-nav-link" title={child.label} href={withBase(child.path)} aria-current={current(child.path)}><span class="sidebar-nav-icon" aria-hidden="true"><svg viewBox="0 0 16 16" width="16" height="16" focusable="false"><path d={icons[child.icon ?? "tools"]} /></svg></span><span class="sidebar-nav-label">{child.label}</span></a></li>)}
             </ul>}
           </li>)}
         </ul>

@@ -25,6 +25,19 @@ export const buildFigmaPayload = async (source, roles = FIGMA_SAMPLE_ROLES) => {
     variables.set(id, { id, name: id.replaceAll(".", "/"), type, value: token.aliasOf ? { alias: token.aliasOf } : value, resolvedValue: value, scopes, dependencyOnly: primitive, eligibility: token.eligibility }); return true;
   };
   for (const id of [...new Set(roles)].sort()) map(id);
-  const payload = { schemaVersion: 1, mappingVersion: FIGMA_MAPPING_VERSION, revision: source.revision, themeVersion: tokens.version, sourceDigests: { "exports/tokens.resolved.json": sha256(bytes) }, profile: "default", collection: "j3w1/theme/default/v1", mode: "Default", variables: [...variables.values()], unsupported, excludedProfiles: Object.entries(tokens.profiles).filter(([id]) => id !== "default").map(([id, item]) => ({ id, status: item.status, reason: "Not imported or promoted to a Figma mode." })), limits: ["One collection and its existing single default mode. Additional modes are rejected.", "Only the requested roles and alias dependencies are included. Use --roles for an explicit wider selection.", "Figma stores color channel numbers using its API representation; the receipt records actual readback, with source resolved values retained for comparison.", "Fonts, typography composites, shadows, borders and other composite types are not imported.", "Local file Variables API permission is required. Team library publishing and paid-plan features are not assumed.", "One-way import only. No document-to-token writeback."] };
+  const payload = {
+    schemaVersion: 1,
+    mappingVersion: FIGMA_MAPPING_VERSION,
+    revision: source.revision,
+    themeVersion: tokens.version,
+    sourceDigests: { "exports/tokens.resolved.json": sha256(bytes) },
+    profile: "default",
+    collection: "j3w1/theme/default/v1",
+    mode: "Default",
+    variables: [...variables.values()],
+    unsupported,
+    excludedProfiles: Object.entries(tokens.profiles).filter(([id]) => id !== "default").map(([id, item]) => ({ id, status: item.status, reason: "Not imported or promoted to a Figma mode." })),
+    limits: ["One collection and its existing single default mode. Additional modes are rejected.", "Only the requested roles and alias dependencies are included. Use --roles for an explicit wider selection.", "Figma stores color channel numbers using its API representation; the receipt records actual readback, with source resolved values retained for comparison.", "Fonts, typography composites, shadows, borders and other composite types are not imported.", "Local file Variables API permission is required. Team library publishing and paid-plan features are not assumed.", "One-way import only. No document-to-token writeback."]
+  };
   return { ...payload, payloadDigest: sha256(stableJson(payload)) };
 };

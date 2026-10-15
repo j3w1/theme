@@ -79,7 +79,7 @@ Every interactive component declares which of these apply and demonstrates every
 | selected + focus-visible | the selection fill **and** the ordinary ring (rule 1; D-027) | both visible at once |
 | text selected, host keeps the text colour | translucent `interaction.text-selection.tint` (D-036), which also suits hosts that paint the fill over their content; where the host can recolour selected text, `interaction.text-selection.bg` with `interaction.text-selection.text` | the host's selection handles |
 | selected, container inactive | `interaction.selection.inactive-bg` with `interaction.selection.inactive-text`; no ring | lightness drop between the two fills |
-| disabled | `text.disabled`, `border.disabled`, `interaction.disabled.bg`; no hover or pressed styling; still focusable when `aria-disabled` | `disabled` / `aria-disabled`; `cursor: not-allowed`; never opacity |
+| disabled | `text.disabled`, `border.disabled`, `interaction.disabled.bg`; no hover or pressed styling; still focusable when `aria-disabled` | `disabled` / `aria-disabled`; `cursor: not-allowed` (rule 5) |
 | invalid | border → `status.danger.border` at 2px; message in `status.danger.text` with the `✕` glyph; `aria-invalid`; `aria-describedby` | border width 1 → 2px; glyph; message |
 | invalid + focus-visible | the 2px danger border **and** the ring in `interaction.focus.ring-container` at `focus.offset-invalid` | double boundary |
 | read-only | `text.default`; 1px dotted `border.divider` bottom; no fill; focusable; selectable | `readonly`; dotted edge |

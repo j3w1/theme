@@ -50,7 +50,6 @@ Focus is never lost and never invisible. The ring is defined once, in
 
 - `:focus` without `:focus-visible` draws nothing: pointer clicks stay quiet,
   keyboard focus stays visible.
-- A component that removes a host's default indicator must draw this one.
 - The state matrices render every declared combination, including
   `selected+focus-visible` and `invalid+focus-visible`, where rings disappear
   in practice.

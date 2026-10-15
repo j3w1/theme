@@ -1,12 +1,11 @@
 import { test, expect } from "./evidence-fixture.mjs";
 import { verification } from "./verification.mjs";
 import AxeBuilder from "@axe-core/playwright";
-import { createHash } from "node:crypto";
 import { renderPortCatalogue } from "../../scripts/lib/port-presentation.mjs";
 import { describePort } from "../../scripts/lib/port-capabilities.mjs";
 import { fixture } from "../fixtures/port-capabilities.mjs";
+import { sha256 } from "../../scripts/lib/fs.mjs";
 const { annotation } = verification({ component: "page", category: "enhancements", states: [], variants: [], note: "Real port catalogue, static JSON, served port files and their download links, navigation, narrow/no-JS access. A served file is not an import; synthetic state/evidence coverage is in source tests, not a real import claim." });
-const sha256 = (bytes) => "sha256-" + createHash("sha256").update(bytes).digest("base64");
 test("port explorer lists every published port with a working download and the contribution route", { annotation }, async ({ page }) => {
   await page.goto("ports/");
   const { ports } = await (await page.request.get("exports/port-capabilities.json")).json();

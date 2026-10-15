@@ -29,7 +29,7 @@ npm install --save-exact ./j3w1-ui-4.0.0.tgz
 `npm run ui:build` and `npm run ui:pack` build the same artifact here. Never
 pin a branch URL.
 
-## Import and register
+## Load one component
 
 ```js
 import '@j3w1/ui/tokens.css';
@@ -53,8 +53,9 @@ load the whole catalogue, for a gallery; ordinary apps import per component.
   monospace fonts.
 - Component CSS is scoped to its tag: load it after broad resets and avoid
   later selectors that restyle every button or input. Customise only through
-  the semantic token variables, layout and documented classes; a new literal
-  colour is a deviation to record, not a theme variant. Keep focus,
+  the semantic token variables, layout and documented classes. Scope any
+  deliberate host override and record it in your integration; a new literal
+  colour is a deviation, not a theme variant. Keep focus,
   selection, contrast and forced-colours behaviour.
 
 ### Themed choices, dates and native controls
@@ -92,9 +93,9 @@ controls.destroy();
 - Test the visible combobox or listbox: Playwright `selectOption` on the
   hidden native select does not exercise the rendered menu.
 
-## Frameworks
+## Vue 3 JavaScript SFCs
 
-**Vue 3.** Declare `j3w1-*` tags as Custom Elements in the Vite config, import
+Declare `j3w1-*` tags as Custom Elements in the Vite config, import
 registration in the browser entry or the SFC, and put the maintained native
 markup in the template:
 
@@ -114,6 +115,8 @@ properties (`:data.prop="series"`); bind values with the native input's
 `v-model`, not a component `modelValue`. A ref exposes the element's methods
 after mount. `apps/demo` is an independent package consumer.
 
+## React, Astro and plain HTML
+
 **React 19.** Use native JSX children and `defaultValue` for an uncontrolled
 input, a ref for complex properties and methods, and
 `addEventListener('j3w1-change', handler)` removed in the effect cleanup. A
@@ -127,7 +130,7 @@ never in server frontmatter.
 `<script type="module">`; `file:` URLs are not supported. A complete copy
 bundle has no bare runtime imports and does not depend on this website.
 
-## Attributes, events and forms
+## Attributes, properties and events
 
 - Boolean attributes work by presence: `disabled="false"` still disables.
   Remove the attribute or set `.disabled = false`.
@@ -139,10 +142,16 @@ bundle has no bare runtime imports and does not depend on this website.
   are bubbling, composed, cancelable `CustomEvent`s with a structured
   `detail`; cancelling one stops a default action only where its API says so,
   and never undoes a value change it reports.
+
+## Forms and validation
+
 - Keep each native control's `name`, label and form relationships. `FormData`
   holds successful native controls only. Validation rules, uploads,
   persistence and authorisation are your app's; use `checkValidity()` or
   `reportValidity()`.
+
+## Composition, lifecycle and styling
+
 - Light DOM: native children are the composition surface. Give every instance
   unique IDs and update each `for`, `aria-*` and fragment reference with
   them. Call `refresh()` after your framework replaces the children of a
@@ -167,9 +176,10 @@ the licence notices together; a kit gives each bundle its own directory.
 `index.json` is the discovery index, and `contracts/<id>.json` and
 `examples/<id>.json` keep small tasks bounded.
 
-## Upgrade
+## Troubleshooting and upgrades
 
-1. Install into a clean fixture and read the notes below and the changelog.
+1. Install into a clean fixture; read the notes below, the changelog and the
+   changed component contracts (`contracts/<id>.json`, the component pages).
 2. Exercise your real form and keyboard flows.
 3. Update the lockfile and your integration record together.
 

@@ -47,6 +47,12 @@ private comparison rendering resolve this CSS closure from the selected Git
 revision; relative imports stay inside that revision's style tree, and
 external, missing, cyclic and escaping dependencies fail closed.
 
+**Specimens.** State matrices, preview routes, recipes and the workbench share one parsed renderer:
+`scripts/lib/specimen-markup.mjs` for native state attributes and hidden-cell focus, and
+`scripts/lib/markup.mjs` for ID-reference rewriting. `site/workbench.json` binds controls to
+specimen parts under the closed choices in `schemas/playground.mjs`. Add bindings and coverage
+there; never write another specimen implementation.
+
 **Inventory.** The inventory is the finite list in `spec/inventory.json`.
 Package generation fails if an entry has no canonical contract or
 implementation mapping. Contract maturity stays separate from implementation

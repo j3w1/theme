@@ -8,7 +8,7 @@
    published file and an installed one come from one implementation; their
    mapping.json must agree with host.json key for key. */
 
-import { hexOf as tokenHex } from "./color.mjs";
+import { hexOf as tokenHex, rgb } from "./color.mjs";
 import { chatgptAppearance, chatgptRoles, CHATGPT_SOURCE } from "./chatgpt-port.mjs";
 import { stringify } from "yaml";
 import { exists, readJson, stableJson, writeOrCheck } from "./fs.mjs";
@@ -32,7 +32,7 @@ export const GHOSTTY_KEYS = ["background", "foreground", "cursor-color", "cursor
   ...Array.from({ length: 16 }, (_, i) => `palette[${i}]`), "split-divider-color", "font-family", "font-size"];
 
 // Weighted encoded sRGB brightness used by Warp and Orca to classify dark themes.
-export const encodedBrightness = (hex) => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255).reduce((sum, c, i) => sum + c * [0.2126, 0.7152, 0.0722][i], 0);
+export const encodedBrightness = (hex) => rgb(hex).map((c) => c / 255).reduce((sum, c, i) => sum + c * [0.2126, 0.7152, 0.0722][i], 0);
 
 /* Native key → value, for the keys an emitter knows, each written once.
    `convert` turns a resolved token into the native value or throws. */

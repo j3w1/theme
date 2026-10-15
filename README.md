@@ -189,8 +189,11 @@ each tool page above states its limits.
 
 - `npm run task:kit -- --components <ids> --task "<task>" --integration-id <id> --integration-version <n> --out <new-dir>`
   writes a task kit; `--ref` takes a full commit or release tag, `--mode minimal`
-  omits only the optional recipes. The legacy `consumption:kit` refuses an
-  existing directory, so pick a new `--out` for each rerun.
+  omits only the optional recipes. `--out` must be a new directory under an
+  existing, unredirected parent; keep that parent stable while writing (the
+  writer is not an OS sandbox against concurrent changes). The legacy
+  `consumption:kit` refuses an existing directory, so pick a new `--out` for
+  each rerun.
 - `npm run release:compare -- --from <tag|commit> --to <tag|commit> --out <new-dir>`
   compares two pinned revisions; `--profile` picks one common profile and
   `--migrations <file>` names explicit role renames. Comparable revisions are

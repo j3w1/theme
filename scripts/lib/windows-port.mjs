@@ -248,7 +248,16 @@ export function windowsArtifacts({manifest,host,resolved}){
   const customCaption=chromeId==='j3w1-notepad-chrome';
   if(customCaption?chrome.existingCaptionRollback!=='windows-default':chrome.existingCaptionRollback!==undefined)throw Error(label+' requires its exact existing-caption rollback policy');
   const existingCaption=customCaption?readFileSync(path.join(repoRoot,'ports/windows/src/notepad-existing-caption.cpp.in'),'utf8'):'';
-  const existingSubs={NATIVE_CAPTION_CONTRACT:customCaption?"// Caption colors are write-only. Known creation/application baselines restore\n// exactly; existing unowned Notepad roots use the explicit owner-approved\n// Windows-default reset policy below. No original caption read is claimed.\n":'// Caption colors are write-only. Existing windows with unknown state are not\n// recolored until an application request supplies a baseline. Windows created\n// after hook installation have a known default baseline; creation-time requests\n// are captured by the same hook before CreateWindowEx returns.\n',NATIVE_CAPTION_RESET_STATE:customCaption?' bool resetToDefault=false;':'',NATIVE_CAPTION_RESET_CAPTURE:customCaption?'state->resetToDefault=false;':'',NATIVE_CAPTION_FORWARD:customCaption?'static void RefreshCaptions();\n':'',NATIVE_CAPTION_REFRESH:customCaption?' RefreshCaptions();\n':'',NATIVE_CAPTION_DISCOVERY:existingCaption,NATIVE_CAPTION_DISCOVER:customCaption?'DiscoverExistingCaptions();':'',NATIVE_CAPTION_WORKER_DISCOVER:customCaption?'  DiscoverExistingCaptions();\n':''};
+  const existingSubs={
+    NATIVE_CAPTION_CONTRACT:customCaption?"// Caption colors are write-only. Known creation/application baselines restore\n// exactly; existing unowned Notepad roots use the explicit owner-approved\n// Windows-default reset policy below. No original caption read is claimed.\n":'// Caption colors are write-only. Existing windows with unknown state are not\n// recolored until an application request supplies a baseline. Windows created\n// after hook installation have a known default baseline; creation-time requests\n// are captured by the same hook before CreateWindowEx returns.\n',
+    NATIVE_CAPTION_RESET_STATE:customCaption?' bool resetToDefault=false;':'',
+    NATIVE_CAPTION_RESET_CAPTURE:customCaption?'state->resetToDefault=false;':'',
+    NATIVE_CAPTION_FORWARD:customCaption?'static void RefreshCaptions();\n':'',
+    NATIVE_CAPTION_REFRESH:customCaption?' RefreshCaptions();\n':'',
+    NATIVE_CAPTION_DISCOVERY:existingCaption,
+    NATIVE_CAPTION_DISCOVER:customCaption?'DiscoverExistingCaptions();':'',
+    NATIVE_CAPTION_WORKER_DISCOVER:customCaption?'  DiscoverExistingCaptions();\n':''
+  };
   const admittedCaptionNames=customCaption||legacy?[]:publicCaptionNames;
   if(JSON.stringify(Object.keys(chrome.captionColors??{}))!==JSON.stringify(admittedCaptionNames))throw Error(label+' requires its exact ordered public caption-color contract');
   const captionSlots=admittedCaptionNames.map(key=>publicCaptionNames.indexOf(key));

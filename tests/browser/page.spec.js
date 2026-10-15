@@ -150,14 +150,19 @@ test.describe("the specification page", () => {
        Compact is the default now, so comfortable is the choice that proves the
        setting persists. */
     await expect(page.locator("#controls .j3w1-choice-trigger").first()).toBeVisible({ timeout: 30_000 });
+    /* The saved density must reach the specimens, not only a marker: the
+       specimen subtree takes data-density and its density variables follow. */
+    const specimenDensity = async () => page.locator(".ladder").first().evaluate((el) => [el.getAttribute("data-density"), getComputedStyle(el).getPropertyValue("--density-control-height").trim()]);
     await chooseThemed(page, "density", "comfortable");
     await expect(page.locator("html")).toHaveAttribute("data-demo-density", "comfortable");
     await expect(page.locator("html")).toHaveAttribute("data-density", "compact");
+    expect(await specimenDensity()).toEqual(["comfortable", "32px"]);
     await chooseThemed(page, "profile", "heritage-ansi");
     await expect(page.locator(".ladder").first()).toHaveAttribute("data-profile", "heritage-ansi");
     await page.reload({ waitUntil: "networkidle" });
     await expect(page.locator("html")).toHaveAttribute("data-demo-density", "comfortable");
     await expect(page.locator("html")).toHaveAttribute("data-density", "compact");
+    await expect.poll(specimenDensity).toEqual(["comfortable", "32px"]);
     const keys = await page.evaluate(() => Object.keys(localStorage));
     expect(keys.every((k) => k.startsWith("j3w1-theme:"))).toBe(true);
     await page.locator("#search").fill("focus ring");
@@ -171,6 +176,7 @@ test.describe("the specification page", () => {
     expect(new URL(page.url()).search).toBe("");
     /* Back to the page's default, which is compact. */
     await expect(page.locator("html")).toHaveAttribute("data-density", "compact");
+    expect(await specimenDensity()).toEqual(["compact", "24px"]);
     await expect(firstFamily).toBeChecked();
     const copy = page.locator("button[data-copy]").first();
     await copy.click();
