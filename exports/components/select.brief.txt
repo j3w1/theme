@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — select
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/select.json
 spec: spec/components/select.md  site: https://j3w1.github.io/theme/reference/#c-select
 maturity: stable  priority: R1
@@ -34,11 +34,11 @@ State dependency disclosures: D-007
 States: default, hover, focus-visible, required, invalid, invalid+focus-visible, disabled
   default: 1px {color.border.control} on {color.surface.input}; value {color.text.default}; chevron {color.icon.default} [the chevron]
   hover: background → {color.interaction.hover.bg}; border unchanged [cursor: default; hover-capable pointers only]
-  focus-visible: border → {color.border.active}; ring 1px dashed {color.interaction.focus.ring} at −2px [the ring]
+  focus-visible: border → {color.border.active}; 1px dashed {color.interaction.focus.ring} at −2px [the ring]
   required: `*` after the label in {color.status.danger.text} plus visually hidden "required" [`required`; the mark]
-  invalid: border 2px {color.status.danger.border}; message with the ✕ glyph [border width 1 → 2px; glyph; `aria-invalid`]
-  invalid+focus-visible: the 2px danger border and the ring in {color.interaction.focus.ring-container} at −4px [double boundary]
-  disabled: text and chevron {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg} [`disabled`; cursor: not-allowed]
+  invalid: 2px {color.status.danger.border}; message with ✕ [border 1 → 2px; glyph; `aria-invalid`]
+  invalid+focus-visible: 2px danger border and {color.interaction.focus.ring-container} ring at −4px [double boundary]
+  disabled: text and chevron {color.text.disabled}; {color.border.disabled}; {color.interaction.disabled.bg} [`disabled`; cursor: not-allowed]
 
 Keyboard:
   Tab / Shift+Tab: Moves focus in and out.

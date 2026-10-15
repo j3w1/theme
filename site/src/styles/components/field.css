@@ -1,3 +1,4 @@
+@import "../partials/field.css";
 /* field — reference CSS. The wrapper owns the label, help and message; the
    control inside is styled by its own component. The minimal .field-input
    here is only what the demo needs. Every real pseudo-class is paired with
@@ -12,12 +13,6 @@
   color: var(--color-text-default);
 }
 
-.field-label {
-  color: var(--color-text-bright);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
-}
-
 .field-required {
   display: none;
   color: var(--color-status-danger-text);
@@ -30,8 +25,8 @@
 
 .field-input {
   min-width: 0;
-  min-height: var(--density-control-height, 32px);
-  padding: 0 var(--density-control-padding-x, 12px);
+  min-height: var(--density-control-height, 24px);
+  padding: 0 var(--density-control-padding-x, 8px);
   background: var(--color-surface-input);
   color: var(--color-text-default);
   border: var(--border-width-default) solid var(--color-border-control);

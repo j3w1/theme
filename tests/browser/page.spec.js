@@ -6,6 +6,9 @@ import { promises as fs } from "node:fs";
 import { openSpec, only, rgbToHex } from "./helpers.mjs";
 
 
+const referenceInventory = JSON.parse(await fs.readFile("spec/inventory.json", "utf8"));
+const referenceRoutes = ["reference/", ...referenceInventory.components.map(({ id }) => `components/${id}/`), "reference/contrast/", "reference/decisions/", "reference/fixtures/", "tokens/"];
+
 /* The page's own selects are themed, so the native control is hidden and the
    visible combobox is what a reader operates. Driven by keyboard: it is a real
    user path, and it does not depend on a control handle staying valid across
@@ -64,7 +67,7 @@ test.describe("the specification page", () => {
     await expect(page.locator('#family-filter input[name="family"]').first()).toBeFocused();
   });
 
-  /* One scan of the page, split in two so the halves run in parallel (D-031):
+  /* Scan every page that now holds the former reference, split in two (D-031):
      color contrast, which is most of the time, and every other rule. The
      rule set is read from a tag-based run, so the two halves together are
      exactly the rules the tags select; nothing is dropped or added. */
@@ -77,56 +80,66 @@ test.describe("the specification page", () => {
     return [...new Set([...r.passes, ...r.violations, ...r.incomplete, ...r.inapplicable].map((x) => x.id))].sort();
   };
   for (const [part, pick] of [["color contrast", (id) => id === "color-contrast"], ["every other rule", (id) => id !== "color-contrast"]]) {
-    test(`axe finds no WCAG 2.x A/AA violations, ${part} (a scan, not a conformance claim)`, verification({component: "page", category: "axe", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
+    test(`axe finds no WCAG 2.x A/AA violations, ${part} (a scan, not a conformance claim)`, verification({component: "page", category: "axe", states: [], variants: [], note: "Hub, all component detail pages, contrast, decisions, fixtures and every token-profile table. Same WCAG tags and inert-clone exclusion as the former long page; live variants also scanned. Automated Chromium only, no conformance claim."}), async ({ page }, testInfo) => {
       test.skip(!only(testInfo, "desktop"), "one scan is enough");
       test.setTimeout(600_000);
       await openSpec(page);
       const all = await tagRules(page);
       expect(all).toContain("color-contrast");
       const rules = all.filter(pick);
-      /* Non-default matrix cells are aria-hidden inert clones of the default
-         cell; scanning every one of them multiplies the run time by the number
-         of states without adding findings. The live cells are scanned. */
-      const results = await new AxeBuilder({ page }).withRules(rules).exclude('.matrix [aria-hidden="true"]').analyze();
-      const ran = new Set([...results.passes, ...results.violations, ...results.incomplete, ...results.inapplicable].map((x) => x.id));
-      expect([...ran].sort()).toEqual(rules);
       await fs.mkdir("test-results", { recursive: true });
-      await fs.writeFile(`test-results/axe-${part.replace(/ /g, "-")}.json`, JSON.stringify(results, null, 2));
-      expect(results.violations.map((v) => `${v.id}: ${v.nodes.length} × ${v.help}`)).toEqual([]);
+      for (const route of referenceRoutes) {
+        if (route !== "reference/") await page.goto(route, { waitUntil: "networkidle" });
+        // The former reference displayed every profile together. Scan all of
+        // those static tables, including the profiles the explorer filters.
+        if (route === "tokens/") await page.locator("[data-usage-profile]").evaluateAll((sections) => sections.forEach((section) => { section.hidden = false; }));
+        /* Preserve the original exclusion: non-default state clones are
+           aria-hidden; every live cell and all normative text are scanned. */
+        const results = await new AxeBuilder({ page }).withRules(rules).exclude('.matrix [aria-hidden="true"]').analyze();
+        const ran = new Set([...results.passes, ...results.violations, ...results.incomplete, ...results.inapplicable].map((x) => x.id));
+        expect([...ran].sort(), route).toEqual(rules);
+        const suffix = route === "reference/" ? "" : `-${route.replace(/[^a-z0-9]+/g, "-")}`;
+        await fs.writeFile(`test-results/axe-${part.replace(/ /g, "-")}${suffix}.json`, JSON.stringify(results, null, 2));
+        expect(results.violations.map((v) => `${v.id}: ${v.nodes.length} × ${v.help}`), route).toEqual([]);
+      }
     });
   }
 
   test("reflow: no horizontal page scroll at 360px and at 200% text zoom", verification({component: "page", category: "reflow", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
     test.skip(!only(testInfo, "narrow", "zoom200"), "reflow projects only");
+    test.setTimeout(180_000); // Complete the split reference; each navigation retains its own timeout.
     await openSpec(page);
-    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
-    expect(overflow).toBeLessThanOrEqual(0);
-    await page.evaluate(() => {
-      document.documentElement.style.fontSize = "200%";
-    });
-    await page.waitForTimeout(50);
-    const zoomed = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
-    expect(zoomed).toBeLessThanOrEqual(0);
+    for (const route of referenceRoutes) {
+      if (route !== "reference/") await page.goto(route, { waitUntil: "networkidle" });
+      const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+      expect(overflow, route).toBeLessThanOrEqual(0);
+      await page.evaluate(() => { document.documentElement.style.fontSize = "200%"; });
+      await page.waitForTimeout(50);
+      const zoomed = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+      expect(zoomed, route).toBeLessThanOrEqual(0);
+    }
   });
 
   test("reduced motion: every transition and animation is effectively instant", verification({component: "page", category: "motion", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
     test.skip(!only(testInfo, "desktop"), "one check is enough");
     await page.emulateMedia({ reducedMotion: "reduce" });
+    test.setTimeout(180_000); // Every moved component and document is still covered.
     await openSpec(page);
-    const slow = await page.evaluate(() =>
-      [...document.querySelectorAll("main *")]
-        .map((el) => getComputedStyle(el))
-        .filter((s) => s.transitionDuration.split(",").some((d) => parseFloat(d) > 0.01) || s.animationDuration.split(",").some((d) => parseFloat(d) > 0.01))
-        .length,
-    );
-    expect(slow).toBe(0);
+    for (const route of referenceRoutes) {
+      if (route !== "reference/") await page.goto(route, { waitUntil: "networkidle" });
+      const slow = await page.evaluate(() =>
+        [...document.querySelectorAll("main *")]
+          .map((el) => getComputedStyle(el))
+          .filter((s) => s.transitionDuration.split(",").some((d) => parseFloat(d) > 0.01) || s.animationDuration.split(",").some((d) => parseFloat(d) > 0.01))
+          .length,
+      );
+      expect(slow, route).toBe(0);
+    }
   });
 
   test("enhancements: search narrows the contents, family filter hides sections, density and profile persist, reset clears", verification({component: "page", category: "enhancements", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
     test.skip(!only(testInfo, "desktop"), "scripts on desktop");
-    /* Two themed comboboxes and a reload of a 4.4MB page do not fit the default
-       budget; the axe scan raises its own for the same reason. No assertion is
-       relaxed. */
+    /* Exercise both themed specimen controls, persistence and a reload. */
     test.setTimeout(120_000);
     const context = page.context();
     await context.grantPermissions(["clipboard-read", "clipboard-write"]);
@@ -137,12 +150,19 @@ test.describe("the specification page", () => {
        Compact is the default now, so comfortable is the choice that proves the
        setting persists. */
     await expect(page.locator("#controls .j3w1-choice-trigger").first()).toBeVisible({ timeout: 30_000 });
+    /* The saved density must reach the specimens, not only a marker: the
+       specimen subtree takes data-density and its density variables follow. */
+    const specimenDensity = async () => page.locator(".ladder").first().evaluate((el) => [el.getAttribute("data-density"), getComputedStyle(el).getPropertyValue("--density-control-height").trim()]);
     await chooseThemed(page, "density", "comfortable");
-    await expect(page.locator("html")).toHaveAttribute("data-density", "comfortable");
+    await expect(page.locator("html")).toHaveAttribute("data-demo-density", "comfortable");
+    await expect(page.locator("html")).toHaveAttribute("data-density", "compact");
+    expect(await specimenDensity()).toEqual(["comfortable", "32px"]);
     await chooseThemed(page, "profile", "heritage-ansi");
     await expect(page.locator(".ladder").first()).toHaveAttribute("data-profile", "heritage-ansi");
     await page.reload({ waitUntil: "networkidle" });
-    await expect(page.locator("html")).toHaveAttribute("data-density", "comfortable");
+    await expect(page.locator("html")).toHaveAttribute("data-demo-density", "comfortable");
+    await expect(page.locator("html")).toHaveAttribute("data-density", "compact");
+    await expect.poll(specimenDensity).toEqual(["comfortable", "32px"]);
     const keys = await page.evaluate(() => Object.keys(localStorage));
     expect(keys.every((k) => k.startsWith("j3w1-theme:"))).toBe(true);
     await page.locator("#search").fill("focus ring");
@@ -156,6 +176,7 @@ test.describe("the specification page", () => {
     expect(new URL(page.url()).search).toBe("");
     /* Back to the page's default, which is compact. */
     await expect(page.locator("html")).toHaveAttribute("data-density", "compact");
+    expect(await specimenDensity()).toEqual(["compact", "24px"]);
     await expect(firstFamily).toBeChecked();
     const copy = page.locator("button[data-copy]").first();
     await copy.click();

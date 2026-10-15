@@ -21,7 +21,7 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-4);
-  min-height: calc(3 * var(--density-row-height, 36px));
+  min-height: calc(3 * var(--density-row-height, 28px));
   padding: var(--space-16);
   background: var(--color-surface-default);
   border: var(--border-width-default) solid var(--color-border-divider);

@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=",
+  "sourceDigest": "sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=",
   "id": "badge",
   "family": "display",
   "maturity": "stable",
@@ -360,7 +360,7 @@
     },
     {
       "state": "empty",
-      "visual": "an 8px square dot in the status fill; the glyph and text visually hidden",
+      "visual": "an 8px square dot in the status fill; glyph and text visually hidden",
       "channel": "`role=\"img\"` with `aria-label`, or the hidden text; the dot's position beside its subject",
       "tokens": {
         "fg": {
@@ -419,7 +419,7 @@
     "filterable-table",
     "settings-panel"
   ],
-  "nonExamples": "Rounded or pill badges. A badge that is clickable. A status shown by colour\nwithout its glyph. A count badge that hides its unit from assistive\ntechnology. Purple, cyan or magenta statuses. A badge in body type. A badge\nwhose text wraps. A dot without a name.",
+  "nonExamples": "Rounded or pill badges. A clickable badge. A status by colour without its\nglyph. A count unit hidden from assistive technology. Purple, cyan or magenta\nstatuses. A badge in body type. Wrapping text. A dot without a name.",
   "contrast": [
     {
       "label": "badge default text",

@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=",
+  "sourceDigest": "sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=",
   "id": "checkbox",
   "family": "forms-basic",
   "maturity": "stable",
@@ -307,7 +307,7 @@
     },
     {
       "state": "hover",
-      "visual": "box background → {color.interaction.hover.bg}; checked box → {color.action.primary.hover-bg}",
+      "visual": "box → {color.interaction.hover.bg}; checked box → {color.action.primary.hover-bg}",
       "channel": "cursor: pointer; hover-capable pointers only",
       "tokens": {
         "bg": {
@@ -340,7 +340,7 @@
     },
     {
       "state": "focus-visible",
-      "visual": "ring 1px dashed {color.interaction.focus.ring} at −2px around the box",
+      "visual": "1px dashed {color.interaction.focus.ring} ring at −2px around the box",
       "channel": "the ring",
       "tokens": {
         "bg": {
@@ -385,8 +385,8 @@
     },
     {
       "state": "checked",
-      "visual": "box fills {color.action.primary.bg}; ✓ in {color.action.primary.text}; border stays {color.border.control}",
-      "channel": "the ✓ glyph; `checked`",
+      "visual": "fill {color.action.primary.bg}; ✓ in {color.action.primary.text}; border stays {color.border.control}",
+      "channel": "✓ glyph; `checked`",
       "tokens": {
         "fg": {
           "alias": "color.action.primary.text",
@@ -416,8 +416,8 @@
     },
     {
       "state": "mixed",
-      "visual": "box fills {color.action.primary.bg}; – in {color.action.primary.text}",
-      "channel": "the – glyph; `indeterminate` / `aria-checked=\"mixed\"`",
+      "visual": "fill {color.action.primary.bg}; – in {color.action.primary.text}",
+      "channel": "– glyph; `indeterminate` / `aria-checked=\"mixed\"`",
       "tokens": {
         "fg": {
           "alias": "color.action.primary.text",
@@ -447,7 +447,7 @@
     },
     {
       "state": "checked+focus-visible",
-      "visual": "the fill and a ring in {color.interaction.focus.ring-container}",
+      "visual": "the fill plus a {color.interaction.focus.ring-container} ring",
       "channel": "glyph and ring",
       "tokens": {
         "fg": {
@@ -490,20 +490,20 @@
     },
     {
       "state": "checked+disabled",
-      "visual": "box {color.interaction.disabled.bg} with 1px {color.border.disabled}; ✓ and text in {color.text.disabled}",
+      "visual": "box {color.interaction.disabled.bg}, 1px {color.border.disabled}; ✓ and text {color.text.disabled}",
       "channel": "glyph; `disabled`; cursor: not-allowed",
       "tokens": {}
     },
     {
       "state": "disabled",
-      "visual": "box {color.interaction.disabled.bg} with 1px {color.border.disabled}; text {color.text.disabled}",
+      "visual": "box {color.interaction.disabled.bg}, 1px {color.border.disabled}; text {color.text.disabled}",
       "channel": "`disabled`; cursor: not-allowed",
       "tokens": {}
     },
     {
       "state": "invalid",
-      "visual": "box border 2px {color.status.danger.border}; message with the ✕ glyph",
-      "channel": "border width 1 → 2px; glyph; `aria-invalid`",
+      "visual": "2px {color.status.danger.border} box border; message with the ✕ glyph",
+      "channel": "border 1 → 2px; glyph; `aria-invalid`",
       "tokens": {
         "bg": {
           "alias": "color.surface.input",
@@ -608,7 +608,7 @@
     "admin-form",
     "filterable-table"
   ],
-  "nonExamples": "Rounded or circular boxes. A tick drawn with a border trick or an icon\nfont. A checked state shown by border colour alone with no glyph. A box\nsmaller than 16px or a row shorter than 24px. The mixed state used as a\nthird value. A checkbox that saves on change. Disabling by opacity. A div\nwith `role=\"checkbox\"`.",
+  "nonExamples": "Rounded or circular boxes. A tick drawn with a border trick or an icon font.\nA checked state shown by border colour alone. A box under 16px or a row under\n24px. The mixed state as a third value. Saving on change. Disabling by\nopacity. A div with `role=\"checkbox\"`.",
   "contrast": [
     {
       "label": "checkbox default border",

@@ -1,21 +1,16 @@
-/* Specimen density (D-009): sets data-density on <html>, which the generated
-   [data-density] blocks in tokens.generated.css turn into --density-* values. */
-
+/* Chrome stays compact (D-038); saved density applies only to specimens. */
 import { KEYS, get, set } from "./storage";
-
-/* The density the layouts render, and the one reset returns to. One constant,
-   so the markup and the reset button cannot drift apart. */
 export const DEFAULT_DENSITY = "compact";
-
+export const applyDensity = (density: string) => {
+  document.documentElement.dataset.demoDensity = density;
+  document.querySelectorAll<HTMLElement>("[data-specimen], .demo, .ladder, .spec-rows, .border-set, .status-set").forEach((target) => { target.dataset.density = density; });
+};
 export const initDensity = (): void => {
   const select = document.getElementById("density") as HTMLSelectElement | null;
-  const root = document.documentElement;
   const stored = get(KEYS.density);
-  if (stored === "compact" || stored === "comfortable") root.setAttribute("data-density", stored);
+  const density = stored === "comfortable" ? stored : DEFAULT_DENSITY;
+  applyDensity(density);
   if (!select) return;
-  select.value = root.getAttribute("data-density") ?? DEFAULT_DENSITY;
-  select.addEventListener("change", () => {
-    root.setAttribute("data-density", select.value);
-    set(KEYS.density, select.value);
-  });
+  select.value = density;
+  select.addEventListener("change", () => { applyDensity(select.value); set(KEYS.density, select.value); });
 };

@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=",
+  "sourceDigest": "sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=",
   "id": "wizard",
   "family": "forms-advanced",
   "maturity": "stable",
@@ -366,7 +366,7 @@
   "stateRules": [
     {
       "state": "default",
-      "visual": "steps in {color.text.default}; complete steps carry the ✓ in {color.status.success.text}",
+      "visual": "steps in {color.text.default}; complete steps carry ✓ in {color.status.success.text}",
       "channel": "the ✓ glyph; the numbers",
       "tokens": {
         "fg": {
@@ -397,7 +397,7 @@
     },
     {
       "state": "hover",
-      "visual": "step background → {color.interaction.hover.bg}; Next → {color.action.primary.hover-bg}; Back → {color.action.secondary.hover-bg}",
+      "visual": "step → {color.interaction.hover.bg}; Next → {color.action.primary.hover-bg}; Back → {color.action.secondary.hover-bg}",
       "channel": "cursor: pointer",
       "tokens": {
         "fg": {
@@ -428,7 +428,7 @@
     },
     {
       "state": "focus-visible",
-      "visual": "ring 1px dashed {color.interaction.focus.ring} at −2px; on Next's fill the ring takes {color.interaction.focus.ring-container}",
+      "visual": "1px dashed {color.interaction.focus.ring} ring at −2px; {color.interaction.focus.ring-container} on Next's fill",
       "channel": "the ring",
       "tokens": {
         "fg": {
@@ -520,7 +520,7 @@
     },
     {
       "state": "invalid",
-      "visual": "the step's marker becomes ✕ in {color.status.danger.text}; its indicator takes {color.status.danger.border}; the panel shows the message",
+      "visual": "marker becomes ✕ in {color.status.danger.text}; indicator {color.status.danger.border}; the panel shows the message",
       "channel": "glyph; message text; `aria-invalid` on the failing fields",
       "tokens": {
         "fg": {
@@ -563,7 +563,7 @@
     },
     {
       "state": "busy",
-      "visual": "Next shows the static ⋯ glyph before its label and does not respond; size unchanged",
+      "visual": "Next shows the static ⋯ before its label and ignores activation; size unchanged",
       "channel": "`aria-busy` on the wizard; the glyph; cursor: progress",
       "tokens": {
         "fg": {
@@ -638,7 +638,7 @@
     "admin-form",
     "settings-panel"
   ],
-  "nonExamples": "Tabs restyled as steps. A progress bar in place of the stepper. Circles with\nconnecting lines that need a rounded radius. Future steps that look enabled\nand reject the click. A spinner on Next. Colour-only completion marks.\nValidation that blocks Back. Animated slides between panels.",
+  "nonExamples": "Tabs restyled as steps. A progress bar instead of the stepper. Circles with\nconnecting lines that need a radius. Future steps that look enabled and\nreject the click. A spinner on Next. Colour-only completion marks. Validation\nthat blocks Back. Animated slides between panels.",
   "contrast": [
     {
       "label": "wizard default text",
@@ -859,7 +859,7 @@
       "bgHex": "#000000",
       "ratio": 2.71,
       "pass": false,
-      "waiver": "the primary button is identified by its text at 9.28:1 on its fill and by its position; the fill measures 1.86:1 and its border 2.56:1 against the canvas, a documented property of the actions family, not of the wizard"
+      "waiver": "the primary button is identified by its text on the fill and by its position; the low-contrast fill and border against the canvas are a documented property of the actions family"
     },
     {
       "label": "ring on the next button's fill",

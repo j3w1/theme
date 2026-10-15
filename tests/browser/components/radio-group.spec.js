@@ -26,7 +26,7 @@ const box = (locator) =>
 
 test.describe("radio-group", () => {
   test("the state matrix renders every declared state for both variants", verification({component: "radio-group", category: "rendering", states: ["default", "hover", "focus-visible", "checked", "checked+focus-visible", "disabled", "invalid", "required"], variants: ["default", "horizontal"], note: "Presence and selected structural assertions only; not behavioral verification of every state."}), async ({ page }) => {
-    await openSpec(page, "#c-radio-group");
+    await openSpec(page, "components/radio-group/#c-radio-group");
     for (const state of STATES) {
       await expect(page.locator(`#radio-group-states [data-state="${state}"]`)).toHaveCount(VARIANTS.length);
     }
@@ -39,7 +39,7 @@ test.describe("radio-group", () => {
 
   test("the live radios: square boxes, checked fill with the inner square, rings", verification({component: "radio-group", category: "appearance", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs"), "computed styles are the same without scripts; keep one run");
-    await openSpec(page, "#c-radio-group");
+    await openSpec(page, "components/radio-group/#c-radio-group");
     const live = page.locator('#radio-group-states [data-state="default"]').first();
     const first = live.locator("input.radio-group-input").first();
     const dot = live.locator(".radio-group-dot").first();
@@ -85,7 +85,7 @@ test.describe("radio-group", () => {
 
   test("keyboard: the arrow keys move the check through the live group", verification({component: "radio-group", category: "keyboard", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs", "narrow", "zoom200"), "one keyboard walk");
-    await openSpec(page, "#c-radio-group");
+    await openSpec(page, "components/radio-group/#c-radio-group");
     const inputs = page.locator('#radio-group-states [data-state="default"][data-state-default]').first().locator("input.radio-group-input");
     await inputs.first().focus();
     await page.keyboard.press("ArrowDown");

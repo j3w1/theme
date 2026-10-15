@@ -1,5 +1,5 @@
 import { parseFragment, serialize } from "parse5";
-import { attribute, namespaceMarkup, removeAttribute, setAttribute, walkMarkup } from "./markup.mjs";
+import { attribute, namespaceMarkup, removeAttribute, renderDecorativeWhitespace, resolveDemonstrationLinks, setAttribute, walkMarkup } from "./markup.mjs";
 
 export const applyNativeState = (tree, state) => {
   const parts = new Set(state.split("+"));
@@ -26,12 +26,14 @@ export const applyNativeState = (tree, state) => {
   if (parts.has("checked") && elements.some((node) => attribute(node, "role") === "switch")) setAttribute(elements.find((node) => attribute(node, "aria-checked") === "false") ?? elements[0], "aria-checked", "true");
 };
 
-export const renderSpecimenMarkup = (source, suffix, { state = "default", inert = false } = {}) => {
+export const renderSpecimenMarkup = (source, suffix, { state = "default", inert = false, resolveLinks = true, decorations = true } = {}) => {
   if (!/^[a-z][a-z0-9-]*$/.test(suffix)) throw new Error("Invalid specimen instance suffix");
   stateAttributes(state);
   const tree = parseFragment(source);
   // Existing matrix references use a per-cell suffix, including native groups.
   namespaceMarkup(tree, (id) => `${id}-${suffix}`, { strict: false, renameNames: true });
+  if (resolveLinks) resolveDemonstrationLinks(tree);
+  if (decorations) renderDecorativeWhitespace(tree);
   applyNativeState(tree, state);
   if (inert) walkMarkup(tree, (node) => {
     if (!node.tagName) return;

@@ -40,10 +40,10 @@ tokens:
   dependency.role-color-text-disabled: color.text.disabled
   dependency.role-density-comfortable-control-height: density.comfortable.control-height
   dependency.role-density-compact-control-height: density.compact.control-height
+  dependency.role-focus-offset: focus.offset
   dependency.role-radius-none: radius.none
   dependency.role-space-12: space.12
   dependency.role-space-16: space.16
-  dependency.role-space-2: space.2
   dependency.role-space-8: space.8
 stateTokens:
   default:
@@ -110,17 +110,15 @@ compact: false
 
 ## Purpose
 
-Navigate hierarchical items with explicit expansion and a single roving tab stop. Selection differs from expansion. Caller-supplied nodes represent identities; activation emits an event and never invents file access.
+Navigates a hierarchy; selection and expansion are separate actions.
 
 ## Anatomy
 
-- **tree:** Labelled tree with nested groups.
-- **item:** Named treeitems expose selection; parents also expose expansion.
-- **children:** A nested group hidden when the parent collapses.
+Parts as listed in the anatomy.
 
 ## States
 
-| State | Presentation | Non-colour channel |
+| State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | Visible named tree items. | Tree and group hierarchy. |
 | selected | Selected fill, text and start indicator. | aria-selected. |
@@ -131,14 +129,12 @@ Navigate hierarchical items with explicit expansion and a single roving tab stop
 
 ## Keyboard
 
-- **Up / Down / Home / End:** Move through visible items in source order.
-- **Right / Left:** Expand or enter a parent, collapse it or return to its parent. Mirror these keys in RTL.
-- **Enter / Space:** Select the focused enabled item.
-- **Typing:** Move to the next visible label starting with the character.
+As in the key table; only one visible item has tabindex=0.
 
 ## Accessibility
 
-Implement the linked tree pattern. Only one visible item has tabindex=0. Labels exclude descendant text. Collapsing a parent of the focused item moves focus to that parent. Selection has a programmatic state and border indicator; disabled items do not activate.
+Labels exclude descendant text. Collapsing a parent of the focused item moves
+focus to that parent.
 
 ## Portability
 

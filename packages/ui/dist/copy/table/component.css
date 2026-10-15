@@ -8,7 +8,7 @@ j3w1-table {
   line-height: var(--font-line-height-ui-md);
 }
 j3w1-table, j3w1-table *, j3w1-table *::before, j3w1-table *::after { box-sizing: border-box; }
-j3w1-table button, j3w1-table input, j3w1-table select, j3w1-table textarea { font: inherit; }
+j3w1-table :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 j3w1-table ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);
@@ -57,7 +57,7 @@ j3w1-table .table .table-header {
   position: static;
   height: var(--density-comfortable-row-height, 36px);
   min-width: 0;
-  padding: 0 var(--density-control-padding-x, 12px);
+  padding: 0 var(--density-control-padding-x, 8px);
   background: var(--color-surface-default);
   border: 0;
   border-bottom: var(--border-width-default) solid var(--color-border-strong);
@@ -79,7 +79,7 @@ j3w1-table .table-sort {
   align-items: center;
   gap: var(--space-4);
   width: 100%;
-  min-height: var(--density-control-height, 32px);
+  min-height: var(--density-control-height, 24px);
   padding: 0;
   background: transparent;
   border: 0;
@@ -111,7 +111,7 @@ j3w1-table .table .table-body .table-row:first-child {
 
 j3w1-table .table .table-cell {
   min-width: 0;
-  padding: var(--space-4) var(--density-control-padding-x, 12px);
+  padding: var(--space-4) var(--density-control-padding-x, 8px);
   background: transparent;
   border: 0;
   color: inherit;
@@ -148,6 +148,21 @@ j3w1-table .table-sticky .table-header {
   background: var(--color-surface-raised);
   border-bottom-width: var(--border-width-emphasis);
 }
+@media (max-width: 599.98px) {
+  j3w1-table .table :is(.table-header, .table-cell):first-child {
+    position: sticky;
+    inset-inline-start: 0;
+    z-index: var(--z-raised);
+  }
+
+  j3w1-table .table .table-cell:first-child {
+    background: var(--color-surface-default);
+  }
+
+  j3w1-table .table .table-row:is(:hover, [aria-selected="true"]) > .table-cell:first-child {
+    background: inherit;
+  }
+}
 j3w1-table .table-body .table-row:hover {
   background: var(--color-interaction-hover-bg);
 }
@@ -169,7 +184,7 @@ j3w1-table .table-row[aria-selected="true"]:hover {
 }
 j3w1-table .table-row[aria-selected="true"]:focus-visible,
 j3w1-table .table-row[aria-selected="true"]:focus-within {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring);
   outline-offset: var(--focus-offset);
 }
 j3w1-table .table[data-container-inactive] .table-row[aria-selected="true"] {

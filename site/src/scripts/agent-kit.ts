@@ -1,4 +1,4 @@
-import { copyText } from "./clipboard";
+import { copyWithStatus } from "./clipboard";
 const root = document.querySelector<HTMLElement>("[data-agent-kit]");
 if (root) {
   const form = root.querySelector<HTMLFormElement>("form")!;
@@ -18,6 +18,8 @@ if (root) {
   };
   form.addEventListener("submit", event => { event.preventDefault(); prepare(); });
   form.addEventListener("change", prepare);
-  root.querySelector("[data-copy-kit]")!.addEventListener("click", async () => { status.textContent = (await copyText(command.textContent!)) ? "Command copied." : "Select the command above and copy it manually."; });
+  root.querySelector("[data-copy-kit]")!.addEventListener("click", () => {
+    copyWithStatus(command.textContent!, { status, copied: "Command copied.", failed: "Select the command above and copy it manually." });
+  });
   prepare();
 }

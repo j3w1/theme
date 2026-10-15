@@ -1,0 +1,211 @@
+---
+/* The one site shell (docs/ui-architecture.md, "Site chrome"): built from the
+   components the site documents, at the default compact density (D-038).
+   The rail is the canonical sidebar-nav at 240px; below 900px it becomes the
+   canonical drawer. Without JavaScript the rail stays in the page above the
+   content. */
+import "../styles/tokens.generated.css";
+import "@j3w1/ui/styles/controls.css";
+import "../styles/base.css";
+import "../styles/hex-swatches.css";
+import "../styles/components/button.css";
+import "../styles/components/link.css";
+import "../styles/components/skip-link.css";
+import "../styles/components/sidebar-nav.css";
+import "../styles/components/breadcrumbs.css";
+import "../styles/components/card.css";
+import "../styles/components/table.css";
+import "../styles/chrome.css";
+import "../styles/site.css";
+import "../styles/print.css";
+import { withBase } from "../lib/base";
+import { theme } from "../lib/theme";
+import { usageRevision } from "../lib/revision";
+import { anchorFor } from "../../../scripts/lib/anchors.mjs";
+
+interface Props {
+  title: string;
+  description: string;
+  hero?: boolean;
+  breadcrumbs?: boolean;
+  revision?: boolean;
+}
+
+const { title, description, hero = false, breadcrumbs = true, revision = false } = Astro.props;
+
+/* 16px line icons: 1.5px stroke, currentColor, no fill (spec/foundations.md, Icons). */
+const icons = {
+  overview: "M2.5 2.5h11v11h-11zM2.5 6.5h11",
+  foundations: "M2.5 10.5h11v3h-11zM4.5 6.5h7v4h-7zM6.5 2.5h3v4h-3z",
+  components: "M2.5 2.5h4.5v4.5h-4.5zM9 2.5h4.5v4.5H9zM2.5 9h4.5v4.5h-4.5zM9 9h4.5v4.5H9z",
+  patterns: "M2.5 2.5h6v6h-6zM7.5 7.5h6v6h-6z",
+  tokens: "M8 2.5a5.5 5.5 0 1 0 0 11a5.5 5.5 0 1 0 0-11zM8 2.5v11",
+  tools: "M2.5 4.5h11M2.5 11.5h11M5.5 2.5v4M10.5 9.5v4",
+  implement: "M6 4L2.5 8L6 12M10 4l3.5 4L10 12",
+  agents: "M2.5 4.5L6 8l-3.5 3.5M8 12h5.5",
+  ports: "M3 8h10M9 4l4 4l-4 4",
+  releases: "M8 2.5a5.5 5.5 0 1 0 0 11a5.5 5.5 0 1 0 0-11zM8 5v3l2 2",
+  reference: "M3 2.5h10v11H3zM6 2.5v11M8 5.5h3M8 8h3",
+  workbench: "M2.5 3h11v7.5h-11zM5.5 13.5h5M8 10.5v3",
+  builder: "M2.5 3h11v3.5h-11zM2.5 9.5h11V13h-11z",
+  kit: "M2.5 5.5L8 2.5l5.5 3v5L8 13.5l-5.5-3zM2.5 5.5L8 8.5l5.5-3M8 8.5v5",
+  recipes: "M3.5 2.5h7l2 2v9h-9zM5.5 7h5M5.5 9.5h5M5.5 12h3",
+  figma: "M2.5 5.5h4v5h-4zM9.5 5.5h4v5h-4zM6.5 8h3",
+  report: "M3.5 13.5v-11M3.5 3h8l-2 2.5l2 2.5h-8",
+};
+
+type Entry = { path: string; label: string; icon?: keyof typeof icons; children?: Entry[] };
+const navigation: Entry[] = [
+  { path: "", label: "Overview", icon: "overview" },
+  { path: "foundations/", label: "Foundations", icon: "foundations" },
+  { path: "components/", label: "Components", icon: "components" },
+  { path: "patterns/", label: "Patterns", icon: "patterns" },
+  { path: "tokens/", label: "Tokens", icon: "tokens" },
+  { path: "tools/", label: "Tools", icon: "tools", children: [
+    { path: "workbench/", icon: "workbench", label: "Workbench" },
+    { path: "builder/", icon: "builder", label: "Form builder" },
+    { path: "kit/", icon: "kit", label: "Task kit" },
+    { path: "recipes/", icon: "recipes", label: "Recipes" },
+    { path: "figma/", icon: "figma", label: "Figma bridge" },
+    { path: "report/", icon: "report", label: "Report an issue" },
+  ] },
+  { path: "implement/", label: "Implement", icon: "implement" },
+  { path: "agents/", label: "For agents", icon: "agents" },
+  { path: "ports/", label: "Ports", icon: "ports" },
+  { path: "releases/", label: "Releases", icon: "releases" },
+  { path: "reference/", label: "Specification", icon: "reference" },
+];
+
+const here = Astro.url.pathname.slice(withBase("").length);
+const flat = navigation.flatMap((entry) => [{ ...entry, parent: null as Entry | null }, ...(entry.children ?? []).map((child) => ({ ...child, parent: entry }))]);
+const section = flat.filter((entry) => entry.path && here.startsWith(entry.path)).sort((a, b) => b.path.length - a.path.length)[0];
+const trail = section ? [section.parent, section].filter((entry): entry is Entry => !!entry && entry.path !== here) : [];
+const crumbs = breadcrumbs && here ? [{ path: "", label: "Overview" }, ...trail] : [];
+const open = (entry: Entry) => !!entry.children?.some((child) => here.startsWith(child.path)) || here.startsWith(entry.path) && !!entry.children;
+const current = (path: string): "page" | "true" | undefined => path === here ? "page" : path && (here.startsWith(path) || navigation.find((entry) => entry.path === path)?.children?.some((child) => here.startsWith(child.path))) ? "true" : undefined;
+
+const commands = [...flat.map(({ path, label }) => [path, label]), ["demo/", "Vue application demo"]];
+const id = (name: string) => anchorFor.uiExample("portal", name);
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+---
+<!doctype html>
+<html lang="en" data-density="compact">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="description" content={description} />
+    <title>{title} · j3w1 UI Theme Spec</title>
+    <meta property="og:title" content={`${title} · j3w1 UI Theme Spec`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href={withBase("favicon.svg")} type="image/svg+xml" />
+    <link rel="alternate" type="text/plain" href={withBase("llms.txt")} title="Agent entry points" />
+    <link rel="stylesheet" href={withBase("ui/styles/command-palette.css")} />
+    <link rel="stylesheet" href={withBase("ui/styles/drawer.css")} />
+    <script is:inline>document.documentElement.classList.add("js");</script>
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-topbar">
+      <j3w1-drawer class="site-menu">
+        <button class="button button-tertiary" type="button" data-open aria-label="Open navigation">
+          <svg class="button-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11" /></svg>
+          <span class="button-label">Menu</span>
+        </button>
+        <dialog class="drawer drawer-start" aria-labelledby={id("menu-title")}>
+          <div class="drawer-header">
+            <h2 class="drawer-title" id={id("menu-title")}>j3w1 / theme</h2>
+            <button class="drawer-close" type="button" aria-label="Close">✕</button>
+          </div>
+          <nav class="drawer-body" aria-label="Site menu">
+            <ul class="drawer-list">
+              {flat.map((entry) => <li class="drawer-item"><a class="drawer-link" href={withBase(entry.path)} aria-current={current(entry.path)}>{entry.parent ? `${entry.parent.label} / ${entry.label}` : entry.label}</a></li>)}
+            </ul>
+          </nav>
+        </dialog>
+      </j3w1-drawer>
+      <a class="site-wordmark" href={withBase("")}>j3w1<span> / theme</span></a>
+      <span class="site-version">{theme.version}</span>
+      <j3w1-command-palette shortcut class="site-command" data-search-index={withBase("search.json")}>
+        <div class="command-palette">
+          <button class="button button-secondary" type="button" data-open aria-label="Search the design system">
+            <svg class="button-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M7 2.5a4.5 4.5 0 1 0 0 9a4.5 4.5 0 1 0 0-9zM10.5 10.5l3 3" /></svg>
+            <span class="button-label">Search</span>
+            <kbd>Ctrl K</kbd>
+          </button>
+          <dialog class="command-palette-dialog" aria-labelledby={id("command-title")}>
+            <h2 id={id("command-title")}>j3w1 / command</h2>
+            <label for={id("query")}>Find a destination</label>
+            <input class="command-palette-control" id={id("query")} type="search" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-controls={id("results")} autocomplete="off" placeholder="> type a command" />
+            <ul id={id("results")} role="listbox" aria-label="Destinations">
+              {commands.map(([path, label]) => <li role="option" data-action={withBase(path)}><span class="site-command-category">{path === "demo/" ? "DEMO" : "SPEC"} </span><span class="site-command-label">{label}</span></li>)}
+            </ul>
+            <p role="status" data-command-status></p>
+            <button class="command-palette-control" type="button" data-close>Close · Esc</button>
+          </dialog>
+        </div>
+      </j3w1-command-palette>
+    </header>
+    <div class="site-frame">
+      <nav class="sidebar-nav site-rail" aria-label="Site">
+        <ul class="sidebar-nav-list">
+          {navigation.map((entry) => <li class="sidebar-nav-item">
+            <a class="sidebar-nav-link" title={entry.label} href={withBase(entry.path)} aria-current={current(entry.path)}>
+              <span class="sidebar-nav-icon" aria-hidden="true"><svg viewBox="0 0 16 16" width="16" height="16" focusable="false"><path d={icons[entry.icon!]} /></svg></span>
+              <span class="sidebar-nav-label">{entry.label}</span>
+            </a>
+            {entry.children && open(entry) && <ul class="sidebar-nav-list sidebar-nav-sublist">
+              {entry.children.map((child) => <li class="sidebar-nav-item"><a class="sidebar-nav-link" title={child.label} href={withBase(child.path)} aria-current={current(child.path)}><span class="sidebar-nav-icon" aria-hidden="true"><svg viewBox="0 0 16 16" width="16" height="16" focusable="false"><path d={icons[child.icon ?? "tools"]} /></svg></span><span class="sidebar-nav-label">{child.label}</span></a></li>)}
+            </ul>}
+          </li>)}
+        </ul>
+      </nav>
+      <div class="site-column">
+        <main id="main" class="site-main">
+          {crumbs.length > 0 && <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs-list">
+              {crumbs.map((crumb) => <li class="breadcrumbs-item"><a class="breadcrumbs-link" href={withBase(crumb.path)}>{crumb.label}</a><span class="breadcrumbs-separator" aria-hidden="true">/</span></li>)}
+              <li class="breadcrumbs-item"><a class="breadcrumbs-link" href={Astro.url.pathname} aria-current="page">{title}</a></li>
+            </ol>
+          </nav>}
+          <header class:list={["site-intro", { "site-hero": hero }]}>
+            <h1>{title}</h1>
+            <p>{description}</p>
+            {revision && <p class="site-stamp">{usageRevision ? <>Source revision <code>{usageRevision}</code></> : "Local build: source locations are relative to this checkout; no published revision is claimed."}</p>}
+          </header>
+          <slot />
+        </main>
+        <footer class="site-footer">
+          <p>One versioned specification. Native semantics. Complete source. Code MIT · specimens and prose CC BY 4.0.</p>
+          <p>
+            <a class="link" href={withBase("reference/")}>Complete specification</a> ·
+            <a class="link" href={withBase("agents/")}>Machine-readable entry points</a> ·
+            <a class="link" href={withBase("demo/")}>Vue demo</a> ·
+            <a class="link" href="https://github.com/j3w1/theme">Source on GitHub ↗</a>
+          </p>
+        </footer>
+      </div>
+    </div>
+    <script type="module" is:inline src={withBase("ui/register/drawer.js")}></script>
+    <script type="module" is:inline src={withBase("ui/register/command-palette.js")}></script>
+    <div class="inspector" id="inspector" role="dialog" aria-label="Token inspector" data-inspector-source={withBase("tokens/inspector.json")} hidden></div>
+    <script>
+      import { initInspector } from "../scripts/inspector";
+      import { enhanceControls } from "@j3w1/ui/enhance/choice";
+      import { initCopy } from "../scripts/copy";
+      import "../scripts/portal-search";
+      initCopy();
+      initInspector();
+      /* Native state specimens must keep the exact maintained markup. */
+      const main = document.querySelector<HTMLElement>("main")!;
+      if (main.querySelector(".matrix")) {
+        const controls = main.querySelector<HTMLElement>("#controls");
+        if (controls) enhanceControls(controls);
+      } else enhanceControls(main);
+    </script>
+  </body>
+</html>

@@ -129,76 +129,55 @@ compact: false
 
 ## Purpose
 
-A record screen that proves the advanced form components compose with the
-navigation and feedback components: a trail, a heading, a step list, a
-notice, a grid of fields and a row of actions, then the same screen at its
-review step. It exists to show validation, saving and inertness across a
-whole form, not to prescribe a product.
+A record screen proving that the advanced form components compose with the
+navigation and feedback components, then the same screen at its review step.
+It shows validation, saving and inertness across a whole form; it does not
+prescribe a product.
 
 ## Anatomy
 
-The region landmark; the breadcrumbs (Records / Workstations / New); the h2
-in {color.text.bright}; the wizard step list with the current step on the
-2px {color.border.selected-indicator}; an info alert on
-{color.status.info.tint}; the form landmark holding the name and hostname
-text-fields, the role select, the commissioned-on date-picker, the SSH-key
-file-input, the notes textarea with its count and the enable checkbox; the
-footer rule and the Back, Save draft and Continue buttons. The review
-variant replaces the fields with a table whose row headers are the field
-names in {color.text.muted} and whose last column is a tertiary Edit button.
-Every part is the component's own markup and classes.
+Parts as listed in the anatomy; each is the contained component's own markup
+and classes.
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | rest tokens of every component on {color.surface.default}; the current step carries the indicator bar, future steps are disabled | `aria-current="step"` |
-| invalid | the name and hostname fields take the 2px {color.status.danger.border} and show their ✕ messages; the current step's marker becomes ✕; a danger alert on {color.status.danger.tint} summarising the two fields replaces the notice; the other fields stay at rest | border width 1 → 2px; glyphs; `aria-invalid`; `role="alert"` |
-| busy | Continue shows the static ⋯ glyph in {color.action.primary.text}; the form carries `aria-busy`; nothing shrinks or animates | glyph; `aria-busy`; cursor: progress |
-| disabled | every control takes its component's disabled treatment ({color.text.disabled}, {color.border.disabled}, {color.interaction.disabled.bg}); labels and review keys dim; no hover anywhere | `disabled` on the wrapping fieldset; cursor: not-allowed; never opacity |
+| default | every component's rest tokens on {color.surface.default}; the current step carries the indicator bar, future steps are disabled | `aria-current="step"` |
+| invalid | name and hostname take the 2px {color.status.danger.border} and ✕ messages; the current step's marker becomes ✕; a danger summary on {color.status.danger.tint} naming the two fields replaces the notice; other fields stay at rest | border 1 → 2px; glyphs; `aria-invalid`; `role="alert"` |
+| busy | Continue shows the static ⋯ in {color.action.primary.text}; nothing shrinks or animates | glyph; `aria-busy` on the form; cursor: progress |
+| disabled | every control takes its component's disabled treatment ({color.text.disabled}, {color.border.disabled}, {color.interaction.disabled.bg}); labels and review keys dim; no hover | `disabled` on the wrapping fieldset; cursor: not-allowed; never opacity |
 
-The composed components keep their own hover, focus-visible, required,
-placeholder-shown and read-only treatments; this specimen declares only the
-states the whole form adds to them.
+Contained components keep their own hover, focus-visible, required,
+placeholder-shown and read-only states; this table adds only the form-level
+ones.
 
 ## Keyboard
 
-Landmarks first: the region, the Breadcrumb navigation and the form are
-offered by name. Tab walks the trail, the reachable steps, the fields in
-reading order and the three buttons; the file-input's hidden native input is
-the stop and its visible button label is drawn with the ring. The select and
-the date field move with arrows inside one stop. In the review variant the
-Edit buttons are ordinary stops inside the table. Nothing traps focus.
+The region, the Breadcrumb navigation and the form are offered as landmarks
+by name. In the review variant the Edit buttons are ordinary stops inside the
+table. Nothing traps focus.
 
 ## Accessibility
 
-The region and the form are both named by the h2. Complete steps read ", complete"
-through a visually hidden suffix; future steps are disabled, not hidden.
-The notice is `role="status"` and the invalid summary is `role="alert"`, so
-the summary is announced once on submit while each field's message stays
-linked by `aria-describedby`; `aria-invalid` is set only after submit. While
-saving the form carries `aria-busy` and, once inert, sits inside a disabled
-fieldset so every control reports its state natively. The review table has
-a caption, column headers and row headers; each Edit button names its field
-through a visually hidden suffix. Contrast: notice title 6.5:1 or better on
-its tint, messages 5.26:1 on the panel surface, the invalid boundary 4.69:1
-on the input surface, disabled text 3.24:1 (exempt).
+The h2 names both the region and the form. Complete steps read ", complete"
+through a visually hidden suffix; future steps are disabled, not hidden. The
+summary alert is announced once on submit; each field's message stays linked
+by `aria-describedby`. Inside the disabled fieldset every control reports its
+state natively. The review table has a caption, column headers and row
+headers; each Edit button names its field through a visually hidden suffix.
+Text meets 4.5:1 and the invalid boundary 3:1; disabled text is exempt (house
+floor 3:1).
 
 ## Portability
 
-Landmarks, native controls, one container query and three root hooks
-(`data-state-invalid`, `data-state-busy`, `data-state-disabled`); no script
-is needed to render any state. Hosts without container queries stack the
-footer at the 600px viewport breakpoint. The 56rem reference width and the
-two-column field grid are layout of this specimen and not rules; the
-specimen proves composition, not a product. Toolkits port each contained
+No script is needed to render any state. Toolkits port each contained
 component through its own mapping.
 
 ## Non-examples
 
-A rounded card with a drop shadow around the form. A Material stepper with
-circular numbered badges and a connecting line. A red banner across the
-whole form instead of the summary alert plus field messages. Fields whose
-borders glow red. A spinner replacing the Continue label. Saving while the
-fields fade to half opacity. Placing the actions in a sticky footer bar with
-a shadow.
+A rounded card with a drop shadow. A Material stepper with numbered circles
+and a connecting line. A red banner across the whole form instead of the
+summary alert plus field messages. Field borders that glow red. A spinner
+replacing the Continue label. Fields fading to half opacity while saving. A
+sticky footer bar with a shadow.

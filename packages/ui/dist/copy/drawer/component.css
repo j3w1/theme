@@ -8,7 +8,7 @@ j3w1-drawer {
   line-height: var(--font-line-height-ui-md);
 }
 j3w1-drawer, j3w1-drawer *, j3w1-drawer *::before, j3w1-drawer *::after { box-sizing: border-box; }
-j3w1-drawer button, j3w1-drawer input, j3w1-drawer select, j3w1-drawer textarea { font: inherit; }
+j3w1-drawer :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 j3w1-drawer ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);
@@ -76,7 +76,7 @@ j3w1-drawer .drawer-header {
   align-items: center;
   justify-content: space-between;
   gap: var(--space-8);
-  min-height: var(--density-row-height, 36px);
+  min-height: var(--density-row-height, 28px);
   padding: var(--space-8) var(--space-12);
   border-bottom: var(--border-width-default) solid var(--color-border-divider);
 }
@@ -128,7 +128,7 @@ j3w1-drawer .drawer-check {
   display: flex;
   align-items: center;
   gap: var(--space-8);
-  min-height: var(--density-row-height, 36px);
+  min-height: var(--density-row-height, 28px);
   padding: 0 var(--space-12);
   color: var(--color-text-default);
   text-decoration: none;
@@ -217,21 +217,17 @@ j3w1-drawer .drawer:focus-visible {
   }
 }
 
-j3w1-drawer .button {
-  --_bg: var(--color-action-primary-bg);
-  --_fg: var(--color-action-primary-text);
-  --_border: var(--color-action-primary-border);
-  --_bg-hover: var(--color-action-primary-hover-bg);
-  --_fg-hover: var(--color-action-primary-text);
-  --_bg-active: var(--color-action-primary-pressed-bg);
-  --_border-active: var(--color-action-primary-border);
-  --_ring: var(--color-interaction-focus-ring-container);
+j3w1-drawer .button,
+j3w1-drawer .dialog-button,
+j3w1-drawer .empty-state-action,
+j3w1-drawer .file-input-button,
+j3w1-drawer button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-4);
-  min-height: var(--density-control-height, 32px);
-  padding: 0 var(--density-control-padding-x, 12px);
+  min-height: var(--density-control-height, 24px);
+  padding: 0 var(--density-control-padding-x, 8px);
   margin: 0;
   background: var(--_bg);
   color: var(--_fg);
@@ -244,8 +240,23 @@ j3w1-drawer .button {
   cursor: pointer;
   outline: 0;
 }
+j3w1-drawer .button,
+j3w1-drawer .dialog-button.dialog-button-primary {
+  --_bg: var(--color-action-primary-bg);
+  --_fg: var(--color-action-primary-text);
+  --_border: var(--color-action-primary-border);
+  --_bg-hover: var(--color-action-primary-hover-bg);
+  --_fg-hover: var(--color-action-primary-text);
+  --_bg-active: var(--color-action-primary-pressed-bg);
+  --_border-active: var(--color-action-primary-border);
+  --_ring: var(--color-interaction-focus-ring-container);
+}
 
-j3w1-drawer .button-secondary {
+j3w1-drawer .button-secondary,
+j3w1-drawer .dialog-button,
+j3w1-drawer .empty-state-action,
+j3w1-drawer .file-input-button,
+j3w1-drawer button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control) {
   --_bg: var(--color-action-secondary-bg);
   --_fg: var(--color-action-secondary-text);
   --_border: var(--color-action-secondary-border);
@@ -277,7 +288,8 @@ j3w1-drawer .button-destructive {
   --_border-active: var(--color-action-destructive-border);
   --_ring: var(--color-interaction-focus-ring);
 }
-j3w1-drawer .button-destructive-filled {
+j3w1-drawer .button-destructive-filled,
+j3w1-drawer .dialog-button.dialog-button-destructive {
   --_bg: var(--color-action-destructive-filled-bg);
   --_fg: var(--color-action-destructive-filled-text);
   --_border: var(--color-action-destructive-border);
@@ -286,6 +298,49 @@ j3w1-drawer .button-destructive-filled {
   --_bg-active: var(--color-action-destructive-pressed-bg);
   --_border-active: var(--color-action-destructive-border);
   --_ring: var(--color-action-destructive-filled-text);
+}
+@media (hover: hover) {
+  j3w1-drawer :is(.button, .dialog-button, .empty-state-action, .file-input-button, button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control)):hover {
+    --_bg: var(--_bg-hover);
+    --_fg: var(--_fg-hover);
+  }
+
+  j3w1-drawer .button-destructive:hover {
+    --_ring: var(--color-action-destructive-hover-text);
+  }
+}
+j3w1-drawer :is(.button, .dialog-button, .empty-state-action, .file-input-button, button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control)):active {
+  --_bg: var(--_bg-active);
+  --_fg: var(--_fg-hover);
+  --_border: var(--_border-active);
+}
+j3w1-drawer :is(.button, .dialog-button, .empty-state-action, button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control)):focus-visible {
+  outline: var(--border-width-default) dashed var(--_ring);
+  outline-offset: var(--focus-offset);
+}
+j3w1-drawer :is(.button, .dialog-button, .empty-state-action, button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control)):disabled {
+  --_bg: var(--color-interaction-disabled-bg);
+  --_fg: var(--color-text-disabled);
+  --_border: var(--color-border-disabled);
+  --_bg-hover: var(--color-interaction-disabled-bg);
+  --_fg-hover: var(--color-text-disabled);
+  --_bg-active: var(--color-interaction-disabled-bg);
+  --_border-active: var(--color-border-disabled);
+  cursor: not-allowed;
+}
+@media (prefers-reduced-motion: no-preference) {
+  j3w1-drawer .dialog-button,
+  j3w1-drawer .empty-state-action,
+  j3w1-drawer .file-input-button,
+  j3w1-drawer button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control) {
+    transition: background-color var(--motion-duration-fast);
+  }
+}
+
+@media (forced-colors: active) {
+  j3w1-drawer :is(.button, .dialog-button, .empty-state-action, button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control)):focus-visible {
+    outline-color: Highlight;
+  }
 }
 
 j3w1-drawer .button-icon {
@@ -304,25 +359,6 @@ j3w1-drawer .button-loading {
 j3w1-drawer .button-label {
   min-width: 0;
 }
-@media (hover: hover) {
-  j3w1-drawer .button:hover {
-    --_bg: var(--_bg-hover);
-    --_fg: var(--_fg-hover);
-  }
-
-  j3w1-drawer .button-destructive:hover {
-    --_ring: var(--color-action-destructive-hover-text);
-  }
-}
-j3w1-drawer .button:active {
-  --_bg: var(--_bg-active);
-  --_fg: var(--_fg-hover);
-  --_border: var(--_border-active);
-}
-j3w1-drawer .button:focus-visible {
-  outline: var(--border-width-default) dashed var(--_ring);
-  outline-offset: var(--focus-offset);
-}
 j3w1-drawer .button[aria-busy="true"] .button-loading {
   display: inline;
 }
@@ -334,16 +370,6 @@ j3w1-drawer .button[aria-busy="true"] .button-icon {
 j3w1-drawer .button[aria-busy="true"] {
   cursor: progress;
 }
-j3w1-drawer .button:disabled {
-  --_bg: var(--color-interaction-disabled-bg);
-  --_fg: var(--color-text-disabled);
-  --_border: var(--color-border-disabled);
-  --_bg-hover: var(--color-interaction-disabled-bg);
-  --_fg-hover: var(--color-text-disabled);
-  --_bg-active: var(--color-interaction-disabled-bg);
-  --_border-active: var(--color-border-disabled);
-  cursor: not-allowed;
-}
 
 @media (prefers-reduced-motion: no-preference) {
   j3w1-drawer .button {
@@ -352,9 +378,6 @@ j3w1-drawer .button:disabled {
 }
 
 @media (forced-colors: active) {
-  j3w1-drawer .button:focus-visible {
-    outline-color: Highlight;
-  }
 }
 
 j3w1-drawer [hidden] { display: none !important; }

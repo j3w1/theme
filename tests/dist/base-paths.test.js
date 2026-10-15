@@ -96,3 +96,39 @@ test("canonical, og:url and the nojekyll marker are correct", async () => {
   assert.ok(await exists("dist/index.html"));
   assert.ok(await exists("dist/404.html"));
 });
+
+/* R-j: fragments are part of the link contract, including links between pages. */
+test("every same-site HTML link fragment names a real target on its destination", async () => {
+  const pages = new Map();
+  const inventory = await readJson("spec/inventory.json");
+  for (const file of distFiles.filter((file) => file.endsWith(".html"))) {
+    const ids = new Set(), links = [];
+    walkMarkup(parse(await readText(file)), (node) => {
+      for (const { name, value } of node.attrs ?? []) {
+        if (name === "id") ids.add(value);
+        if ((node.tagName === "a" || node.tagName === "area") && name === "href") links.push(value);
+      }
+    });
+    pages.set(file, { ids, links });
+  }
+  const problems = new Set();
+  for (const [file, { links }] of pages) {
+    // These inert historical reconstructions are digest-recorded evidence,
+    // not navigation. Keep their exact pinned bytes (coordinator direction).
+    if (file.startsWith("dist/releases/specimens/")) continue;
+    const relative = file.slice("dist/".length).replace(/index\.html$/, "");
+    const from = new URL(relative, manifest.site.url);
+    for (const href of links) {
+      const target = new URL(href, from);
+      if (target.origin !== new URL(manifest.site.url).origin || !target.pathname.startsWith(base) || !target.hash || target.hash === "#") continue;
+      const route = decodeURIComponent(target.pathname.slice(base.length));
+      const candidate = "dist/" + (route.endsWith("/") || !route ? route + "index.html" : route);
+      const page = pages.get(candidate) ?? pages.get(candidate + "/index.html");
+      if (!page) continue; // Download fragments (JSON evidence, SVG) are not HTML ids.
+      const hash = decodeURIComponent(target.hash.slice(1));
+      if (route.startsWith("demo/") && (hashDestinations.includes(hash) || /^\/components\/[a-z0-9-]+$/.test(hash) && inventory.components.some((component) => hash === `/components/${component.id}`))) continue; // Vue's registered hash routes.
+      if (!page.ids.has(hash)) problems.add(`${file}: ${href} -> missing #${hash}`);
+    }
+  }
+  assert.deepEqual([...problems], []);
+});

@@ -10,7 +10,8 @@
 // Writes the plan as JSON to stdout, and to $GITHUB_OUTPUT when set.
 
 import { execFileSync } from "node:child_process";
-import { createHash } from "node:crypto";
+import { sha256Hex } from "../lib/host-install/files.mjs";
+import { git as queryGit } from "../tooling/git.mjs";
 import { existsSync, readFileSync, appendFileSync, readdirSync, statSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -172,10 +173,10 @@ export function plan({ registry, event, paths, full = false, reason = null, spec
     paths: paths === null ? null : paths.length,
     reasons: [...new Set(reasons)].sort().slice(0, 40),
   };
-  return { ...body, planHash: createHash("sha256").update(JSON.stringify(body)).digest("hex") };
+  return { ...body, planHash: sha256Hex(JSON.stringify(body)) };
 }
 
-const git = (...args) => execFileSync("git", args, { cwd: root, encoding: "utf8" }).trim();
+const git = (...args) => queryGit(args, { cwd: root });
 
 export function changedPaths(base, head) {
   if (!SHA.test(base ?? "") || !SHA.test(head ?? "")) return null;

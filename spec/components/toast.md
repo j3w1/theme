@@ -46,7 +46,7 @@ tokens:
   danger.text: color.status.danger.on-fill
   danger.button-bg-hover: color.action.destructive.pressed-bg
   action.text: color.text.link
-  action.bg-hover: color.interaction.hover.bg-strong
+  action.bg-hover: color.interaction.hover.bg
   action.text-hover: color.text.link-hover
   close.text: color.action.tertiary.text
   close.bg-hover: color.action.tertiary.hover-bg
@@ -55,7 +55,7 @@ tokens:
   stack.z: z.toast
 stateTokens:
   default: { fg: color.text.default, bg: color.surface.canvas, border: color.border.overlay }
-  hover: { fg: color.text.link-hover, bg: color.interaction.hover.bg-strong }
+  hover: { fg: color.text.link-hover, bg: color.interaction.hover.bg }
   focus-visible: { fg: color.action.tertiary.text, bg: color.surface.canvas, outline: color.interaction.focus.ring }
   stacked: { fg: color.text.muted, bg: color.surface.canvas, border: color.border.overlay }
   reduced-motion: { fg: color.text.default, bg: color.surface.canvas, border: color.border.overlay }
@@ -76,7 +76,7 @@ contrast:
   - { fg: color.text.default, bg: color.status.neutral.tint, label: "text on the neutral tint" }
   - { fg: color.status.danger.on-fill, bg: color.status.danger.fill, label: "text, glyph and buttons on the danger fill" }
   - { fg: color.status.danger.fill, bg: color.surface.canvas, min: 3, kind: ui, label: "the danger fill is its own boundary against the canvas" }
-  - { fg: color.status.danger.border, bg: color.status.danger.fill, min: 1, kind: ui, label: "danger border on the danger fill (decorative)", waiver: "the fill is the boundary at 4.14:1 against the canvas; the border only keeps the box model identical across statuses" }
+  - { fg: color.status.danger.border, bg: color.status.danger.fill, min: 1, kind: ui, label: "danger border on the danger fill (decorative)", waiver: "the fill is the boundary against the canvas; the border only keeps the box model identical across statuses" }
 anatomy:
   - part: stack
     description: The region that holds the toasts, fixed in the end corner of the viewport at z.toast; in flow in the demonstration.
@@ -118,60 +118,49 @@ compact: false
 
 ## Purpose
 
-A short confirmation or notice that does not belong to any one element on
-the page: "Saved", "Copied", "Connection lost". It appears in a fixed corner
-stack, is announced politely, and leaves on its own after a pause or when
-dismissed. Anything that needs a decision is a dialog; anything tied to a
-form is an alert.
+A short notice that belongs to no one element on the page: "Saved",
+"Copied", "Connection lost". It leaves on its own after a pause or when
+dismissed. A decision is a dialog; a notice tied to a form is an alert.
 
 ## Anatomy
 
-The stack region; each toast on {color.surface.canvas} behind a 1px
-{color.border.overlay}, or on a status tint with its status border; the glyph
-and the text; an optional action; the Dismiss button; the "+n" count. The
-danger toast is the historical critical notification: {color.status.danger.fill}
-with {color.status.danger.on-fill} for the text, the glyph and both buttons.
+Parts as listed in the anatomy. The danger toast is the historical critical
+notification: {color.status.danger.fill} with {color.status.danger.on-fill}
+for the text, the glyph and both buttons.
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | canvas surface, 1px overlay border, glyph in the status text colour | the glyph; the worded text |
-| hover | action → {color.interaction.hover.bg-strong} with {color.text.link-hover}; Dismiss → {color.action.tertiary.hover-bg}; the timeout pauses | cursor: pointer; underline thickens on the action |
-| focus-visible | ring 1px dashed {color.interaction.focus.ring} at −2px on the focused button; on the danger fill the ring takes {color.status.danger.on-fill}; the timeout pauses | the ring |
-| stacked | toasts sit in one column with a 4px gap, newest at the end; the last visible toast shows "+n" in {color.text.muted} for queued ones | the count text; at most three visible |
-| reduced-motion | no transition; the toast is simply present or absent | `prefers-reduced-motion`; nothing moves |
+| hover | action → {color.interaction.hover.bg} with {color.text.link-hover}; Dismiss → {color.action.tertiary.hover-bg}; the timeout pauses | cursor: pointer; the action's underline thickens |
+| focus-visible | 1px dashed {color.interaction.focus.ring} at −2px on the focused button, {color.status.danger.on-fill} on the danger fill; the timeout pauses | the ring |
+| stacked | one column, 4px gap, newest at the end; the last visible toast shows "+n" in {color.text.muted} | the count text; at most three visible |
+| reduced-motion | no transition; present or absent | `prefers-reduced-motion`; nothing moves |
 
-The toast has no disabled, selected or busy state.
+No disabled, selected or busy state.
 
 ## Keyboard
 
-Toasts never take focus when they appear. A host shortcut (F6 on the web
-reference) moves focus into the region; Tab then walks each toast's action
-and Dismiss; Escape dismisses the focused toast. While any toast has focus or
-the pointer, its timeout is paused.
+As in the key table. F6 is the web reference's shortcut; the timeout pauses
+while a toast has focus or the pointer.
 
 ## Accessibility
 
-The region is named "Notifications"; each toast is `role="status"` so it is
-announced politely, and danger toasts are `role="alert"`. The text states the
-outcome in words and the glyph is `aria-hidden`. Every toast has Dismiss and
-the timeout is at least 8 seconds, extended for toasts with an action; an
-action is never the only way to reach what it does. Contrast: text 8.65:1 on
-the canvas, the overlay border 4.69:1, status text on its tint from 5.31:1
-(neutral) to 6.59:1, on-fill text 4.58:1 on the danger fill, which is itself
-4.14:1 against the canvas.
+The text states the outcome in words; the glyph is `aria-hidden`. Every toast
+has Dismiss; the timeout, at least 8 seconds, is extended for toasts with an
+action, and an action is never the only way to reach what it does. Text
+meets 4.5:1 on the canvas, on its tint and on the danger fill; borders, and
+the danger fill against the canvas, 3:1.
 
 ## Portability
 
-A fixed region, tints, 1px borders and text glyphs. Hosts with a notification
-daemon send the text and urgency instead of drawing a toast; the danger fill
-maps to the critical urgency. Toolkits with a native toast overlay use it and
-record that the danger fill is not available.
+Hosts with a notification daemon send the text and urgency instead of
+drawing a toast. Toolkits with a native toast overlay use it and record that
+the danger fill is not available.
 
 ## Non-examples
 
-A toast that slides in from an edge. A rounded, shadowed pill. A toast with
-no Dismiss that vanishes after two seconds. A toast that takes focus on
-appearance. Stacking more than three with no count. A form error shown as a
-toast. Colour-only status without the glyph and worded text.
+A toast that slides in. A rounded, shadowed pill. No Dismiss and gone in two
+seconds. Taking focus on appearance. More than three stacked with no count. A
+form error as a toast. Colour-only status without the glyph and worded text.

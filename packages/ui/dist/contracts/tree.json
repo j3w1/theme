@@ -108,10 +108,10 @@
     "dependency.role-color-text-disabled": "color.text.disabled",
     "dependency.role-density-comfortable-control-height": "density.comfortable.control-height",
     "dependency.role-density-compact-control-height": "density.compact.control-height",
+    "dependency.role-focus-offset": "focus.offset",
     "dependency.role-radius-none": "radius.none",
     "dependency.role-space-12": "space.12",
     "dependency.role-space-16": "space.16",
-    "dependency.role-space-2": "space.2",
     "dependency.role-space-8": "space.8"
   },
   "status": {
@@ -134,18 +134,16 @@
       "color.interaction.text-selection.text",
       "color.surface.canvas",
       "color.surface.default",
-      "color.surface.input",
       "color.text.default",
       "color.text.disabled",
-      "density.comfortable.control-height",
-      "density.compact.control-height",
+      "focus.offset",
+      "focus.ring",
       "font.family.mono",
       "font.line-height.ui-md",
       "font.size.ui-md",
       "radius.none",
       "space.12",
       "space.16",
-      "space.2",
       "space.32",
       "space.4",
       "space.8",
@@ -173,18 +171,16 @@
       "color.primitive.rose.700",
       "color.surface.canvas",
       "color.surface.default",
-      "color.surface.input",
       "color.text.default",
       "color.text.disabled",
-      "density.comfortable.control-height",
-      "density.compact.control-height",
+      "focus.offset",
+      "focus.ring",
       "font.family.mono",
       "font.line-height.ui-md",
       "font.size.ui-md",
       "radius.none",
       "space.12",
       "space.16",
-      "space.2",
       "space.32",
       "space.4",
       "space.8",
@@ -253,11 +249,6 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
-      "color.surface.input": {
-        "action": "use",
-        "reason": "Use within the role's documented scope and restrictions.",
-        "decisionIds": []
-      },
       "color.text.default": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -268,12 +259,12 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
-      "density.comfortable.control-height": {
+      "focus.offset": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
-      "density.compact.control-height": {
+      "focus.ring": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -308,11 +299,6 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
-      "space.2": {
-        "action": "use",
-        "reason": "Use within the role's documented scope and restrictions.",
-        "decisionIds": []
-      },
       "space.32": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -339,6 +325,6 @@
   "copy": {
     "directory": "copy/tree/",
     "manifest": "copy/tree/manifest.json",
-    "digest": "sha256-4RUETiVuDpUfhbB64T/WAejSHUEhFEXHJnLzKNXk140="
+    "digest": "sha256-xJ5YVjzApCdc/f8qc+rs3uRCT9DfNBT1TqPYogGUHJY="
   }
 }

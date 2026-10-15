@@ -103,62 +103,50 @@ compact: false
 ## Purpose
 
 A status message that belongs to the page or form around it: a failed
-submit, a saved draft, a deprecation notice. It stays in flow, is never
-timed, and is announced once when it appears. Transient confirmations are
-toasts; blocking questions are dialogs.
+submit, a saved draft, a deprecation notice. It stays in flow, is never timed,
+and is announced once when it appears. Transient confirmations are toasts;
+blocking questions are dialogs.
 
 ## Anatomy
 
-The block on the status tint behind a 1px status border; the glyph in the
-status text colour; the title in the same colour and the message in
-{color.text.default}; an optional close button at the end. The five statuses
-use their own `tint`, `border` and `text` roles: {color.status.danger.tint},
-{color.status.warning.tint}, {color.status.success.tint},
-{color.status.info.tint} and {color.status.neutral.tint} behind
-{color.status.danger.border}, {color.status.warning.border},
-{color.status.success.border}, {color.status.info.border} and
-{color.status.neutral.border}.
+Parts as listed in the anatomy. Each of the five statuses uses its own
+`tint`, `border` and `text` roles.
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | status tint, 1px status border, glyph and title in the status text colour | the glyph ✕ ! ✓ i · |
-| hover | close button background → {color.action.tertiary.hover-bg}; the alert itself does not react | cursor: pointer on the button only |
-| focus-visible | ring 1px dashed {color.interaction.focus.ring} at −2px on the close button | the ring |
+| hover | close button → {color.action.tertiary.hover-bg}; the alert itself does not react | cursor: pointer on the button only |
+| focus-visible | 1px dashed {color.interaction.focus.ring} ring at −2px on the close button | the ring |
 
-The alert has no disabled, selected or loading state; a message that is no
-longer true is removed, not greyed.
+No disabled, selected or loading state: a message that is no longer true is
+removed, not greyed.
 
 ## Keyboard
 
-Only the close button is in the tab order. Enter or Space dismisses and
-returns focus to where it was, or to the next focusable element after the
-alert when that element is gone. Escape does nothing, so a page-level Escape
-handler is never swallowed.
+As in the key table. Escape does nothing so a page-level Escape handler is
+never swallowed.
 
 ## Accessibility
 
-Danger uses `role="alert"` (assertive) because it needs attention now; the
-other four use `role="status"` (polite). The container exists before its
-text is set, so the live region fires; text is never injected together with
-the container. The glyph is `aria-hidden` and the title states the status in
-words ("Build failed", "Saved"), so nothing depends on colour or on the glyph
-alone. The close button is `aria-label="Dismiss"` and at least 24×24 CSS
-pixels. Contrast: status text on its tint from 4.88:1 (danger) to 6.59:1
-(warning, info); body text at least 7.56:1 on every tint; borders from 4.07:1
-(neutral) to 6.59:1.
+Danger is `role="alert"` (assertive) because it needs attention now; the
+other four are `role="status"` (polite). The container exists before its text
+is set so the live region fires; never inject text together with the
+container. The glyph is `aria-hidden` and the title states the status in
+words ("Build failed", "Saved"), so nothing depends on colour or the glyph
+alone. The close button is at least 24×24 CSS pixels. Text meets 4.5:1 on
+every tint; borders 3:1.
 
 ## Portability
 
-Everything is a tint, a 1px border and text; the glyph is a text character,
-not an icon font. Toolkits with a native info bar map its type to the five
-statuses and keep the glyph in the text; toolkits without a tint draw the
-border only and record the deviation.
+The glyph is a text character, not an icon font. A toolkit with a native info
+bar maps its type to the five statuses and keeps the glyph in the text; one
+without a tint draws the border only and records the deviation.
 
 ## Non-examples
 
 A coloured left stripe with no border. A rounded, shadowed card. A banner
 that slides in or auto-dismisses. Colour-only status without the glyph and a
-worded title. Using `role="alert"` for success messages. A close button that
-is an icon with no accessible name. Fixed-position alerts covering content.
+worded title. `role="alert"` for success. A close icon with no accessible
+name. Fixed-position alerts covering content.

@@ -58,7 +58,7 @@ tokens:
   row.ring: color.interaction.focus.ring
   row.bg-selected: color.interaction.selection.bg
   row.text-selected: color.interaction.selection.text
-  row.ring-selected: color.interaction.focus.ring-container
+  row.ring-selected: color.interaction.focus.ring
 stateTokens:
   default: { fg: color.text.default, bg: color.code.bg, border: color.border.control }
   hover: { fg: color.text.default, bg: color.interaction.hover.bg }
@@ -86,7 +86,7 @@ contrast:
   - { fg: color.interaction.focus.ring, bg: color.diff.added.bg, min: 3, kind: ui, state: focus-visible, label: "ring on an added row" }
   - { fg: color.interaction.focus.ring, bg: color.diff.removed.bg, min: 3, kind: ui, state: focus-visible, label: "ring on a removed row" }
   - { fg: color.interaction.focus.ring, bg: color.diff.modified.bg, min: 3, kind: ui, state: focus-visible, label: "ring on a modified row" }
-  - { fg: color.interaction.focus.ring-container, bg: color.interaction.selection.bg, min: 3, kind: ui, state: focus-visible, label: "ring on the selected row" }
+  - { fg: color.interaction.focus.ring, bg: color.interaction.selection.bg, min: 3, kind: ui, state: focus-visible, label: "ring on the selected row" }
   - { fg: color.text.link, bg: color.diff.header-bg, label: "fold button text" }
 anatomy:
   - part: root
@@ -131,83 +131,67 @@ compact: false
 
 ## Purpose
 
-How changed text is shown: line rows with a fill and a textual marker,
-word-level changes as underlines that leave text contrast untouched, hunk
-headers, collapsible unchanged regions, and merge conflicts in a double
-border. The `+`, `−` and `~` markers are content, present in every state and
-every profile.
+The `+`, `−` and `~` markers are content, present in every state and every
+profile; word-level underlines leave the text contrast untouched.
 
 ## Anatomy
 
-Root `.diff-view` (the table) with the variant class `.diff-view-unified`,
-`-split`, `-word-level` or `-conflict`. Row classes: `.diff-view-row`,
-`-row-context`, `-row-added`, `-row-removed`, `-row-modified`, `-row-hunk`,
-`-row-fold`, `-row-conflict` with `-row-conflict-start`, `-row-conflict-mid`
-and `-row-conflict-end` for the marker lines. Cells: `.diff-view-ln`,
-`-marker`, `-text`, `-fold-cell`, and `-range` for the `@@` span; the split
-variant adds `-side-old` and `-side-new` on cells and, on a `-row-pair`,
-`-cell-removed` and `-cell-added` per side (an empty `-cell-blank` faces an
-added line); the conflict variant adds `-row-ours` and `-row-theirs`. Word-level spans: `.diff-view-word-added` (2px underline in
-{color.diff.added.emphasis}) and `.diff-view-word-removed` (underline plus
-line-through in {color.diff.removed.emphasis}). The fold button is
-`.diff-view-fold` with an inline SVG chevron `.diff-view-chevron` and two
-labels, `-fold-collapsed` and `-fold-expanded`; the folded rows are a
-`<tbody class="diff-view-folded" hidden>`. Line numbers
-use {color.text.muted} rather than {color.code.line-number} because the
-modified fill would drop the subtle step to 4.45:1.
+Root `.diff-view` with `.diff-view-unified`, `-split`, `-word-level` or
+`-conflict`. Rows: `.diff-view-row`, `-row-context`, `-row-added`,
+`-row-removed`, `-row-modified`, `-row-hunk`, `-row-fold`, `-row-conflict`
+(marker lines `-row-conflict-start`, `-mid`, `-end`). Cells: `.diff-view-ln`,
+`-marker`, `-text`, `-fold-cell`, `-range` (the `@@` span). Split adds
+`-side-old` and `-side-new`, and on a `-row-pair` `-cell-removed` and
+`-cell-added` (an empty `-cell-blank` faces an added line); conflict adds
+`-row-ours` and `-row-theirs`. Word spans: `.diff-view-word-added` (2px
+underline in {color.diff.added.emphasis}) and `.diff-view-word-removed`
+(underline plus line-through in {color.diff.removed.emphasis}). Fold:
+`.diff-view-fold` with SVG chevron `.diff-view-chevron` and labels
+`-fold-collapsed` and `-fold-expanded`; folded rows are `<tbody
+class="diff-view-folded" hidden>`. Line numbers use {color.text.muted}, not
+{color.code.line-number}, which falls below 4.5:1 on the modified fill.
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | added rows {color.diff.added.bg} with `+` in {color.diff.added.gutter}; removed {color.diff.removed.bg} with `−` in {color.diff.removed.gutter}; modified {color.diff.modified.bg} with `~` in {color.diff.modified.gutter}; hunk rows {color.diff.header-bg}; conflicts in a 3px double {color.diff.conflict-border} | the markers; the double border |
-| hover | the row's number and marker cells → {color.interaction.hover.bg}; the text cell keeps its fill | cursor: default; only on hover-capable pointers |
-| selected | the whole row filled {color.interaction.selection.bg} with {color.interaction.selection.text}; the marker stays | `aria-current` (or `:target` for a permalinked line); the marker glyph |
-| focus-visible | 1px dashed {color.interaction.focus.ring} at −2px around the row; on a selected row the ring is {color.interaction.focus.ring-container} | the ring |
-| expanded | the folded `<tbody>` is shown; the chevron points down; the button reads "Hide 12 unchanged lines" | `aria-expanded="true"`; the rows appear |
-| collapsed | the folded `<tbody>` is hidden; the chevron points to the inline end; "… 12 unchanged lines" | `aria-expanded="false"`; the ellipsis |
+| default | added {color.diff.added.bg}, `+` in {color.diff.added.gutter}; removed {color.diff.removed.bg}, `−` in {color.diff.removed.gutter}; modified {color.diff.modified.bg}, `~` in {color.diff.modified.gutter}; hunks {color.diff.header-bg}; conflicts in a 3px double {color.diff.conflict-border} | the markers; the double border |
+| hover | number and marker cells → {color.interaction.hover.bg}; the text cell keeps its fill | cursor: default; hover-capable pointers only |
+| selected | whole row {color.interaction.selection.bg} with {color.interaction.selection.text}; the marker stays | `aria-current` (or `:target` for a permalinked line); the marker glyph |
+| focus-visible | 1px dashed {color.interaction.focus.ring} at −2px around the row, including a selected row | the ring |
+| expanded | folded `<tbody>` shown; chevron down; "Hide 12 unchanged lines" | `aria-expanded="true"`; the rows appear |
+| collapsed | folded `<tbody>` hidden; chevron to the inline end; "… 12 unchanged lines" | `aria-expanded="false"`; the ellipsis |
 
 Precedence: selected > hover; focus-visible is always drawn. A selected row
-loses its diff fill but never its marker, which is why the marker is content.
+loses its diff fill, never its marker.
 
 ## Keyboard
 
-A plain table has no row focus. The official web distribution places it in a
-named, focusable scroll region so keyboard users can inspect wide lines without
-page overflow. The region uses the canonical container focus ring. Within the
-table, the fold buttons are the only stops and
-toggle with Enter or Space, the chevron turning within the motion budget.
-Hosts that expose the diff as a grid own row navigation and draw the ring on
-the focused row; the theme adds no binding of its own.
+A plain table has no row focus. The web distribution wraps it in a named,
+focusable scroll region with the container focus ring, so wide lines can be
+read without page overflow. The chevron turns within the motion budget.
 
 ## Accessibility
 
-The caption names both files. Every changed row carries its marker in a cell
-of its own, so a screen reader announces `+` or `−` before the line and a
-monochrome print keeps the distinction. Word-level changes use
-`text-decoration` (underline, or underline and line-through), never a fill,
-so the row text stays at 7.56:1 or better on every diff fill. The `−` marker
-measures 4.24:1 on the removed fill: it is bold, sits on its own fill and is
-a glyph, so it is held to the 3:1 graphics floor and recorded here. Folded
-hunks use `aria-expanded` and `aria-controls` on a real button; the hidden
-rows are `hidden`, not visually clipped, so they are not read while
-collapsed. Conflict markers are the literal `<<<<<<<`, `=======` and
-`>>>>>>>` lines in {color.text.bright} on {color.diff.header-bg}, inside the
-double border.
+Each marker sits in its own cell, so a screen reader announces `+` or `−`
+before the line and monochrome print keeps the distinction. Word-level
+changes use `text-decoration`, never a fill, so row text keeps 4.5:1 on
+every diff fill. The `−` marker is a bold glyph on its own fill and is held
+to the 3:1 graphics floor. Folded rows are `hidden`, not visually clipped,
+so they are not read while collapsed. Conflict markers are the literal
+`<<<<<<<`, `=======` and `>>>>>>>` lines.
 
 ## Portability
 
-A table with cell backgrounds, borders and text decoration is expressible in
-every toolkit. Hosts without double borders draw two 1px lines and record it;
-hosts without line-through keep the underline and the `−` marker. The three
-extension hues are confined to the `diff` group here and change with the
-profile; the markers do not.
+Cell backgrounds, borders and text decoration exist in every toolkit. Without
+double borders, draw two 1px lines and record it; without line-through, keep
+the underline and the `−` marker. The three extension hues are confined to
+the `diff` group and change with the profile; the markers do not.
 
 ## Non-examples
 
-Red and green fills with no `+`/`−` marker. Word-level changes drawn as a
-bright fill that pushes the text below 4.5:1. A removed line rendered in
-`text.disabled` or struck through as a whole. Collapsed hunks that are only
-visually clipped and still read out. Conflict blocks in purple. Hover that
-recolours the code text. Round-cornered hunk cards floating on the page. A
-selected row that drops the marker because "the colour says it".
+Red and green fills without `+`/`−`. Word-level changes as a bright fill
+that pushes text below 4.5:1. A removed line in `text.disabled` or struck
+through whole. Collapsed hunks only visually clipped and still read out.
+Purple conflict blocks. Hover that recolours the code text. Round-cornered
+hunk cards. A selected row that drops the marker.

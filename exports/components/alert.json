@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=",
+  "sourceDigest": "sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=",
   "id": "alert",
   "family": "feedback",
   "maturity": "stable",
@@ -347,7 +347,7 @@
     },
     {
       "state": "hover",
-      "visual": "close button background → {color.action.tertiary.hover-bg}; the alert itself does not react",
+      "visual": "close button → {color.action.tertiary.hover-bg}; the alert itself does not react",
       "channel": "cursor: pointer on the button only",
       "tokens": {
         "fg": {
@@ -378,7 +378,7 @@
     },
     {
       "state": "focus-visible",
-      "visual": "ring 1px dashed {color.interaction.focus.ring} at −2px on the close button",
+      "visual": "1px dashed {color.interaction.focus.ring} ring at −2px on the close button",
       "channel": "the ring",
       "tokens": {
         "fg": {
@@ -464,7 +464,7 @@
     "admin-form",
     "settings-panel"
   ],
-  "nonExamples": "A coloured left stripe with no border. A rounded, shadowed card. A banner\nthat slides in or auto-dismisses. Colour-only status without the glyph and a\nworded title. Using `role=\"alert\"` for success messages. A close button that\nis an icon with no accessible name. Fixed-position alerts covering content.",
+  "nonExamples": "A coloured left stripe with no border. A rounded, shadowed card. A banner\nthat slides in or auto-dismisses. Colour-only status without the glyph and a\nworded title. `role=\"alert\"` for success. A close icon with no accessible\nname. Fixed-position alerts covering content.",
   "contrast": [
     {
       "label": "alert default text",

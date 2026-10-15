@@ -30,8 +30,8 @@
   align-items: center;
   gap: var(--space-8);
   width: 100%;
-  min-height: var(--density-row-height, 36px);
-  padding: 0 var(--density-control-padding-x, 12px);
+  min-height: var(--density-row-height, 28px);
+  padding: 0 var(--density-control-padding-x, 8px);
   background: transparent;
   border: 0;
   border-bottom: var(--border-width-emphasis) solid transparent;
@@ -99,8 +99,8 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-4);
-  min-height: var(--density-control-height, 32px);
-  padding: 0 var(--density-control-padding-x, 12px);
+  min-height: var(--density-control-height, 24px);
+  padding: 0 var(--density-control-padding-x, 8px);
   border: var(--border-width-default) solid;
   border-radius: var(--radius-none);
   font: inherit;

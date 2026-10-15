@@ -32,12 +32,12 @@ tokens:
   dependency.role-color-chart-axis: color.chart.axis
   dependency.role-color-chart-grid: color.chart.grid
   dependency.role-color-chart-label: color.chart.label
+  dependency.role-focus-offset: focus.offset
   series.primary: color.chart.series-2
   header.text: color.text.bright
   row.text: color.text.default
   dependency.role-radius-none: radius.none
   dependency.role-space-12: space.12
-  dependency.role-space-2: space.2
   dependency.role-space-8: space.8
 stateTokens:
   default:
@@ -100,18 +100,16 @@ compact: false
 
 ## Purpose
 
-Show one bounded numeric series with its complete textual data table. Labels and exact values carry the meaning without color. The API accepts finite non-negative values; it rejects invalid data rather than silently inventing missing numbers.
+One bounded numeric series, plotted beside the complete data table that
+carries its meaning.
 
 ## Anatomy
 
-- **figure:** Caption identifies the measure and units.
-- **plot:** Responsive SVG with an accessible name.
-- **table:** Always-visible labels and exact values.
-- **empty:** Explicit message when the supplied series is empty.
+Parts as listed in the anatomy; each SVG bar has a text label.
 
 ## States
 
-| State | Presentation | Non-colour channel |
+| State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | Red primary series (`color.chart.series-2`), with canonical axis and label roles. | Complete labelled data table. |
 | empty | Plot and rows are absent. | Explicit No data available text. |
@@ -119,16 +117,16 @@ Show one bounded numeric series with its complete textual data table. Labels and
 
 ## Keyboard
 
-- **Tab:** Visit any scrollable data region. Points do not add unnecessary tab stops.
+As in the key table.
 
 ## Accessibility
 
-Keep the table visible without JavaScript. Do not replace it with tooltips or color-only legends. The single series uses the approved red chart role `color.chart.series-2`, as requested by the owner for graphs; foreground typography retains its rose roles. Each SVG bar has a text label. A loading status must distinguish old data from a completed refresh.
-
-Column headers use `color.text.bright`; body row labels and numeric values use
-`color.text.default`. Row-header semantics remain native `th scope="row"` even
-though their typography matches body values. Do not apply the column-header color
-to every `th` indiscriminately.
+The table stays visible without JavaScript and is never replaced by tooltips
+or colour-only legends. Text keeps its rose roles; only the series is red. A
+loading status distinguishes old data from a completed refresh. Column
+headers use `color.text.bright`; row labels and values use
+`color.text.default`, while row headers stay native `th scope="row"`. Do not
+give every `th` the column-header colour.
 
 ## Portability
 
@@ -136,4 +134,5 @@ Follows the shared component defaults in `spec/portability.md` (section "Shared 
 
 ## Non-examples
 
-Unlabelled controls, color-only status, drag-only operations, hidden required instructions, stolen focus or an invented service success.
+Unlabelled controls, colour-only status, drag-only operations, hidden required
+instructions, stolen focus or an invented service success.

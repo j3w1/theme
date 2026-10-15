@@ -8,7 +8,7 @@ j3w1-tabs {
   line-height: var(--font-line-height-ui-md);
 }
 j3w1-tabs, j3w1-tabs *, j3w1-tabs *::before, j3w1-tabs *::after { box-sizing: border-box; }
-j3w1-tabs button, j3w1-tabs input, j3w1-tabs select, j3w1-tabs textarea { font: inherit; }
+j3w1-tabs :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 j3w1-tabs ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);
@@ -33,7 +33,7 @@ j3w1-tabs .tabs {
 
 j3w1-tabs .tabs-list {
   display: flex;
-  gap: var(--density-gap, 4px);
+  gap: var(--density-gap, 2px);
   min-width: 0;
   overflow-x: auto;
   overflow-y: hidden;
@@ -44,8 +44,8 @@ j3w1-tabs .tabs-list {
 
 j3w1-tabs .tabs-tab {
   flex: 0 0 auto;
-  min-height: var(--density-control-height, 32px);
-  padding: 0 var(--density-control-padding-x, 12px);
+  min-height: var(--density-control-height, 24px);
+  padding: 0 var(--density-control-padding-x, 8px);
   margin-bottom: calc(-1 * var(--border-width-default));
   background: transparent;
   border: 0;

@@ -135,97 +135,75 @@ compact: false
 
 ## Purpose
 
-The reference for terminal text: the surface, the default foreground, the
-cursor, the selection, the six attributes and the sixteen slots the
-workstation froze in `Xresources`. The slots are the origin of the theme:
-the `heritage-ansi` profile carries them exactly, and the `default` profile
-carries the readable heritage sixteen (D-029), the same hues with the dim
-slots lifted so text in any slot reads, except slot 6, which is coral (D-032). What a program does with a slot is
-that program's choice; the theme makes every slot but the dim tier safe for
-text rather than steering programs to particular slots.
+The reference for terminal text. The sixteen slots, frozen in `Xresources`,
+are the theme's origin: `heritage-ansi` carries them exactly; `default`
+lifts the dim slots to readable values of the same hues (D-029) and makes
+slot 6 coral (D-032). Programs choose their slots; the theme makes every slot
+but the dim tier safe for text instead of steering them.
 
 ## Anatomy
 
-Root `.terminal` (the `<pre>`) with a variant class `.terminal-transcript`,
-`.terminal-ansi-grid` or `.terminal-attributes`. Parts `.terminal-<part>`:
-`-line`, `-prompt` with `-prompt-path`, `-prompt-branch` and `-prompt-arrow`,
-`-cursor`, `-sel`, `-label`, `-fail` (the `✕`), and the attributes `-bold`,
-`-dim`, `-italic`, `-underline`, `-inverse`, `-strike`. Slot classes are
-`.terminal-fg-0` … `.terminal-fg-15` and `.terminal-bg-0` … `.terminal-bg-15`,
-each a single role variable {color.terminal.ansi.0} … {color.terminal.ansi.15},
-so the profile switch on the specimen recolours the grid without touching
-the markup. The foreground is {color.terminal.fg} on {color.terminal.bg};
-the prompt path segment is {color.terminal.prompt-text} on
-{color.terminal.prompt-bg} and the branch segment {color.terminal.bg} on
-{color.terminal.ansi.3}, the two agnoster backgrounds the workstation used.
-{color.terminal.prompt-bg} is the heritage dark red in every profile, so the
-prompt looks the same whatever slot 4 carries (D-032).
+Root `.terminal` plus `.terminal-transcript`, `.terminal-ansi-grid` or
+`.terminal-attributes`; parts `.terminal-line`, `-prompt` (`-prompt-path`,
+`-prompt-branch`, `-prompt-arrow`), `-cursor`, `-sel`, `-label`, `-fail`,
+`-bold`, `-dim`, `-italic`, `-underline`, `-inverse`, `-strike`. Each slot
+class reads one role variable ({color.terminal.ansi.0} …
+{color.terminal.ansi.15}), so a profile switch recolours without touching
+markup. {color.terminal.prompt-bg} is the heritage dark red in every profile,
+whatever slot 4 carries (D-032).
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | text on {color.terminal.bg}; the cursor cell hollow, a 1px {color.terminal.cursor} outline; no ring | the hollow cursor |
-| focus-visible | container ring 2px {color.interaction.focus.ring-container} at −3px; the cursor solid {color.terminal.cursor} with {color.terminal.bg} text | the ring; the cursor fills |
-| selected | the run filled {color.terminal.selection-bg} with {color.terminal.selection-text}; slot colours inside the run give way to the selection text | the fill spans whole cells; the emulator exposes the selection |
-| busy | a command is running: the cursor is a solid static block at the end of the output; the transcript is `aria-busy` | `aria-busy`; the cursor shape; no blink |
-| current | the cursor line filled {color.code.current-line} across its width; the cursor as in focus | the row fill; the cursor cell |
+| default | text on {color.terminal.bg}; cursor hollow, 1px {color.terminal.cursor} outline; no ring | the hollow cursor |
+| focus-visible | 2px {color.interaction.focus.ring-container} container ring at −3px; cursor solid {color.terminal.cursor} with {color.terminal.bg} text | the ring; the cursor fills |
+| selected | run filled {color.terminal.selection-bg} with {color.terminal.selection-text}; slot colours inside give way to the selection text | whole-cell fill; the emulator exposes the selection |
+| busy | command running: solid static block cursor at the end of the output; transcript `aria-busy` | `aria-busy`; cursor shape; no blink |
+| current | cursor line filled {color.code.current-line} across its width; cursor as in focus | row fill; cursor cell |
 
-The cursor never blinks in the reference. A host keeps the user's own blink
-setting and stops blinking under reduced motion; the theme never turns it on.
+The reference cursor never blinks. A host keeps the user's blink setting and
+stops it under reduced motion; the theme never turns it on.
 
 ## Keyboard
 
-The emulator and the shell own every key, including Tab, Escape and the
-selection modifiers. The reference transcript is a single focus stop that
-consumes nothing. The theme draws the ring when the host reports focus, the
-fill when the host reports a selection, and the block cursor where the host
-puts it.
+As in the key table. The reference transcript consumes no key; the theme
+draws the ring, selection and block cursor where the host reports them.
 
 ## Accessibility
 
-The transcript is `role=log` so new output is announced politely; the grid
-and the attribute sheet are plain `<pre>` elements with a label. In the
-`default` profile slots 1–7 and 9–15 reach 4.5:1 on the terminal background
-(4.55:1–10.37:1, D-029); slot 6 is coral, so highlighted names stand apart
-from the rose text (D-032). Slot 8 is the dim tier at 3.01:1 and slot 0 is the
-background itself; the grid marks both with a `✕` after the number so the
-exception is visible, not implied. The `heritage-ansi` profile keeps the
-historical values, where ten slots fail (1.86:1–4.45:1); the grid's crosses
-follow the default profile, so under `heritage-ansi` its sample text shows
-those failures directly. The `extended` overlay proposes a semantic sixteen
-that all reach 4.5:1. The site's profile control shows the grid under each. The background
-row is legible only with a foreground the program chooses: the default
-foreground passes only on slot 0, while the terminal background passes on
-every slot except 0 and 8, which is why the row is shown and not declared as
-a contract. Two escape families bypass the slots entirely and
-are outside the theme: bold-as-bright, which substitutes slots 8–15 for 0–7
-and must be off for the slots to hold, and 256-colour or 24-bit sequences,
-which carry their own values. Attributes are attributes: dim uses
-{color.text.muted} (5.81:1) rather than a slot in the reference, but most
-emulators draw dim by mixing a slot's colour halfway into the background, so
-dimmed slot 6 falls to about 2.7:1. The theme does not brighten slots to make up for it; a host setting
-that changes dim text alone may (D-032). Inverse swaps foreground and
-background (8.65:1), and bold, italic, underline and strikethrough are text
-styles a screen reader can expose.
+In `default`, slots 1–7 and 9–15 meet 4.5:1 on the terminal background
+(D-029); coral slot 6 sets highlighted names apart from rose text (D-032).
+Slot 8 (dim tier) and slot 0 (the background) do not; the grid marks both
+with `✕`. The crosses follow `default`, so under `heritage-ansi` (ten slots
+fail) the sample text shows the failures. The `extended` overlay proposes a
+semantic sixteen that all meet 4.5:1. The background row is not a contract:
+the default foreground passes only on slot 0, the terminal background on
+every slot but 0 and 8. Bold-as-bright and 256-colour or 24-bit sequences
+bypass the slots and are outside the theme. Most emulators dim by mixing a
+slot halfway into the background (dimmed slot 6 falls under 3:1); the theme
+does not brighten slots to compensate, a host setting for dim text alone may
+(D-032). Bold, italic, underline and strikethrough are styles a screen reader
+can expose.
 
 ## Portability
 
-Every emulator with a sixteen-slot palette can hold these values byte for
-byte; the port's evidence records whether bold-as-bright is off and whether
-the cursor and selection keys exist. A port carries the profile's slots as
-they are; it may recommend `LS_COLORS` or a prompt configuration (a prompt
-draws its path segment in {color.terminal.prompt-bg} and
-{color.terminal.prompt-text} as 24-bit colours, so the slots do not change
-it) but never changes the slots to compensate. The
-cursor shape (block, bar, underline) is the user's setting; the theme only
-supplies its colour.
+Hosts that set the palette (Orca, Ghostty, Warp, CE Devbox's shell palette)
+share one; the prompt is the one deliberate heritage-style exception, set in
+24-bit {color.terminal.prompt-bg} and {color.terminal.prompt-text} whatever
+the slots carry. CE Devbox's shell palette and its Agnoster directory and
+virtualenv segments follow in that repository (D-029, D-032).
+
+Any sixteen-slot emulator holds these values byte for byte; port evidence
+records whether bold-as-bright is off and whether cursor and selection keys
+exist. A port carries the slots unchanged; it may recommend `LS_COLORS` or a
+prompt configuration but never changes slots to compensate. Cursor shape is the
+user's; the theme supplies only its colour.
 
 ## Non-examples
 
-Normalising the heritage slots so every one reaches 4.5:1 and calling it
-`heritage-ansi`. A blinking cursor in the reference. A cursor that is a
-glowing bar. Bold rendered as bright, which silently swaps the slots. A
-purple or cyan slot borrowed from another scheme. Wrapping the transcript at
-narrow widths and breaking the prompt segments. A selection drawn as a ring
-instead of a fill. Rounded prompt segments or a gradient prompt.
+Normalising the heritage slots to 4.5:1 and calling it `heritage-ansi`. A
+blinking cursor in the reference. A glowing bar cursor. Bold rendered as
+bright. A purple or cyan slot borrowed from another scheme. Wrapping the
+transcript and breaking the prompt segments. A selection drawn as a ring
+instead of a fill. Rounded or gradient prompt segments.

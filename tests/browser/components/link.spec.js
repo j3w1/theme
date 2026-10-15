@@ -27,7 +27,7 @@ const paint = (locator) =>
 
 test.describe("link", () => {
   test("the state matrix renders every declared state for every variant", verification({component: "link", category: "rendering", states: ["default", "hover", "focus-visible", "visited", "current"], variants: ["default", "standalone", "current"], note: "Presence and selected structural assertions only; not behavioral verification of every state."}), async ({ page }) => {
-    await openSpec(page, "#c-link");
+    await openSpec(page, "components/link/#c-link");
     for (const state of STATES) {
       await expect(page.locator(`#link-states [data-state="${state}"]`)).toHaveCount(VARIANTS.length);
     }
@@ -36,7 +36,7 @@ test.describe("link", () => {
 
   test("the live inline link: text, underline, hover, ring", verification({component: "link", category: "appearance", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs"), "computed styles are the same without scripts; keep one run");
-    await openSpec(page, "#c-link");
+    await openSpec(page, "components/link/#c-link");
     const live = page.locator('#link-states [data-state="default"]').first();
     const link = live.locator("a.link");
 
@@ -49,7 +49,7 @@ test.describe("link", () => {
 
     const hovered = await paint(page.locator('#link-states [data-state="hover"] a.link').first());
     expect(rgbToHex(hovered.color)).toBe(token("color.text.link-hover"));
-    expect(rgbToHex(hovered.bg)).toBe(token("color.interaction.hover.bg-strong"));
+    expect(rgbToHex(hovered.bg)).toBe(token("color.interaction.hover.bg"));
     expect(hovered.thickness).toBe("2px");
 
     await link.focus();
@@ -61,7 +61,7 @@ test.describe("link", () => {
 
   test("the current link swaps the underline for the 2px indicator bar", verification({component: "link", category: "appearance", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs"), "one run");
-    await openSpec(page, "#c-link");
+    await openSpec(page, "components/link/#c-link");
     const current = await paint(page.locator('#link-states [data-state="default"] a.link[aria-current="page"]'));
     expect(rgbToHex(current.color)).toBe(token("color.text.bright"));
     expect(current.decoration).toBe("none");
@@ -71,7 +71,7 @@ test.describe("link", () => {
 
   test("keyboard: Tab reaches the live link and shows the ring", verification({component: "link", category: "keyboard", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs", "narrow", "zoom200"), "one keyboard walk");
-    await openSpec(page, "#c-link");
+    await openSpec(page, "components/link/#c-link");
     const link = page.locator('#link-states [data-state="default"][data-state-default] a.link').first();
     await link.focus();
     await expect(link).toBeFocused();

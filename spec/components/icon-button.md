@@ -30,7 +30,7 @@ tokens:
   root.bg-toggled: color.interaction.selection.bg
   root.text-toggled: color.interaction.selection.text
   root.border-toggled: color.border.selected-indicator
-  root.ring-toggled: color.interaction.focus.ring-container
+  root.ring-toggled: color.interaction.focus.ring
   root.text-disabled: color.text.disabled
   root.bg-disabled: color.interaction.disabled.bg
   root.border-disabled: color.border.disabled
@@ -41,7 +41,7 @@ stateTokens:
   focus-visible: { fg: color.action.tertiary.text, bg: color.action.secondary.bg, outline: color.interaction.focus.ring }
   active: { fg: color.action.tertiary.text, bg: color.interaction.pressed.bg, border: color.border.active }
   toggled: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg }
-  toggled+focus-visible: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg, outline: color.interaction.focus.ring-container }
+  toggled+focus-visible: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg, outline: color.interaction.focus.ring }
 contrast:
   - { fg: color.border.selected-indicator, bg: color.surface.default, min: 3, kind: ui, state: toggled, label: "toggled border against the panel" }
   - { fg: color.interaction.selection.bg, bg: color.surface.default, min: 3, kind: ui, state: toggled, label: "toggled fill against the panel (decorative)", waiver: "aria-pressed, the filled icon form and the 1px selected-indicator border carry the state; the fill is not the boundary" }
@@ -74,58 +74,52 @@ compact: false
 
 ## Purpose
 
-A button whose whole content is one icon: toolbar actions, close and clear
-affordances, and boolean toggles such as pin, mute or wrap. It is the
-tertiary tone constrained to a square. Any icon button needs an accessible
-name and a tooltip; if the label must be visible it is a button.
+The tertiary tone in a square, for toolbar actions, close and clear
+affordances and boolean toggles such as pin, mute or wrap. If the label must
+be visible, use `button`.
 
 ## Anatomy
 
-A native `<button>` sized to the density control height in both axes with a
-single 16px inline SVG inside. The border is 1px and transparent at rest so
-the active and toggled borders do not shift the layout.
+Parts as listed in the anatomy.
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | {color.action.tertiary.text} icon on nothing; transparent 1px border | — |
+| default | {color.action.tertiary.text} icon, no fill; transparent 1px border | — |
 | hover | background → {color.action.tertiary.hover-bg} | cursor: pointer; hover-capable pointers only |
-| focus-visible | ring 1px dashed {color.interaction.focus.ring} at −2px | the ring |
+| focus-visible | 1px dashed ring {color.interaction.focus.ring} at −2px | the ring |
 | active | background → {color.interaction.pressed.bg}; border → {color.border.active} | border change; no translation |
-| disabled | {color.text.disabled} on {color.interaction.disabled.bg} with 1px {color.border.disabled}; no hover | `disabled`; cursor: not-allowed |
-| toggled | fill {color.interaction.selection.bg} with {color.interaction.selection.text}; border {color.border.selected-indicator}; the icon draws in its filled form | `aria-pressed="true"`; the filled icon shape; the border |
-| toggled+focus-visible | the selection fill and a ring in {color.interaction.focus.ring-container} | both visible at once |
+| disabled | {color.text.disabled} on {color.interaction.disabled.bg}, 1px {color.border.disabled}; no hover | `disabled`; cursor: not-allowed |
+| toggled | {color.interaction.selection.bg} fill, {color.interaction.selection.text}, border {color.border.selected-indicator}; filled icon form | `aria-pressed="true"`; the filled icon shape; the border |
+| toggled+focus-visible | the selection fill and 1px dashed {color.interaction.focus.ring} at −2px | both visible at once |
 
 Precedence: disabled > toggled > active > hover; focus-visible is always
 drawn.
 
 ## Keyboard
 
-Native. The toggle variant flips `aria-pressed` on Enter and Space and does
-not move focus. Inside a toolbar the host applies roving tabindex; the
-button itself binds nothing.
+Native; the toggle does not move focus. In a toolbar the host applies roving
+tabindex; the button binds nothing.
 
 ## Accessibility
 
-`aria-label` (or `aria-labelledby`) names the button; the tooltip repeats
-the same text and is not the name. The SVG is `aria-hidden="true"` and
-`focusable="false"`. A toggle uses `aria-pressed`, whose value is announced;
-the name never changes with the state ("Mute", not "Mute" / "Unmute").
-Contrast: icon 8.65:1 at rest, 12.47:1 on the selection fill; ring 4.69:1,
-container ring 7.48:1 on the selection fill. Target ≥ 24×24 CSS pixels with
-4px between neighbours in `compact` density.
+Every icon button has an accessible name (`aria-label` or `aria-labelledby`)
+and a tooltip that repeats it but is not the name. The SVG is
+`aria-hidden="true"` and `focusable="false"`. The name never changes with
+the state ("Mute", not "Mute" / "Unmute"). The icon meets 4.5:1 and rings
+3:1 on every fill. Target at least 24×24 CSS pixels in `compact`, with 4px
+between neighbours.
 
 ## Portability
 
-Square, fill, border, outline; the icon is currentColor so it follows every
-state without its own colour. Hosts without inline SVG use their icon theme at
-16px and record the substitution. Hosts without dashed outlines draw a solid
-1px ring.
+Square, fill, border and outline; the `currentColor` icon follows every
+state. A host without inline SVG uses its icon theme at 16px and records the
+substitution; one without dashed outlines draws a solid 1px ring.
 
 ## Non-examples
 
-A circle. An icon button without an accessible name. A toggle that changes
-its label instead of `aria-pressed`. A hover that recolours the icon alone.
-An emoji or icon-font glyph in place of the SVG. A toggled state shown by
-colour alone with a line icon. A shadow or scale on press.
+A circle. No accessible name. A toggle that changes its label instead of
+`aria-pressed`. A hover that recolours only the icon. An emoji or icon-font
+glyph instead of the SVG. A toggled state shown by colour alone with a line
+icon. A shadow or scale on press.

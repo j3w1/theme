@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=",
+  "sourceDigest": "sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=",
   "id": "dialog",
   "family": "feedback",
   "maturity": "stable",
@@ -440,13 +440,13 @@
     },
     {
       "state": "closed",
-      "visual": "nothing: the dialog and its backdrop are absent",
+      "visual": "dialog and backdrop absent",
       "channel": "no `open`; focus back on the opener",
       "tokens": {}
     },
     {
       "state": "focus-trapped",
-      "visual": "the dialog itself carries the container ring, 2px solid {color.interaction.focus.ring-container} at −3px, when it holds focus; the note says Tab cycles",
+      "visual": "when it holds focus, the dialog carries the container ring, 2px solid {color.interaction.focus.ring-container} at −3px; the note says Tab cycles",
       "channel": "Tab never leaves; the note text",
       "tokens": {
         "fg": {
@@ -503,7 +503,7 @@
     },
     {
       "state": "hover",
-      "visual": "Close background → {color.action.tertiary.hover-bg}; other buttons take their tone's hover",
+      "visual": "Close → {color.action.tertiary.hover-bg}; other buttons take their tone's hover",
       "channel": "cursor: pointer",
       "tokens": {
         "fg": {
@@ -534,7 +534,7 @@
     },
     {
       "state": "focus-visible",
-      "visual": "ring 1px dashed {color.interaction.focus.ring} at −2px on the focused control; primary uses {color.interaction.focus.ring-container}, destructive uses {color.action.destructive.filled-text} (D-015)",
+      "visual": "1px dashed {color.interaction.focus.ring} at −2px on the focused control; primary uses {color.interaction.focus.ring-container}, destructive {color.action.destructive.filled-text} (D-015)",
       "channel": "the ring",
       "tokens": {
         "fg": {
@@ -577,7 +577,7 @@
     },
     {
       "state": "reduced-motion",
-      "visual": "no opacity transition; the dialog is simply present or absent",
+      "visual": "no opacity transition; present or absent",
       "channel": "`prefers-reduced-motion`",
       "tokens": {
         "fg": {
@@ -671,7 +671,7 @@
     "admin-form",
     "settings-panel"
   ],
-  "nonExamples": "A glowing or shadowed card. Rounded corners. A dialog that slides or scales\nin. `<dialog>` shown with `show()` and a hand-written focus trap. A dialog\nwith no title, or with the title only in the accessible name. A destructive\nconfirm as the default Enter action. A backdrop that closes the dialog with\nno Close button. A dialog stacked on a dialog.",
+  "nonExamples": "A glowing or shadowed card. Rounded corners. Sliding or scaling in.\n`<dialog>` shown with `show()` and a hand-written trap. No title, or the\ntitle only in the accessible name. A destructive confirm as the default\nEnter action. A backdrop that closes the dialog with no Close button. A\ndialog stacked on a dialog.",
   "contrast": [
     {
       "label": "dialog default text",

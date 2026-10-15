@@ -3,28 +3,21 @@
    each surface, selection versus focus, the border set, the status set, the
    terminal slots per profile. Token variables only. */
 import { anchors, defaultTokens, profiles } from "../lib/theme";
+import { contrastHex } from "../../../scripts/lib/contrast.mjs";
 
 const surfaces = ["canvas", "default", "raised"];
 const textRoles = ["prose", "bright", "default", "muted", "subtle", "disabled", "accent", "accent-strong"];
 const statuses = ["danger", "warning", "success", "info", "neutral"];
 const glyph: Record<string, string> = { danger: "✕", warning: "!", success: "✓", info: "i", neutral: "·" };
 const profileIds = Object.keys(profiles);
-const ratio = (fg: string, bg: string) => {
-  const lum = (hex: string) => {
-    const c = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255).map((v) => (v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4));
-    return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
-  };
-  const a = lum(fg);
-  const b = lum(bg);
-  return ((Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05)).toFixed(2);
-};
+const ratio = (fg: string, bg: string) => contrastHex(fg, bg).toFixed(2);
 const hex = (path: string) => (defaultTokens[path].value as { hex: string }).hex;
 ---
 
 <div class="block" id={anchors.specimen("text-ladder")}>
   <h4>Text ladder on each surface</h4>
   <p class="family-description">Measured ratios; ordinary text needs 4.5:1, disabled text is exempt but held to 3:1.</p>
-  <div class="ladder">
+  <div class="ladder" data-specimen>
     {surfaces.map((s) => (
       <div class="ladder-surface" style={`background: var(--color-surface-${s})`}>
         <div class="ladder-title">surface.{s}</div>
@@ -65,7 +58,7 @@ const hex = (path: string) => (defaultTokens[path].value as { hex: string }).hex
 <div class="block" id={anchors.specimen("selection-focus")}>
   <h4>Selection is a fill; focus is a ring</h4>
   <p class="family-description">The four combinations every list, table and tab strip must show. Focus rings on fills take the on-fill text colour.</p>
-  <div class="spec-rows">
+  <div class="spec-rows" data-specimen>
     <div class="spec-row">plain row</div>
     <div class="spec-row" data-state="hover">hovered row</div>
     <div class="spec-row" data-state="focus-visible">focused row (ring only)</div>
@@ -77,7 +70,7 @@ const hex = (path: string) => (defaultTokens[path].value as { hex: string }).hex
 
 <div class="block" id={anchors.specimen("borders")}>
   <h4>Borders and radii</h4>
-  <div class="border-set">
+  <div class="border-set" data-specimen>
     <div class="border-box" style="border-color: var(--color-border-divider)">divider · decorative hairline between rows</div>
     <div class="border-box" style="border-color: var(--color-border-default)">default · decorative, never a control's only edge</div>
     <div class="border-box" style="border-color: var(--color-border-control)">control · every form control at rest (≥ 3:1)</div>
@@ -92,7 +85,7 @@ const hex = (path: string) => (defaultTokens[path].value as { hex: string }).hex
 <div class="block" id={anchors.specimen("status")}>
   <h4>Status set</h4>
   <p class="family-description">Each status has text, fill, tint and border roles and a mandatory glyph. The three extension hues (D-001) exist only here, in diagnostics, in diffs, in the opt-in <code>code.hued</code> syntax roles (D-030) and in the proposed overlay.</p>
-  <div class="status-set">
+  <div class="status-set" data-specimen>
     {statuses.map((s) => (
       <div class="status-card">
         <div class="status-text" style={`color: var(--color-status-${s}-text)`}>{glyph[s]} {s} text</div>

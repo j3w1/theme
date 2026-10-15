@@ -1,10 +1,20 @@
 ---
-import PortalLayout from "../../layouts/PortalLayout.astro";
-import { withBase } from "../../lib/base";
 import { getCollection } from "astro:content";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import { withBase } from "../../lib/base";
 import families from "../../../../spec/families.json";
-const components = (await getCollection("components")).sort((a,b) => a.data.order - b.data.order);
+
+const components = (await getCollection("components")).sort((a, b) => a.data.order - b.data.order);
 ---
-<PortalLayout title="Components" description={`${components.length} official implementations. Inspect live variants, native behavior, exact tokens, typed APIs and complete copy bundles.`}>
-  {families.filter(f => components.some(c => c.data.family === f.id)).map(family => <section class="portal-section"><h2>{family.title}</h2><div class="portal-grid">{components.filter(c => c.data.family === family.id).map(c => <a class="portal-card" href={withBase(`components/${c.id}/`)}><p class="portal-eyebrow">{c.data.maturity} / {c.id}</p><h3>{c.data.name} →</h3><p>{c.data.summary}</p></a>)}</div></section>)}
-</PortalLayout>
+<SiteLayout title="Components" description={`${components.length} official implementations. Inspect live variants, native behavior, exact tokens, typed APIs and complete copy bundles.`}>
+  {families.filter((f) => components.some((c) => c.data.family === f.id)).map((family) => <section class="site-section">
+    <h2>{family.title}</h2>
+    <div class="site-cards">
+      {components.filter((c) => c.data.family === family.id).map((c) => <a class="card card-link" href={withBase(`components/${c.id}/`)}>
+        <span class="card-title">{c.data.name} →</span>
+        <span class="card-body">{c.data.summary}</span>
+        <span class="card-meta">{c.data.maturity} · {c.id}</span>
+      </a>)}
+    </div>
+  </section>)}
+</SiteLayout>

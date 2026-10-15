@@ -55,7 +55,6 @@ tokens:
   dependency.role-radius-none: radius.none
   dependency.role-space-12: space.12
   dependency.role-space-16: space.16
-  dependency.role-space-2: space.2
   dependency.role-space-24: space.24
   dependency.role-space-4: space.4
   dependency.role-space-8: space.8
@@ -118,16 +117,16 @@ compact: false
 
 ## Purpose
 
-Choose one value from a short labelled set using native radios. This changes a value; use tabs for associated content panels. Native names, required checks, disabled fieldsets and form reset are preserved.
+Changes one value from a short labelled set; for associated content panels
+use tabs.
 
 ## Anatomy
 
-- **fieldset:** Legend names the choice.
-- **options:** Native radios sharing one name, each with a visible label.
+Parts as listed in the anatomy.
 
 ## States
 
-| State | Presentation | Non-colour channel |
+| State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | Named content on the default surface. | Native text and structure. |
 | checked | Selected fill and a check indicator. | Native checked state. |
@@ -136,12 +135,13 @@ Choose one value from a short labelled set using native radios. This changes a v
 
 ## Keyboard
 
-- **Tab / Shift+Tab:** Enter the native radio group once and leave it.
-- **Arrow keys / Space:** Use native radio selection and wrapping.
+As in the key table.
 
 ## Accessibility
 
-Keep native radios and labels. A checked value has both a visible native indicator and its programmatic checked state. Do not hide all radios from assistive technology or put role=tab on the labels.
+Keep native radios and labels. A checked value has both a visible native
+indicator and its programmatic checked state. Never hide all radios from
+assistive technology or put `role=tab` on the labels.
 
 ## Portability
 

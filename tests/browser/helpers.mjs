@@ -5,7 +5,8 @@
 import { expect } from "@playwright/test";
 
 export const openSpec = async (page, path = "reference/") => {
-  if (!path || path.startsWith("#")) path = `reference/${path}`;
+  if (path.startsWith("#c-")) path = `components/${path.slice(3)}/${path}`;
+  else if (!path || path.startsWith("#")) path = `reference/${path}`;
   const bad = [];
   page.on("response", (response) => {
     const url = new URL(response.url());

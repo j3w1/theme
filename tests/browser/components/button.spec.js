@@ -25,7 +25,7 @@ const paint = (locator) =>
 
 test.describe("button", () => {
   test("the state matrix renders every declared state for every tone", verification({component: "button", category: "rendering", states: ["default", "hover", "focus-visible", "active", "disabled", "loading"], variants: ["default", "secondary", "tertiary", "destructive"], note: "Presence and selected structural assertions only; not behavioral verification of every state."}), async ({ page }) => {
-    await openSpec(page, "#c-button");
+    await openSpec(page, "components/button/#c-button");
     for (const state of STATES) {
       await expect(page.locator(`#button-states [data-state="${state}"]`)).toHaveCount(VARIANTS.length);
     }
@@ -36,7 +36,7 @@ test.describe("button", () => {
 
   test("the primary tone: fill, hover fill, container ring, radius 0", verification({component: "button", category: "appearance", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs"), "computed styles are the same without scripts; keep one run");
-    await openSpec(page, "#c-button");
+    await openSpec(page, "components/button/#c-button");
     const live = page.locator('#button-states [data-state="default"]').first();
     const button = live.locator("button.button");
 
@@ -60,7 +60,7 @@ test.describe("button", () => {
 
   test("the destructive tone fills on hover with its on-fill text", verification({component: "button", category: "appearance", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs"), "one run");
-    await openSpec(page, "#c-button");
+    await openSpec(page, "components/button/#c-button");
     const rest = await paint(page.locator('#button-states [data-state="default"] button.button-destructive').first());
     expect(rgbToHex(rest.color)).toBe(token("color.action.destructive.text"));
     expect(rgbToHex(rest.border)).toBe(token("color.action.destructive.border"));
@@ -76,11 +76,12 @@ test.describe("button", () => {
 
   test("disabled uses the disabled roles at full opacity", verification({component: "button", category: "appearance", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs"), "one run");
-    await openSpec(page, "#c-button");
+    await openSpec(page, "components/button/#c-button");
     const button = page.locator('#button-states [data-state="default"] button.button').first();
     await button.evaluate((el) => {
       el.disabled = true;
     });
+    await expect.poll(async () => rgbToHex((await paint(button)).bg)).toBe(token("color.interaction.disabled.bg"));
     const disabled = await paint(button);
     expect(rgbToHex(disabled.bg)).toBe(token("color.interaction.disabled.bg"));
     expect(rgbToHex(disabled.color)).toBe(token("color.text.disabled"));
@@ -94,7 +95,7 @@ test.describe("button", () => {
 
   test("keyboard: Tab reaches the live button and shows the ring", verification({component: "button", category: "keyboard", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs", "narrow", "zoom200"), "one keyboard walk");
-    await openSpec(page, "#c-button");
+    await openSpec(page, "components/button/#c-button");
     const cell = page.locator('#button-states [data-state="default"][data-state-default]').nth(1);
     const button = cell.locator("button.button");
     await button.focus();

@@ -1,3 +1,4 @@
+import { rgb as hexRgb } from "./color.mjs";
 // Deterministic native Telegram projections; no host defaults or derived colours.
 import { crc32 } from "node:zlib";
 import { z } from "zod";
@@ -15,11 +16,11 @@ const coverage = await readJson("ports/telegram/src/coverage.json");
 // Keys Telegram's Theme Editor still writes but the pinned clients no longer
 // read; mapping.json gives each a role (src/editor-keys.json has the source).
 const editorKeys = await readJson("ports/telegram/src/editor-keys.json");
-export const telegramKnownKey = (target, key) => registry[target].keys.includes(key) || editorKeys[target].includes(key);
+const telegramKnownKey = (target, key) => registry[target].keys.includes(key) || editorKeys[target].includes(key);
 
 // The value a client gives an unmapped key from the theme: Android reads one
 // direct fallback; Desktop follows its alias or fallback chain.
-export const telegramInherited = (values, target, key) => {
+const telegramInherited = (values, target, key) => {
   for (let next = registry[target].aliases?.[key] ?? registry[target].fallbacks[key], depth = 0; next && depth < 12; depth++) {
     if (values.has(`${target}:${next}`)) return values.get(`${target}:${next}`);
     if (target === "android") return null;
@@ -30,7 +31,7 @@ export const telegramInherited = (values, target, key) => {
 
 // Parse the resolver's CSS, including its existing percentage-alpha roles.
 export const telegramColor = css => {
-  if (/^#[0-9a-f]{6}$/i.test(css ?? "")) return [...[1, 3, 5].map(i => parseInt(css.slice(i, i + 2), 16)), 255];
+  if (/^#[0-9a-f]{6}$/i.test(css ?? "")) return [...hexRgb(css), 255];
   const match = /^rgb\((\d+) (\d+) (\d+) \/ (\d+(?:\.\d+)?)%\)$/.exec(css ?? "");
   if (match) {
     const [, r, g, b, percent] = match.map(Number);
@@ -38,8 +39,8 @@ export const telegramColor = css => {
   }
   throw new Error(`Telegram: malformed or unsupported colour ${JSON.stringify(css)}`);
 };
-export const androidArgb = ([r, g, b, a]) => ((a << 24) | (r << 16) | (g << 8) | b).toString();
-export const desktopHex = rgba => "#" + rgba.slice(0, rgba[3] === 255 ? 3 : 4).map(n => n.toString(16).padStart(2, "0")).join("");
+const androidArgb = ([r, g, b, a]) => ((a << 24) | (r << 16) | (g << 8) | b).toString();
+const desktopHex = rgba => "#" + rgba.slice(0, rgba[3] === 255 ? 3 : 4).map(n => n.toString(16).padStart(2, "0")).join("");
 
 const chunk = (name, data) => {
   const type = Buffer.from(name, "ascii"), size = Buffer.alloc(4), checksum = Buffer.alloc(4);

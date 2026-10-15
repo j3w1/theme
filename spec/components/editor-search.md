@@ -29,6 +29,13 @@ tokens:
   secondary.text: color.text.muted
   control.bg: color.surface.input
   control.focus: color.interaction.focus.ring
+  button.bg: color.action.secondary.bg
+  button.text: color.action.secondary.text
+  button.border: color.action.secondary.border
+  button.bg-hover: color.action.secondary.hover-bg
+  button.bg-active: color.action.secondary.pressed-bg
+  button.border-active: color.border.active
+  button.focus: color.interaction.focus.ring
   dependency.role-border-width-default: border.width.default
   dependency.role-color-code-search-current-bg: color.code.search-current-bg
   dependency.role-color-code-search-current-text: color.code.search-current-text
@@ -37,9 +44,9 @@ tokens:
   dependency.role-color-surface-code: color.surface.code
   dependency.role-density-comfortable-control-height: density.comfortable.control-height
   dependency.role-density-compact-control-height: density.compact.control-height
+  dependency.role-focus-offset: focus.offset
   dependency.role-radius-none: radius.none
   dependency.role-space-12: space.12
-  dependency.role-space-2: space.2
   dependency.role-space-8: space.8
 stateTokens:
   default:
@@ -58,6 +65,12 @@ contrast:
     min: 3
     kind: ui
     label: Control boundary
+  - fg: color.action.secondary.text
+    bg: color.surface.default
+    label: Button label
+  - fg: color.action.secondary.text
+    bg: color.action.secondary.hover-bg
+    label: Button label on hover
 anatomy:
   - part: query
     description: Labelled search input.
@@ -106,29 +119,25 @@ compact: false
 
 ## Purpose
 
-Find literal text in a read-only code sample. Search, previous and next expose exact match counts and the current match. The component does not execute regexes, mutate source text or provide a code editor backend.
+Finds literal text in a read-only code sample. Searching a list or a site is
+the search-field.
 
 ## Anatomy
 
-- **query:** Labelled search input.
-- **navigation:** Previous and next actions, disabled without matches.
-- **source:** Escaped text with native mark elements.
-- **status:** Current and total match counts.
+Parts as listed in the anatomy.
 
 ## States
 
-| State | Presentation | Non-colour channel |
+| State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | Plain escaped source. | Readable preformatted text. |
+| default | Plain escaped source. Button controls are the secondary button (button.md); inputs keep the input look. | Readable preformatted text. |
 | filled | Match fill; current match has its own marker. | Exact current and total counts. |
 | no-results | No highlighted matches. | Explicit zero-results status. |
 | focus-visible | Dashed control ring. | Native keyboard focus. |
 
 ## Keyboard
 
-- **Tab / Shift+Tab:** Reach query and match navigation.
-- **Enter / Shift+Enter:** Move to next or previous match.
-- **Escape:** Clear the query and retain focus.
+As in the key table.
 
 ## Accessibility
 

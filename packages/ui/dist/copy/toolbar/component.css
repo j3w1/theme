@@ -8,7 +8,7 @@ j3w1-toolbar {
   line-height: var(--font-line-height-ui-md);
 }
 j3w1-toolbar, j3w1-toolbar *, j3w1-toolbar *::before, j3w1-toolbar *::after { box-sizing: border-box; }
-j3w1-toolbar button, j3w1-toolbar input, j3w1-toolbar select, j3w1-toolbar textarea { font: inherit; }
+j3w1-toolbar :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 j3w1-toolbar ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);
@@ -28,9 +28,9 @@ j3w1-toolbar .sr-only {
 j3w1-toolbar .toolbar {
   display: flex;
   align-items: center;
-  gap: var(--density-gap, 4px);
+  gap: var(--density-gap, 2px);
   min-width: 0;
-  min-height: var(--density-row-height, 36px);
+  min-height: var(--density-row-height, 28px);
   padding: var(--space-2) var(--space-4);
   overflow: hidden;
   background: var(--color-surface-chrome);
@@ -43,9 +43,9 @@ j3w1-toolbar .toolbar-button {
   align-items: center;
   gap: var(--space-4);
   flex: 0 0 auto;
-  min-width: var(--density-control-height, 32px);
-  min-height: var(--density-control-height, 32px);
-  padding: 0 var(--density-control-padding-x, 12px);
+  min-width: var(--density-control-height, 24px);
+  min-height: var(--density-control-height, 24px);
+  padding: 0 var(--density-control-padding-x, 8px);
   background: transparent;
   border: var(--border-width-default) solid transparent;
   border-radius: var(--radius-none);
@@ -154,8 +154,8 @@ j3w1-toolbar .menu-button {
   display: inline-flex;
   align-items: center;
   gap: var(--space-4);
-  min-height: var(--density-control-height, 32px);
-  padding: 0 var(--density-control-padding-x, 12px);
+  min-height: var(--density-control-height, 24px);
+  padding: 0 var(--density-control-padding-x, 8px);
   background: var(--color-surface-default);
   border: var(--border-width-default) solid var(--color-border-control);
   border-radius: var(--radius-none);
@@ -204,8 +204,8 @@ j3w1-toolbar .menu-item {
   align-items: center;
   gap: var(--space-8);
   width: 100%;
-  min-height: var(--density-row-height, 36px);
-  padding: 0 var(--density-control-padding-x, 12px);
+  min-height: var(--density-row-height, 28px);
+  padding: 0 var(--density-control-padding-x, 8px);
   box-sizing: border-box;
   background: transparent;
   border: 0;
@@ -221,7 +221,7 @@ j3w1-toolbar .menu-check {
   display: inline-flex;
   justify-content: center;
   flex: 0 0 auto;
-  width: var(--density-icon, 16px);
+  width: var(--density-icon, 12px);
   color: var(--color-text-bright);
   visibility: hidden;
 }
@@ -263,8 +263,8 @@ j3w1-toolbar .menu-button:focus-visible {
 }
 
 j3w1-toolbar .menu-item:focus-visible {
-  outline: var(--focus-ring-container);
-  outline-offset: var(--focus-offset-container);
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
 }
 
 j3w1-toolbar .menu-button:focus:not(:focus-visible),

@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-C1XeXVYC.js";
-import { t as feedback } from "../chunks/overlays-C6nlCHqg.js";
+import { t as J3w1Element } from "../chunks/element-Dovcr9Ky.js";
+import { t as feedback } from "../chunks/overlays-Bw8SSDKz.js";
 //#region .cache/ui-build/entries/components/alert.js
 var J3w1Alert = class extends J3w1Element {
 	static componentId = "alert";
 	static version = "4.0.0";
-	static implementationId = "sha256-D/UE6iF8Es5ira9X/X3Hlo5OO/Lzy3n/9s9vlkV7zJU=";
+	static implementationId = "sha256-6Wo+BnYA6udYTk6XDw6PR9MtJYx0FznliTgiGt+lVxo=";
 	static connect = feedback;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

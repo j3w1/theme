@@ -8,7 +8,7 @@ j3w1-disclosure {
   line-height: var(--font-line-height-ui-md);
 }
 j3w1-disclosure, j3w1-disclosure *, j3w1-disclosure *::before, j3w1-disclosure *::after { box-sizing: border-box; }
-j3w1-disclosure button, j3w1-disclosure input, j3w1-disclosure select, j3w1-disclosure textarea { font: inherit; }
+j3w1-disclosure :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 j3w1-disclosure ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);
@@ -26,10 +26,7 @@ j3w1-disclosure .sr-only {
 }
 
 j3w1-disclosure .disclosure {box-sizing:border-box;display:grid;gap:var(--space-12);min-width:0;padding:var(--space-12);background:var(--color-surface-default);color:var(--color-text-default);border:var(--border-width-default) solid var(--color-border-control);border-radius:var(--radius-none);font:inherit}
-j3w1-disclosure .disclosure-control {font:inherit;min-height:var(--density-control-height);padding:var(--space-8);background:var(--color-surface-input);color:var(--color-text-default);border:var(--border-width-default) solid var(--color-border-control);border-radius:var(--radius-none)}
-j3w1-disclosure .disclosure :focus-visible {outline:var(--border-width-default) dashed var(--color-interaction-focus-ring);outline-offset:var(--space-2)}
-j3w1-disclosure .disclosure :disabled {color:var(--color-text-disabled);background:var(--color-interaction-disabled-bg);border-color:var(--color-border-disabled);opacity:1}
-j3w1-disclosure .disclosure-actions {display:flex;flex-wrap:wrap;gap:var(--space-8)}
+j3w1-disclosure .disclosure :focus-visible {outline:var(--focus-ring);outline-offset:var(--focus-offset)}
 j3w1-disclosure .disclosure summary {cursor:pointer;min-height:var(--density-control-height);padding:var(--space-8)}j3w1-disclosure .disclosure[open] {border-inline-start:var(--border-width-emphasis) solid var(--color-border-active)}j3w1-disclosure .disclosure:not([open])>:not(summary) {display:none}
 
 j3w1-disclosure [hidden] { display: none !important; }

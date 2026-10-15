@@ -193,6 +193,7 @@
       "color.interaction.selection.text",
       "color.interaction.text-selection.bg",
       "color.interaction.text-selection.text",
+      "color.status.danger.text",
       "color.surface.backdrop",
       "color.surface.canvas",
       "color.surface.input",
@@ -289,6 +290,7 @@
       "color.primitive.rose.600",
       "color.primitive.rose.700",
       "color.primitive.rose.800",
+      "color.status.danger.text",
       "color.surface.backdrop",
       "color.surface.canvas",
       "color.surface.input",
@@ -507,6 +509,11 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "color.status.danger.text": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "color.surface.backdrop": {
         "action": "use-and-report",
         "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
@@ -695,6 +702,6 @@
   "copy": {
     "directory": "copy/dialog/",
     "manifest": "copy/dialog/manifest.json",
-    "digest": "sha256-AJuEfuBHZb4d3lOAX/LxDDfwsCCYi6i4YdV+9O78IPY="
+    "digest": "sha256-m5mXloJmQCM08+v8jrBtBzmVjcZabnvryBht9CoJb+g="
   }
 }

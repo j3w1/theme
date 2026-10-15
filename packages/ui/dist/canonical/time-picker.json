@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=",
+  "sourceDigest": "sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=",
   "id": "time-picker",
   "family": "forms-advanced",
   "maturity": "stable",
@@ -22,7 +22,7 @@
     "demonstrated": true,
     "tested": false,
     "testImplemented": false,
-    "states": 5
+    "states": 6
   },
   "title": "Time picker",
   "summary": "A themed time editor with explicit step buttons, backed by native time values and constraints.",
@@ -51,6 +51,7 @@
     "hover",
     "focus-visible",
     "invalid",
+    "invalid+focus-visible",
     "disabled"
   ],
   "tokens": {
@@ -107,6 +108,18 @@
     "root.ring": {
       "alias": "color.interaction.focus.ring",
       "value": "#e53935",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "root.ring-invalid": {
+      "alias": "color.interaction.focus.ring-container",
+      "value": "#ffa2a7",
       "status": "observed",
       "deprecated": false,
       "decisionId": null,
@@ -228,8 +241,8 @@
   "stateRules": [
     {
       "state": "default",
-      "visual": "Input surface, default text and control border.",
-      "channel": "",
+      "visual": "{color.text.default} on {color.surface.input}, 1px {color.border.control}",
+      "channel": "—",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -273,8 +286,8 @@
     },
     {
       "state": "hover",
-      "visual": "The declared hover fill.",
-      "channel": "",
+      "visual": "background → {color.interaction.hover.bg}",
+      "channel": "hover-capable pointers only",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -318,8 +331,8 @@
     },
     {
       "state": "focus-visible",
-      "visual": "Active border and the canonical focus ring.",
-      "channel": "",
+      "visual": "border → {color.border.active}; the canonical focus ring",
+      "channel": "the ring",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -373,8 +386,8 @@
     },
     {
       "state": "invalid",
-      "visual": "Danger border and a linked message.",
-      "channel": "",
+      "visual": "2px {color.status.danger.border}; a linked message",
+      "channel": "border 1 → 2px; ✕ glyph; `aria-invalid`",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -415,9 +428,64 @@
       }
     },
     {
+      "state": "invalid+focus-visible",
+      "visual": "the danger border and the ring in {color.interaction.focus.ring-container} at −4px",
+      "channel": "double boundary",
+      "tokens": {
+        "fg": {
+          "alias": "color.text.default",
+          "value": "#e99499",
+          "status": "observed",
+          "deprecated": false,
+          "decisionId": null,
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
+        "bg": {
+          "alias": "color.surface.input",
+          "value": "#000000",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-023",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
+        "border": {
+          "alias": "color.status.danger.border",
+          "value": "#e53935",
+          "status": "observed",
+          "deprecated": false,
+          "decisionId": null,
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
+        "outline": {
+          "alias": "color.interaction.focus.ring-container",
+          "value": "#ffa2a7",
+          "status": "observed",
+          "deprecated": false,
+          "decisionId": null,
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        }
+      }
+    },
+    {
       "state": "disabled",
-      "visual": "Disabled colors; editor and step actions unavailable.",
-      "channel": "",
+      "visual": "{color.text.disabled} on {color.interaction.disabled.bg}, border {color.border.disabled}; editor and step actions unavailable",
+      "channel": "`disabled`; cursor: not-allowed",
       "tokens": {}
     }
   ],
@@ -463,7 +531,7 @@
     "admin-form",
     "settings-panel"
   ],
-  "nonExamples": "An unthemed host popup presented as fully themed. A second named input that duplicates form values. Discarding native constraints, labels or reset behavior. Literal colors, rounded corners, or a selected fill with no distinguishable focus boundary.",
+  "nonExamples": "An unthemed host popup presented as themed. A second named input\nduplicating form values. Dropping native constraints, labels or reset.\nLiteral colours or rounded corners.",
   "contrast": [
     {
       "label": "time-picker default text",
@@ -579,6 +647,45 @@
       "fgHex": "#e53935",
       "bgHex": "#000000",
       "ratio": 4.97,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "time-picker invalid+focus-visible text",
+      "state": "invalid+focus-visible",
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.text.default",
+      "bg": "color.surface.input",
+      "fgHex": "#e99499",
+      "bgHex": "#000000",
+      "ratio": 9.16,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "time-picker invalid+focus-visible border",
+      "state": "invalid+focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.status.danger.border",
+      "bg": "color.surface.input",
+      "fgHex": "#e53935",
+      "bgHex": "#000000",
+      "ratio": 4.97,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "time-picker invalid+focus-visible outline",
+      "state": "invalid+focus-visible",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring-container",
+      "bg": "color.surface.input",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#000000",
+      "ratio": 10.98,
       "pass": true,
       "waiver": null
     },

@@ -41,7 +41,7 @@ stateTokens:
 contrast:
   - { fg: color.text.bright, bg: color.surface.canvas, label: "label on the canvas" }
   - { fg: color.text.muted, bg: color.surface.canvas, label: "detail line on the canvas" }
-  - { fg: color.action.primary.bg, bg: color.interaction.pressed.bg, min: 3, kind: ui, label: "value fill against the track", waiver: "the fill measures 1.51:1 against the track; the value is carried by the visible percentage text and the native value, and the track boundary (border.control, 4.45:1) marks the full extent" }
+  - { fg: color.action.primary.bg, bg: color.interaction.pressed.bg, min: 3, kind: ui, label: "value fill against the track", waiver: "the fill falls below the floor against the track; the value is carried by the visible percentage text and the native value, and the track boundary (border.control) marks the full extent" }
   - { fg: color.action.primary.bg, bg: color.interaction.pressed.bg, min: 1, kind: ui, state: busy, label: "stripes (decorative pattern)", waiver: "the stripes are a pattern, not a boundary; busy is carried by aria-busy and aria-valuetext" }
   - { fg: color.status.danger.fill, bg: color.interaction.pressed.bg, min: 3, kind: ui, state: error, label: "error fill against the track" }
 anatomy:
@@ -77,25 +77,21 @@ compact: false
 
 ## Purpose
 
-Shows how far a known task has gone, or that an unbounded one is running.
-It reports; it never blocks. A task that can be cancelled has a button beside
-the bar. A short wait with no bar is the loading indicator.
+Shows how far a known task has gone, or that an unbounded one is running. It
+reports; it never blocks. A cancellable task has a button beside the bar. A
+short wait with no bar is the loading indicator.
 
 ## Anatomy
 
-The header row with the label in {color.text.bright} and the value in
-{color.text.default}; the bar, a native progress element whose track is
-{color.interaction.pressed.bg} behind a 1px {color.border.control} and whose
-fill is {color.action.primary.bg}; an optional detail line in
-{color.text.muted}.
+Parts as listed in the anatomy.
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | fill {color.action.primary.bg} on the track; the value text | the native value; the percentage text |
-| busy | the whole track shows static 45° stripes of {color.action.primary.bg} on {color.interaction.pressed.bg}; no value text | `aria-busy`; `aria-valuetext`; the stripe pattern; no animation |
-| error | fill → {color.status.danger.fill}; the label gains the ✕ glyph in {color.status.danger.text}; the detail line says what failed | glyph; worded detail |
+| default | {color.action.primary.bg} fill on the track; the value text | the native value; the percentage text |
+| busy | static 45° stripes of {color.action.primary.bg} on {color.interaction.pressed.bg} across the track; no value text | `aria-busy`; `aria-valuetext`; the stripe pattern; no animation |
+| error | fill → {color.status.danger.fill}; the label gains ✕ in {color.status.danger.text}; the detail line says what failed | glyph; worded detail |
 | reduced-motion | identical to default and busy: nothing animates in any state | `prefers-reduced-motion` |
 
 Indeterminate work is the busy state; the determinate variant enters it while
@@ -103,29 +99,26 @@ the total is unknown and leaves it once known.
 
 ## Keyboard
 
-None. The progress element is not focusable and receives no key. A cancel
-button next to the bar is an ordinary button with its own tab stop.
+None; a cancel button beside the bar has its own tab stop.
 
 ## Accessibility
 
-The label is a real `<label for>` on the progress element, so its name is
-programmatic; the value is in the native `value` and repeated in text.
-Indeterminate bars set `aria-valuetext` ("Preparing"), and the container sets
-`aria-busy` for the duration. Completion and failure are announced through a
-polite live region, not by the bar. Contrast: label 10.37:1, value 8.65:1,
-detail 5.81:1, track boundary 4.45:1, error fill 3.36:1 against the track.
-The primary fill against the track measures 1.51:1 and is waived because the
-value is stated in text; a host that must meet 3:1 graphically raises the
-track to {color.surface.canvas}.
+The value is in the native `value` and repeated in text. Indeterminate bars
+set `aria-valuetext` ("Preparing"); the container sets `aria-busy` for the
+duration. Completion and failure are announced through a polite live region,
+not by the bar. Text meets 4.5:1; the track boundary and error fill 3:1. The
+primary fill against the track is waived because the value is stated in
+text; a host that must meet 3:1 graphically raises the track to
+{color.surface.canvas}.
 
 ## Portability
 
-A track, a fill and a hatched pattern. Toolkits with a native bar map the
-fill to the primary colour and disable pulse animation; toolkits without
-gradients draw the stripes with a hatched brush or alternating characters.
+A toolkit with a native bar maps the fill to the primary colour and disables
+pulse animation; one without gradients draws the stripes with a hatched brush
+or alternating characters.
 
 ## Non-examples
 
-A spinner. Animated or "barber-pole" stripes. A shimmering skeleton in place
-of a bar. A circular ring. A rounded pill-shaped bar. Colour-only failure
-without the glyph and text. A bar with no label. A bar that blocks input.
+A spinner. Animated or barber-pole stripes. A shimmering skeleton instead of
+a bar. A circular ring. A rounded pill bar. Colour-only failure without the
+glyph and text. A bar with no label. A bar that blocks input.

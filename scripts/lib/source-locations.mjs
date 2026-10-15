@@ -1,3 +1,4 @@
+import { frontmatterPattern } from "./spec.mjs";
 import { LineCounter, parseDocument } from "yaml";
 import { readText } from "./fs.mjs";
 
@@ -8,11 +9,11 @@ export const attachSourceLines = async (index) => {
   const locate = async (source) => {
     if (!files.has(source.file)) {
       const text = await readText(source.file);
-      const frontmatter = text.match(/^---\n([\s\S]*?)\n---\n/);
+      const frontmatter = text.match(frontmatterPattern);
       const counter = new LineCounter();
       const doc = parseDocument(frontmatter ? frontmatter[1] : text, { lineCounter: counter });
       if (doc.errors.length) throw new Error(`Cannot index source locations in ${source.file}`);
-      files.set(source.file, { doc, counter, lines: new Map(), offset: frontmatter ? 1 : 0, bodyLine: frontmatter ? frontmatter[0].split("\n").length : null });
+      files.set(source.file, { doc, counter, lines: new Map(), offset: frontmatter ? 1 : 0, bodyLine: frontmatter ? frontmatter[0].slice(0, frontmatter[0].length - frontmatter[2].length).split("\n").length : null });
     }
     const { doc, counter, lines, offset, bodyLine } = files.get(source.file);
     if (source.pointer === "body") { source.line = bodyLine; return; }

@@ -1,4 +1,4 @@
-// The site is one static page deployed under /theme/ on GitHub Pages. Every
+// The site is a static portal deployed under /theme/ on GitHub Pages. Every
 // value on the page comes from tokens/ and spec/; Astro owns no truth. See
 // spec/decisions.md D-010 and D-012, and tests/dist/ for the base-path gate.
 

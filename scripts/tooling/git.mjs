@@ -7,7 +7,9 @@ import { repoRoot } from "../lib/fs.mjs";
 /* A full 40-hex commit, the only form the exports and kits accept as a pin. */
 export const REVISION = /^[a-f0-9]{40}$/;
 
-export const git = (args, options = {}) => execFileSync("git", args, { cwd: repoRoot, encoding: "utf8", ...options }).trim();
+export const gitBytes = (args, options = {}) => execFileSync("git", args, { cwd: repoRoot, ...options });
+
+export const git = (args, options = {}) => gitBytes(args, { encoding: "utf8", ...options }).trim();
 
 /* null instead of a throw, for callers that work outside a checkout. */
 export const tryGit = (args, options) => {

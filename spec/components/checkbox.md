@@ -104,32 +104,29 @@ compact: true
 
 ## Purpose
 
-An independent yes/no choice, or several of them under one legend. A
-setting that takes effect immediately is a switch; one of several exclusive
-options is a radio group. A parent checkbox over a partly selected set shows
-the mixed state.
+An independent yes/no choice, or several under one legend. A setting that
+takes effect immediately is a switch; one of several exclusive options is a
+radio group. A parent checkbox over a partly selected set shows the mixed
+state.
 
 ## Anatomy
 
-The box is the native input itself with `appearance: none`, so it keeps
-native focus, form and keyboard behaviour. The ✓ and – glyphs are inline
-SVGs stacked over it in the same 16px cell. The option row is a `<label>`,
-at least 24px tall, which makes the text part of the target. A group is a
-`<fieldset>` with a `<legend>`.
+Parts as listed in the anatomy. Because the box is the native input, it keeps
+native focus, form and keyboard behaviour.
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | 16px box, 1px {color.border.control} on {color.surface.input}; text {color.text.default} | — |
-| hover | box background → {color.interaction.hover.bg}; checked box → {color.action.primary.hover-bg} | cursor: pointer; hover-capable pointers only |
-| focus-visible | ring 1px dashed {color.interaction.focus.ring} at −2px around the box | the ring |
-| checked | box fills {color.action.primary.bg}; ✓ in {color.action.primary.text}; border stays {color.border.control} | the ✓ glyph; `checked` |
-| mixed | box fills {color.action.primary.bg}; – in {color.action.primary.text} | the – glyph; `indeterminate` / `aria-checked="mixed"` |
-| checked+focus-visible | the fill and a ring in {color.interaction.focus.ring-container} | glyph and ring |
-| checked+disabled | box {color.interaction.disabled.bg} with 1px {color.border.disabled}; ✓ and text in {color.text.disabled} | glyph; `disabled`; cursor: not-allowed |
-| disabled | box {color.interaction.disabled.bg} with 1px {color.border.disabled}; text {color.text.disabled} | `disabled`; cursor: not-allowed |
-| invalid | box border 2px {color.status.danger.border}; message with the ✕ glyph | border width 1 → 2px; glyph; `aria-invalid` |
+| hover | box → {color.interaction.hover.bg}; checked box → {color.action.primary.hover-bg} | cursor: pointer; hover-capable pointers only |
+| focus-visible | 1px dashed {color.interaction.focus.ring} ring at −2px around the box | the ring |
+| checked | fill {color.action.primary.bg}; ✓ in {color.action.primary.text}; border stays {color.border.control} | ✓ glyph; `checked` |
+| mixed | fill {color.action.primary.bg}; – in {color.action.primary.text} | – glyph; `indeterminate` / `aria-checked="mixed"` |
+| checked+focus-visible | the fill plus a {color.interaction.focus.ring-container} ring | glyph and ring |
+| checked+disabled | box {color.interaction.disabled.bg}, 1px {color.border.disabled}; ✓ and text {color.text.disabled} | glyph; `disabled`; cursor: not-allowed |
+| disabled | box {color.interaction.disabled.bg}, 1px {color.border.disabled}; text {color.text.disabled} | `disabled`; cursor: not-allowed |
+| invalid | 2px {color.status.danger.border} box border; message with the ✕ glyph | border 1 → 2px; glyph; `aria-invalid` |
 | required | `*` after the text or legend in {color.status.danger.text} plus visually hidden "required" | `required`; the mark |
 
 Precedence: disabled > invalid > checked > hover; focus-visible is always
@@ -137,30 +134,24 @@ drawn.
 
 ## Keyboard
 
-Native. Space toggles; Enter does nothing. Every checkbox in a group is a
-separate tab stop, unlike radios. A mixed parent becomes checked on the
-first Space and unchecked on the second, never mixed again by keyboard.
+Native; Enter does nothing. A mixed parent becomes checked on the first Space
+and unchecked on the second, never mixed again by keyboard.
 
 ## Accessibility
 
-The text is the label through the wrapping `<label>`; a group has its
-legend read before each option. `indeterminate` is a DOM property with no
-attribute, so the host mirrors it to `data-state-mixed` for styling and the
-state reads as "mixed" natively. A required group marks the legend, not
-every option, and validates on submit. Contrast: text 8.43:1, glyph 9.28:1
-on the fill, box edge 4.45:1 on the input surface and 4.33:1 against the
-panel when checked, ring 4.69:1, container ring 5.57:1 on the fill.
+A group's legend is read before each option. The mixed state reads as "mixed"
+natively. A required group marks the legend, not every option, and validates
+on submit. Text and glyphs meet 4.5:1; box edges and rings 3:1.
 
 ## Portability
 
-A square with a border and a fill plus two glyphs. Hosts that draw their own
-indicator set it square, 16px, and use the same fill and glyph colours; a
-host without a mixed indicator draws the dash itself or records the gap.
+Hosts that draw their own indicator make it square, 16px, with the same fill
+and glyph colours; a host without a mixed indicator draws the dash itself or
+records the gap.
 
 ## Non-examples
 
-Rounded or circular boxes. A tick drawn with a border trick or an icon
-font. A checked state shown by border colour alone with no glyph. A box
-smaller than 16px or a row shorter than 24px. The mixed state used as a
-third value. A checkbox that saves on change. Disabling by opacity. A div
-with `role="checkbox"`.
+Rounded or circular boxes. A tick drawn with a border trick or an icon font.
+A checked state shown by border colour alone. A box under 16px or a row under
+24px. The mixed state as a third value. Saving on change. Disabling by
+opacity. A div with `role="checkbox"`.

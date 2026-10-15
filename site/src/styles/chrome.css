@@ -1,0 +1,415 @@
+/* Site chrome: the shell around every portal page (SiteLayout.astro) and the
+   layout of the content inside it. Layout only: controls, links, cards,
+   tables, breadcrumbs and the rail are canonical component classes, so no
+   rule here gives them a look. Token variables only (tests/chrome-controls.test.js). */
+
+:root {
+  --_rail: calc(5 * var(--space-48)); /* 240px, sidebar-nav.md "responsive" */
+  --_topbar: var(--space-48);
+}
+
+/* Forced matrix states reveal selected hidden specimen parts themselves. */
+[hidden]:not(.demo *) {
+  display: none !important;
+}
+
+/* ---- top bar ---------------------------------------------------------- */
+
+.site-topbar {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-popover);
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  min-height: var(--_topbar);
+  padding: var(--space-8) var(--space-24);
+  background: var(--color-surface-chrome);
+  border-bottom: var(--border-width-default) solid var(--color-border-default);
+}
+
+/* The packaged elements carry the recipe foundation's canvas fill. */
+.site-menu,
+.site-command {
+  background: transparent;
+}
+
+.site-menu {
+  display: none;
+}
+
+.site-wordmark {
+  color: var(--color-text-bright);
+  font-size: var(--font-size-h2);
+  line-height: var(--font-line-height-h2);
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-wordmark span {
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-regular);
+}
+
+.site-version {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.site-command {
+  margin-inline-start: auto;
+}
+
+.site-command > .command-palette {
+  display: contents;
+}
+
+.site-command .command-palette-dialog:modal {
+  width: min(40rem, calc(100vw - var(--space-32)));
+  max-height: 70vh;
+  inset: 15vh auto auto 50%;
+  transform: translateX(-50%);
+}
+
+.site-command [role="option"] {
+  display: grid;
+  grid-template-columns: 8ch minmax(0, 1fr);
+  gap: var(--space-12);
+  padding: var(--space-8);
+}
+
+.site-command-label {
+  overflow-wrap: anywhere;
+}
+
+.site-command-value {
+  display: block;
+}
+
+/* ---- frame: rail and column ------------------------------------------- */
+
+.site-frame {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-height: calc(100vh - var(--_topbar));
+}
+
+.site-rail {
+  max-width: none;
+}
+
+.site-column {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.site-main {
+  flex: 1 0 auto;
+  width: 100%;
+  max-width: var(--layout-app-max);
+  padding: var(--space-32) var(--space-48) var(--space-48);
+}
+
+.site-main > .breadcrumbs {
+  margin-bottom: var(--space-24);
+}
+
+.site-footer {
+  padding: var(--space-24) var(--space-48) var(--space-48);
+  border-top: var(--border-width-default) solid var(--color-border-default);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.site-footer p {
+  margin: 0 0 var(--space-8);
+}
+
+@media (min-width: 900px) {
+  .site-frame {
+    grid-template-columns: var(--_rail) minmax(0, 1fr);
+  }
+
+  .site-rail {
+    position: sticky;
+    top: var(--_topbar);
+    align-self: start;
+    height: calc(100vh - var(--_topbar));
+    overflow-y: auto;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1279.98px) {
+  :root { --_rail: var(--space-48); }
+  .site-rail { width: 100%; }
+}
+
+/* Below 900px the rail becomes the drawer; without JavaScript it stays in
+   the page, above the content. */
+@media (max-width: 899.98px) {
+  html.js .site-rail {
+    display: none;
+  }
+
+  html.js .site-menu {
+    display: block;
+  }
+
+  .site-rail {
+    border-inline-end: 0;
+    border-bottom: var(--border-width-default) solid var(--color-border-divider);
+  }
+
+  .site-topbar {
+    padding-inline: var(--space-16);
+  }
+
+  .site-main {
+    padding: var(--space-24) var(--space-16) var(--space-48);
+  }
+
+  .site-footer {
+    padding: var(--space-24) var(--space-16) var(--space-48);
+  }
+}
+
+@media (max-width: 599.98px) {
+  .site-version,
+  .site-command .button-label,
+  .site-command kbd,
+  .site-menu .button-label {
+    display: none;
+  }
+}
+
+/* ---- page header (D-037: display for heroes and figures, title for page titles) */
+
+.site-intro {
+  margin-bottom: var(--space-32);
+}
+
+.site-intro h1 {
+  font-size: var(--font-size-title);
+  line-height: var(--font-line-height-title);
+}
+
+.site-hero h1,
+.site-metric {
+  font-size: var(--font-size-display);
+  line-height: var(--font-line-height-display);
+}
+
+.site-intro p {
+  max-width: 72ch;
+  margin: var(--space-12) 0 0;
+  color: var(--color-text-prose);
+  font-size: var(--font-size-reading);
+  line-height: var(--font-line-height-reading);
+}
+
+.site-intro .site-stamp {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+  overflow-wrap: anywhere;
+}
+
+/* ---- content ---------------------------------------------------------- */
+
+html:not(.js) .js-only {
+  display: none;
+}
+
+.site-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: var(--space-12) var(--space-16);
+  margin-block: var(--space-16);
+}
+
+.site-form {
+  display: grid;
+  gap: var(--space-12);
+  max-width: var(--layout-content-max);
+}
+
+.site-kit-components {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 22ch), 1fr));
+  gap: var(--space-4) var(--space-12);
+}
+
+.site-filters > :is(.text-field, .select) {
+  min-width: min(100%, 14rem);
+}
+
+.site-section {
+  margin-block: var(--space-48);
+}
+
+.site-section > h2,
+.site-prose h2 {
+  margin-bottom: var(--space-16);
+  font-size: var(--font-size-h1);
+  line-height: var(--font-line-height-h1);
+}
+
+.site-section h3 {
+  margin-block: var(--space-24) var(--space-8);
+}
+
+.site-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-8) var(--space-16);
+  margin-block: var(--space-16);
+}
+
+.site-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+  gap: var(--space-16);
+}
+
+/* A row that always fills the width, however few cards it holds. */
+.site-cards-fit {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+}
+
+.site-cards > .card {
+  max-width: none;
+  align-content: start;
+}
+
+.site-cards-fit.site-swatches {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+}
+
+.site-metric {
+  display: block;
+  color: var(--color-text-bright);
+  font-weight: var(--font-weight-bold);
+}
+
+.site-swatch {
+  height: var(--space-48);
+  border: var(--border-width-default) solid var(--color-border-control);
+}
+
+.site-example {
+  min-width: 0;
+  overflow: auto;
+  padding: var(--space-24);
+  border: var(--border-width-default) solid var(--color-border-default);
+  background: var(--color-surface-default);
+}
+
+.site-code {
+  max-height: 32rem;
+  overflow: auto;
+  white-space: pre;
+}
+
+/* Source with its copy action: one unit, attached under its example. */
+.site-source {
+  margin-block-end: var(--space-24);
+  border: var(--border-width-default) solid var(--color-border-default);
+}
+
+.site-example + .site-source {
+  border-top: 0;
+}
+
+.site-source-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+  padding: var(--space-4) var(--space-4) var(--space-4) var(--space-12);
+  border-bottom: var(--border-width-default) solid var(--color-border-divider);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.site-source > pre {
+  margin: 0;
+  border: 0;
+}
+
+.site-note {
+  max-width: 72ch;
+  padding-inline-start: var(--space-16);
+  border-inline-start: var(--border-width-emphasis) solid var(--color-border-strong);
+  color: var(--color-text-muted);
+}
+
+.site-prose > :is(p, ul, ol, blockquote, dl) {
+  max-width: 72ch;
+}
+
+.site-prose h2,
+.site-prose h3 {
+  margin-block: var(--space-32) var(--space-12);
+}
+
+.site-table-wrap {
+  overflow-x: auto;
+}
+
+/* table.md: a table scrolls in its region, with a sticky first column below
+   600px. Cells wrap at word boundaries only (base.css breaks anywhere), so
+   columns keep a readable width instead of a few characters. A token path
+   wraps only at its dots (<wbr>), never inside a segment, and keeps one line
+   where there is room. */
+.usage-section .table-cell:first-child,
+.site-main :is(.table-scroll, .site-table-wrap) > table :is(th, td) {
+  overflow-wrap: normal;
+}
+
+.usage-section .table-cell:last-child {
+  min-width: 24ch;
+}
+
+@media (min-width: 600px) {
+  .usage-section .table-cell:first-child {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 599.98px) {
+  .site-main :is(.table-scroll, .site-table-wrap) > table {
+    width: max-content;
+    min-width: 100%;
+  }
+
+  .site-main :is(.table-scroll, .site-table-wrap) > table :is(th, td) {
+    max-width: 36ch;
+  }
+
+  .usage-section .table-cell:first-child {
+    width: 24ch;
+  }
+}
+
+@media print {
+  .site-topbar,
+  .site-rail,
+  .site-footer {
+    display: none;
+  }
+
+  .site-frame {
+    display: block;
+  }
+
+  .site-main {
+    padding: 0;
+  }
+}

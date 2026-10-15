@@ -1,0 +1,27 @@
+---
+/* Canonical text-field markup (spec/components/text-field.md); a textarea
+   when `rows` is given (spec/components/textarea.md). Extra attributes go to
+   the control. */
+import "../../styles/components/text-field.css";
+import "../../styles/components/textarea.css";
+interface Props {
+  id: string;
+  label: string;
+  help?: string;
+  rows?: number;
+  [attribute: string]: unknown;
+}
+
+const { id, label, help, rows, class: className, ...attributes } = Astro.props;
+const kind = rows ? "textarea" : "text-field";
+const describedBy = help ? `${id}-help` : undefined;
+---
+<div class:list={[kind, className]}>
+  <label class={`${kind}-label`} for={id}>{label}</label>
+  <div class={`${kind}-root`}>
+    {rows
+      ? <textarea class="textarea-input" id={id} rows={rows} aria-describedby={describedBy} {...attributes}></textarea>
+      : <input class="text-field-input" id={id} aria-describedby={describedBy} {...attributes} />}
+  </div>
+  {help && <p class={`${kind}-help`} id={describedBy}>{help}</p>}
+</div>

@@ -8,7 +8,7 @@ j3w1-i3-window-frame {
   line-height: var(--font-line-height-ui-md);
 }
 j3w1-i3-window-frame, j3w1-i3-window-frame *, j3w1-i3-window-frame *::before, j3w1-i3-window-frame *::after { box-sizing: border-box; }
-j3w1-i3-window-frame button, j3w1-i3-window-frame input, j3w1-i3-window-frame select, j3w1-i3-window-frame textarea { font: inherit; }
+j3w1-i3-window-frame :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 j3w1-i3-window-frame ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);
@@ -98,7 +98,7 @@ j3w1-i3-window-frame .i3-window-frame-workspace:focus-visible {
 }
 
 j3w1-i3-window-frame .i3-window-frame-workspace[aria-selected="true"]:focus-visible {
-  outline-color: var(--color-interaction-focus-ring-container);
+  outline-color: var(--color-interaction-focus-ring);
 }
 
 j3w1-i3-window-frame .i3-window-frame-workspace:focus:not(:focus-visible) {
@@ -523,6 +523,10 @@ j3w1-i3-window-frame .code-editor-ws {
   color: var(--color-code-whitespace);
 }
 
+j3w1-i3-window-frame .code-editor-ws::before {
+  content: attr(data-whitespace);
+}
+
 j3w1-i3-window-frame .code-editor-fold {
   display: inline-block;
   padding: 0 var(--space-4);
@@ -606,7 +610,7 @@ j3w1-i3-window-frame .tabs {
 
 j3w1-i3-window-frame .tabs-list {
   display: flex;
-  gap: var(--density-gap, 4px);
+  gap: var(--density-gap, 2px);
   min-width: 0;
   overflow-x: auto;
   overflow-y: hidden;
@@ -617,8 +621,8 @@ j3w1-i3-window-frame .tabs-list {
 
 j3w1-i3-window-frame .tabs-tab {
   flex: 0 0 auto;
-  min-height: var(--density-control-height, 32px);
-  padding: 0 var(--density-control-padding-x, 12px);
+  min-height: var(--density-control-height, 24px);
+  padding: 0 var(--density-control-padding-x, 8px);
   margin-bottom: calc(-1 * var(--border-width-default));
   background: transparent;
   border: 0;

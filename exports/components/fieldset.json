@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=",
+  "sourceDigest": "sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=",
   "id": "fieldset",
   "family": "forms-basic",
   "maturity": "stable",
@@ -222,7 +222,7 @@
     },
     {
       "state": "disabled",
-      "visual": "legend and labels {color.text.disabled}; every control inside takes its own disabled treatment ({color.interaction.disabled.bg}, {color.border.disabled}); the border unchanged",
+      "visual": "legend and labels {color.text.disabled}; each control takes its own disabled treatment ({color.interaction.disabled.bg}, {color.border.disabled}); border unchanged",
       "channel": "`disabled` on the fieldset; cursor: not-allowed on the controls",
       "tokens": {}
     }
@@ -264,7 +264,7 @@
     "admin-form",
     "settings-panel"
   ],
-  "nonExamples": "A fieldset with no legend or with a legend hidden visually. A card used\ninstead of a fieldset for form controls. Rounded corners. A 2px or\n`border.control` border on the group, which would read as a control. A\nlegend in accent red. Disabling only the legend. Nesting three levels deep.",
+  "nonExamples": "No legend, or a visually hidden one. A card instead of a fieldset for form\ncontrols. Rounded corners. A 2px or `border.control` border, which reads as a\ncontrol. A legend in accent red. Disabling only the legend. Three levels of\nnesting.",
   "contrast": [
     {
       "label": "fieldset default text",

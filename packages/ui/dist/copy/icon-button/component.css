@@ -8,7 +8,7 @@ j3w1-icon-button {
   line-height: var(--font-line-height-ui-md);
 }
 j3w1-icon-button, j3w1-icon-button *, j3w1-icon-button *::before, j3w1-icon-button *::after { box-sizing: border-box; }
-j3w1-icon-button button, j3w1-icon-button input, j3w1-icon-button select, j3w1-icon-button textarea { font: inherit; }
+j3w1-icon-button :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 j3w1-icon-button ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);
@@ -29,8 +29,8 @@ j3w1-icon-button .icon-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: var(--density-control-height, 32px);
-  height: var(--density-control-height, 32px);
+  width: var(--density-control-height, 24px);
+  height: var(--density-control-height, 24px);
   padding: 0;
   margin: 0;
   background: var(--color-action-secondary-bg);
@@ -73,7 +73,7 @@ j3w1-icon-button .icon-button[aria-pressed="true"] .icon-button-icon {
   fill: currentColor;
 }
 j3w1-icon-button .icon-button[aria-pressed="true"]:focus-visible {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring);
   outline-offset: var(--focus-offset);
 }
 j3w1-icon-button .icon-button:disabled {

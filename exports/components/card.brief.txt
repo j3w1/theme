@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — card
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/card.json
 spec: spec/components/card.md  site: https://j3w1.github.io/theme/reference/#c-card
 maturity: stable  priority: R1
@@ -18,15 +18,15 @@ Tokens (resolved):
   meta.text          #bd787d  ({color.text.muted})  use
   selected.bg        #531310  ({color.interaction.selection.bg})  use
   selected.text      #f4eeee  ({color.interaction.selection.text})  use
-  selected.ring      #ffa2a7  ({color.interaction.focus.ring-container})  use
+  selected.ring      #e53935  ({color.interaction.focus.ring})  use
 State dependency disclosures: D-007
 
 States: default, hover, focus-visible, selected, selected+focus-visible
   default: 1px {color.border.default} on {color.surface.default} [—]
   hover: link and selectable cards only: background → {color.interaction.hover.bg}; border → {color.border.control} [cursor: pointer; the border lightens from decorative to control]
   focus-visible: container ring 2px solid {color.interaction.focus.ring-container} at −3px [the ring]
-  selected: fill {color.interaction.selection.bg} with {color.interaction.selection.text} on every line [`aria-selected="true"`; the fill's on-fill text]
-  selected+focus-visible: the fill and the 2px ring in {color.interaction.focus.ring-container} [both visible at once]
+  selected: fill {color.interaction.selection.bg}, {color.interaction.selection.text} on every line [`aria-selected="true"`; the on-fill text]
+  selected+focus-visible: the fill and 1px dashed {color.interaction.focus.ring} at −2px [both visible at once]
 
 Keyboard:
   Tab: Reaches a link card as one stop; reaches a selectable group at its selected card (roving tabindex).

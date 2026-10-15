@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=",
+  "sourceDigest": "sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=",
   "id": "card",
   "family": "display",
   "maturity": "stable",
@@ -188,8 +188,8 @@
       }
     },
     "selected.ring": {
-      "alias": "color.interaction.focus.ring-container",
-      "value": "#ffa2a7",
+      "alias": "color.interaction.focus.ring",
+      "value": "#e53935",
       "status": "observed",
       "deprecated": false,
       "decisionId": null,
@@ -322,8 +322,8 @@
     },
     {
       "state": "selected",
-      "visual": "fill {color.interaction.selection.bg} with {color.interaction.selection.text} on every line",
-      "channel": "`aria-selected=\"true\"`; the fill's on-fill text",
+      "visual": "fill {color.interaction.selection.bg}, {color.interaction.selection.text} on every line",
+      "channel": "`aria-selected=\"true\"`; the on-fill text",
       "tokens": {
         "fg": {
           "alias": "color.interaction.selection.text",
@@ -353,7 +353,7 @@
     },
     {
       "state": "selected+focus-visible",
-      "visual": "the fill and the 2px ring in {color.interaction.focus.ring-container}",
+      "visual": "the fill and 1px dashed {color.interaction.focus.ring} at −2px",
       "channel": "both visible at once",
       "tokens": {
         "fg": {
@@ -381,8 +381,8 @@
           }
         },
         "outline": {
-          "alias": "color.interaction.focus.ring-container",
-          "value": "#ffa2a7",
+          "alias": "color.interaction.focus.ring",
+          "value": "#e53935",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -442,7 +442,7 @@
     "settings-panel",
     "filterable-table"
   ],
-  "nonExamples": "A drop shadow or elevation. Rounded corners. A hover lift or scale. A static\ncard with a hover fill. A card whose only clickable part is an invisible\noverlay. A link card containing buttons. A selected card shown by a border\ncolour alone without the fill and `aria-selected`. Muted metadata left on the\nselection fill.",
+  "nonExamples": "A shadow or elevation. Rounded corners. A hover lift or scale. A hover fill\non a static card. An invisible overlay as the only clickable part. A link\ncard containing buttons. A selected card shown by border colour alone,\nwithout the fill and `aria-selected`. Muted metadata left on the selection\nfill.",
   "contrast": [
     {
       "label": "card default text",
@@ -540,11 +540,11 @@
       "state": "selected+focus-visible",
       "kind": "ui",
       "min": 3,
-      "fg": "color.interaction.focus.ring-container",
+      "fg": "color.interaction.focus.ring",
       "bg": "color.interaction.selection.bg",
-      "fgHex": "#ffa2a7",
+      "fgHex": "#e53935",
       "bgHex": "#531310",
-      "ratio": 7.48,
+      "ratio": 3.38,
       "pass": true,
       "waiver": null
     },
@@ -611,7 +611,7 @@
       "bgHex": "#100c0c",
       "ratio": 1.36,
       "pass": true,
-      "waiver": "the default border groups content; a link or selectable card gains border.control on hover and the container ring on focus"
+      "waiver": "the default border groups content; interactive cards gain border.control on hover and a focus ring; selected cards use the ordinary ring"
     }
   ]
 }

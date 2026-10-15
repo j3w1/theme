@@ -31,9 +31,9 @@ tokens:
   dependency.role-border-width-emphasis: border.width.emphasis
   dependency.role-color-border-active: color.border.active
   dependency.role-color-border-divider: color.border.divider
+  dependency.role-focus-offset: focus.offset
   dependency.role-radius-none: radius.none
   dependency.role-space-12: space.12
-  dependency.role-space-2: space.2
   dependency.role-space-4: space.4
 stateTokens:
   default:
@@ -93,28 +93,28 @@ compact: false
 
 ## Purpose
 
-Read events as an ordered list with explicit time and status text. The caller supplies order; the component does not reorder unknown dates. Lines support the sequence without becoming the only status channel.
+Chronological events read as an ordered list in the order the caller gives.
 
 ## Anatomy
 
-- **list:** Ordered events in reading order.
-- **time:** Native time element with machine-readable datetime.
-- **event:** Heading and status-bearing description.
+Parts as listed in the anatomy.
 
 ## States
 
-| State | Presentation | Non-colour channel |
+| State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | Divider along the event sequence. | Ordered list and visible time. |
 | current | Emphasized start border. | aria-current and explicit Current text. |
 
 ## Keyboard
 
-- **Tab / Shift+Tab:** Reach event links and actions. The sequence is not focusable.
+As in the key table.
 
 ## Accessibility
 
-Use real time values and visible dates. Identify the current event with aria-current and text. Avoid a color-only dot or an order that changes between visual presentation and reading order.
+Use real time values and visible dates. Mark the current event with
+`aria-current` and text. No colour-only dot; visual order matches reading
+order.
 
 ## Portability
 

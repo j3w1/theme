@@ -31,16 +31,23 @@ tokens:
   secondary.text: color.text.muted
   control.bg: color.surface.input
   control.focus: color.interaction.focus.ring
+  button.bg: color.action.secondary.bg
+  button.text: color.action.secondary.text
+  button.border: color.action.secondary.border
+  button.bg-hover: color.action.secondary.hover-bg
+  button.bg-active: color.action.secondary.pressed-bg
+  button.border-active: color.border.active
+  button.focus: color.interaction.focus.ring
   dependency.role-border-width-default: border.width.default
   dependency.role-border-width-emphasis: border.width.emphasis
   dependency.role-color-border-divider: color.border.divider
   dependency.role-color-border-selected-indicator: color.border.selected-indicator
   dependency.role-density-comfortable-control-height: density.comfortable.control-height
   dependency.role-density-compact-control-height: density.compact.control-height
+  dependency.role-focus-offset: focus.offset
   dependency.role-radius-none: radius.none
   dependency.role-space-12: space.12
   dependency.role-space-16: space.16
-  dependency.role-space-2: space.2
   dependency.role-space-8: space.8
 stateTokens:
   default:
@@ -59,6 +66,12 @@ contrast:
     min: 3
     kind: ui
     label: Control boundary
+  - fg: color.action.secondary.text
+    bg: color.surface.default
+    label: Button label
+  - fg: color.action.secondary.text
+    bg: color.action.secondary.hover-bg
+    label: Button label on hover
 anatomy:
   - part: locations
     description: Tree navigation selects a location filter.
@@ -109,19 +122,18 @@ compact: false
 
 ## Purpose
 
-Compose hierarchical location navigation with a filterable file table. Opening an entry emits its stable identity. The caller owns file access, upload, deletion and permissions. The supplied names and sizes are synthetic local examples.
+Finds a file by location and name; every file operation belongs to the
+caller.
 
 ## Anatomy
 
-- **locations:** Tree navigation selects a location filter.
-- **query:** Labelled native search filters visible rows.
-- **table:** Native rows show names, kinds and sizes with explicit Open actions.
+Parts as listed in the anatomy.
 
 ## States
 
-| State | Presentation | Non-colour channel |
+| State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | Locations and native file rows. | Explicit names, kinds and sizes. |
+| default | Locations and native file rows. Button controls are the secondary button (button.md); inputs keep the input look. | Explicit names, kinds and sizes. |
 | selected | Selected location follows the tree contract. | aria-selected plus location filter. |
 | empty | No file rows. | Explicit zero-files text. |
 | no-results | Filtered rows are hidden. | Matching count and retained search query. |
@@ -129,17 +141,19 @@ Compose hierarchical location navigation with a filterable file table. Opening a
 
 ## Keyboard
 
-- **Tab / Shift+Tab:** Move among tree navigation, search and row actions.
-- **Arrow keys:** Use the tree contract inside navigation.
-- **Enter / Space:** Request opening the chosen file through an event.
+As in the key table.
 
 ## Accessibility
 
-Keep the complete nested tree behavior and semantic table headers. Filtering does not move focus. Announce counts, and keep the search field available after zero results. File actions must not imply access beyond the host's actual permissions.
+Keep the complete nested tree behaviour and semantic table headers.
+Filtering does not move focus. Announce counts, and keep the search field
+available after zero results. File actions never imply access beyond the
+host's actual permissions.
 
 ## Portability
 
-Follows the shared component defaults in `spec/portability.md` (section "Shared component defaults").
+Follows the shared component defaults in `spec/portability.md` (section
+"Shared component defaults").
 
 ## Non-examples
 

@@ -96,7 +96,7 @@
     "root.bg-toggled": "color.interaction.selection.bg",
     "root.text-toggled": "color.interaction.selection.text",
     "root.border-toggled": "color.border.selected-indicator",
-    "root.ring-toggled": "color.interaction.focus.ring-container",
+    "root.ring-toggled": "color.interaction.focus.ring",
     "root.text-disabled": "color.text.disabled",
     "root.bg-disabled": "color.interaction.disabled.bg",
     "root.border-disabled": "color.border.disabled",
@@ -120,7 +120,6 @@
       "color.border.selected-indicator",
       "color.interaction.disabled.bg",
       "color.interaction.drop-target",
-      "color.interaction.focus.ring-container",
       "color.interaction.pressed.bg",
       "color.interaction.selection.bg",
       "color.interaction.selection.text",
@@ -156,7 +155,6 @@
       "color.interaction.disabled.bg",
       "color.interaction.drop-target",
       "color.interaction.focus.ring",
-      "color.interaction.focus.ring-container",
       "color.interaction.pressed.bg",
       "color.interaction.selection.bg",
       "color.interaction.selection.text",
@@ -174,7 +172,6 @@
       "color.primitive.red.800",
       "color.primitive.rose.300",
       "color.primitive.rose.700",
-      "color.primitive.rose.800",
       "color.surface.canvas",
       "color.text.default",
       "color.text.disabled",
@@ -240,11 +237,6 @@
         "decisionIds": []
       },
       "color.interaction.drop-target": {
-        "action": "use",
-        "reason": "Use within the role's documented scope and restrictions.",
-        "decisionIds": []
-      },
-      "color.interaction.focus.ring-container": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -365,6 +357,6 @@
   "copy": {
     "directory": "copy/icon-button/",
     "manifest": "copy/icon-button/manifest.json",
-    "digest": "sha256-Yq0utAFthUSAFiDa7lcg55cQhUdK+H2LnBgt5a/6/C0="
+    "digest": "sha256-PtLPNMTcOcV3bfqclq1ktR8kldC1sdwlqBmiOf0F3a4="
   }
 }

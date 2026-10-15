@@ -7,7 +7,7 @@
   gap: var(--space-4);
   min-width: 0;
   max-width: 28rem;
-  padding: var(--density-control-padding-x, 12px);
+  padding: var(--density-control-padding-x, 8px);
   box-sizing: border-box;
   background: var(--color-surface-default);
   border: var(--border-width-default) solid var(--color-border-default);
@@ -44,7 +44,7 @@
 
 .card-group {
   display: grid;
-  gap: var(--density-gap, 4px);
+  gap: var(--density-gap, 2px);
   min-width: 0;
 }
 
@@ -92,11 +92,11 @@
   border-color: var(--color-interaction-selection-bg);
 }
 
-/* selected + focus-visible: the fill and the container ring together */
+/* selected + focus-visible: the selection fill and the ordinary ring together */
 .card-selectable[aria-selected="true"]:focus-visible,
 [data-state-selected][data-state-focus-visible] .card-demo-target {
-  outline: var(--focus-ring-container);
-  outline-offset: var(--focus-offset-container);
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
 }
 
 @media (hover: none) {

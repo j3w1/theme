@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — list
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/list.json
 spec: spec/components/list.md  site: https://j3w1.github.io/theme/reference/#c-list
 maturity: stable  priority: R1
@@ -17,7 +17,7 @@ Tokens (resolved):
   row.text-disabled       #8a5559  ({color.text.disabled})  use
   selected.bg             #531310  ({color.interaction.selection.bg})  use
   selected.text           #f4eeee  ({color.interaction.selection.text})  use
-  selected.ring           #ffa2a7  ({color.interaction.focus.ring-container})  use
+  selected.ring           #e53935  ({color.interaction.focus.ring})  use
   selected.inactive-bg    #420f0c  ({color.interaction.selection.inactive-bg})  use
   selected.inactive-text  #e99499  ({color.interaction.selection.inactive-text})  use
   check.glyph             #f4eeee  ({color.interaction.selection.text})  use
@@ -25,11 +25,11 @@ Tokens (resolved):
 State dependency disclosures: D-007
 
 States: default, hover, focus-visible, selected, selected+focus-visible, selected+container-inactive, disabled
-  default: text {color.text.default}; no fill; the check gutter empty [—]
+  default: text {color.text.default}; no fill; check gutter empty [—]
   hover: background → {color.interaction.hover.bg} [cursor: pointer]
-  focus-visible: ring 1px dashed {color.interaction.focus.ring} at −2px on the option [the ring]
+  focus-visible: 1px dashed {color.interaction.focus.ring} at −2px on the option [the ring]
   selected: fill {color.interaction.selection.bg}; text and glyph {color.interaction.selection.text} [`aria-selected="true"`; the ✓ glyph]
-  selected+focus-visible: the fill and the ring in {color.interaction.focus.ring-container} [both visible at once]
+  selected+focus-visible: the fill and 1px dashed {color.interaction.focus.ring} at −2px [both visible at once]
   selected+container-inactive: fill {color.interaction.selection.inactive-bg} with {color.interaction.selection.inactive-text}; no ring [lightness drop between the two fills; the glyph stays]
   disabled: text {color.text.disabled}; no fill; no hover; still reachable by arrow keys [`aria-disabled="true"`; cursor: not-allowed]
 

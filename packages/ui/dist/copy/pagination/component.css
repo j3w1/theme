@@ -8,7 +8,7 @@ j3w1-pagination {
   line-height: var(--font-line-height-ui-md);
 }
 j3w1-pagination, j3w1-pagination *, j3w1-pagination *::before, j3w1-pagination *::after { box-sizing: border-box; }
-j3w1-pagination button, j3w1-pagination input, j3w1-pagination select, j3w1-pagination textarea { font: inherit; }
+j3w1-pagination :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 j3w1-pagination ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);
@@ -35,7 +35,7 @@ j3w1-pagination .pagination-list {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--density-gap, 4px);
+  gap: var(--density-gap, 2px);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -54,8 +54,8 @@ j3w1-pagination .pagination-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: var(--density-control-height, 32px);
-  min-height: var(--density-control-height, 32px);
+  min-width: var(--density-control-height, 24px);
+  min-height: var(--density-control-height, 24px);
   padding: 0 var(--space-8);
   background: transparent;
   border-radius: var(--radius-none);
@@ -66,7 +66,7 @@ j3w1-pagination .pagination-link {
 }
 
 j3w1-pagination .pagination-edge {
-  padding: 0 var(--density-control-padding-x, 12px);
+  padding: 0 var(--density-control-padding-x, 8px);
 }
 
 j3w1-pagination .pagination-glyph {
@@ -77,8 +77,8 @@ j3w1-pagination .pagination-gap {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: var(--density-control-height, 32px);
-  min-height: var(--density-control-height, 32px);
+  min-width: var(--density-control-height, 24px);
+  min-height: var(--density-control-height, 24px);
   color: var(--color-text-muted);
   user-select: none;
 }
@@ -86,7 +86,7 @@ j3w1-pagination .pagination-gap {
 j3w1-pagination .pagination-status {
   display: inline-flex;
   align-items: center;
-  min-height: var(--density-control-height, 32px);
+  min-height: var(--density-control-height, 24px);
   padding: 0 var(--space-8);
   color: var(--color-text-default);
   font-variant-numeric: tabular-nums;
@@ -122,7 +122,7 @@ j3w1-pagination .pagination-link[aria-current="page"]:hover {
 }
 
 j3w1-pagination .pagination-link[aria-current="page"]:focus-visible {
-  outline-color: var(--color-interaction-focus-ring-container);
+  outline-color: var(--color-interaction-focus-ring);
 }
 j3w1-pagination .pagination-link[aria-disabled="true"] {
   color: var(--color-text-disabled);

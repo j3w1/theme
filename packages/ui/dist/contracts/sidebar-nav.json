@@ -107,7 +107,7 @@
     "current.text": "color.text.bright",
     "selected.bg": "color.interaction.selection.bg",
     "selected.text": "color.interaction.selection.text",
-    "selected.ring": "color.interaction.focus.ring-container",
+    "selected.ring": "color.interaction.focus.ring",
     "selected.inactive-bg": "color.interaction.selection.inactive-bg",
     "selected.inactive-text": "color.interaction.selection.inactive-text",
     "icon.stroke": "color.icon.default",
@@ -128,7 +128,7 @@
       "color.icon.decorative",
       "color.icon.default",
       "color.interaction.drop-target",
-      "color.interaction.focus.ring-container",
+      "color.interaction.focus.ring",
       "color.interaction.hover.bg",
       "color.interaction.pressed.bg",
       "color.interaction.selection.bg",
@@ -171,7 +171,6 @@
       "color.icon.default",
       "color.interaction.drop-target",
       "color.interaction.focus.ring",
-      "color.interaction.focus.ring-container",
       "color.interaction.hover.bg",
       "color.interaction.pressed.bg",
       "color.interaction.selection.bg",
@@ -255,7 +254,7 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
-      "color.interaction.focus.ring-container": {
+      "color.interaction.focus.ring": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -426,6 +425,6 @@
   "copy": {
     "directory": "copy/sidebar-nav/",
     "manifest": "copy/sidebar-nav/manifest.json",
-    "digest": "sha256-Rl7kfHhDzahs2E5iAw6o2u7UNqJAiayqCZn3A2ag9D4="
+    "digest": "sha256-Li6ZjxbsR1RxT5R9/zKwHLZTyxTunFX9jqRIrU0QFb8="
   }
 }

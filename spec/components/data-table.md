@@ -43,7 +43,7 @@ tokens:
   row.ring: color.interaction.focus.ring
   selected.bg: color.interaction.selection.bg
   selected.text: color.interaction.selection.text
-  selected.ring: color.interaction.focus.ring-container
+  selected.ring: color.interaction.focus.ring
   checkbox.bg: color.surface.input
   checkbox.border: color.border.control
   checkbox.checked-bg: color.action.primary.bg
@@ -57,7 +57,7 @@ stateTokens:
   hover: { fg: color.text.default, bg: color.interaction.hover.bg }
   focus-visible: { fg: color.text.default, bg: color.surface.default, outline: color.interaction.focus.ring }
   selected: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg }
-  selected+focus-visible: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg, outline: color.interaction.focus.ring-container }
+  selected+focus-visible: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg, outline: color.interaction.focus.ring }
   sorted: { fg: color.text.bright, bg: color.surface.default }
   mixed: { fg: color.action.primary.text, bg: color.action.primary.bg }
   empty: { fg: color.text.muted, bg: color.surface.default }
@@ -116,76 +116,59 @@ compact: false
 
 ## Purpose
 
-A table the user works in: selects rows, sorts, resizes columns. The
-plain table is for reading; this component adds the controls and the
-keyboard model. It stays a native table so its cells keep their header
-associations; hosts that need cell-level navigation promote it to a grid
-and record the change.
+A table the user works in; the plain `table` is for reading. It stays a
+native table so cells keep their header associations; a host that needs
+cell-level navigation promotes it to a grid and records the change.
 
 ## Anatomy
 
-The table component's structure with the same rule, dividers and fills,
-plus: a selection column whose header holds a select-all with
-`aria-checked` true, false or mixed, drawn on {color.action.primary.bg} with
-the ✓ or – glyph in {color.action.primary.text}; native checkboxes in each
-row on {color.surface.input} with a 1px {color.border.control} boundary;
-rows that can take focus; and in the resizable variant a 1px handle in
-{color.border.default} at the inline end of each header that turns
-{color.border.active} under the pointer.
+The `table` structure, rule, dividers and fills, plus the parts listed in
+the anatomy; row checkboxes have a 1px {color.border.control} boundary.
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | rows on {color.surface.default}; header rule 1px {color.border.strong} | — |
-| hover | row background → {color.interaction.hover.bg}; a resize handle → {color.border.active} | cursor: default on rows, col-resize on handles |
-| focus-visible | ring 1px dashed {color.interaction.focus.ring} at −2px around the focused row or control | the ring |
-| selected | row fill {color.interaction.selection.bg}; every cell {color.interaction.selection.text}; the row checkbox checked | `aria-selected="true"`; the checked box |
-| selected+focus-visible | the fill and the ring in {color.interaction.focus.ring-container} | both visible at once |
+| hover | row → {color.interaction.hover.bg}; a resize handle → {color.border.active} | cursor: default on rows, col-resize on handles |
+| focus-visible | 1px dashed {color.interaction.focus.ring} at −2px around the focused row or control | the ring |
+| selected | row fill {color.interaction.selection.bg}; every cell {color.interaction.selection.text}; row checkbox checked | `aria-selected="true"`; the checked box |
+| selected+focus-visible | the fill and 1px dashed {color.interaction.focus.ring} at −2px | both visible at once |
 | sorted | ▲ or ▼ in {color.text.bright} on the sorted header | `aria-sort`; the glyph |
-| mixed | the select-all on {color.action.primary.bg} with the – glyph | `aria-checked="mixed"`; the glyph |
-| empty | one full-width cell in {color.text.muted}: "No rows match."; the header and controls stay | the message text |
+| mixed | select-all on {color.action.primary.bg} with the – glyph | `aria-checked="mixed"`; the glyph |
+| empty | one full-width cell in {color.text.muted}: "No rows match."; header and controls stay | the message text |
 | loading | one full-width cell with the static `⋯` glyph; the header stays | `aria-busy="true"`; the glyph; no animation |
 
 Precedence: loading > empty; selected > hover; focus-visible is always
-drawn. Selection is a fill; focus is a ring; they never borrow each other's
-form.
+drawn. Selection is a fill, focus a ring; neither borrows the other's form.
 
 ## Keyboard
 
-Header controls first: the select-all, then each sort button. Rows use a
-roving tabindex so the body costs one tab stop; Up and Down move, Space
-toggles, Shift extends, Ctrl+A selects all. Controls inside the focused row
-are reached with Tab and left with Shift+Tab. Column widths are set from a
-header menu or by dragging the handle; the handle itself is never a tab
-stop.
+Controls inside the focused row are reached with Tab and left with
+Shift+Tab. Column widths come from a header menu or the handle, which is
+never a tab stop.
 
 ## Accessibility
 
-Every row checkbox is labelled by the row's first data cell
-(`aria-labelledby`); the select-all is named "Select all rows" and exposes
-`aria-checked="mixed"` when only some are selected. `aria-selected` on the
-row mirrors its checkbox. Sorted headers carry `aria-sort`; the table
-carries `aria-busy` while loading; the count of selected rows is announced
-through a live region owned by the surrounding toolbar. Contrast: text
-8.43:1, header 10.10:1, selected text 12.47:1 on the fill, ring 4.57:1 on the
-surface and 7.48:1 on the fill, checkbox boundary 4.33:1, check glyph 9.28:1
-on the primary fill. Checkboxes and handles are at least 24 CSS pixels tall
-in `compact` density.
+Each row checkbox is labelled by the row's first data cell
+(`aria-labelledby`); the select-all is named "Select all rows".
+`aria-selected` on the row mirrors its checkbox. The selected-row count is
+announced through a live region owned by the surrounding toolbar. Text meets
+4.5:1; boundaries and rings 3:1. Checkboxes and handles are at least 24 CSS
+pixels tall in `compact`.
 
 ## Portability
 
-The table component's drawing plus a checkbox column and a header
-checkbox; the handle is a 1px rule. Toolkits with native table views map
-row selection to their selection model and the mixed state to their
-tristate checkbox. Hosts without row focus fall back to the checkbox as the
-only row control and record it.
+The `table` drawing plus a checkbox column and header checkbox; the handle
+is a 1px rule. Native table views map row selection to their selection model
+and mixed to their tristate checkbox. A host without row focus keeps the
+checkbox as the only row control and records it.
 
 ## Non-examples
 
-A grid role on a table that is not navigated cell by cell. Zebra stripes.
-A select-all that is a native checkbox with a script-only indeterminate
-state and no `aria-checked`. Rows selected by clicking anywhere with no
-checkbox alternative. A selected row shown by a border alone. A resize
-handle that is a tab stop. An animated loading skeleton. Rounded checkboxes.
-Text truncated with no full-value affordance.
+A grid role on a table not navigated cell by cell. Zebra stripes. A
+select-all that is a native checkbox with a script-only indeterminate state
+and no `aria-checked`.
+Row selection by click with no checkbox alternative. A selected row shown by
+a border alone. A resize handle as a tab stop. An animated loading skeleton.
+Rounded checkboxes. Truncated text with no full-value affordance.

@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — drawer
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/drawer.json
 spec: spec/components/drawer.md  site: https://j3w1.github.io/theme/reference/#c-drawer
 maturity: stable  priority: R1
@@ -28,9 +28,9 @@ State dependency disclosures: D-008
 States: default, open, closed, focus-trapped, reduced-motion
   default: the panel open at its edge on the backdrop [`open`; the page behind is inert]
   open: as default; opacity 0 → 1 within 150 ms on capable hosts; never a slide [`open`; focus inside the panel]
-  closed: nothing: the panel and the backdrop are absent [no `open`; focus back on the opener]
-  focus-trapped: the panel carries the container ring, 2px solid {color.interaction.focus.ring-container} at −3px, when it holds focus; the note says Tab cycles [Tab never leaves; the note text]
-  reduced-motion: no opacity transition; the panel is simply present or absent [`prefers-reduced-motion`]
+  closed: panel and backdrop absent [no `open`; focus back on the opener]
+  focus-trapped: while it holds focus, the panel carries the 2px solid {color.interaction.focus.ring-container} ring at −3px; the note says Tab cycles [Tab never leaves; the note text]
+  reduced-motion: no opacity transition; present or absent [`prefers-reduced-motion`]
 
 Keyboard:
   Tab / Shift+Tab: Cycles inside the drawer and never leaves it while open.

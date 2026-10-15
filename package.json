@@ -3,7 +3,7 @@
   "version": "4.0.0",
   "private": true,
   "type": "module",
-  "description": "j3w1 UI Theme Spec: canonical design tokens, component rules, a generated single-page visual specification, and machine exports for agents. The repository owns the theme; j3w1.github.io demonstrates it.",
+  "description": "j3w1 UI Theme Spec: canonical design tokens, component rules, a generated visual specification (a reference hub with detail pages), and machine exports for agents. The repository owns the theme; j3w1.github.io demonstrates it.",
   "engines": {
     "node": "24.x",
     "npm": ">=10"

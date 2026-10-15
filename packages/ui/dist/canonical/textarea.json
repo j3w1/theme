@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=",
+  "sourceDigest": "sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=",
   "id": "textarea",
   "family": "forms-basic",
   "maturity": "stable",
@@ -393,7 +393,7 @@
     },
     {
       "state": "hover",
-      "visual": "background → {color.interaction.hover.bg}; border unchanged",
+      "visual": "→ {color.interaction.hover.bg}; border unchanged",
       "channel": "cursor: text",
       "tokens": {
         "fg": {
@@ -438,7 +438,7 @@
     },
     {
       "state": "focus-visible",
-      "visual": "border → {color.border.active}; ring 1px dashed {color.interaction.focus.ring} at −2px",
+      "visual": "border → {color.border.active}; 1px dashed {color.interaction.focus.ring} at −2px",
       "channel": "the ring",
       "tokens": {
         "fg": {
@@ -493,7 +493,7 @@
     },
     {
       "state": "placeholder-shown",
-      "visual": "placeholder in {color.text.placeholder}, italic",
+      "visual": "{color.text.placeholder}, italic",
       "channel": "italic",
       "tokens": {
         "fg": {
@@ -550,8 +550,8 @@
     },
     {
       "state": "invalid",
-      "visual": "border 2px {color.status.danger.border}; message with the ✕ glyph; a count past its limit turns {color.status.danger.text} with the glyph",
-      "channel": "border width 1 → 2px; glyph; `aria-invalid`",
+      "visual": "2px {color.status.danger.border}; message with ✕; a count past its limit turns {color.status.danger.text} with the glyph",
+      "channel": "border 1 → 2px; glyph; `aria-invalid`",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -593,7 +593,7 @@
     },
     {
       "state": "invalid+focus-visible",
-      "visual": "the 2px danger border and the ring in {color.interaction.focus.ring-container} at −4px",
+      "visual": "the 2px danger border and a {color.interaction.focus.ring-container} ring at −4px",
       "channel": "double boundary",
       "tokens": {
         "fg": {
@@ -648,7 +648,7 @@
     },
     {
       "state": "disabled",
-      "visual": "text {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}; no resize handle",
+      "visual": "text {color.text.disabled}, border {color.border.disabled}, fill {color.interaction.disabled.bg}; no resize handle",
       "channel": "`disabled`; cursor: not-allowed",
       "tokens": {}
     },
@@ -729,7 +729,7 @@
     "admin-form",
     "settings-panel"
   ],
-  "nonExamples": "Horizontal or free resizing. A box narrower than its label column. A count\nthat only changes colour past the limit. A glow instead of the dashed ring.\nRounded corners. An auto-growing box with no maximum. Tab inserting a\ncharacter. Placeholder text as the label. Disabling by opacity.",
+  "nonExamples": "Horizontal or free resizing. A box narrower than its label column. A count\nthat only changes colour past the limit. A glow instead of the dashed ring.\nRounded corners. Auto-growing with no maximum. Tab inserting a character.\nPlaceholder as the label. Disabling by opacity.",
   "contrast": [
     {
       "label": "textarea default text",

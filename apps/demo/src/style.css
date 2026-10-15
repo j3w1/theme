@@ -1,110 +1,655 @@
-* { box-sizing: border-box; }
-html { color-scheme: dark; font: var(--font-size-ui-md)/1.6 var(--font-family-mono); color: var(--color-text-default); background: var(--color-surface-canvas); }
-body { margin: 0; min-width: 320px; }
-button, input, select, textarea { font: inherit; color: inherit; }
-button, select { cursor: pointer; }
-button, input, select, textarea { border: 1px solid var(--color-border-control); background: var(--color-surface-input); border-radius: var(--radius-none); padding: 8px 12px; max-width: 100%; }
-button:hover { background: var(--color-interaction-hover-bg); }
-button:disabled { cursor: default; color: var(--color-text-muted); }
-:focus-visible { outline: var(--focus-ring); outline-offset: var(--focus-offset); }
-a { color: var(--color-text-link); text-decoration: underline; text-decoration-color: var(--color-text-link-underline); text-decoration-thickness: var(--border-width-default); text-underline-offset: var(--space-2); }
-a:hover { color: var(--color-text-link-hover); background: var(--color-interaction-hover-bg-strong); text-decoration-color: currentColor; text-decoration-thickness: var(--border-width-emphasis); }
-h1,h2,h3 { color: var(--color-text-heading); line-height: 1.3; margin: 0; }
-h1 { font-size: clamp(26px, 3vw, 38px); letter-spacing: -.04em; }
-h2 { font-size: 18px; }
-h3 { font-size: 15px; }
-p { margin-block: 10px; }
-.eyebrow,.nav-caption { color: var(--color-text-muted); font-size: 10px; letter-spacing: .12em; }
-.demo-workspace { min-width: 0; }
-.demo-shell { display: grid; grid-template-columns: 216px minmax(0,1fr); min-height: 100vh; }
-.demo-sidebar { background: var(--color-surface-chrome); padding: 28px 18px; border-inline-end: 1px solid var(--color-border-default); }
-.wordmark { text-decoration: none; font-size: 23px; font-weight: bold; color: var(--color-text-bright); }
-.wordmark span { font-size: 11px; color: var(--color-text-muted); }
-.demo-sidebar nav section { margin-top: 26px; }
-.nav-caption { margin: 0 8px 8px; }
-.demo-sidebar nav a { display: block; text-decoration: none; padding: 7px 10px; text-transform: capitalize; border-inline-start: 2px solid transparent; }
-.demo-sidebar nav a.router-link-active { color: var(--color-interaction-selection-text); background: var(--color-interaction-selection-bg); border-color: var(--color-interaction-focus-ring); }
-.back-spec { display: block; margin-top: 32px; }
-.demo-topline { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 32px; border-bottom: 1px solid var(--color-border-default); }
-.identity { display: grid; place-items: center; width: 32px; height: 32px; background: var(--color-surface-default); border: 1px solid var(--color-border-control); }
-.demo-context { display: flex; justify-content: space-between; gap: 16px; align-items: center; padding: 12px 32px; color: var(--color-text-muted); font-size: 11px; }
-main { padding: 24px 32px; max-width: 1600px; margin-inline: auto; }
-.view-heading { display: flex; align-items: start; justify-content: space-between; gap: 20px; margin-bottom: 28px; }
-.view-heading p { color: var(--color-text-muted); }
-.panel { background: var(--color-surface-default); border: 1px solid var(--color-border-default); padding: 24px; min-width: 0; }
-.panel-heading { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; }
-.metrics { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; margin-block: 24px; }
-.metric { font-size: 30px; line-height: 1.4; color: var(--color-text-bright); display: block; margin-block: 12px; }
-.metric-label { color: var(--color-text-muted); }
-.dashboard-middle { display: grid; grid-template-columns: minmax(0,1.7fr) minmax(260px,1fr); gap: 20px; margin-block: 20px; }
-.chart-bars { height: 190px; display: flex; align-items: end; gap: 12px; padding-top: 20px; }
-.chart-bar { flex: 1; background: var(--color-chart-series-2); min-width: 2px; }
-.chart-caption { display: flex; justify-content: space-between; color: var(--color-text-muted); font-size: 10px; margin-top: 20px; }
-.actions,.filters { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; }
-.filters { margin-block: 20px; }
-label { display: grid; gap: 6px; }
-.filters label:first-child { flex: 1; min-width: 160px; }
-.table-scroll { overflow: auto; }
-.records-table { width: 100%; border-collapse: collapse; white-space: nowrap; }
-.records-table thead th { color: var(--color-text-bright); font-weight: var(--font-weight-bold); font-size: 11px; text-align: start; }
-.records-table td,.records-table th { border-bottom: 1px solid var(--color-border-default); padding: 14px 12px; }
-.records-table td:first-child { padding-inline-start: 0; }
-.status { color: var(--color-status-info-text); }
-.status.ready { color: var(--color-status-success-text); }
-.status.review { color: var(--color-status-warning-text); }
-.muted { color: var(--color-text-muted); }
-.success { color: var(--color-status-success-text); }
-.block { display: block; }
-.form-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 20px; }
-.form-grid .wide { grid-column: 1/-1; }
-.form-grid input,.form-grid select,.form-grid textarea { width: 100%; }
-.form-grid fieldset { margin: 0; border: 1px solid var(--color-border-default); }
-.form-grid .actions { margin-top: 8px; }
-.split { display: grid; grid-template-columns: minmax(220px, .8fr) minmax(0,2fr); gap: 20px; }
-.stack { display: grid; gap: 16px; }
-.list-button { display: block; width: 100%; text-align: start; padding: 16px; background: var(--color-surface-default); border: 1px solid var(--color-border-default); }
-.list-button[aria-pressed="true"] { background: var(--color-interaction-selection-bg); color: var(--color-interaction-selection-text); }
-.message { max-width: 85%; padding: 14px; background: var(--color-surface-input); border: 1px solid var(--color-border-default); }
-.message.self { margin-inline-start: auto; background: var(--color-surface-raised); }
-.kanban { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; }
-.kanban article { padding: 16px; margin-top: 16px; background: var(--color-surface-input); border: 1px solid var(--color-border-default); }
-.calendar { display: grid; grid-template-columns: repeat(7,minmax(0,1fr)); gap: 1px; border: 1px solid var(--color-border-default); background: var(--color-border-default); }
-.calendar-day { background: var(--color-surface-default); min-height: 105px; padding: 10px; }
-.calendar-day button { width: 100%; text-align: start; padding: 4px; margin-top: 8px; font-size: 11px; overflow-wrap: anywhere; }
-.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,240px),1fr)); gap: 16px; }
-.gallery-link { text-decoration: none; }
-.demo-specimen { min-width: 0; overflow: auto; }
-.demo-notice { margin: 0 32px; padding: 12px 0; min-height: 48px; color: var(--color-status-success-text); }
-.demo-footer { padding: 24px 32px 100px; color: var(--color-text-muted); font-size: 11px; line-height: 1.9; }
-.demo-command [data-open] { position: fixed; bottom: 20px; right: 24px; z-index: 20; }
-.demo-command .command-palette-dialog:modal { width: min(540px,calc(100vw - 32px)); max-height: 70vh; }
-.demo-command [role="option"] { display: grid; grid-template-columns: 100px 1fr; gap: 12px; }
-.demo-command [role="option"] .command-label { color: inherit; }
-.mobile-nav { display: none; }
-.skip-link { position: fixed; top: -100px; z-index: 100; padding: 12px; background: var(--color-surface-raised); }
-.skip-link:focus { top: 8px; }
-[hidden] { display: none !important; }
-.empty { padding: 48px 24px; text-align: center; }
-.price { font-size: 36px; color: var(--color-text-bright); }
-.error-message { color: var(--color-status-danger-text); }
-pre { overflow: auto; }
-@media(max-width:1100px) { .metrics { grid-template-columns: repeat(2,minmax(0,1fr)); } .dashboard-middle { grid-template-columns: 1fr; } }
-@media(max-width:780px) { .demo-shell { grid-template-columns: minmax(0,1fr); } .demo-sidebar { display: none; } .demo-sidebar.is-open { display: block; } .mobile-nav { display: block; } main { padding: 20px 16px; } .demo-topline,.demo-context { padding-inline: 16px; } .demo-context { align-items: start; } .form-grid,.split,.kanban { grid-template-columns: 1fr; } .view-heading { flex-wrap: wrap; } .calendar { grid-template-columns: 1fr; } .calendar-day { min-height: 65px; } .panel { padding: 18px; } .metrics { gap: 10px; } .metric { font-size: 24px; } }
-@media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior: auto !important; } }
+/* Vue demo layout. Buttons, links, fields, tables, cards and the rail are
+   canonical component classes inside their packaged elements; their look
+   comes only from the packaged component CSS, bare controls from
+   controls.css. This file gives layout and type from token variables only:
+   no literal colours, and no rule that restyles every button or input. */
 
-.records-table tbody { color:var(--color-text-default); }
-.records-table tbody th { color:inherit; font-weight:var(--font-weight-regular); }
+:root {
+  --demo-rail: calc(5 * var(--space-48)); /* 240px, sidebar-nav.md "responsive" */
+}
 
-/* Application hierarchy: page title, section, subheading and supporting copy. */
-.view-heading h1 { color: var(--color-text-heading); font-weight: var(--font-weight-bold); }
-.view-heading > div > p:last-child { color: var(--color-text-muted); font-size: var(--font-size-ui-lg); line-height: 1.8; margin-top: var(--space-12); }
-main h2 { color: var(--color-text-heading); font-weight: var(--font-weight-bold); }
-main h3 { color: var(--color-text-heading); font-weight: var(--font-weight-bold); font-size: var(--font-size-ui-lg); }
-.demo-sidebar nav section { margin-top: var(--space-32); }
-.demo-sidebar .nav-caption { color: var(--color-text-bright); font-size: var(--font-size-ui-sm); font-weight: var(--font-weight-bold); letter-spacing: .12em; margin: 0 var(--space-8) var(--space-12); padding-bottom: var(--space-8); border-bottom: var(--border-width-default) solid var(--color-border-default); }
-.demo-sidebar nav a { font-weight: var(--font-weight-regular); padding-inline-start: var(--space-12); }
-.demo-sidebar nav a.router-link-active:focus-visible { outline: var(--focus-ring-container); outline-offset: var(--focus-offset-container); }
-.gallery-link h2 { color: var(--color-text-link); text-decoration: underline; text-decoration-color: var(--color-text-link-underline); text-underline-offset: var(--space-4); }
-.gallery-link:hover h2 { color: var(--color-text-link-hover); text-decoration-color: currentColor; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-.demo-command > .command-palette { display: contents; }
+html {
+  color-scheme: dark;
+  background: var(--color-surface-canvas);
+  color: var(--color-text-default);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-ui-md);
+  line-height: var(--font-line-height-ui-md);
+}
+
+body {
+  margin: 0;
+  min-width: var(--breakpoint-xs);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* Base elements at zero specificity, so packaged component CSS always wins.
+   Application links are canonical .link elements; this only covers a bare
+   anchor that a component leaves unstyled. */
+:where(a) {
+  color: var(--color-text-link);
+  text-decoration: underline;
+  text-decoration-color: var(--color-text-link-underline);
+  text-decoration-thickness: var(--border-width-default);
+  text-underline-offset: var(--space-4);
+}
+
+@media (hover: hover) {
+  :where(a:hover) {
+    background: var(--color-interaction-hover-bg-strong);
+    color: var(--color-text-link-hover);
+    text-decoration-color: currentColor;
+    text-decoration-thickness: var(--border-width-emphasis);
+  }
+}
+
+:where(h1, h2, h3) {
+  margin: 0;
+  color: var(--color-text-heading);
+  font-weight: var(--font-weight-bold);
+  overflow-wrap: anywhere;
+}
+
+/* D-037: the page title uses the title size; section headings use h1. */
+:where(h1) {
+  font-size: var(--font-size-title);
+  line-height: var(--font-line-height-title);
+}
+
+:where(h2) {
+  font-size: var(--font-size-h1);
+  line-height: var(--font-line-height-h1);
+}
+
+:where(h3) {
+  font-size: var(--font-size-h2);
+  line-height: var(--font-line-height-h2);
+}
+
+:where(p) {
+  margin-block: var(--space-12);
+}
+
+:where(small) {
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+:where(pre, code) {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-code);
+  line-height: var(--font-line-height-code);
+}
+
+pre {
+  overflow: auto;
+}
+
+/* The packaged elements carry the recipe foundation's canvas fill; inside the
+   application they sit on panels, so they take the surface they are on.
+   Specimens keep their foundation. */
+.demo-shell :is(j3w1-button, j3w1-link, j3w1-sidebar-nav, j3w1-table, j3w1-text-field, j3w1-select, j3w1-textarea, j3w1-checkbox, j3w1-card, j3w1-description-list, j3w1-list):not(.demo-specimen *) {
+  background: transparent;
+}
+
+/* ---- shell ------------------------------------------------------------ */
+
+.demo-shell {
+  display: grid;
+  grid-template-columns: var(--demo-rail) minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.demo-workspace {
+  min-width: 0;
+}
+
+/* The aside is the rail: it paints the sidebar-nav surface and edge, so the
+   nav inside spans the rail without a second edge. */
+.demo-sidebar {
+  min-width: 0;
+  padding-block: var(--space-24);
+  background: var(--color-surface-default);
+  border-inline-end: var(--border-width-default) solid var(--color-border-divider);
+}
+
+.demo-sidebar .sidebar-nav {
+  max-width: none;
+  padding: 0;
+  background: transparent;
+  border-inline-end: 0;
+}
+
+.demo-sidebar .sidebar-nav-label {
+  text-transform: capitalize;
+}
+
+.demo-sidebar-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+  padding-inline: var(--density-control-padding-x);
+}
+
+.wordmark {
+  color: var(--color-text-bright);
+  font-size: var(--font-size-h1);
+  line-height: var(--font-line-height-h1);
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.wordmark span {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+  font-weight: var(--font-weight-regular);
+}
+
+.eyebrow,
+.nav-caption {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-caption);
+  line-height: var(--font-line-height-caption);
+  letter-spacing: .12em;
+}
+
+.eyebrow {
+  margin-block: 0 var(--space-8);
+}
+
+.demo-sidebar > .eyebrow {
+  margin: var(--space-4) var(--density-control-padding-x) 0;
+}
+
+.nav-caption {
+  margin: var(--space-24) var(--density-control-padding-x) var(--space-4);
+  font-weight: var(--font-weight-bold);
+}
+
+.back-spec {
+  margin: var(--space-24) var(--space-8) 0;
+}
+
+.demo-topline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-12);
+  min-height: var(--space-48);
+  padding: var(--space-8) var(--space-32);
+  background: var(--color-surface-chrome);
+  border-bottom: var(--border-width-default) solid var(--color-border-default);
+}
+
+.demo-path {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.identity {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: var(--density-control-height);
+  height: var(--density-control-height);
+  background: var(--color-surface-default);
+  border: var(--border-width-default) solid var(--color-border-default);
+  color: var(--color-text-bright);
+}
+
+/* The command palette's trigger sits in the top bar, never floating. */
+.demo-topline .demo-command {
+  margin-inline-start: auto;
+}
+
+.demo-context {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8) var(--space-16);
+  padding: var(--space-12) var(--space-32);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+main {
+  width: 100%;
+  max-width: var(--layout-app-max);
+  margin-inline: auto;
+  padding: var(--space-24) var(--space-32);
+}
+
+.demo-notice {
+  min-height: var(--space-48);
+  margin: 0 var(--space-32);
+  padding-block: var(--space-12);
+  color: var(--color-status-success-text);
+}
+
+.demo-footer {
+  padding: var(--space-24) var(--space-32) calc(2 * var(--space-48));
+  border-top: var(--border-width-default) solid var(--color-border-default);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.demo-footer p {
+  margin-block: 0 var(--space-8);
+}
+
+/* The palette's framed root would draw an empty bar: only its trigger and
+   its modal dialog take part in the layout. */
+.demo-command .command-palette {
+  display: contents;
+}
+
+.demo-command .command-palette-dialog:modal {
+  width: min(var(--layout-content-max), calc(100vw - var(--space-32)));
+  max-height: 70vh;
+}
+
+.demo-command [role="option"] {
+  display: grid;
+  grid-template-columns: 13ch minmax(0, 1fr);
+  gap: var(--space-12);
+}
+
+.demo-command [role="option"] .command-label {
+  color: inherit;
+}
+
+.demo-specimen {
+  min-width: 0;
+  overflow: auto;
+}
+
+/* ---- views ------------------------------------------------------------ */
+
+.view-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  justify-content: space-between;
+  gap: var(--space-16) var(--space-24);
+  margin-bottom: var(--space-24);
+}
+
+.view-heading h1 + p {
+  max-width: 72ch;
+  margin-block: var(--space-12) 0;
+  color: var(--color-text-prose);
+  font-size: var(--font-size-reading);
+  line-height: var(--font-line-height-reading);
+}
+
+.panel {
+  min-width: 0;
+  padding: var(--space-24);
+  background: var(--color-surface-default);
+  border: var(--border-width-default) solid var(--color-border-default);
+}
+
+.panel > h3 {
+  margin-block: var(--space-24) var(--space-8);
+}
+
+.panel-heading,
+.pager {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12) var(--space-16);
+}
+
+.panel-heading {
+  margin-bottom: var(--space-16);
+}
+
+.pager {
+  margin-top: var(--space-16);
+}
+
+.pager p {
+  margin: 0;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-16);
+  margin-block: var(--space-24);
+}
+
+.metric-label,
+.muted {
+  color: var(--color-text-muted);
+}
+
+.metric,
+.price {
+  display: block;
+  color: var(--color-text-bright);
+  font-size: var(--font-size-display);
+  line-height: var(--font-line-height-display);
+  font-weight: var(--font-weight-bold);
+  overflow-wrap: anywhere;
+}
+
+.metric {
+  margin-block: var(--space-8);
+}
+
+.dashboard-middle {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(16rem, 1fr);
+  gap: var(--space-16);
+  margin-block: var(--space-16);
+}
+
+.actions,
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-12);
+}
+
+.actions {
+  align-items: center;
+}
+
+.filters {
+  align-items: end;
+  margin-block: var(--space-16);
+}
+
+.panel > .filters:first-child {
+  margin-top: 0;
+}
+
+/* A field in a filter row takes its full canonical width, then shrinks. */
+.filters > j3w1-text-field {
+  flex: 0 1 calc(var(--font-size-ui-md) * 28);
+}
+
+.status {
+  color: var(--color-status-info-text);
+}
+
+.status.ready {
+  color: var(--color-status-success-text);
+}
+
+.status.review {
+  color: var(--color-status-warning-text);
+}
+
+.block {
+  display: block;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: end;
+  gap: var(--space-16) var(--space-24);
+}
+
+.form-grid .wide {
+  grid-column: 1 / -1;
+}
+
+.form-grid > p {
+  margin: 0;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(min(100%, 14rem), .8fr) minmax(0, 2fr);
+  align-items: start;
+  gap: var(--space-16);
+}
+
+.stack {
+  display: grid;
+  align-content: start;
+  gap: var(--space-16);
+}
+
+/* Application tables: the canonical table in a scroll region that keeps its
+   columns readable and scrolls instead of the page. */
+.table-scroll {
+  min-width: 0;
+  overflow: auto;
+}
+
+.table-scroll:focus-visible {
+  outline: var(--focus-ring-container);
+  outline-offset: var(--focus-offset-container);
+}
+
+.table-scroll > .table {
+  width: max-content;
+  min-width: 100%;
+}
+
+.table-scroll .table-body th {
+  text-align: start;
+}
+
+.message {
+  max-width: 85%;
+  padding: var(--space-12);
+  background: var(--color-surface-input);
+  border: var(--border-width-default) solid var(--color-border-default);
+}
+
+.message p {
+  margin-block: var(--space-4) 0;
+}
+
+/* The user's own content set apart from its neighbours (foundations, D-035). */
+.message.self {
+  margin-inline-start: auto;
+  background: var(--color-surface-accent);
+}
+
+.kanban {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: var(--space-16);
+}
+
+.kanban article {
+  display: grid;
+  gap: var(--space-8);
+  margin-top: var(--space-16);
+  padding: var(--space-16);
+  background: var(--color-surface-input);
+  border: var(--border-width-default) solid var(--color-border-default);
+}
+
+/* Each day draws its own end and bottom edge, so a short last week leaves the
+   panel surface, not a block of grid-line colour. */
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  margin-block: var(--space-16);
+  border-block-start: var(--border-width-default) solid var(--color-border-default);
+  border-inline-start: var(--border-width-default) solid var(--color-border-default);
+}
+
+.calendar-day {
+  display: grid;
+  align-content: start;
+  gap: var(--space-4);
+  min-width: 0;
+  min-height: calc(2 * var(--space-48));
+  padding: var(--space-8);
+  border-inline-end: var(--border-width-default) solid var(--color-border-default);
+  border-block-end: var(--border-width-default) solid var(--color-border-default);
+}
+
+.calendar-event {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-4);
+  margin: 0;
+  padding-top: var(--space-4);
+  border-top: var(--border-width-default) solid var(--color-border-divider);
+  overflow-wrap: anywhere;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: var(--space-16);
+}
+
+.gallery-grid .card {
+  max-width: none;
+  height: 100%;
+  align-content: start;
+}
+
+.empty {
+  padding: var(--space-48) var(--space-24);
+  text-align: center;
+}
+
+.empty .actions {
+  justify-content: center;
+}
+
+/* ---- responsive (foundations "Layout": 600, 900, 1280) ----------------- */
+
+@media (max-width: 1279.98px) {
+  .metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboard-middle {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .calendar {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 8rem), 1fr));
+  }
+}
+
+@media (min-width: 900px) {
+  .mobile-nav,
+  .demo-nav-close {
+    display: none;
+  }
+}
+
+/* Below 900px the rail becomes a drawer opened from the top bar. */
+@media (max-width: 899.98px) {
+  .demo-shell {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .demo-sidebar {
+    display: none;
+    position: fixed;
+    inset-block: 0;
+    inset-inline-start: 0;
+    z-index: var(--z-drawer);
+    width: min(var(--demo-rail), calc(100vw - var(--space-48)));
+    overflow-y: auto;
+    background: var(--color-surface-overlay);
+    border-inline-end-color: var(--color-border-overlay);
+  }
+
+  .demo-sidebar.is-open {
+    display: block;
+  }
+
+  .demo-topline,
+  .demo-context {
+    padding-inline: var(--space-16);
+  }
+
+  /* The menu and search share the first line; the path takes the second. */
+  .demo-path {
+    order: 1;
+    flex-basis: 100%;
+  }
+
+  main {
+    padding: var(--space-24) var(--space-16);
+  }
+
+  .demo-notice {
+    margin-inline: var(--space-16);
+  }
+
+  .demo-footer {
+    padding-inline: var(--space-16);
+  }
+}
+
+/* Below 600px tables keep their first column in view while they scroll. */
+@media (max-width: 599.98px) {
+  .form-grid,
+  .split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .panel {
+    padding: var(--space-16);
+  }
+
+  .metrics {
+    gap: var(--space-8);
+  }
+
+  .metric,
+  .price {
+    font-size: var(--font-size-title);
+    line-height: var(--font-line-height-title);
+  }
+
+  .table-scroll :is(.table-header, .table-cell):first-child {
+    position: sticky;
+    inset-inline-start: 0;
+    z-index: var(--z-raised);
+    background: var(--color-surface-default);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+}
+
+.calendar-notifications {
+  position: fixed;
+  inset-inline-end: var(--space-8);
+  inset-block-end: var(--space-8);
+  max-inline-size: calc(100% - 2 * var(--space-8));
+}

@@ -119,18 +119,13 @@ compact: true
 
 ## Purpose
 
-Single-line free-text entry. Every native `type` that renders as a line box
-(`text`, `password`, `search`, `number`, `email`, `url`, `tel`) is this
-component; date and time inputs are the date-picker and time-picker
-components because their popups are host surfaces.
+Single-line free-text entry for every native `type` that renders as a line
+box (`text`, `password`, `search`, `number`, `email`, `url`, `tel`). Date and
+time inputs are the date-picker and time-picker components.
 
 ## Anatomy
 
-Label above the control; the control box; optional prefix and suffix inside
-the box separated by a {color.border.divider} rule; the input; optional
-trailing actions (clear, reveal, stepper); help text below; the validation
-message, which takes the help slot visually while help stays in the DOM and
-`aria-describedby` lists both.
+Parts as listed in the anatomy.
 
 ## States
 
@@ -138,50 +133,45 @@ message, which takes the help slot visually while help stays in the DOM and
 | --- | --- | --- |
 | default | 1px {color.border.control} on {color.surface.input}; text {color.text.default} | — |
 | hover | background → {color.interaction.hover.bg}; border unchanged | cursor: text |
-| focus-visible | border → {color.border.active}; ring 1px dashed {color.interaction.focus.ring} at −2px | the ring |
+| focus-visible | border → {color.border.active}; 1px dashed {color.interaction.focus.ring} ring at −2px | the ring |
 | placeholder-shown | placeholder in {color.text.placeholder}, italic | italic |
 | filled | as default with a value | — |
 | required | `*` after the label in {color.status.danger.text} plus visually hidden "required" | `required` attribute; the mark |
-| invalid | border 2px {color.status.danger.border}; message with the ✕ glyph | border width 1 → 2px; glyph; `aria-invalid` |
-| invalid+focus-visible | the 2px danger border and a 1px dashed ring in {color.interaction.focus.ring-container} at −4px (the control form, recoloured; never the 2px container form) | double boundary |
+| invalid | 2px {color.status.danger.border}; message with the ✕ glyph | border 1 → 2px; glyph; `aria-invalid` |
+| invalid+focus-visible | the 2px danger border plus a 1px dashed {color.interaction.focus.ring-container} ring at −4px (the control form recoloured, never the 2px container form) | double boundary |
 | invalid+hover | as invalid with the hover background | cursor |
-| disabled | text {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}; no hover; the label and help keep their colours | `disabled`; cursor: not-allowed |
+| disabled | text {color.text.disabled}, border {color.border.disabled}, background {color.interaction.disabled.bg}; no hover; label and help keep their colours | `disabled`; cursor: not-allowed |
 | disabled+filled | as disabled with a value | `disabled` |
 | read-only | no box: 1px dotted {color.border.divider} bottom edge on {color.surface.canvas}; text {color.text.default}; focusable and selectable | `readonly`; dotted edge |
-| read-only+focus-visible | the dotted {color.border.divider} edge unchanged, plus the dashed ring at −2px | the ring |
-| loading | size unchanged; a static `⋯` glyph in {color.text.muted} inside the box after the input and before any trailing action; input remains editable | glyph; `aria-busy` |
+| read-only+focus-visible | the dotted edge unchanged, plus the dashed ring at −2px | the ring |
+| loading | size unchanged; static `⋯` in {color.text.muted} after the input, before any trailing action; still editable | glyph; `aria-busy` |
 
-Precedence when several apply: disabled > loading > invalid > hover;
-focus-visible is always drawn.
+Precedence: disabled > loading > invalid > hover; focus-visible is always
+drawn.
 
 ## Keyboard
 
-Focus order is label (not focusable) → input → clear or reveal → stepper
-buttons. The clear button is `type="button"` with `aria-label="Clear <label>"`;
-the reveal button toggles `type` between `password` and `text` and its own
-`aria-pressed`. Escape in the search variant clears a non-empty value.
+As in the key table; the label is not a stop, and clear or reveal precede the
+stepper buttons.
 
 ## Accessibility
 
-A programmatic label is required (`<label for>`). Help and message are linked
-through `aria-describedby` in that order. `aria-invalid="true"` is set only
-after the user interacted with the field or submitted the form, never on first
-paint. The message is announced on submit through the form's live region, not
-on every keystroke. Contrast: text 8.65:1 on the input surface, placeholder
-5.81:1, disabled text 3.33:1 (exempt), control border 4.45:1 (≥ 3:1), invalid
-border 4.69:1, danger message 5.40:1. The box is at least 24×24 CSS pixels in
-`compact` density.
+The clear button is `type="button"` with `aria-label="Clear <label>"`; the
+reveal button toggles `type` between `password` and `text` and its own
+`aria-pressed`. `aria-invalid` is never set on first paint. The message is
+announced on submit through the form's live region, not on every keystroke.
+Text meets 4.5:1 and borders and rings 3:1; disabled text is exempt (house
+floor 3:1). The box is at least 24×24 CSS pixels in `compact`.
 
 ## Portability
 
-Everything is expressible with border, background and outline; the only
-pseudo-element is the required mark. Toolkits without dashed outlines draw a
-solid 1px ring in the same colour and record the deviation. Toolkits without a
-read-only style treat read-only as default text and record it.
+Border, background and outline express everything; the only pseudo-element is
+the required mark. Toolkits without dashed outlines draw a solid 1px ring in
+the same colour; toolkits without a read-only style show read-only as default
+text. Both record the deviation.
 
 ## Non-examples
 
-Rounded corners. A floating or animated label. An underline-only field with no
-box. A glow instead of the dashed ring. Placeholder text in red. Disabling by
-opacity. Using colour alone for the invalid state. A hover that changes the
-text colour.
+Rounded corners. A floating or animated label. An underline-only field. A glow
+instead of the dashed ring. Red placeholder text. Disabling by opacity. Colour
+alone for the invalid state. A hover that changes the text colour.

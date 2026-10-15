@@ -1,18 +1,18 @@
 # Obsidian port implementation and audit
 
-This is the maintainer-facing contract for the [installation guide](README.md).
-The port remains **experimental**, dark-only, and unverified by the repository's
-real-import protocol. A Windows Obsidian 1.13.7 import and visible rendering were
-reported by the user; that report does not establish the exact artifact digests,
-manual keyboard, zoom, screen-reader or full protocol observations. The recorded
-`testedVersions` and `evidence` arrays therefore remain empty. No Android import
-is recorded; the mobile, tablet and phone root rules are source-audited only.
-Structural source checks against 1.13.4 and 1.13.7 are not real imports.
+Maintainer contract for the [installation guide](README.md). The port is
+**experimental**, dark-only and unverified by the repository's real-import
+protocol. The Windows Obsidian 1.13.7 import was reported by the user; that
+report does not establish artifact digests or manual keyboard, zoom,
+screen-reader or full protocol observations, so `testedVersions` and
+`evidence` stay empty. No Android import is recorded; the mobile, tablet and
+phone root rules are source-audited only. Structural source checks against
+1.13.4 and 1.13.7 are not real imports.
 
 ## Scope and semantic mapping
 
-`npm run generate` emits the manifest from `theme.json` and emits CSS from
-`mapping.json` and the resolved default profile. Never edit `dist/` by hand.
+`npm run generate` emits the manifest from `theme.json` and the CSS from
+`mapping.json` and the resolved default profile; never edit `dist/` by hand.
 `mapping.json` partitions every resolved token, including inspection-only
 primitives; `capabilities.json` records mapped, inherited, unsupported and
 out-of-scope distinctions. Its `themeRevision` identifies the canonical token
@@ -21,31 +21,24 @@ D-007 (control boundary) and D-008 (divider); this port does not approve them.
 
 Native surface variables keep the Markdown canvas true black, sidebars and
 settings panels on the default surface, menus/popovers/command surfaces raised,
-dialogs on the overlay, fields on the input surface and bars on chrome. The
-Obsidian-only mapping intentionally assigns `color.text.default` (`#e99499`)
-to Reading View and CM6 note bodies as well as interface text, and reserves
-`color.text.prose` (`#f4eeee`) for note headings `--h1-color` through
-`--h6-color`, `--inline-title-color` and `--bold-color`. This reverses the
-canonical prose/heading emphasis semantics **only in this port**; no token or
-specification value changes. Italic and setting-group headings retain
-`color.text.bright`; links, syntax and controls retain their own mappings.
-Secondary chrome remains muted and metadata subtle. Settings descriptions,
-command results and other rendered UI keep rose text.
+dialogs on the overlay, fields on the input surface and bars on chrome.
 
-Obsidian redeclares several variables on mobile dark roots with higher
-specificity. Generated CSS repeats the mapped values at matching specificity
-for mobile, tablet and phone roots. This keeps standard and tapped buttons,
-warning confirmations and ordinary text fields readable on mobile. Four
-audited Search, drawer, metadata and Bases contexts clear the native field
-fill; scoped input rules restore `color.surface.input` behind the approved
-`color.text.placeholder`, including in mobile layouts.
+Typography follows D-033 with no port-only override. Reading View and CM6 note
+bodies use `text.prose`; content titles (`--inline-title-color`) and
+`--h1-color` through `--h6-color` use `text.heading`. `--bold-color: inherit`
+is a structural rule, not a color mapping: bold keeps its surrounding
+foreground (rose body, muted text, links, near-white headings). Italic and
+setting-group headings use `color.text.bright`; links, syntax and controls keep
+their own mappings. Secondary chrome is muted and metadata subtle; settings
+descriptions, command results and other UI text stay rose. Android uses the
+same generated theme; earlier implementation evidence remains historical.
 
 File Explorer, Search and Backlinks inherit native variables. Navigation,
 tabs and prompt results have recessed selections with a two-pixel indicator;
 window-inactive tabs use separate inactive fill/text/indicator. Native
-core-plugin panels that consume semantic variables inherit them, but this is
-no claim about every core-plugin view. PDF/print, Canvas/Graph data colors and
-non-status callout colors are outside scope.
+core-plugin panels that consume semantic variables inherit them, with no claim
+about every core-plugin view. PDF/print, Canvas/Graph data colors and
+non-status callout colors are out of scope.
 
 Text selection, CM6 selection and keyboard focus have separate assignments.
 The CM6 scroller scopes the editor fill over `.cm-content` and its sibling
@@ -54,59 +47,59 @@ Which layer a mode draws, table-widget exceptions and selected syntax
 foregrounds remain native; uniform selection rendering is not claimed.
 Status/error/warning/success text and error/warning/success/info callouts use
 matching status roles; host glyphs remain. Monochrome `--code-*` variables
-cover editor and Reading View code highlighting. The host shares values/tags/
-regex categories: distinct constant/type/attribute categories are unsupported
-rather than falsely mapped. Opt-in hued syntax remains out of scope.
+cover editor and Reading View code. The host shares values/tags/regex
+categories, so distinct constant/type/attribute categories are unsupported
+rather than falsely mapped. Opt-in hued syntax is out of scope.
 
-All three theme family variables carry the canonical mono fallback stack.
+All three theme family variables carry the canonical mono fallback stack;
 Obsidian's explicit user font overrides take precedence. No font binary is
 bundled; font sizes, relative headings, line heights and zoom stay native.
 Compact prompt rows use a minimum height, not a clipping height; the native
-search input grows with text and uses a comfortable minimum. Only its start
-padding is compact; native clear-button end space stays. Selected prompt notes,
-flair, faint text and actions use on-selection text. Tree rows and main/sidebar
-tabs reserve transparent indicator borders at rest.
+search input grows with text from a comfortable minimum, and only its start
+padding is compact so the native clear-button end space stays. Selected prompt
+notes, flair, faint text and actions use on-selection text. Tree rows and
+main/sidebar tabs reserve transparent indicator borders at rest.
 
 ## Compatibility and deviations
 
-The public `minAppVersion` is **1.13.4**, the earliest public 1.13.x source
-audited here, not a claim that earlier releases fail. Every emitted native
-variable has a definition and consumer in 1.13.4 and 1.13.7 `app.css`;
-selector hooks and cascade facts are audited in both sources. Definitions
-alone do not count as mapping coverage. Inert warning tint,
-heading-formatting, modal-shadow and touch-radius-l keys are omitted. Official
-developer documentation is pinned to revision
-`c56c7e770ba25dd0ea392aacf4588f9425970d36`.
+The manifest's `minAppVersion` is **1.13.4**, the earliest public 1.13.x
+source audited here, not a claim that earlier releases fail. Every emitted
+native variable has a definition and consumer in 1.13.4 and 1.13.7 `app.css`;
+selector hooks and cascade facts are audited in both. Definitions alone do not
+count as mapping coverage. Inert warning tint, heading-formatting, modal-shadow
+and touch-radius-l keys are omitted. Official developer documentation is
+pinned to revision `c56c7e770ba25dd0ea392aacf4588f9425970d36`.
 
 - Native focus geometry remains: buttons use a three-pixel solid shadow ring;
   fields/selects/radio/checkbox/slider/toggle retain host rings and timing.
   Filled primary/checked controls recolor the same indicator to container
   color, destructive fills to on-danger text. The prompt suppresses its ring,
-  so only it receives a canonical inset dashed replacement on `:focus-visible`.
+  so only it gets a canonical inset dashed replacement on `:focus-visible`.
   Fields also focus on pointer input; container/invalid offsets are inherited
   or unsupported.
 - Geometry variables are square. Host-only tab joins, platform widgets,
   plugin geometry and mobile layout can diverge; native target sizes remain
   except bounded compact prompt rows. User/system dialogs stay native. No
   universal geometry or accessibility conformance is claimed.
-- Plain destructive buttons retain danger text/borders at rest and use the
+- Plain destructive buttons keep danger text/borders at rest and use the
   canonical destructive hover pair on hover and mobile tap, with the native
   focus shadow recolored. Warning confirmations keep desktop error fills and
   mobile transparent fills over the host surface (4.94:1 on the modal
   overlay). Disabled/aria-disabled overrides win over all variants.
 - Native action variables conflate pressed/hover states. Unmapped action,
   inactive-navigation, diagnostic stripe/underline and editor search/current-
-  line roles have precise capability reasons; equal hex values do not add
-  coverage.
-- Phone raised Search, mobile drawer Search, metadata multi-select and side-
-  dock Bases Search receive scoped black input fills where native transparency
-  would put placeholder text below the contrast floor. Surrounding rows and
-  panels keep native geometry and surfaces. A core input inside a mobile menu
-  is not established by the audit; plugin-inserted controls are out of scope.
+  line roles have precise capability reasons; equal hex values add no coverage.
+- Four audited contexts (phone raised Search, mobile drawer Search, metadata
+  multi-select, side-dock Bases Search) clear the native field fill, which
+  would put placeholder text below the contrast floor; scoped rules restore
+  `color.surface.input` behind `color.text.placeholder`, including on mobile.
+  Surrounding rows and panels keep native geometry and surfaces. A core input
+  inside a mobile menu is not established by the audit; plugin-inserted
+  controls are out of scope.
 - Shadows and raised blur are disabled through native variables, retaining
   focus shadows and toggle outline. Animation stays native; complete reduced-
-  motion and forced-colors behavior still needs a real import. Forced-colors
-  focus uses `Highlight`; host selection handling is inherited.
+  motion and forced-colors behavior needs a real import. Forced-colors focus
+  uses `Highlight`; host selection handling is inherited.
 - User CSS snippets and font overrides may alter the result. Third-party
   plugins can inherit semantic variables but get no plugin-specific selectors.
   Non-status callouts and data colors are not reassigned as status hues.
@@ -114,20 +107,20 @@ developer documentation is pinned to revision
   global `--text-selection` fill measures **3.96:1**, below the 4.5:1 text
   floor; muted/faint UI foregrounds are lower. Search `:hover` and
   `.mobile-tap` use this fill with rose text; secondary replacement actions
-  keep their native foregrounds. Reading View ordinary rose text also has
-  this low global selection pairing; CM6's scoped selection fill passes for
-  ordinary rose text in synthetic cascade tests, but selected syntax remains
-  host-owned. This limitation is explicit, not a contrast waiver or a
-  conformance claim. The canonical near-white selection pair still passes.
-- Known canonical syntax-selection limitations remain in
-  `spec/accessibility.md`. Automated mapping and contrast checks are
-  structural, not Windows, keyboard or screen-reader evidence.
+  keep their native foregrounds. Reading View ordinary rose text has the same
+  low global pairing; CM6's scoped fill passes for ordinary rose text in
+  synthetic cascade tests, but selected syntax remains host-owned. This
+  limitation is explicit, not a contrast waiver or a conformance claim. The
+  canonical near-white selection pair passes.
+- Known canonical syntax-selection limitations are in `spec/accessibility.md`.
+  Automated mapping and contrast checks are structural, not Windows, keyboard
+  or screen-reader evidence.
 
-No RGB/HSL compatibility helpers, `!important`, `:has()`, network calls,
-remote assets, telemetry, JavaScript or foreign-theme dependencies are emitted
-in the CSS. Semantic variables take priority over Obsidian's generic Accent
-setting for mapped roles without changing that setting. Builds never fetch
-Obsidian or its sources. Vendor CSS is neither committed nor emitted.
+The CSS emits no RGB/HSL compatibility helpers, `!important`, `:has()`, network
+calls, remote assets, telemetry, JavaScript or foreign-theme dependencies.
+Semantic variables take priority over Obsidian's generic Accent setting for
+mapped roles without changing that setting. Builds never fetch Obsidian or its
+sources; vendor CSS is neither committed nor emitted.
 
 Sources: [official theme tutorial](https://github.com/obsidianmd/obsidian-developer-docs/blob/c56c7e770ba25dd0ea392aacf4588f9425970d36/en/Themes/App%20themes/Build%20a%20theme.md),
 [theme guidelines](https://github.com/obsidianmd/obsidian-developer-docs/blob/c56c7e770ba25dd0ea392aacf4588f9425970d36/en/Themes/App%20themes/Theme%20guidelines.md),
@@ -141,8 +134,10 @@ Sources: [official theme tutorial](https://github.com/obsidianmd/obsidian-develo
 Keys containing ` | ` in `mapping.json` name an exact selector/property pair.
 Every other mapped key is a native variable on `.theme-dark`; that root and
 variable-only resets are documented extension points. Obsidian redeclares
-mapped keys on four compound dark roots. Generated CSS repeats only the
-existing mappings after the base root, at native specificity:
+mapped keys with higher specificity on four compound dark roots, so generated
+CSS repeats only the existing mappings after the base root, at native
+specificity. This keeps standard and tapped buttons, warning confirmations and
+ordinary fields readable on mobile:
 
 | Generated root | Native declaration it counters |
 | --- | --- |
@@ -207,50 +202,57 @@ the theme. `OBSIDIAN_INSTALLERS` in `scripts/lib/obsidian-port.mjs` names the
 two reviewed helpers the site serves byte-identically beside the artifacts:
 `install.ps1` (Windows PowerShell) and `install-android.sh` (POSIX `sh`, for
 Termux and device-storage vaults, see [ANDROID.md](ANDROID.md)). Neither is a
-native artifact, and neither is listed in `port.json`.
+native artifact or listed in `port.json`.
 
-They share one contract. Resolve an existing vault and require `.obsidian`.
-Download both live files to a temporary folder. Require the `j3w1` name and
+Shared contract: resolve an existing vault and require `.obsidian`. Download
+both live files to a temporary folder (or, with `install.ps1 -SourcePath`, read
+a local directory with no network request). Require the `j3w1` name and
 dotted versions in the manifest, and a non-empty CSS whose first line names
 the same version. Stage the complete pair inside `themes/`, keep the previous
 pair until replacement succeeds, restore it on failure, report retained
-recovery copies when restoration fails, and remove temporary files. Their
-user-facing messages match. They differ in the replacement step: the Windows
-helper copies two files over the old pair, while the Android helper renames
-the whole `j3w1` folder aside and renames the staged folder into place, so it
-refuses a `j3w1` folder that holds anything but the pair, or holds only one
-of the two files, or is a link. `mv` into an existing folder nests instead of
-replacing, so the Android helper claims success only when the pair is
-directly in `j3w1` and the staged folder is gone. Between steps it checks
-that `.obsidian` and `themes` are still real folders and that its own hidden
+recovery copies when restoration fails, and remove temporary files. User-facing
+messages match. Neither helper changes notes, plugins or appearance settings.
+
+The replacement step differs. The Windows helper copies two files over the old
+pair; two file replacements cannot be atomic, so Obsidian must stay closed.
+The Android helper renames the whole `j3w1` folder aside and the staged folder
+into place, so it refuses a `j3w1` folder that holds anything but the pair,
+only one of the two files, or is a link. Because `mv` into an existing folder
+nests instead of replacing, it claims success only when the pair is directly
+in `j3w1` and the staged folder is gone. Between steps it checks that
+`.obsidian` and `themes` are still real folders and that its own hidden
 folders are still in `themes`, which also catches a `themes` folder moved or
-replaced by another real folder. Until the old folder has moved aside, a
-failure or a signal it can catch (including an attempt to move the old folder
-that left it in place) leaves the previous theme where it was and removes
-only the helper's own staging and empty backup folders; the helper records
-the move and, at exit, treats a run that never moved the old folder as having
-nothing to recover. From that move until the new pair is
-verified in place, a signal, a failed restore or a noticed change removes
-nothing under `themes`, and the helper reports what it kept. If only the
-staged rename fails and the old folder moves back, it then removes its own
-staging and empty backup folders. Whenever it notices that `.obsidian` or
-`themes` moved, it removes nothing under `themes`. Its recovery advice names
-only paths that exist, and it depends on whether `j3w1` already holds a
-complete pair. Shell code cannot confine writes against an
-app that changes the vault at the same moment, or run cleanup after an
-uncatchable stop; ANDROID.md states both limits and the manual recovery.
+replaced by another real folder.
+
+Android failure handling:
+
+- Before the old folder has moved aside, a failure or catchable signal
+  (including a move attempt that left the old folder in place) leaves the
+  previous theme where it was and removes only the helper's own staging and
+  empty backup folders. The helper records the move, so at exit a run that
+  never moved the old folder has nothing to recover.
+- From that move until the new pair is verified in place, a signal, a failed
+  restore or a noticed change removes nothing under `themes`, and the helper
+  reports what it kept. If only the staged rename fails and the old folder
+  moves back, it removes its own staging and empty backup folders.
+- Whenever it notices that `.obsidian` or `themes` moved, it removes nothing
+  under `themes`. Recovery advice names only paths that exist and depends on
+  whether `j3w1` already holds a complete pair.
+- Shell code cannot confine writes against an app changing the vault at the
+  same moment, or clean up after an uncatchable stop; ANDROID.md states both
+  limits and the manual recovery.
 
 `tests/obsidian-android-install.test.js` runs the real Android script against
 scratch vaults under `sh` and, when installed, dash and busybox, with stub
-`curl`, `mv` and `rm` and a PATH that holds only the declared tools. The stubs
+`curl`, `mv` and `rm` and a PATH holding only the declared tools. The stubs
 also act as a concurrent app: they recreate `j3w1`, move or replace `themes`
 or turn it into a link mid-swap, and signal the helper before and after the
-new pair lands. BusyBox ash runs its own `mv` and `rm` applets rather than
-the stubs on PATH, so under BusyBox those fault cases are skipped with that
-reason; its install, update and refusal cases still run. `sh` and dash must
-run every case. It proves the shell contract, not an Android import.
-`tests/obsidian-port.test.js` holds the
-PowerShell text contract; no PowerShell run of `install.ps1` is recorded.
+new pair lands. BusyBox ash runs its own `mv` and `rm` applets rather than the
+stubs, so under BusyBox those fault cases are skipped with that reason; its
+install, update and refusal cases still run. `sh` and dash must run every
+case. It proves the shell contract, not an Android import.
+`tests/obsidian-port.test.js` holds the PowerShell text contract; no
+PowerShell run of `install.ps1` is recorded.
 
 ## Verification before claiming a real import
 
@@ -278,12 +280,3 @@ Android import. `port.json` `evidence[]` may list both records, but
 because verification requires the recorded application version to be both a
 target and tested. A new Obsidian version becomes a target only after its hook
 audit is added to `tests/fixtures/obsidian-hooks.json`.
-
-## Canonical typography in 4.0.0
-
-D-033 replaces the earlier port-only reading override. Body and prose use
-`text.prose` (`#e99499`); content titles and H1–H6 use `text.heading`
-(`#f4eeee`). Bold inherits its surrounding foreground, including rose body,
-muted text, links and near-white headings. `--bold-color: inherit` is an
-explicit structural rule, not a fixed color mapping. Android uses the same
-generated theme. Existing historical implementation evidence remains historical.

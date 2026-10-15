@@ -1,8 +1,9 @@
+import { loadStaticJson } from "./search-loader";
 import { queryUsage } from "../../../scripts/lib/usage-query.mjs";
 const form = document.getElementById("usage-filters") as HTMLFormElement | null;
 const raw = document.getElementById("usage-data");
-if (form && raw) {
-  const index = JSON.parse(raw.textContent!);
+if (form && raw) void (async () => {
+  const index = await loadStaticJson<any>(raw.dataset.source!);
   const params = new URLSearchParams(location.search);
   for (const control of Array.from(form.elements) as HTMLInputElement[]) {
     if (!control.name || !params.has(control.name)) continue;
@@ -31,4 +32,4 @@ if (form && raw) {
   // the controls on the next task, after their defaults have been restored.
   form.addEventListener("reset", () => setTimeout(update, 0));
   update();
-}
+})().catch(() => { document.getElementById("usage-count")!.textContent = "Filters unavailable; the static tables remain readable. Reload to retry."; });

@@ -1,7 +1,7 @@
+import { sha256 } from "../scripts/lib/fs.mjs";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
-import { createHash } from "node:crypto";
 import { z } from "zod";
 import { lockSchema } from "../schemas/lock.mjs";
 
@@ -20,7 +20,7 @@ test("composed acceptance retains the reviewed candidate and upstream lock ident
   assert.deepEqual(lock.integration, manifest.request.integration);
   for (const [file, digest] of Object.entries(lock.exports)) assert.equal(digest, manifest.source.inputs[file], file);
   for (const [file, digest] of Object.entries(provenance.candidateDigests)) {
-    assert.equal("sha256-" + createHash("sha256").update(await readFile(directory + file)).digest("base64"), digest, file);
+    assert.equal(sha256(await readFile(directory + file)), digest, file);
   }
   assert.ok(lock.deviations.length > 0, "Actual downstream omissions and ambiguities remain recorded");
 });

@@ -66,6 +66,10 @@
   color: var(--color-code-whitespace);
 }
 
+.code-editor-ws::before {
+  content: attr(data-whitespace);
+}
+
 .code-editor-fold {
   display: inline-block;
   padding: 0 var(--space-4);

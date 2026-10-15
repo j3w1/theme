@@ -124,7 +124,7 @@
     "row.ring": "color.interaction.focus.ring",
     "selected.bg": "color.interaction.selection.bg",
     "selected.text": "color.interaction.selection.text",
-    "selected.ring": "color.interaction.focus.ring-container",
+    "selected.ring": "color.interaction.focus.ring",
     "checkbox.bg": "color.surface.input",
     "checkbox.border": "color.border.control",
     "checkbox.checked-bg": "color.action.primary.bg",
@@ -159,7 +159,6 @@
       "color.icon.decorative",
       "color.interaction.disabled.bg",
       "color.interaction.drop-target",
-      "color.interaction.focus.ring-container",
       "color.interaction.hover.bg",
       "color.interaction.hover.bg-strong",
       "color.interaction.pressed.bg",
@@ -185,9 +184,7 @@
       "density.compact.icon",
       "density.compact.row-height",
       "focus.offset",
-      "focus.offset-container",
       "focus.ring",
-      "focus.ring-container",
       "font.family.mono",
       "font.line-height.ui-md",
       "font.line-height.ui-sm",
@@ -223,7 +220,6 @@
       "color.interaction.disabled.bg",
       "color.interaction.drop-target",
       "color.interaction.focus.ring",
-      "color.interaction.focus.ring-container",
       "color.interaction.hover.bg",
       "color.interaction.hover.bg-strong",
       "color.interaction.pressed.bg",
@@ -268,9 +264,7 @@
       "density.compact.icon",
       "density.compact.row-height",
       "focus.offset",
-      "focus.offset-container",
       "focus.ring",
-      "focus.ring-container",
       "font.family.mono",
       "font.line-height.ui-md",
       "font.line-height.ui-sm",
@@ -367,11 +361,6 @@
         "decisionIds": []
       },
       "color.interaction.drop-target": {
-        "action": "use",
-        "reason": "Use within the role's documented scope and restrictions.",
-        "decisionIds": []
-      },
-      "color.interaction.focus.ring-container": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -501,17 +490,7 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
-      "focus.offset-container": {
-        "action": "use",
-        "reason": "Use within the role's documented scope and restrictions.",
-        "decisionIds": []
-      },
       "focus.ring": {
-        "action": "use",
-        "reason": "Use within the role's documented scope and restrictions.",
-        "decisionIds": []
-      },
-      "focus.ring-container": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -607,6 +586,6 @@
   "copy": {
     "directory": "copy/data-table/",
     "manifest": "copy/data-table/manifest.json",
-    "digest": "sha256-HPNF+mZXjuU3YIozdl2drk3Led2FIYYUMYaIgdU5O68="
+    "digest": "sha256-YC+eobPLgAutDoOERX3GiBuOt+tmkwZRHligHoQd8VA="
   }
 }

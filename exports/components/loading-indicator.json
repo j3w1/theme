@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=",
+  "sourceDigest": "sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=",
   "id": "loading-indicator",
   "family": "feedback",
   "maturity": "stable",
@@ -140,7 +140,7 @@
     },
     {
       "state": "reduced-motion",
-      "visual": "identical: there is nothing to reduce",
+      "visual": "identical: nothing to reduce",
       "channel": "`prefers-reduced-motion`",
       "tokens": {
         "fg": {
@@ -204,7 +204,7 @@
     "filterable-table",
     "settings-panel"
   ],
-  "nonExamples": "A spinner or rotating ring. Animated dots. A shimmering skeleton. A full-page\noverlay that blocks input for a fetch. A glyph with no label. An indicator\nthat takes focus. A dimmed container at reduced opacity.",
+  "nonExamples": "A spinner or rotating ring. Animated dots. A shimmering skeleton. A\nfull-page overlay blocking input for a fetch. A glyph with no label. An\nindicator that takes focus. A dimmed, reduced-opacity container.",
   "contrast": [
     {
       "label": "loading-indicator default text",

@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=",
+  "sourceDigest": "sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=",
   "id": "search-field",
   "family": "forms-basic",
   "maturity": "stable",
@@ -353,7 +353,7 @@
     },
     {
       "state": "hover",
-      "visual": "background → {color.interaction.hover.bg}; the clear button → {color.action.tertiary.hover-bg} when hovered",
+      "visual": "background → {color.interaction.hover.bg}; a hovered clear button → {color.action.tertiary.hover-bg}",
       "channel": "cursor: text",
       "tokens": {
         "fg": {
@@ -398,7 +398,7 @@
     },
     {
       "state": "focus-visible",
-      "visual": "border → {color.border.active}; ring 1px dashed {color.interaction.focus.ring} at −2px; the hint hides",
+      "visual": "border → {color.border.active}; 1px dashed {color.interaction.focus.ring} ring at −2px; the hint hides",
       "channel": "the ring",
       "tokens": {
         "fg": {
@@ -454,7 +454,7 @@
     {
       "state": "placeholder-shown",
       "visual": "placeholder in {color.text.placeholder}, italic; no clear button",
-      "channel": "italic; the clear button is absent",
+      "channel": "italic; clear button absent",
       "tokens": {
         "fg": {
           "alias": "color.text.placeholder",
@@ -498,13 +498,13 @@
     },
     {
       "state": "filled",
-      "visual": "as default with a value; the clear button is present",
+      "visual": "as default with a value; clear button present",
       "channel": "the clear button",
       "tokens": {}
     },
     {
       "state": "loading",
-      "visual": "the static `⋯` glyph in {color.text.muted} replaces the magnifier; the input stays editable",
+      "visual": "static `⋯` in {color.text.muted} replaces the magnifier; input stays editable",
       "channel": "glyph; `aria-busy`",
       "tokens": {
         "fg": {
@@ -549,13 +549,13 @@
     },
     {
       "state": "disabled",
-      "visual": "text and icon {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}; no clear button",
+      "visual": "text and icon {color.text.disabled}, border {color.border.disabled}, background {color.interaction.disabled.bg}; no clear button",
       "channel": "`disabled`; cursor: not-allowed",
       "tokens": {}
     },
     {
       "state": "no-results",
-      "visual": "the status line \"No results for …\" in {color.text.muted} below the help; the box unchanged",
+      "visual": "status line \"No results for …\" in {color.text.muted} below the help; box unchanged",
       "channel": "the status text; `role=\"status\"`",
       "tokens": {
         "fg": {
@@ -650,7 +650,7 @@
     "filterable-table",
     "settings-panel"
   ],
-  "nonExamples": "Rounded or pill-shaped search boxes. A magnifier button that submits\ninstead of an icon. A spinner while loading. Results announced on every\nkeystroke. \"No results\" in red or with the ✕ glyph. A clear button that is\nalways visible. A search field without a label. Disabling by opacity.",
+  "nonExamples": "Rounded or pill-shaped boxes. A magnifier button that submits. A spinner while\nloading. Results announced on every keystroke. \"No results\" in red or with\nthe ✕ glyph. An always-visible clear button. No label. Disabling by opacity.",
   "contrast": [
     {
       "label": "search-field default text",
@@ -897,7 +897,7 @@
       "bgHex": "#000000",
       "ratio": 1.47,
       "pass": true,
-      "waiver": "the hint is not a control; its text at 5.81:1 carries the meaning"
+      "waiver": "the hint is not a control; its text carries the meaning"
     },
     {
       "label": "disabled text (exempt; house floor 3:1)",

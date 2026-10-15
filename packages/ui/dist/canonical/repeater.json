@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=",
+  "sourceDigest": "sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=",
   "id": "repeater",
   "family": "forms-advanced",
   "maturity": "stable",
@@ -138,6 +138,90 @@
         "decisionIds": []
       }
     },
+    "button.bg": {
+      "alias": "color.action.secondary.bg",
+      "value": "rgb(0 0 0 / 0%)",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "button.text": {
+      "alias": "color.action.secondary.text",
+      "value": "#ffa2a7",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "button.border": {
+      "alias": "color.action.secondary.border",
+      "value": "#a3676b",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "button.bg-hover": {
+      "alias": "color.action.secondary.hover-bg",
+      "value": "#630f0d",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "button.bg-active": {
+      "alias": "color.action.secondary.pressed-bg",
+      "value": "#420f0c",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "button.border-active": {
+      "alias": "color.border.active",
+      "value": "#e53935",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "button.focus": {
+      "alias": "color.interaction.focus.ring",
+      "value": "#e53935",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
     "dependency.role-border-width-default": {
       "alias": "border.width.default",
       "value": "1px",
@@ -210,6 +294,18 @@
         "decisionIds": []
       }
     },
+    "dependency.role-focus-offset": {
+      "alias": "focus.offset",
+      "value": "-2px",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
     "dependency.role-radius-none": {
       "alias": "radius.none",
       "value": "0px",
@@ -225,18 +321,6 @@
     "dependency.role-space-12": {
       "alias": "space.12",
       "value": "12px",
-      "status": "observed",
-      "deprecated": false,
-      "decisionId": null,
-      "eligibility": {
-        "action": "use",
-        "reason": "Use within the role's documented scope and restrictions.",
-        "decisionIds": []
-      }
-    },
-    "dependency.role-space-2": {
-      "alias": "space.2",
-      "value": "2px",
       "status": "observed",
       "deprecated": false,
       "decisionId": null,
@@ -274,8 +358,8 @@
   "stateRules": [
     {
       "state": "default",
-      "visual": "Named content on the default surface.",
-      "channel": "Native text and structure.",
+      "visual": "named content on the default surface. Button controls are the secondary button (button.md); inputs keep the input look.",
+      "channel": "native text and structure",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -319,20 +403,20 @@
     },
     {
       "state": "empty",
-      "visual": "A muted empty message.",
-      "channel": "Explicit text and retained Add action.",
+      "visual": "a muted empty message",
+      "channel": "explicit text; Add stays",
       "tokens": {}
     },
     {
       "state": "focus-visible",
-      "visual": "Dashed focus ring.",
-      "channel": "Native keyboard focus position.",
+      "visual": "dashed focus ring",
+      "channel": "native focus position",
       "tokens": {}
     },
     {
       "state": "disabled",
-      "visual": "Disabled semantic foreground, background and border at full opacity.",
-      "channel": "Native disabled state blocks activation.",
+      "visual": "disabled foreground, background and border at full opacity",
+      "channel": "native disabled state blocks activation",
       "tokens": {}
     }
   ],
@@ -367,7 +451,7 @@
   ],
   "related": [],
   "specimens": [],
-  "nonExamples": "Unlabelled controls, color-only status, drag-only operations, hidden required instructions, stolen focus or an invented service success.",
+  "nonExamples": "Unlabelled controls. Colour-only status. Drag-only operations. Hidden\nrequired instructions. Stolen focus. An invented service success.",
   "contrast": [
     {
       "label": "repeater default text",
@@ -431,6 +515,32 @@
       "fgHex": "#a3676b",
       "bgHex": "#100c0c",
       "ratio": 4.36,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "Button label",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.secondary.text",
+      "bg": "color.surface.default",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#100c0c",
+      "ratio": 10.17,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "Button label on hover",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.secondary.text",
+      "bg": "color.action.secondary.hover-bg",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#630f0d",
+      "ratio": 6.84,
       "pass": true,
       "waiver": null
     }

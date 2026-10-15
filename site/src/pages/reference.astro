@@ -1,20 +1,21 @@
 ---
-import { buildCommit } from "../lib/revision";
-/* The one long page. Order: identity → foundations → every family → accessibility
-   (with the contrast report) → portability (support table, coverage ledger)
-   → references → for agents → decisions. Everything normative is in the
-   initial HTML; scripts only enhance. */
+/* Static specification hub. Legacy anchors link directly to the full detail. */
 import { POLICY_TEXT, releaseOf } from "../../../scripts/lib/eligibility.mjs";
 import { getCollection, render } from "astro:content";
-import SpecLayout from "../layouts/SpecLayout.astro";
+import SiteLayout from "../layouts/SiteLayout.astro";
+import TextField from "../components/fields/TextField.astro";
+import SelectField from "../components/fields/SelectField.astro";
+import Checkbox from "../components/fields/Checkbox.astro";
+import "../styles/site.css";
+import "../styles/print.css";
 import Toc from "../components/Toc.astro";
 import DocSection from "../components/DocSection.astro";
 import FamilySection from "../components/FamilySection.astro";
 import TokenTable from "../components/TokenTable.astro";
 import FoundationSpecimens from "../components/FoundationSpecimens.astro";
 import ContrastReport from "../components/ContrastReport.astro";
-import NonExamples from "../components/NonExamples.astro";
-import StressFixtures from "../components/StressFixtures.astro";
+
+
 import SupportTable from "../components/SupportTable.astro";
 import CoverageLedger from "../components/CoverageLedger.astro";
 import { withBase } from "../lib/base";
@@ -28,10 +29,6 @@ const agentDocs = await getCollection("agents");
 const consume = agentDocs.find((a) => a.id === "consume");
 const { Content: ConsumeContent } = consume ? await render(consume) : { Content: null };
 
-const demoModules = import.meta.glob("/spec/components/*.demo.html", { query: "?raw", import: "default", eager: true }) as Record<string, string>;
-const demos: Record<string, string> = {};
-for (const [path, html] of Object.entries(demoModules)) demos[path.replace(/^.*\//, "").replace(/\.demo\.html$/, "")] = html;
-
 const familiesWithComponents = familyList
   .filter((f) => f.id !== "foundations")
   .map((f) => ({ ...f, entries: components.filter((c) => c.data.family === f.id) }))
@@ -39,8 +36,11 @@ const familiesWithComponents = familyList
 
 const repositories = referenceSources.repositories as Record<string, { repo: string; revision: string }>;
 const title = theme.displayName;
-const description = `${theme.description} One page: foundations, every component with its states, composed specimens, accessibility and portability rules, and exports for agents.`;
+const description = "Identity, role tables, component index, accessibility and portability rules. Full state matrices, contrast pairs and decisions have dedicated static pages.";
+const decisionEntry = doc("decisions");
+const { headings: decisionHeadings } = await render(decisionEntry);
 const tocDocs = [{ id: "identity", title: "Identity" }, { id: "foundations", title: "Foundations" }];
+const fixtureAnchors = [anchors.specimen("stress"), anchors.specimen("non-examples"), ...["FX-LONG", "FX-320", "FX-I18N", "FX-RTL", "FX-RM", "FX-HC", "FX-TOUCH", "FX-DENSITY", "FX-OVERFLOW"].map(anchors.fixture), ...["pills", "glass", "gradients", "glow", "everything-red", "material", "light", "rainbow", "traffic-light", "sans", "inactive-text", "focus-as-selection", "heritage-ui", "circles", "hairline-edge", "opacity-disabled"].map(anchors.nonExample)];
 const tocExtra = [
   { id: "stress-and-non-examples", title: "Stress fixtures and non-examples" },
   { id: anchors.doc("form-patterns"), title: "Form composition and recovery" },
@@ -53,50 +53,35 @@ const tocExtra = [
 ];
 ---
 
-<SpecLayout title={title} description={description}>
-  <header class="site-header">
-    <h1>{theme.displayName}</h1>
-    <p class="lede">True-black canvas. Warm-dark panels. Rose text. Red focus. One monospace family. Square components. This page is the complete visual specification of the j3w1 identity; agents read the exports linked at the end instead.</p>
-    <p class="stamp">
-      <span>version <code>{theme.version}</code></span>
-      {buildCommit && <span>build <code>{buildCommit}</code></span>}
-      <span>profiles {Object.entries(profiles).map(([id, p]) => <><code>{id}</code> ({p.status}) </>)}</span>
-      <span>sources {Object.entries(repositories).map(([id, r]) => <><code>{r.repo}@{r.revision.slice(0, 7)}</code> </>)}</span>
-      <span><a href="https://github.com/j3w1/theme">github.com/j3w1/theme</a></span>
-      <span><a href={withBase("tokens/")}>Token usage explorer</a></span>
-      <span><a href={withBase("releases/")}>Release comparison</a></span>
-    </p>
+<SiteLayout title={title} description={description} revision>
+  <header class="reference-header">
     <p class="banner" id="consumption-policy">{releaseOf(theme.version).stability}: <code>{theme.version}</code>. {POLICY_TEXT}</p>
     <div class="controls js-only" id="controls">
-      <label>Search components, documents and tokens
-        <input type="search" id="search" placeholder="e.g. focus ring, text-field, #e53935" autocomplete="off" />
-      </label>
+      <TextField id="search" type="search" label="Search components, documents and tokens" placeholder="e.g. focus ring, text-field" autocomplete="off" />
       <span class="live-count" id="search-count" aria-live="polite"></span>
       <fieldset id="family-filter">
         <legend>Families (all shown by default)</legend>
         {familyList.filter((f) => f.id !== "foundations").map((f) => (
-          <label><input type="checkbox" name="family" value={f.id} checked /> {f.title}</label>
+          <Checkbox name="family" value={f.id} checked>{f.title}</Checkbox>
         ))}
       </fieldset>
-      <label>Specimen density
-        <select id="density"><option value="comfortable">comfortable</option><option value="compact">compact</option></select>
-      </label>
-      <label>Specimen profile
-        <select id="profile">{Object.entries(profiles).map(([id, p]) => <option value={id}>{id} ({p.status})</option>)}</select>
-      </label>
-      <button type="button" class="btn btn-quiet" id="reset">Reset page preferences</button>
+      <SelectField id="density" label="Specimen density"><option value="compact">compact</option><option value="comfortable">comfortable</option></SelectField>
+      <SelectField id="profile" label="Specimen profile">{Object.entries(profiles).map(([id, p]) => <option value={id}>{id} ({p.status})</option>)}</SelectField>
+      <button type="button" class="button button-tertiary" id="reset">Reset page preferences</button>
     </div>
   </header>
 
   <div class="layout">
     <Toc docs={tocDocs} families={familiesWithComponents.map((f) => ({ id: f.id, title: f.title, components: f.entries.map((e) => ({ id: e.data.id, name: e.data.name })) }))} extra={tocExtra} />
 
-    <main id="main">
+    <div class="reference-content">
       <DocSection entry={doc("identity")} />
 
       <DocSection entry={doc("foundations")}>
         <div class="block" id={anchors.family("foundations")}>
           <h3>Tokens</h3>
+          <p id="eligibility-legend">Eligibility: <strong>use</strong> within the role's scope; <strong>use-and-report</strong> records its pending decision; <strong>blocked</strong> excludes delivery; <strong>historical-only</strong> preserves heritage; <strong>preview-only</strong> excludes delivery. Approval and consumption eligibility stay separate.</p>
+          <p><a class="link link-standalone" href={withBase("tokens/")}>All profile values, primitives and documented usage →</a></p>
           <TokenTable prefix="color.surface." title="Surfaces" grid />
           <TokenTable prefix="color.text." title="Text" grid />
           <FoundationSpecimens />
@@ -126,7 +111,7 @@ const tocExtra = [
         </div>
       </DocSection>
 
-      {familiesWithComponents.map((f) => <FamilySection family={f} entries={f.entries} demos={demos} />)}
+      {familiesWithComponents.map((f) => <FamilySection family={f} entries={f.entries} compact />)}
       {familiesWithComponents.length === 0 && (
         <section class="family" id="components-pending">
           <h2>Components</h2>
@@ -136,14 +121,14 @@ const tocExtra = [
 
       <section class="doc" id="stress-and-non-examples">
         <h2>Stress fixtures and non-examples</h2>
-        <StressFixtures />
-        <NonExamples />
+        <p><a class="link link-standalone" href={withBase("reference/fixtures/")}>Stress fixtures and labelled non-examples →</a></p>
+        {fixtureAnchors.map((id) => <p><a class="link" id={id} data-legacy-target href={withBase(`reference/fixtures/#${id}`)}>{id}</a></p>)}
       </section>
 
       <DocSection entry={doc("form-patterns")} />
       <DocSection entry={doc("figma-bridge")} />
       <DocSection entry={doc("accessibility")}>
-        <ContrastReport />
+        <ContrastReport summary />
       </DocSection>
 
       <DocSection entry={doc("portability")}>
@@ -189,12 +174,13 @@ const tocExtra = [
         {ConsumeContent && <div class="spec-body"><ConsumeContent /></div>}
       </section>
 
-      <DocSection entry={doc("decisions")} />
-    </main>
+      <section class="doc prose" id={anchors.doc("decisions")} data-doc="decisions">
+        <h2>Decisions</h2>
+        <p><a class="link link-standalone" href={withBase("reference/decisions/")}>Read the decision log →</a></p>
+        <ul class="decision-index">{decisionHeadings.map((heading) => <li><a class="link" id={heading.slug} data-legacy-target href={withBase(`reference/decisions/#${heading.slug}`)}>{heading.text}</a></li>)}</ul>
+      </section>
+    </div>
   </div>
 
-  <footer class="site-footer">
-    <p>{theme.displayName} {theme.version}. Contrast figures are WCAG 2.x measurements of the specified roles and the automated scan of this page is not a conformance claim; keyboard, focus, labels, reflow and manual review remain the consumer's responsibility. Code and tokens MIT; prose CC BY 4.0; reference screenshots all rights reserved. No fonts are distributed.</p>
-    <p>Source: <a href="https://github.com/j3w1/theme">github.com/j3w1/theme</a>. Flagship implementation: <a href="https://github.com/j3w1/j3w1.github.io">j3w1/j3w1.github.io</a>. Historical origin: <a href="https://github.com/j3w1/1w3j">j3w1/1w3j</a>.</p>
-  </footer>
-</SpecLayout>
+  <script>import "../scripts/main"; import "../scripts/legacy-hash";</script>
+</SiteLayout>

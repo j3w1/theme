@@ -29,7 +29,7 @@
 
 .checkbox-option {
   display: grid;
-  grid-template-columns: var(--density-icon, 16px) minmax(0, 1fr);
+  grid-template-columns: var(--density-icon, 12px) minmax(0, 1fr);
   align-items: center;
   gap: var(--space-4);
   min-height: var(--space-24);
@@ -39,8 +39,8 @@
 
 .checkbox-control {
   display: inline-grid;
-  width: var(--density-icon, 16px);
-  height: var(--density-icon, 16px);
+  width: var(--density-icon, 12px);
+  height: var(--density-icon, 12px);
   color: var(--color-action-primary-text);
 }
 
@@ -50,8 +50,8 @@
 
 .checkbox-input {
   appearance: none;
-  width: var(--density-icon, 16px);
-  height: var(--density-icon, 16px);
+  width: var(--density-icon, 12px);
+  height: var(--density-icon, 12px);
   margin: 0;
   background: var(--color-surface-input);
   border: var(--border-width-default) solid var(--color-border-control);
@@ -63,8 +63,8 @@
 .checkbox-check,
 .checkbox-dash {
   display: none;
-  width: var(--density-icon, 16px);
-  height: var(--density-icon, 16px);
+  width: var(--density-icon, 12px);
+  height: var(--density-icon, 12px);
   stroke: currentColor;
   fill: none;
   pointer-events: none;

@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — chart
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/chart.json
 spec: spec/components/chart.md  site: https://j3w1.github.io/theme/reference/#c-chart
 maturity: stable  priority: R2
@@ -19,12 +19,12 @@ Tokens (resolved):
   dependency.role-color-chart-axis      #9e231f  ({color.chart.axis})  use
   dependency.role-color-chart-grid      #2b0e0d  ({color.chart.grid})  use
   dependency.role-color-chart-label     #bd787d  ({color.chart.label})  use
+  dependency.role-focus-offset          -2px  ({focus.offset})  use
   series.primary                        #f73f35  ({color.chart.series-2})  use
   header.text                           #ffa2a7  ({color.text.bright})  use
   row.text                              #e99499  ({color.text.default})  use
   dependency.role-radius-none           0px  ({radius.none})  use
   dependency.role-space-12              12px  ({space.12})  use
-  dependency.role-space-2               2px  ({space.2})  use
   dependency.role-space-8               8px  ({space.8})  use
 State dependency disclosures: D-007
 

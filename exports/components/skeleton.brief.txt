@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — skeleton
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/skeleton.json
 spec: spec/components/skeleton.md  site: https://j3w1.github.io/theme/reference/#c-skeleton
 maturity: stable  priority: R2
@@ -18,16 +18,16 @@ Tokens (resolved):
   dependency.role-border-width-default  1px  ({border.width.default})  use
   dependency.role-color-border-divider  #2b0e0d  ({color.border.divider})  use-and-report (D-008)
   dependency.role-color-surface-raised  #160b0b  ({color.surface.raised})  use
+  dependency.role-focus-offset          -2px  ({focus.offset})  use
   dependency.role-radius-none           0px  ({radius.none})  use
   dependency.role-space-12              12px  ({space.12})  use
   dependency.role-space-16              16px  ({space.16})  use
-  dependency.role-space-2               2px  ({space.2})  use
 State dependency disclosures: D-007
 
 States: default, loading, reduced-motion
-  default: Static decorative blocks. [Named loading status.]
-  loading: Raised surface blocks; no opacity fade. [aria-busy on the region.]
-  reduced-motion: Same static presentation. [No information depends on movement.]
+  default: static decorative blocks [named loading status]
+  loading: raised-surface blocks; no opacity fade [`aria-busy` on the region]
+  reduced-motion: the same static presentation [no information depends on movement]
 
 Keyboard:
   Tab: No new tab stops or focus capture.

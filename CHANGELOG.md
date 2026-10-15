@@ -2,6 +2,38 @@
 
 ## [Unreleased]
 
+- **Display and title type sizes** (D-037): `font.size.display` 32/40 and
+  `font.size.title` 24/32 with their line heights, for page heroes, metric
+  figures and page titles.
+- **Compact is the default density** (D-038). `:root` and bare recipe
+  wrappers carry the compact density values; `data-density="comfortable"`
+  opts in. A consumer that relied on the old comfortable default sets it.
+- **Components follow the spec.** Ordinary controls and rows draw their
+  focus ring at `focus.offset` (−2px), as foundations rule 2 says (D-006,
+  proposed); containers and invalid fields keep their own offsets. A
+  selected item takes the ordinary 1px dashed ring on the selection fill,
+  and links hover on `interaction.hover.bg` (D-027). Composite actions reuse
+  the button tone slots; field parts share one partial.
+- **Site.** One shell built from the documented components, one primary
+  action per view, and calls to action as standalone links. `/reference/`
+  is a static hub (about 0.5 MB, from 4.6 MB); state matrices, token tables
+  and computed contrast pairs live on `/components/<id>/`, and the contrast
+  report, decision log and fixtures on their own `/reference/` pages. Every
+  published anchor still resolves. The per-row copy buttons of the reference
+  token tables are gone: each token's page, `/tokens/<path>/`, copies its
+  path and CSS variable, and the surface and text grids still copy values.
+- **Documentation.** The decision log is grouped by topic. Entries keep the
+  choice, reason and status, and most rule detail moved to the spec section
+  it governs. README, guides and component specs drop most repeated text.
+- **Fixed.** The install guide pins the released package version. Control
+  enhancement no longer restyles component buttons. Contents search and the
+  family filter keep each other's results, and search retries a failed index
+  load. Copy labels cannot stick. The surface and text grids' hex values get
+  their swatches. The token inspector adds no tab stops and 404 ships no
+  inspector data. Generated form workflows have one primary action.
+  Foundation and component spec prose no longer states measured contrast
+  ratios; the computed report carries them, and the decision log keeps its
+  historical measurements.
 - **`color.surface.accent`** (D-035). A new surface for the user's own content,
   such as outgoing chat messages, on the new primitive `color.primitive.red.40`
   (`#3d0c0a`), chosen by the owner from a side-by-side comparison; links keep

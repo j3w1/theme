@@ -1,3 +1,4 @@
+@import "../partials/field.css";
 /* textarea — reference CSS. The text field's box around a native
    <textarea>; vertical resize only. Every real pseudo-class is paired with
    the forced-state attribute the state matrix emits. Token variables only. */
@@ -9,12 +10,6 @@
   min-width: 0;
   max-width: 28rem;
   color: var(--color-text-default);
-}
-
-.textarea-label {
-  color: var(--color-text-bright);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
 }
 
 .textarea-required {
@@ -34,8 +29,8 @@
   display: block;
   width: 100%;
   min-width: 0;
-  min-height: calc(var(--density-control-height, 32px) * 2);
-  padding: var(--space-4) var(--density-control-padding-x, 12px);
+  min-height: calc(var(--density-control-height, 24px) * 2);
+  padding: var(--space-4) var(--density-control-padding-x, 8px);
   background: transparent;
   border: 0;
   color: var(--color-text-default);
@@ -64,21 +59,6 @@
   font-size: var(--font-size-ui-sm);
   line-height: var(--font-line-height-ui-sm);
   font-variant-numeric: tabular-nums;
-}
-
-.textarea-help {
-  margin: 0;
-  color: var(--color-text-muted);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
-}
-
-.textarea-message {
-  display: none;
-  margin: 0;
-  color: var(--color-status-danger-text);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
 }
 
 /* hover */

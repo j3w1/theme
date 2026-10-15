@@ -8,7 +8,7 @@ j3w1-toast {
   line-height: var(--font-line-height-ui-md);
 }
 j3w1-toast, j3w1-toast *, j3w1-toast *::before, j3w1-toast *::after { box-sizing: border-box; }
-j3w1-toast button, j3w1-toast input, j3w1-toast select, j3w1-toast textarea { font: inherit; }
+j3w1-toast :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 j3w1-toast ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);
@@ -144,7 +144,7 @@ j3w1-toast .toast-close:hover {
 }
 
 j3w1-toast .toast-action:hover {
-  background: var(--color-interaction-hover-bg-strong);
+  background: var(--color-interaction-hover-bg);
   color: var(--color-text-link-hover);
   text-decoration-thickness: 2px;
 }

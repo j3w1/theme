@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=",
+  "sourceDigest": "sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=",
   "id": "skip-link",
   "family": "navigation",
   "maturity": "stable",
@@ -104,8 +104,8 @@
   "stateRules": [
     {
       "state": "default",
-      "visual": "off-screen; nothing is painted",
-      "channel": "the link is still in the tab order and the accessibility tree",
+      "visual": "off-screen; nothing painted",
+      "channel": "still in the tab order and the accessibility tree",
       "tokens": {
         "fg": {
           "alias": "color.text.bright",
@@ -149,7 +149,7 @@
     },
     {
       "state": "focus-visible",
-      "visual": "appears in the top corner; ring 1px dashed {color.interaction.focus.ring} at −2px",
+      "visual": "appears in the top corner; 1px dashed {color.interaction.focus.ring} ring at −2px",
       "channel": "the link appears; the ring",
       "tokens": {
         "fg": {
@@ -245,7 +245,7 @@
     "settings-panel",
     "admin-form"
   ],
-  "nonExamples": "A skip link that is always visible. One hidden with `display: none` or\n`visibility: hidden`. One that is not the first tab stop. One that points at\nan element without `tabindex=\"-1\"`, so focus does not move. A skip link\nthat slides in from the side and causes horizontal scroll while hidden. A\nrounded pill. One rendered without the frame on the canvas.",
+  "nonExamples": "Always visible. Hidden with `display: none` or `visibility: hidden`. Not the\nfirst tab stop. Pointing at an element without `tabindex=\"-1\"`, so focus does\nnot move. Sliding in from the side and causing horizontal scroll while hidden.\nA rounded pill. Rendered without the frame on the canvas.",
   "contrast": [
     {
       "label": "skip-link default text",

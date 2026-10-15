@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — command-palette
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/command-palette.json
 spec: spec/components/command-palette.md  site: https://j3w1.github.io/theme/reference/#c-command-palette
 maturity: stable  priority: R2
@@ -15,6 +15,13 @@ Tokens (resolved):
   secondary.text                                      #bd787d  ({color.text.muted})  use
   control.bg                                          #000000  ({color.surface.input})  use
   control.focus                                       #e53935  ({color.interaction.focus.ring})  use
+  button.bg                                           rgb(0 0 0 / 0%)  ({color.action.secondary.bg})  use
+  button.text                                         #ffa2a7  ({color.action.secondary.text})  use
+  button.border                                       #a3676b  ({color.action.secondary.border})  use
+  button.bg-hover                                     #630f0d  ({color.action.secondary.hover-bg})  use
+  button.bg-active                                    #420f0c  ({color.action.secondary.pressed-bg})  use
+  button.border-active                                #e53935  ({color.border.active})  use
+  button.focus                                        #e53935  ({color.interaction.focus.ring})  use
   dependency.role-border-width-default                1px  ({border.width.default})  use
   dependency.role-border-width-emphasis               2px  ({border.width.emphasis})  use
   dependency.role-color-border-overlay                #e53935  ({color.border.overlay})  use-and-report (D-008)
@@ -25,19 +32,19 @@ Tokens (resolved):
   dependency.role-color-surface-overlay               #241010  ({color.surface.overlay})  use
   dependency.role-density-comfortable-control-height  32px  ({density.comfortable.control-height})  use
   dependency.role-density-compact-control-height      24px  ({density.compact.control-height})  use
+  dependency.role-focus-offset                        -2px  ({focus.offset})  use
   dependency.role-radius-none                         0px  ({radius.none})  use
   dependency.role-space-12                            12px  ({space.12})  use
   dependency.role-space-16                            16px  ({space.16})  use
-  dependency.role-space-2                             2px  ({space.2})  use
   dependency.role-space-8                             8px  ({space.8})  use
 State dependency disclosures: D-007
 
 States: default, open, closed, focus-visible, no-results
-  default: One prompt and dense command rows. [Visible names and categories.]
-  open: Square overlay surface and border. [Native modal dialog and active-descendant relationship.]
-  closed: Panel absent. [Opener remains focusable.]
-  focus-visible: Dashed input ring. [Input retains DOM focus while results change.]
-  no-results: Muted zero-results status. [Explicit result count and no active descendant.]
+  default: One prompt, dense command rows. Button controls are the secondary button (button.md); inputs keep the input look. [Visible names and categories.]
+  open: Square overlay surface and border. [Native modal dialog; active-descendant relationship.]
+  closed: Panel absent. [Opener stays focusable.]
+  focus-visible: Dashed input ring. [Input keeps DOM focus while results change.]
+  no-results: Muted zero-results status. [Explicit result count; no active descendant.]
 
 Keyboard:
   Ctrl+K / Cmd+K: Open when the host explicitly enables the shortcut.

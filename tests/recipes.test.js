@@ -24,6 +24,23 @@ test("recipe manifests identify maintained dependencies and byte-identical outpu
   assert.throws(() => recipeDependenciesSchema(z).parse({ ...declarations, recipes: declarations.recipes.map((r) => ({ ...r, behavior: ["missing.js"] })) }));
 });
 
+test("recipe styles inline their relative imports and digest every imported file", async () => {
+  const declarations = recipeDependenciesSchema(z).parse(await readJson("site/recipes.json"));
+  for (const recipe of declarations.recipes) {
+    const metadata = await readJson(`exports/recipes/${recipe.id}/manifest.json`);
+    const css = await readText(`exports/recipes/${recipe.id}/component.css`);
+    assert.doesNotMatch(css, /@import/, recipe.id);
+    for (const style of recipe.styles) {
+      for (const [, imported] of (await readText(style)).matchAll(/@import\s+["']([^"']+)["']/g)) {
+        const file = new URL(imported, `file:///${style}`).pathname.slice(1);
+        assert.ok(metadata.source.files[file], `${recipe.id}: ${file} is a digested source`);
+      }
+    }
+  }
+  /* The button recipe takes its tones from the shared partial. */
+  assert.match(await readText("exports/recipes/button/component.css"), /\.j3w1-recipe \.button-secondary[^{]*\{[^}]*--_bg: var\(--color-action-secondary-bg\)/);
+});
+
 test("instances preserve every local relationship and reject ambiguous markup", () => {
   const source = '<label for="name">Name</label><input id="name" aria-describedby="help error"><p id="help">Help</p><p id="error">Error</p>';
   const first = instantiateRecipe(source, "first");

@@ -4,6 +4,11 @@ import { readJson, readText, sha256, stableJson, writeOrCheck, pruneOrphans } fr
 import { splitVariants } from "./spec.mjs";
 import { instantiateRecipe } from "./recipe-markup.mjs";
 import { scopeRecipeCss, recipeTokenCss } from "./recipe-css.mjs";
+import { cssSourceClosure } from "./ui-distribution.mjs";
+
+/* A recipe style with its relative @imports (shared component partials)
+   inlined, dependencies first, exactly as the package build resolves them. */
+const styleClosure = async (files) => cssSourceClosure(".", files, { read: (name) => readText(name).catch(() => undefined) });
 
 const attribution = "Markup adapted from j3w1 UI Theme Spec, https://github.com/j3w1/theme, CC BY 4.0: https://creativecommons.org/licenses/by/4.0/. Changes: scoped instance IDs and documentation-only content removed. CSS and generator: MIT; see LICENSE.md.";
 export const recipeGenerator = {
@@ -19,16 +24,17 @@ export const recipeGenerator = {
     for (const recipe of dependencies.recipes) {
       const component = components.find((c) => c.id === recipe.id);
       if (!component || recipe.markup !== component.demoFile || recipe.states.some((s) => !component.states.includes(s))) throw new Error(`Recipe ${recipe.id} disagrees with its component contract`);
+      const styles = await styleClosure(recipe.styles);
       const sources = {};
-      for (const file of ["theme.json", "site/recipes.json", "scripts/lib/recipe-generator.mjs", "scripts/lib/recipe-css.mjs", "scripts/lib/recipe-markup.mjs", "scripts/lib/markup.mjs", component.file, recipe.markup, recipe.foundation, ...recipe.styles, "LICENSE.md", ...manifest.profiles.find((p) => p.id === defaultId).tokens]) sources[file] = sha256(await readText(file));
+      for (const file of ["theme.json", "site/recipes.json", "scripts/lib/recipe-generator.mjs", "scripts/lib/recipe-css.mjs", "scripts/lib/recipe-markup.mjs", "scripts/lib/markup.mjs", component.file, recipe.markup, recipe.foundation, ...styles.keys(), "LICENSE.md", ...manifest.profiles.find((p) => p.id === defaultId).tokens]) sources[file] = sha256(await readText(file));
       const fragment = splitVariants(await readText(recipe.markup)).get(recipe.variant);
       if (!fragment) throw new Error(`Missing recipe variant: ${recipe.id}/${recipe.variant}`);
       const markup = `<!-- ${credit} -->\n${instantiateRecipe(fragment, "recipe", recipe)}`;
       const foundation = cssNotice + scopeRecipeCss(await readText(recipe.foundation));
-      const componentCss = cssNotice + (await Promise.all(recipe.styles.map(async (file) => scopeRecipeCss(await readText(file), recipe)))).join("\n");
+      const componentCss = cssNotice + [...styles.values()].map((css) => scopeRecipeCss(css, recipe)).join("\n");
       const tokenBundle = recipeTokenCss([foundation, componentCss], profiles.get(defaultId), manifest.profiles.find((p) => p.id === defaultId));
       const tokenCss = cssNotice + tokenBundle.css;
-      const instance = (prefix) => `<div class="j3w1-recipe" data-density="comfortable">\n${instantiateRecipe(markup, prefix)}</div>`;
+      const instance = (prefix) => `<div class="j3w1-recipe" data-density="compact">\n${instantiateRecipe(markup, prefix)}</div>`;
       const html = (prefixes) => `<!doctype html>\n<!-- ${credit} -->\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>j3w1 ${recipe.id} reference</title>\n<style>\n${tokenCss}\n${foundation}\n${componentCss}</style>\n</head><body>\n${prefixes.map(instance).join("\n")}\n</body></html>\n`;
       const outputs = {
         "markup.html": `<!-- ${credit} -->\n${instance("example")}\n`,
@@ -50,7 +56,12 @@ export const recipeGenerator = {
         licenses: { markup: "CC-BY-4.0", css: "MIT", notice: credit },
         files: Object.fromEntries(Object.entries(outputs).map(([name, text]) => [name, sha256(text)])),
       };
-      const readme = `# ${recipe.id} standalone reference\n\n${credit}\n\nVersion ${manifest.version}; profile ${defaultId}; source digest ${metadata.source.digest}. Pin the supplying commit and verify manifest source/file digests; the version alone does not identify a revision.\n\nOpen example.html directly, without Astro, network assets or a build step. two-instances.html demonstrates independent IDs. For integration, include tokens.css, foundation.css and component.css in that order, then markup.html. Keep .j3w1-recipe and data-density on the wrapper. The source viewer can make a fresh instance prefix; use a unique prefix for every copy and rewrite all ID references together.\n\n## Behavior and limits\n\n${recipe.limitations.map((s) => `- ${s}`).join("\n")}\n\nSupported visual states: ${recipe.states.join(", ")}. No JavaScript behavior module is supplied. No font binaries or third-party assets are bundled.\n\n## Transformations\n\n${metadata.transformations.map((s) => `- ${s}`).join("\n")}\n\n## Policy\n\nPending roles retain their use-and-report decision IDs in manifest.json. Alias dependencies, including inspection-only primitives, support the role values; they are not recommendations to consume primitives directly.\n`;
+      const readme = `# ${recipe.id} standalone reference\n\n${credit}\n\nVersion ${manifest.version}; profile ${defaultId}; source digest ${metadata.source.digest}. Pin the supplying commit and verify manifest source/file digests; the version alone does not identify a revision.\n\n`
+        + `Open example.html directly, without Astro, network assets or a build step. two-instances.html demonstrates independent IDs. For integration, include tokens.css, foundation.css and component.css in that order, then markup.html. Keep .j3w1-recipe and data-density on the wrapper. The source viewer can make a fresh instance prefix; use a unique prefix for every copy and rewrite all ID references together.\n\n`
+        + `## Behavior and limits\n\n${recipe.limitations.map((s) => `- ${s}`).join("\n")}\n\n`
+        + `Supported visual states: ${recipe.states.join(", ")}. No JavaScript behavior module is supplied. No font binaries or third-party assets are bundled.\n\n`
+        + `## Transformations\n\n${metadata.transformations.map((s) => `- ${s}`).join("\n")}\n\n`
+        + `## Policy\n\nPending roles retain their use-and-report decision IDs in manifest.json. Alias dependencies, including inspection-only primitives, support the role values; they are not recommendations to consume primitives directly.\n`;
       metadata.files["README.md"] = sha256(readme);
       for (const [name, text] of Object.entries({ ...outputs, "README.md": readme, "manifest.json": stableJson(metadata) })) await emit(`exports/recipes/${recipe.id}/${name}`, text);
       index.push({ id: recipe.id, variant: recipe.variant, manifest: `exports/recipes/${recipe.id}/manifest.json`, sourceDigest: metadata.source.digest, limitations: recipe.limitations });

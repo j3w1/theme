@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=",
+  "sourceDigest": "sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=",
   "id": "admin-form",
   "family": "composed",
   "maturity": "stable",
@@ -20,8 +20,8 @@
     "maturity": "stable",
     "specified": true,
     "demonstrated": true,
-    "tested": false,
-    "testImplemented": false,
+    "tested": true,
+    "testImplemented": true,
     "states": 4
   },
   "title": "Admin form",
@@ -524,7 +524,7 @@
   "stateRules": [
     {
       "state": "default",
-      "visual": "rest tokens of every component on {color.surface.default}; the current step carries the indicator bar, future steps are disabled",
+      "visual": "every component's rest tokens on {color.surface.default}; the current step carries the indicator bar, future steps are disabled",
       "channel": "`aria-current=\"step\"`",
       "tokens": {
         "fg": {
@@ -569,8 +569,8 @@
     },
     {
       "state": "invalid",
-      "visual": "the name and hostname fields take the 2px {color.status.danger.border} and show their ✕ messages; the current step's marker becomes ✕; a danger alert on {color.status.danger.tint} summarising the two fields replaces the notice; the other fields stay at rest",
-      "channel": "border width 1 → 2px; glyphs; `aria-invalid`; `role=\"alert\"`",
+      "visual": "name and hostname take the 2px {color.status.danger.border} and ✕ messages; the current step's marker becomes ✕; a danger summary on {color.status.danger.tint} naming the two fields replaces the notice; other fields stay at rest",
+      "channel": "border 1 → 2px; glyphs; `aria-invalid`; `role=\"alert\"`",
       "tokens": {
         "fg": {
           "alias": "color.status.danger.text",
@@ -612,8 +612,8 @@
     },
     {
       "state": "busy",
-      "visual": "Continue shows the static ⋯ glyph in {color.action.primary.text}; the form carries `aria-busy`; nothing shrinks or animates",
-      "channel": "glyph; `aria-busy`; cursor: progress",
+      "visual": "Continue shows the static ⋯ in {color.action.primary.text}; nothing shrinks or animates",
+      "channel": "glyph; `aria-busy` on the form; cursor: progress",
       "tokens": {
         "fg": {
           "alias": "color.action.primary.text",
@@ -643,7 +643,7 @@
     },
     {
       "state": "disabled",
-      "visual": "every control takes its component's disabled treatment ({color.text.disabled}, {color.border.disabled}, {color.interaction.disabled.bg}); labels and review keys dim; no hover anywhere",
+      "visual": "every control takes its component's disabled treatment ({color.text.disabled}, {color.border.disabled}, {color.interaction.disabled.bg}); labels and review keys dim; no hover",
       "channel": "`disabled` on the wrapping fieldset; cursor: not-allowed; never opacity",
       "tokens": {}
     }
@@ -705,7 +705,7 @@
     "table"
   ],
   "specimens": [],
-  "nonExamples": "A rounded card with a drop shadow around the form. A Material stepper with\ncircular numbered badges and a connecting line. A red banner across the\nwhole form instead of the summary alert plus field messages. Fields whose\nborders glow red. A spinner replacing the Continue label. Saving while the\nfields fade to half opacity. Placing the actions in a sticky footer bar with\na shadow.",
+  "nonExamples": "A rounded card with a drop shadow. A Material stepper with numbered circles\nand a connecting line. A red banner across the whole form instead of the\nsummary alert plus field messages. Field borders that glow red. A spinner\nreplacing the Continue label. Fields fading to half opacity while saving. A\nsticky footer bar with a shadow.",
   "contrast": [
     {
       "label": "admin-form default text",

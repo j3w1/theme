@@ -26,7 +26,12 @@ tokens:
   root.border: color.border.control
   heading.text: color.text.bright
   secondary.text: color.text.muted
-  control.bg: color.surface.input
+  control.bg: color.action.secondary.bg
+  control.text: color.action.secondary.text
+  control.border: color.action.secondary.border
+  control.bg-hover: color.action.secondary.hover-bg
+  control.bg-active: color.action.secondary.pressed-bg
+  control.border-active: color.border.active
   control.focus: color.interaction.focus.ring
   dependency.role-border-width-default: border.width.default
   dependency.role-color-border-disabled: color.border.disabled
@@ -34,9 +39,9 @@ tokens:
   dependency.role-color-text-disabled: color.text.disabled
   dependency.role-density-comfortable-control-height: density.comfortable.control-height
   dependency.role-density-compact-control-height: density.compact.control-height
+  dependency.role-focus-offset: focus.offset
   dependency.role-radius-none: radius.none
   dependency.role-space-12: space.12
-  dependency.role-space-2: space.2
   dependency.role-space-4: space.4
   dependency.role-space-8: space.8
 stateTokens:
@@ -56,6 +61,12 @@ contrast:
     min: 3
     kind: ui
     label: Control boundary
+  - fg: color.action.secondary.text
+    bg: color.surface.default
+    label: Button label
+  - fg: color.action.secondary.text
+    bg: color.action.secondary.hover-bg
+    label: Button label on hover
 anatomy:
   - part: group
     description: Labelled group that wraps its buttons.
@@ -98,29 +109,28 @@ compact: false
 
 ## Purpose
 
-Group related independent actions without turning them into an exclusive choice. Each button keeps its native type, accessible name and tab stop. Application effects belong to the host.
+Groups related, independent actions without making them an exclusive choice.
 
 ## Anatomy
 
-- **group:** Labelled group that wraps its buttons.
-- **actions:** Independent buttons in source order.
+Parts as listed in the anatomy.
 
 ## States
 
-| State | Presentation | Non-colour channel |
+| State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | Named content on the default surface. | Native text and structure. |
+| default | Named content on the default surface. Its buttons are the secondary button (button.md). | Native text and structure. |
 | focus-visible | Dashed focus ring. | Native keyboard focus position. |
 | disabled | Disabled semantic foreground, background and border at full opacity. | Native disabled state blocks activation. |
 
 ## Keyboard
 
-- **Tab / Shift+Tab:** Visit each enabled button.
-- **Enter / Space:** Activate the focused native button.
+As in the key table; no arrow-key navigation is added.
 
 ## Accessibility
 
-Use role=group with a visible or accessible label. Buttons retain distinct names and native disabled behavior. A button group does not add arrow-key navigation or selection semantics.
+`role=group` with a visible or accessible label. Buttons keep distinct names
+and native disabled behaviour; the group adds no selection semantics.
 
 ## Portability
 
@@ -128,4 +138,5 @@ Follows the shared component defaults in `spec/portability.md` (section "Shared 
 
 ## Non-examples
 
-Unlabelled controls, color-only status, drag-only operations, hidden required instructions, stolen focus or an invented service success.
+Unlabelled controls, colour-only status, drag-only operations, hidden required
+instructions, stolen focus or an invented service success.

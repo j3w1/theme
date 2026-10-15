@@ -121,7 +121,7 @@
     "item.text-disabled": "color.text.disabled",
     "active.bg": "color.interaction.selection.bg",
     "active.text": "color.interaction.selection.text",
-    "active.ring": "color.interaction.focus.ring-container",
+    "active.ring": "color.interaction.focus.ring",
     "check.glyph": "color.text.bright",
     "shortcut.text": "color.text.muted",
     "separator.color": "color.border.divider",
@@ -169,9 +169,7 @@
       "density.compact.icon",
       "density.compact.row-height",
       "focus.offset",
-      "focus.offset-container",
       "focus.ring",
-      "focus.ring-container",
       "font.family.mono",
       "font.line-height.ui-md",
       "font.line-height.ui-sm",
@@ -200,7 +198,6 @@
       "color.interaction.disabled.bg",
       "color.interaction.drop-target",
       "color.interaction.focus.ring",
-      "color.interaction.focus.ring-container",
       "color.interaction.hover.bg",
       "color.interaction.hover.bg-strong",
       "color.interaction.pressed.bg",
@@ -242,9 +239,7 @@
       "density.compact.icon",
       "density.compact.row-height",
       "focus.offset",
-      "focus.offset-container",
       "focus.ring",
-      "focus.ring-container",
       "font.family.mono",
       "font.line-height.ui-md",
       "font.line-height.ui-sm",
@@ -438,17 +433,7 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
-      "focus.offset-container": {
-        "action": "use",
-        "reason": "Use within the role's documented scope and restrictions.",
-        "decisionIds": []
-      },
       "focus.ring": {
-        "action": "use",
-        "reason": "Use within the role's documented scope and restrictions.",
-        "decisionIds": []
-      },
-      "focus.ring-container": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -534,6 +519,6 @@
   "copy": {
     "directory": "copy/menu/",
     "manifest": "copy/menu/manifest.json",
-    "digest": "sha256-YWF7LtF4Y/ZgN5otpkiIBHeQDPn8kKw129WvyZSELhs="
+    "digest": "sha256-9NHbdHafr9UwBLqJLF5ddS041hMKBftk16inMfQXuP4="
   }
 }

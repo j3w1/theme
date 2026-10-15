@@ -1,12 +1,10 @@
 # Consuming j3w1/theme (for agents and integrators)
 
-This document is for people and agents who apply the theme to another project.
-The contributor workflow for this repository is in `AGENTS.md`.
-
-You are consuming **design data and optional official implementations**. The
-consumer project's own instructions (its `AGENTS.md`, `CLAUDE.md`, security,
-architecture and operational rules) always win over anything in this
-repository.
+For people and agents who apply the theme to another project; contributors
+to this repository read `AGENTS.md`. You are consuming **design data and
+optional official implementations**. The consumer project's own instructions
+(its `AGENTS.md`, `CLAUDE.md`, security, architecture and operational rules)
+always win over anything in this repository.
 
 ## Official web implementations
 
@@ -22,20 +20,19 @@ bundles are also supported.
    ```
 
 Choose `copy` to own the full source, or `mapping` for a host the package does
-not fit. Native hosts need mapping mode. Kits include the canonical contracts,
-their dependency closure and the shared accessibility/identity rules. They do
+not fit; native hosts need mapping mode. Kits include the canonical contracts,
+their dependency closure and the shared accessibility/identity rules; they do
 not declare your app verified. `docs/ui-consumption.md` has the exact
-installation, framework binding and runtime checks. npm publication is an
-owner release action; until then, use the release tarball and its published
-integrity metadata. For canonical mappings, keep the lock and deviation
-workflow below.
+installation, framework binding and runtime checks. Until npm publication (an
+owner release action), use the release tarball and its published integrity
+metadata. Canonical mappings keep the lock and deviation workflow below.
 
 ## 0. Pin a revision first
 
-`<rev>` is a release tag (`v0.1.0`) or a full 40-character commit SHA. Never
-`main`, never a branch name, never "latest". Resolve a tag to its commit before
-you read anything, and use the same `<rev>` in every URL below. Mixing
-revisions breaks the contract.
+`<rev>` is a release tag (`v0.1.0`) or a full 40-character commit SHA, never
+`main`, a branch name or "latest". Resolve a tag to its commit before you read
+anything, and use the same `<rev>` in every URL below; mixing revisions breaks
+the contract.
 
 ```
 GET https://api.github.com/repos/j3w1/theme/git/ref/tags/<tag>   → object.sha
@@ -65,10 +62,10 @@ Use the pinned approved default profile. Pending roles in that profile use-and-r
 <!-- eligibility:end -->
 
 The policy block above is generated. Each resolved token lists its pending
-decision IDs in `eligibility.decisionIds`, including alias dependencies.
-Report those IDs together with any real deviations. Using an authorized
-pending value is a disclosure, not an invented substitution. A blocked action
-implies no replacement. A profile preview does not authorize delivered work.
+decision IDs, alias dependencies included, in `eligibility.decisionIds`; report
+them with any real deviations. Using an authorized pending value is a
+disclosure, not an invented substitution. A blocked action implies no
+replacement, and a profile preview does not authorize delivered work.
 
 ## 4. Read only what you need, in this order
 
@@ -81,18 +78,17 @@ https://raw.githubusercontent.com/j3w1/theme/<rev>/exports/digests.json         
 
 Optional: `exports/theme.full.md` for the whole specification;
 `exports/tokens.css` for a ready-made custom-property sheet. The website
-`https://j3w1.github.io/theme/` is for visual confirmation only. It is not a
-source of values, and screenshots never override tokens.
+`https://j3w1.github.io/theme/` is for visual confirmation only, never a source
+of values; screenshots never override tokens.
 
 ## 5. Inspect the target before changing anything
 
 1. Name the integration kind: `css-vars`, `vuetify`, `tailwind`,
    `jetbrains-icls`, `gtk-css`, `terminal-16` or `other`.
-2. List which specified surfaces the target can express natively, and which
-   it cannot (for example, a framework with no read-only field style, or a
-   sixteen-colour terminal that cannot show hover).
-3. Anything the target cannot express becomes a documented deviation in step
-   7, never an invented approximation.
+2. List which specified surfaces the target can and cannot express natively
+   (for example, no read-only field style, or a sixteen-colour terminal that
+   cannot show hover). Each one it cannot express becomes a documented
+   deviation in step 7, never an invented approximation.
 
 ## 6. Implement the mapping
 
@@ -104,8 +100,8 @@ source of values, and screenshots never override tokens.
 - Keep host accessibility at least as strong as before: never remove a focus
   indicator, never lower a contrast ratio the host already met, never set
   `outline: none` without drawing the specified ring.
-- Radii are 0, borders 1px, the family is monospace. A host that forbids one
-  of these gets a deviation, not a redesign.
+- Radii are 0, borders 1px, the family is monospace; a host that forbids one
+  gets a deviation, not a redesign.
 - Selection is a fill; focus is a ring. On fills, the ring takes the colour
   the component JSON declares for that state (D-015). Status roles keep their
   glyphs.
@@ -118,10 +114,10 @@ source of values, and screenshots never override tokens.
 
 ## What you may not do
 
-- Invent, blend, lighten, darken or "harmonise" colours. Use resolved values
+- Invent, blend, lighten, darken or "harmonise" colours; use resolved values
   only.
 - Use a blocked value, deliver a proposed profile, or leave out the required
-  pending-decision disclosures. Historical-only values are not approved UI
+  pending-decision disclosures; historical-only values are not approved UI
   roles.
 - Take values from the site's HTML, from screenshots or from memory.
 - Touch unrelated components, layouts, copy, dependencies or build
@@ -158,7 +154,7 @@ lock: <path to theme.lock.json>
 
 ## theme.lock.json
 
-A small file, committed next to the integration code and validated by
+Committed next to the integration code and validated by
 `schemas/json/theme.lock.schema.json`. It is not a package manager: no graph,
 no install, no auto-update. To update the theme, change `ref`, `revision`,
 `version` and `exports`, rerun the consumer's own checks, and write the

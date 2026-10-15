@@ -6,11 +6,13 @@ test("profile columns and pending decision links agree with consumption policy",
   await openSpec(page);
   await expect(page.locator("#consumption-policy")).toContainText("use-and-report");
   await expect(page.locator("#consumption-policy")).not.toContainText("Pre-release");
-  const cells = page.locator("#t-color-border-control td");
-  await expect(cells.nth(1)).toContainText("use-and-report");
-  await expect(cells.nth(2)).toContainText("historical-only");
-  await expect(cells.nth(3)).toContainText("blocked");
-  const link = cells.nth(1).getByRole("link", { name: "D-007" });
-  await expect(link).toHaveAttribute("href", "#d-decisions--d-007");
+  const row = page.locator("#t-color-border-control");
+  await expect(row).toContainText("use-and-report");
+  const link = row.getByRole("link", { name: "D-007" });
+  await expect(link).toHaveAttribute("href", "/theme/reference/decisions/#d-decisions--d-007");
   await expect(page.locator("#d-decisions--d-007")).toHaveCount(1);
+  await page.goto("tokens/");
+  for (const [profile, eligibility] of [["default", "use-and-report"], ["heritage-ansi", "historical-only"], ["extended", "blocked"]]) {
+    await expect(page.locator(`[data-usage-profile="${profile}"] [data-usage-path="color.border.control"]`)).toContainText(eligibility);
+  }
 });

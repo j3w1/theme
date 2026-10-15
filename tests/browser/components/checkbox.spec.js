@@ -27,7 +27,7 @@ const box = (locator) =>
 
 test.describe("checkbox", () => {
   test("the state matrix renders every declared state for both variants", verification({component: "checkbox", category: "rendering", states: ["default", "hover", "focus-visible", "checked", "mixed", "checked+focus-visible", "checked+disabled", "disabled", "invalid", "required"], variants: ["default", "group"], note: "Presence and selected structural assertions only; not behavioral verification of every state."}), async ({ page }) => {
-    await openSpec(page, "#c-checkbox");
+    await openSpec(page, "components/checkbox/#c-checkbox");
     for (const state of STATES) {
       await expect(page.locator(`#checkbox-states [data-state="${state}"]`)).toHaveCount(VARIANTS.length);
     }
@@ -41,7 +41,7 @@ test.describe("checkbox", () => {
 
   test("the live box: square, checked fill and glyph, rings", verification({component: "checkbox", category: "appearance", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs"), "computed styles are the same without scripts; keep one run");
-    await openSpec(page, "#c-checkbox");
+    await openSpec(page, "components/checkbox/#c-checkbox");
     const live = page.locator('#checkbox-states [data-state="default"]').first();
     const input = live.locator("input.checkbox-input");
 
@@ -92,7 +92,7 @@ test.describe("checkbox", () => {
 
   test("keyboard: Space toggles the live checkbox", verification({component: "checkbox", category: "keyboard", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs", "narrow", "zoom200"), "one keyboard walk");
-    await openSpec(page, "#c-checkbox");
+    await openSpec(page, "components/checkbox/#c-checkbox");
     const input = page.locator('#checkbox-states [data-state="default"][data-state-default] input.checkbox-input').first();
     await input.focus();
     await expect(input).toBeFocused();

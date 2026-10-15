@@ -1,3 +1,5 @@
+@import "../partials/button.css";
+@import "../partials/field.css";
 /* dialog — reference CSS. A native <dialog> rendered open in flow inside a
    wrapper that stands in for ::backdrop; a host uses showModal(), where the
    same rules apply to ::backdrop. Every real pseudo-class is paired with the
@@ -81,15 +83,9 @@
   gap: var(--space-4);
 }
 
-.dialog-field-label {
-  color: var(--color-text-bright);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
-}
-
 .dialog-field-input {
-  min-height: var(--density-control-height, 32px);
-  padding: 0 var(--density-control-padding-x, 12px);
+  min-height: var(--density-control-height, 24px);
+  padding: 0 var(--density-control-padding-x, 8px);
   background: var(--color-surface-input);
   border: var(--border-width-default) solid var(--color-border-control);
   border-radius: var(--radius-none);
@@ -104,13 +100,6 @@
   outline-offset: var(--focus-offset);
 }
 
-.dialog-field-help {
-  margin: 0;
-  color: var(--color-text-muted);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
-}
-
 .dialog-actions {
   display: flex;
   flex-wrap: wrap;
@@ -121,32 +110,6 @@
 
 .dialog-body .dialog-actions {
   margin-top: var(--space-4);
-}
-
-.dialog-button {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-4);
-  min-height: var(--density-control-height, 32px);
-  padding: 0 var(--density-control-padding-x, 12px);
-  background: var(--color-action-secondary-bg);
-  border: var(--border-width-default) solid var(--color-action-secondary-border);
-  border-radius: var(--radius-none);
-  color: var(--color-action-secondary-text);
-  font: inherit;
-  cursor: pointer;
-}
-
-.dialog-button-primary {
-  background: var(--color-action-primary-bg);
-  border-color: var(--color-action-primary-border);
-  color: var(--color-action-primary-text);
-}
-
-.dialog-button-destructive {
-  background: var(--color-action-destructive-filled-bg);
-  border-color: var(--color-action-destructive-border);
-  color: var(--color-action-destructive-filled-text);
 }
 
 .dialog-trap-note {
@@ -163,37 +126,16 @@
   background: var(--color-action-tertiary-hover-bg);
 }
 
-.dialog-button:hover,
+/* the actions take their box, tones and real states from the button partial */
 [data-state-hover] .dialog-button {
-  background: var(--color-action-secondary-hover-bg);
-}
-
-.dialog-button-primary:hover,
-[data-state-hover] .dialog-button-primary {
-  background: var(--color-action-primary-hover-bg);
-}
-
-.dialog-button-destructive:hover,
-[data-state-hover] .dialog-button-destructive {
-  background: var(--color-action-destructive-hover-bg);
-  color: var(--color-action-destructive-hover-text);
+  --_bg: var(--_bg-hover);
+  --_fg: var(--_fg-hover);
 }
 
 /* focus-visible: the dashed ring; on a fill it takes the on-fill colour */
 .dialog-close:focus-visible,
-.dialog-button:focus-visible,
 [data-state-focus-visible] .dialog-close {
   outline: var(--focus-ring);
-  outline-offset: var(--focus-offset);
-}
-
-.dialog-button-primary:focus-visible {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
-  outline-offset: var(--focus-offset);
-}
-
-.dialog-button-destructive:focus-visible {
-  outline: var(--border-width-default) dashed var(--color-action-destructive-filled-text);
   outline-offset: var(--focus-offset);
 }
 
@@ -209,7 +151,7 @@
 }
 
 [data-state-closed] .dialog-backdrop {
-  min-height: var(--density-row-height, 36px);
+  min-height: var(--density-row-height, 28px);
   background: transparent;
 }
 
@@ -246,19 +188,6 @@
   .dialog-close:hover {
     background: transparent;
   }
-
-  .dialog-button:hover {
-    background: var(--color-action-secondary-bg);
-  }
-
-  .dialog-button-primary:hover {
-    background: var(--color-action-primary-bg);
-  }
-
-  .dialog-button-destructive:hover {
-    background: var(--color-action-destructive-filled-bg);
-    color: var(--color-action-destructive-filled-text);
-  }
 }
 
 @media (max-width: 320px) {
@@ -274,7 +203,6 @@
   }
 
   .dialog-close:focus-visible,
-  .dialog-button:focus-visible,
   .dialog:focus-visible,
   [data-state-focus-visible] .dialog-close,
   [data-state-focus-trapped] .dialog {

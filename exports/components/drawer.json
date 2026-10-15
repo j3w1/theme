@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=",
+  "sourceDigest": "sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=",
   "id": "drawer",
   "family": "feedback",
   "maturity": "stable",
@@ -338,13 +338,13 @@
     },
     {
       "state": "closed",
-      "visual": "nothing: the panel and the backdrop are absent",
+      "visual": "panel and backdrop absent",
       "channel": "no `open`; focus back on the opener",
       "tokens": {}
     },
     {
       "state": "focus-trapped",
-      "visual": "the panel carries the container ring, 2px solid {color.interaction.focus.ring-container} at −3px, when it holds focus; the note says Tab cycles",
+      "visual": "while it holds focus, the panel carries the 2px solid {color.interaction.focus.ring-container} ring at −3px; the note says Tab cycles",
       "channel": "Tab never leaves; the note text",
       "tokens": {
         "fg": {
@@ -401,7 +401,7 @@
     },
     {
       "state": "reduced-motion",
-      "visual": "no opacity transition; the panel is simply present or absent",
+      "visual": "no opacity transition; present or absent",
       "channel": "`prefers-reduced-motion`",
       "tokens": {
         "fg": {
@@ -489,7 +489,7 @@
     "settings-panel",
     "i3-window-frame"
   ],
-  "nonExamples": "A panel that slides in from the edge. A drawer with a shadow or a rounded\ninner corner. A drawer that is a plain aside with a hand-written focus trap.\nA bottom sheet with a drag handle. A drawer with no Close button. A drawer\nthat stays open under a dialog. A translucent panel over page content.",
+  "nonExamples": "A panel that slides in. A shadow or a rounded inner corner. A plain aside\nwith a hand-written focus trap. A bottom sheet with a drag handle. No Close\nbutton. A drawer that stays open under a dialog. A translucent panel over page\ncontent.",
   "contrast": [
     {
       "label": "drawer default text",

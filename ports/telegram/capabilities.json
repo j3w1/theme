@@ -1530,6 +1530,16 @@
       "surface": "typography",
       "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
     },
+    "font.size.display": {
+      "state": "inherited",
+      "surface": "typography",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "font.size.title": {
+      "state": "inherited",
+      "surface": "typography",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
     "font.size.h1": {
       "state": "inherited",
       "surface": "typography",
@@ -1576,6 +1586,16 @@
       "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
     },
     "font.line-height.terminal": {
+      "state": "inherited",
+      "surface": "typography",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "font.line-height.display": {
+      "state": "inherited",
+      "surface": "typography",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
+    "font.line-height.title": {
       "state": "inherited",
       "surface": "typography",
       "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."

@@ -1534,6 +1534,16 @@
       "surface": "typography",
       "reason": "ChatGPT uses its own fonts (the UI and code font can be chosen by name, but the port leaves them as the system default)."
     },
+    "font.line-height.display": {
+      "state": "unsupported",
+      "surface": "typography",
+      "reason": "ChatGPT uses its own fonts (the UI and code font can be chosen by name, but the port leaves them as the system default)."
+    },
+    "font.line-height.title": {
+      "state": "unsupported",
+      "surface": "typography",
+      "reason": "ChatGPT uses its own fonts (the UI and code font can be chosen by name, but the port leaves them as the system default)."
+    },
     "font.line-height.h1": {
       "state": "unsupported",
       "surface": "typography",
@@ -1583,6 +1593,16 @@
       "state": "mapped",
       "surface": "appearance-settings",
       "reason": "Set by Code font size."
+    },
+    "font.size.display": {
+      "state": "unsupported",
+      "surface": "typography",
+      "reason": "ChatGPT has only a UI size and a code size."
+    },
+    "font.size.title": {
+      "state": "unsupported",
+      "surface": "typography",
+      "reason": "ChatGPT has only a UI size and a code size."
     },
     "font.size.h1": {
       "state": "unsupported",

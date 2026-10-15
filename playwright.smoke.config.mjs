@@ -15,6 +15,6 @@ export default defineConfig({
   reporter: "list",
   outputDir: "test-results/smoke",
   grepInvert: /axe finds no WCAG|enhancements: search narrows the contents/,
-  testMatch: ["page.spec.js", "portal.spec.js", "components/button.spec.js", "components/text-field.spec.js"],
+  testMatch: ["page.spec.js", "portal.spec.js", "components/button.spec.js", "components/text-field.spec.js", "reference-hub.spec.js"],
   projects: base.projects.filter((p) => p.name === "desktop"),
 });

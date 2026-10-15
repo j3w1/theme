@@ -1,3 +1,5 @@
+import { escapeHtml as esc } from "./lib/markup.mjs";
+import { cssVar } from "./lib/tokens.mjs";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { createServer } from "node:http";
@@ -13,7 +15,6 @@ import { requestPath, send, sendFile } from "./tooling/static-server.mjs";
 
 const root = path.join(repoRoot, ".cache/phase6a");
 const output = path.join(root, "site");
-const esc = s => String(s).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll('"', "&quot;");
 const write = async (file, data) => {
   const target = path.join(output, file);
   await fs.mkdir(path.dirname(target), { recursive: true });
@@ -47,7 +48,7 @@ export const buildReview = async () => {
     await write(`review/${c.id}/tokens.css`, buildCss({ profiles: new Map([[c.id, c.resolved]]), defaultId: c.id }) + buildDensityCss(c.resolved));
     const data = { id: c.id, name: c.report.name, summary: c.report.summary, specimenDigest, baselineDigest: baseline.baselineDigest,
       focusHex: c.resolved.get("color.interaction.focus.ring").resolved.hex };
-    const foundations = ladderGroups.map(([name, prefix]) => `<section><h2>${name} ladder</h2><div class="ladder">${[...c.resolved].filter(([role]) => role.startsWith(prefix)).map(([role, token]) => `<div class="ladder-row"><span class="ladder-paint" style="background:var(--${role.replaceAll(".", "-")})" aria-hidden="true"></span><code>${role}</code><code>${token.resolved.hex}</code></div>`).join("")}</div></section>`).join("");
+    const foundations = ladderGroups.map(([name, prefix]) => `<section><h2>${name} ladder</h2><div class="ladder">${[...c.resolved].filter(([role]) => role.startsWith(prefix)).map(([role, token]) => `<div class="ladder-row"><span class="ladder-paint" style="background:var(${cssVar(role)})" aria-hidden="true"></span><code>${role}</code><code>${token.resolved.hex}</code></div>`).join("")}</div></section>`).join("");
     const metadata = `<script type="application/json" id="review-data">${JSON.stringify(data).replaceAll("<", "\\u003c")}</script>`;
     await write(`review/${c.id}/index.html`, decorateHexHtml(`${header(c, c.report.name)}${nav}<main id="main"><header class="review-intro"><p class="eyebrow">PHASE 6A / LOCAL VISUAL SELECTION</p><h1>${esc(c.report.name)}</h1><p>${esc(c.report.summary)}</p><p>Temporary candidate. Shared Vue preview, not the published component package. <a href="foundations/">Foundations</a> · <a href="components/">Full existing state board</a></p></header><div id="review-app"><p>Loading the interactive Vue composition…</p></div><noscript><p>The Vue composition requires JavaScript. <a href="components/">The complete static specimen board</a> and <a href="foundations/">foundations</a> remain available.</p></noscript></main>${metadata}<script type="module" src="/assets/review.js"></script></body></html>`));
     await write(`review/${c.id}/components/index.html`, decorateHexHtml(`${header(c, "State board")}${nav}<main id="main" class="board"><h1>${esc(c.report.name)} / state board</h1><p>All ${baseline.components.length} existing specifications, every declared variant and state. Forced states are visual references, not proof of implemented behavior. Deferred inventory is not claimed as productized.</p>${gallery}</main></body></html>`));

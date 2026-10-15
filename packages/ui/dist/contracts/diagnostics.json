@@ -115,7 +115,7 @@
     "row.ring": "color.interaction.focus.ring",
     "row.bg-selected": "color.interaction.selection.bg",
     "row.text-selected": "color.interaction.selection.text",
-    "row.ring-selected": "color.interaction.focus.ring-container",
+    "row.ring-selected": "color.interaction.focus.ring",
     "header.text": "color.text.bright",
     "status.text": "color.status.danger.text",
     "empty.text": "color.text.muted",
@@ -149,7 +149,6 @@
       "color.diagnostic.warning.text",
       "color.diagnostic.warning.underline",
       "color.interaction.drop-target",
-      "color.interaction.focus.ring-container",
       "color.interaction.hover.bg",
       "color.interaction.selection.bg",
       "color.interaction.selection.text",
@@ -372,11 +371,6 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
-      "color.interaction.focus.ring-container": {
-        "action": "use",
-        "reason": "Use within the role's documented scope and restrictions.",
-        "decisionIds": []
-      },
       "color.interaction.hover.bg": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -568,6 +562,6 @@
   "copy": {
     "directory": "copy/diagnostics/",
     "manifest": "copy/diagnostics/manifest.json",
-    "digest": "sha256-Pxd8jPIYkeRwMC2E/I0DzzxVoxnL9iQ6p2cvAWl7Qkk="
+    "digest": "sha256-n3A7adYFaPqBEZMH83XHNGwVkvhllkBTQV+FLtmNDTs="
   }
 }

@@ -18,7 +18,7 @@ import { statusOf, toCss, toResolvedExport } from "./tokens.mjs";
 import { buildCss, buildDensityCss } from "./css.mjs";
 import { loadDeclaredPairs, validateDocs, validatePorts, validateReferences } from "./validators.mjs";
 import { buildBrief, buildCompact, buildComponentJson, buildFull, buildLlms, contrastTable, coverageTable, demoVariantsOf, downloadsTable, portsTable, portGuidesTable, sourceDigestOf } from "./exports.mjs";
-import { loadFamilies } from "./spec.mjs";
+import { frontmatterPattern, loadFamilies } from "./spec.mjs";
 import { themeSchema } from "../../schemas/theme.mjs";
 import { componentSchema } from "../../schemas/component.mjs";
 import { portSchema } from "../../schemas/port.mjs";
@@ -192,7 +192,7 @@ export const docsGenerator = {
       ports.push({ ...port, verification: description.verification });
     }
     const { catalogue } = await validateReferences();
-    const decisionsMarkdown = (await readText("spec/decisions.md")).replace(/^---\n[\s\S]*?\n---\n/, "");
+    const decisionsMarkdown = (await readText("spec/decisions.md")).replace(frontmatterPattern, "$2");
     const compact = buildCompact({ manifest, profileId: defaultId, sourceDigest, resolved, docs, components, coverage });
     const compactLines = compact.split("\n").length;
     if (compactLines > 300) throw new Error(`theme.compact.md is ${compactLines} lines; the limit is 300`);
@@ -291,12 +291,26 @@ export const readmeGenerator = {
 export const PACKAGE_README = "packages/ui/README.md";
 export const packageReadmeOf = (guide) => `<!-- Generated from docs/ui-consumption.md by npm run generate; edit that file. -->\n\n${guide}`;
 
+export const uiConsumptionGuide = (guide, version) => {
+  const commands = {
+    "ui-install": `npm install --save-exact @j3w1/ui@${version}`,
+    "ui-tarball": `npm install --save-exact ./j3w1-ui-${version}.tgz`,
+    "ui-copy": `npx --package=@j3w1/ui@${version} j3w1-ui copy dialog --out ./vendor/j3w1/dialog\nnpx --package=@j3w1/ui@${version} j3w1-ui kit --components text-field,button,dialog --out ./vendor/j3w1/task`,
+  };
+  for (const [name, command] of Object.entries(commands)) {
+    guide = replaceMarkerBlock(guide, name, "```sh\n" + command + "\n```");
+  }
+  return guide;
+};
+
 export const packageReadmeGenerator = {
   name: "package README",
-  async run({ check }) {
+  async run({ check, manifest }) {
     const changed = [];
     const files = [];
-    await write(PACKAGE_README, packageReadmeOf(await readText("docs/ui-consumption.md")), { check, changed, files });
+    const guide = uiConsumptionGuide(await readText("docs/ui-consumption.md"), manifest.version);
+    await write("docs/ui-consumption.md", guide, { check, changed, files });
+    await write(PACKAGE_README, packageReadmeOf(guide), { check, changed, files });
     return { files, changed };
   },
 };

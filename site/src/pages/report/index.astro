@@ -1,21 +1,37 @@
 ---
-import ToolLayout from "../../layouts/ToolLayout.astro";
+import SiteLayout from "../../layouts/SiteLayout.astro";
 import IssueDraft from "../../components/IssueDraft.astro";
+import SelectField from "../../components/fields/SelectField.astro";
 import { theme, coverageLedger, defaultTokens } from "../../lib/theme";
 import { sha256 } from "../../../../scripts/lib/fs.mjs";
 import { anchorFor } from "../../../../scripts/lib/anchors.mjs";
 import { usageRevision } from "../../lib/revision";
 import "../../styles/workbench.css";
-const data = { themeVersion: theme.version, siteUrl: theme.site.url, revision: usageRevision, sourceDigest: sha256(JSON.stringify({ theme, coverageLedger, defaultTokens })), components: Object.keys(coverageLedger.components), tokens: Object.keys(defaultTokens), profiles: theme.profiles.map(p => p.id) };
+
+const data = {
+  themeVersion: theme.version,
+  siteUrl: theme.site.url,
+  revision: usageRevision,
+  sourceDigest: sha256(JSON.stringify({ theme, coverageLedger, defaultTokens })),
+  components: Object.keys(coverageLedger.components),
+  tokens: Object.keys(defaultTokens),
+  profiles: theme.profiles.map((p) => p.id),
+};
 ---
-<ToolLayout title="Report a specification issue" description="Prepare and review a public issue for a component or token.">
+<SiteLayout title="Report a specification issue" description="Prepare and review a public issue for a component or token." revision>
   <div class="workbench" data-report-page data-report-data={JSON.stringify(data)}>
     <p data-report-target role="status">Choose a component or token. Without JavaScript, use the direct GitHub link below and describe the target in the issue.</p>
-    <form class="workbench-controls js-only" data-report-controls>
-      <label for={anchorFor.workbench("report", "target")}>Component or token<select id={anchorFor.workbench("report", "target")} name="target"><option value="">Choose a target</option><optgroup label="Components">{data.components.map(id => <option value={`component:${id}`}>{id}</option>)}</optgroup><optgroup label="Tokens">{data.tokens.map(id => <option value={`token:${id}`}>{id}</option>)}</optgroup></select></label>
-      <label for={anchorFor.workbench("report", "profile")}>Profile<select id={anchorFor.workbench("report", "profile")} name="profile">{theme.profiles.map(p => <option value={p.id}>{p.id} — {p.status}</option>)}</select></label>
+    <form class="site-filters js-only" data-report-controls>
+      <SelectField id={anchorFor.workbench("report", "target")} label="Component or token" name="target">
+        <option value="">Choose a target</option>
+        <optgroup label="Components">{data.components.map((id) => <option value={`component:${id}`}>{id}</option>)}</optgroup>
+        <optgroup label="Tokens">{data.tokens.map((id) => <option value={`token:${id}`}>{id}</option>)}</optgroup>
+      </SelectField>
+      <SelectField id={anchorFor.workbench("report", "profile")} label="Profile" name="profile">
+        {theme.profiles.map((p) => <option value={p.id}>{p.id} — {p.status}</option>)}
+      </SelectField>
     </form>
     <IssueDraft id="specification" />
   </div>
-</ToolLayout>
+</SiteLayout>
 <script>import "../../scripts/report";</script>

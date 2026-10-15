@@ -1,4 +1,5 @@
 ---
+import { withBase } from "../lib/base";
 import { anchors, type ResolvedToken } from "../lib/theme";
 interface Props { token?: ResolvedToken }
 const { token } = Astro.props;
@@ -6,6 +7,6 @@ const { token } = Astro.props;
 {token && <span class="eligibility">
   <span class:list={["tag", { "tag-proposed": token.status === "proposed" }]}>{token.status}</span>
   {token.deprecated && <span class="tag tag-deprecated">deprecated</span>}
-  <span title={token.eligibility.reason}>{token.eligibility.action}</span>
-  {token.eligibility.decisionIds.map((id) => <a href={`#${anchors.decision(id)}`}>{id}</a>)}
+  <span>{token.eligibility.action}</span>
+  {token.eligibility.decisionIds.map((id) => <a href={withBase(`reference/decisions/#${anchors.decision(id)}`)}>{id}</a>)}
 </span>}

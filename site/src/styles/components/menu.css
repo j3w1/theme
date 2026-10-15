@@ -15,8 +15,8 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-4);
-  min-height: var(--density-control-height, 32px);
-  padding: 0 var(--density-control-padding-x, 12px);
+  min-height: var(--density-control-height, 24px);
+  padding: 0 var(--density-control-padding-x, 8px);
   background: var(--color-surface-default);
   border: var(--border-width-default) solid var(--color-border-control);
   border-radius: var(--radius-none);
@@ -65,8 +65,8 @@
   align-items: center;
   gap: var(--space-8);
   width: 100%;
-  min-height: var(--density-row-height, 36px);
-  padding: 0 var(--density-control-padding-x, 12px);
+  min-height: var(--density-row-height, 28px);
+  padding: 0 var(--density-control-padding-x, 8px);
   box-sizing: border-box;
   background: transparent;
   border: 0;
@@ -82,7 +82,7 @@
   display: inline-flex;
   justify-content: center;
   flex: 0 0 auto;
-  width: var(--density-icon, 16px);
+  width: var(--density-icon, 12px);
   color: var(--color-text-bright);
   visibility: hidden;
 }
@@ -123,7 +123,7 @@
   color: var(--color-text-link-hover);
 }
 
-/* focus-visible: the ring on the button; on items it follows the fill */
+/* focus-visible: the ordinary ring on the button and selected items */
 .menu-button:focus-visible,
 [data-state-focus-visible] .menu-button {
   outline: var(--focus-ring);
@@ -131,8 +131,8 @@
 }
 
 .menu-item:focus-visible {
-  outline: var(--focus-ring-container);
-  outline-offset: var(--focus-offset-container);
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
 }
 
 .menu-button:focus:not(:focus-visible),

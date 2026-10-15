@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=",
+  "sourceDigest": "sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=",
   "id": "range",
   "family": "forms-basic",
   "maturity": "stable",
@@ -221,6 +221,18 @@
         "decisionIds": []
       }
     },
+    "dependency.role-focus-offset": {
+      "alias": "focus.offset",
+      "value": "-2px",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
     "dependency.role-radius-none": {
       "alias": "radius.none",
       "value": "0px",
@@ -273,8 +285,8 @@
   "stateRules": [
     {
       "state": "default",
-      "visual": "Named content on the default surface.",
-      "channel": "Native text and structure.",
+      "visual": "named content on the default surface",
+      "channel": "native text and structure",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -318,14 +330,14 @@
     },
     {
       "state": "focus-visible",
-      "visual": "Dashed focus ring.",
-      "channel": "Native keyboard focus position.",
+      "visual": "dashed focus ring",
+      "channel": "native focus position",
       "tokens": {}
     },
     {
       "state": "disabled",
-      "visual": "Disabled semantic foreground, background and border at full opacity.",
-      "channel": "Native disabled state blocks activation.",
+      "visual": "disabled foreground, background and border at full opacity",
+      "channel": "native disabled state blocks activation",
       "tokens": {}
     }
   ],
@@ -360,7 +372,7 @@
   ],
   "related": [],
   "specimens": [],
-  "nonExamples": "Unlabelled controls, color-only status, drag-only operations, hidden required instructions, stolen focus or an invented service success.",
+  "nonExamples": "Unlabelled controls. Colour-only status. Drag-only operations. Hidden\nrequired instructions. Stolen focus. An invented service success.",
   "contrast": [
     {
       "label": "range default text",

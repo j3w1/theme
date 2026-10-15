@@ -1,0 +1,10 @@
+---
+import { getCollection } from "astro:content";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import DocSection from "../../components/DocSection.astro";
+import "../../styles/site.css";
+const entry = (await getCollection("docs")).find((doc) => doc.data.id === "decisions")!;
+---
+<SiteLayout title="Decision log" description="Approved and proposed decisions, grouped by subject. Only the owner changes a status.">
+  <DocSection entry={entry} />
+</SiteLayout>

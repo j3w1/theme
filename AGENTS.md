@@ -1,10 +1,11 @@
 # j3w1/theme agent instructions
 
 This repository **defines** the j3w1 theme: one versioned specification with
-exact tokens, component rules, a generated single-page visual reference at
-`https://j3w1.github.io/theme/`, and machine exports for agents. If you are
-applying the theme somewhere else, read `agents/consume.md` instead of this
-file.
+exact tokens, component rules, machine exports for agents, and a portal at
+`https://j3w1.github.io/theme/` with a compact `/reference/` hub, component
+detail on `/components/<id>/`, and `/reference/contrast/` and
+`/reference/decisions/`. If you are applying the theme somewhere else, read
+`agents/consume.md` instead of this file.
 
 ## Required reading, in order
 
@@ -23,57 +24,46 @@ Images never override tokens.
 
 ## Source of truth
 
-Literal values live in `tokens/`. Meaning and permitted uses live in `spec/`.
-Native keys live in port mappings. Test facts live in evidence records.
+Literal values live in `tokens/`, meaning and permitted uses in `spec/`, native
+keys in port mappings, test facts in evidence records (D-000). A contradiction
+between spec and tokens is a defect to resolve, not a choice to make.
 
-These files are generated: `exports/`, `schemas/json/`,
-`site/src/styles/tokens.generated.css`, the port files under `ports/*/dist/`,
-`ports/orca/install/specimen.json`, `packages/ui/README.md` (a copy of
-`docs/ui-consumption.md`), and the marker blocks in `README.md` and the port
-guides. Edit their sources and run `npm run generate`; never edit them by
-hand. A contradiction between spec and tokens is a defect to resolve, not a
-choice to make.
+Generated, never edited by hand: `exports/`, `schemas/json/`,
+`site/src/styles/tokens.generated.css`, `packages/ui/dist/`,
+`packages/ui/README.md` (a copy of `docs/ui-consumption.md`), the port files
+under `ports/*/dist/`, `ports/orca/install/specimen.json`, and the marker
+blocks in `README.md`, `agents/consume.md` and the port guides. Edit their
+sources and run `npm run generate`.
 
 ## The check loop
 
-CI picks the checks a change needs (D-031). You can see its choice before you
+CI picks the checks a change needs (D-031); `release-gate` is the only required
+check and passes when every selected check passed. See the plan before you
 push:
 
 ```
 node scripts/ci/select.mjs --event pull_request --base origin/main --head HEAD
 ```
 
-`release-gate` is the only required check: it passes when every selected check
-passed.
+Run what it selects, usually `npm run generate` (after any source change; `npm
+run check` only reports drift), `npm run validate`, `npm run check`, `npm
+test`, `npm run build && npm run test:dist`, and `npm run test:smoke`. Build
+like CI with `GITHUB_SHA` set to the full commit; a pinned build refuses
+uncommitted generated files, so commit first. Browser runs use port 4173; set
+`PW_PORT` to a free port when another checkout is testing.
 
-**Before you push.** Run what the plan selects. The usual set:
+`npm run test:all` is the whole suite, with the browser part in parallel. Run
+it when you changed rendering, tokens, components or the package, and say so
+in the pull request. On `main`, CI runs the whole matrix for every site change
+before it deploys; the workflow dispatch runs it on any branch.
 
-```
-npm run generate      # rewrite every generated file (run it after any source change)
-npm run validate      # sources: manifest, decisions, tokens, docs, spec, contrast, ports, references, private material
-npm run check         # generated files are current, no orphans
-npm test              # node --test over sources and exports
-npm run build && npm run test:dist   # the site under /theme/
-npm run test:smoke    # the built site loads, renders from the tokens, takes a keyboard
-```
+Only the whole suite writes execution evidence. A subset (`test:smoke`, the
+specs a pull request selects, one spec, shard or project) writes none and
+never claims coverage. Report checks that were not run separately from checks
+that passed.
 
-`npm run check` only reports drift; `npm run generate` fixes it.
-
-**The whole suite.** `npm run test:all` runs everything; the browser part runs
-in parallel. Run it when you changed rendering, tokens, components or the package,
-and say in the pull request that you did. On `main`, CI runs the whole matrix
-for every change to the site before it deploys. From the Actions tab, the
-workflow dispatch runs it on any branch.
-
-**Evidence.** Only the whole suite writes execution evidence. A subset, such as
-`test:smoke`, the specs a pull request selects, or a local run of one spec,
-shard or project, writes none and never claims coverage.
-
-Report checks that were not run separately from checks that passed.
-
-**Design mode is a working tool, not a gate.** `npm run design` compares the
-site at an anchored commit with the live dev server (`docs/design-mode.md`).
-Nothing it shows is evidence, and it approves nothing.
+Design mode (`npm run design`, `docs/design-mode.md`) is a working tool, not a
+gate: nothing it shows is evidence, and it approves nothing.
 
 ## What you may do without a decision
 
@@ -115,34 +105,27 @@ exists) and the install commands generated from it into the port guides.
 Commits are conventional (`feat:`, `fix:`, `docs:`, `spec:`, `tokens:`,
 `site:`, `chore:`) and explain why.
 
-## Specification UI maintenance
+## Hex swatches (D-014)
 
-Every CSS hex literal a person can see on the j3w1 UI Theme Spec must get its
-generated inline color swatch (D-014).
-
-- New sections and components get swatches from the whole-page build
-  transform. Never add or maintain swatches by hand.
-- Explicit runtime renderers, such as the token inspector, use the same
-  literal parser and presentation helpers. Never scan the runtime DOM for
-  colors.
-- Keep source text, copied text and machine exports unchanged.
-- Run the three hex gates: source (`tests/hex-literals.test.js`), dist
-  (`tests/dist/hex-swatches.test.js`) and browser
-  (`tests/browser/hex-swatches.spec.js`).
+Every visible CSS hex literal on the site gets its generated inline swatch from
+the whole-page build transform; never add or maintain one by hand. Runtime
+renderers, such as the token inspector, use the same literal parser and
+presentation helpers and never scan the DOM for colours. Source text, copied
+text and machine exports stay unchanged. The three gates are
+`tests/hex-literals.test.js`, `tests/dist/hex-swatches.test.js` and
+`tests/browser/hex-swatches.spec.js`.
 
 ## Execution evidence
 
-- `tested` stays the compatibility alias for `testImplemented`. It is never a
-  pass.
-- Every browser test needs an explicit `verification` annotation that names its
-  component, category, states, variants and limits.
-- Use the shared evidence fixture for the real environment metadata.
-- A test in the matrix proves rendering coverage only.
+- `tested` stays the compatibility alias for `testImplemented`; it is never a
+  pass. A test in the matrix proves rendering coverage only.
+- Every browser test needs an explicit `verification` annotation naming its
+  component, category, states, variants and limits, and uses the shared
+  evidence fixture for the real environment metadata.
 - After the browser suite, run `npm run verification:report`, then
   `npm run verification:check`, then `npm run test:verification`.
-- Keep the exact specimen bytes.
-- Run records go in the ignored `test-results/` and the published
-  `dist/verification/`, never in the deterministic committed exports.
+- Keep the exact specimen bytes. Run records go in the ignored `test-results/`
+  and the published `dist/verification/`, never in the committed exports.
 - Do not claim a manual keyboard or screen-reader pass without a recorded
   protocol and environment.
 

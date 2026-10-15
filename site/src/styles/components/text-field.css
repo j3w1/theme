@@ -1,3 +1,4 @@
+@import "../partials/field.css";
 /* text-field — reference CSS. Every real pseudo-class is paired with the
    forced-state attribute the state matrix emits ([data-state-<part>]), so a
    state renders statically without scripts. Token variables only. */
@@ -11,12 +12,6 @@
   color: var(--color-text-default);
 }
 
-.text-field-label {
-  color: var(--color-text-bright);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
-}
-
 .text-field-required {
   display: none;
   color: var(--color-status-danger-text);
@@ -26,7 +21,7 @@
   display: flex;
   min-width: 0; /* a grid item would otherwise refuse to shrink below the input's intrinsic width */
   align-items: stretch;
-  min-height: var(--density-control-height, 32px);
+  min-height: var(--density-control-height, 24px);
   background: var(--color-surface-input);
   border: var(--border-width-default) solid var(--color-border-control);
   border-radius: var(--radius-none);
@@ -35,7 +30,7 @@
 .text-field-input {
   flex: 1 1 auto;
   min-width: 0;
-  padding: 0 var(--density-control-padding-x, 12px);
+  padding: 0 var(--density-control-padding-x, 8px);
   background: transparent;
   border: 0;
   color: var(--color-text-default);
@@ -110,21 +105,6 @@
   align-items: center;
   padding: 0 var(--space-8);
   color: var(--color-text-muted);
-}
-
-.text-field-help {
-  margin: 0;
-  color: var(--color-text-muted);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
-}
-
-.text-field-message {
-  display: none;
-  margin: 0;
-  color: var(--color-status-danger-text);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
 }
 
 /* hover */

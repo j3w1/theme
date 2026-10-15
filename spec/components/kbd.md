@@ -28,6 +28,7 @@ tokens:
   control.focus: color.interaction.focus.ring
   dependency.role-border-width-default: border.width.default
   dependency.role-border-width-emphasis: border.width.emphasis
+  dependency.role-focus-offset: focus.offset
   dependency.role-radius-none: radius.none
   dependency.role-space-12: space.12
   dependency.role-space-2: space.2
@@ -87,30 +88,32 @@ compact: false
 
 ## Purpose
 
-Show readable key names using native kbd text. This documents a shortcut; it does not bind one. State the platform when shortcuts differ.
+Shows the reader a key or shortcut; it binds nothing.
 
 ## Anatomy
 
-- **key:** Native kbd containing a readable key name.
-- **sequence:** Separate keys joined by text in activation order.
+Parts as listed in the anatomy.
 
 ## States
 
-| State | Presentation | Non-colour channel |
+| State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | Named content on the default surface. | Native text and structure. |
 
 ## Keyboard
 
-- **None:** The keycap is documentation, not a button.
+Not interactive; nothing is bound.
 
 ## Accessibility
 
-Write readable names such as Ctrl, Shift and Escape. Keep sequence punctuation as text. A shortcut hint does not replace an action's accessible name.
+Write readable names such as Ctrl, Shift and Escape, and keep sequence
+punctuation as text. A shortcut hint never replaces an action's accessible
+name.
 
 ## Portability
 
-Follows the shared component defaults in `spec/portability.md` (section "Shared component defaults").
+Follows the shared component defaults in `spec/portability.md` (section
+"Shared component defaults").
 
 ## Non-examples
 

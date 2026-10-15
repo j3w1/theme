@@ -4,7 +4,7 @@
    state matrix emits. Token variables only. */
 
 .sidebar-nav {
-  --_indent: calc(var(--density-icon, 16px) + var(--space-8));
+  --_indent: calc(var(--density-icon, 12px) + var(--space-8));
   min-width: 0;
   max-width: 15rem;
   padding: var(--space-4) 0;
@@ -36,9 +36,9 @@
   align-items: center;
   gap: var(--space-8);
   width: 100%;
-  min-height: var(--density-row-height, 36px);
-  padding: var(--space-4) var(--density-control-padding-x, 12px);
-  padding-inline-start: calc(var(--density-control-padding-x, 12px) - var(--border-width-emphasis));
+  min-height: var(--density-row-height, 28px);
+  padding: var(--space-4) var(--density-control-padding-x, 8px);
+  padding-inline-start: calc(var(--density-control-padding-x, 8px) - var(--border-width-emphasis));
   box-sizing: border-box;
   background: transparent;
   border: 0;
@@ -54,8 +54,8 @@
 .sidebar-nav-icon {
   display: inline-flex;
   flex: 0 0 auto;
-  width: var(--density-icon, 16px);
-  height: var(--density-icon, 16px);
+  width: var(--density-icon, 12px);
+  height: var(--density-icon, 12px);
   color: var(--color-icon-default);
 }
 
@@ -107,18 +107,18 @@
 }
 
 /* current: the bar and bright text */
-.sidebar-nav-link[aria-current="page"],
+.sidebar-nav-link:is([aria-current="page"], [aria-current="true"]),
 [data-state-current] .sidebar-nav-current {
   border-inline-start-color: var(--color-border-selected-indicator);
   color: var(--color-text-bright);
 }
 
-.sidebar-nav-link[aria-current="page"] .sidebar-nav-icon,
+.sidebar-nav-link:is([aria-current="page"], [aria-current="true"]) .sidebar-nav-icon,
 [data-state-current] .sidebar-nav-current .sidebar-nav-icon {
   color: var(--color-text-bright);
 }
 
-/* selected: the fill; the ring recolours on it */
+/* selected: the fill; the ordinary ring stays on it */
 .sidebar-nav-link[aria-selected="true"],
 [data-state-selected] .sidebar-nav-link-demo-target {
   background: var(--color-interaction-selection-bg);
@@ -131,7 +131,7 @@
 }
 
 .sidebar-nav-link[aria-selected="true"]:focus-visible {
-  outline-color: var(--color-interaction-focus-ring-container);
+  outline-color: var(--color-interaction-focus-ring);
 }
 
 /* selected, container inactive */
@@ -191,6 +191,38 @@
   padding-inline-start: calc(var(--space-8) - var(--border-width-emphasis));
 }
 
+@media (min-width: 900px) and (max-width: 1279.98px) {
+/* collapsed: an icon rail; labels are hidden, not removed */
+.site-rail {
+  max-width: none;
+  width: max-content;
+}
+
+.site-rail .sidebar-nav-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.site-rail .sidebar-nav-chevron {
+  display: none;
+}
+
+.site-rail .sidebar-nav-sublist {
+  padding-inline-start: 0;
+}
+
+.site-rail .sidebar-nav-link {
+  justify-content: center;
+  padding-inline: var(--space-8);
+  padding-inline-start: calc(var(--space-8) - var(--border-width-emphasis));
+}
+
+}
+
 @media (hover: none) {
   .sidebar-nav-link:hover {
     background: transparent;
@@ -213,7 +245,7 @@
     outline-color: Highlight;
   }
 
-  .sidebar-nav-link[aria-current="page"],
+  .sidebar-nav-link:is([aria-current="page"], [aria-current="true"]),
   [data-state-current] .sidebar-nav-current {
     border-inline-start-color: Highlight;
   }

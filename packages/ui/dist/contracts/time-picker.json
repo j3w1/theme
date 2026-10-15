@@ -137,6 +137,7 @@
     "hover",
     "focus-visible",
     "invalid",
+    "invalid+focus-visible",
     "disabled"
   ],
   "dependencies": [],
@@ -146,6 +147,7 @@
     "root.bg-hover": "color.interaction.hover.bg",
     "root.border-focus": "color.border.active",
     "root.ring": "color.interaction.focus.ring",
+    "root.ring-invalid": "color.interaction.focus.ring-container",
     "root.border-invalid": "color.status.danger.border",
     "root.border-disabled": "color.border.disabled",
     "root.bg-disabled": "color.interaction.disabled.bg",
@@ -567,6 +569,6 @@
   "copy": {
     "directory": "copy/time-picker/",
     "manifest": "copy/time-picker/manifest.json",
-    "digest": "sha256-wxpcgxJ9Gi6UvCUrDp9dioJK7/5dGvvJ8K3LZNbXyqM="
+    "digest": "sha256-A8dIwiYn2nlNCuNvQObX2Iws9rBDL/ID3aqTgjN0GjY="
   }
 }

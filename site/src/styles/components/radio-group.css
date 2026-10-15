@@ -1,3 +1,4 @@
+@import "../partials/field.css";
 /* radio-group — reference CSS. The native radio, appearance none, is a
    square box; the inner square stacks over it in the same 16px cell. Every
    real pseudo-class is paired with the forced-state attribute the state
@@ -41,7 +42,7 @@
 
 .radio-group-option {
   display: grid;
-  grid-template-columns: var(--density-icon, 16px) minmax(0, 1fr);
+  grid-template-columns: var(--density-icon, 12px) minmax(0, 1fr);
   align-items: start;
   gap: var(--space-8);
   min-height: var(--space-24);
@@ -51,8 +52,8 @@
 
 .radio-group-control {
   display: inline-grid;
-  width: var(--density-icon, 16px);
-  height: var(--density-icon, 16px);
+  width: var(--density-icon, 12px);
+  height: var(--density-icon, 12px);
 }
 
 .radio-group-control > * {
@@ -61,8 +62,8 @@
 
 .radio-group-input {
   appearance: none;
-  width: var(--density-icon, 16px);
-  height: var(--density-icon, 16px);
+  width: var(--density-icon, 12px);
+  height: var(--density-icon, 12px);
   margin: 0;
   background: var(--color-surface-input);
   border: var(--border-width-default) solid var(--color-border-control);
@@ -83,14 +84,6 @@
 .radio-group-text {
   font-size: var(--font-size-ui-md);
   line-height: var(--font-line-height-ui-md);
-}
-
-.radio-group-message {
-  display: none;
-  margin: 0;
-  color: var(--color-status-danger-text);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
 }
 
 /* hover: the box fill only, on hover-capable pointers */

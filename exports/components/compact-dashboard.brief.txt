@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — compact-dashboard
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/compact-dashboard.json
 spec: spec/components/compact-dashboard.md  site: https://j3w1.github.io/theme/reference/#c-compact-dashboard
 maturity: stable  priority: R2
@@ -13,24 +13,29 @@ Tokens (resolved):
   root.border                                         #a3676b  ({color.border.control})  use-and-report (D-007)
   heading.text                                        #ffa2a7  ({color.text.bright})  use
   secondary.text                                      #bd787d  ({color.text.muted})  use
-  control.bg                                          #000000  ({color.surface.input})  use
+  control.bg                                          rgb(0 0 0 / 0%)  ({color.action.secondary.bg})  use
+  control.text                                        #ffa2a7  ({color.action.secondary.text})  use
+  control.border                                      #a3676b  ({color.action.secondary.border})  use
+  control.bg-hover                                    #630f0d  ({color.action.secondary.hover-bg})  use
+  control.bg-active                                   #420f0c  ({color.action.secondary.pressed-bg})  use
+  control.border-active                               #e53935  ({color.border.active})  use
   control.focus                                       #e53935  ({color.interaction.focus.ring})  use
   dependency.role-border-width-default                1px  ({border.width.default})  use
   dependency.role-color-border-divider                #2b0e0d  ({color.border.divider})  use-and-report (D-008)
   dependency.role-color-surface-chrome                #090707  ({color.surface.chrome})  use
   dependency.role-density-comfortable-control-height  32px  ({density.comfortable.control-height})  use
   dependency.role-density-compact-control-height      24px  ({density.compact.control-height})  use
+  dependency.role-focus-offset                        -2px  ({focus.offset})  use
   dependency.role-font-size-h2                        16px  ({font.size.h2})  use
   dependency.role-radius-none                         0px  ({radius.none})  use
   dependency.role-space-12                            12px  ({space.12})  use
-  dependency.role-space-2                             2px  ({space.2})  use
   dependency.role-space-8                             8px  ({space.8})  use
 State dependency disclosures: D-007
 
 States: default, loading, empty, focus-visible
-  default: Square metric panels and readable tables. [Metric names, exact values and status text.]
-  loading: Busy boundary with existing content retained. [aria-busy and host-provided loading status.]
-  empty: Explicit absence of records. [Empty message; metric zero differs from unknown.]
+  default: Square metric panels, readable tables. Its buttons are the secondary button (button.md). [Metric names, exact values, status text.]
+  loading: Busy boundary; existing content kept. [`aria-busy` and host-provided loading status.]
+  empty: Explicit absence of records. [Empty message; a zero metric differs from an unknown one.]
   focus-visible: Dashed action outline. [Native keyboard focus.]
 
 Keyboard:

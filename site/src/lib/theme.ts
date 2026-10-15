@@ -1,6 +1,7 @@
 /* Typed access to the manifest and the committed exports. The page renders
    exports, not raw tokens, so what people read is what agents fetch. */
 
+import { hexOf as tokenHex } from "../../../scripts/lib/color.mjs";
 import manifest from "../../../theme.json";
 import resolved from "../../../exports/tokens.resolved.json";
 import contrast from "../../../exports/contrast.json";
@@ -36,14 +37,8 @@ export const anchors = anchorFor;
 export const tokensInGroup = (prefix: string): [string, ResolvedToken][] =>
   Object.entries(defaultTokens).filter(([path]) => path.startsWith(prefix));
 
-export const cssVar = (path: string): string => `--${path.replaceAll(".", "-")}`;
-
-export const isColor = (token: ResolvedToken): boolean => token.type === "color";
+export { cssVar } from "../../../scripts/lib/tokens.mjs";
 
 export const hexOf = (path: string): string | null => {
-  const token = defaultTokens[path];
-  return token && token.type === "color" ? (token.value as { hex: string }).hex : null;
+  return tokenHex(defaultTokens[path]);
 };
-
-export const valuePerProfile = (path: string): { profile: string; css: string; status: string }[] =>
-  Object.entries(profiles).map(([id, p]) => ({ profile: id, css: p.tokens[path]?.css ?? "—", status: p.status }));

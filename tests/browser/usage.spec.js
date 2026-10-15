@@ -51,7 +51,7 @@ test("token details are persistent, source-linked and readable without scripts",
   await expect(page.locator(".hex-swatch").first()).toBeVisible();
   const source = page.locator('.usage-source a[href*="spec/components/text-field.md"]').first();
   if (await source.count()) await expect(source).toHaveAttribute("href", /\/blob\/[a-f0-9]{40}\/spec\/components\/text-field\.md#L\d+$/);
-  else await expect(page.locator("header .stamp")).toContainText("Local build");
+  else await expect(page.locator("header .site-stamp")).toContainText("Local build");
   expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
   if (testInfo.project.name === "desktop") {
     await page.context().grantPermissions(["clipboard-read", "clipboard-write"]);

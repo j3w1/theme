@@ -1,5 +1,8 @@
 ---
+/* The validation-recovery workflow. One filled primary per view (button.md):
+   the submit; the other steps are secondary, and Reset is tertiary. */
 import { anchorFor } from "../../../scripts/lib/anchors.mjs";
+
 const { prefix, templates } = Astro.props;
 ---
 <section class="admin-form form-tool" data-workflow={prefix} hidden>
@@ -8,15 +11,15 @@ const { prefix, templates } = Astro.props;
   <form novalidate>
     <div class="alert alert-danger form-tool-summary" data-errors role="alert" tabindex="-1" hidden></div>
     <fieldset class="form-tool-fields" data-fields aria-label="Enter values"></fieldset>
-    <div class="form-tool-actions"><button class="button button-primary" type="submit" data-event="submit">Review values</button></div>
+    <div class="form-tool-actions"><button class="button" type="submit" data-event="submit">Review values</button></div>
   </form>
   <table data-review class="table" hidden></table>
   <p data-status role="status" tabindex="-1" id={anchorFor.formField(prefix, "workflow", "status")}></p>
   <div class="form-tool-actions">
-    <button class="button" type="button" data-event="edit" hidden>Edit values</button>
-    <button class="button button-primary" type="button" data-event="confirm" hidden>Simulate save</button>
-    <button class="button" type="button" data-event="complete" hidden>Complete simulation</button>
-    <button class="button" type="button" data-event="reset">Reset values</button>
+    <button class="button button-secondary" type="button" data-event="edit" hidden>Edit values</button>
+    <button class="button button-secondary" type="button" data-event="confirm" hidden>Simulate save</button>
+    <button class="button button-secondary" type="button" data-event="complete" hidden>Complete simulation</button>
+    <button class="button button-tertiary" type="button" data-event="reset">Reset values</button>
   </div>
   {Object.entries(templates).map(([kind, html]) => <template data-field-template={kind} set:html={html} />)}
 </section>

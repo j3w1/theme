@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=",
+  "sourceDigest": "sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=",
   "id": "avatar",
   "family": "display",
   "maturity": "stable",
@@ -149,6 +149,18 @@
         "decisionIds": []
       }
     },
+    "dependency.role-focus-offset": {
+      "alias": "focus.offset",
+      "value": "-2px",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
     "dependency.role-font-weight-bold": {
       "alias": "font.weight.bold",
       "value": "700",
@@ -185,18 +197,6 @@
         "decisionIds": []
       }
     },
-    "dependency.role-space-2": {
-      "alias": "space.2",
-      "value": "2px",
-      "status": "observed",
-      "deprecated": false,
-      "decisionId": null,
-      "eligibility": {
-        "action": "use",
-        "reason": "Use within the role's documented scope and restrictions.",
-        "decisionIds": []
-      }
-    },
     "dependency.role-space-32": {
       "alias": "space.32",
       "value": "32px",
@@ -213,7 +213,7 @@
   "stateRules": [
     {
       "state": "default",
-      "visual": "Initials or loaded image.",
+      "visual": "Initials or the loaded image.",
       "channel": "Full name on the image container.",
       "tokens": {
         "fg": {
@@ -258,14 +258,14 @@
     },
     {
       "state": "loading",
-      "visual": "Fallback remains visible.",
-      "channel": "No loss of the full accessible name while loading.",
+      "visual": "Fallback stays visible.",
+      "channel": "Full accessible name kept.",
       "tokens": {}
     },
     {
       "state": "error",
-      "visual": "Fallback remains visible.",
-      "channel": "Image failure does not remove the entity name.",
+      "visual": "Fallback stays visible.",
+      "channel": "Full accessible name kept.",
       "tokens": {}
     }
   ],

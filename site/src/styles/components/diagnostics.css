@@ -119,8 +119,8 @@
   flex-wrap: wrap;
   gap: var(--space-12);
   align-items: baseline;
-  min-height: var(--density-row-height, 36px);
-  padding: 0 var(--density-control-padding-x, 12px);
+  min-height: var(--density-row-height, 28px);
+  padding: 0 var(--density-control-padding-x, 8px);
   border-bottom: var(--border-width-default) solid var(--color-border-divider);
 }
 
@@ -159,8 +159,8 @@
   grid-template-columns: auto minmax(0, 1fr) auto auto;
   gap: 0 var(--space-8);
   align-items: baseline;
-  min-height: var(--density-row-height, 36px);
-  padding: var(--space-4) var(--density-control-padding-x, 12px);
+  min-height: var(--density-row-height, 28px);
+  padding: var(--space-4) var(--density-control-padding-x, 8px);
   border-bottom: var(--border-width-default) solid var(--color-border-divider);
   cursor: default;
 }
@@ -186,7 +186,7 @@
 .diagnostics-empty {
   display: none;
   margin: 0;
-  padding: var(--space-4) var(--density-control-padding-x, 12px);
+  padding: var(--space-4) var(--density-control-padding-x, 8px);
 }
 
 .diagnostics-status {
@@ -251,10 +251,10 @@
   background: var(--color-code-selection-bg);
 }
 
-/* selected + focus-visible: the ring recolours on the fill */
+/* selected + focus-visible: the ordinary ring stays on the fill */
 .diagnostics-list:focus-visible .diagnostics-row[aria-selected="true"],
 [data-state-selected][data-state-focus-visible] .diagnostics-row-active {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring);
   outline-offset: var(--focus-offset);
 }
 

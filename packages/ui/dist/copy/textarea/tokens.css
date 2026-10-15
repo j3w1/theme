@@ -303,6 +303,8 @@
   --font-size-reading: 15px;
   --font-size-code: 13px;
   --font-size-terminal: 13px;
+  --font-size-display: 32px;
+  --font-size-title: 24px;
   --font-size-h1: 20px;
   --font-size-h2: 16px;
   --font-size-h3: 13px;
@@ -313,6 +315,8 @@
   --font-line-height-reading: 24px;
   --font-line-height-code: 19px;
   --font-line-height-terminal: 19px;
+  --font-line-height-display: 40px;
+  --font-line-height-title: 32px;
   --font-line-height-h1: 28px;
   --font-line-height-h2: 24px;
   --font-line-height-h3: 18px;
@@ -356,7 +360,7 @@
   --z-toast: 40;
   --z-skip-link: 1000;
 }
-[data-density="compact"] {
+:root, [data-density="compact"] {
   --density-control-height: 24px;
   --density-row-height: 28px;
   --density-control-padding-x: 8px;

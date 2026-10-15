@@ -8,7 +8,7 @@ j3w1-textarea {
   line-height: var(--font-line-height-ui-md);
 }
 j3w1-textarea, j3w1-textarea *, j3w1-textarea *::before, j3w1-textarea *::after { box-sizing: border-box; }
-j3w1-textarea button, j3w1-textarea input, j3w1-textarea select, j3w1-textarea textarea { font: inherit; }
+j3w1-textarea :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 j3w1-textarea ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);
@@ -25,6 +25,66 @@ j3w1-textarea .sr-only {
   border: 0;
 }
 
+j3w1-textarea .combobox-label,
+j3w1-textarea .dialog-field-label,
+j3w1-textarea .field-label,
+j3w1-textarea .fieldset-label,
+j3w1-textarea .file-input-label,
+j3w1-textarea .number-field-label,
+j3w1-textarea .search-field-label,
+j3w1-textarea .select-label,
+j3w1-textarea .text-field-label,
+j3w1-textarea .textarea-label,
+j3w1-textarea .time-picker-label {
+  color: var(--color-text-bright);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+j3w1-textarea .combobox-help,
+j3w1-textarea .date-picker-help,
+j3w1-textarea .dialog-field-help,
+j3w1-textarea .fieldset-help,
+j3w1-textarea .file-input-help,
+j3w1-textarea .number-field-help,
+j3w1-textarea .search-field-help,
+j3w1-textarea .select-help,
+j3w1-textarea .text-field-help,
+j3w1-textarea .textarea-help,
+j3w1-textarea .time-picker-help {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+j3w1-textarea .combobox-message,
+j3w1-textarea .date-picker-message,
+j3w1-textarea .file-input-message,
+j3w1-textarea .number-field-message,
+j3w1-textarea .radio-group-message,
+j3w1-textarea .select-message,
+j3w1-textarea .text-field-message,
+j3w1-textarea .textarea-message,
+j3w1-textarea .time-picker-message {
+  display: none;
+  margin: 0;
+  color: var(--color-status-danger-text);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+j3w1-textarea .combobox-root,
+j3w1-textarea .date-picker-root,
+j3w1-textarea .number-field-root {
+  display: flex;
+  align-items: stretch;
+  min-height: var(--density-control-height, 24px);
+  background: var(--color-surface-input);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+}
+
 j3w1-textarea .textarea {
   position: relative;
   display: grid;
@@ -32,12 +92,6 @@ j3w1-textarea .textarea {
   min-width: 0;
   max-width: calc(var(--font-size-ui-md) * 28);
   color: var(--color-text-default);
-}
-
-j3w1-textarea .textarea-label {
-  color: var(--color-text-bright);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
 }
 
 j3w1-textarea .textarea-required {
@@ -57,8 +111,8 @@ j3w1-textarea .textarea-input {
   display: block;
   width: 100%;
   min-width: 0;
-  min-height: calc(var(--density-control-height, 32px) * 2);
-  padding: var(--space-4) var(--density-control-padding-x, 12px);
+  min-height: calc(var(--density-control-height, 24px) * 2);
+  padding: var(--space-4) var(--density-control-padding-x, 8px);
   background: transparent;
   border: 0;
   color: var(--color-text-default);
@@ -87,21 +141,6 @@ j3w1-textarea .textarea-count {
   font-size: var(--font-size-ui-sm);
   line-height: var(--font-line-height-ui-sm);
   font-variant-numeric: tabular-nums;
-}
-
-j3w1-textarea .textarea-help {
-  margin: 0;
-  color: var(--color-text-muted);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
-}
-
-j3w1-textarea .textarea-message {
-  display: none;
-  margin: 0;
-  color: var(--color-status-danger-text);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
 }
 j3w1-textarea .textarea-root:hover {
   background: var(--color-interaction-hover-bg);

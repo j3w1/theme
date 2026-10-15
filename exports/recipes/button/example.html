@@ -89,7 +89,7 @@ SOFTWARE.
   --radius-none: 0px;
   --space-4: 4px;
 }
-.j3w1-recipe[data-density="compact"] {
+.j3w1-recipe, .j3w1-recipe[data-density="compact"] {
   --density-control-height: var(--density-compact-control-height);
   --density-control-padding-x: var(--density-compact-control-padding-x);
 }
@@ -128,7 +128,7 @@ SOFTWARE.
   line-height: var(--font-line-height-ui-md);
 }
 .j3w1-recipe, .j3w1-recipe *, .j3w1-recipe *::before, .j3w1-recipe *::after { box-sizing: border-box; }
-.j3w1-recipe button, .j3w1-recipe input, .j3w1-recipe select, .j3w1-recipe textarea { font: inherit; }
+.j3w1-recipe :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 .j3w1-recipe ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);
@@ -166,21 +166,17 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-.j3w1-recipe .button {
-  --_bg: var(--color-action-primary-bg);
-  --_fg: var(--color-action-primary-text);
-  --_border: var(--color-action-primary-border);
-  --_bg-hover: var(--color-action-primary-hover-bg);
-  --_fg-hover: var(--color-action-primary-text);
-  --_bg-active: var(--color-action-primary-pressed-bg);
-  --_border-active: var(--color-action-primary-border);
-  --_ring: var(--color-interaction-focus-ring-container);
+.j3w1-recipe .button,
+.j3w1-recipe .dialog-button,
+.j3w1-recipe .empty-state-action,
+.j3w1-recipe .file-input-button,
+.j3w1-recipe button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-4);
-  min-height: var(--density-control-height, 32px);
-  padding: 0 var(--density-control-padding-x, 12px);
+  min-height: var(--density-control-height, 24px);
+  padding: 0 var(--density-control-padding-x, 8px);
   margin: 0;
   background: var(--_bg);
   color: var(--_fg);
@@ -193,8 +189,23 @@ SOFTWARE.
   cursor: pointer;
   outline: 0;
 }
+.j3w1-recipe .button,
+.j3w1-recipe .dialog-button.dialog-button-primary {
+  --_bg: var(--color-action-primary-bg);
+  --_fg: var(--color-action-primary-text);
+  --_border: var(--color-action-primary-border);
+  --_bg-hover: var(--color-action-primary-hover-bg);
+  --_fg-hover: var(--color-action-primary-text);
+  --_bg-active: var(--color-action-primary-pressed-bg);
+  --_border-active: var(--color-action-primary-border);
+  --_ring: var(--color-interaction-focus-ring-container);
+}
 
-.j3w1-recipe .button-secondary {
+.j3w1-recipe .button-secondary,
+.j3w1-recipe .dialog-button,
+.j3w1-recipe .empty-state-action,
+.j3w1-recipe .file-input-button,
+.j3w1-recipe button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control) {
   --_bg: var(--color-action-secondary-bg);
   --_fg: var(--color-action-secondary-text);
   --_border: var(--color-action-secondary-border);
@@ -226,7 +237,8 @@ SOFTWARE.
   --_border-active: var(--color-action-destructive-border);
   --_ring: var(--color-interaction-focus-ring);
 }
-.j3w1-recipe .button-destructive-filled {
+.j3w1-recipe .button-destructive-filled,
+.j3w1-recipe .dialog-button.dialog-button-destructive {
   --_bg: var(--color-action-destructive-filled-bg);
   --_fg: var(--color-action-destructive-filled-text);
   --_border: var(--color-action-destructive-border);
@@ -235,6 +247,49 @@ SOFTWARE.
   --_bg-active: var(--color-action-destructive-pressed-bg);
   --_border-active: var(--color-action-destructive-border);
   --_ring: var(--color-action-destructive-filled-text);
+}
+@media (hover: hover) {
+  .j3w1-recipe :is(.button, .dialog-button, .empty-state-action, .file-input-button, button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control)):hover {
+    --_bg: var(--_bg-hover);
+    --_fg: var(--_fg-hover);
+  }
+
+  .j3w1-recipe .button-destructive:hover {
+    --_ring: var(--color-action-destructive-hover-text);
+  }
+}
+.j3w1-recipe :is(.button, .dialog-button, .empty-state-action, .file-input-button, button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control)):active {
+  --_bg: var(--_bg-active);
+  --_fg: var(--_fg-hover);
+  --_border: var(--_border-active);
+}
+.j3w1-recipe :is(.button, .dialog-button, .empty-state-action, button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control)):focus-visible {
+  outline: var(--border-width-default) dashed var(--_ring);
+  outline-offset: var(--focus-offset);
+}
+.j3w1-recipe :is(.button, .dialog-button, .empty-state-action, button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control)):disabled {
+  --_bg: var(--color-interaction-disabled-bg);
+  --_fg: var(--color-text-disabled);
+  --_border: var(--color-border-disabled);
+  --_bg-hover: var(--color-interaction-disabled-bg);
+  --_fg-hover: var(--color-text-disabled);
+  --_bg-active: var(--color-interaction-disabled-bg);
+  --_border-active: var(--color-border-disabled);
+  cursor: not-allowed;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .j3w1-recipe .dialog-button,
+  .j3w1-recipe .empty-state-action,
+  .j3w1-recipe .file-input-button,
+  .j3w1-recipe button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control) {
+    transition: background-color var(--motion-duration-fast);
+  }
+}
+
+@media (forced-colors: active) {
+  .j3w1-recipe :is(.button, .dialog-button, .empty-state-action, button:is(.button-group-control, .command-palette-control, .compact-dashboard-control, .editor-search-control, .error-state-control, .file-browser-control, .multiselect-control, .popover-control, .repeater-control)):focus-visible {
+    outline-color: Highlight;
+  }
 }
 
 .j3w1-recipe .button-icon {
@@ -253,25 +308,6 @@ SOFTWARE.
 .j3w1-recipe .button-label {
   min-width: 0;
 }
-@media (hover: hover) {
-  .j3w1-recipe .button:hover {
-    --_bg: var(--_bg-hover);
-    --_fg: var(--_fg-hover);
-  }
-
-  .j3w1-recipe .button-destructive:hover {
-    --_ring: var(--color-action-destructive-hover-text);
-  }
-}
-.j3w1-recipe .button:active {
-  --_bg: var(--_bg-active);
-  --_fg: var(--_fg-hover);
-  --_border: var(--_border-active);
-}
-.j3w1-recipe .button:focus-visible {
-  outline: var(--border-width-default) dashed var(--_ring);
-  outline-offset: var(--focus-offset);
-}
 .j3w1-recipe .button[aria-busy="true"] .button-loading {
   display: inline;
 }
@@ -283,16 +319,6 @@ SOFTWARE.
 .j3w1-recipe .button[aria-busy="true"] {
   cursor: progress;
 }
-.j3w1-recipe .button:disabled {
-  --_bg: var(--color-interaction-disabled-bg);
-  --_fg: var(--color-text-disabled);
-  --_border: var(--color-border-disabled);
-  --_bg-hover: var(--color-interaction-disabled-bg);
-  --_fg-hover: var(--color-text-disabled);
-  --_bg-active: var(--color-interaction-disabled-bg);
-  --_border-active: var(--color-border-disabled);
-  cursor: not-allowed;
-}
 
 @media (prefers-reduced-motion: no-preference) {
   .j3w1-recipe .button {
@@ -301,13 +327,10 @@ SOFTWARE.
 }
 
 @media (forced-colors: active) {
-  .j3w1-recipe .button:focus-visible {
-    outline-color: Highlight;
-  }
 }
 </style>
 </head><body>
-<div class="j3w1-recipe" data-density="comfortable">
+<div class="j3w1-recipe" data-density="compact">
 <button class="button" type="button">
   <svg class="button-icon" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M3 8.5l3 3 7-7"></path></svg>
   <span class="button-loading" aria-hidden="true">⋯</span>

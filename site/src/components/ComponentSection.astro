@@ -4,24 +4,27 @@ import Eligibility from "./Eligibility.astro";
    specification body, the agent brief. Anchors come from scripts/lib/anchors.mjs. */
 import { render } from "astro:content";
 import { withBase } from "../lib/base";
-import { anchors, coverageLedger, cssVar, defaultTokens, familyList } from "../lib/theme";
+import { anchors, coverageLedger, defaultTokens, familyList } from "../lib/theme";
 import StateMatrix from "./StateMatrix.astro";
+import ContrastReport from "./ContrastReport.astro";
 import { splitVariants } from "../../../scripts/lib/spec.mjs";
 import { RECIPE_IDS } from "../../../schemas/recipe.mjs";
 import { PREVIEW_IDS } from "../../../schemas/playground.mjs";
 
 interface Props {
   entry: any;
-  demo: string | null;
+  demo?: string | null;
+  compact?: boolean;
 }
 
-const { entry, demo } = Astro.props;
+const { entry, demo = null, compact = false } = Astro.props;
 const c = entry.data;
-const { Content } = await render(entry);
+const { Content, headings } = await render(entry);
+const destination = withBase(`components/${c.id}/`);
 const fragments = demo ? (splitVariants(demo) as Map<string, string>) : new Map<string, string>();
 const coverage = (coverageLedger.components as Record<string, { specified: boolean; demonstrated: boolean; tested: boolean }>)[c.id];
 const family = familyList.find((f) => f.id === c.family);
-const statusTags = [coverage?.specified && "specified", coverage?.demonstrated && "demonstrated", coverage?.tested && "tested"].filter(Boolean) as string[];
+const statusTags = [coverage?.specified && "specified", coverage?.demonstrated && "demonstrated", coverage?.tested && "test implemented"].filter(Boolean) as string[];
 ---
 
 <section class="component" id={anchors.component(c.id)} data-component={c.id} data-family={c.family} data-states={c.states.join(",")} data-priority={c.priority} data-maturity={c.maturity} data-keywords={[c.name, ...c.keywords].join(" ").toLowerCase()}>
@@ -36,12 +39,22 @@ const statusTags = [coverage?.specified && "specified", coverage?.demonstrated &
     {c.maturity === "draft" && <li><span class="tag tag-proposed">draft</span></li>}
   </ul>
   <p class="prose">{c.summary}</p>
+  {compact ? <>
+    <p class="component-inventory">Variants: {c.variants.map((v: { name: string }) => v.name).join(", ")}. States: {c.states.join(", ")}.</p>
+    <nav class="component-links" aria-label={`${c.name} specification`}>
+      <a class="link link-standalone" data-legacy-target href={`${destination}#${anchors.component(c.id)}`}>Full specification →</a>
+      <a class="link" id={anchors.states(c.id)} data-legacy-target href={`${destination}#${anchors.states(c.id)}`}>State matrix</a>
+      {PREVIEW_IDS.includes(c.id) && <a class="link" id={anchors.workbench(c.id, "embedded")} data-legacy-target href={`${destination}#${anchors.workbench(c.id, "embedded")}`}>Live controls</a>}
+      {headings.map((heading: { slug: string; text: string }) => <a class="link" id={heading.slug} data-legacy-target href={`${destination}#${heading.slug}`}>{heading.text}</a>)}
+    </nav>
+  </> : <>
   <p><a href={withBase(`report/?component=${encodeURIComponent(c.id)}`)}>Report an issue with this component</a></p>
-  {PREVIEW_IDS.includes(c.id) && <div class="workbench-entry"><p><a href={withBase(`workbench/${c.id}/`)}>Open component workbench</a> <button type="button" class="btn js-only" data-workbench-open={withBase(`workbench/${c.id}/`)} aria-controls={anchors.workbench(c.id, "embedded")} aria-expanded="false">Open live controls here</button></p><div id={anchors.workbench(c.id, "embedded")} data-workbench-slot></div></div>}
+  {PREVIEW_IDS.includes(c.id) && <div class="workbench-entry"><p><a href={withBase(`workbench/${c.id}/`)}>Open component workbench</a> <button type="button" class="button button-secondary js-only" data-workbench-open={withBase(`workbench/${c.id}/`)} aria-controls={anchors.workbench(c.id, "embedded")} aria-expanded="false">Open live controls here</button></p><div id={anchors.workbench(c.id, "embedded")} data-workbench-slot></div></div>}
   {RECIPE_IDS.includes(c.id) && <p><a href={withBase(`recipes/${c.id}/`)}>View source and copy recipe</a> · <a href={withBase(`exports/recipes/${c.id}/example.html`)} download>Download standalone example</a>{c.id === "dialog" && " — visual-only; modal behavior is host-owned."}</p>}
 
   <div class="block">
     <h4>Tokens</h4>
+    <p>Focus a role to inspect its values; follow its link for persistent usage and source details.</p>
     <div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table">
       <table class="spec-table token-table">
         <thead><tr><th scope="col">Part</th><th scope="col">Role</th><th scope="col">Value</th><th scope="col">Use</th></tr></thead>
@@ -51,7 +64,7 @@ const statusTags = [coverage?.specified && "specified", coverage?.demonstrated &
             return (
               <tr>
                 <td><code>{part}</code></td>
-                <td><code data-token={path}>{path}</code><Eligibility token={token} /></td>
+                <td><a href={withBase(`tokens/${encodeURIComponent(path)}/`)} data-token={path}><code>{path}</code></a><Eligibility token={token} /></td>
                 <td><code>{token?.css ?? "unresolved"}</code></td>
                 <td>{token?.description}</td>
               </tr>
@@ -68,6 +81,8 @@ const statusTags = [coverage?.specified && "specified", coverage?.demonstrated &
   <div class="spec-body prose">
     <Content />
   </div>
+
+  <ContrastReport component={c.id} />
 
   {c.keyboard.length > 0 && (
     <div class="block">
@@ -87,9 +102,10 @@ const statusTags = [coverage?.specified && "specified", coverage?.demonstrated &
       <a href={withBase(`exports/components/${c.id}.json`)}>Component JSON</a> ·
       <a href={withBase(`exports/components/${c.id}.brief.txt`)}>Implementation brief</a> ·
       <a href={withBase(`kit/?components=${c.id}`)}>Build a task kit</a> ·
-      <button type="button" class="btn js-only" data-copy-brief={withBase(`exports/components/${c.id}.brief.txt`)}>Copy implementation brief</button>
+      <button type="button" class="button button-secondary js-only" data-copy-brief={withBase(`exports/components/${c.id}.brief.txt`)}>Copy implementation brief</button>
     </p>
-    {c.related.length > 0 && <p>Related: {c.related.map((r: string) => <><a href={`#${anchors.component(r)}`}><code>{r}</code></a> </>)}</p>}
+    {c.related.length > 0 && <p>Related: {c.related.map((r: string) => <><a href={withBase(`components/${r}/#${anchors.component(r)}`)}><code>{r}</code></a> </>)}</p>}
     {c.fixtures.length > 0 && <p>Stress fixtures: {c.fixtures.map((f: string) => <><code>{f}</code> </>)}</p>}
   </div>
+  </>}
 </section>

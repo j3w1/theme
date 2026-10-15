@@ -55,7 +55,7 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-8);
-  min-height: var(--density-row-height, 36px);
+  min-height: var(--density-row-height, 28px);
   padding: var(--space-8) var(--space-12);
   border-bottom: var(--border-width-default) solid var(--color-border-divider);
 }
@@ -107,7 +107,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-8);
-  min-height: var(--density-row-height, 36px);
+  min-height: var(--density-row-height, 28px);
   padding: 0 var(--space-12);
   color: var(--color-text-default);
   text-decoration: none;
@@ -164,7 +164,7 @@
 }
 
 [data-state-closed] .drawer-backdrop {
-  min-height: var(--density-row-height, 36px);
+  min-height: var(--density-row-height, 28px);
   background: transparent;
 }
 

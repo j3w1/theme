@@ -9,7 +9,7 @@ const VARIANTS = ["default", "with-groups", "multiple"];
 
 test.describe("select", () => {
   test("the state matrix renders every declared state for every variant", verification({component: "select", category: "rendering", states: ["default", "hover", "focus-visible", "required", "invalid", "invalid+focus-visible", "disabled"], variants: ["default", "with-groups", "multiple"], note: "Presence and selected structural assertions only; not behavioral verification of every state."}), async ({ page }) => {
-    await openSpec(page, "#c-select");
+    await openSpec(page, "components/select/#c-select");
     for (const state of STATES) {
       await expect(page.locator(`#select-states [data-state="${state}"]`)).toHaveCount(VARIANTS.length);
     }
@@ -21,7 +21,7 @@ test.describe("select", () => {
 
   test("the live control honours the box, focus, invalid and disabled rules", verification({component: "select", category: "appearance", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs"), "computed styles are the same without scripts; keep one run");
-    await openSpec(page, "#c-select");
+    await openSpec(page, "components/select/#c-select");
     const live = page.locator('#select-states [data-state="default"]').first();
     const control = live.locator("select");
     const root = live.locator(".select-root");
@@ -74,7 +74,7 @@ test.describe("select", () => {
 
   test("keyboard: Tab reaches the live select and the ring shows", verification({component: "select", category: "keyboard", states: [], variants: [], note: "Only the assertions in this named test; no comprehensive state or variant coverage claim. Profile and density record the initial configuration; any switches are described by the test."}), async ({ page }, testInfo) => {
     test.skip(only(testInfo, "nojs", "narrow", "zoom200"), "one keyboard walk");
-    await openSpec(page, "#c-select");
+    await openSpec(page, "components/select/#c-select");
     const control = page.locator('#select-states [data-state="default"][data-state-default] select').first();
     await control.focus();
     await expect(control).toBeFocused();

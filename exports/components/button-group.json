@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=",
+  "sourceDigest": "sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=",
   "id": "button-group",
   "family": "actions",
   "maturity": "stable",
@@ -114,11 +114,71 @@
       }
     },
     "control.bg": {
-      "alias": "color.surface.input",
-      "value": "#000000",
-      "status": "approved",
+      "alias": "color.action.secondary.bg",
+      "value": "rgb(0 0 0 / 0%)",
+      "status": "observed",
       "deprecated": false,
-      "decisionId": "D-023",
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "control.text": {
+      "alias": "color.action.secondary.text",
+      "value": "#ffa2a7",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "control.border": {
+      "alias": "color.action.secondary.border",
+      "value": "#a3676b",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "control.bg-hover": {
+      "alias": "color.action.secondary.hover-bg",
+      "value": "#630f0d",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "control.bg-active": {
+      "alias": "color.action.secondary.pressed-bg",
+      "value": "#420f0c",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "control.border-active": {
+      "alias": "color.border.active",
+      "value": "#e53935",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -209,6 +269,18 @@
         "decisionIds": []
       }
     },
+    "dependency.role-focus-offset": {
+      "alias": "focus.offset",
+      "value": "-2px",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
     "dependency.role-radius-none": {
       "alias": "radius.none",
       "value": "0px",
@@ -224,18 +296,6 @@
     "dependency.role-space-12": {
       "alias": "space.12",
       "value": "12px",
-      "status": "observed",
-      "deprecated": false,
-      "decisionId": null,
-      "eligibility": {
-        "action": "use",
-        "reason": "Use within the role's documented scope and restrictions.",
-        "decisionIds": []
-      }
-    },
-    "dependency.role-space-2": {
-      "alias": "space.2",
-      "value": "2px",
       "status": "observed",
       "deprecated": false,
       "decisionId": null,
@@ -273,7 +333,7 @@
   "stateRules": [
     {
       "state": "default",
-      "visual": "Named content on the default surface.",
+      "visual": "Named content on the default surface. Its buttons are the secondary button (button.md).",
       "channel": "Native text and structure.",
       "tokens": {
         "fg": {
@@ -360,7 +420,7 @@
   ],
   "related": [],
   "specimens": [],
-  "nonExamples": "Unlabelled controls, color-only status, drag-only operations, hidden required instructions, stolen focus or an invented service success.",
+  "nonExamples": "Unlabelled controls, colour-only status, drag-only operations, hidden required\ninstructions, stolen focus or an invented service success.",
   "contrast": [
     {
       "label": "button-group default text",
@@ -424,6 +484,32 @@
       "fgHex": "#a3676b",
       "bgHex": "#100c0c",
       "ratio": 4.36,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "Button label",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.secondary.text",
+      "bg": "color.surface.default",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#100c0c",
+      "ratio": 10.17,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "Button label on hover",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.secondary.text",
+      "bg": "color.action.secondary.hover-bg",
+      "fgHex": "#ffa2a7",
+      "bgHex": "#630f0d",
+      "ratio": 6.84,
       "pass": true,
       "waiver": null
     }

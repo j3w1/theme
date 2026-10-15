@@ -7,6 +7,7 @@
    documented as a project convention in theme.json). Profile files may only
    override paths that already exist in the base set. */
 
+import { hexToColor as authorColor } from "./color.mjs";
 import { z } from "zod";
 import { readJson } from "./fs.mjs";
 import { formatIssues } from "./schema-issues.mjs";
@@ -19,7 +20,7 @@ const RESERVED = new Set(["$type", "$value", "$description", "$extensions", "$de
 
 export const cssVar = (path) => `--${path.replaceAll(".", "-")}`;
 
-export const aliasTarget = (value) => (typeof value === "string" && ALIAS.test(value) ? value.slice(1, -1) : null);
+const aliasTarget = (value) => (typeof value === "string" && ALIAS.test(value) ? value.slice(1, -1) : null);
 
 /* Flattens one file into path → declaration, applying group $type inheritance. */
 export const flattenTree = (tree, file, { prefix = [], inheritedType = null, out = new Map() } = {}) => {
@@ -46,7 +47,7 @@ export const flattenTree = (tree, file, { prefix = [], inheritedType = null, out
   return out;
 };
 
-export const loadTokenFile = async (relative) => {
+const loadTokenFile = async (relative) => {
   const raw = await readJson(relative);
   const parsed = tokenFileSchema(z).safeParse(raw);
   if (!parsed.success) {
@@ -168,8 +169,7 @@ const rgbaCss = (value) => {
 export const hexToColor = (hex, alpha = 1) => {
   const h = hex.toLowerCase();
   if (!/^#[0-9a-f]{6}$/.test(h)) throw new TokenError(`bad hex ${hex}`);
-  const components = [1, 3, 5].map((i) => Number((parseInt(h.slice(i, i + 2), 16) / 255).toFixed(4)));
-  return alpha === 1 ? { colorSpace: "srgb", components, alpha: 1, hex: h } : { colorSpace: "srgb", components, alpha, hex: h };
+  return authorColor(h, alpha);
 };
 
 /* Flattened export shape: path → { type, value (resolved), css, aliasOf, description, status, deprecated }. */

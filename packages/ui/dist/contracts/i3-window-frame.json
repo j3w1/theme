@@ -96,7 +96,7 @@
     "workspace.selected-text": "color.interaction.selection.text",
     "workspace.bg-hover": "color.interaction.hover.bg",
     "workspace.ring": "color.interaction.focus.ring",
-    "workspace.ring-on-selection": "color.interaction.focus.ring-container",
+    "workspace.ring-on-selection": "color.interaction.focus.ring",
     "workspace.urgent-bg": "color.status.danger.fill",
     "workspace.urgent-text": "color.status.danger.on-fill",
     "status.separator": "color.text.muted",
@@ -168,7 +168,7 @@
       "color.code.whitespace",
       "color.icon.decorative",
       "color.interaction.drop-target",
-      "color.interaction.focus.ring-container",
+      "color.interaction.focus.ring",
       "color.interaction.hover.bg",
       "color.interaction.pressed.bg",
       "color.interaction.selection.bg",
@@ -591,7 +591,7 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
-      "color.interaction.focus.ring-container": {
+      "color.interaction.focus.ring": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -962,6 +962,6 @@
   "copy": {
     "directory": "copy/i3-window-frame/",
     "manifest": "copy/i3-window-frame/manifest.json",
-    "digest": "sha256-SQObA3CbBJSibf9fY3JRlURdH9FXLA7SfbAElKJ+pPs="
+    "digest": "sha256-RTBwBQLyeV3Z3yztEOFvw2Hk3dWF9jDPNGkIMo8j4MM="
   }
 }

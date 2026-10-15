@@ -96,7 +96,6 @@
 }
 
 /* empty: a named dot; the glyph and the text stay for assistive technology */
-.badge-empty,
 [data-state-empty] .badge {
   width: var(--space-8);
   height: var(--space-8);
@@ -105,8 +104,6 @@
   gap: 0;
 }
 
-.badge-empty .badge-glyph,
-.badge-empty .badge-text,
 [data-state-empty] .badge-glyph,
 [data-state-empty] .badge-text {
   position: absolute;

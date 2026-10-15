@@ -30,6 +30,13 @@ tokens:
   secondary.text: color.text.muted
   control.bg: color.surface.input
   control.focus: color.interaction.focus.ring
+  button.bg: color.action.secondary.bg
+  button.text: color.action.secondary.text
+  button.border: color.action.secondary.border
+  button.bg-hover: color.action.secondary.hover-bg
+  button.bg-active: color.action.secondary.pressed-bg
+  button.border-active: color.border.active
+  button.focus: color.interaction.focus.ring
   dependency.role-border-width-default: border.width.default
   dependency.role-border-width-emphasis: border.width.emphasis
   dependency.role-color-action-primary-bg: color.action.primary.bg
@@ -75,6 +82,12 @@ contrast:
     min: 3
     kind: ui
     label: Control boundary
+  - fg: color.action.secondary.text
+    bg: color.surface.default
+    label: Button label
+  - fg: color.action.secondary.text
+    bg: color.action.secondary.hover-bg
+    label: Button label on hover
 anatomy:
   - part: group
     description: Fieldset and legend name the choice.
@@ -123,34 +136,32 @@ compact: false
 
 ## Purpose
 
-Select zero or more named values using a labelled native checkbox list. Local search filters visible choices without clearing selections. Successful checkboxes retain repeated native form keys. Clear selection is an explicit action.
+Select zero or more named values from a searchable native checkbox list.
 
 ## Anatomy
 
-- **group:** Fieldset and legend name the choice.
-- **filter:** Labelled search input filters option labels.
-- **options:** Native checkboxes remain selected when filtered out.
-- **status:** Visible count distinguishes matching options from selected values.
+Parts as listed in the anatomy.
 
 ## States
 
-| State | Presentation | Non-colour channel |
+| State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | Named content on the default surface. | Native text and structure. |
+| default | Named content on the default surface. Button controls are the secondary button (button.md); inputs keep the input look. | Native text and structure. |
 | checked | Selected fill and a check indicator. | Native checked state. |
 | focus-visible | Dashed focus ring. | Native keyboard focus position. |
 | disabled | Disabled semantic foreground, background and border at full opacity. | Native disabled state blocks activation. |
-| no-results | Muted result count. | Zero-results text; existing selected values remain selected. |
+| no-results | Muted result count. | Zero-results text; selected values stay selected. |
 
 ## Keyboard
 
-- **Tab / Shift+Tab:** Visit search, clear and each visible enabled checkbox.
-- **Space:** Toggle the focused checkbox.
-- **Escape:** Clear a non-empty query without clearing selection.
+As in the key table.
 
 ## Accessibility
 
-Keep labels and native checkbox semantics. Hidden choices leave the focus order but retain checked form values. Announce matching and selected counts, including zero. Required selection policy belongs to the host; marking every checkbox required would require every option.
+Keep labels and native checkbox semantics. Filtered-out choices leave the
+focus order but keep their checked form values. Announce matching and
+selected counts, including zero. Required-selection policy belongs to the
+host; marking every checkbox required would require every option.
 
 ## Portability
 

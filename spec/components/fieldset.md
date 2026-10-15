@@ -64,49 +64,43 @@ compact: false
 
 ## Purpose
 
-Grouping fields that belong together: an address, a set of credentials,
-the options of one feature. The legend names the group for sighted users
-and assistive technology alike, and disabling the fieldset disables every
-control inside it in one step. Checkbox and radio groups use their own
-components, which are fieldsets too.
+Groups fields that belong together: an address, a set of credentials, the
+options of one feature. Checkbox and radio groups use their own components,
+which are fieldsets too.
 
 ## Anatomy
 
-The native `<fieldset>` with a 1px {color.border.divider} border and 16px
-padding; the `<legend>` in {color.text.bright} sitting in the top border;
-the fields stacked inside. The border is a section rule, decorative by
-design; the legend and the spacing carry the grouping.
+Parts as listed in the anatomy. The border is a decorative section rule; the
+legend and the spacing carry the grouping.
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | 1px {color.border.divider} border; legend {color.text.bright}; fields as their own components | the border and the legend |
-| disabled | legend and labels {color.text.disabled}; every control inside takes its own disabled treatment ({color.interaction.disabled.bg}, {color.border.disabled}); the border unchanged | `disabled` on the fieldset; cursor: not-allowed on the controls |
+| disabled | legend and labels {color.text.disabled}; each control takes its own disabled treatment ({color.interaction.disabled.bg}, {color.border.disabled}); border unchanged | `disabled` on the fieldset; cursor: not-allowed on the controls |
 
 ## Keyboard
 
-None of its own. Disabled fieldsets remove their controls from the tab
-order natively, so a disabled group is skipped rather than walked.
+None of its own; a disabled group's controls leave the tab order natively.
 
 ## Accessibility
 
-The legend is the accessible name of the group and is announced before the
-first field inside; it says what the group is, not what to do. A group
-never nests deeper than two levels. Disabling a group hides its controls
-from keyboard users, so a disabled group states why in text before it or
-keeps its controls enabled. Contrast: legend 10.10:1, labels 8.43:1, help
-5.66:1 on the panel surface.
+The legend names the group and is announced before its first field; it says
+what the group is, not what to do. Groups nest at most two levels. Because
+disabling hides controls from keyboard users, a disabled group states why in
+text before it or keeps its controls enabled. Legend, labels and help meet
+4.5:1.
 
 ## Portability
 
-A border and a heading. Hosts without a legend-in-border draw the heading
-above the box and record it. Disabled propagation is native on the web and
-in GTK and Qt; a host without it disables each control.
+Hosts without a legend-in-border draw the heading above the box and record
+it. Disabled propagation is native on the web, GTK and Qt; a host without it
+disables each control.
 
 ## Non-examples
 
-A fieldset with no legend or with a legend hidden visually. A card used
-instead of a fieldset for form controls. Rounded corners. A 2px or
-`border.control` border on the group, which would read as a control. A
-legend in accent red. Disabling only the legend. Nesting three levels deep.
+No legend, or a visually hidden one. A card instead of a fieldset for form
+controls. Rounded corners. A 2px or `border.control` border, which reads as a
+control. A legend in accent red. Disabling only the legend. Three levels of
+nesting.

@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=",
+  "sourceDigest": "sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=",
   "id": "settings-panel",
   "family": "composed",
   "maturity": "stable",
@@ -382,7 +382,7 @@
   "stateRules": [
     {
       "state": "default",
-      "visual": "rest tokens of every component on {color.surface.default}; the open section carries the indicator bar",
+      "visual": "every component's rest tokens on {color.surface.default}; the open section carries the indicator bar",
       "channel": "`aria-current`",
       "tokens": {
         "fg": {
@@ -413,7 +413,7 @@
     },
     {
       "state": "focus-visible",
-      "visual": "the dashed {color.interaction.focus.ring} on the control holding focus (shown on the first switch); the other controls stay at rest",
+      "visual": "the dashed {color.interaction.focus.ring} on the focused control (shown on the first switch); others at rest",
       "channel": "the ring",
       "tokens": {
         "fg": {
@@ -470,7 +470,7 @@
     },
     {
       "state": "invalid",
-      "visual": "the inner-gap field takes the 2px {color.status.danger.border} and shows its ✕ message; the other controls stay at rest",
+      "visual": "the inner-gap field takes the 2px {color.status.danger.border} and its ✕ message; others at rest",
       "channel": "border width 1 → 2px; glyph; `aria-invalid`",
       "tokens": {
         "fg": {
@@ -550,7 +550,7 @@
     },
     {
       "key": "Enter / Space",
-      "action": "Follows a section link; toggles a switch or checkbox; opens the select."
+      "action": "Enter follows a section link; Space toggles a switch or native checkbox; Enter or Space opens the select."
     },
     {
       "key": "Arrow keys",
@@ -593,7 +593,7 @@
     "tabs"
   ],
   "specimens": [],
-  "nonExamples": "A rounded, shadowed settings card. A Material-style app bar above the form.\nToggle switches with rounded pills or animated thumbs. Section links drawn\nas filled tabs instead of the indicator bar. A red form background to show\nthat something is invalid. Applying while the controls are dimmed with\nopacity. A spinner replacing the Apply label.",
+  "nonExamples": "A rounded, shadowed settings card. A Material-style app bar above the form.\nPill switches or animated thumbs. Section links as filled tabs instead of\nthe indicator bar. A red form background for invalid. Dimming the controls\nwith opacity while applying. A spinner replacing the Apply label.",
   "contrast": [
     {
       "label": "settings-panel default text",

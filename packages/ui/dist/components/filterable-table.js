@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-C1XeXVYC.js";
-import { n as table } from "../chunks/tables-B25ydUHs.js";
+import { t as J3w1Element } from "../chunks/element-Dovcr9Ky.js";
+import { n as table } from "../chunks/tables-Cjr1EIJz.js";
 //#region .cache/ui-build/entries/components/filterable-table.js
 var J3w1FilterableTable = class extends J3w1Element {
 	static componentId = "filterable-table";
 	static version = "4.0.0";
-	static implementationId = "sha256-X8YqHg+uk9WRKBEGt72ID1ciBCXv0ORCorTI2IiT8v8=";
+	static implementationId = "sha256-SJvvFZ+/THkuQJCx1F2i0vCQ2C54dLton+9ipWE3sS8=";
 	static connect = table;
 	static upgradeProperties = [
 		"disabled",

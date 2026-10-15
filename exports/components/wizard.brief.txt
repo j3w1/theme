@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — wizard
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/wizard.json
 spec: spec/components/wizard.md  site: https://j3w1.github.io/theme/reference/#c-wizard
 maturity: stable  priority: R1
@@ -35,13 +35,13 @@ Tokens (resolved):
   busy.glyph              #ffa2a7  ({color.action.primary.text})  use
 
 States: default, hover, focus-visible, current, disabled, invalid, busy
-  default: steps in {color.text.default}; complete steps carry the ✓ in {color.status.success.text} [the ✓ glyph; the numbers]
-  hover: step background → {color.interaction.hover.bg}; Next → {color.action.primary.hover-bg}; Back → {color.action.secondary.hover-bg} [cursor: pointer]
-  focus-visible: ring 1px dashed {color.interaction.focus.ring} at −2px; on Next's fill the ring takes {color.interaction.focus.ring-container} [the ring]
+  default: steps in {color.text.default}; complete steps carry ✓ in {color.status.success.text} [the ✓ glyph; the numbers]
+  hover: step → {color.interaction.hover.bg}; Next → {color.action.primary.hover-bg}; Back → {color.action.secondary.hover-bg} [cursor: pointer]
+  focus-visible: 1px dashed {color.interaction.focus.ring} ring at −2px; {color.interaction.focus.ring-container} on Next's fill [the ring]
   current: 2px {color.border.selected-indicator} under the step; name in {color.text.bright} [`aria-current="step"`; the indicator bar; the heading reads "Step n of m"]
   disabled: a future step in {color.text.disabled}; no hover [`disabled`; cursor: not-allowed; skipped by Tab]
-  invalid: the step's marker becomes ✕ in {color.status.danger.text}; its indicator takes {color.status.danger.border}; the panel shows the message [glyph; message text; `aria-invalid` on the failing fields]
-  busy: Next shows the static ⋯ glyph before its label and does not respond; size unchanged [`aria-busy` on the wizard; the glyph; cursor: progress]
+  invalid: marker becomes ✕ in {color.status.danger.text}; indicator {color.status.danger.border}; the panel shows the message [glyph; message text; `aria-invalid` on the failing fields]
+  busy: Next shows the static ⋯ before its label and ignores activation; size unchanged [`aria-busy` on the wizard; the glyph; cursor: progress]
 
 Keyboard:
   Tab / Shift+Tab: Reaches each enabled step button, the panel's fields, then Back and Next; future steps are disabled and skipped.

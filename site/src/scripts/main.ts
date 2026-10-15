@@ -4,32 +4,23 @@
 
 import { initSearch } from "./search";
 import { initFilter } from "./filter";
-import { initInspector } from "./inspector";
-import { initCopy } from "./copy";
+
 import { initDensity } from "./density";
 import { initProfile } from "./profile";
 import { initReset } from "./reset";
 import { initPrint } from "./print";
 import { initToc } from "./toc";
 import { initWorkbenchEntry } from "./workbench-entry";
-import { enhanceControls } from "@j3w1/ui/enhance/choice";
 
-/* SpecLayout's pre-paint inline script has already marked <html> with .js. */
+
+/* The shared layout has already marked <html> with .js. */
 
 initDensity();
 initProfile();
 initSearch();
 initFilter();
-initInspector();
-initCopy();
 initReset();
 initPrint();
 initToc();
 initWorkbenchEntry();
 
-/* The page's own chrome takes the themed controls. It is scoped to #controls
-   and never the document: this page renders every component as a native
-   specimen in forced states, and enhancing those would replace the very thing
-   the reference exists to show. */
-const chrome = document.getElementById("controls");
-if (chrome) enhanceControls(chrome);

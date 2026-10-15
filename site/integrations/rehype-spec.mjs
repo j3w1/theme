@@ -1,3 +1,4 @@
+import { decisionHeadingPattern } from "../../scripts/lib/spec.mjs";
 /* Rehype plugin for the spec Markdown:
    - shifts headings so the page outline stays h1 > h2 (doc or family) > h3
      (component) > h4 (sections): documents shift by one, components by two;
@@ -43,7 +44,7 @@ export default function rehypeSpec() {
         node.properties ??= {};
         const own = node.properties.id ?? slug(textOf(node));
         node.properties.id = `${prefix}${own}`;
-        const decision = stemOf(file) === "decisions" && textOf(node).match(/^(D-\d{3})\b/);
+        const decision = stemOf(file) === "decisions" && `## ${textOf(node)}`.match(decisionHeadingPattern);
         if (decision) node.properties.id = anchorFor.decision(decision[1]);
       }
       if (node.type === "comment" && /@compact:(start|end)/.test(node.value)) node.value = "";

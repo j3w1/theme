@@ -28,7 +28,12 @@ tokens:
   root.border: color.border.control
   heading.text: color.text.bright
   secondary.text: color.text.muted
-  control.bg: color.surface.input
+  control.bg: color.action.secondary.bg
+  control.text: color.action.secondary.text
+  control.border: color.action.secondary.border
+  control.bg-hover: color.action.secondary.hover-bg
+  control.bg-active: color.action.secondary.pressed-bg
+  control.border-active: color.border.active
   control.focus: color.interaction.focus.ring
   dependency.role-border-width-default: border.width.default
   dependency.role-border-width-emphasis: border.width.emphasis
@@ -39,9 +44,9 @@ tokens:
   dependency.role-color-text-disabled: color.text.disabled
   dependency.role-density-comfortable-control-height: density.comfortable.control-height
   dependency.role-density-compact-control-height: density.compact.control-height
+  dependency.role-focus-offset: focus.offset
   dependency.role-radius-none: radius.none
   dependency.role-space-12: space.12
-  dependency.role-space-2: space.2
   dependency.role-space-8: space.8
 stateTokens:
   default:
@@ -60,6 +65,12 @@ contrast:
     min: 3
     kind: ui
     label: Control boundary
+  - fg: color.action.secondary.text
+    bg: color.surface.default
+    label: Button label
+  - fg: color.action.secondary.text
+    bg: color.action.secondary.hover-bg
+    label: Button label on hover
 anatomy:
   - part: message
     description: Heading, explanation and text error glyph.
@@ -102,18 +113,18 @@ compact: false
 
 ## Purpose
 
-Explain a failed operation and offer a bounded recovery action. Retrying emits a request; the component does not claim that a service recovered. The host updates content when the actual operation completes.
+Explains a failed operation and asks for an explicit recovery; it never
+claims the service recovered.
 
 ## Anatomy
 
-- **message:** Heading, explanation and text error glyph.
-- **recovery:** Native retry action, disabled while the host request is pending.
+Parts as listed in the anatomy.
 
 ## States
 
-| State | Presentation | Non-colour channel |
+| State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | Danger border and text heading. | Specific written explanation and error glyph. |
+| default | Danger border and text heading. Its buttons are the secondary button (button.md). | Specific written explanation and error glyph. |
 | error | Same explicit failure treatment. | Failure text remains available. |
 | loading | Busy status accompanies the existing explanation. | aria-busy and host-provided pending text. |
 | disabled | Disabled roles at full opacity. | Native retry button is disabled. |
@@ -121,12 +132,13 @@ Explain a failed operation and offer a bounded recovery action. Retrying emits a
 
 ## Keyboard
 
-- **Tab / Shift+Tab:** Reach the recovery action.
-- **Enter / Space:** Request a retry without moving focus.
+As in the key table.
 
 ## Accessibility
 
-Do not rely only on color or a glyph. Give the retry action a specific name. Announce a newly occurring error in an appropriate host status region, without repeatedly interrupting reading. Keep focus unless recovery requires an explicit next step.
+Never rely on colour or the glyph alone. Give the retry action a specific
+name. Announce a new error in a host status region without repeatedly
+interrupting reading. Keep focus unless recovery needs an explicit next step.
 
 ## Portability
 
@@ -134,4 +146,5 @@ Follows the shared component defaults in `spec/portability.md` (section "Shared 
 
 ## Non-examples
 
-Unlabelled controls, color-only status, drag-only operations, hidden required instructions, stolen focus or an invented service success.
+Unlabelled controls, colour-only status, drag-only operations, hidden required
+instructions, stolen focus or an invented service success.

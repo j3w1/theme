@@ -5,6 +5,7 @@
    is live in the tab order; the others are aria-hidden with tabindex="-1"
    so keyboard users are not walked through dozens of copies. */
 
+import { anchorFor } from "../../../scripts/lib/anchors.mjs";
 import { renderSpecimenMarkup, stateAttributes } from "../../../scripts/lib/specimen-markup.mjs";
 
 interface Props {
@@ -19,7 +20,7 @@ const { id, states, variants, fragments, sizes } = Astro.props;
 
 ---
 
-<div class="block" id={`${id}-states`}>
+<div class={`block reference-matrix-${id}`} id={anchorFor.states(id)} data-specimen>
   <h4>State matrix</h4>
   <p class="family-description">Every declared state and combination, statically rendered; the default cell is live. Sizes: {sizes.join(", ")}<span class="js-only"> (switch with the density control above)</span>.</p>
   <div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table">

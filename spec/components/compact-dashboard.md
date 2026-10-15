@@ -28,17 +28,22 @@ tokens:
   root.border: color.border.control
   heading.text: color.text.bright
   secondary.text: color.text.muted
-  control.bg: color.surface.input
+  control.bg: color.action.secondary.bg
+  control.text: color.action.secondary.text
+  control.border: color.action.secondary.border
+  control.bg-hover: color.action.secondary.hover-bg
+  control.bg-active: color.action.secondary.pressed-bg
+  control.border-active: color.border.active
   control.focus: color.interaction.focus.ring
   dependency.role-border-width-default: border.width.default
   dependency.role-color-border-divider: color.border.divider
   dependency.role-color-surface-chrome: color.surface.chrome
   dependency.role-density-comfortable-control-height: density.comfortable.control-height
   dependency.role-density-compact-control-height: density.compact.control-height
+  dependency.role-focus-offset: focus.offset
   dependency.role-font-size-h2: font.size.h2
   dependency.role-radius-none: radius.none
   dependency.role-space-12: space.12
-  dependency.role-space-2: space.2
   dependency.role-space-8: space.8
 stateTokens:
   default:
@@ -57,6 +62,12 @@ contrast:
     min: 3
     kind: ui
     label: Control boundary
+  - fg: color.action.secondary.text
+    bg: color.surface.default
+    label: Button label
+  - fg: color.action.secondary.text
+    bg: color.action.secondary.hover-bg
+    label: Button label on hover
 anatomy:
   - part: metrics
     description: Terms and values pair each metric name with its number.
@@ -104,35 +115,36 @@ compact: false
 
 ## Purpose
 
-Compose a small operational overview from named metrics, a complete chart and a records table. All figures are caller data. Synthetic fixtures are labelled; the component does not fetch data or infer business health.
+A small operational overview of caller data; it fetches nothing and infers no
+business health.
 
 ## Anatomy
 
-- **metrics:** Terms and values pair each metric name with its number.
-- **activity:** Chart retains its full textual data table.
-- **records:** Native rows include named actions and explicit status words.
+Parts as listed in the anatomy.
 
 ## States
 
-| State | Presentation | Non-colour channel |
+| State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | Square metric panels and readable tables. | Metric names, exact values and status text. |
-| loading | Busy boundary with existing content retained. | aria-busy and host-provided loading status. |
-| empty | Explicit absence of records. | Empty message; metric zero differs from unknown. |
+| default | Square metric panels, readable tables. Its buttons are the secondary button (button.md). | Metric names, exact values, status text. |
+| loading | Busy boundary; existing content kept. | `aria-busy` and host-provided loading status. |
+| empty | Explicit absence of records. | Empty message; a zero metric differs from an unknown one. |
 | focus-visible | Dashed action outline. | Native keyboard focus. |
 
 ## Keyboard
 
-- **Tab / Shift+Tab:** Visit record actions and any scrollable data region.
-- **Enter / Space:** Request the chosen record through an event.
+As in the key table; nothing else is bound.
 
 ## Accessibility
 
-Keep metrics as term/value pairs, tables labelled and all chart data visible. Do not use a color-only health score. Busy status does not manufacture a completed refresh. The host decides how unknown metrics are described, rather than silently displaying zero.
+Metrics stay term/value pairs, tables are labelled and all chart data stays
+visible. No colour-only health score. Busy status never implies a completed
+refresh. The host words unknown metrics; never show them silently as zero.
 
 ## Portability
 
-Follows the shared component defaults in `spec/portability.md` (section "Shared component defaults").
+Follows the shared component defaults in `spec/portability.md` (section
+"Shared component defaults").
 
 ## Non-examples
 

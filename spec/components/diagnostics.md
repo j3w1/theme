@@ -56,7 +56,7 @@ tokens:
   row.ring: color.interaction.focus.ring
   row.bg-selected: color.interaction.selection.bg
   row.text-selected: color.interaction.selection.text
-  row.ring-selected: color.interaction.focus.ring-container
+  row.ring-selected: color.interaction.focus.ring
   header.text: color.text.bright
   status.text: color.status.danger.text
   empty.text: color.text.muted
@@ -66,7 +66,7 @@ stateTokens:
   hover: { fg: color.text.default, bg: color.interaction.hover.bg }
   focus-visible: { fg: color.text.default, bg: color.surface.default, outline: color.interaction.focus.ring }
   selected: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg }
-  selected+focus-visible: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg, outline: color.interaction.focus.ring-container }
+  selected+focus-visible: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg, outline: color.interaction.focus.ring }
   error: { fg: color.status.danger.text, bg: color.surface.default }
   empty: { fg: color.text.muted, bg: color.surface.default }
 contrast:
@@ -142,20 +142,19 @@ compact: false
 
 ## Purpose
 
-How problems appear on code and in the list that indexes them. Six kinds are
-distinguished by pattern and glyph as well as colour: error, warning, info,
-hint, unused and deprecated. The panel is the keyboard route to every marker.
+How problems appear on code and in the list that indexes them. Six kinds,
+each told apart by pattern and glyph as well as colour. The panel is the
+keyboard route to every marker.
 
 ## Anatomy
 
-Root `.diagnostics` with the variant class `.diagnostics-inline` or
-`.diagnostics-panel`. Inline parts: `.diagnostics-code` (the `<pre>`),
-`-line`, `-ln`, `-text`, `-mark` (the stripe cell), and the ranges
-`.diagnostics-error`, `-warning`, `-info`, `-hint`, `-unused`, `-deprecated`;
-`.diagnostics-line-error` marks the row filled {color.diagnostic.error.bg};
-`.diagnostics-target` is the range that belongs to the selected row. Panel
-parts: `-header`, `-title`, `-count`, `-status`, `-list`, `-row`, `-glyph`
-(with `-glyph-error` and so on), `-message`, `-loc`, `-rule`, `-empty`.
+Root `.diagnostics` with `.diagnostics-inline` or `.diagnostics-panel`.
+Inline: `.diagnostics-code` (the `<pre>`), `-line`, `-ln`, `-text`, `-mark`
+(the stripe cell) and the ranges `.diagnostics-error`, `-warning`, `-info`,
+`-hint`, `-unused`, `-deprecated`; `.diagnostics-line-error` is the filled
+row; `.diagnostics-target` is the range of the selected row. Panel:
+`-header`, `-title`, `-count`, `-status`, `-list`, `-row`, `-glyph` (with
+`-glyph-error` and so on), `-message`, `-loc`, `-rule`, `-empty`.
 Patterns: error and warning wavy, info and hint dotted, unused dotted in
 {color.diagnostic.unused.text}, deprecated line-through in
 {color.code.syntax.deprecated}. Glyphs: `✕` error in
@@ -168,54 +167,43 @@ The stripe mark repeats the glyph in the stripe colour
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | ranges decorated as above on {color.code.bg}; the error row filled {color.diagnostic.error.bg}; panel rows on {color.surface.default} with 1px {color.border.divider} between them | underline pattern; glyph |
-| hover | panel row background → {color.interaction.hover.bg}; inline ranges unchanged (the hover tooltip is a host surface) | cursor: default on rows |
-| focus-visible | the active row: 1px dashed {color.interaction.focus.ring} at −2px; inline box: the container ring 2px {color.interaction.focus.ring-container} at −3px | the ring |
+| default | ranges decorated on {color.code.bg}; the error row filled {color.diagnostic.error.bg}; panel rows on {color.surface.default}, 1px {color.border.divider} between | underline pattern; glyph |
+| hover | panel row → {color.interaction.hover.bg}; inline ranges unchanged (the hover tooltip is a host surface) | cursor: default on rows |
+| focus-visible | active row: 1px dashed {color.interaction.focus.ring} at −2px; inline box: 2px {color.interaction.focus.ring-container} at −3px | the ring |
 | selected | row filled {color.interaction.selection.bg}, text and glyph {color.interaction.selection.text}; the matching inline range filled {color.code.selection-bg} under its underline | `aria-selected`; the glyph stays; the fill spans the row |
-| selected+focus-visible | the selection fill and a 1px dashed ring in {color.interaction.focus.ring-container} | both at once |
-| error | the provider failed: a `role=status` line with `✕` in {color.status.danger.text} above the stale rows; the inline stripe shows the same `✕` at its top | glyph; live announcement |
-| empty | no problems: rows and stripe marks hidden; `✓ No problems` in {color.text.muted} with the glyph in {color.status.success.text}; inline decorations removed | glyph; the absence of decoration |
+| selected+focus-visible | the selection fill and 1px dashed {color.interaction.focus.ring} at −2px | both at once |
+| error | provider failed: a `role=status` line with `✕` in {color.status.danger.text} above the stale rows; the stripe shows the same `✕` at its top | glyph; live announcement |
+| empty | rows, stripe marks and inline decorations removed; `✓ No problems` in {color.text.muted}, glyph in {color.status.success.text} | glyph; the absence of decoration |
 
 Precedence: selected > hover; focus-visible is drawn on top. A selected row
-recolours its glyph to the on-selection text so the shape, not the hue,
+recolours its glyph to the on-selection text, so the shape, not the hue,
 carries the severity.
 
 ## Keyboard
 
-The panel follows the APG listbox pattern with `aria-activedescendant`:
-the list is one Tab stop, Up and Down move the active row, Home and End jump,
-type-ahead matches message text, Enter opens the location. Selection follows
-focus. Inline markers add no keys; next-problem and previous-problem
-navigation and the hover card are host bindings and host surfaces.
+As in the key table; next and previous problem and the hover card belong to
+the host.
 
 ## Accessibility
 
-Never colour-only: every severity has its underline pattern in code and its
-glyph in the panel, and the glyph is part of the option's accessible name
-("Error: frmae is not defined, title.js line 6"). The error row background
-is an addition to the wavy underline, not a replacement. Contrast:
-{color.diagnostic.error.text} reaches 4.88:1 on the error row and 5.26:1 on
-the panel; every underline reaches 3:1 on its actual background including
-the selected range (the error underline measures 3.81:1 on the code
-selection fill); {color.diagnostic.unused.text} reaches 5.81:1
-so unused code is still readable. `aria-selected` and `aria-activedescendant`
-carry the state; the status line is `role=status`, announced once. In
-forced-colours mode the underline patterns persist because they are
-`text-decoration`, not backgrounds.
+Never colour-only: the underline pattern in code, the glyph in the panel, and
+the glyph is part of the option's accessible name ("Error: frmae is not
+defined, title.js line 6"). The error row fill adds to the wavy underline,
+never replaces it. Text, including unused code, meets 4.5:1; every underline
+meets 3:1 on its actual background, the selected range included. The status
+line is announced once. In forced-colours mode the patterns persist because
+they are `text-decoration`, not backgrounds.
 
 ## Portability
 
-Underline styles are native in Pango, Qt, JetBrains and most terminal
-emulators; where wavy is unavailable the port uses a plain underline plus the
-glyph and records the deviation. Hosts that draw their own overview ruler map
-the stripe colours; hosts without one omit the stripe and keep the glyphs.
-The listbox maps to any single-selection list widget.
+Where wavy is unavailable the port uses a plain underline plus the glyph and
+records the deviation. Hosts with their own overview ruler map the stripe
+colours; hosts without one omit the stripe and keep the glyphs.
 
 ## Non-examples
 
-Red-only errors without the `✕` glyph or the wavy pattern. A wavy underline
-for every severity, which leaves the pattern meaningless. Purple or cyan for
-info and hint. A hover on a panel row that changes only the text colour. A
-selected row whose glyph keeps its severity colour on the red fill (2.47:1).
-A panel row with a rounded highlight or a left accent bar instead of the fill.
-Removing the error line background to "calm" the editor.
+Red-only errors without `✕` or the wavy pattern. Wavy for every severity.
+Purple or cyan for info and hint. A row hover that changes only text colour.
+A selected row whose glyph keeps its severity colour on the fill. A rounded
+highlight or left accent bar instead of the row fill. Removing the error line
+fill to "calm" the editor.

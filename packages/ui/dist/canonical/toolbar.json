@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=",
+  "sourceDigest": "sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=",
   "id": "toolbar",
   "family": "navigation",
   "maturity": "stable",
@@ -272,7 +272,7 @@
     },
     {
       "state": "focus-visible",
-      "visual": "ring 1px dashed {color.interaction.focus.ring} at −2px",
+      "visual": "1px dashed {color.interaction.focus.ring} ring at −2px",
       "channel": "the ring",
       "tokens": {
         "fg": {
@@ -415,7 +415,7 @@
     "filterable-table",
     "i3-window-frame"
   ],
-  "nonExamples": "Buttons with a visible border at rest. A filled primary button inside the\ntoolbar. Rounded buttons or a pill-shaped toolbar. Every button in the tab\norder when script is available. A toggled state shown by colour alone without\n`aria-pressed`. A toolbar that wraps to two lines. A separator that receives\nfocus. Disabling by opacity.",
+  "nonExamples": "Buttons bordered at rest. A filled primary button in the toolbar. Rounded\nbuttons or a pill-shaped toolbar. Every button in the tab order when script\nis available. A toggled state by colour alone without `aria-pressed`. A\ntoolbar wrapping to two lines. A focusable separator. Disabling by opacity.",
   "contrast": [
     {
       "label": "toolbar default text",

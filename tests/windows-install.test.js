@@ -1,21 +1,21 @@
+import { powershell as pwsh, powershellAvailable } from "./helpers/powershell.mjs";
+import { readJsonWithBom as read } from "./helpers/json.mjs";
+import { scratchDirSync } from "./helpers/scratch.mjs";
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import fs from 'node:fs';
-import os from 'node:os';
 import path from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {repoRoot} from '../scripts/lib/fs.mjs';
 
-const pwsh=process.env.J3W1_PWSH??(process.platform==='win32'?'pwsh.exe':'pwsh');
-const probe=spawnSync(pwsh,['--version'],{encoding:'utf8'});
-const unavailable=probe.status!==0;
+
+const unavailable=!powershellAvailable();
 if(unavailable&&process.env.CI)test('Windows lifecycle tests require PowerShell',()=>assert.fail('PowerShell 7.4+ is required; set J3W1_PWSH'));
 const installer=path.join(repoRoot,'ports/windows/install.ps1');
-const read=p=>JSON.parse(fs.readFileSync(p,'utf8').replace(/^\uFEFF/,''));
+
 const write=(p,x)=>{fs.mkdirSync(path.dirname(p),{recursive:true});fs.writeFileSync(p,typeof x==='string'?x:JSON.stringify(x));};
 function fixture(t){
- const root=fs.mkdtempSync(path.join(os.tmpdir(),'j3w1-windows-wrapper-'));
- t.after(()=>fs.rmSync(root,{recursive:true,force:true}));
+ const root=scratchDirSync(t, 'j3w1-windows-wrapper-');
  const source=path.join(root,'source'),state=path.join(root,'state');
  fs.mkdirSync(source);fs.cpSync(path.join(repoRoot,'ports/windows'),path.join(source,'ports/windows'),{recursive:true});
  const env={...process.env,LOCALAPPDATA:path.join(root,'local'),APPDATA:path.join(root,'roaming'),HOME:path.join(root,'home'),USERPROFILE:path.join(root,'home'),XDG_CONFIG_HOME:path.join(root,'config'),XDG_CACHE_HOME:path.join(root,'cache'),POWERSHELL_TELEMETRY_OPTOUT:'1',NO_COLOR:'1'};
@@ -147,8 +147,7 @@ test('Prepare retains verified release and returns a plan without mutating theme
 });
 
 test('native Startup link preserves long explicit guard arguments without writing Startup',{skip:process.platform!=='win32'?'Native Windows shell-link API required':false},t=>{
- const folder=fs.mkdtempSync(path.join(os.tmpdir(),'j3w1 startup link test '));
- t.after(()=>fs.rmSync(folder,{recursive:true,force:true}));
+ const folder=scratchDirSync(t, 'j3w1 startup link test ');
  const probe=spawnSync(pwsh,['-NoProfile','-Command','[Diagnostics.Process]::GetCurrentProcess().MainModule.FileName'],{encoding:'utf8',windowsHide:true,timeout:15000});
  assert.equal(probe.status,0,probe.stderr);
  const target=probe.stdout.trim(),working=path.join(folder,'guard source');fs.mkdirSync(working);

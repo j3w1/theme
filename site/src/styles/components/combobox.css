@@ -1,3 +1,4 @@
+@import "../partials/field.css";
 /* combobox — reference CSS. The list is rendered in flow directly below the
    box (no floating layer in the demonstration). Every real pseudo-class is
    paired with the forced-state attribute the state matrix emits. The
@@ -12,25 +13,10 @@
   color: var(--color-text-default);
 }
 
-.combobox-label {
-  color: var(--color-text-bright);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
-}
-
-.combobox-root {
-  display: flex;
-  align-items: stretch;
-  min-height: var(--density-control-height, 32px);
-  background: var(--color-surface-input);
-  border: var(--border-width-default) solid var(--color-border-control);
-  border-radius: var(--radius-none);
-}
-
 .combobox-input {
   flex: 1 1 auto;
   min-width: 0;
-  padding: 0 var(--density-control-padding-x, 12px);
+  padding: 0 var(--density-control-padding-x, 8px);
   background: transparent;
   border: 0;
   color: var(--color-text-default);
@@ -93,7 +79,7 @@
 }
 
 .combobox-listbox {
-  max-height: calc(8 * var(--density-row-height, 36px));
+  max-height: calc(8 * var(--density-row-height, 28px));
   overflow-y: auto;
   background: var(--color-surface-raised);
   border: var(--border-width-default) solid var(--color-border-overlay);
@@ -104,8 +90,8 @@
 .combobox-option {
   display: flex;
   align-items: center;
-  min-height: var(--density-row-height, 36px);
-  padding: 0 var(--density-control-padding-x, 12px);
+  min-height: var(--density-row-height, 28px);
+  padding: 0 var(--density-control-padding-x, 8px);
   cursor: default;
 }
 
@@ -115,13 +101,13 @@
   color: var(--color-text-link-hover);
 }
 
-/* selected: the active descendant carries the selection fill and a ring in
-   the fill's on-fill colour, because focus stays on the input */
+/* selected: the active descendant carries the selection fill and the ordinary ring,
+   because focus stays on the input */
 .combobox-option[aria-selected="true"],
 [data-state-selected] .combobox-option[aria-selected="true"] {
   background: var(--color-interaction-selection-bg);
   color: var(--color-interaction-selection-text);
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring);
   outline-offset: var(--focus-offset);
 }
 
@@ -136,7 +122,7 @@
 
 .combobox-group-heading {
   display: block;
-  padding: var(--space-4) var(--density-control-padding-x, 12px) 0;
+  padding: var(--space-4) var(--density-control-padding-x, 8px) 0;
   color: var(--color-text-subtle);
   font-size: var(--font-size-ui-sm);
   line-height: var(--font-line-height-ui-sm);
@@ -145,25 +131,10 @@
 .combobox-empty {
   display: none;
   align-items: center;
-  min-height: var(--density-row-height, 36px);
-  padding: 0 var(--density-control-padding-x, 12px);
+  min-height: var(--density-row-height, 28px);
+  padding: 0 var(--density-control-padding-x, 8px);
   color: var(--color-text-muted);
   font-style: italic;
-}
-
-.combobox-help {
-  margin: 0;
-  color: var(--color-text-muted);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
-}
-
-.combobox-message {
-  display: none;
-  margin: 0;
-  color: var(--color-status-danger-text);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
 }
 
 /* hover on the box */

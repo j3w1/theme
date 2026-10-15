@@ -118,7 +118,7 @@
     "danger.text": "color.status.danger.on-fill",
     "danger.button-bg-hover": "color.action.destructive.pressed-bg",
     "action.text": "color.text.link",
-    "action.bg-hover": "color.interaction.hover.bg-strong",
+    "action.bg-hover": "color.interaction.hover.bg",
     "action.text-hover": "color.text.link-hover",
     "close.text": "color.action.tertiary.text",
     "close.bg-hover": "color.action.tertiary.hover-bg",
@@ -142,7 +142,7 @@
       "color.border.overlay",
       "color.interaction.drop-target",
       "color.interaction.focus.ring",
-      "color.interaction.hover.bg-strong",
+      "color.interaction.hover.bg",
       "color.interaction.selection.bg",
       "color.interaction.selection.text",
       "color.interaction.text-selection.bg",
@@ -195,7 +195,7 @@
       "color.border.overlay",
       "color.interaction.drop-target",
       "color.interaction.focus.ring",
-      "color.interaction.hover.bg-strong",
+      "color.interaction.hover.bg",
       "color.interaction.selection.bg",
       "color.interaction.selection.text",
       "color.interaction.text-selection.bg",
@@ -212,7 +212,6 @@
       "color.primitive.paper.100",
       "color.primitive.paper.90",
       "color.primitive.red.100",
-      "color.primitive.red.150",
       "color.primitive.red.350",
       "color.primitive.red.550",
       "color.primitive.red.750",
@@ -303,7 +302,7 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
-      "color.interaction.hover.bg-strong": {
+      "color.interaction.hover.bg": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -524,6 +523,6 @@
   "copy": {
     "directory": "copy/toast/",
     "manifest": "copy/toast/manifest.json",
-    "digest": "sha256-Dulou4hwI8bILLX7ogZBb3IkLJsGcenBCv2301DmbKo="
+    "digest": "sha256-bCWPynWl0C2Bz5UPADBaW4C1eOSMaHaXHhVMpceGiNA="
   }
 }

@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — toolbar
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/toolbar.json
 spec: spec/components/toolbar.md  site: https://j3w1.github.io/theme/reference/#c-toolbar
 maturity: stable  priority: R1
@@ -24,7 +24,7 @@ Tokens (resolved):
 States: default, hover, focus-visible, disabled, toggled
   default: text {color.text.default}; no fill; transparent border [—]
   hover: background → {color.interaction.hover.bg} [cursor: pointer]
-  focus-visible: ring 1px dashed {color.interaction.focus.ring} at −2px [the ring]
+  focus-visible: 1px dashed {color.interaction.focus.ring} ring at −2px [the ring]
   disabled: text {color.text.disabled}; no fill; no hover [`disabled`; cursor: not-allowed; skipped by the arrow keys]
   toggled: fill {color.interaction.pressed.bg}; 1px {color.border.active} border; text {color.text.bright} [`aria-pressed="true"`; the border]
 

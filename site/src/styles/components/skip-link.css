@@ -1,14 +1,12 @@
-/* skip-link — reference CSS. Off-screen on the block axis until focused;
-   the site's own skip link is this component, so the values here match
-   site.css exactly. The matrix wraps every cell in .skip-link-demo, which
-   becomes the containing block so the demo stays inside its cell. */
+/* skip-link — reference CSS. Off-screen on the block axis until focused.
+   The site's own skip link is this component. */
 
 .skip-link {
   position: absolute;
   inset-inline-start: var(--space-8);
   top: calc(-1 * var(--space-48));
   z-index: var(--z-skip-link);
-  min-height: var(--density-control-height, 32px);
+  min-height: var(--density-control-height, 24px);
   padding: var(--space-4) var(--space-8);
   box-sizing: border-box;
   background: var(--color-surface-raised);
@@ -29,13 +27,6 @@
 
 .skip-link:focus:not(:focus-visible) {
   outline: 0;
-}
-
-/* the matrix cell: a positioned, clipped box the link can appear inside */
-.skip-link-demo {
-  position: relative;
-  min-height: calc(var(--density-control-height, 32px) + var(--space-16));
-  overflow: hidden;
 }
 
 @media (forced-colors: active) {

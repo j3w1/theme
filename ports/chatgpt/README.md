@@ -5,17 +5,16 @@ True-black ChatGPT with the j3w1 red and rose. Two presets:
 - **j3w1 Signature**: the strongest j3w1 look. Recommended.
 - **j3w1 Reading**: a calmer rose for long reading.
 
-This port targets the **ChatGPT desktop app**, Settings > Appearance. It has
-custom accent, background and foreground colours, a contrast slider, font
-sizes and theme import. What you see depends on your platform, account, plan,
-app version and rollout. In a web browser, many accounts still show only the
-basic appearance controls (light, dark, system and a list of accent colours).
-Then only the Mode, and an accent close to the one below, apply.
+This port targets the **ChatGPT desktop app**, Settings > Appearance (custom
+accent, background and foreground, a contrast slider, font sizes, theme
+import). What you see depends on your platform, account, plan, app version and
+rollout. Many web-browser accounts show only light, dark, system and a list of
+accents; then only the Mode and the nearest accent apply.
 
 Status: **experimental**. The import strings follow the public description of
-ChatGPT's `codex-theme-v1` format. The code theme id `chatgpt` behind the
+ChatGPT's `codex-theme-v1` format; the code theme id `chatgpt` behind the
 Theme row is a guess. The strings count as verified only once imported into a
-real ChatGPT build and checked against the table. The tables work on their
+real ChatGPT build and checked against the table; the tables work on their
 own.
 
 ## Install
@@ -88,25 +87,18 @@ foreground toward white: the rose text is a large part of the j3w1 look.
 
 ## Where the values come from
 
-Every colour and size is a theme role, resolved from the approved `default`
-profile when the port is generated (`src/presets.json` names the roles).
+Every colour and size is a theme role from the approved `default` profile,
+named in `src/presets.json`: foreground `color.text.bright` (Signature) or
+`color.text.default` (Reading), accent `color.interaction.focus.ring`,
+background `color.surface.canvas`, sizes `font.size.reading` and
+`font.size.code`; in the import string, diff and skill colours
+`color.status.success.text`, `color.status.danger.text` and
+`color.text.accent`.
 
-- Signature's foreground is `color.text.bright`.
-- Reading's foreground is `color.text.default`.
-- The accent is `color.interaction.focus.ring`.
-- The background is `color.surface.canvas`.
-- The sizes are `font.size.reading` and `font.size.code`.
-- In the import string, the diff and skill colours are
-  `color.status.success.text`, `color.status.danger.text` and
-  `color.text.accent`.
-
-Contrast (46 and 52), diff markers (+/-), reduce motion and the base theme
-are ChatGPT settings, not theme roles. They are calibration chosen in real
-use. Diff markers stay on because j3w1 never shows a change by colour alone.
-
-ChatGPT has one foreground for all text. j3w1 has a ladder (prose, bright,
-default, muted, subtle), so each preset picks one step. That is a choice for
-this app only; the theme's own roles do not change.
+Contrast, diff markers, reduce motion and the base theme are ChatGPT settings
+calibrated in real use, not theme roles. Diff markers stay on because j3w1
+never shows a change by colour alone. ChatGPT has one foreground for all text,
+so each preset picks one step of the j3w1 text ladder, for this app only.
 
 ## Limits
 
@@ -133,9 +125,9 @@ is installed on disk.
 
 - `src/presets.json`: the source: roles, calibration, preset names.
 - `evidence/<build>.codex-theme.txt`: a theme string ChatGPT itself exported,
-  with `# build:` and `# date:` lines. Record one when you verify an import.
-  Generation then checks that the port emits the same format as the newest
-  one, and stops if ChatGPT changed it.
-- `dist/presets.json`: generated. Both presets with every setting, where each
-  value comes from, and the import strings.
+  with `# build:` and `# date:` lines; record one when you verify an import.
+  Generation then checks the port still emits the newest one's format and
+  stops if ChatGPT changed it.
+- `dist/presets.json`: generated; both presets with every setting, each
+  value's source, and the import strings.
 - `port.json`, `mapping.json`, `capabilities.json`: the port contract.

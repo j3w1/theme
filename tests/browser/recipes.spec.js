@@ -10,10 +10,9 @@ const appearance = (locator) => locator.evaluate((el) => {
 
 test("standalone recipes match canonical defaults and stay inside their style scope", { annotation }, async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== "desktop", "Canonical computed-style comparison uses one identical browser configuration.");
-  await page.goto("reference/", { waitUntil: "networkidle" });
-  await page.evaluate(() => document.documentElement.dataset.density = "comfortable");
   const canonical = {};
   for (const [id, parts] of Object.entries(selectors)) {
+    await page.goto(`components/${id}/`, { waitUntil: "networkidle" });
     canonical[id] = {};
     for (const part of parts) canonical[id][part] = await appearance(page.locator(`#${id}-states [data-state="default"]`).first().locator(part).first());
   }

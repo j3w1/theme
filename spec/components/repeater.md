@@ -29,15 +29,22 @@ tokens:
   secondary.text: color.text.muted
   control.bg: color.surface.input
   control.focus: color.interaction.focus.ring
+  button.bg: color.action.secondary.bg
+  button.text: color.action.secondary.text
+  button.border: color.action.secondary.border
+  button.bg-hover: color.action.secondary.hover-bg
+  button.bg-active: color.action.secondary.pressed-bg
+  button.border-active: color.border.active
+  button.focus: color.interaction.focus.ring
   dependency.role-border-width-default: border.width.default
   dependency.role-color-border-disabled: color.border.disabled
   dependency.role-color-interaction-disabled-bg: color.interaction.disabled.bg
   dependency.role-color-text-disabled: color.text.disabled
   dependency.role-density-comfortable-control-height: density.comfortable.control-height
   dependency.role-density-compact-control-height: density.compact.control-height
+  dependency.role-focus-offset: focus.offset
   dependency.role-radius-none: radius.none
   dependency.role-space-12: space.12
-  dependency.role-space-2: space.2
   dependency.role-space-24: space.24
   dependency.role-space-8: space.8
 stateTokens:
@@ -57,6 +64,12 @@ contrast:
     min: 3
     kind: ui
     label: Control boundary
+  - fg: color.action.secondary.text
+    bg: color.surface.default
+    label: Button label
+  - fg: color.action.secondary.text
+    bg: color.action.secondary.hover-bg
+    label: Button label on hover
 anatomy:
   - part: rows
     description: Ordered list of independently named field rows.
@@ -102,36 +115,38 @@ compact: false
 
 ## Purpose
 
-Repeat native fields from trusted inert HTML. Add, remove and reorder preserve row identities. The host supplies fields and handles submission; the component does not execute a schema or provide persistence. A max attribute bounds the number of rows; the supplied example is limited to ten.
+A variable number of the same native field row in one form; the host owns
+the fields, submission and persistence.
 
 ## Anatomy
 
-- **rows:** Ordered list of independently named field rows.
-- **template:** Trusted native markup cloned on explicit Add.
-- **actions:** Add, remove, move up and move down; no drag-only behavior.
+Parts as listed in the anatomy.
 
 ## States
 
-| State | Presentation | Non-colour channel |
+| State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | Named content on the default surface. | Native text and structure. |
-| empty | A muted empty message. | Explicit text and retained Add action. |
-| focus-visible | Dashed focus ring. | Native keyboard focus position. |
-| disabled | Disabled semantic foreground, background and border at full opacity. | Native disabled state blocks activation. |
+| default | named content on the default surface. Button controls are the secondary button (button.md); inputs keep the input look. | native text and structure |
+| empty | a muted empty message | explicit text; Add stays |
+| focus-visible | dashed focus ring | native focus position |
+| disabled | disabled foreground, background and border at full opacity | native disabled state blocks activation |
 
 ## Keyboard
 
-- **Tab / Shift+Tab:** Visit fields and row actions in source order.
-- **Enter / Space:** Add, remove or move a row. Focus follows the affected row or nearest survivor.
+As in the key table; nothing else is bound.
 
 ## Accessibility
 
-Namespace IDs and label/ARIA references for each row. Row identities do not change during reordering. Actions have names and disabled boundary states. Removing a focused row restores focus to a surviving row or Add; announce each explicit operation.
+IDs and label and ARIA references are namespaced per row. Actions are named
+and keep their boundary when disabled. Removing a focused row moves focus to
+a surviving row or to Add; each explicit operation is announced.
 
 ## Portability
 
-Follows the shared component defaults in `spec/portability.md` (section "Shared component defaults").
+Follows the shared component defaults in `spec/portability.md` (section
+"Shared component defaults").
 
 ## Non-examples
 
-Unlabelled controls, color-only status, drag-only operations, hidden required instructions, stolen focus or an invented service success.
+Unlabelled controls. Colour-only status. Drag-only operations. Hidden
+required instructions. Stolen focus. An invented service success.

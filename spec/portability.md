@@ -15,8 +15,8 @@ a file that changes one does not claim the others. A port never:
 - overwrites a user's whole settings file;
 - replaces keybindings, credentials or unrelated preferences.
 
-It installs under a unique name next to the host's defaults and documents how
-to roll back.
+It installs under a unique name beside the host's defaults and documents the
+rollback.
 
 ## What every port must reproduce
 
@@ -48,9 +48,9 @@ percentage means something only with its denominator.
 
 ## Shared component defaults
 
-A component whose Portability section links here follows these rules. Its
-frontmatter `responsive` and `portability.nativeFallbacks` fields carry the
-same rules for the exports.
+Components whose Portability section links here follow these rules; their
+`responsive` and `portability.nativeFallbacks` fields carry them into the
+exports.
 
 - Wrap labels and actions without changing source order.
 - Use logical spacing in RTL.
@@ -71,16 +71,31 @@ onto the framework's theme keys and lists what it cannot express.
 ## Native ports
 
 A port lives at `ports/<slug>/` with a README, `port.json`, `mapping.json` and
-importable artifacts under `dist/`. Add `capabilities.json` for precise role
-classifications. Add `src/` only for real generator inputs that these sources
-cannot express, and `evidence/` only for actual evidence; neither needs a
-placeholder directory. `templates/port/` is a starting aid when work begins.
+importable artifacts under `dist/`. Add `src/` only for real generator inputs
+that these sources cannot express, and `evidence/` only for actual evidence;
+neither needs a placeholder directory. `templates/port/` is a starting aid
+when work begins.
 
+- `capabilities.json` refines each role into mapped, inherited, unsupported,
+  out-of-scope or not-implemented, with a surface and a reason (D-018). A
+  legacy unmapped reason stays unclassified, never guessed. One generated
+  catalogue feeds the summaries, drill-downs and task kits; private parity
+  records never enter it.
+- Every port classifies a new role, even when only one maps it. Telegram alone
+  maps `surface.accent` (outgoing bubbles; incoming stay `surface.raised`,
+  timestamps on both `text.muted`) and `interaction.text-selection.tint`
+  (Android text selection; Desktop keeps `selection.bg` with near-white text).
+  Claude Code's `userMessageBackground` keeps `interaction.selection.bg`, and
+  Obsidian, which keeps the text colour, would suit the tint; each adoption is
+  a separate change with its own import check (D-035, D-036).
 - Statuses are `experimental`, `verified` and `deprecated`. Reference
   implementations and roadmap candidates are not statuses.
 - `verified` needs a real import into the recorded application version, with
   matching evidence and a token digest equal to the current default profile.
-  A successful XML or JSON parse is a structural pass, not verification.
+  Import verification is separate from mapping state and declared status: a
+  relevant change to the target, tokens, mappings, capabilities or artifact
+  bytes makes evidence stale, and a failed or missing check never passes. A
+  successful XML or JSON parse is a structural pass, not verification.
 - Never hand-edit a generated hex. Fix the mapping or the approved token and
   regenerate.
 - `npm run generate` writes `dist/` for every port whose `format` has an
@@ -92,7 +107,7 @@ placeholder directory. `templates/port/` is a starting aid when work begins.
   convention. Unsafe or duplicate paths and missing/extra outputs fail before
   any port artifact is written. Obsidian emits a manifest and CSS together;
   Telegram emits Android text and a Desktop zip.
-- The README downloads table links each file at the release tag, and the site
+- The README downloads table links each file at the release tag; the site
   serves a copy at `ports/<slug>/<file>`.
 
 For JetBrains, an editor scheme (`.icls`) and a UI theme plugin are separate
@@ -104,7 +119,7 @@ tested version before mapping.
 ## The reference implementation
 
 `j3w1/j3w1.github.io` is the flagship web implementation and the source of the
-observed values. This repository does not scrape it at build time, and nothing
-synchronises in either direction. A later integration pins a release of this
-theme in that site through a separate reviewed change, and records its own
-site-specific values (window-manager geometry, wallpaper gradients) as such.
+observed values. Nothing is scraped at build time or synchronised in either
+direction. An integration there pins a release of this theme through a
+separate reviewed change and records its site-specific values (window-manager
+geometry, wallpaper gradients) as such.

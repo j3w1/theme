@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — file-browser
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/file-browser.json
 spec: spec/components/file-browser.md  site: https://j3w1.github.io/theme/reference/#c-file-browser
 maturity: stable  priority: R2
@@ -15,21 +15,28 @@ Tokens (resolved):
   secondary.text                                      #bd787d  ({color.text.muted})  use
   control.bg                                          #000000  ({color.surface.input})  use
   control.focus                                       #e53935  ({color.interaction.focus.ring})  use
+  button.bg                                           rgb(0 0 0 / 0%)  ({color.action.secondary.bg})  use
+  button.text                                         #ffa2a7  ({color.action.secondary.text})  use
+  button.border                                       #a3676b  ({color.action.secondary.border})  use
+  button.bg-hover                                     #630f0d  ({color.action.secondary.hover-bg})  use
+  button.bg-active                                    #420f0c  ({color.action.secondary.pressed-bg})  use
+  button.border-active                                #e53935  ({color.border.active})  use
+  button.focus                                        #e53935  ({color.interaction.focus.ring})  use
   dependency.role-border-width-default                1px  ({border.width.default})  use
   dependency.role-border-width-emphasis               2px  ({border.width.emphasis})  use
   dependency.role-color-border-divider                #2b0e0d  ({color.border.divider})  use-and-report (D-008)
   dependency.role-color-border-selected-indicator     #e53935  ({color.border.selected-indicator})  use
   dependency.role-density-comfortable-control-height  32px  ({density.comfortable.control-height})  use
   dependency.role-density-compact-control-height      24px  ({density.compact.control-height})  use
+  dependency.role-focus-offset                        -2px  ({focus.offset})  use
   dependency.role-radius-none                         0px  ({radius.none})  use
   dependency.role-space-12                            12px  ({space.12})  use
   dependency.role-space-16                            16px  ({space.16})  use
-  dependency.role-space-2                             2px  ({space.2})  use
   dependency.role-space-8                             8px  ({space.8})  use
 State dependency disclosures: D-007
 
 States: default, selected, empty, no-results, focus-visible
-  default: Locations and native file rows. [Explicit names, kinds and sizes.]
+  default: Locations and native file rows. Button controls are the secondary button (button.md); inputs keep the input look. [Explicit names, kinds and sizes.]
   selected: Selected location follows the tree contract. [aria-selected plus location filter.]
   empty: No file rows. [Explicit zero-files text.]
   no-results: Filtered rows are hidden. [Matching count and retained search query.]

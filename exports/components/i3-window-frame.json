@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=",
+  "sourceDigest": "sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=",
   "id": "i3-window-frame",
   "family": "composed",
   "maturity": "stable",
@@ -188,8 +188,8 @@
       }
     },
     "workspace.ring-on-selection": {
-      "alias": "color.interaction.focus.ring-container",
-      "value": "#ffa2a7",
+      "alias": "color.interaction.focus.ring",
+      "value": "#e53935",
       "status": "observed",
       "deprecated": false,
       "decisionId": null,
@@ -457,7 +457,7 @@
   "stateRules": [
     {
       "state": "default",
-      "visual": "the terminal window focused: {color.border.active} frame and the bright title; the editor at rest; workspace 1 filled",
+      "visual": "terminal window focused: {color.border.active} frame, bright title; editor at rest; workspace 1 filled",
       "channel": "the title text; `aria-selected`",
       "tokens": {
         "fg": {
@@ -488,7 +488,7 @@
     },
     {
       "state": "focus-visible",
-      "visual": "the 2px {color.interaction.focus.ring-container} ring at −3px inside the focused window or container; the client draws no second ring",
+      "visual": "2px {color.interaction.focus.ring-container} ring at −3px inside the focused window or container; the client draws no second ring",
       "channel": "the ring",
       "tokens": {
         "fg": {
@@ -531,7 +531,7 @@
     },
     {
       "state": "selected",
-      "visual": "workspace 2 takes the selection fill with {color.interaction.selection.text}; workspace 1 drops to rest",
+      "visual": "workspace 2 takes the selection fill with {color.interaction.selection.text}, 1px dashed {color.interaction.focus.ring} at −2px when focused; workspace 1 at rest",
       "channel": "`aria-selected`",
       "tokens": {
         "fg": {
@@ -562,7 +562,7 @@
     },
     {
       "state": "container-inactive",
-      "visual": "no window has focus: every frame {color.border.default}, every title {color.text.muted} on {color.surface.chrome}, the tab indicator {color.border.selected-indicator-inactive}, no caret",
+      "visual": "no window focused: every frame {color.border.default}, every title {color.text.muted} on {color.surface.chrome}, tab indicator {color.border.selected-indicator-inactive}, no caret",
       "channel": "lightness drop; no caret",
       "tokens": {
         "fg": {
@@ -593,7 +593,7 @@
     },
     {
       "state": "error",
-      "visual": "workspace 3 is urgent: {color.status.danger.fill} with {color.status.danger.on-fill} and a trailing !",
+      "visual": "workspace 3 urgent: {color.status.danger.fill} with {color.status.danger.on-fill} and a trailing !",
       "channel": "the ! mark; \"urgent\" read to assistive technology",
       "tokens": {
         "fg": {
@@ -667,7 +667,7 @@
     "tabs"
   ],
   "specimens": [],
-  "nonExamples": "A window with rounded corners or a title bar gradient. A focused window\nthat glows or blurs its neighbours. A shadow under a tiled window; the only\nshadow is the floating one. Gaps of 14/−2 forced into an unrelated\napplication's layout. A workspace indicator drawn as a red underline\ninstead of the selection fill. Traffic-light close buttons in the title\nbar. A translucent bar.",
+  "nonExamples": "Rounded corners or a title-bar gradient. A focused window that glows or\nblurs its neighbours. A shadow under a tiled window. 14/−2 gaps forced into\nan unrelated application. A red underline instead of the selection fill for\nthe workspace. Traffic-light buttons in the title bar. A translucent bar.",
   "contrast": [
     {
       "label": "i3-window-frame default text",
@@ -744,6 +744,19 @@
       "fgHex": "#f9faf9",
       "bgHex": "#dc282e",
       "ratio": 4.58,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "ring on a selected workspace when focused",
+      "state": "selected",
+      "kind": "ui",
+      "min": 3,
+      "fg": "color.interaction.focus.ring",
+      "bg": "color.interaction.selection.bg",
+      "fgHex": "#e53935",
+      "bgHex": "#531310",
+      "ratio": 3.38,
       "pass": true,
       "waiver": null
     },

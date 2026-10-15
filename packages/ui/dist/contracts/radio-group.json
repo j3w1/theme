@@ -125,7 +125,10 @@
       "color.text.bright",
       "color.text.default",
       "color.text.disabled",
+      "color.text.muted",
+      "density.comfortable.control-height",
       "density.comfortable.icon",
+      "density.compact.control-height",
       "density.compact.icon",
       "focus.offset",
       "focus.ring",
@@ -170,6 +173,7 @@
       "color.primitive.red.850",
       "color.primitive.rose.300",
       "color.primitive.rose.350",
+      "color.primitive.rose.600",
       "color.primitive.rose.700",
       "color.primitive.rose.800",
       "color.status.danger.border",
@@ -179,8 +183,11 @@
       "color.text.bright",
       "color.text.default",
       "color.text.disabled",
+      "color.text.muted",
       "color.text.on-action",
+      "density.comfortable.control-height",
       "density.comfortable.icon",
+      "density.compact.control-height",
       "density.compact.icon",
       "focus.offset",
       "focus.ring",
@@ -310,7 +317,22 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "color.text.muted": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "density.comfortable.control-height": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "density.comfortable.icon": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "density.compact.control-height": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -396,6 +418,6 @@
   "copy": {
     "directory": "copy/radio-group/",
     "manifest": "copy/radio-group/manifest.json",
-    "digest": "sha256-PRTi1+IXRrKIG+iq5rBiBKtFzpsGeQG5/f/16lYpmCw="
+    "digest": "sha256-1LRuVLdz4Be5bPbEaxfo+lZHHjUS9sAWxg1BqbK1c3Y="
   }
 }

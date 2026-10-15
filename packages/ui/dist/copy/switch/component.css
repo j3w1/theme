@@ -8,7 +8,7 @@ j3w1-switch {
   line-height: var(--font-line-height-ui-md);
 }
 j3w1-switch, j3w1-switch *, j3w1-switch *::before, j3w1-switch *::after { box-sizing: border-box; }
-j3w1-switch button, j3w1-switch input, j3w1-switch select, j3w1-switch textarea { font: inherit; }
+j3w1-switch :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 j3w1-switch ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);

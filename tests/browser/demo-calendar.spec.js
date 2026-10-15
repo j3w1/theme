@@ -1,0 +1,82 @@
+import { test, expect } from "./evidence-fixture.mjs";
+import { verification } from "./verification.mjs";
+import { openSpec, only } from "./helpers.mjs";
+
+const scope = note => verification({ component: "toast", category: "enhancements", states: ["default", "hover", "focus-visible"], variants: ["with-action"], note });
+
+test("calendar: remove and undo restore each event and its day", scope("Vue demo deletion through canonical destructive buttons and Undo toast; multiple removals restore in reverse order. Synthetic in-memory data only."), async ({ page }, testInfo) => {
+  test.skip(only(testInfo, "nojs"), "The Vue demo requires JavaScript; static component matrices are checked separately.");
+  const audit = await openSpec(page, "demo/#/apps/calendar");
+  const removeDesign = page.getByRole("button", { name: "Remove event: Design review", exact: true });
+  await removeDesign.focus();
+  await page.keyboard.press("Enter");
+  await expect(removeDesign).toHaveCount(0);
+  const notice = page.locator(".calendar-notifications");
+  await expect(notice.locator(".toast-text")).toHaveText("Design review removed.");
+  await expect(page.getByRole("button", { name: "Add event", exact: true })).toBeFocused();
+  await page.getByRole("button", { name: "Remove event: Component workshop", exact: true }).click();
+  await expect(notice.locator(".toast-text")).toHaveText("Component workshop removed.");
+  await notice.getByRole("button", { name: "Undo", exact: true }).click();
+  const component = page.locator(".calendar-day").filter({ has: page.getByRole("button", { name: "Remove event: Component workshop", exact: true }) });
+  await expect(component.locator("strong")).toHaveText("14");
+  await expect(page.getByRole("button", { name: "Remove event: Component workshop", exact: true })).toBeFocused();
+  await page.getByRole("button", { name: "Undo removal of Design review", exact: true }).click();
+  await expect(page.locator(".calendar-event")).toHaveCount(3);
+  await expect(page.locator(".calendar-day").filter({ has: removeDesign }).locator("strong")).toHaveText("08");
+  await expect(removeDesign).toBeFocused();
+  await expect(notice).toHaveCount(0);
+  audit.assertClean();
+});
+
+test("calendar: Undo survives timeout, hover, focus and dismissal", scope("Twelve-second action toast pauses on pointer hover and keyboard focus; F6 reaches it, Escape and Dismiss return focus, and an independent Undo remains after closing. Clock-controlled automated checks only."), async ({ page }, testInfo) => {
+  test.skip(only(testInfo, "nojs"), "The Vue demo requires JavaScript; static component matrices are checked separately.");
+  await openSpec(page, "demo/#/apps/calendar");
+  await page.clock.install();
+  await page.getByRole("button", { name: "Remove event: Design review", exact: true }).click();
+  const notice = page.locator(".calendar-notifications");
+  const persistentUndo = page.getByRole("button", { name: "Undo removal of Design review", exact: true });
+  await page.clock.runFor(8000);
+  await expect(notice).toBeVisible();
+  await notice.hover();
+  await page.clock.runFor(20000);
+  await expect(notice).toBeVisible();
+  await page.keyboard.press("F6");
+  await expect(notice.getByRole("button", { name: "Undo", exact: true })).toBeFocused();
+  await page.mouse.move(0, 0);
+  await page.clock.runFor(20000);
+  await expect(notice).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(notice).toHaveCount(0);
+  await expect(persistentUndo).toBeFocused();
+  await persistentUndo.click();
+  await page.getByRole("button", { name: "Remove event: Design review", exact: true }).click();
+  await page.mouse.move(0, 0);
+  await page.clock.runFor(12000);
+  await expect(notice).toHaveCount(0);
+  await expect(persistentUndo).toBeVisible();
+  await persistentUndo.click();
+  await page.getByRole("button", { name: "Remove event: Design review", exact: true }).click();
+  await notice.getByRole("button", { name: "Dismiss", exact: true }).click();
+  await expect(notice).toHaveCount(0);
+  await expect(persistentUndo).toBeFocused();
+  await persistentUndo.click();
+  await expect(page.locator(".calendar-event")).toHaveCount(3);
+});
+
+test("calendar: adding an event while another is removed preserves both identities", scope("Restore the removed maximum event id after adding a new event; reset clears undo history and timers. Synthetic local identities and data only."), async ({ page }, testInfo) => {
+  test.skip(only(testInfo, "nojs"), "The Vue demo requires JavaScript; static component matrices are checked separately.");
+  await openSpec(page, "demo/#/apps/calendar");
+  await page.getByRole("button", { name: "Remove event: Release rehearsal", exact: true }).click();
+  await page.getByLabel("Event title").fill("Follow-up");
+  await page.getByLabel("Day", { exact: false }).fill("24");
+  await page.getByRole("button", { name: "Add event", exact: true }).click();
+  await page.getByRole("button", { name: "Undo removal of Release rehearsal", exact: true }).click();
+  await expect(page.locator(".calendar-event")).toHaveCount(4);
+  const ids = await page.locator(".calendar-event").evaluateAll(rows => rows.map(row => row.dataset.eventId));
+  expect(new Set(ids).size).toBe(4);
+  await page.getByRole("button", { name: "Remove event: Follow-up", exact: true }).click();
+  await page.getByRole("button", { name: "Reset demo ↻" }).click();
+  await expect(page.locator(".calendar-event")).toHaveCount(3);
+  await expect(page.locator(".calendar-notifications")).toHaveCount(0);
+  await expect(page.getByRole("button", { name: /^Undo removal/ })).toHaveCount(0);
+});

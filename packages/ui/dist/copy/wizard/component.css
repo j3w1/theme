@@ -8,7 +8,7 @@ j3w1-wizard {
   line-height: var(--font-line-height-ui-md);
 }
 j3w1-wizard, j3w1-wizard *, j3w1-wizard *::before, j3w1-wizard *::after { box-sizing: border-box; }
-j3w1-wizard button, j3w1-wizard input, j3w1-wizard select, j3w1-wizard textarea { font: inherit; }
+j3w1-wizard :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 j3w1-wizard ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);
@@ -52,8 +52,8 @@ j3w1-wizard .wizard-step-button {
   align-items: center;
   gap: var(--space-8);
   width: 100%;
-  min-height: var(--density-row-height, 36px);
-  padding: 0 var(--density-control-padding-x, 12px);
+  min-height: var(--density-row-height, 28px);
+  padding: 0 var(--density-control-padding-x, 8px);
   background: transparent;
   border: 0;
   border-bottom: var(--border-width-emphasis) solid transparent;
@@ -119,8 +119,8 @@ j3w1-wizard .wizard-next {
   display: inline-flex;
   align-items: center;
   gap: var(--space-4);
-  min-height: var(--density-control-height, 32px);
-  padding: 0 var(--density-control-padding-x, 12px);
+  min-height: var(--density-control-height, 24px);
+  padding: 0 var(--density-control-padding-x, 8px);
   border: var(--border-width-default) solid;
   border-radius: var(--radius-none);
   font: inherit;
@@ -247,6 +247,66 @@ j3w1-wizard .wizard[aria-busy="true"] .wizard-next {
   }
 }
 
+j3w1-wizard .combobox-label,
+j3w1-wizard .dialog-field-label,
+j3w1-wizard .field-label,
+j3w1-wizard .fieldset-label,
+j3w1-wizard .file-input-label,
+j3w1-wizard .number-field-label,
+j3w1-wizard .search-field-label,
+j3w1-wizard .select-label,
+j3w1-wizard .text-field-label,
+j3w1-wizard .textarea-label,
+j3w1-wizard .time-picker-label {
+  color: var(--color-text-bright);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+j3w1-wizard .combobox-help,
+j3w1-wizard .date-picker-help,
+j3w1-wizard .dialog-field-help,
+j3w1-wizard .fieldset-help,
+j3w1-wizard .file-input-help,
+j3w1-wizard .number-field-help,
+j3w1-wizard .search-field-help,
+j3w1-wizard .select-help,
+j3w1-wizard .text-field-help,
+j3w1-wizard .textarea-help,
+j3w1-wizard .time-picker-help {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+j3w1-wizard .combobox-message,
+j3w1-wizard .date-picker-message,
+j3w1-wizard .file-input-message,
+j3w1-wizard .number-field-message,
+j3w1-wizard .radio-group-message,
+j3w1-wizard .select-message,
+j3w1-wizard .text-field-message,
+j3w1-wizard .textarea-message,
+j3w1-wizard .time-picker-message {
+  display: none;
+  margin: 0;
+  color: var(--color-status-danger-text);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+j3w1-wizard .combobox-root,
+j3w1-wizard .date-picker-root,
+j3w1-wizard .number-field-root {
+  display: flex;
+  align-items: stretch;
+  min-height: var(--density-control-height, 24px);
+  background: var(--color-surface-input);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+}
+
 j3w1-wizard .text-field {
   position: relative;
   display: grid;
@@ -254,12 +314,6 @@ j3w1-wizard .text-field {
   min-width: 0;
   max-width: calc(var(--font-size-ui-md) * 28);
   color: var(--color-text-default);
-}
-
-j3w1-wizard .text-field-label {
-  color: var(--color-text-bright);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
 }
 
 j3w1-wizard .text-field-required {
@@ -271,7 +325,7 @@ j3w1-wizard .text-field-root {
   display: flex;
   min-width: 0;
   align-items: stretch;
-  min-height: var(--density-control-height, 32px);
+  min-height: var(--density-control-height, 24px);
   background: var(--color-surface-input);
   border: var(--border-width-default) solid var(--color-border-control);
   border-radius: var(--radius-none);
@@ -280,7 +334,7 @@ j3w1-wizard .text-field-root {
 j3w1-wizard .text-field-input {
   flex: 1 1 auto;
   min-width: 0;
-  padding: 0 var(--density-control-padding-x, 12px);
+  padding: 0 var(--density-control-padding-x, 8px);
   background: transparent;
   border: 0;
   color: var(--color-text-default);
@@ -355,21 +409,6 @@ j3w1-wizard .text-field-loading {
   align-items: center;
   padding: 0 var(--space-8);
   color: var(--color-text-muted);
-}
-
-j3w1-wizard .text-field-help {
-  margin: 0;
-  color: var(--color-text-muted);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
-}
-
-j3w1-wizard .text-field-message {
-  display: none;
-  margin: 0;
-  color: var(--color-status-danger-text);
-  font-size: var(--font-size-ui-sm);
-  line-height: var(--font-line-height-ui-sm);
 }
 j3w1-wizard .text-field-root:hover {
   background: var(--color-interaction-hover-bg);

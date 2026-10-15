@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — number-field
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/number-field.json
 spec: spec/components/number-field.md  site: https://j3w1.github.io/theme/reference/#c-number-field
 maturity: stable  priority: R1
@@ -35,11 +35,11 @@ State dependency disclosures: D-007
 States: default, hover, focus-visible, invalid, invalid+focus-visible, disabled, read-only
   default: 1px {color.border.control} on {color.surface.input}; digits {color.text.default}; unit {color.text.muted}; stepper glyphs {color.action.tertiary.text} [—]
   hover: background → {color.interaction.hover.bg}; a hovered stepper button → {color.action.tertiary.hover-bg} [cursor: text on the input, pointer on the buttons]
-  focus-visible: border → {color.border.active}; ring 1px dashed {color.interaction.focus.ring} at −2px on the box, or on the focused stepper button [the ring]
-  invalid: border 2px {color.status.danger.border}; message with the ✕ glyph [border width 1 → 2px; glyph; `aria-invalid`]
+  focus-visible: border → {color.border.active}; 1px dashed {color.interaction.focus.ring} at −2px on the box or the focused stepper button [the ring]
+  invalid: 2px {color.status.danger.border}; message with the ✕ glyph [border 1 → 2px; glyph; `aria-invalid`]
   invalid+focus-visible: the 2px danger border and the ring in {color.interaction.focus.ring-container} at −4px [double boundary]
   disabled: text, unit and glyphs {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}; buttons disabled [`disabled`; cursor: not-allowed]
-  read-only: no box: 1px dotted {color.border.divider} bottom edge on {color.surface.canvas}; the stepper is hidden [`readonly`; dotted edge; no buttons]
+  read-only: no box: 1px dotted {color.border.divider} bottom edge on {color.surface.canvas}; stepper hidden [`readonly`; dotted edge; no buttons]
 
 Keyboard:
   Tab / Shift+Tab: Input, then the increase button, then the decrease button.

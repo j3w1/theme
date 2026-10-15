@@ -5,6 +5,8 @@
 export const anchorFor = {
   verification: (id) => `v-${id}`,
   component: (id) => `c-${id}`,
+  states: (id) => `${id}-states`,
+  heading: (kind, id, text) => `${kind === "component" ? "c" : "d"}-${id}--${text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`,
   family: (id) => `f-${id}`,
   doc: (id) => `d-${id}`,
   decision: (id) => `d-decisions--${id.toLowerCase()}`,

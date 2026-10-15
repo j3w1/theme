@@ -48,7 +48,7 @@ tokens:
   item.text-disabled: color.text.disabled
   active.bg: color.interaction.selection.bg
   active.text: color.interaction.selection.text
-  active.ring: color.interaction.focus.ring-container
+  active.ring: color.interaction.focus.ring
   check.glyph: color.text.bright
   shortcut.text: color.text.muted
   separator.color: color.border.divider
@@ -60,7 +60,7 @@ stateTokens:
   open: { fg: color.text.default, bg: color.interaction.pressed.bg, border: color.border.active }
   closed: { fg: color.text.default, bg: color.surface.default, border: color.border.control }
   checked: { fg: color.text.bright, bg: color.surface.raised }
-  selected: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg, outline: color.interaction.focus.ring-container }
+  selected: { fg: color.interaction.selection.text, bg: color.interaction.selection.bg, outline: color.interaction.focus.ring }
 contrast:
   - { fg: color.text.muted, bg: color.surface.raised, label: "shortcut hint on the raised surface" }
   - { fg: color.text.disabled, bg: color.surface.raised, min: 3, kind: ui, state: disabled, label: "disabled item text (exempt; house floor 3:1)" }
@@ -113,68 +113,51 @@ compact: true
 
 ## Purpose
 
-Offers a short list of actions behind one button. A menu is for commands;
-choosing a value belongs in select or combobox, and moving between views in
-tabs or the sidebar. Menus close as soon as an action runs.
+A short list of commands behind one button. Choosing a value is `select` or
+`combobox`; moving between views is tabs or the sidebar. Running an action
+closes the menu; a check item toggles and leaves it open.
 
 ## Anatomy
 
-A menu button, styled as a secondary button, that opens a list on
-{color.surface.raised} inside a 1px {color.border.overlay} frame. Items are
-buttons in {color.text.default} with a check gutter at the inline start, the
-label, and an optional shortcut hint in {color.text.muted}. Separators are
-1px {color.border.divider} rules. The active item, whether reached by pointer
-or by arrow key, is the selection fill {color.interaction.selection.bg} with
-{color.interaction.selection.text}. The reference renders the menu open in
-flow beneath the button; a host positions it at `z.popover`.
+Parts as listed in the anatomy. The active item, reached by pointer or arrow
+key, takes the selection fill.
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | the button at rest; the list on {color.surface.raised} with the {color.border.overlay} frame | — |
-| hover | item background → {color.interaction.hover.bg-strong}; text → {color.text.link-hover} | cursor: pointer |
-| focus-visible | ring 1px dashed {color.interaction.focus.ring} at −2px on the button; on the active item the ring is {color.interaction.focus.ring-container} | the ring |
-| open | button fill {color.interaction.pressed.bg} with 1px {color.border.active}; the list shown | `aria-expanded="true"`; the list is present |
-| closed | the button at rest; the list hidden | `aria-expanded="false"`; the list is absent from the tree |
-| disabled | item text {color.text.disabled}; no hover; still focusable by arrow keys when `aria-disabled` | `aria-disabled="true"`; cursor: not-allowed |
-| checked | the ✓ glyph in {color.text.bright} in the gutter | `aria-checked="true"`; the glyph |
-| selected | the active item: fill {color.interaction.selection.bg} with {color.interaction.selection.text} | focus is on the item; `aria-activedescendant` where used |
+| default | button at rest; list on {color.surface.raised} in the {color.border.overlay} frame | — |
+| hover | item → {color.interaction.hover.bg-strong}, text {color.text.link-hover} | cursor: pointer |
+| focus-visible | 1px dashed {color.interaction.focus.ring} at −2px on the button and the active item | the ring |
+| open | button {color.interaction.pressed.bg} with 1px {color.border.active}; list shown | `aria-expanded="true"`; list present |
+| closed | button at rest; list hidden | `aria-expanded="false"`; list absent from the tree |
+| disabled | item text {color.text.disabled}; no hover; still reachable by arrow keys when `aria-disabled` | `aria-disabled="true"`; cursor: not-allowed |
+| checked | ✓ in {color.text.bright} in the gutter | `aria-checked="true"`; the glyph |
+| selected | active item filled {color.interaction.selection.bg} with {color.interaction.selection.text} | focus on the item; `aria-activedescendant` where used |
 
 Precedence: disabled > selected > hover; focus-visible is always drawn.
 
 ## Keyboard
 
-The button opens on Enter, Space or Down (focus on the first item) and on Up
-(focus on the last). Inside, Up and Down move and wrap, Home and End jump,
-Right opens a submenu and Left closes it, typing a letter jumps to the next
-matching item. Enter or Space activates; a check item toggles without closing.
-Escape closes and returns focus to the button; Tab closes and continues the
-tab order. Focus never rests on a separator.
+As in the key table; focus never rests on a separator.
 
 ## Accessibility
 
-The button carries `aria-haspopup="menu"`, `aria-expanded` and
-`aria-controls`; the list `role="menu"` and `aria-labelledby` pointing at the
-button. Items are `role="menuitem"` or `role="menuitemcheckbox"` with
-`aria-checked`; disabled items use `aria-disabled` so they remain reachable
-and announced. Shortcut hints are text, not `aria-keyshortcuts` alone.
-Contrast: item text 8.43:1 and shortcut 5.66:1 on the raised surface, active
-text 12.47:1 on the fill, the frame 4.57:1, ring-container 7.48:1 on the fill.
-Items are the row height, at least 24 CSS pixels in `compact` density.
+The list is `aria-labelledby` the button. Disabled items use `aria-disabled`
+so they stay reachable and announced. Shortcut hints are text, not
+`aria-keyshortcuts` alone. Text meets 4.5:1; frame and ring 3:1. Items are at
+least 24 CSS pixels tall in `compact`.
 
 ## Portability
 
-A framed box with rows; the active row is a fill, the frame a border, the
-ring an outline. Toolkits with native menus keep their keyboard model and
-take the surface, frame and fill colours. Hosts that cannot draw the frame
-in the overlay colour draw it in the strong border colour and record the
-deviation.
+A framed box of rows: the active row a fill, the frame a border, the ring an
+outline. Native menus keep their keyboard model and take the surface, frame
+and fill colours. A host that cannot draw the frame in the overlay colour
+uses the strong border colour and records the deviation.
 
 ## Non-examples
 
-A shadow under the menu. Rounded corners on the menu or the items. An active
-item marked by text colour alone. A hover fill that differs from every other
-menu in the product. Icons in the check gutter of a plain menuitem. A menu
-that stays open after an action. Items that are links styled as menu items
-without `role="menuitem"`. Disabling by opacity.
+A shadow under the menu. Rounded menu or items. An active item marked by text
+colour alone. A hover fill unlike every other menu in the product. Icons in a
+plain menuitem's check gutter. A menu that stays open after an action. Links
+styled as menu items without `role="menuitem"`. Disabling by opacity.

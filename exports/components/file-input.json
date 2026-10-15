@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=",
+  "sourceDigest": "sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=",
   "id": "file-input",
   "family": "forms-advanced",
   "maturity": "stable",
@@ -413,7 +413,7 @@
     },
     {
       "state": "hover",
-      "visual": "button background → {color.action.secondary.hover-bg}; border unchanged",
+      "visual": "button → {color.action.secondary.hover-bg}; border unchanged",
       "channel": "cursor: pointer",
       "tokens": {
         "fg": {
@@ -444,7 +444,7 @@
     },
     {
       "state": "focus-visible",
-      "visual": "ring 1px dashed {color.interaction.focus.ring} at −2px on the button (the input has focus)",
+      "visual": "1px dashed {color.interaction.focus.ring} at −2px on the button (the input has focus)",
       "channel": "the ring",
       "tokens": {
         "fg": {
@@ -499,8 +499,8 @@
     },
     {
       "state": "drop-target",
-      "visual": "root fill {color.interaction.marquee}; border 1px dashed {color.interaction.drop-target}",
-      "channel": "dashed pattern; the hint text changes to \"Release to add\"",
+      "visual": "root fill {color.interaction.marquee}; 1px dashed {color.interaction.drop-target} border",
+      "channel": "dashed pattern; hint reads \"Release to add\"",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -542,8 +542,8 @@
     },
     {
       "state": "invalid",
-      "visual": "button border 2px {color.status.danger.border}; message with the ✕ glyph; a failed row shows its own ✕",
-      "channel": "border width 1 → 2px; glyphs; `aria-invalid`",
+      "visual": "button border 2px {color.status.danger.border}; message with ✕; a failed row shows its own ✕",
+      "channel": "border 1 → 2px; glyphs; `aria-invalid`",
       "tokens": {
         "fg": {
           "alias": "color.action.secondary.text",
@@ -585,14 +585,14 @@
     },
     {
       "state": "disabled",
-      "visual": "button text {color.text.disabled}, border {color.border.disabled}, background {color.interaction.disabled.bg}; the zone's dashes take {color.border.disabled}; no hover",
+      "visual": "button text {color.text.disabled}, border {color.border.disabled}, fill {color.interaction.disabled.bg}; zone dashes {color.border.disabled}; no hover",
       "channel": "`disabled`; cursor: not-allowed",
       "tokens": {}
     },
     {
       "state": "loading",
-      "visual": "a static bar of 45° stripes, {color.action.primary.bg} on {color.interaction.pressed.bg}, below the row; the button stays enabled",
-      "channel": "`aria-busy`; the status text reads \"Uploading n files\"; no animation",
+      "visual": "static 45° stripes, {color.action.primary.bg} on {color.interaction.pressed.bg}, below the row; the button stays enabled",
+      "channel": "`aria-busy`; status reads \"Uploading n files\"; no animation",
       "tokens": {}
     }
   ],
@@ -644,7 +644,7 @@
   "specimens": [
     "admin-form"
   ],
-  "nonExamples": "A hidden input with `display: none` and a button that clicks it by script. A\ndrop zone that is the only way to add files. A rounded, dotted, animated\n\"pulsing\" zone. A spinner while uploading. A progress bar that animates its\nstripes. Errors shown by a red file name alone. Disabling by opacity.",
+  "nonExamples": "`display: none` on the input and a button that clicks it by script. A drop\nzone as the only way to add files. A rounded, dotted or pulsing zone. A\nspinner, or animated stripes, while uploading. Errors shown by a red file\nname alone. Disabling by opacity.",
   "contrast": [
     {
       "label": "file-input default text",
@@ -787,7 +787,7 @@
       "bgHex": "#000000",
       "ratio": 4.71,
       "pass": true,
-      "waiver": "inside the hover fill the control border measures 2.94:1; the boundary is judged against the canvas on its outer side (4.45:1), and the fill change is itself the hover signal"
+      "waiver": "inside the hover fill the control border falls below the floor; the boundary is judged against the canvas on its outer side, and the fill change is itself the hover signal"
     },
     {
       "label": "drop-zone dashed border at rest",

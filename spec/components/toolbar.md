@@ -84,19 +84,13 @@ compact: false
 
 ## Purpose
 
-Groups the frequent actions of a view into one row that costs one tab stop.
-A toolbar is for actions on the content beneath it; navigation between views
-belongs in tabs or the sidebar, and a set of mutually exclusive choices in a
-segmented control or radio group.
+Groups a view's frequent actions on the content beneath it into one row that
+costs one tab stop. Navigation between views belongs in tabs or the sidebar;
+mutually exclusive choices in a segmented control or radio group.
 
 ## Anatomy
 
-A `div` with `role="toolbar"` on {color.surface.chrome} with a 1px
-{color.border.divider} bottom edge. Inside, ghost buttons in
-{color.text.default} with a transparent 1px border, vertical separators in
-{color.border.default} between groups, and in the overflow variant a trailing
-"More" button that opens a menu with the controls that do not fit. Toggle
-buttons carry `aria-pressed`.
+Parts as listed in the anatomy.
 
 ## States
 
@@ -104,44 +98,34 @@ buttons carry `aria-pressed`.
 | --- | --- | --- |
 | default | text {color.text.default}; no fill; transparent border | — |
 | hover | background → {color.interaction.hover.bg} | cursor: pointer |
-| focus-visible | ring 1px dashed {color.interaction.focus.ring} at −2px | the ring |
+| focus-visible | 1px dashed {color.interaction.focus.ring} ring at −2px | the ring |
 | disabled | text {color.text.disabled}; no fill; no hover | `disabled`; cursor: not-allowed; skipped by the arrow keys |
 | toggled | fill {color.interaction.pressed.bg}; 1px {color.border.active} border; text {color.text.bright} | `aria-pressed="true"`; the border |
 
-Pressing a button uses {color.interaction.pressed.bg} for the duration of
-the press only; a toggled button keeps it.
+A press shows {color.interaction.pressed.bg} only while it lasts; a toggled
+button keeps it.
 
 ## Keyboard
 
-The toolbar is one tab stop: the last focused control (initially the first
-enabled one) has `tabindex="0"`, every other control `tabindex="-1"`. Left
-and Right move between controls and wrap; Home and End jump to the ends;
-Enter and Space activate. Disabled controls are skipped. Vertical toolbars
-declare `aria-orientation="vertical"` and use Up and Down. Without script
-every button is a tab stop, which is acceptable, not ideal.
+As in the key table. The roving stop is the last focused control, initially
+the first enabled one.
 
 ## Accessibility
 
-`aria-label` names the toolbar; a page with several toolbars gives each a
-distinct name. Toggle buttons expose `aria-pressed`; their label does not
-change with the state. Separators are `role="separator"` with
-`aria-orientation="vertical"` and are never focusable. Icon-only buttons
-carry `aria-label` and a tooltip. Contrast: text 8.60:1 on the chrome
-surface, toggled text 8.41:1 on the pressed fill, the toggled border 3.81:1,
-ring 4.66:1. Every control is at least 24×24 CSS pixels with 4px between
-neighbours in `compact` density.
+A page with several toolbars names each distinctly. A toggle button's label
+does not change with its state. Icon-only buttons carry `aria-label` and a
+tooltip. Text meets 4.5:1, the toggled border and the ring 3:1. Every control
+is at least 24×24 CSS pixels with 4px between neighbours in `compact`.
 
 ## Portability
 
-Ghost buttons with a background and a border; the separator is a 1px rule.
 Toolkits with a native toolbar keep their own keyboard model and take the
-colours. The overflow menu is a menu component; hosts without one wrap the
-row instead and record the deviation.
+colours. The overflow menu is the menu component; hosts without one wrap the
+row and record the deviation.
 
 ## Non-examples
 
-Buttons with a visible border at rest. A filled primary button inside the
-toolbar. Rounded buttons or a pill-shaped toolbar. Every button in the tab
-order when script is available. A toggled state shown by colour alone without
-`aria-pressed`. A toolbar that wraps to two lines. A separator that receives
-focus. Disabling by opacity.
+Buttons bordered at rest. A filled primary button in the toolbar. Rounded
+buttons or a pill-shaped toolbar. Every button in the tab order when script
+is available. A toggled state by colour alone without `aria-pressed`. A
+toolbar wrapping to two lines. A focusable separator. Disabling by opacity.

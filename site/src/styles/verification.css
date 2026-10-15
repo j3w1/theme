@@ -9,7 +9,7 @@ td, th { padding: var(--space-8); text-align: start; vertical-align: top; border
 code { overflow-wrap: anywhere; }
 form { margin-block: var(--space-16); }
 label { display: inline-block; margin: var(--space-8); }
-select, button { border: var(--border-width-default) solid var(--color-border-control); background: var(--color-surface-default); color: var(--color-text-default); font: inherit; min-height: var(--density-comfortable-control-height); border-radius: var(--radius-none); }
-:focus-visible { outline: var(--border-width-default) dashed var(--color-interaction-focus-ring); outline-offset: -2px; }
+select { border: var(--border-width-default) solid var(--color-border-control); background: var(--color-surface-input); color: var(--color-text-default); font: inherit; min-height: var(--density-compact-control-height); border-radius: var(--radius-none); }
+:focus-visible { outline: var(--focus-ring); outline-offset: var(--focus-offset); }
 [hidden] { display: none; }
 @media print { #filters { display: none; } .scroll { overflow: visible; } }

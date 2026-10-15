@@ -8,7 +8,7 @@ j3w1-link {
   line-height: var(--font-line-height-ui-md);
 }
 j3w1-link, j3w1-link *, j3w1-link *::before, j3w1-link *::after { box-sizing: border-box; }
-j3w1-link button, j3w1-link input, j3w1-link select, j3w1-link textarea { font: inherit; }
+j3w1-link :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 j3w1-link ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);
@@ -49,7 +49,7 @@ j3w1-link .link-standalone {
   align-items: center;
   gap: var(--space-4);
   padding: 0 var(--space-4);
-  min-height: var(--density-control-height, 32px);
+  min-height: var(--density-control-height, 24px);
   font-size: var(--font-size-ui-md);
   line-height: var(--font-line-height-ui-md);
 }
@@ -63,7 +63,7 @@ j3w1-link .link-icon {
 }
 @media (hover: hover) {
   j3w1-link .link:hover {
-    background: var(--color-interaction-hover-bg-strong);
+    background: var(--color-interaction-hover-bg);
     color: var(--color-text-link-hover);
     text-decoration-color: currentColor;
     text-decoration-thickness: var(--border-width-emphasis);

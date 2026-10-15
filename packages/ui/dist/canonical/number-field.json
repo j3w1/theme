@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=",
+  "sourceDigest": "sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=",
   "id": "number-field",
   "family": "forms-basic",
   "maturity": "stable",
@@ -427,7 +427,7 @@
     },
     {
       "state": "focus-visible",
-      "visual": "border → {color.border.active}; ring 1px dashed {color.interaction.focus.ring} at −2px on the box, or on the focused stepper button",
+      "visual": "border → {color.border.active}; 1px dashed {color.interaction.focus.ring} at −2px on the box or the focused stepper button",
       "channel": "the ring",
       "tokens": {
         "fg": {
@@ -482,8 +482,8 @@
     },
     {
       "state": "invalid",
-      "visual": "border 2px {color.status.danger.border}; message with the ✕ glyph",
-      "channel": "border width 1 → 2px; glyph; `aria-invalid`",
+      "visual": "2px {color.status.danger.border}; message with the ✕ glyph",
+      "channel": "border 1 → 2px; glyph; `aria-invalid`",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -586,7 +586,7 @@
     },
     {
       "state": "read-only",
-      "visual": "no box: 1px dotted {color.border.divider} bottom edge on {color.surface.canvas}; the stepper is hidden",
+      "visual": "no box: 1px dotted {color.border.divider} bottom edge on {color.surface.canvas}; stepper hidden",
       "channel": "`readonly`; dotted edge; no buttons",
       "tokens": {
         "fg": {
@@ -665,7 +665,7 @@
     "settings-panel",
     "admin-form"
   ],
-  "nonExamples": "The host's default spinner. Round or overlapping stepper buttons. A value\nclamped silently on blur. Left-aligned digits. A unit typed into the value.\nA number field for phone numbers, postcodes or identifiers. Invalid shown by\ncolour alone. Disabling by opacity.",
+  "nonExamples": "The host's default spinner. Round or overlapping stepper buttons. A value\nclamped silently. Left-aligned digits. A unit typed into the value. A number\nfield for phone numbers, postcodes or identifiers. Invalid by colour alone.\nDisabling by opacity.",
   "contrast": [
     {
       "label": "number-field default text",

@@ -1,0 +1,65 @@
+/* The parts every field shares (text-field.md and its siblings): the label,
+   the help line, the error message that stays hidden until the field is
+   invalid, and the input box of the composite fields. Each field component
+   imports this file; its states stay in its own stylesheet. Token variables
+   only. */
+
+.combobox-label,
+.dialog-field-label,
+.field-label,
+.fieldset-label,
+.file-input-label,
+.number-field-label,
+.search-field-label,
+.select-label,
+.text-field-label,
+.textarea-label,
+.time-picker-label {
+  color: var(--color-text-bright);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.combobox-help,
+.date-picker-help,
+.dialog-field-help,
+.fieldset-help,
+.file-input-help,
+.number-field-help,
+.search-field-help,
+.select-help,
+.text-field-help,
+.textarea-help,
+.time-picker-help {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.combobox-message,
+.date-picker-message,
+.file-input-message,
+.number-field-message,
+.radio-group-message,
+.select-message,
+.text-field-message,
+.textarea-message,
+.time-picker-message {
+  display: none;
+  margin: 0;
+  color: var(--color-status-danger-text);
+  font-size: var(--font-size-ui-sm);
+  line-height: var(--font-line-height-ui-sm);
+}
+
+.combobox-root,
+.date-picker-root,
+.number-field-root {
+  display: flex;
+  align-items: stretch;
+  min-height: var(--density-control-height, 24px);
+  background: var(--color-surface-input);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+}

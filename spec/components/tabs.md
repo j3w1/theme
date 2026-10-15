@@ -88,18 +88,14 @@ compact: true
 
 ## Purpose
 
-Switches between peer panels in place without leaving the page. Tabs are
-navigation within one view; for moving between views use sidebar-nav, for
-mutually exclusive options inside a form use radio-group or
+Navigation between peer panels within one view. Between views use
+sidebar-nav; for exclusive options in a form use radio-group or
 segmented-control.
 
 ## Anatomy
 
-A tablist strip on {color.surface.default} with a 1px {color.border.divider}
-rule beneath it; tab buttons in {color.text.default}; the selected tab in
-{color.text.bright} with a 2px {color.border.selected-indicator} bottom bar
-that sits on the rule; the panel below in {color.text.default}. Tabs carry no
-fill and no box; the bar is the only ornament.
+Parts as listed in the anatomy. The indicator sits on the rule; tabs carry no
+fill and no box, and the bar is the only ornament.
 
 ## States
 
@@ -107,46 +103,38 @@ fill and no box; the bar is the only ornament.
 | --- | --- | --- |
 | default | text {color.text.default}; transparent 2px bottom edge | — |
 | hover | background → {color.interaction.hover.bg}; text unchanged | cursor: pointer |
-| focus-visible | ring 1px dashed {color.interaction.focus.ring} at −2px | the ring |
+| focus-visible | 1px dashed {color.interaction.focus.ring} ring at −2px | the ring |
 | selected | text {color.text.bright}; 2px {color.border.selected-indicator} bar | `aria-selected="true"`; the bar; tabindex 0 |
-| selected+focus-visible | the bar and the ring together | both visible |
+| selected+focus-visible | bar and ring together | both visible |
 | selected+container-inactive | bar → {color.border.selected-indicator-inactive}; text stays bright | lightness drop of the bar; the container's own inactive state |
 | disabled | text {color.text.disabled}; no hover; bar hidden unless selected | `disabled` or `aria-disabled`; cursor: not-allowed |
 
 Precedence: disabled > selected > hover; focus-visible is always drawn.
-Pressing a tab uses {color.interaction.pressed.bg} for the duration of the
-press only.
+{color.interaction.pressed.bg} shows only for the duration of a press.
 
 ## Keyboard
 
-One tab stop for the whole strip: the selected tab has `tabindex="0"`, every
-other tab `tabindex="-1"` (roving tabindex). Left and Right move focus and
-wrap; Home and End jump to the ends; Enter and Space activate when activation
-is manual. Automatic activation is the default in this theme because panels
-are cheap; use manual activation when a panel is expensive to render. The
-panel is a tab stop only when it has no focusable content.
+As in the key table. Automatic activation is the default because panels are
+cheap; use manual activation when a panel is expensive to render. The panel is
+a tab stop only when it has no focusable content.
 
 ## Accessibility
 
-The tablist carries `aria-label` or `aria-labelledby`; each tab has
-`aria-controls` pointing at its panel and each panel `aria-labelledby`
-pointing back. Vertical tablists set `aria-orientation="vertical"` and swap
-the arrow keys. Contrast: tab text 8.43:1, selected text 10.10:1, indicator
-4.57:1 (≥ 3:1) and ring 4.57:1 on the panel surface. Each tab is at least
-24×24 CSS pixels in `compact` density with 4px between neighbours. The
-indicator is never the only signal: `aria-selected` and the bright text
-travel with it.
+The tablist carries `aria-label` or `aria-labelledby`. A vertical tablist
+sets `aria-orientation="vertical"` and swaps the arrow keys. Text meets
+4.5:1; the indicator and ring 3:1. Each tab is at least 24×24 CSS pixels in
+`compact`, with 4px between neighbours. The indicator is never the only
+signal: `aria-selected` and the bright text travel with it.
 
 ## Portability
 
-A border-bottom that changes colour and an outline are all the drawing needed.
-Toolkits that cannot draw a partial bottom border draw a 2px rule across the
-full tab width. Hosts that have their own tab strip (browsers, editors) keep
+A toolkit that cannot draw a partial bottom border draws a 2px rule across
+the full tab width. Hosts with their own tab strip (browsers, editors) keep
 their keyboard model and take only the colours and the 2px bar.
 
 ## Non-examples
 
-Pill or filled tabs. A selected tab drawn with the selection fill. Rounded
-corners on the tab or the bar. A tab strip that wraps to two lines. A tab that
-changes only its text colour when selected. A glow instead of the dashed ring.
-Every tab in the tab order. Disabling by opacity.
+Pill or filled tabs. A selected tab in the selection fill. Rounded tabs or
+bar. A strip that wraps to two lines. A selected tab that changes only its
+text colour. A glow instead of the dashed ring. Every tab in the tab order.
+Disabling by opacity.

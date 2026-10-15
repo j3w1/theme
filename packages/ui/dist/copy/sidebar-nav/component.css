@@ -8,7 +8,7 @@ j3w1-sidebar-nav {
   line-height: var(--font-line-height-ui-md);
 }
 j3w1-sidebar-nav, j3w1-sidebar-nav *, j3w1-sidebar-nav *::before, j3w1-sidebar-nav *::after { box-sizing: border-box; }
-j3w1-sidebar-nav button, j3w1-sidebar-nav input, j3w1-sidebar-nav select, j3w1-sidebar-nav textarea { font: inherit; }
+j3w1-sidebar-nav :where(button, input, select, textarea):where(:not([class])) { font: inherit; }
 j3w1-sidebar-nav ::selection {
   background: var(--color-interaction-text-selection-bg);
   color: var(--color-interaction-text-selection-text);
@@ -26,7 +26,7 @@ j3w1-sidebar-nav .sr-only {
 }
 
 j3w1-sidebar-nav .sidebar-nav {
-  --_indent: calc(var(--density-icon, 16px) + var(--space-8));
+  --_indent: calc(var(--density-icon, 12px) + var(--space-8));
   min-width: 0;
   max-width: calc(var(--font-size-ui-md) * 15);
   padding: var(--space-4) 0;
@@ -58,9 +58,9 @@ j3w1-sidebar-nav .sidebar-nav-link {
   align-items: center;
   gap: var(--space-8);
   width: 100%;
-  min-height: var(--density-row-height, 36px);
-  padding: var(--space-4) var(--density-control-padding-x, 12px);
-  padding-inline-start: calc(var(--density-control-padding-x, 12px) - var(--border-width-emphasis));
+  min-height: var(--density-row-height, 28px);
+  padding: var(--space-4) var(--density-control-padding-x, 8px);
+  padding-inline-start: calc(var(--density-control-padding-x, 8px) - var(--border-width-emphasis));
   box-sizing: border-box;
   background: transparent;
   border: 0;
@@ -76,8 +76,8 @@ j3w1-sidebar-nav .sidebar-nav-link {
 j3w1-sidebar-nav .sidebar-nav-icon {
   display: inline-flex;
   flex: 0 0 auto;
-  width: var(--density-icon, 16px);
-  height: var(--density-icon, 16px);
+  width: var(--density-icon, 12px);
+  height: var(--density-icon, 12px);
   color: var(--color-icon-default);
 }
 
@@ -119,12 +119,12 @@ j3w1-sidebar-nav .sidebar-nav-link:focus-visible {
 j3w1-sidebar-nav .sidebar-nav-link:focus:not(:focus-visible) {
   outline: 0;
 }
-j3w1-sidebar-nav .sidebar-nav-link[aria-current="page"] {
+j3w1-sidebar-nav .sidebar-nav-link:is([aria-current="page"], [aria-current="true"]) {
   border-inline-start-color: var(--color-border-selected-indicator);
   color: var(--color-text-bright);
 }
 
-j3w1-sidebar-nav .sidebar-nav-link[aria-current="page"] .sidebar-nav-icon {
+j3w1-sidebar-nav .sidebar-nav-link:is([aria-current="page"], [aria-current="true"]) .sidebar-nav-icon {
   color: var(--color-text-bright);
 }
 j3w1-sidebar-nav .sidebar-nav-link[aria-selected="true"] {
@@ -137,7 +137,7 @@ j3w1-sidebar-nav .sidebar-nav-link[aria-selected="true"] .sidebar-nav-icon {
 }
 
 j3w1-sidebar-nav .sidebar-nav-link[aria-selected="true"]:focus-visible {
-  outline-color: var(--color-interaction-focus-ring-container);
+  outline-color: var(--color-interaction-focus-ring);
 }
 j3w1-sidebar-nav .sidebar-nav[data-container-inactive] .sidebar-nav-link[aria-selected="true"] {
   background: var(--color-interaction-selection-inactive-bg);
@@ -182,6 +182,37 @@ j3w1-sidebar-nav .sidebar-nav-collapsed .sidebar-nav-link {
   padding-inline-start: calc(var(--space-8) - var(--border-width-emphasis));
 }
 
+@media (min-width: 900px) and (max-width: 1279.98px) {
+j3w1-sidebar-nav .site-rail {
+  max-width: none;
+  width: max-content;
+}
+
+j3w1-sidebar-nav .site-rail .sidebar-nav-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+j3w1-sidebar-nav .site-rail .sidebar-nav-chevron {
+  display: none;
+}
+
+j3w1-sidebar-nav .site-rail .sidebar-nav-sublist {
+  padding-inline-start: 0;
+}
+
+j3w1-sidebar-nav .site-rail .sidebar-nav-link {
+  justify-content: center;
+  padding-inline: var(--space-8);
+  padding-inline-start: calc(var(--space-8) - var(--border-width-emphasis));
+}
+
+}
+
 @media (hover: none) {
   j3w1-sidebar-nav .sidebar-nav-link:hover {
     background: transparent;
@@ -203,7 +234,7 @@ j3w1-sidebar-nav .sidebar-nav-collapsed .sidebar-nav-link {
     outline-color: Highlight;
   }
 
-  j3w1-sidebar-nav .sidebar-nav-link[aria-current="page"] {
+  j3w1-sidebar-nav .sidebar-nav-link:is([aria-current="page"], [aria-current="true"]) {
     border-inline-start-color: Highlight;
   }
 

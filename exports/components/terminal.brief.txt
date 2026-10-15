@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — terminal
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/terminal.json
 spec: spec/components/terminal.md  site: https://j3w1.github.io/theme/reference/#c-terminal
 maturity: stable  priority: R1
@@ -45,11 +45,11 @@ Tokens (resolved):
 State dependency disclosures: D-007
 
 States: default, focus-visible, selected, busy, current
-  default: text on {color.terminal.bg}; the cursor cell hollow, a 1px {color.terminal.cursor} outline; no ring [the hollow cursor]
-  focus-visible: container ring 2px {color.interaction.focus.ring-container} at −3px; the cursor solid {color.terminal.cursor} with {color.terminal.bg} text [the ring; the cursor fills]
-  selected: the run filled {color.terminal.selection-bg} with {color.terminal.selection-text}; slot colours inside the run give way to the selection text [the fill spans whole cells; the emulator exposes the selection]
-  busy: a command is running: the cursor is a solid static block at the end of the output; the transcript is `aria-busy` [`aria-busy`; the cursor shape; no blink]
-  current: the cursor line filled {color.code.current-line} across its width; the cursor as in focus [the row fill; the cursor cell]
+  default: text on {color.terminal.bg}; cursor hollow, 1px {color.terminal.cursor} outline; no ring [the hollow cursor]
+  focus-visible: 2px {color.interaction.focus.ring-container} container ring at −3px; cursor solid {color.terminal.cursor} with {color.terminal.bg} text [the ring; the cursor fills]
+  selected: run filled {color.terminal.selection-bg} with {color.terminal.selection-text}; slot colours inside give way to the selection text [whole-cell fill; the emulator exposes the selection]
+  busy: command running: solid static block cursor at the end of the output; transcript `aria-busy` [`aria-busy`; cursor shape; no blink]
+  current: cursor line filled {color.code.current-line} across its width; cursor as in focus [row fill; cursor cell]
 
 Keyboard:
   (host): The emulator and the shell own every key; the theme changes no binding and no cursor behaviour.

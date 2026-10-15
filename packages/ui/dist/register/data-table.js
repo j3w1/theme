@@ -1,4 +1,4 @@
-import { n as registerElement } from "../chunks/element-C1XeXVYC.js";
+import { n as registerElement } from "../chunks/element-Dovcr9Ky.js";
 import "./menu.js";
 import { J3w1DataTable } from "../components/data-table.js";
 //#region .cache/ui-build/entries/register/data-table.js

@@ -1,4 +1,4 @@
-import { all, enabled, rove, identify } from "../internal/dom.js";
+import { keyIndex, all, enabled, rove, identify } from "../internal/dom.js";
 
 export function table(root, { on }) {
   const element = root.querySelector("table"), body = element?.tBodies[0];
@@ -48,7 +48,7 @@ export function table(root, { on }) {
     if (event.key === " ") { event.preventDefault(); if (!selectAll) rows().filter(item => item !== row).forEach(item => item.setAttribute("aria-selected", "false")); row.setAttribute("aria-selected", String(row.getAttribute("aria-selected") !== "true")); anchor = row; reportSelection(); return; }
     if (!["ArrowUp", "ArrowDown", "Home", "End"].includes(event.key)) return;
     event.preventDefault();
-    const nextIndex = event.key === "Home" ? 0 : event.key === "End" ? options.length - 1 : Math.max(0, Math.min(options.length - 1, index + (event.key === "ArrowDown" ? 1 : -1)));
+    const nextIndex = keyIndex({ key: event.key, index, length: options.length, wrap: false });
     const next = rove(options, nextIndex);
     if (event.shiftKey && selectAll) { anchor ??= row; const start = options.indexOf(anchor); options.forEach((item, i) => item.setAttribute("aria-selected", String(i >= Math.min(start, nextIndex) && i <= Math.max(start, nextIndex)))); reportSelection(); }
     else if (!selectAll) { setSelected([next.id]); reportSelection(); anchor = next; }

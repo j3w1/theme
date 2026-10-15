@@ -1,6 +1,23 @@
 ---
-import PortalLayout from "../../layouts/PortalLayout.astro";
+import SiteLayout from "../../layouts/SiteLayout.astro";
 import { withBase } from "../../lib/base";
-const tools = [["tokens/", "Token explorer", "Inspect values, uses, provenance and eligibility."], ["workbench/", "State workbench", "Compare canonical variants and states."], ["builder/", "Form builder", "Compose and export the bounded five-kind form model."], ["kit/", "Mapping task kit", "Prepare canonical inputs for an incompatible or native host."], ["figma/", "Figma Variables bridge", "Generate portable variable collections."], ["verification/", "Execution evidence", "Inspect revision-aware automated results and explicit limits."]];
+
+const tools = [
+  ["tokens/", "Token explorer", "Inspect values, uses, provenance and eligibility."],
+  ["workbench/", "State workbench", "Compare canonical variants and states."],
+  ["builder/", "Form builder", "Compose and export the bounded five-kind form model."],
+  ["kit/", "Mapping task kit", "Prepare canonical inputs for an incompatible or native host."],
+  ["recipes/", "Standalone recipes", "Copy a maintained specimen with scoped styles and no framework."],
+  ["figma/", "Figma Variables bridge", "Generate portable variable collections."],
+  ["report/", "Report an issue", "Prepare a public issue for a component or token."],
+  ["verification/", "Execution evidence", "Inspect revision-aware automated results and explicit limits."],
+];
 ---
-<PortalLayout title="Tools" description="Inspect the specification, prepare application inputs and verify what has actually been exercised."><div class="portal-grid">{tools.map(([path, title, description]) => <a class="portal-card" href={withBase(path)}><h2>{title} →</h2><p>{description}</p></a>)}</div></PortalLayout>
+<SiteLayout title="Tools" description="Inspect the specification, prepare application inputs and verify what has actually been exercised.">
+  <div class="site-cards">
+    {tools.map(([path, title, description]) => <a class="card card-link" href={withBase(path)}>
+      <span class="card-title">{title} →</span>
+      <span class="card-body">{description}</span>
+    </a>)}
+  </div>
+</SiteLayout>

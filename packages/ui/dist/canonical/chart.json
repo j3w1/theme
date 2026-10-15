@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=",
+  "sourceDigest": "sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=",
   "id": "chart",
   "family": "display",
   "maturity": "stable",
@@ -185,6 +185,18 @@
         "decisionIds": []
       }
     },
+    "dependency.role-focus-offset": {
+      "alias": "focus.offset",
+      "value": "-2px",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
     "series.primary": {
       "alias": "color.chart.series-2",
       "value": "#f73f35",
@@ -236,18 +248,6 @@
     "dependency.role-space-12": {
       "alias": "space.12",
       "value": "12px",
-      "status": "observed",
-      "deprecated": false,
-      "decisionId": null,
-      "eligibility": {
-        "action": "use",
-        "reason": "Use within the role's documented scope and restrictions.",
-        "decisionIds": []
-      }
-    },
-    "dependency.role-space-2": {
-      "alias": "space.2",
-      "value": "2px",
       "status": "observed",
       "deprecated": false,
       "decisionId": null,
@@ -356,7 +356,7 @@
   ],
   "related": [],
   "specimens": [],
-  "nonExamples": "Unlabelled controls, color-only status, drag-only operations, hidden required instructions, stolen focus or an invented service success.",
+  "nonExamples": "Unlabelled controls, colour-only status, drag-only operations, hidden required\ninstructions, stolen focus or an invented service success.",
   "contrast": [
     {
       "label": "chart default text",

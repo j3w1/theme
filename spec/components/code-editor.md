@@ -89,6 +89,8 @@ contrast:
   - { fg: color.code.syntax.tag, bg: color.code.bg, label: "tag" }
   - { fg: color.code.syntax.attribute, bg: color.code.bg, label: "attribute and escape" }
   - { fg: color.code.syntax.deprecated, bg: color.code.bg, label: "deprecated text" }
+  - { fg: color.code.syntax.comment, bg: color.code.selection-bg, min: 4.5, kind: ui, state: selected, label: "comment syntax decoration inside the selection", waiver: "syntax colour is decoration; the short-lived selection preserves syntax roles, and comment falls below the text floor on this recorded selection value" }
+  - { fg: color.code.syntax.type, bg: color.code.selection-bg, min: 4.5, kind: ui, state: selected, label: "type syntax decoration inside the selection", waiver: "syntax colour is decoration; the short-lived selection preserves syntax roles, and type falls below the text floor on this recorded selection value" }
   - { fg: color.code.syntax.string, bg: color.code.selection-bg, state: selected, label: "muted string text inside the selection" }
   - { fg: color.code.syntax.keyword, bg: color.code.selection-bg, state: selected, label: "keyword and tag text inside the selection (D-029)" }
   - { fg: color.code.syntax.property, bg: color.code.selection-bg, state: selected, label: "property, heading and invalid text inside the selection (D-029)" }
@@ -138,92 +140,71 @@ compact: false
 
 ## Purpose
 
-The reference rendering of source code: the surface, gutter, caret, current
-line, selection, bracket match, indent guides, rendered whitespace, fold
-markers and the seventeen monochrome syntax roles. It is the contract a
-real editor's theme API is mapped onto; this component never edits.
+The reference rendering of source code: the contract a real editor's theme
+API is mapped onto. It never edits.
 
 ## Anatomy
 
-Root `.code-editor`; parts `.code-editor-<part>`: `-pre` (the `<pre>`),
-`-line`, `-ln` (line number), `-text`, `-indent`, `-ws` (rendered
-whitespace), `-caret`, `-sel` (selection range), `-bracket`, `-fold`, and
-the gutter fold glyph `-fold-gutter`. Syntax spans are `.code-editor-<role>`:
-`-kw` keyword, `-str` string, `-cm` comment, `-num` number, `-const`
-constant, `-fn` function, `-var` variable, `-type` type, `-op` operator,
-`-punct` punctuation, `-prop` property, `-heading` heading, `-tag` tag,
-`-attr` attribute, `-esc` escape, `-invalid` invalid, `-deprecated`
-deprecated. Line numbers are {color.code.line-number} on
-{color.code.gutter-bg}, separated from the text by a 1px
-{color.code.gutter-rule}; indent guides are 1px {color.code.indent-guide};
-rendered whitespace is {color.code.whitespace}. Every colour is a role
-variable, so the profile switch on the specimen recolours the sample without
-touching the markup.
+Root `.code-editor`; parts `.code-editor-<part>`: `-pre`, `-line`, `-ln`
+(line number), `-text`, `-indent`, `-ws` (rendered whitespace), `-caret`,
+`-sel` (selection range), `-bracket`, `-fold`, `-fold-gutter`. Syntax spans
+are `.code-editor-<role>`: `-kw` keyword, `-str` string, `-cm` comment,
+`-num` number, `-const` constant, `-fn` function, `-var` variable, `-type`,
+`-op` operator, `-punct` punctuation, `-prop` property, `-heading`, `-tag`,
+`-attr` attribute, `-esc` escape, `-invalid`, `-deprecated`.
 
 ## States
 
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | code on {color.code.bg}; comments italic; invalid text wavy-underlined in {color.code.syntax.invalid}; deprecated text struck through | italic, wavy underline, line-through |
-| focus-visible | container ring 2px {color.interaction.focus.ring-container} at −3px; a 1px {color.code.caret} bar; the caret line filled {color.code.current-line} across gutter and text; its number in {color.code.line-number-active} | the ring; the caret bar |
-| selected | the range filled {color.code.selection-bg}; syntax colours kept | the range is announced through the host's selection; the fill spans line ends |
-| selected+container-inactive | the same range in {color.interaction.selection.inactive-bg} with {color.interaction.selection.inactive-text}; no caret, no ring | lightness drop between the two fills |
-| current | both characters of the matched pair outlined 1px solid {color.code.bracket-match} | the outline is a box, not a colour change |
-| read-only | gutter drops to {color.surface.sunken} behind the same line numbers; the gutter rule becomes dotted; no caret is drawn | `aria-readonly`; dotted rule; missing caret |
+| focus-visible | 2px {color.interaction.focus.ring-container} ring at −3px; 1px {color.code.caret} bar; caret line filled {color.code.current-line} across gutter and text, its number {color.code.line-number-active} | the ring; the caret bar |
+| selected | range filled {color.code.selection-bg}; syntax colours kept | the host's selection is announced; the fill spans line ends |
+| selected+container-inactive | same range in {color.interaction.selection.inactive-bg} with {color.interaction.selection.inactive-text}; no caret, no ring | lightness drop between the two fills |
+| current | both characters of the matched pair outlined 1px solid {color.code.bracket-match} | an outline box, not a colour change |
+| read-only | gutter on {color.surface.sunken}, same line numbers; dotted gutter rule; no caret | `aria-readonly`; dotted rule; no caret |
 
-Precedence: selection is drawn under the text, the current line under the
-selection, the bracket outline and the caret above everything. The caret
-never blinks in the reference; a host that blinks it keeps the user's
-cursor-blink setting and stops under reduced motion.
+Precedence: selection under the text, current line under the selection,
+bracket outline and caret above everything. The caret never blinks in the
+reference; a host that blinks it follows the user's cursor-blink setting and
+stops under reduced motion.
 
 ## Keyboard
 
-The host editor owns every binding. The theme states only what it draws in
-response: the caret and current line while focused, the selection fill for
-the host's selection, the outline for the host's bracket match. The reference
-markup is one Tab stop and, being read-only, consumes no key. A host that
-captures Tab for indentation must offer an escape route (Escape, then Tab) and
-announce it; the theme does not provide one.
+As in the key table. The theme only draws what the host's keys produce; the
+read-only reference consumes no key. A host that captures Tab offers Escape,
+then Tab, and announces it.
 
 ## Accessibility
 
-Syntax colour is decoration: no meaning is carried by colour alone. Invalid
-text has the wavy underline, deprecated text the line-through, comments the
-italic. Selection is a fill and focus is a ring, drawn together and never
-substituted for one another. Every syntax role reaches 4.5:1 on
-{color.code.bg} (the lowest is {color.code.syntax.comment} at 5.10:1) and
-{color.text.default} reaches 7.02:1 inside the selection fill. D-029 lifted
-the keyword, tag, property and heading reds so they stay at 4.5:1 or more
-inside {color.code.selection-bg} (4.51–4.52:1); comment and type text still
-drop below it there (4.13 and 4.24:1). That is a recorded limitation of the
-selection value and is not to be fixed by recolouring the tokens locally. The reference editor
-stays monochrome; a host that wants hue differentiation maps the opt-in
-{color.code.hued.string}, {color.code.hued.number}, {color.code.hued.type} and
-the other `code.hued.*` roles (D-030), which reach 5.74:1 or more inside the
-selection. Line
-numbers are metadata people read and use {color.text.subtle}, not a graphic
-colour; indent guides, rendered whitespace and the gutter rule are decorative.
-In forced-colours mode the caret, selection and bracket outline take the
-system `Highlight`, and the syntax spans keep their text styles.
+Syntax colour is decoration; meaning never rides on colour alone (italic
+comments, wavy-underlined invalid text, struck-through deprecated text).
+Selection is a fill and focus a ring, drawn together, never substituting for
+each other. Every syntax role meets 4.5:1 on {color.code.bg}. Inside
+{color.code.selection-bg}, D-029 keeps keyword, tag, property and heading at
+4.5:1; comment and type text fall below it, a recorded limitation of the
+selection value, never fixed by recolouring tokens locally. The reference
+stays monochrome; a host that wants hue maps {color.code.hued.string} and the
+other opt-in `code.hued.*` roles (D-030), which meet 4.5:1 inside the
+selection. Line numbers are text people read and meet the text floor; indent
+guides, rendered whitespace and the gutter rule are decorative. In forced
+colours the caret, selection and bracket outline take `Highlight`; syntax
+spans keep their text styles.
 
 ## Portability
 
-A real editor is a host surface: CodeMirror, Monaco, GtkSourceView,
-KSyntaxHighlighting, an `.icls` scheme or a terminal editor each expose a
-theme API, and the port maps the roles here onto that API without touching
-caret behaviour, keyboard handling or selection semantics. Where a host has no
-bracket-match outline it may use the bold weight and records the deviation;
-where a host cannot draw a 1px caret it uses its own caret in
-{color.code.caret}. The `heritage-ansi` and `extended` profiles change only
-role values; the mapping does not change.
+The port maps these roles onto the host's theme API without touching caret
+behaviour, keyboard handling or selection semantics. No bracket-match
+outline: bold weight, deviation recorded. No 1px caret: the host's own caret
+in {color.code.caret}. The `heritage-ansi` and `extended` profiles change
+role values only, never the mapping.
 
 ## Non-examples
 
-Rainbow syntax in the reference editor, or any hue outside the three bounded
-ones (the opt-in `code.hued.*` roles of D-030 carry them for hosts that want
-hue differentiation). A blinking or animated caret in the reference.
-A selection that recolours the text to white and loses the syntax roles. A
-current-line highlight brighter than the selection. A bracket match drawn as
-a background fill, which reads as a selection. Line numbers in the decorative
-`#7d1310`. A glow, gradient or rounded corner on the editor box. Removing the
-host's focus indicator without drawing the container ring.
+Rainbow syntax in the reference, or any hue beyond the three bounded ones
+(hosts opt into `code.hued.*`, D-030). A blinking or animated caret in the
+reference. A selection that turns text white and drops the syntax roles. A
+current line brighter than the selection. A bracket match as a background
+fill, which reads as a selection. Line numbers in a decorative colour. A glow,
+gradient or rounded corner on the box. Removing the host's focus indicator
+without drawing the container ring.

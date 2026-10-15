@@ -27,17 +27,22 @@ tokens:
   root.border: color.border.control
   heading.text: color.text.bright
   secondary.text: color.text.muted
-  control.bg: color.surface.input
+  control.bg: color.action.secondary.bg
+  control.text: color.action.secondary.text
+  control.border: color.action.secondary.border
+  control.bg-hover: color.action.secondary.hover-bg
+  control.bg-active: color.action.secondary.pressed-bg
+  control.border-active: color.border.active
   control.focus: color.interaction.focus.ring
   dependency.role-border-width-default: border.width.default
   dependency.role-color-border-overlay: color.border.overlay
   dependency.role-color-surface-overlay: color.surface.overlay
   dependency.role-density-comfortable-control-height: density.comfortable.control-height
   dependency.role-density-compact-control-height: density.compact.control-height
+  dependency.role-focus-offset: focus.offset
   dependency.role-radius-none: radius.none
   dependency.role-space-12: space.12
   dependency.role-space-16: space.16
-  dependency.role-space-2: space.2
   dependency.role-space-8: space.8
 stateTokens:
   default:
@@ -56,6 +61,12 @@ contrast:
     min: 3
     kind: ui
     label: Control boundary
+  - fg: color.action.secondary.text
+    bg: color.surface.default
+    label: Button label
+  - fg: color.action.secondary.text
+    bg: color.action.secondary.hover-bg
+    label: Button label on hover
 anatomy:
   - part: trigger
     description: Native button with expanded state and panel relationship.
@@ -100,35 +111,35 @@ compact: false
 
 ## Purpose
 
-Disclose a non-modal supporting panel near its trigger. Interactive content follows ordinary tab order. Escape and outside activation dismiss; focus is not trapped. Use the native Popover API when available with an equivalent documented fallback.
+Supporting content beside its trigger that never blocks the page.
 
 ## Anatomy
 
-- **trigger:** Native button with expanded state and panel relationship.
-- **panel:** Named supporting content and optional visible close action.
+Parts as listed in the anatomy.
 
 ## States
 
-| State | Presentation | Non-colour channel |
+| State | Visual | Non-colour channel |
 | --- | --- | --- |
-| default | Named trigger. | Button semantics and accessible name. |
+| default | Named trigger. Its buttons are the secondary button (button.md). | Button semantics and accessible name. |
 | open | Square overlay surface and border. | aria-expanded=true; panel is reachable. |
 | closed | Panel hidden. | aria-expanded=false; hidden controls leave focus order. |
 | focus-visible | Dashed focus ring. | Native keyboard focus. |
 
 ## Keyboard
 
-- **Enter / Space:** Toggle from the trigger.
-- **Tab / Shift+Tab:** Move through ordinary controls without trapping focus.
-- **Escape:** Close and restore the trigger.
+As in the key table.
 
 ## Accessibility
 
-Keep essential instructions outside collapsed panels. Use a visible label or aria-label for the panel. Do not add aria-modal or a focus trap. Native automatic dismissal and the fallback both synchronize expanded state.
+Keep essential instructions outside collapsed panels. Name the panel with a
+visible label or `aria-label`. No `aria-modal` and no focus trap. Native
+automatic dismissal and the fallback both synchronise the expanded state.
 
 ## Portability
 
-Follows the shared component defaults in `spec/portability.md` (section "Shared component defaults").
+Follows the shared component defaults in `spec/portability.md` (section
+"Shared component defaults").
 
 ## Non-examples
 

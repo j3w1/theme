@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=",
+  "sourceDigest": "sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=",
   "id": "combobox",
   "family": "forms-advanced",
   "maturity": "stable",
@@ -349,8 +349,8 @@
       }
     },
     "option.ring-selected": {
-      "alias": "color.interaction.focus.ring-container",
-      "value": "#ffa2a7",
+      "alias": "color.interaction.focus.ring",
+      "value": "#e53935",
       "status": "observed",
       "deprecated": false,
       "decisionId": null,
@@ -426,7 +426,7 @@
   "stateRules": [
     {
       "state": "default",
-      "visual": "1px {color.border.control} on {color.surface.input}; list on {color.surface.raised} with a 1px {color.border.overlay}",
+      "visual": "1px {color.border.control} on {color.surface.input}; list on {color.surface.raised}, 1px {color.border.overlay}",
       "channel": "—",
       "tokens": {
         "fg": {
@@ -471,7 +471,7 @@
     },
     {
       "state": "hover",
-      "visual": "box background → {color.interaction.hover.bg}; the hovered option → {color.interaction.hover.bg-strong} with {color.text.link-hover}",
+      "visual": "box → {color.interaction.hover.bg}; hovered option → {color.interaction.hover.bg-strong} with {color.text.link-hover}",
       "channel": "cursor: text on the box, default on the list",
       "tokens": {
         "fg": {
@@ -502,7 +502,7 @@
     },
     {
       "state": "focus-visible",
-      "visual": "box border → {color.border.active}; ring 1px dashed {color.interaction.focus.ring} at −2px",
+      "visual": "box border → {color.border.active}; 1px dashed {color.interaction.focus.ring} at −2px",
       "channel": "the ring",
       "tokens": {
         "fg": {
@@ -557,8 +557,8 @@
     },
     {
       "state": "open",
-      "visual": "list visible below the box; toggle glyph rotated 180°",
-      "channel": "`aria-expanded=\"true\"`; the toggle glyph",
+      "visual": "list below the box; toggle glyph rotated 180°",
+      "channel": "`aria-expanded=\"true\"`; toggle glyph",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -602,13 +602,13 @@
     },
     {
       "state": "closed",
-      "visual": "list absent; the box unchanged",
+      "visual": "no list; box unchanged",
       "channel": "`aria-expanded=\"false\"`; nothing below the box",
       "tokens": {}
     },
     {
       "state": "selected",
-      "visual": "the active option filled {color.interaction.selection.bg} with {color.interaction.selection.text} and a 1px dashed ring in {color.interaction.focus.ring-container}",
+      "visual": "active option filled {color.interaction.selection.bg} with {color.interaction.selection.text}, 1px dashed {color.interaction.focus.ring} ring at −2px",
       "channel": "`aria-selected=\"true\"`; `aria-activedescendant`; the ring",
       "tokens": {
         "fg": {
@@ -636,8 +636,8 @@
           }
         },
         "outline": {
-          "alias": "color.interaction.focus.ring-container",
-          "value": "#ffa2a7",
+          "alias": "color.interaction.focus.ring",
+          "value": "#e53935",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -651,8 +651,8 @@
     },
     {
       "state": "invalid",
-      "visual": "box border 2px {color.status.danger.border}; message with the ✕ glyph",
-      "channel": "border width 1 → 2px; glyph; `aria-invalid`",
+      "visual": "2px {color.status.danger.border}; message with ✕",
+      "channel": "border 1 → 2px; glyph; `aria-invalid`",
       "tokens": {
         "fg": {
           "alias": "color.text.default",
@@ -694,7 +694,7 @@
     },
     {
       "state": "invalid+focus-visible",
-      "visual": "the 2px danger border and the ring in {color.interaction.focus.ring-container} at −4px",
+      "visual": "2px danger border and {color.interaction.focus.ring-container} ring at −4px",
       "channel": "double boundary",
       "tokens": {
         "fg": {
@@ -749,14 +749,14 @@
     },
     {
       "state": "disabled",
-      "visual": "text {color.text.disabled}; border {color.border.disabled}; background {color.interaction.disabled.bg}; list never opens",
+      "visual": "{color.text.disabled}, {color.border.disabled}, {color.interaction.disabled.bg}; list never opens",
       "channel": "`disabled`; cursor: not-allowed",
       "tokens": {}
     },
     {
       "state": "no-results",
-      "visual": "the list holds only the empty row in {color.text.muted}, italic",
-      "channel": "`aria-disabled` row; italic; a polite announcement of zero matches",
+      "visual": "only the empty row, {color.text.muted} italic",
+      "channel": "`aria-disabled` row; italic; polite zero-match announcement",
       "tokens": {
         "fg": {
           "alias": "color.text.muted",
@@ -857,7 +857,7 @@
     "admin-form",
     "filterable-table"
   ],
-  "nonExamples": "A select restyled as a combobox. Moving DOM focus into the list on Down. A\nlist that floats over the page with a shadow or a rounded frame. Highlighting\nthe active option with a colour change of the text alone. A no-results state\nthat silently shows the full list. Opening on hover. A list that slides or\nfades in for longer than 150 ms.",
+  "nonExamples": "A select restyled as a combobox. DOM focus moving into the list on Down. A\nlist floating with a shadow or rounded frame. The active option marked by text\ncolour alone. A no-results state that silently shows the full list. Opening\non hover. A list that slides or fades in for longer than 150 ms.",
   "contrast": [
     {
       "label": "combobox default text",
@@ -981,11 +981,11 @@
       "state": "selected",
       "kind": "ui",
       "min": 3,
-      "fg": "color.interaction.focus.ring-container",
+      "fg": "color.interaction.focus.ring",
       "bg": "color.interaction.selection.bg",
-      "fgHex": "#ffa2a7",
+      "fgHex": "#e53935",
       "bgHex": "#531310",
-      "ratio": 7.48,
+      "ratio": 3.38,
       "pass": true,
       "waiver": null
     },

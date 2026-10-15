@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-fztdpeuj8EtGHpEoSbDrK6kta336ucIVK4lrRKrlasc=",
+  "sourceDigest": "sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=",
   "id": "terminal",
   "family": "developer",
   "maturity": "stable",
@@ -479,7 +479,7 @@
   "stateRules": [
     {
       "state": "default",
-      "visual": "text on {color.terminal.bg}; the cursor cell hollow, a 1px {color.terminal.cursor} outline; no ring",
+      "visual": "text on {color.terminal.bg}; cursor hollow, 1px {color.terminal.cursor} outline; no ring",
       "channel": "the hollow cursor",
       "tokens": {
         "fg": {
@@ -524,7 +524,7 @@
     },
     {
       "state": "focus-visible",
-      "visual": "container ring 2px {color.interaction.focus.ring-container} at −3px; the cursor solid {color.terminal.cursor} with {color.terminal.bg} text",
+      "visual": "2px {color.interaction.focus.ring-container} container ring at −3px; cursor solid {color.terminal.cursor} with {color.terminal.bg} text",
       "channel": "the ring; the cursor fills",
       "tokens": {
         "fg": {
@@ -567,8 +567,8 @@
     },
     {
       "state": "selected",
-      "visual": "the run filled {color.terminal.selection-bg} with {color.terminal.selection-text}; slot colours inside the run give way to the selection text",
-      "channel": "the fill spans whole cells; the emulator exposes the selection",
+      "visual": "run filled {color.terminal.selection-bg} with {color.terminal.selection-text}; slot colours inside give way to the selection text",
+      "channel": "whole-cell fill; the emulator exposes the selection",
       "tokens": {
         "fg": {
           "alias": "color.terminal.selection-text",
@@ -598,8 +598,8 @@
     },
     {
       "state": "busy",
-      "visual": "a command is running: the cursor is a solid static block at the end of the output; the transcript is `aria-busy`",
-      "channel": "`aria-busy`; the cursor shape; no blink",
+      "visual": "command running: solid static block cursor at the end of the output; transcript `aria-busy`",
+      "channel": "`aria-busy`; cursor shape; no blink",
       "tokens": {
         "fg": {
           "alias": "color.terminal.bg",
@@ -629,8 +629,8 @@
     },
     {
       "state": "current",
-      "visual": "the cursor line filled {color.code.current-line} across its width; the cursor as in focus",
-      "channel": "the row fill; the cursor cell",
+      "visual": "cursor line filled {color.code.current-line} across its width; cursor as in focus",
+      "channel": "row fill; cursor cell",
       "tokens": {
         "fg": {
           "alias": "color.terminal.fg",
@@ -700,7 +700,7 @@
   "specimens": [
     "i3-window-frame"
   ],
-  "nonExamples": "Normalising the heritage slots so every one reaches 4.5:1 and calling it\n`heritage-ansi`. A blinking cursor in the reference. A cursor that is a\nglowing bar. Bold rendered as bright, which silently swaps the slots. A\npurple or cyan slot borrowed from another scheme. Wrapping the transcript at\nnarrow widths and breaking the prompt segments. A selection drawn as a ring\ninstead of a fill. Rounded prompt segments or a gradient prompt.",
+  "nonExamples": "Normalising the heritage slots to 4.5:1 and calling it `heritage-ansi`. A\nblinking cursor in the reference. A glowing bar cursor. Bold rendered as\nbright. A purple or cyan slot borrowed from another scheme. Wrapping the\ntranscript and breaking the prompt segments. A selection drawn as a ring\ninstead of a fill. Rounded or gradient prompt segments.",
   "contrast": [
     {
       "label": "terminal default text",

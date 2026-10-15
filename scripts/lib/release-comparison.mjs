@@ -1,3 +1,4 @@
+import { decisionHeadingPattern } from "./spec.mjs";
 import { z } from "zod";
 import { sha256, stableJson } from "./fs.mjs";
 import { pinnedKitSource } from "./task-kit-source.mjs";
@@ -71,7 +72,12 @@ export const readRelease = async (ref, profile, { source, expectedRevision } = {
   return { metadata, supported, tokens: supported ? resolved.profiles[profile].tokens : {}, components, usage: usage?.profiles?.[profile]?.tokens ?? null, docs, ports, appearance, read };
 };
 
-const decisionSections = (text) => Object.fromEntries([...(text ?? "").matchAll(/^## (D-\d{3}) ([\s\S]*?)(?=^## D-\d{3} |$(?![\s\S]))/gm)].map((m) => [m[1], m[2].trim()]));
+const decisionSections = (text = "") => {
+  const headings = [...(text ?? "").matchAll(new RegExp(decisionHeadingPattern.source, "gm"))];
+  return Object.fromEntries(headings.map((heading, index) => [
+    heading[1], text.slice(heading.index + 3 + heading[1].length + 1, headings[index + 1]?.index ?? text.length).trim(),
+  ]));
+};
 const contractOnly = (component) => {
   const { sourceDigest, version, release, coverage, anchors, ...contract } = component;
   return contract;
@@ -177,5 +183,35 @@ export const compareReleases = (from, to, { migrations = null } = {}) => {
 
 export const comparisonMarkdown = (report) => {
   const cell = (v) => JSON.stringify(v).replaceAll("|", "\\|").replaceAll("\n", " ");
-  return [`# Release comparison`, "", `From: ${report.from.revision} (${report.from.profile}, ${report.from.profileStatus ?? "unknown"})`, `To: ${report.to.revision} (${report.to.profile}, ${report.to.profileStatus ?? "unknown"})`, `Semantic status: ${report.semanticStatus}. Visual execution: ${report.visual.status}.`, "", ...[...report.from.availability, ...report.to.availability].map((s) => `- ${s}`), "", "## Changes", "", "| Kind | Contract | Before | After |", "| --- | --- | --- | --- |", ...report.changes.map((c) => `| ${c.kind} | ${c.key} | ${cell(c.before)} | ${cell(c.after)} |`), ...(report.changes.length ? [] : ["No semantic changes detected in supported inputs."]), "", "## Impact", "", `Ports: ${report.impact.catalogue}. ${report.impact.unknownConsumers}`, ...report.impact.components.map((c) => `- ${c.id}: ${c.classification}; roles: ${c.roles.join(", ") || "component/shared appearance input"}. ${c.sources.map((s) => `${s.url} (${s.pointer || "file"})`).join("; ")}`), ...report.impact.ports.map((p) => `- ${p.id}: ${p.classification}; ${p.roles.join(", ")}. ${p.sources.map((s) => s.url).join("; ")}`), "", "## Expected verification", "", ...report.verification.map((s) => `- ${s}`), "", "## Limits", "", ...report.limitations.map((s) => `- ${s}`), ""].join("\n");
+  return [
+    `# Release comparison`,
+    "",
+    `From: ${report.from.revision} (${report.from.profile}, ${report.from.profileStatus ?? "unknown"})`,
+    `To: ${report.to.revision} (${report.to.profile}, ${report.to.profileStatus ?? "unknown"})`,
+    `Semantic status: ${report.semanticStatus}. Visual execution: ${report.visual.status}.`,
+    "",
+    ...[...report.from.availability, ...report.to.availability].map((s) => `- ${s}`),
+    "",
+    "## Changes",
+    "",
+    "| Kind | Contract | Before | After |",
+    "| --- | --- | --- | --- |",
+    ...report.changes.map((c) => `| ${c.kind} | ${c.key} | ${cell(c.before)} | ${cell(c.after)} |`),
+    ...(report.changes.length ? [] : ["No semantic changes detected in supported inputs."]),
+    "",
+    "## Impact",
+    "",
+    `Ports: ${report.impact.catalogue}. ${report.impact.unknownConsumers}`,
+    ...report.impact.components.map((c) => `- ${c.id}: ${c.classification}; roles: ${c.roles.join(", ") || "component/shared appearance input"}. ${c.sources.map((s) => `${s.url} (${s.pointer || "file"})`).join("; ")}`),
+    ...report.impact.ports.map((p) => `- ${p.id}: ${p.classification}; ${p.roles.join(", ")}. ${p.sources.map((s) => s.url).join("; ")}`),
+    "",
+    "## Expected verification",
+    "",
+    ...report.verification.map((s) => `- ${s}`),
+    "",
+    "## Limits",
+    "",
+    ...report.limitations.map((s) => `- ${s}`),
+    ""
+  ].join("\n");
 };
