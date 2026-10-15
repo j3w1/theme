@@ -154,11 +154,24 @@ test("hovering another token does not take over a panel that keyboard focus hold
   const inspector = page.locator("#inspector");
   await expect(inspector).toBeVisible();
   await expect(inspector).toContainText(pathA);
-  /* Focus inside A's panel; hovering B neither replaces the panel nor drops focus. */
+  /* Focus inside A's panel; hovering a token the panel does not cover neither
+     replaces the panel nor drops focus. */
   const link = inspector.getByRole("link", { name: "Full usage and source details" });
   await link.focus();
-  await page.mouse.move(bb.x + 4, bb.y + bb.height / 2);
-  await page.mouse.move(bb.x + 6, bb.y + bb.height / 2);
+  const panel = await inspector.boundingBox();
+  const free = await tokens.evaluateAll((els, { panel, pathA }) => {
+    for (const el of els) {
+      if (el.dataset.token === pathA) continue;
+      const r = el.getBoundingClientRect();
+      const x = r.left + Math.min(6, r.width / 2), y = r.top + r.height / 2;
+      const inside = x >= panel.x && x <= panel.x + panel.width && y >= panel.y && y <= panel.y + panel.height;
+      if (!inside && y > 0 && y < innerHeight && x > 0 && x < innerWidth && document.elementFromPoint(x, y)?.closest("[data-token]") === el) return { x, y };
+    }
+    return null;
+  }, { panel, pathA });
+  expect(free).not.toBeNull();
+  await page.mouse.move(free.x - 1, free.y);
+  await page.mouse.move(free.x, free.y);
   await page.waitForTimeout(400);
   await expect(inspector).toContainText(pathA);
   await expect(link).toBeFocused();
@@ -166,4 +179,45 @@ test("hovering another token does not take over a panel that keyboard focus hold
   await page.mouse.move(2, 2);
   await page.locator("main h1").first().click();
   await expect(inspector).toBeHidden();
+});
+
+test("focus leaving for the page background cancels a keyboard open still loading", verification({ component: "page", category: "keyboard", states: ["focus-visible"], variants: [], note: "Token focused while the first data request is held; a click on the page background sends focus nowhere before the response. No inspector may open afterwards. Automated Chromium only." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "pointer and focus on desktop");
+  let release;
+  const held = new Promise((resolve) => { release = resolve; });
+  await page.route("**/tokens/inspector.json", async (route) => { await held; await route.continue(); });
+  await page.goto("components/button/", { waitUntil: "domcontentloaded" });
+  const token = page.locator("main a[data-token]").first();
+  await token.scrollIntoViewIfNeeded();
+  await token.focus();
+  await page.locator("main h1").first().click();
+  release();
+  await page.waitForTimeout(600);
+  await expect(page.locator("#inspector")).toBeHidden();
+});
+
+test("a keyboard-opened inspector follows its token on scroll and stays inside a narrow viewport", verification({ component: "page", category: "reflow", states: ["focus-visible"], variants: [], note: "Inspector opened by focus, then the page scrolls and the viewport narrows to 360px. The panel must not cover its token and must keep the 8px gutter. Automated Chromium only." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "focus and resize on desktop");
+  await page.goto("components/button/", { waitUntil: "networkidle" });
+  const token = page.locator("main a[data-token]").first();
+  await token.scrollIntoViewIfNeeded();
+  await token.evaluate((el) => window.scrollBy(0, el.getBoundingClientRect().top - 200));
+  await token.focus();
+  const inspector = page.locator("#inspector");
+  await expect(inspector).toBeVisible();
+  const overlaps = async () => {
+    const [p, t] = [await inspector.boundingBox(), await token.boundingBox()];
+    return p.x < t.x + t.width && t.x < p.x + p.width && p.y < t.y + t.height && t.y < p.y + p.height;
+  };
+  await page.mouse.wheel(0, 120);
+  await expect.poll(overlaps).toBe(false);
+  /* At 360px the page reflows and the token moves; bring it back into view
+     (focus stays on it) and the anchored panel fits inside the gutter. */
+  await page.setViewportSize({ width: 360, height: 700 });
+  await token.scrollIntoViewIfNeeded();
+  await expect.poll(async () => {
+    const p = await inspector.boundingBox();
+    return p.x >= 8 && p.x + p.width <= 352 && p.y >= 8 && p.y + p.height <= 692 && !(await overlaps());
+  }).toBe(true);
+  await expect(token).toBeFocused();
 });

@@ -42,7 +42,7 @@ export const initInspector = (): void => {
     const rect = target.getBoundingClientRect();
     const width = Math.min(384, innerWidth - 16);
     popup.style.left = `${Math.max(8, Math.min(rect.left, innerWidth - width - 8))}px`;
-    popup.style.top = `${rect.bottom + 6 + popup.offsetHeight > innerHeight ? Math.max(8, rect.top - popup.offsetHeight - 6) : rect.bottom + 6}px`;
+    popup.style.top = `${rect.bottom + 6 + popup.offsetHeight > innerHeight - 8 ? Math.max(8, rect.top - popup.offsetHeight - 6) : rect.bottom + 6}px`;
   };
   const placePreview = () => placeByPointer(preview, pointer);
   document.addEventListener("pointermove", async (event) => {
@@ -90,6 +90,7 @@ export const initInspector = (): void => {
      once the pointer is on it. */
   const HIDE_DELAY = 300;
   let hideTimer = 0;
+  let byPointerPlaced = false;
   const keep = () => { clearTimeout(hideTimer); hideTimer = 0; };
   const holdsFocus = () => {
     const active = document.activeElement;
@@ -119,6 +120,7 @@ export const initInspector = (): void => {
       box.append(link);
     }
     box.hidden = false;
+    byPointerPlaced = byPointer;
     if (byPointer) placeByPointer(box, pointer);
     else placeByElement(box, target);
     current = target;
@@ -143,6 +145,22 @@ export const initInspector = (): void => {
   };
   box.addEventListener("pointerenter", keep);
   box.addEventListener("focusin", keep);
+  /* The panel moves again on scroll and resize (foundations, hover popups):
+     beside the pointer when the pointer opened it, otherwise anchored to its
+     token, and never outside the viewport gutter. It stays put while the
+     pointer is on it, so the pointer can keep reading. */
+  let placeFrame = 0;
+  const replace = () => {
+    if (box.hidden || !current || placeFrame) return;
+    placeFrame = requestAnimationFrame(() => {
+      placeFrame = 0;
+      if (box.hidden || !current || box.matches(":hover")) return;
+      if (byPointerPlaced) placeByPointer(box, pointer);
+      else placeByElement(box, current);
+    });
+  };
+  document.addEventListener("scroll", (event) => { if (!box.contains(event.target as Node)) replace(); }, { capture: true, passive: true });
+  window.addEventListener("resize", replace);
   box.addEventListener("pointerleave", (event) => {
     const to = event.relatedTarget instanceof Element ? event.relatedTarget.closest<HTMLElement>("[data-token]") : null;
     if (to !== current) hideSoon();
@@ -177,9 +195,12 @@ export const initInspector = (): void => {
   /* Focus that leaves for nothing (a click on the page background) closes a
      panel the pointer is not on; focus that moves elsewhere is handled above. */
   document.addEventListener("focusout", (event) => {
-    if (event.relatedTarget || box.hidden) return;
+    if (event.relatedTarget) return;
     queueMicrotask(() => {
-      if (!box.hidden && !holdsFocus() && !box.matches(":hover") && !current?.matches(":hover")) hide();
+      if (holdsFocus() || box.matches(":hover") || current?.matches(":hover")) return;
+      /* A pending open loses its reason too, so a late load shows nothing. */
+      if (box.hidden) current = null;
+      else hide();
     });
   });
   document.addEventListener("keydown", (event) => {

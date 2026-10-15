@@ -320,7 +320,7 @@
 .inspector {
   position: fixed;
   z-index: var(--z-popover);
-  max-width: 24rem;
+  max-width: min(24rem, calc(100vw - 2 * var(--space-8)));
   padding: var(--space-8) var(--space-12);
   border: var(--border-width-default) solid var(--color-border-overlay);
   background: var(--color-surface-raised);
