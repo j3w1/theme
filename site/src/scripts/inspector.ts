@@ -84,8 +84,16 @@ export const initInspector = (): void => {
   let current: HTMLElement | null = null;
   const text = (value: string) => renderHexText(value, data.colorIndex);
 
+  /* The panel holds links, so it stays reachable (foundations, hover popups;
+     WCAG 1.4.13): leaving the token or the panel starts a short grace period
+     that entering either cancels, and the panel stops following the pointer
+     once the pointer is on it. */
+  const HIDE_DELAY = 300;
+  let hideTimer = 0;
+  const keep = () => { clearTimeout(hideTimer); hideTimer = 0; };
   const show = async (target: HTMLElement, byPointer = false) => {
     if (box.contains(target)) return;
+    keep();
     current = target;
     try { await load(); } catch { return; }
     if (current !== target) return;
@@ -113,24 +121,33 @@ export const initInspector = (): void => {
   };
 
   const hide = () => {
+    keep();
     box.hidden = true;
     current = null;
   };
+  const hideSoon = () => { if (!hideTimer && !box.hidden) hideTimer = window.setTimeout(hide, HIDE_DELAY); };
+  box.addEventListener("pointerenter", keep);
+  box.addEventListener("pointerleave", (event) => {
+    const to = event.relatedTarget instanceof Element ? event.relatedTarget.closest<HTMLElement>("[data-token]") : null;
+    if (to !== current) hideSoon();
+  });
 
   /* Hover follows the pointer, so the panel tracks the cursor across a wide
      token table rather than pinning to wherever the row happens to start. */
   document.addEventListener("pointermove", (event) => {
     if (!["mouse", "pen"].includes(event.pointerType)) return;
+    if (box.contains(event.target as Node)) return;
     if ((event.target as HTMLElement).closest(".hex-swatch")) return;
     const target = (event.target as HTMLElement).closest<HTMLElement>("[data-token]");
     if (!target) return;
     pointer = { x: event.clientX, y: event.clientY };
-    if (target === current) placeByPointer(box, pointer);
+    if (target === current) { keep(); placeByPointer(box, pointer); }
     else void show(target, true);
   });
   document.addEventListener("mouseout", (event) => {
     const target = (event.target as HTMLElement).closest<HTMLElement>("[data-token]");
-    if (target && target === current && !box.matches(":hover")) hide();
+    const to = event.relatedTarget instanceof Node ? event.relatedTarget : null;
+    if (target && target === current && !(to && (box.contains(to) || target.contains(to)))) hideSoon();
   });
   document.addEventListener("focusin", (event) => {
     const target = (event.target as HTMLElement).closest<HTMLElement>("[data-token]");

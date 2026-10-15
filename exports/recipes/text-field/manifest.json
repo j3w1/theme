@@ -18,13 +18,13 @@
       "spec/components/text-field.demo.html": "sha256-ZB5xDObbSUC3QCuqccJpd3EmQ5YJQhJ74BCTur+xwa4=",
       "site/src/styles/recipe-foundation.css": "sha256-SUmvPxZ7TNZA79xx7u87QonwpwCDBRcRzTnrTOfV8k8=",
       "site/src/styles/partials/field.css": "sha256-WTZb/N3/3OT12dHJbvImC02NJBaOkGX8rQ+alodB3S0=",
-      "site/src/styles/components/text-field.css": "sha256-7HgfVLJYEB2zasvJhhCqO2ClcAdxorbg5wpXXqPXPZc=",
+      "site/src/styles/components/text-field.css": "sha256-7+qdAGWDYb/DiCLCXFkZQza4ZD7o1ZpPmdqR69w8TrU=",
       "LICENSE.md": "sha256-Ih5+DpqcNXGWJX6BbYgpt6psmJi9lGcXGJzuiU7elE0=",
       "tokens/primitives.tokens.json": "sha256-cmydigBuNgi4hyQLi+3VS5JBhDQ8VMStlmUtPSSc05E=",
-      "tokens/semantic.tokens.json": "sha256-jbrikW294TIEdB7rAiqlLPAiLUy2CMyLT/opZiVe/E0=",
-      "tokens/foundations.tokens.json": "sha256-30MQxI9wjLrZLFYJBPe1+gLUT80oRCnMDNiNoltbtjk="
+      "tokens/semantic.tokens.json": "sha256-+CHkRb3YBSuwsb2KwaSThwnXQ7qYekMnLJQPN0wkhCI=",
+      "tokens/foundations.tokens.json": "sha256-rCrhBaYt63CHz5/v3r/oC5qF83JoqaM8O7kzQyDr8cY="
     },
-    "digest": "sha256-YUjIVkdZJyC/rWXFXU5iUEe01k1zm5jV4Z0I+fY4RyE=",
+    "digest": "sha256-kd8Lg4gWCDsgv0nkqV59ZJMMRC6Kda6NKq0lx36Qy1w=",
     "revisionPolicy": "Resolve these paths at the same pinned commit as this manifest. The hosted source viewer identifies its supplying commit; generated source files contain content digests, never a floating revision claim."
   },
   "dependencies": {
@@ -81,6 +81,7 @@
     "focus.offset",
     "focus.offset-invalid",
     "focus.ring",
+    "focus.ring-contrast",
     "font.family.mono",
     "font.line-height.ui-md",
     "font.line-height.ui-sm",
@@ -101,7 +102,6 @@
     "color.border.divider",
     "color.code.caret",
     "color.interaction.disabled.bg",
-    "color.interaction.focus.ring-container",
     "color.interaction.hover.bg",
     "color.interaction.text-selection.bg",
     "color.interaction.text-selection.text",
@@ -121,6 +121,7 @@
     "focus.offset",
     "focus.offset-invalid",
     "focus.ring",
+    "focus.ring-contrast",
     "font.family.mono",
     "font.line-height.ui-md",
     "font.line-height.ui-sm",
@@ -181,11 +182,6 @@
       "decisionIds": []
     },
     "color.interaction.disabled.bg": {
-      "action": "use",
-      "reason": "Use within the role's documented scope and restrictions.",
-      "decisionIds": []
-    },
-    "color.interaction.focus.ring-container": {
       "action": "use",
       "reason": "Use within the role's documented scope and restrictions.",
       "decisionIds": []
@@ -285,6 +281,11 @@
       "reason": "Use within the role's documented scope and restrictions.",
       "decisionIds": []
     },
+    "focus.ring-contrast": {
+      "action": "use",
+      "reason": "Use within the role's documented scope and restrictions.",
+      "decisionIds": []
+    },
     "font.family.mono": {
       "action": "use",
       "reason": "Use within the role's documented scope and restrictions.",
@@ -354,12 +355,12 @@
   "files": {
     "markup.html": "sha256-wARfGY6V60eMUhV8JNGMhY+EnikQvcPlSqkD5WPOULo=",
     "template.html": "sha256-IlSlLS7sPC3MLqIdxMRQUP4sFnn/58lwM3AFALtdY3c=",
-    "tokens.css": "sha256-Z7C9Hx+UzJAtRTBN08cB9BRDeTuCjEQr3xZyD2i0vgU=",
+    "tokens.css": "sha256-zjVcq7LwtSQfrFMkCNQ3qgqOctaVyaz3bTbWiXOvDVw=",
     "foundation.css": "sha256-jm66ZdmdAhTyMVQIMKhzVZZm/NhB5ZbLq8g3UASzy98=",
-    "component.css": "sha256-Oz8HGS0K4usbEkFFSKi93G9yUBnUass/Z8uQbOJZXNc=",
-    "example.html": "sha256-bgWf7wJ491bEm4esZkZzyuL263quAotSfoygX24ZkFU=",
-    "two-instances.html": "sha256-JIl9HQHQPYXg+r8lkFfC0x50KKiLyNWAwYm9mdQXGGw=",
+    "component.css": "sha256-HLK6PSsbThQsRH4Y6wgRJXw4vWcrki2Vs0MZO6ANnGw=",
+    "example.html": "sha256-t5lfDU+uh3gq1zaNtyPjyo1bRZ1kjRL/Niomvp9iguk=",
+    "two-instances.html": "sha256-IHBsJlaIcd5hGRPnWVXegcrdrvG287OvtxoWBW+Yua4=",
     "LICENSE.md": "sha256-vVf/G6WKJRqbyGZCppbAxMh+UAJdSzaPt5xWUujehyU=",
-    "README.md": "sha256-HpwPQAB3ombWhQi6qdKYU8fgIeJAxlbGFP8ovZEdVnw="
+    "README.md": "sha256-mteZvjVLnm5ASpQXoM+Ejr/iCQa0hblXw4CYx21zU3o="
   }
 }

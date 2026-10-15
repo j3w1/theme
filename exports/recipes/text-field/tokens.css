@@ -65,6 +65,7 @@ SOFTWARE.
   --focus-offset: -2px;
   --focus-offset-invalid: -4px;
   --focus-ring: 1px dashed #e53935;
+  --focus-ring-contrast: 1px dashed #ffa2a7;
   --font-family-mono: "SauceCodePro NFM", "Source Code Pro", "Cascadia Mono", "Consolas", "Liberation Mono", "DejaVu Sans Mono", monospace;
   --font-line-height-ui-md: 18px;
   --font-line-height-ui-sm: 16px;

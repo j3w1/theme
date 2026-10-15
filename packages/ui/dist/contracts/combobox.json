@@ -162,7 +162,6 @@
       "color.code.caret",
       "color.interaction.disabled.bg",
       "color.interaction.drop-target",
-      "color.interaction.focus.ring-container",
       "color.interaction.hover.bg",
       "color.interaction.hover.bg-strong",
       "color.interaction.selection.bg",
@@ -190,6 +189,7 @@
       "focus.offset",
       "focus.offset-invalid",
       "focus.ring",
+      "focus.ring-contrast",
       "font.family.mono",
       "font.line-height.ui-md",
       "font.line-height.ui-sm",
@@ -262,6 +262,7 @@
       "focus.offset",
       "focus.offset-invalid",
       "focus.ring",
+      "focus.ring-contrast",
       "font.family.mono",
       "font.line-height.ui-md",
       "font.line-height.ui-sm",
@@ -338,11 +339,6 @@
         "decisionIds": []
       },
       "color.interaction.drop-target": {
-        "action": "use",
-        "reason": "Use within the role's documented scope and restrictions.",
-        "decisionIds": []
-      },
-      "color.interaction.focus.ring-container": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -482,6 +478,11 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "focus.ring-contrast": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "font.family.mono": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -548,6 +549,6 @@
   "copy": {
     "directory": "copy/combobox/",
     "manifest": "copy/combobox/manifest.json",
-    "digest": "sha256-GTacDO1sEuZ7w5WJ08WkaWKjRm36EQJ2SMRHwKQHAWo="
+    "digest": "sha256-RUQ1sIbxefSfJYe8WdBBceDzXOAEpCnRJ+MYzWfZjIo="
   }
 }

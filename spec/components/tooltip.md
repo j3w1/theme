@@ -87,7 +87,7 @@ Parts as listed in the anatomy; no arrow, shadow or radius.
 | State | Visual | Non-colour channel |
 | --- | --- | --- |
 | default | trigger at rest; popup shown for the demonstration | `aria-describedby` on the trigger |
-| hover | trigger background → {color.action.tertiary.hover-bg}; popup after 300 ms | cursor: pointer; the popup |
+| hover | trigger background → {color.action.tertiary.hover-bg}; popup after 300 ms; it hides 300 ms after the pointer leaves trigger and popup | cursor: pointer; the popup |
 | focus-visible | 1px dashed {color.interaction.focus.ring} at −2px on the trigger; popup at once | the ring; the popup |
 | open | popup visible, 1px {color.border.overlay} on {color.surface.raised} | popup in the accessibility tree |
 | closed | popup absent; trigger unchanged | `hidden`; the description is still read from the DOM |

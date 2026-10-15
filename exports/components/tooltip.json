@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=",
+  "sourceDigest": "sha256-shynSr2pxgyKP9x/WCETR9DvAjpw0vRmg8hNa+UZh/g=",
   "id": "tooltip",
   "family": "feedback",
   "maturity": "stable",
@@ -220,7 +220,7 @@
     },
     {
       "state": "hover",
-      "visual": "trigger background → {color.action.tertiary.hover-bg}; popup after 300 ms",
+      "visual": "trigger background → {color.action.tertiary.hover-bg}; popup after 300 ms; it hides 300 ms after the pointer leaves trigger and popup",
       "channel": "cursor: pointer; the popup",
       "tokens": {
         "fg": {

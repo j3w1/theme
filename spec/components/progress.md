@@ -108,8 +108,7 @@ set `aria-valuetext` ("Preparing"); the container sets `aria-busy` for the
 duration. Completion and failure are announced through a polite live region,
 not by the bar. Text meets 4.5:1; the track boundary and error fill 3:1. The
 primary fill against the track is waived because the value is stated in
-text; a host that must meet 3:1 graphically raises the track to
-{color.surface.canvas}.
+text.
 
 ## Portability
 

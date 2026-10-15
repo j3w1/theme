@@ -1514,6 +1514,11 @@
       "surface": "geometry",
       "reason": "ChatGPT keeps its own geometry; this j3w1 value cannot be set."
     },
+    "focus.ring-contrast": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "ChatGPT keeps its own geometry; this j3w1 value cannot be set."
+    },
     "font.family.mono": {
       "state": "unsupported",
       "surface": "typography",

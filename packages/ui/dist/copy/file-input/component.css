@@ -350,7 +350,7 @@ j3w1-file-input .file-input:has(.file-input-native[aria-invalid="true"]) .file-i
   clip: rect(0 0 0 0);
 }
 j3w1-file-input .file-input-root:has(.file-input-native[aria-invalid="true"]:focus-visible) .file-input-button {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring-contrast);
   outline-offset: var(--focus-offset-invalid);
 }
 j3w1-file-input .file-input-root:has(.file-input-native:disabled) .file-input-button {

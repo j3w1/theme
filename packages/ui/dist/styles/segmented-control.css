@@ -187,7 +187,7 @@ j3w1-segmented-control .radio-group-input:focus-visible {
   outline-offset: var(--focus-offset);
 }
 j3w1-segmented-control .radio-group-input:checked:focus-visible {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring-contrast);
   outline-offset: var(--focus-offset);
 }
 j3w1-segmented-control .radio-group:has(.radio-group-input:required) .radio-group-required {

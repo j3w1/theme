@@ -244,7 +244,7 @@ j3w1-date-picker .date-picker:has(.date-picker-input[aria-invalid="true"]) .date
 }
 j3w1-date-picker .date-picker-root:has(.date-picker-input[aria-invalid="true"]:focus-visible) {
   border-color: var(--color-status-danger-border);
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring-contrast);
   outline-offset: var(--focus-offset-invalid);
 }
 j3w1-date-picker .date-picker-root:has(.date-picker-input:disabled) {

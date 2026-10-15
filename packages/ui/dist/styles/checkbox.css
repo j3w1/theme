@@ -138,7 +138,7 @@ j3w1-checkbox .checkbox-input:focus-visible {
 }
 j3w1-checkbox .checkbox-input:checked:focus-visible,
 j3w1-checkbox .checkbox-input:indeterminate:focus-visible {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring-contrast);
   outline-offset: var(--focus-offset);
 }
 j3w1-checkbox .checkbox:has(.checkbox-input:required) .checkbox-required {

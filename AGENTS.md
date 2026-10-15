@@ -37,7 +37,7 @@ sources and run `npm run generate`.
 
 ## The check loop
 
-CI picks the checks a change needs (D-031); `release-gate` is the only required
+CI picks the checks a change needs (D-031, `docs/ci.md`); `release-gate` is the only required
 check and passes when every selected check passed. See the plan before you
 push:
 

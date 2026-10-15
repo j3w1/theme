@@ -115,7 +115,7 @@ j3w1-switch .switch:focus-visible .switch-track {
 }
 
 j3w1-switch .switch[aria-checked="true"]:focus-visible .switch-track {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring-contrast);
   outline-offset: var(--focus-offset);
 }
 j3w1-switch .switch:disabled {
