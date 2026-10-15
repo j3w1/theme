@@ -2,7 +2,7 @@
 // @id j3w1-powertoys-markdown
 // @name j3w1 Windows preview backing and PowerToys Markdown
 // @description Exact-version black and rose Markdown rendering adapter
-// @version 1.4.1
+// @version 1.4.2
 // @author j3w1
 // @include PowerToys.MarkdownPreviewHandler.exe
 // @include prevhost.exe
@@ -55,6 +55,7 @@ static constexpr BrowserPin browserPins[]={
  {"89df7d69b27dd6c17228c7319e84e22a97076cb3d68271617490f38ab204ea3f",0x896f0,0x89650,0x0,0x0,0x0}, // 154.0.4258.48
  {"07b9416907225b99556c2a5242ecc6d16afd83d374b151285cfe41f164843c1c",0x8a290,0x8a1f0,0x58e50,0x58f10,0x57380}, // 154.0.4258.53
  {"0cfcd55c5095aec1ab484f15af1ef24bb4dd87b2807557ef7feeb4535c70e0e7",0x8a290,0x8a1f0,0x58e50,0x58f10,0x57380}, // 154.0.4258.62
+ {"19eec800fb666a0f939c1fc2113c3bcfc2ad352776d5ddfcb4994d15f77d9b4c",0x87bb0,0x87b10,0x56780,0x56840,0x54cc0}, // 155.0.4283.45
 };
 struct Boundary {HMODULE module=nullptr;bool attempted=false;std::atomic<bool> ready{false};NavigateFn originalString=nullptr,originalNavigate=nullptr;GetBackgroundFn getBackground=nullptr;SetBackgroundFn originalBackground=nullptr,publicBackground=nullptr;CloseControllerFn originalClose=nullptr;};
 static Boundary boundaries[std::size(browserPins)];
@@ -203,7 +204,7 @@ static BOOL CALLBACK DiscoverPreviewOwner(HWND window,LPARAM) {
  wchar_t exe[32768]{};DWORD length=std::size(exe);
  try{
   if(QueryFullProcessImageNameW(lifetime,0,exe,&length)&&length<std::size(exe)
-   &&DigestFile(exe,"34ac55b23b6d840cc9fa8304c0149b8bb026d817b39610728092878d634a61eb")&&CachePreviewOwner(process,lifetime))return TRUE;
+   &&DigestFile(exe,"eee089fe6f927c7f0d51b0abd9d70c094157e33673ad760713ec7b1cea18ee11")&&CachePreviewOwner(process,lifetime))return TRUE;
  }catch(...){} // Native notifications must retain fallback after allocation failure.
  CloseHandle(lifetime);return TRUE;
 }
@@ -556,6 +557,7 @@ static bool InstallBoundary(HMODULE module){
   case 1:return HookBoundary<1>(module);
   case 2:return HookBoundary<2>(module);
   case 3:return HookBoundary<3>(module);
+  case 4:return HookBoundary<4>(module);
  }
  return false;
 }

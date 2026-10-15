@@ -2,7 +2,7 @@
 // @id j3w1-terminal-chrome
 // @name j3w1 Terminal chrome
 // @description Exact-package Terminal chrome resources; document and artwork colors remain native
-// @version 1.0.14
+// @version 1.0.15
 // @author j3w1
 // @include WindowsTerminal.exe
 // @architecture x86-64
@@ -439,7 +439,7 @@ static bool ReviewedPackage(){
     if(GetCurrentPackageFullName(&length,nullptr)!=ERROR_INSUFFICIENT_BUFFER||length>512)return false;
     std::vector<wchar_t> name(length);
     if(GetCurrentPackageFullName(&length,name.data())!=ERROR_SUCCESS)return false;
-    for(auto allowed:{L"Microsoft.WindowsTerminal_1.24.11911.0_x64__8wekyb3d8bbwe"})if(wcscmp(name.data(),allowed)==0)return true;
+    for(auto allowed:{L"Microsoft.WindowsTerminal_1.24.12741.0_x64__8wekyb3d8bbwe"})if(wcscmp(name.data(),allowed)==0)return true;
     return false;
 }
 static bool RuntimeFileDigest(std::wstring const& path,const char* expected) {
@@ -476,7 +476,7 @@ static bool ReviewedRuntime(){
 #else
     if(name.find(L"\\\\")==std::wstring::npos){runtimeStatus=-1;return false;}
 #endif
-    bool valid=RuntimeFileDigest(path,"5b653bc535d87e7301c7ab9b4785fb7f0f6de5481ece03e7e7a89ca3e53e6905");
+    bool valid=RuntimeFileDigest(path,"67d90ad2f75bbd50607bfd7c3d73694e948eb993c135b6bb23d4965287ca4bad");
 #if J3W1_LEGACY_XAML
     auto controls=GetModuleHandleW(L"Microsoft.UI." L"Xaml.dll");if(!controls)return false;
     wchar_t controlsPath[32768]{};auto controlsLength=GetModuleFileNameW(controls,controlsPath,std::size(controlsPath));
@@ -2156,7 +2156,7 @@ static bool ReviewedDiagnosticsBridge(std::wstring const& path) {
    if(complete&&BCryptFinishHash(hash,digest,sizeof(digest),0)>=0) {
     constexpr char hex[]="0123456789abcdef";std::string actual;
     for(BYTE byte:digest){actual+=hex[byte>>4];actual+=hex[byte&15];}
-    valid=actual=="5b653bc535d87e7301c7ab9b4785fb7f0f6de5481ece03e7e7a89ca3e53e6905";
+    valid=actual=="67d90ad2f75bbd50607bfd7c3d73694e948eb993c135b6bb23d4965287ca4bad";
    }
   }
  }

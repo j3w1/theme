@@ -2,10 +2,32 @@
 
 ## Compatibility boundary
 
-The recorded candidates are Windows 11 x64 builds 26200.9550 and
-26300.9550 with the redesigned Start layout. `host.json` records exact Explorer, StartDocked, SystemSettings,
+The recorded candidate is Windows 11 x64 build 26300.9711 with the
+redesigned Start layout. It replaces the retired 26200.9550 and 26300.9550
+candidates; those builds no longer qualify for Full mode. `host.json` records exact Explorer, StartDocked, SystemSettings,
 ShellExperienceHost and SearchHost versions, plus Start, shell and Client.CBS
 package versions. A changed, absent or unreadable input refuses Full mode.
+
+The 26300.9711 readout changed StartDocked and Explorer's fixed version to
+10.0.26100.9711. Explorer's display version remains 10.0.26100.8117, while
+ExplorerFrame, DirectUI and SystemSettings remain at fixed version
+10.0.26100.9549. Common Controls, Windows Imaging Component, shellcommon and
+system XAML have new exact identities. The adapter pins use the observed
+versions and hashes, not an assumed common revision across all Windows files.
+Terminal's separate package pin is 1.24.12741.0; its controls package and the
+Notepad, Paint, Calculator, App Runtime and PowerToys identities remain unchanged.
+These identity checks do not establish installed appearance or symbol resolution.
+
+WebView2 155.0.4283.45 also requires a separate Markdown boundary entry. An
+isolated empty controller created with the public WebView2 SDK measured
+NavigateToString at RVA 0x87bb0, Navigate at 0x87b10, the Controller2 background
+getter at 0x56780, setter at 0x56840 and Close at 0x54cc0. All five addresses
+belonged to executable memory in the same complete-hash-pinned module. The
+transparent-white, opaque-black and original background round trips passed;
+empty HTML navigation, about:blank navigation and Close returned success.
+Those calls do not establish navigation completion or installed preview
+appearance. Markdown adapter 1.4.2 retains the earlier reviewed runtime entries
+and their separate original-call storage; no version range is admitted.
 
 Start detection reads the same three feature-state inputs as pinned Start Menu
 Styler 1.7. It does not modify feature flags. Default/unknown/query failure is

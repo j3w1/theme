@@ -125,9 +125,9 @@
   "bundledMods": [
     {
       "id": "j3w1-explorer-native",
-      "version": "1.8.5",
+      "version": "1.8.6",
       "path": "dist/j3w1-explorer-native.wh.cpp",
-      "sha256": "5191b919579d6c6c8897064ab33a59d4524cab42fd6a5b999a0409510cf47c72"
+      "sha256": "9567e7457ad049753d150761717ad9d7843200e48fdb72b399dbde18d2e5e26e"
     },
     {
       "id": "j3w1-powertoys-preview",
@@ -161,52 +161,36 @@
     },
     {
       "id": "j3w1-terminal-chrome",
-      "version": "1.0.14",
+      "version": "1.0.15",
       "path": "dist/j3w1-terminal-chrome.wh.cpp",
-      "sha256": "92c356a2e89a54859967355dce797b08e3e56c807554926e791a6dc638981170"
+      "sha256": "18a7ca52f8ba614d2a3068fddca7844ec07563544f45b9ab1fb33bb100796bae"
     },
     {
       "id": "j3w1-powertoys-markdown",
-      "version": "1.4.1",
+      "version": "1.4.2",
       "path": "dist/j3w1-powertoys-markdown.wh.cpp",
-      "sha256": "c1afe27af0186af5c971e2e35c95fcd1b7b8024419f7276c245b40b282db89a6"
+      "sha256": "0ae68b4df825d38fc45080f10c6edd56831cefa284140e9edb8998c8ec7bd686"
     }
   ],
   "settingsStartup": {
     "sourceSha256": "7424d3b2298d06b4c8dc0e2b16a6e49011c4af2e97ec92ef28ecd2ad53bf8571",
-    "replacement": "// Owned startup and recovery boundary for the pinned Settings rendering adapter.\n// No window text, document data or pixels participate in admission.\n#include <bcrypt.h>\nnamespace j3w1Settings {\nstatic bool DigestFile(const std::wstring& path,const char* expected) {\n    HANDLE file=CreateFileW(path.c_str(),GENERIC_READ,FILE_SHARE_READ,nullptr,\n        OPEN_EXISTING,FILE_FLAG_OPEN_REPARSE_POINT,nullptr);\n    if(file==INVALID_HANDLE_VALUE)return false;\n    BY_HANDLE_FILE_INFORMATION info{};BCRYPT_ALG_HANDLE algorithm=nullptr;\n    BCRYPT_HASH_HANDLE hash=nullptr;bool ok=false;\n    if(GetFileInformationByHandle(file,&info)&&!(info.dwFileAttributes&FILE_ATTRIBUTE_REPARSE_POINT)\n        &&BCryptOpenAlgorithmProvider(&algorithm,BCRYPT_SHA256_ALGORITHM,nullptr,0)>=0\n        &&BCryptCreateHash(algorithm,&hash,nullptr,0,nullptr,0,0)>=0) {\n        BYTE buffer[65536],digest[32]{};DWORD count=0;ok=true;\n        for(;;) {\n            if(!ReadFile(file,buffer,sizeof(buffer),&count,nullptr)){ok=false;break;}\n            if(!count)break;\n            if(BCryptHashData(hash,buffer,count,0)<0){ok=false;break;}\n        }\n        ok=ok&&BCryptFinishHash(hash,digest,sizeof(digest),0)>=0;\n        const char hex[]=\"0123456789abcdef\";char actual[65]{};\n        for(size_t i=0;i<32;i++){actual[i*2]=hex[digest[i]>>4];actual[i*2+1]=hex[digest[i]&15];}\n        ok=ok&&strcmp(actual,expected)==0;\n    }\n    if(hash)BCryptDestroyHash(hash);\n    if(algorithm)BCryptCloseAlgorithmProvider(algorithm,0);\n    CloseHandle(file);return ok;\n}\nstatic bool Admit() {\n    wchar_t exe[32768]{},system[32768]{},modulePath[32768]{};\n    const DWORD exeLength=GetModuleFileNameW(nullptr,exe,32768);\n    const DWORD systemLength=GetSystemWindowsDirectoryW(system,32768);\n    const HMODULE module=GetModuleHandleW(L\"Windows.UI.Xaml.dll\");\n    const DWORD moduleLength=module?GetModuleFileNameW(module,modulePath,32768):0;\n    HIGHCONTRASTW contrast{sizeof(contrast)};\n    return exeLength&&exeLength<32768&&systemLength&&systemLength<32768\n        &&moduleLength&&moduleLength<32768\n        &&_wcsicmp(exe,(std::wstring(system)+L\"\\\\ImmersiveControlPanel\\\\SystemSettings.exe\").c_str())==0\n        &&DigestFile(exe,\"c514b73f3b9cc38be1dc817c177d07ecf12ce4ce9e21df5d54128e7359198bba\")\n        &&DigestFile(modulePath,\"5b653bc535d87e7301c7ab9b4785fb7f0f6de5481ece03e7e7a89ca3e53e6905\")\n        &&SystemParametersInfoW(SPI_GETHIGHCONTRAST,sizeof(contrast),&contrast,0)\n        &&!(contrast.dwFlags&HCF_HIGHCONTRASTON);\n}\n}\n\nHWND GetCoreWnd() {\n    struct Candidates { HWND window=nullptr;unsigned count=0;DWORD thread=0; };\n    Candidates candidates{nullptr,0,g_targetThreadId.load()};\n    EnumWindows([](HWND top,LPARAM parameter)->BOOL {\n        auto& candidates=*reinterpret_cast<Candidates*>(parameter);\n        const auto admit=[&](HWND window) {\n            DWORD process=0;const DWORD thread=GetWindowThreadProcessId(window,&process);\n            if(!thread||process!=GetCurrentProcessId()\n                ||(candidates.thread&&thread!=candidates.thread))return;\n            if(window!=candidates.window){candidates.window=window;++candidates.count;}\n        };\n        wchar_t className[64]{};\n        if(!GetClassNameW(top,className,64))return TRUE;\n        if(_wcsicmp(className,L\"Windows.UI.Core.CoreWindow\")==0)admit(top);\n        else if(_wcsicmp(className,L\"ApplicationFrameWindow\")==0) {\n            HWND child=nullptr;\n            while((child=FindWindowExW(top,child,L\"Windows.UI.Core.CoreWindow\",nullptr)))admit(child);\n        }\n        return TRUE;\n    },reinterpret_cast<LPARAM>(&candidates));\n    // An ambiguous or missing owner cannot initialize or restore another root.\n    return candidates.count==1?candidates.window:nullptr;\n}\n"
+    "replacement": "// Owned startup and recovery boundary for the pinned Settings rendering adapter.\n// No window text, document data or pixels participate in admission.\n#include <bcrypt.h>\nnamespace j3w1Settings {\nstatic bool DigestFile(const std::wstring& path,const char* expected) {\n    HANDLE file=CreateFileW(path.c_str(),GENERIC_READ,FILE_SHARE_READ,nullptr,\n        OPEN_EXISTING,FILE_FLAG_OPEN_REPARSE_POINT,nullptr);\n    if(file==INVALID_HANDLE_VALUE)return false;\n    BY_HANDLE_FILE_INFORMATION info{};BCRYPT_ALG_HANDLE algorithm=nullptr;\n    BCRYPT_HASH_HANDLE hash=nullptr;bool ok=false;\n    if(GetFileInformationByHandle(file,&info)&&!(info.dwFileAttributes&FILE_ATTRIBUTE_REPARSE_POINT)\n        &&BCryptOpenAlgorithmProvider(&algorithm,BCRYPT_SHA256_ALGORITHM,nullptr,0)>=0\n        &&BCryptCreateHash(algorithm,&hash,nullptr,0,nullptr,0,0)>=0) {\n        BYTE buffer[65536],digest[32]{};DWORD count=0;ok=true;\n        for(;;) {\n            if(!ReadFile(file,buffer,sizeof(buffer),&count,nullptr)){ok=false;break;}\n            if(!count)break;\n            if(BCryptHashData(hash,buffer,count,0)<0){ok=false;break;}\n        }\n        ok=ok&&BCryptFinishHash(hash,digest,sizeof(digest),0)>=0;\n        const char hex[]=\"0123456789abcdef\";char actual[65]{};\n        for(size_t i=0;i<32;i++){actual[i*2]=hex[digest[i]>>4];actual[i*2+1]=hex[digest[i]&15];}\n        ok=ok&&strcmp(actual,expected)==0;\n    }\n    if(hash)BCryptDestroyHash(hash);\n    if(algorithm)BCryptCloseAlgorithmProvider(algorithm,0);\n    CloseHandle(file);return ok;\n}\nstatic bool Admit() {\n    wchar_t exe[32768]{},system[32768]{},modulePath[32768]{};\n    const DWORD exeLength=GetModuleFileNameW(nullptr,exe,32768);\n    const DWORD systemLength=GetSystemWindowsDirectoryW(system,32768);\n    const HMODULE module=GetModuleHandleW(L\"Windows.UI.Xaml.dll\");\n    const DWORD moduleLength=module?GetModuleFileNameW(module,modulePath,32768):0;\n    HIGHCONTRASTW contrast{sizeof(contrast)};\n    return exeLength&&exeLength<32768&&systemLength&&systemLength<32768\n        &&moduleLength&&moduleLength<32768\n        &&_wcsicmp(exe,(std::wstring(system)+L\"\\\\ImmersiveControlPanel\\\\SystemSettings.exe\").c_str())==0\n        &&DigestFile(exe,\"c514b73f3b9cc38be1dc817c177d07ecf12ce4ce9e21df5d54128e7359198bba\")\n        &&DigestFile(modulePath,\"67d90ad2f75bbd50607bfd7c3d73694e948eb993c135b6bb23d4965287ca4bad\")\n        &&SystemParametersInfoW(SPI_GETHIGHCONTRAST,sizeof(contrast),&contrast,0)\n        &&!(contrast.dwFlags&HCF_HIGHCONTRASTON);\n}\n}\n\nHWND GetCoreWnd() {\n    struct Candidates { HWND window=nullptr;unsigned count=0;DWORD thread=0; };\n    Candidates candidates{nullptr,0,g_targetThreadId.load()};\n    EnumWindows([](HWND top,LPARAM parameter)->BOOL {\n        auto& candidates=*reinterpret_cast<Candidates*>(parameter);\n        const auto admit=[&](HWND window) {\n            DWORD process=0;const DWORD thread=GetWindowThreadProcessId(window,&process);\n            if(!thread||process!=GetCurrentProcessId()\n                ||(candidates.thread&&thread!=candidates.thread))return;\n            if(window!=candidates.window){candidates.window=window;++candidates.count;}\n        };\n        wchar_t className[64]{};\n        if(!GetClassNameW(top,className,64))return TRUE;\n        if(_wcsicmp(className,L\"Windows.UI.Core.CoreWindow\")==0)admit(top);\n        else if(_wcsicmp(className,L\"ApplicationFrameWindow\")==0) {\n            HWND child=nullptr;\n            while((child=FindWindowExW(top,child,L\"Windows.UI.Core.CoreWindow\",nullptr)))admit(child);\n        }\n        return TRUE;\n    },reinterpret_cast<LPARAM>(&candidates));\n    // An ambiguous or missing owner cannot initialize or restore another root.\n    return candidates.count==1?candidates.window:nullptr;\n}\n"
   },
   "compatibility": [
     {
-      "build": 26200,
-      "ubr": 9550,
-      "architecture": "X64",
-      "explorerVersion": "10.0.26100.8117",
-      "startDockedVersion": "10.0.26100.9549",
-      "status": "candidate",
       "settingsVersion": "10.0.26100.9549",
-      "shellExperienceVersion": "10.0.26100.9549",
-      "searchVersion": "2608.25008.200.0",
-      "startPackageVersion": "10.0.26100.4768",
-      "shellPackageVersion": "10.0.26100.8115",
-      "clientPackageVersion": "1000.26100.372.0",
-      "startLayout": "redesigned",
-      "explorerFixedVersion": "10.0.26100.9549"
-    },
-    {
       "build": 26300,
-      "shellPackageVersion": "10.0.26100.8115",
-      "ubr": 9550,
-      "explorerFixedVersion": "10.0.26100.9549",
       "architecture": "X64",
-      "startLayout": "redesigned",
-      "settingsVersion": "10.0.26100.9549",
-      "startPackageVersion": "10.0.26100.4768",
-      "explorerVersion": "10.0.26100.8117",
+      "startDockedVersion": "10.0.26100.9711",
       "shellExperienceVersion": "10.0.26100.9549",
-      "startDockedVersion": "10.0.26100.9549",
-      "searchVersion": "2608.25008.200.0",
+      "shellPackageVersion": "10.0.26100.8115",
+      "explorerFixedVersion": "10.0.26100.9711",
       "clientPackageVersion": "1000.26100.372.0",
+      "startLayout": "redesigned",
+      "explorerVersion": "10.0.26100.8117",
+      "searchVersion": "2608.25008.200.0",
+      "startPackageVersion": "10.0.26100.4768",
+      "ubr": 9711,
       "status": "candidate"
     }
   ],

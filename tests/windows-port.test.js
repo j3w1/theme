@@ -583,7 +583,7 @@ test('bundled native source is generated, pinned and rejected on tampering',t=>{
  assert.equal((text.match(/CreateFileW\(/g)||[]).length,1,'Only the module digest reader opens files');
  assert.match(text,/CreateFileW\(path,GENERIC_READ,FILE_SHARE_READ,nullptr,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,nullptr\)/);
  assert.match(text,/GetModuleFileNameW\(module,path/);
- assert.match(text,/MAKELONG\(9549,26100\)/);
+ assert.match(text,/MAKELONG\(9711,26100\)/);
  fs.appendFileSync(file,'\n// changed');
  const result=f.run('Apply',f.args);assert.notEqual(result.status,0);assert.match(result.stderr,/Missing verified mod source/);
  assert.deepEqual(f.db(),{});
