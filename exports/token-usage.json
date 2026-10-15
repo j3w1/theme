@@ -16929,7 +16929,7 @@
           "group": "terminal",
           "css": "#0c0909",
           "variable": "--color-terminal-bg",
-          "description": "Background behind a terminal's cell grid; equals ANSI 0 and is the terminal background ports map (D-039).",
+          "description": "Background behind a terminal's cell grid; equals ANSI 0 (D-039).",
           "status": "observed",
           "deprecated": false,
           "eligibility": {
@@ -35319,7 +35319,7 @@
           "group": "terminal",
           "css": "#0c0909",
           "variable": "--color-terminal-bg",
-          "description": "Background behind a terminal's cell grid; equals ANSI 0 and is the terminal background ports map (D-039).",
+          "description": "Background behind a terminal's cell grid; equals ANSI 0 (D-039).",
           "status": "observed",
           "deprecated": false,
           "eligibility": {
@@ -51629,7 +51629,7 @@
           "group": "terminal",
           "css": "#0c0909",
           "variable": "--color-terminal-bg",
-          "description": "Background behind a terminal's cell grid; equals ANSI 0 and is the terminal background ports map (D-039).",
+          "description": "Background behind a terminal's cell grid; equals ANSI 0 (D-039).",
           "status": "observed",
           "deprecated": false,
           "eligibility": {

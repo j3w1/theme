@@ -36,6 +36,61 @@ test("the token inspector stays open while the pointer moves onto it and scrolls
   await expect(inspector).toBeHidden();
 });
 
+test("a slow inspector load does not open the panel after the pointer has left", verification({ component: "page", category: "enhancements", states: [], variants: [], note: "The first inspector data request is held while the pointer leaves; releasing it must not open a stale panel. Pointer only." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "pointer hover on desktop");
+  let release;
+  const held = new Promise((resolve) => { release = resolve; });
+  await page.route("**/tokens/inspector.json", async (route) => { await held; await route.continue(); });
+  await page.goto("components/button/", { waitUntil: "domcontentloaded" });
+  const token = page.locator("main a[data-token]").first();
+  await token.scrollIntoViewIfNeeded();
+  const start = await token.boundingBox();
+  await page.mouse.move(start.x + 2, start.y + start.height / 2);
+  await page.mouse.move(start.x + 4, start.y + start.height / 2);
+  await page.mouse.move(2, 2, { steps: 4 });
+  release();
+  await page.waitForTimeout(600);
+  await expect(page.locator("#inspector")).toBeHidden();
+});
+
+test("returning from a hex swatch to the same token reopens the inspector", verification({ component: "page", category: "enhancements", states: [], variants: [], note: "Token, then the swatch in the same table row (its passive preview takes over), then back to the token within the grace period. Pointer only." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "pointer hover on desktop");
+  await page.goto("components/button/", { waitUntil: "networkidle" });
+  const token = page.locator("main a[data-token]").first();
+  const swatch = token.locator("xpath=ancestor::tr").locator(".hex-swatch").first();
+  await token.scrollIntoViewIfNeeded();
+  await token.evaluate((el) => window.scrollBy(0, el.getBoundingClientRect().top - 60));
+  const t = await token.boundingBox(), s = await swatch.boundingBox();
+  await page.mouse.move(t.x + 2, t.y + t.height / 2);
+  await page.mouse.move(t.x + 4, t.y + t.height / 2);
+  await expect(page.locator("#inspector")).toBeVisible();
+  await page.mouse.move(s.x + s.width / 2, s.y + s.height / 2);
+  await expect(page.locator("#hex-popup")).toBeVisible();
+  await page.waitForTimeout(30);
+  await page.mouse.move(t.x + 4, t.y + t.height / 2);
+  await expect(page.locator("#inspector")).toBeVisible();
+  await page.waitForTimeout(500);
+  await expect(page.locator("#inspector")).toBeVisible();
+});
+
+test("the inspector stays while keyboard focus is inside it, whatever the pointer does", verification({ component: "page", category: "keyboard", states: ["focus-visible"], variants: [], note: "Inspector opened by focusing a token; focus moves to its details link; the pointer enters and leaves the panel. Focus must stay on the link. Automated Chromium only; no manual keyboard pass." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "pointer and focus on desktop");
+  await page.goto("components/button/", { waitUntil: "networkidle" });
+  const token = page.locator("main a[data-token]").first();
+  await token.scrollIntoViewIfNeeded();
+  await token.focus();
+  const inspector = page.locator("#inspector");
+  await expect(inspector).toBeVisible();
+  const link = inspector.getByRole("link", { name: "Full usage and source details" });
+  await link.focus();
+  const box = await inspector.boundingBox();
+  await page.mouse.move(box.x + box.width / 2, box.y + Math.min(box.height / 2, 24));
+  await page.mouse.move(2, 2);
+  await page.waitForTimeout(500);
+  await expect(inspector).toBeVisible();
+  await expect(link).toBeFocused();
+});
+
 test("a tooltip stays open while the pointer crosses to its popup", verification({ component: "tooltip", category: "enhancements", states: ["hover"], variants: ["default"], note: "First live tooltip on its component page: hover opens it, a diagonal move onto the wider popup keeps it, leaving both closes it. Pointer only." }), async ({ page }, testInfo) => {
   test.skip(!only(testInfo, "desktop"), "pointer hover on desktop");
   await page.goto("components/tooltip/", { waitUntil: "networkidle" });

@@ -57,7 +57,7 @@ export const initInspector = (): void => {
       preview.innerHTML = `<p>Exact value matches; equality does not assign a role.</p><ul>${matches.map((match) => `<li>${escapeHtml(match.profile)}: <code>${escapeHtml(match.path)}</code></li>`).join("")}</ul>`;
       circle = target;
     }
-    box.hidden = true;
+    hide();
     preview.hidden = false;
     placePreview();
   });
@@ -125,8 +125,18 @@ export const initInspector = (): void => {
     box.hidden = true;
     current = null;
   };
-  const hideSoon = () => { if (!hideTimer && !box.hidden) hideTimer = window.setTimeout(hide, HIDE_DELAY); };
+  const hideSoon = () => {
+    /* Still loading: nothing is shown yet, so leaving cancels the open. */
+    if (box.hidden) { current = null; return; }
+    if (hideTimer) return;
+    hideTimer = window.setTimeout(() => {
+      hideTimer = 0;
+      /* Pointer movement never takes away a panel that holds keyboard focus. */
+      if (!box.contains(document.activeElement)) hide();
+    }, HIDE_DELAY);
+  };
   box.addEventListener("pointerenter", keep);
+  box.addEventListener("focusin", keep);
   box.addEventListener("pointerleave", (event) => {
     const to = event.relatedTarget instanceof Element ? event.relatedTarget.closest<HTMLElement>("[data-token]") : null;
     if (to !== current) hideSoon();
@@ -141,7 +151,7 @@ export const initInspector = (): void => {
     const target = (event.target as HTMLElement).closest<HTMLElement>("[data-token]");
     if (!target) return;
     pointer = { x: event.clientX, y: event.clientY };
-    if (target === current) { keep(); placeByPointer(box, pointer); }
+    if (target === current && !box.hidden) { keep(); placeByPointer(box, pointer); }
     else void show(target, true);
   });
   document.addEventListener("mouseout", (event) => {

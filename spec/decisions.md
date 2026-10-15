@@ -464,15 +464,15 @@ fill.
 **Decision.** Both pairs stay, with their values. `surface.code` and
 `surface.terminal` (pure black, D-023) are what a static code block or a
 terminal pane sits on; `code.bg` and `terminal.bg` (`#0c0909`) fill the inside
-of an editor and a terminal's cell grid, where `terminal.bg` equals ANSI 0 and
-is the background every port maps. Rule: `spec/foundations.md`, Code and
-terminal.
+of an editor and a terminal's cell grid, where `terminal.bg` equals ANSI 0.
+Rule: `spec/foundations.md`, Code and terminal.
 
 **Why.** Both pairs carried the same descriptions ("Editor background",
 "Terminal background") with different values, so a consumer could not tell
-which to use. Rejected: merging into pure black, which changes every port's
-terminal and editor background; merging into `#0c0909`, which partly reverses
-D-023.
+which to use. Rejected: merging into pure black, which changes the terminal
+background of the four terminal ports (Claude Code, Ghostty, Orca, Warp) and
+Obsidian's code background; merging into `#0c0909`, which partly reverses
+D-023 and changes the code block Windows maps from `surface.code`.
 
 **Status.** accepted · 2026-10-15 · owner, choosing "Keep both, scope them".
 

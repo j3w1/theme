@@ -59,7 +59,7 @@ keyboard:
     action: Act on the trigger as usual; the tooltip hides on activation.
 responsive: The popup is at most 24rem wide and wraps; it flips to the side with room and is never clipped by the viewport; at 320px it is as wide as the viewport minus the gutter. RTL mirrors the placement and keeps the shortcut at the end.
 portability:
-  web: "the trigger carries aria-describedby to a <div role=tooltip>; visibility toggles the hidden attribute after a 300 ms open delay and no close delay; positioned with anchor positioning or a popover at z.popover; the tooltip is never the only place a control's name lives."
+  web: "the trigger carries aria-describedby to a <div role=tooltip>; visibility toggles the hidden attribute after a 300 ms open delay, and hides 300 ms after the pointer leaves trigger and popup; positioned with anchor positioning or a popover at z.popover; the tooltip is never the only place a control's name lives."
   nativeFallbacks:
     - GTK4 tooltip-text; the host draws it with the overlay border through the tooltip css node.
     - Qt QToolTip stylesheet; border and background from the tokens; no rounded corners.

@@ -154,7 +154,7 @@ Always keep textual markers and existing status icons.
 Two background pairs (D-039): `surface.code` and `surface.terminal` (pure
 black) are what a static code block or a terminal pane sits on; `code.bg` and
 `terminal.bg` (`#0c0909`) fill the inside of an editor and the cell grid of a
-terminal, where `terminal.bg` equals ANSI 0. Ports map the inner pair.
+terminal, where `terminal.bg` equals ANSI 0.
 
 Editor surfaces:
 
@@ -246,8 +246,9 @@ A popup opened by hovering follows the pointer:
 - It moves again on pointer move, scroll and resize.
 - A popup with nothing to operate takes no pointer events; one with a control
   or link stays reachable and open while the pointer is inside it.
-- Either kind closes when the pointer leaves both the trigger and the popup,
-  after a 300 ms grace period that lets the pointer cross between them.
+- Either kind closes when the pointer leaves both the trigger and the popup;
+  the reachable kind waits 300 ms first, so the pointer can cross between
+  them, and stays while keyboard focus is inside it.
 
 Opened from the keyboard, the same popup anchors to its trigger: below it, or
 above when there is no room below. This is a placement rule only; what opens a
