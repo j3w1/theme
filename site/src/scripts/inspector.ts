@@ -157,6 +157,9 @@ export const initInspector = (): void => {
     const target = (event.target as HTMLElement).closest<HTMLElement>("[data-token]");
     if (!target) return;
     pointer = { x: event.clientX, y: event.clientY };
+    /* Keyboard focus wins: hovering does not take over or move a panel whose
+       token or content holds focus, including one still loading. */
+    if (holdsFocus()) return;
     if (target === current && !box.hidden) { keep(); placeByPointer(box, pointer); }
     else void show(target, true);
   });
@@ -170,6 +173,14 @@ export const initInspector = (): void => {
     /* Keyboard focus has no pointer to follow; anchor to the element. */
     if (target) void show(target, false);
     else if (!box.contains(event.target as Node)) hide();
+  });
+  /* Focus that leaves for nothing (a click on the page background) closes a
+     panel the pointer is not on; focus that moves elsewhere is handled above. */
+  document.addEventListener("focusout", (event) => {
+    if (event.relatedTarget || box.hidden) return;
+    queueMicrotask(() => {
+      if (!box.hidden && !holdsFocus() && !box.matches(":hover") && !current?.matches(":hover")) hide();
+    });
   });
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && !box.hidden) hide();

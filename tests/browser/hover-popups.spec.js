@@ -133,3 +133,37 @@ test("a tooltip stays open while the pointer crosses to its popup", verification
   await page.mouse.move(2, 2, { steps: 4 });
   await expect(popup).toBeHidden();
 });
+
+test("hovering another token does not take over a panel that keyboard focus holds", verification({ component: "page", category: "keyboard", states: ["focus-visible"], variants: [], note: "Inspector opened by focus on token A with focus moved to its details link, and separately A focused while its data loads; the pointer hovers token B. A's panel and focus must stay. A click on the page background then closes it. Automated Chromium only." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "pointer and focus on desktop");
+  let release;
+  const held = new Promise((resolve) => { release = resolve; });
+  await page.route("**/tokens/inspector.json", async (route) => { await held; await route.continue(); });
+  await page.goto("components/button/", { waitUntil: "domcontentloaded" });
+  const tokens = page.locator("main a[data-token]");
+  const a = tokens.nth(0), b = tokens.nth(2);
+  const pathA = await a.getAttribute("data-token");
+  await a.scrollIntoViewIfNeeded();
+  /* A is focused while its data loads; the pointer passes over B and away. */
+  await a.focus();
+  const bb = await b.boundingBox();
+  await page.mouse.move(bb.x + 4, bb.y + bb.height / 2);
+  await page.mouse.move(bb.x + 6, bb.y + bb.height / 2);
+  await page.mouse.move(2, 2, { steps: 4 });
+  release();
+  const inspector = page.locator("#inspector");
+  await expect(inspector).toBeVisible();
+  await expect(inspector).toContainText(pathA);
+  /* Focus inside A's panel; hovering B neither replaces the panel nor drops focus. */
+  const link = inspector.getByRole("link", { name: "Full usage and source details" });
+  await link.focus();
+  await page.mouse.move(bb.x + 4, bb.y + bb.height / 2);
+  await page.mouse.move(bb.x + 6, bb.y + bb.height / 2);
+  await page.waitForTimeout(400);
+  await expect(inspector).toContainText(pathA);
+  await expect(link).toBeFocused();
+  /* A click on the page background sends focus nowhere and closes the panel. */
+  await page.mouse.move(2, 2);
+  await page.locator("main h1").first().click();
+  await expect(inspector).toBeHidden();
+});
