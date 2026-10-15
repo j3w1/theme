@@ -2,9 +2,9 @@
 
 ## [Unreleased]
 
-- **Display and title type sizes** (D-037, proposed): `font.size.display`
-  32/40 and `font.size.title` 24/32 with their line heights, for page heroes
-  and metric figures. They export as use-and-report until D-037 is decided.
+- **Display and title type sizes** (D-037): `font.size.display` 32/40 and
+  `font.size.title` 24/32 with their line heights, for page heroes, metric
+  figures and page titles.
 - **Compact is the default density** (D-038). `:root` and bare recipe
   wrappers carry the compact density values; `data-density="comfortable"`
   opts in. A consumer that relied on the old comfortable default sets it.

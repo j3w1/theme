@@ -203,7 +203,7 @@ the fallbacks; no font file is distributed. Weights 400 and 700, plus italic.
 Scale (size/line-height in px): `ui-sm` 12/16, `ui-md` 13/18, `ui-lg` 14/20,
 `reading` 15/24, `code` 13/19, `terminal` 13/19 with −0.5px letter-spacing,
 `h1` 20/28 bold, `h2` 16/24 bold, `h3` 13/18 bold in `text.heading`, `caption`
-11/16 only with `text.muted` or lighter. Proposed (D-037): `display` 32/40 for
+11/16 only with `text.muted` or lighter. D-037: `display` 32/40 for
 page heroes and metric figures and `title` 24/32 for page titles above `h1`;
 components keep `h1`–`h3`. Hosts keep the size the user chose; tiny UI text is
 a metric of the reference implementation, not a rule.

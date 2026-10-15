@@ -20954,14 +20954,12 @@
           "css": "40px",
           "variable": "--font-line-height-display",
           "description": null,
-          "status": "proposed",
+          "status": "approved",
           "deprecated": false,
           "eligibility": {
-            "action": "use-and-report",
-            "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
-            "decisionIds": [
-              "D-037"
-            ]
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
           },
           "source": {
             "file": "tokens/foundations.tokens.json",
@@ -20969,7 +20967,7 @@
             "line": 253
           },
           "provenance": {
-            "status": "proposed",
+            "status": "approved",
             "approval": {
               "decision": "D-037"
             }
@@ -21175,14 +21173,12 @@
           "css": "32px",
           "variable": "--font-line-height-title",
           "description": null,
-          "status": "proposed",
+          "status": "approved",
           "deprecated": false,
           "eligibility": {
-            "action": "use-and-report",
-            "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
-            "decisionIds": [
-              "D-037"
-            ]
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
           },
           "source": {
             "file": "tokens/foundations.tokens.json",
@@ -21190,7 +21186,7 @@
             "line": 267
           },
           "provenance": {
-            "status": "proposed",
+            "status": "approved",
             "approval": {
               "decision": "D-037"
             }
@@ -21399,14 +21395,12 @@
           "css": "32px",
           "variable": "--font-size-display",
           "description": "Page heroes and metric figures on the portal (D-037).",
-          "status": "proposed",
+          "status": "approved",
           "deprecated": false,
           "eligibility": {
-            "action": "use-and-report",
-            "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
-            "decisionIds": [
-              "D-037"
-            ]
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
           },
           "source": {
             "file": "tokens/foundations.tokens.json",
@@ -21414,7 +21408,7 @@
             "line": 159
           },
           "provenance": {
-            "status": "proposed",
+            "status": "approved",
             "approval": {
               "decision": "D-037"
             }
@@ -21622,14 +21616,12 @@
           "css": "24px",
           "variable": "--font-size-title",
           "description": "Page titles above h1 on the portal (D-037).",
-          "status": "proposed",
+          "status": "approved",
           "deprecated": false,
           "eligibility": {
-            "action": "use-and-report",
-            "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
-            "decisionIds": [
-              "D-037"
-            ]
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
           },
           "source": {
             "file": "tokens/foundations.tokens.json",
@@ -21637,7 +21629,7 @@
             "line": 174
           },
           "provenance": {
-            "status": "proposed",
+            "status": "approved",
             "approval": {
               "decision": "D-037"
             }
@@ -37746,14 +37738,12 @@
           "css": "40px",
           "variable": "--font-line-height-display",
           "description": null,
-          "status": "proposed",
+          "status": "approved",
           "deprecated": false,
           "eligibility": {
             "action": "historical-only",
             "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
-            "decisionIds": [
-              "D-037"
-            ]
+            "decisionIds": []
           },
           "source": {
             "file": "tokens/foundations.tokens.json",
@@ -37761,7 +37751,7 @@
             "line": 253
           },
           "provenance": {
-            "status": "proposed",
+            "status": "approved",
             "approval": {
               "decision": "D-037"
             }
@@ -37903,14 +37893,12 @@
           "css": "32px",
           "variable": "--font-line-height-title",
           "description": null,
-          "status": "proposed",
+          "status": "approved",
           "deprecated": false,
           "eligibility": {
             "action": "historical-only",
             "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
-            "decisionIds": [
-              "D-037"
-            ]
+            "decisionIds": []
           },
           "source": {
             "file": "tokens/foundations.tokens.json",
@@ -37918,7 +37906,7 @@
             "line": 267
           },
           "provenance": {
-            "status": "proposed",
+            "status": "approved",
             "approval": {
               "decision": "D-037"
             }
@@ -38066,14 +38054,12 @@
           "css": "32px",
           "variable": "--font-size-display",
           "description": "Page heroes and metric figures on the portal (D-037).",
-          "status": "proposed",
+          "status": "approved",
           "deprecated": false,
           "eligibility": {
             "action": "historical-only",
             "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
-            "decisionIds": [
-              "D-037"
-            ]
+            "decisionIds": []
           },
           "source": {
             "file": "tokens/foundations.tokens.json",
@@ -38081,7 +38067,7 @@
             "line": 159
           },
           "provenance": {
-            "status": "proposed",
+            "status": "approved",
             "approval": {
               "decision": "D-037"
             }
@@ -38225,14 +38211,12 @@
           "css": "24px",
           "variable": "--font-size-title",
           "description": "Page titles above h1 on the portal (D-037).",
-          "status": "proposed",
+          "status": "approved",
           "deprecated": false,
           "eligibility": {
             "action": "historical-only",
             "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
-            "decisionIds": [
-              "D-037"
-            ]
+            "decisionIds": []
           },
           "source": {
             "file": "tokens/foundations.tokens.json",
@@ -38240,7 +38224,7 @@
             "line": 174
           },
           "provenance": {
-            "status": "proposed",
+            "status": "approved",
             "approval": {
               "decision": "D-037"
             }
@@ -54041,14 +54025,12 @@
           "css": "40px",
           "variable": "--font-line-height-display",
           "description": null,
-          "status": "proposed",
+          "status": "approved",
           "deprecated": false,
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
-            "decisionIds": [
-              "D-037"
-            ]
+            "decisionIds": []
           },
           "source": {
             "file": "tokens/foundations.tokens.json",
@@ -54056,7 +54038,7 @@
             "line": 253
           },
           "provenance": {
-            "status": "proposed",
+            "status": "approved",
             "approval": {
               "decision": "D-037"
             }
@@ -54198,14 +54180,12 @@
           "css": "32px",
           "variable": "--font-line-height-title",
           "description": null,
-          "status": "proposed",
+          "status": "approved",
           "deprecated": false,
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
-            "decisionIds": [
-              "D-037"
-            ]
+            "decisionIds": []
           },
           "source": {
             "file": "tokens/foundations.tokens.json",
@@ -54213,7 +54193,7 @@
             "line": 267
           },
           "provenance": {
-            "status": "proposed",
+            "status": "approved",
             "approval": {
               "decision": "D-037"
             }
@@ -54361,14 +54341,12 @@
           "css": "32px",
           "variable": "--font-size-display",
           "description": "Page heroes and metric figures on the portal (D-037).",
-          "status": "proposed",
+          "status": "approved",
           "deprecated": false,
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
-            "decisionIds": [
-              "D-037"
-            ]
+            "decisionIds": []
           },
           "source": {
             "file": "tokens/foundations.tokens.json",
@@ -54376,7 +54354,7 @@
             "line": 159
           },
           "provenance": {
-            "status": "proposed",
+            "status": "approved",
             "approval": {
               "decision": "D-037"
             }
@@ -54520,14 +54498,12 @@
           "css": "24px",
           "variable": "--font-size-title",
           "description": "Page titles above h1 on the portal (D-037).",
-          "status": "proposed",
+          "status": "approved",
           "deprecated": false,
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
-            "decisionIds": [
-              "D-037"
-            ]
+            "decisionIds": []
           },
           "source": {
             "file": "tokens/foundations.tokens.json",
@@ -54535,7 +54511,7 @@
             "line": 174
           },
           "provenance": {
-            "status": "proposed",
+            "status": "approved",
             "approval": {
               "decision": "D-037"
             }

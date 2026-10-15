@@ -64,7 +64,7 @@ body {
   overflow-wrap: anywhere;
 }
 
-/* D-037 (proposed): the page title uses the title size; section headings use h1. */
+/* D-037: the page title uses the title size; section headings use h1. */
 :where(h1) {
   font-size: var(--font-size-title);
   line-height: var(--font-line-height-title);

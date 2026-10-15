@@ -56,7 +56,7 @@ ordered by topic.
 | --- | --- | --- | --- | --- |
 | D-009 | Density modes `compact` and `comfortable` as tokens | proposed | 2026-09-06 | — |
 | D-033 | Rose prose, semantic content headings and inherited bold | accepted | 2026-09-28 | owner (explicit implementation plan) |
-| D-037 | Display and title type sizes | proposed | 2026-10-14 | — |
+| D-037 | Display and title type sizes | accepted | 2026-10-14 | owner (G2 authority review) |
 | D-038 | Compact is the default density | accepted | 2026-10-14 | owner (explicit instruction at the G1 design review) |
 
 ### Interaction and components
@@ -520,8 +520,8 @@ Rule: `spec/foundations.md`, Typography.
 owner chose token sizes over shrinking every heading to h1 (planning,
 2026-10-14), or page-local literal sizes.
 
-**Status.** proposed · 2026-10-14. The owner asked for display type tokens in
-planning; the owner sets the status.
+**Status.** accepted · 2026-10-14 · owner (G2 authority review). The owner
+asked for display type tokens in planning.
 
 ## D-038 Compact is the default density
 
