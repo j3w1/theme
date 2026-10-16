@@ -1,10 +1,10 @@
 import { t as J3w1Element } from "../chunks/element-Dovcr9Ky.js";
-import { t as feedback } from "../chunks/overlays-Bw8SSDKz.js";
+import { t as feedback } from "../chunks/overlays-BwgpF4jI.js";
 //#region .cache/ui-build/entries/components/error-state.js
 var J3w1ErrorState = class extends J3w1Element {
 	static componentId = "error-state";
 	static version = "4.0.0";
-	static implementationId = "sha256-NFXjO9uEbTYqbXbZVfFiY8Ge2N54qnmAPnp046iwL4U=";
+	static implementationId = "sha256-tOUjSBC5VAWfv+AicnePxVZaKItd4HUgjbSSn0EAnj4=";
 	static connect = feedback;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

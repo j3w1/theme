@@ -221,6 +221,7 @@
       "focus.offset-invalid",
       "focus.ring",
       "focus.ring-container",
+      "focus.ring-contrast",
       "font.family.mono",
       "font.line-height.caption",
       "font.line-height.h2",
@@ -357,6 +358,7 @@
       "focus.offset-invalid",
       "focus.ring",
       "focus.ring-container",
+      "focus.ring-contrast",
       "font.family.mono",
       "font.line-height.caption",
       "font.line-height.h2",
@@ -788,6 +790,11 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "focus.ring-contrast": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "font.family.mono": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -909,6 +916,6 @@
   "copy": {
     "directory": "copy/admin-form/",
     "manifest": "copy/admin-form/manifest.json",
-    "digest": "sha256-0cFh6BAwKorLKq38Qi1CjI8uGgYupJJvet2b/DOatzY="
+    "digest": "sha256-a7m7HYJXxCqHPyqHlBuYm7RbV324XwflktQL/o5zW38="
   }
 }

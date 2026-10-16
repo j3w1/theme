@@ -186,7 +186,6 @@
       "color.icon.default",
       "color.interaction.disabled.bg",
       "color.interaction.drop-target",
-      "color.interaction.focus.ring-container",
       "color.interaction.hover.bg",
       "color.interaction.hover.bg-strong",
       "color.interaction.pressed.bg",
@@ -223,6 +222,7 @@
       "focus.offset-invalid",
       "focus.ring",
       "focus.ring-container",
+      "focus.ring-contrast",
       "font.family.mono",
       "font.line-height.ui-md",
       "font.line-height.ui-sm",
@@ -324,6 +324,7 @@
       "focus.offset-invalid",
       "focus.ring",
       "focus.ring-container",
+      "focus.ring-contrast",
       "font.family.mono",
       "font.line-height.ui-md",
       "font.line-height.ui-sm",
@@ -449,11 +450,6 @@
         "decisionIds": []
       },
       "color.interaction.drop-target": {
-        "action": "use",
-        "reason": "Use within the role's documented scope and restrictions.",
-        "decisionIds": []
-      },
-      "color.interaction.focus.ring-container": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -638,6 +634,11 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "focus.ring-contrast": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "font.family.mono": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -749,6 +750,6 @@
   "copy": {
     "directory": "copy/filterable-table/",
     "manifest": "copy/filterable-table/manifest.json",
-    "digest": "sha256-2S7hP420pJdNmeeJUc9IqsTnpSHptV2aRy3IL9jjvtQ="
+    "digest": "sha256-F+gdcefkR6/o71zqiIj7kHklf7fCgS0VUCOM2+djzhE="
   }
 }

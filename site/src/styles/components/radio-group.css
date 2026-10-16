@@ -126,7 +126,7 @@
 /* checked + focus-visible: the ring takes the on-fill colour */
 .radio-group-input:checked:focus-visible,
 [data-state-checked][data-state-focus-visible] .radio-group-input {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring-contrast);
   outline-offset: var(--focus-offset);
 }
 

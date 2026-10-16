@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — tooltip
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-6uRaGQN7UQ/uX3qDHUJuH9NBVBJtjcyePgHd2iIlnYw=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-o4R1QcVREh4X3VMinZljRvfzhRgfN1pUaC1bgNc444o=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/tooltip.json
 spec: spec/components/tooltip.md  site: https://j3w1.github.io/theme/reference/#c-tooltip
 maturity: stable  priority: R1
@@ -21,7 +21,7 @@ State dependency disclosures: D-008
 
 States: default, hover, focus-visible, open, closed
   default: trigger at rest; popup shown for the demonstration [`aria-describedby` on the trigger]
-  hover: trigger background → {color.action.tertiary.hover-bg}; popup after 300 ms [cursor: pointer; the popup]
+  hover: trigger background → {color.action.tertiary.hover-bg}; popup after 300 ms; it hides 300 ms after the pointer leaves trigger and popup [cursor: pointer; the popup]
   focus-visible: 1px dashed {color.interaction.focus.ring} at −2px on the trigger; popup at once [the ring; the popup]
   open: popup visible, 1px {color.border.overlay} on {color.surface.raised} [popup in the accessibility tree]
   closed: popup absent; trigger unchanged [`hidden`; the description is still read from the DOM]
@@ -33,7 +33,7 @@ Keyboard:
 
 ARIA: APG tooltip: a trigger with aria-describedby pointing at an element with role=tooltip, shown on hover and focus, hidden on Escape (https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/)
 Responsive: The popup is at most 24rem wide and wraps; it flips to the side with room and is never clipped by the viewport; at 320px it is as wide as the viewport minus the gutter. RTL mirrors the placement and keeps the shortcut at the end.
-Portability: the trigger carries aria-describedby to a <div role=tooltip>; visibility toggles the hidden attribute after a 300 ms open delay and no close delay; positioned with anchor positioning or a popover at z.popover; the tooltip is never the only place a control's name lives.
+Portability: the trigger carries aria-describedby to a <div role=tooltip>; visibility toggles the hidden attribute after a 300 ms open delay, and hides 300 ms after the pointer leaves trigger and popup; positioned with anchor positioning or a popover at z.popover; the tooltip is never the only place a control's name lives.
   native: GTK4 tooltip-text; the host draws it with the overlay border through the tooltip css node.
   native: Qt QToolTip stylesheet; border and background from the tokens; no rounded corners.
   native: Terminal UI: the description in the status line while the control is focused.

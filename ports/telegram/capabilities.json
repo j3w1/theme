@@ -1685,6 +1685,11 @@
       "surface": "geometry",
       "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
     },
+    "focus.ring-contrast": {
+      "state": "unsupported",
+      "surface": "geometry",
+      "reason": "Telegram theme files cannot set geometry, font metrics, layout, motion or focus-ring shape; host settings and accessibility preferences own these."
+    },
     "focus.offset": {
       "state": "unsupported",
       "surface": "geometry",

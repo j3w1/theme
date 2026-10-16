@@ -113,7 +113,7 @@
 
 .switch[aria-checked="true"]:focus-visible .switch-track,
 [data-state-checked][data-state-focus-visible] .switch-track {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring-contrast);
   outline-offset: var(--focus-offset);
 }
 

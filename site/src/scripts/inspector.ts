@@ -33,16 +33,32 @@ export const initInspector = (): void => {
      and never touch the edge. A popup opened from the keyboard has no pointer
      and anchors to its element instead — see placeByElement. */
   const axis = (point: number, size: number, limit: number) => Math.max(8, Math.min(point + 8 + size <= limit - 8 ? point + 8 : point - size - 8, limit - size - 8));
+  /* A fixed popup left near the right edge shrinks to the space left, so
+     measure it at the gutter, where it takes its natural size. */
+  const naturalSize = (popup: HTMLElement) => {
+    popup.style.left = "8px";
+    popup.style.top = "8px";
+    return popup.getBoundingClientRect();
+  };
   const placeByPointer = (popup: HTMLElement, at: { x: number; y: number }) => {
-    const { width, height } = popup.getBoundingClientRect();
+    const { width, height } = naturalSize(popup);
     popup.style.left = `${axis(at.x, width, innerWidth)}px`;
     popup.style.top = `${axis(at.y, height, innerHeight)}px`;
   };
   const placeByElement = (popup: HTMLElement, target: HTMLElement) => {
     const rect = target.getBoundingClientRect();
-    const width = Math.min(384, innerWidth - 16);
+    const { width, height } = naturalSize(popup);
+    const top = rect.bottom + 6 + height > innerHeight - 8 ? rect.top - height - 6 : rect.bottom + 6;
     popup.style.left = `${Math.max(8, Math.min(rect.left, innerWidth - width - 8))}px`;
-    popup.style.top = `${rect.bottom + 6 + popup.offsetHeight > innerHeight ? Math.max(8, rect.top - popup.offsetHeight - 6) : rect.bottom + 6}px`;
+    /* Anchored, but never outside the 8px gutter, even when the token scrolls away. */
+    popup.style.top = `${Math.max(8, Math.min(top, innerHeight - height - 8))}px`;
+  };
+  /* Keeps a popup where it is, moved only as far as the gutter requires. */
+  const clampToViewport = (popup: HTMLElement) => {
+    const { left, top } = popup.getBoundingClientRect();
+    const { width, height } = naturalSize(popup);
+    popup.style.left = `${Math.max(8, Math.min(left, innerWidth - width - 8))}px`;
+    popup.style.top = `${Math.max(8, Math.min(top, innerHeight - height - 8))}px`;
   };
   const placePreview = () => placeByPointer(preview, pointer);
   document.addEventListener("pointermove", async (event) => {
@@ -57,7 +73,7 @@ export const initInspector = (): void => {
       preview.innerHTML = `<p>Exact value matches; equality does not assign a role.</p><ul>${matches.map((match) => `<li>${escapeHtml(match.profile)}: <code>${escapeHtml(match.path)}</code></li>`).join("")}</ul>`;
       circle = target;
     }
-    box.hidden = true;
+    if (!holdsFocus()) hide();
     preview.hidden = false;
     placePreview();
   });
@@ -84,8 +100,21 @@ export const initInspector = (): void => {
   let current: HTMLElement | null = null;
   const text = (value: string) => renderHexText(value, data.colorIndex);
 
+  /* The panel holds links, so it stays reachable (foundations, hover popups;
+     WCAG 1.4.13): leaving the token or the panel starts a short grace period
+     that entering either cancels, and the panel stops following the pointer
+     once the pointer is on it. */
+  const HIDE_DELAY = 300;
+  let hideTimer = 0;
+  let byPointerPlaced = false;
+  const keep = () => { clearTimeout(hideTimer); hideTimer = 0; };
+  const holdsFocus = () => {
+    const active = document.activeElement;
+    return !!active && active !== document.body && (box.contains(active) || !!current?.contains(active));
+  };
   const show = async (target: HTMLElement, byPointer = false) => {
     if (box.contains(target)) return;
+    keep();
     current = target;
     try { await load(); } catch { return; }
     if (current !== target) return;
@@ -107,36 +136,90 @@ export const initInspector = (): void => {
       box.append(link);
     }
     box.hidden = false;
+    byPointerPlaced = byPointer;
     if (byPointer) placeByPointer(box, pointer);
     else placeByElement(box, target);
     current = target;
   };
 
   const hide = () => {
+    keep();
     box.hidden = true;
     current = null;
   };
+  const hideSoon = () => {
+    /* Pointer movement never takes away a panel whose token or content holds
+       keyboard focus, nor cancels its pending keyboard open. */
+    if (holdsFocus()) return;
+    /* Still loading: nothing is shown yet, so leaving cancels the open. */
+    if (box.hidden) { current = null; return; }
+    if (hideTimer) return;
+    hideTimer = window.setTimeout(() => {
+      hideTimer = 0;
+      if (!holdsFocus()) hide();
+    }, HIDE_DELAY);
+  };
+  box.addEventListener("pointerenter", keep);
+  box.addEventListener("focusin", keep);
+  /* The panel moves again on scroll and resize (foundations, hover popups):
+     beside the pointer when the pointer opened it, otherwise anchored to its
+     token, and never outside the viewport gutter. It stays put while the
+     pointer is on it, so the pointer can keep reading. */
+  let placeFrame = 0;
+  const replace = () => {
+    if (box.hidden || !current || placeFrame) return;
+    placeFrame = requestAnimationFrame(() => {
+      placeFrame = 0;
+      if (box.hidden || !current) return;
+      /* Under the pointer the panel stays where the reader is, inside the gutter. */
+      if (box.matches(":hover")) clampToViewport(box);
+      else if (byPointerPlaced) placeByPointer(box, pointer);
+      else placeByElement(box, current);
+    });
+  };
+  document.addEventListener("scroll", (event) => { if (!box.contains(event.target as Node)) replace(); }, { capture: true, passive: true });
+  window.addEventListener("resize", replace);
+  box.addEventListener("pointerleave", (event) => {
+    const to = event.relatedTarget instanceof Element ? event.relatedTarget.closest<HTMLElement>("[data-token]") : null;
+    if (to !== current) hideSoon();
+  });
 
   /* Hover follows the pointer, so the panel tracks the cursor across a wide
      token table rather than pinning to wherever the row happens to start. */
   document.addEventListener("pointermove", (event) => {
     if (!["mouse", "pen"].includes(event.pointerType)) return;
+    if (box.contains(event.target as Node)) return;
     if ((event.target as HTMLElement).closest(".hex-swatch")) return;
     const target = (event.target as HTMLElement).closest<HTMLElement>("[data-token]");
     if (!target) return;
     pointer = { x: event.clientX, y: event.clientY };
-    if (target === current) placeByPointer(box, pointer);
+    /* Keyboard focus wins: hovering does not take over or move a panel whose
+       token or content holds focus, including one still loading. */
+    if (holdsFocus()) return;
+    if (target === current && !box.hidden) { keep(); placeByPointer(box, pointer); }
     else void show(target, true);
   });
   document.addEventListener("mouseout", (event) => {
     const target = (event.target as HTMLElement).closest<HTMLElement>("[data-token]");
-    if (target && target === current && !box.matches(":hover")) hide();
+    const to = event.relatedTarget instanceof Node ? event.relatedTarget : null;
+    if (target && target === current && !(to && (box.contains(to) || target.contains(to)))) hideSoon();
   });
   document.addEventListener("focusin", (event) => {
     const target = (event.target as HTMLElement).closest<HTMLElement>("[data-token]");
     /* Keyboard focus has no pointer to follow; anchor to the element. */
     if (target) void show(target, false);
     else if (!box.contains(event.target as Node)) hide();
+  });
+  /* Focus that leaves for nothing (a click on the page background) closes a
+     panel the pointer is not on; focus that moves elsewhere is handled above. */
+  document.addEventListener("focusout", (event) => {
+    if (event.relatedTarget) return;
+    queueMicrotask(() => {
+      if (holdsFocus() || box.matches(":hover") || current?.matches(":hover")) return;
+      /* A pending open loses its reason too, so a late load shows nothing. */
+      if (box.hidden) current = null;
+      else hide();
+    });
   });
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && !box.hidden) hide();

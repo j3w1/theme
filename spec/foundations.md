@@ -81,7 +81,7 @@ Every interactive component declares which of these apply and demonstrates every
 | selected, container inactive | `interaction.selection.inactive-bg` with `interaction.selection.inactive-text`; no ring | lightness drop between the two fills |
 | disabled | `text.disabled`, `border.disabled`, `interaction.disabled.bg`; no hover or pressed styling; still focusable when `aria-disabled` | `disabled` / `aria-disabled`; `cursor: not-allowed` (rule 5) |
 | invalid | border → `status.danger.border` at 2px; message in `status.danger.text` with the `✕` glyph; `aria-invalid`; `aria-describedby` | border width 1 → 2px; glyph; message |
-| invalid + focus-visible | the 2px danger border **and** the ring in `interaction.focus.ring-container` at `focus.offset-invalid` | double boundary |
+| invalid + focus-visible | the 2px danger border **and** `focus.ring-contrast` at `focus.offset-invalid` | double boundary |
 | read-only | `text.default`; 1px dotted `border.divider` bottom; no fill; focusable; selectable | `readonly`; dotted edge |
 | loading | size unchanged; a static `⋯` glyph replaces the leading icon; `aria-busy` | glyph; no animation under reduced motion |
 | busy / indeterminate | static 45° stripes of `action.primary.bg` on `interaction.pressed.bg`; `aria-valuetext` | stripes |
@@ -93,7 +93,7 @@ Every interactive component declares which of these apply and demonstrates every
 Rules that apply everywhere:
 
 1. **Selection is a fill; focus is a ring.** Neither borrows the other's form. The ring must reach 3:1 on whatever it sits over: `#e53935` falls below it on `action.primary.bg` and `status.danger.fill`, so the ring recolours on those fills; it meets it on `interaction.selection.bg` (D-027), so a selected row keeps the ordinary control ring.
-2. **Focus ring (D-006; component mapping clarification D-015).** Controls and rows: `outline: 1px dashed {color.interaction.focus.ring}; outline-offset: -2px`. Focusable containers (panes, windows, dialogs, cards): `outline: 2px solid {color.interaction.focus.ring-container}; outline-offset: -3px`. On filled surfaces use the component's explicit ring mapping: primary buttons and checked controls use `interaction.focus.ring-container` where declared; destructive buttons use their declared on-fill text role. The selection fill is the exception and takes the ordinary ring, on the measurement in rule 1. Keep the control or container geometry independently of the colour mapping. `:focus:not(:focus-visible)` draws nothing. Forced-colors mode uses `Highlight`. A host focus indicator is never removed without this replacement.
+2. **Focus ring (D-006; component mapping clarification D-015).** Controls and rows: `outline: 1px dashed {color.interaction.focus.ring}; outline-offset: -2px`. Focusable containers (panes, windows, dialogs, cards): `outline: 2px solid {color.interaction.focus.ring-container}; outline-offset: -3px`. On filled surfaces use the component's explicit ring mapping: primary buttons and checked controls use `focus.ring-contrast` (the control ring in `interaction.focus.ring-container`, D-040) where declared; destructive buttons use their declared on-fill text role. The selection fill is the exception and takes the ordinary ring, on the measurement in rule 1. Keep the control or container geometry independently of the colour mapping. `:focus:not(:focus-visible)` draws nothing. Forced-colors mode uses `Highlight`. A host focus indicator is never removed without this replacement.
 3. **Never colour-only.** Every state and every status carries a second channel: a glyph (`✕ ! ✓ i ·`), a border width, an underline pattern, or an ARIA state. Charts carry pattern fills.
 4. **Hover changes fills and borders, never text colour alone**, and only on hover-capable pointers.
 5. **Disabled never uses opacity.** Opacity leaks the background and breaks contrast accounting.
@@ -150,6 +150,11 @@ Diffs:
 Always keep textual markers and existing status icons.
 
 ## Code and terminal
+
+Two background pairs (D-039): `surface.code` and `surface.terminal` (pure
+black) are what a static code block or a terminal pane sits on; `code.bg` and
+`terminal.bg` (`#0c0909`) fill the inside of an editor and the cell grid of a
+terminal, where `terminal.bg` equals ANSI 0.
 
 Editor surfaces:
 
@@ -241,7 +246,9 @@ A popup opened by hovering follows the pointer:
 - It moves again on pointer move, scroll and resize.
 - A popup with nothing to operate takes no pointer events; one with a control
   or link stays reachable and open while the pointer is inside it.
-- Either kind closes when the pointer leaves both the trigger and the popup.
+- Either kind closes when the pointer leaves both the trigger and the popup;
+  the reachable kind waits 300 ms first, so the pointer can cross between
+  them, and stays while keyboard focus is on its trigger or inside it.
 
 Opened from the keyboard, the same popup anchors to its trigger: below it, or
 above when there is no room below. This is a placement rule only; what opens a

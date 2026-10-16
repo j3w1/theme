@@ -221,7 +221,7 @@ j3w1-time-picker .time-picker:has(.time-picker-input[aria-invalid="true"]) .time
   clip: rect(0 0 0 0);
 }
 j3w1-time-picker .time-picker-root:has(.time-picker-input[aria-invalid="true"]:focus-visible) {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring-contrast);
   outline-offset: var(--focus-offset-invalid);
 }
 j3w1-time-picker .time-picker-root:has(.time-picker-input:disabled) {

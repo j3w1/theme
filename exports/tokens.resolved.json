@@ -2263,7 +2263,7 @@
           },
           "css": "#000000",
           "aliasOf": "color.primitive.ink.0",
-          "description": "Editor background.",
+          "description": "Surface a static code block sits on, such as a document's pre: pure black like the canvas (D-023, D-039).",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-023",
@@ -2287,7 +2287,7 @@
           },
           "css": "#000000",
           "aliasOf": "color.primitive.ink.0",
-          "description": "Terminal background.",
+          "description": "Surface of a pane that hosts a terminal, around its cell grid (D-023, D-039).",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-023",
@@ -4477,7 +4477,7 @@
           },
           "css": "#0c0909",
           "aliasOf": "color.primitive.ink.20",
-          "description": "Editor background.",
+          "description": "Background inside a code editor, diff view or diagnostics list (D-039).",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -5941,7 +5941,7 @@
           },
           "css": "#0c0909",
           "aliasOf": "color.primitive.ink.20",
-          "description": "Terminal background.",
+          "description": "Terminal background. It fills a terminal's cell grid and equals ANSI 0 (D-039).",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -7668,6 +7668,37 @@
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
+        "focus.ring-contrast": {
+          "type": "border",
+          "value": {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                0.6353,
+                0.6549
+              ],
+              "alpha": 1,
+              "hex": "#ffa2a7"
+            },
+            "width": {
+              "value": 1,
+              "unit": "px"
+            },
+            "style": "dashed"
+          },
+          "css": "1px dashed #ffa2a7",
+          "aliasOf": null,
+          "description": "outline where the ordinary red ring would merge with what is under or beside it: controls on a fill and invalid fields beside the danger border; the control ring in the container colour (D-040).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-040",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -12591,7 +12622,7 @@
           },
           "css": "#0c0909",
           "aliasOf": "color.primitive.ink.20",
-          "description": "Editor background.",
+          "description": "Background inside a code editor, diff view or diagnostics list (D-039).",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -14055,7 +14086,7 @@
           },
           "css": "#0c0909",
           "aliasOf": "color.primitive.ink.20",
-          "description": "Terminal background.",
+          "description": "Terminal background. It fills a terminal's cell grid and equals ANSI 0 (D-039).",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -15782,6 +15813,37 @@
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "focus.ring-contrast": {
+          "type": "border",
+          "value": {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                0.6353,
+                0.6549
+              ],
+              "alpha": 1,
+              "hex": "#ffa2a7"
+            },
+            "width": {
+              "value": 1,
+              "unit": "px"
+            },
+            "style": "dashed"
+          },
+          "css": "1px dashed #ffa2a7",
+          "aliasOf": null,
+          "description": "outline where the ordinary red ring would merge with what is under or beside it: controls on a fill and invalid fields beside the danger border; the control ring in the container colour (D-040).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-040",
           "eligibility": {
             "action": "historical-only",
             "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
@@ -18493,7 +18555,7 @@
           },
           "css": "#000000",
           "aliasOf": "color.primitive.ink.0",
-          "description": "Editor background.",
+          "description": "Surface a static code block sits on, such as a document's pre: pure black like the canvas (D-023, D-039).",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-023",
@@ -18517,7 +18579,7 @@
           },
           "css": "#000000",
           "aliasOf": "color.primitive.ink.0",
-          "description": "Terminal background.",
+          "description": "Surface of a pane that hosts a terminal, around its cell grid (D-023, D-039).",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-023",
@@ -20707,7 +20769,7 @@
           },
           "css": "#0c0909",
           "aliasOf": "color.primitive.ink.20",
-          "description": "Editor background.",
+          "description": "Background inside a code editor, diff view or diagnostics list (D-039).",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -22191,7 +22253,7 @@
           },
           "css": "#0c0909",
           "aliasOf": "color.primitive.ink.20",
-          "description": "Terminal background.",
+          "description": "Terminal background. It fills a terminal's cell grid and equals ANSI 0 (D-039).",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -23956,6 +24018,37 @@
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "focus.ring-contrast": {
+          "type": "border",
+          "value": {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                0.6353,
+                0.6549
+              ],
+              "alpha": 1,
+              "hex": "#ffa2a7"
+            },
+            "width": {
+              "value": 1,
+              "unit": "px"
+            },
+            "style": "dashed"
+          },
+          "css": "1px dashed #ffa2a7",
+          "aliasOf": null,
+          "description": "outline where the ordinary red ring would merge with what is under or beside it: controls on a fill and invalid fields beside the danger border; the control ring in the container colour (D-040).",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-040",
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",

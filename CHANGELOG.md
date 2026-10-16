@@ -2,6 +2,22 @@
 
 ## [Unreleased]
 
+- **`focus.ring-contrast`** (D-040): the 1px dashed control ring in
+  `interaction.focus.ring-container`, for controls on a fill and invalid
+  fields beside the danger border. Twelve components use it instead of the
+  written-out ring; rendering is unchanged. Every port classifies it.
+- **Code and terminal backgrounds** (D-039). `surface.code` and
+  `surface.terminal` describe what a code block or terminal pane sits on;
+  `code.bg` and `terminal.bg` the inside of an editor and a terminal grid.
+  Values are unchanged.
+- **Hover popups stay reachable.** The token inspector and the tooltip keep
+  their popup open while the pointer crosses to it, so a long inspector can be
+  scrolled; leaving both closes it after 300 ms, never while keyboard focus
+  is on its trigger or inside it (WCAG 1.4.13). The passive hex preview is
+  unchanged.
+- **Specs.** A loading indicator's label is always visible. The progress spec
+  no longer suggests a track that fails 3:1. CI selection rules moved from
+  D-031 to `docs/ci.md`.
 - **Display and title type sizes** (D-037): `font.size.display` 32/40 and
   `font.size.title` 24/32 with their line heights, for page heroes, metric
   figures and page titles.

@@ -334,6 +334,7 @@
   --density-comfortable-gap: 4px;
   --focus-ring: 1px dashed #e53935;
   --focus-ring-container: 2px solid #ffa2a7;
+  --focus-ring-contrast: 1px dashed #ffa2a7;
   --focus-offset: -2px;
   --focus-offset-container: -3px;
   --focus-offset-invalid: -4px;

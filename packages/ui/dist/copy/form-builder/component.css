@@ -392,7 +392,7 @@ j3w1-form-builder .text-field:has(.text-field-input[aria-invalid="true"]) .text-
 }
 j3w1-form-builder .text-field-root:has(.text-field-input[aria-invalid="true"]:focus-visible) {
   border-color: var(--color-status-danger-border);
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring-contrast);
   outline-offset: var(--focus-offset-invalid);
 }
 j3w1-form-builder .text-field-root:has(.text-field-input:disabled) {
@@ -527,7 +527,7 @@ j3w1-form-builder .textarea:has(.textarea-input[aria-invalid="true"]) .textarea-
 }
 j3w1-form-builder .textarea-root:has(.textarea-input[aria-invalid="true"]:focus-visible) {
   border-color: var(--color-status-danger-border);
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring-contrast);
   outline-offset: var(--focus-offset-invalid);
 }
 j3w1-form-builder .textarea-root:has(.textarea-input:disabled) {
@@ -757,7 +757,7 @@ j3w1-form-builder .select:has(.select-control[aria-invalid="true"]) .select-help
 }
 j3w1-form-builder .select-root:has(.select-control[aria-invalid="true"]:focus-visible) {
   border-color: var(--color-status-danger-border);
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring-contrast);
   outline-offset: var(--focus-offset-invalid);
 }
 j3w1-form-builder .select-root:has(.select-control:disabled) {
@@ -898,7 +898,7 @@ j3w1-form-builder .checkbox-input:focus-visible {
 }
 j3w1-form-builder .checkbox-input:checked:focus-visible,
 j3w1-form-builder .checkbox-input:indeterminate:focus-visible {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring-contrast);
   outline-offset: var(--focus-offset);
 }
 j3w1-form-builder .checkbox:has(.checkbox-input:required) .checkbox-required {
@@ -1049,7 +1049,7 @@ j3w1-form-builder .radio-group-input:focus-visible {
   outline-offset: var(--focus-offset);
 }
 j3w1-form-builder .radio-group-input:checked:focus-visible {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring-contrast);
   outline-offset: var(--focus-offset);
 }
 j3w1-form-builder .radio-group:has(.radio-group-input:required) .radio-group-required {
@@ -1689,7 +1689,7 @@ j3w1-form-builder .switch:focus-visible .switch-track {
 }
 
 j3w1-form-builder .switch[aria-checked="true"]:focus-visible .switch-track {
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring-contrast);
   outline-offset: var(--focus-offset);
 }
 j3w1-form-builder .switch:disabled {

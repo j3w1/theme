@@ -1662,6 +1662,11 @@
       "surface": "host-behavior",
       "reason": "focus.ring-container: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
     },
+    "focus.ring-contrast": {
+      "state": "inherited",
+      "surface": "host-behavior",
+      "reason": "focus.ring-contrast: preserve user sizes, zoom and native layout/target, motion or focus geometry; the reference metric is not imposed on the host."
+    },
     "focus.offset": {
       "state": "mapped",
       "surface": "commands",

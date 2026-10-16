@@ -242,7 +242,7 @@ j3w1-combobox .combobox:has(.combobox-input[aria-invalid="true"]) .combobox-help
 }
 j3w1-combobox .combobox-root:has(.combobox-input[aria-invalid="true"]:focus-visible) {
   border-color: var(--color-status-danger-border);
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring-contrast);
   outline-offset: var(--focus-offset-invalid);
 }
 j3w1-combobox .combobox-root:has(.combobox-input:disabled) {

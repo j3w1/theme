@@ -55,9 +55,10 @@ function tooltip(root, { on }) {
 	if (!trigger || !popup) return {};
 	identify(root, popup, "tooltip");
 	trigger.setAttribute("aria-describedby", popup.id);
-	let timer, dismissed = false, hovering = false;
+	let timer, hideTimer, dismissed = false, hovering = false;
 	const stop = () => {
 		clearTimeout(timer);
+		clearTimeout(hideTimer);
 	};
 	const hide = () => {
 		stop();
@@ -70,18 +71,26 @@ function tooltip(root, { on }) {
 			place(trigger, popup);
 		}
 	};
+	const hideSoon = () => {
+		clearTimeout(timer);
+		clearTimeout(hideTimer);
+		hideTimer = setTimeout(() => {
+			if (!hovering && root.ownerDocument.activeElement !== trigger) hide();
+		}, 300);
+	};
 	on(trigger, "pointerenter", (event) => {
 		if (event.pointerType !== "touch") {
 			hovering = true;
 			dismissed = false;
-			timer = setTimeout(show, 300);
+			clearTimeout(hideTimer);
+			if (popup.hidden) timer = setTimeout(show, 300);
 		}
 	});
 	on(root, "pointerleave", (event) => {
 		if (!root.contains(event.relatedTarget)) {
 			hovering = false;
 			dismissed = false;
-			if (root.ownerDocument.activeElement !== trigger) hide();
+			if (root.ownerDocument.activeElement !== trigger) hideSoon();
 		}
 	});
 	on(popup, "pointerenter", () => {

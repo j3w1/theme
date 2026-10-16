@@ -177,7 +177,7 @@ j3w1-textarea .textarea:has(.textarea-input[aria-invalid="true"]) .textarea-help
 }
 j3w1-textarea .textarea-root:has(.textarea-input[aria-invalid="true"]:focus-visible) {
   border-color: var(--color-status-danger-border);
-  outline: var(--border-width-default) dashed var(--color-interaction-focus-ring-container);
+  outline: var(--focus-ring-contrast);
   outline-offset: var(--focus-offset-invalid);
 }
 j3w1-textarea .textarea-root:has(.textarea-input:disabled) {

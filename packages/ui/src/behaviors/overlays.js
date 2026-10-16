@@ -34,12 +34,15 @@ export function tooltip(root, { on }) {
   const trigger = root.querySelector(".tooltip-trigger"), popup = root.querySelector('[role="tooltip"]');
   if (!trigger || !popup) return {};
   identify(root, popup, "tooltip"); trigger.setAttribute("aria-describedby", popup.id);
-  let timer, dismissed = false, hovering = false;
-  const stop = () => { clearTimeout(timer); };
+  /* WCAG 1.4.13 hoverable: leaving the trigger and popup starts a 300 ms grace
+     period, so a pointer crossing to a popup wider than its trigger keeps it. */
+  let timer, hideTimer, dismissed = false, hovering = false;
+  const stop = () => { clearTimeout(timer); clearTimeout(hideTimer); };
   const hide = () => { stop(); popup.hidden = true; };
   const show = () => { stop(); if (!dismissed) { popup.hidden = false; place(trigger, popup); } };
-  on(trigger, "pointerenter", event => { if (event.pointerType !== "touch") { hovering = true; dismissed = false; timer = setTimeout(show, 300); } });
-  on(root, "pointerleave", event => { if (!root.contains(event.relatedTarget)) { hovering = false; dismissed = false; if (root.ownerDocument.activeElement !== trigger) hide(); } });
+  const hideSoon = () => { clearTimeout(timer); clearTimeout(hideTimer); hideTimer = setTimeout(() => { if (!hovering && root.ownerDocument.activeElement !== trigger) hide(); }, 300); };
+  on(trigger, "pointerenter", event => { if (event.pointerType !== "touch") { hovering = true; dismissed = false; clearTimeout(hideTimer); if (popup.hidden) timer = setTimeout(show, 300); } });
+  on(root, "pointerleave", event => { if (!root.contains(event.relatedTarget)) { hovering = false; dismissed = false; if (root.ownerDocument.activeElement !== trigger) hideSoon(); } });
   on(popup, "pointerenter", () => { hovering = true; stop(); });
   on(trigger, "focus", () => { dismissed = false; show(); });
   on(trigger, "blur", () => { if (!hovering) hide(); });
