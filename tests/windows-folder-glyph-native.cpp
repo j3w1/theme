@@ -28,13 +28,13 @@ static BOOL WINAPI FixtureDraw(IMAGELISTDRAWPARAMS* request){Extended(request);a
 // retain their exact version and complete file-hash admission.
 static bool fixtureWicPins=false,fixtureWicVersion=false,fixtureWicHash=false,fixtureHookFailure=false;
 static unsigned fixtureVersionCalls=0,fixtureHashCalls=0,fixtureHookCalls=0;
-static constexpr char fixtureWicDigest[]="ad3f960fc9d612c0289035f1b5c334dd44e423ce6c23059ab5129746cd0646f2";
+static constexpr char fixtureWicDigest[]="e82652590bce20641926956a65eade7c54e71c240557dba37335f061352b58e0";
 static BOOL WINAPI FixtureQueryVersion(LPCVOID block,LPCWSTR key,LPVOID* output,PUINT size) {
  BOOL result=::VerQueryValueW(block,key,output,size);
  if(fixtureWicPins&&result&&key&&wcscmp(key,L"\\")==0&&output&&*output&&size&&*size>=sizeof(VS_FIXEDFILEINFO)) {
   ++fixtureVersionCalls;auto version=static_cast<VS_FIXEDFILEINFO*>(*output);
   version->dwFileVersionMS=fixtureWicVersion?MAKELONG(0,10):0;
-  version->dwFileVersionLS=fixtureWicVersion?MAKELONG(9549,26100):0;
+  version->dwFileVersionLS=fixtureWicVersion?MAKELONG(9711,26100):0;
  }
  return result;
 }
@@ -66,7 +66,7 @@ int main(int argc,char** argv){
  // Test native hashing/version inspection independently of COM initialization,
  // then exercise all admission combinations with controlled API results.
  auto wicModule=LoadLibraryW(L"windowscodecs.dll");assert(wicModule);
- bool actualReviewed=FixedModuleVersion(wicModule,MAKELONG(0,10),MAKELONG(9549,26100))
+ bool actualReviewed=FixedModuleVersion(wicModule,MAKELONG(0,10),MAKELONG(9711,26100))
   &&FolderBitmap::Digest(wicModule,fixtureWicDigest);
  assert(!FolderBitmap::Digest(wicModule,"0000000000000000000000000000000000000000000000000000000000000000"));
  assert(FolderBitmap::Init()==actualReviewed);FolderBitmap::Uninit();

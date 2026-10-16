@@ -2,7 +2,7 @@
 // @id j3w1-explorer-native
 // @name j3w1 Explorer native colors
 // @description Generated native Explorer canvas and text adapter; exact host only
-// @version 1.8.5
+// @version 1.8.6
 // @author j3w1
 // @include explorer.exe
 // @architecture x86-64
@@ -635,8 +635,8 @@ static bool Caller(void* address) noexcept {
         reinterpret_cast<LPCWSTR>(address),&module)||module!=GetModuleHandleW(L"windowsudk.shellcommon.dll"))return false;
     std::lock_guard guard(moduleLock);
     if(retainedShell)return module==retainedShell;
-    if(!FixedModuleVersion(module,MAKELONG(0,10),MAKELONG(9550,26100))
-       ||!Digest(module,"410141eceecfaa5d7cccbfd7c357920988bf18fec3db7f6865eec674677c0204"))return false;
+    if(!FixedModuleVersion(module,MAKELONG(0,10),MAKELONG(9711,26100))
+       ||!Digest(module,"a76a9246b16a3c237607cc3d99815e03986ef7731c2b88480cfbd6edf1ef4d3d"))return false;
     // Retain the admitted module until hook cleanup so a recycled handle cannot
     // inherit an earlier module's admission. Missing/unknown callers pass through.
     return GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS,reinterpret_cast<LPCWSTR>(address),&retainedShell)!=FALSE;
@@ -670,8 +670,8 @@ static bool Init() noexcept {
         auto function=(*reinterpret_cast<void***>(factory))[22];HMODULE module=nullptr;
         ready=GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS|GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
             reinterpret_cast<LPCWSTR>(function),&module)&&module==GetModuleHandleW(L"windowscodecs.dll")
-            &&FixedModuleVersion(module,MAKELONG(0,10),MAKELONG(9549,26100))
-            &&Digest(module,"ad3f960fc9d612c0289035f1b5c334dd44e423ce6c23059ab5129746cd0646f2")
+            &&FixedModuleVersion(module,MAKELONG(0,10),MAKELONG(9711,26100))
+            &&Digest(module,"e82652590bce20641926956a65eade7c54e71c240557dba37335f061352b58e0")
             &&Wh_SetFunctionHook(function,reinterpret_cast<void*>(Hook),reinterpret_cast<void**>(&originalConvert));
     }
     if(ready){retainedFactory=factory;factory=nullptr;}
@@ -749,7 +749,7 @@ static bool InitNavigationPin() {
     MODULEENTRY32W entry{};entry.dwSize=sizeof(entry);HMODULE module=nullptr;
     if(Module32FirstW(snapshot,&entry))do {
         if(_wcsicmp(entry.szModule,L"comctl32.dll")==0
-           && FixedModuleVersion(entry.hModule,MAKELONG(10,6),MAKELONG(9549,26100))) {
+           && FixedModuleVersion(entry.hModule,MAKELONG(10,6),MAKELONG(9711,26100))) {
             if(module){CloseHandle(snapshot);return false;}module=entry.hModule;
         }
     }while(Module32NextW(snapshot,&entry));
@@ -1206,7 +1206,7 @@ BOOL Wh_ModInit() {
     std::vector<BYTE> bytes(size);
     VS_FIXEDFILEINFO* version=nullptr;UINT length=0;
     if(!size || !GetFileVersionInfoW(executable,0,size,bytes.data()) || !VerQueryValueW(bytes.data(),L"\\",(void**)&version,&length)
-        || length<sizeof(*version) || version->dwFileVersionMS!=MAKELONG(0,10) || version->dwFileVersionLS!=MAKELONG(9549,26100)) {return FALSE;}
+        || length<sizeof(*version) || version->dwFileVersionMS!=MAKELONG(0,10) || version->dwFileVersionLS!=MAKELONG(9711,26100)) {return FALSE;}
     themeClass=(ThemeClassFn)GetProcAddress(GetModuleHandleW(L"uxtheme.dll"),MAKEINTRESOURCEA(74));
     if(!themeClass) {return FALSE;}
     ExplorerRenderingModules renderers;
