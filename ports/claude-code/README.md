@@ -78,9 +78,8 @@ Claude Code's own; `test` prints them.
   depending on Claude's renderer; there is no independent line-marker token.
 - **Edit-summary `+N` / `-N` counts:** Claude Code 2.1.303 shares
   `diffAddedWord` / `diffRemovedWord` between summary foreground and word
-  background. Dedicated `diff.*.shared-word` roles use green `#2c6540` and
-  red `#953d46`: respectively 3.04:1 / 3.03:1 on black and 3.01:1 / 3.02:1
-  with ordinary rose text. These reduce the glaring fills without returning
+  background. Dedicated `diff.*.shared-word` roles use muted green and red:
+  each remains above 3:1 on black and beneath rose text. These reduce the glaring fills without returning
   the summary to nearly black. Both uses cannot reach 4.5:1 with the same
   colour; the best balanced ratio is about 3.03:1. This is a documented host
   compromise, not a generic text waiver or a syntax-wide contrast pass.

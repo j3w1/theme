@@ -22,14 +22,15 @@ test("heritage-ansi keeps every terminal slot and the lifted syntax reds at thei
 });
 
 test("D-041 terminal slots are exact semantic colours, all readable except background", () => {
-  const expected = ["#000000", "#f07178", "#82d9a0", "#e5c07b", "#82b4ff", "#c7a0e8", "#78d4d4", "#e99499", "#bd787d", "#ff9095", "#a2edb8", "#f2d49b", "#a4caff", "#dec0f4", "#a0e7e7", "#ffa2a7"];
+  const expected = ["#000000", "#f07178", "#82d9a0", "#e5c07b", "#82b4ff", "#c7a0e8", "#78d4d4", "#ffa2a7", "#bd787d", "#ff9095", "#a2edb8", "#f2d49b", "#a4caff", "#dec0f4", "#a0e7e7", "#ffa2a7"];
   const bg = hexOf("default", "color.terminal.bg");
   assert.equal(bg, "#000000");
   for (const [i, hex] of expected.entries()) {
     assert.equal(hexOf("default", `color.terminal.ansi.${i}`), hex, `slot ${i}`);
     if (i > 0) assert.ok(contrast(hex, bg) >= 4.5, `slot ${i} reaches the text floor`);
   }
-  for (const normal of [1, 2, 3, 4, 5, 6, 7]) {
+  assert.equal(expected[7], expected[15], "both neutral slots use bright rose under D-041");
+  for (const normal of [1, 2, 3, 4, 5, 6]) {
     assert.ok(contrast(expected[normal + 8], bg) > contrast(expected[normal], bg), `bright slot ${normal + 8} is brighter than ${normal}`);
   }
 });
@@ -46,7 +47,7 @@ test("semantic syntax stays readable inside an editor selection", () => {
 
 test("D-041 prompt uses true black and rose text, while heritage keeps its original pair", () => {
   assert.equal(hexOf("default", "color.terminal.prompt-bg"), "#000000");
-  assert.equal(hexOf("default", "color.terminal.prompt-text"), "#e99499");
+  assert.equal(hexOf("default", "color.terminal.prompt-text"), "#ffa2a7");
   assert.equal(hexOf("heritage-ansi", "color.terminal.prompt-bg"), "#8c1212");
   assert.equal(hexOf("heritage-ansi", "color.terminal.prompt-text"), "#f4eeee");
   for (const profile of ["default", "heritage-ansi"]) {

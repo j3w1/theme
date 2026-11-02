@@ -52,6 +52,14 @@ black, including the address field. Orca shares its input token with idle input
 borders, so those borders also become black; focus rings and the browser address
 field's separate outer red border remain.
 
+Selected segmented controls and active menu rows use the shared accent pair:
+strong red fill with black text. Unselected segments and the surrounding panel
+remain black with rose text. Orca exposes no separate segmented-control token;
+using a black accent would hide the selected state, and a dark-red fill with
+rose text cannot simultaneously provide 3:1 state distinction against black
+and 4.5:1 label contrast. This red state fill also applies to shared accent hover
+rows; it does not change panel, popover, input or browser base backgrounds.
+
 Orca shares primary color between active links, buttons and input selections.
 The port uses readable red with black text on primary fills, so links such as
 Settings → Agents remain visible. A dark-red selection with rose text cannot

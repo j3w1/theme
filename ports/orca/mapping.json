@@ -105,7 +105,6 @@
       "app.tokens.--popover",
       "app.tokens.--secondary",
       "app.tokens.--muted",
-      "app.tokens.--accent",
       "app.tokens.--sidebar",
       "app.tokens.--sidebar-primary",
       "app.tokens.--sidebar-accent",
@@ -125,7 +124,6 @@
       "app.tokens.--popover-foreground",
       "app.tokens.--secondary-foreground",
       "app.tokens.--sidebar-foreground",
-      "app.tokens.--accent-foreground",
       "app.tokens.--sidebar-accent-foreground",
       "app.tokens.--host-badge-foreground",
       "app.tokens.--tab-inactive-foreground",
@@ -298,10 +296,12 @@
       "app.tokens.--border"
     ],
     "color.text.accent-strong": [
-      "app.tokens.--primary"
+      "app.tokens.--primary",
+      "app.tokens.--accent"
     ],
     "color.text.inverse": [
-      "app.tokens.--primary-foreground"
+      "app.tokens.--primary-foreground",
+      "app.tokens.--accent-foreground"
     ]
   },
   "unmapped": {
