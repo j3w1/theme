@@ -8,6 +8,10 @@ import { only } from "./helpers.mjs";
    person does, diagonally and in small steps. The passive hex preview is
    covered by hex-swatches.spec.js. */
 
+// Wrapped inline links have a union box that includes gaps between lines.
+// Approach an actual painted fragment, as a pointer user does.
+const tokenRect = (token) => token.evaluate(el => el.getClientRects()[0].toJSON());
+
 const centre = (box) => ({ x: box.x + box.width / 2, y: box.y + Math.min(box.height / 2, 24) });
 
 test("the token inspector stays open while the pointer moves onto it and scrolls it", verification({ component: "page", category: "enhancements", states: [], variants: [], note: "Token inspector opened by pointer on a component page, reached diagonally and scrolled with the wheel. Pointer only; keyboard opening is covered elsewhere." }), async ({ page }, testInfo) => {
@@ -19,7 +23,7 @@ test("the token inspector stays open while the pointer moves onto it and scrolls
   /* Near the top of the viewport the panel opens below the pointer, so the
      path to it crosses page content that is not the token. */
   await token.evaluate((el) => window.scrollBy(0, el.getBoundingClientRect().top - 60));
-  const start = await token.boundingBox();
+  const start = await tokenRect(token);
   await page.mouse.move(start.x + 2, start.y + start.height / 2);
   await page.mouse.move(start.x + 4, start.y + start.height / 2);
   const inspector = page.locator("#inspector");
@@ -44,7 +48,7 @@ test("a slow inspector load does not open the panel after the pointer has left",
   await page.goto("components/button/", { waitUntil: "domcontentloaded" });
   const token = page.locator("main a[data-token]").first();
   await token.scrollIntoViewIfNeeded();
-  const start = await token.boundingBox();
+  const start = await tokenRect(token);
   await page.mouse.move(start.x + 2, start.y + start.height / 2);
   await page.mouse.move(start.x + 4, start.y + start.height / 2);
   await page.mouse.move(2, 2, { steps: 4 });
@@ -60,7 +64,7 @@ test("returning from a hex swatch to the same token reopens the inspector", veri
   const swatch = token.locator("xpath=ancestor::tr").locator(".hex-swatch").first();
   await token.scrollIntoViewIfNeeded();
   await token.evaluate((el) => window.scrollBy(0, el.getBoundingClientRect().top - 60));
-  const t = await token.boundingBox(), s = await swatch.boundingBox();
+  const t = await tokenRect(token), s = await swatch.boundingBox();
   await page.mouse.move(t.x + 2, t.y + t.height / 2);
   await page.mouse.move(t.x + 4, t.y + t.height / 2);
   await expect(page.locator("#inspector")).toBeVisible();
@@ -106,7 +110,7 @@ test("a keyboard open survives the pointer leaving while the inspector data load
   await page.goto("components/button/", { waitUntil: "domcontentloaded" });
   const token = page.locator("main a[data-token]").first();
   await token.scrollIntoViewIfNeeded();
-  const start = await token.boundingBox();
+  const start = await tokenRect(token);
   await page.mouse.move(start.x + 2, start.y + start.height / 2);
   await page.mouse.move(start.x + 4, start.y + start.height / 2);
   await token.focus();
@@ -146,7 +150,7 @@ test("hovering another token does not take over a panel that keyboard focus hold
   await a.scrollIntoViewIfNeeded();
   /* A is focused while its data loads; the pointer passes over B and away. */
   await a.focus();
-  const bb = await b.boundingBox();
+  const bb = await tokenRect(b);
   await page.mouse.move(bb.x + 4, bb.y + bb.height / 2);
   await page.mouse.move(bb.x + 6, bb.y + bb.height / 2);
   await page.mouse.move(2, 2, { steps: 4 });
@@ -162,10 +166,11 @@ test("hovering another token does not take over a panel that keyboard focus hold
   const free = await tokens.evaluateAll((els, { panel, pathA }) => {
     for (const el of els) {
       if (el.dataset.token === pathA) continue;
-      const r = el.getBoundingClientRect();
+      for (const r of el.getClientRects()) {
       const x = r.left + Math.min(6, r.width / 2), y = r.top + r.height / 2;
       const inside = x >= panel.x && x <= panel.x + panel.width && y >= panel.y && y <= panel.y + panel.height;
       if (!inside && y > 0 && y < innerHeight && x > 0 && x < innerWidth && document.elementFromPoint(x, y)?.closest("[data-token]") === el) return { x, y };
+      }
     }
     return null;
   }, { panel, pathA });
@@ -206,7 +211,7 @@ test("a keyboard-opened inspector follows its token on scroll and stays inside a
   const inspector = page.locator("#inspector");
   await expect(inspector).toBeVisible();
   const overlaps = async () => {
-    const [p, t] = [await inspector.boundingBox(), await token.boundingBox()];
+    const [p, t] = [await inspector.boundingBox(), await tokenRect(token)];
     return p.x < t.x + t.width && t.x < p.x + p.width && p.y < t.y + t.height && t.y < p.y + p.height;
   };
   await page.mouse.wheel(0, 120);
@@ -235,7 +240,7 @@ test("an inspector under the pointer stays inside a viewport that narrows", veri
   const token = page.locator("main a[data-token]").first();
   await token.scrollIntoViewIfNeeded();
   await token.evaluate((el) => window.scrollBy(0, el.getBoundingClientRect().top - 60));
-  const start = await token.boundingBox();
+  const start = await tokenRect(token);
   await page.mouse.move(start.x + 2, start.y + start.height / 2);
   await page.mouse.move(start.x + 4, start.y + start.height / 2);
   const inspector = page.locator("#inspector");
