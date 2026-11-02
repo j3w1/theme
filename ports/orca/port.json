@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
   "id": "orca",
-  "displayName": "Orca (Ghostty config import)",
+  "displayName": "Orca (app, editor and terminal)",
   "status": "experimental",
   "themeVersion": "4.0.0",
-  "tokenDigest": "sha256-bXayCdQMks1SP9DAswzrBp0H09xuxsAmb1JbTSYceDg=",
+  "tokenDigest": "sha256-q2UNDq/WVqLj9Gg/bcr7/y4wM+iddqbKALT8QieNwDA=",
   "profile": "default",
-  "format": "ghostty-config",
+  "format": "orca-theme",
   "targetVersions": [
-    "1.4.209"
+    "1.4.246"
   ],
   "testedVersions": [],
   "os": [
@@ -21,7 +21,9 @@
       "terminal-colours",
       "terminal-selection",
       "pane-divider",
-      "terminal-font"
+      "terminal-font",
+      "app-chrome",
+      "code-editor"
     ],
     "inherited": [
       "terminal-line-height"
@@ -33,7 +35,19 @@
   "files": [
     {
       "path": "dist/config.ghostty",
-      "install": "Save as %APPDATA%\\ghostty\\config.ghostty (Windows) or ~/.config/ghostty/config.ghostty, then Orca → Settings → Terminal → Import from Ghostty → Apply Changes."
+      "install": "Save as %APPDATA%\\ghostty\\config.ghostty (Windows) or ~/.config/ghostty/config.ghostty, then Orca â†’ Settings â†’ Terminal â†’ Import from Ghostty â†’ Apply Changes."
+    },
+    {
+      "path": "dist/orca-plugin.json",
+      "install": "Keep all three JSON files together, then load this folder with orca plugin dev load and select j3w1 in Appearance for the app, editor and terminal. See ports/orca/README.md."
+    },
+    {
+      "path": "dist/app-theme.json",
+      "install": "Keep all three JSON files together, then load this folder with orca plugin dev load and select j3w1 in Appearance for the app, editor and terminal. See ports/orca/README.md."
+    },
+    {
+      "path": "dist/terminal-theme.json",
+      "install": "Keep all three JSON files together, then load this folder with orca plugin dev load and select j3w1 in Appearance for the app, editor and terminal. See ports/orca/README.md."
     }
   ],
   "mappingPath": "mapping.json",

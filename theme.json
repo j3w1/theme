@@ -4,7 +4,7 @@
   "name": "j3w1-theme",
   "displayName": "j3w1 UI Theme Spec",
   "version": "4.0.0",
-  "description": "Canonical versioned theme specification for the j3w1 identity: true-black canvas and near-black surfaces, rose text, red focus, dark-red selection, 1px square borders, zero radii, monospace character.",
+  "description": "Canonical versioned theme specification for the j3w1 identity: true-black canvas, editor and terminal interiors, neutral near-black surfaces and application text, rose terminal and agent prose, semantic syntax colours, restrained red focus and selection, 1px square borders, zero radii and monospace character.",
   "repository": "https://github.com/j3w1/theme",
   "tokenFormat": {
     "spec": "dtcg-2025.10",

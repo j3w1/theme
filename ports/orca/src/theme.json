@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "appTokens": [
+    "--background",
+    "--editor-surface",
+    "--foreground",
+    "--card",
+    "--card-foreground",
+    "--popover",
+    "--popover-foreground",
+    "--primary",
+    "--primary-foreground",
+    "--secondary",
+    "--secondary-foreground",
+    "--muted",
+    "--muted-foreground",
+    "--accent",
+    "--accent-foreground",
+    "--border",
+    "--input",
+    "--ring",
+    "--chart-1",
+    "--chart-2",
+    "--chart-3",
+    "--chart-4",
+    "--chart-5",
+    "--sidebar",
+    "--sidebar-foreground",
+    "--sidebar-primary",
+    "--sidebar-primary-foreground",
+    "--sidebar-accent",
+    "--sidebar-accent-foreground",
+    "--sidebar-border",
+    "--sidebar-ring",
+    "--worktree-sidebar",
+    "--worktree-sidebar-foreground",
+    "--worktree-sidebar-accent",
+    "--worktree-sidebar-accent-foreground",
+    "--worktree-sidebar-border",
+    "--worktree-sidebar-ring"
+  ],
+  "scopes": [
+    {
+      "name": "comment",
+      "scope": "comment",
+      "fontStyle": "italic"
+    },
+    {
+      "name": "keyword",
+      "scope": [
+        "keyword",
+        "storage"
+      ]
+    },
+    {
+      "name": "operator",
+      "scope": "keyword.operator"
+    },
+    {
+      "name": "string",
+      "scope": "string"
+    },
+    {
+      "name": "number",
+      "scope": "constant.numeric"
+    },
+    {
+      "name": "constant",
+      "scope": "constant.language"
+    },
+    {
+      "name": "function",
+      "scope": "entity.name.function"
+    },
+    {
+      "name": "type",
+      "scope": [
+        "entity.name.type",
+        "support.type"
+      ]
+    },
+    {
+      "name": "variable",
+      "scope": "variable"
+    },
+    {
+      "name": "property",
+      "scope": "variable.other.property"
+    },
+    {
+      "name": "attribute",
+      "scope": "entity.other.attribute-name"
+    },
+    {
+      "name": "tag",
+      "scope": "entity.name.tag"
+    },
+    {
+      "name": "escape",
+      "scope": "constant.character.escape"
+    },
+    {
+      "name": "punctuation",
+      "scope": "punctuation"
+    },
+    {
+      "name": "heading",
+      "scope": "markup.heading",
+      "fontStyle": "bold"
+    },
+    {
+      "name": "link",
+      "scope": "markup.underline.link",
+      "fontStyle": "underline"
+    },
+    {
+      "name": "inserted",
+      "scope": "markup.inserted"
+    },
+    {
+      "name": "deleted",
+      "scope": "markup.deleted"
+    },
+    {
+      "name": "changed",
+      "scope": "markup.changed"
+    },
+    {
+      "name": "invalid",
+      "scope": "invalid",
+      "fontStyle": "underline"
+    }
+  ],
+  "terminalKeys": [
+    "background",
+    "foreground",
+    "cursor",
+    "cursorAccent",
+    "selectionBackground",
+    "selectionForeground",
+    "black",
+    "red",
+    "green",
+    "yellow",
+    "blue",
+    "magenta",
+    "cyan",
+    "white",
+    "brightBlack",
+    "brightRed",
+    "brightGreen",
+    "brightYellow",
+    "brightBlue",
+    "brightMagenta",
+    "brightCyan",
+    "brightWhite"
+  ]
+}

@@ -270,9 +270,16 @@
       "color.primitive.alpha.black-65",
       "color.primitive.alpha.transparent",
       "color.primitive.ink.0",
-      "color.primitive.ink.30",
       "color.primitive.ink.40",
-      "color.primitive.ink.52",
+      "color.primitive.modern.bright",
+      "color.primitive.modern.control",
+      "color.primitive.modern.disabled",
+      "color.primitive.modern.divider",
+      "color.primitive.modern.muted",
+      "color.primitive.modern.overlay",
+      "color.primitive.modern.panel",
+      "color.primitive.modern.red",
+      "color.primitive.modern.text",
       "color.primitive.paper.100",
       "color.primitive.paper.90",
       "color.primitive.red.100",
@@ -284,11 +291,6 @@
       "color.primitive.red.550",
       "color.primitive.red.750",
       "color.primitive.red.800",
-      "color.primitive.red.850",
-      "color.primitive.rose.300",
-      "color.primitive.rose.350",
-      "color.primitive.rose.600",
-      "color.primitive.rose.700",
       "color.primitive.rose.800",
       "color.status.danger.text",
       "color.surface.backdrop",
@@ -441,11 +443,9 @@
         "decisionIds": []
       },
       "color.border.control": {
-        "action": "use-and-report",
-        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
-        "decisionIds": [
-          "D-007"
-        ]
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
       },
       "color.border.disabled": {
         "action": "use",
@@ -453,11 +453,9 @@
         "decisionIds": []
       },
       "color.border.overlay": {
-        "action": "use-and-report",
-        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
-        "decisionIds": [
-          "D-008"
-        ]
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
       },
       "color.code.caret": {
         "action": "use",
@@ -702,6 +700,6 @@
   "copy": {
     "directory": "copy/dialog/",
     "manifest": "copy/dialog/manifest.json",
-    "digest": "sha256-cQPHWgh7tPBa5qpFPuFVZYw7rUnSd7sGnX3JuT42ugI="
+    "digest": "sha256-YR28mOrHTmwAt/cs1YPoPnyJHcileTZbGK9YstTCNpQ="
   }
 }

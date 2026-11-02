@@ -1335,14 +1335,14 @@
       "reason": "The terminal draws this; a tmTheme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
     },
     "color.text.accent": {
-      "state": "mapped",
+      "state": "out-of-scope",
       "surface": "theme-scopes",
-      "reason": "Written to the theme's Codex accent.foreground setting."
+      "reason": "The strong accent is used for Codex accent.foreground because code may appear on diff tints."
     },
     "color.text.accent-strong": {
-      "state": "out-of-scope",
-      "surface": "outside-codex",
-      "reason": "Interface colour role; a Codex tmTheme colours code only."
+      "state": "mapped",
+      "surface": "theme-scopes",
+      "reason": "Mapped to Codex accent.foreground; strong accent supports diff-tinted code."
     },
     "color.text.bright": {
       "state": "out-of-scope",
@@ -1813,6 +1813,121 @@
       "state": "out-of-scope",
       "surface": "outside-codex",
       "reason": "Interface colour role; a Codex tmTheme colours code only."
+    },
+    "color.primitive.modern.panel": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.raised": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.overlay": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.hover": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.divider": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.control": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.disabled": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.subtle": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.muted": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.text": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.bright": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.red": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.green": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.amber": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.blue": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.violet": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.cyan": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.bright-red": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.bright-green": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.bright-amber": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.bright-blue": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.bright-violet": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.bright-cyan": {
+      "state": "out-of-scope",
+      "surface": "outside-codex",
+      "reason": "Primitive; ports consume roles, never primitives."
     }
   },
   "rollback": "Run node ports/codex/install.mjs restore in the same clone. By hand: set theme under [tui] in ~/.codex/config.toml back to your previous theme (or remove the line) and delete ~/.codex/themes/j3w1.tmTheme."

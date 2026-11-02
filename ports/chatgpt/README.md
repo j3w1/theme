@@ -38,7 +38,7 @@ Strongest j3w1 identity: bright rose text on true black.
 | Theme | ChatGPT |
 | Accent | `#e53935` |
 | Background | `#000000` |
-| Foreground | `#ffa2a7` |
+| Foreground | `#f1f5f9` |
 | UI font size | 15 px |
 | Code font size | 13 px |
 | Reduce motion | System |
@@ -50,7 +50,7 @@ Strongest j3w1 identity: bright rose text on true black.
 Import string (Settings > Appearance > Dark theme > Import):
 
 ```text
-codex-theme-v1:{"codeThemeId":"chatgpt","theme":{"accent":"#e53935","contrast":46,"fonts":{"code":null,"ui":null},"ink":"#ffa2a7","opaqueWindows":true,"semanticColors":{"diffAdded":"#86a46f","diffRemoved":"#f73f35","skill":"#e53935"},"surface":"#000000"},"variant":"dark"}
+codex-theme-v1:{"codeThemeId":"chatgpt","theme":{"accent":"#e53935","contrast":46,"fonts":{"code":null,"ui":null},"ink":"#f1f5f9","opaqueWindows":true,"semanticColors":{"diffAdded":"#82d9a0","diffRemoved":"#f07178","skill":"#e53935"},"surface":"#000000"},"variant":"dark"}
 ```
 
 ### j3w1 Reading
@@ -63,7 +63,7 @@ Calmer rose for long reading sessions.
 | Theme | ChatGPT |
 | Accent | `#e53935` |
 | Background | `#000000` |
-| Foreground | `#e99499` |
+| Foreground | `#d8dee9` |
 | UI font size | 15 px |
 | Code font size | 13 px |
 | Reduce motion | System |
@@ -75,7 +75,7 @@ Calmer rose for long reading sessions.
 Import string (Settings > Appearance > Dark theme > Import):
 
 ```text
-codex-theme-v1:{"codeThemeId":"chatgpt","theme":{"accent":"#e53935","contrast":52,"fonts":{"code":null,"ui":null},"ink":"#e99499","opaqueWindows":true,"semanticColors":{"diffAdded":"#86a46f","diffRemoved":"#f73f35","skill":"#e53935"},"surface":"#000000"},"variant":"dark"}
+codex-theme-v1:{"codeThemeId":"chatgpt","theme":{"accent":"#e53935","contrast":52,"fonts":{"code":null,"ui":null},"ink":"#d8dee9","opaqueWindows":true,"semanticColors":{"diffAdded":"#82d9a0","diffRemoved":"#f07178","skill":"#e53935"},"surface":"#000000"},"variant":"dark"}
 ```
 <!-- presets:end -->
 

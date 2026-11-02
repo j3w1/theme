@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — icon-button
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-o4R1QcVREh4X3VMinZljRvfzhRgfN1pUaC1bgNc444o=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-uUyex258/cCN40I3QfAc17Y4Big+7Dc2v2FeXtKT5bE=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/icon-button.json
 spec: spec/components/icon-button.md  site: https://j3w1.github.io/theme/reference/#c-icon-button
 maturity: stable  priority: R1
@@ -9,7 +9,7 @@ Summary: A square ghost button whose only content is a 16px line icon; it always
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
   root.bg               rgb(0 0 0 / 0%)  ({color.action.secondary.bg})  use
-  root.text             #e99499  ({color.action.tertiary.text})  use
+  root.text             #d8dee9  ({color.action.tertiary.text})  use
   root.bg-hover         #1c0a09  ({color.action.tertiary.hover-bg})  use
   root.bg-active        #420f0c  ({color.interaction.pressed.bg})  use
   root.border-active    #e53935  ({color.border.active})  use
@@ -18,10 +18,10 @@ Tokens (resolved):
   root.text-toggled     #f4eeee  ({color.interaction.selection.text})  use
   root.border-toggled   #e53935  ({color.border.selected-indicator})  use
   root.ring-toggled     #e53935  ({color.interaction.focus.ring})  use
-  root.text-disabled    #8a5559  ({color.text.disabled})  use
-  root.bg-disabled      #160b0b  ({color.interaction.disabled.bg})  use
-  root.border-disabled  #7d1310  ({color.border.disabled})  use
-  icon.stroke           #e99499  ({color.icon.default})  use
+  root.text-disabled    #727b89  ({color.text.disabled})  use
+  root.bg-disabled      #0e1014  ({color.interaction.disabled.bg})  use
+  root.border-disabled  #303640  ({color.border.disabled})  use
+  icon.stroke           #d8dee9  ({color.icon.default})  use
 
 States: default, hover, focus-visible, active, disabled, toggled, toggled+focus-visible
   default: {color.action.tertiary.text} icon, no fill; transparent 1px border [—]

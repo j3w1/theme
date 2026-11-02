@@ -197,36 +197,29 @@
       "color.interaction.selection.text",
       "color.interaction.text-selection.bg",
       "color.interaction.text-selection.text",
-      "color.primitive.ansi-readable.1",
-      "color.primitive.ansi-readable.10",
-      "color.primitive.ansi-readable.12",
-      "color.primitive.ansi-readable.13",
-      "color.primitive.ansi-readable.14",
-      "color.primitive.ansi-readable.15",
-      "color.primitive.ansi-readable.4",
-      "color.primitive.ansi-readable.8",
-      "color.primitive.ansi-readable.9",
-      "color.primitive.ansi.0",
-      "color.primitive.ansi.11",
-      "color.primitive.ansi.2",
-      "color.primitive.ansi.3",
-      "color.primitive.ansi.4",
-      "color.primitive.ansi.5",
-      "color.primitive.ansi.7",
-      "color.primitive.coral.700",
       "color.primitive.ink.0",
-      "color.primitive.ink.20",
-      "color.primitive.ink.40",
+      "color.primitive.modern.amber",
+      "color.primitive.modern.blue",
+      "color.primitive.modern.bright",
+      "color.primitive.modern.bright-amber",
+      "color.primitive.modern.bright-blue",
+      "color.primitive.modern.bright-cyan",
+      "color.primitive.modern.bright-green",
+      "color.primitive.modern.bright-red",
+      "color.primitive.modern.bright-violet",
+      "color.primitive.modern.control",
+      "color.primitive.modern.cyan",
+      "color.primitive.modern.green",
+      "color.primitive.modern.muted",
+      "color.primitive.modern.panel",
+      "color.primitive.modern.red",
+      "color.primitive.modern.subtle",
+      "color.primitive.modern.text",
+      "color.primitive.modern.violet",
       "color.primitive.paper.90",
       "color.primitive.red.100",
-      "color.primitive.red.250",
       "color.primitive.red.350",
       "color.primitive.red.800",
-      "color.primitive.red.850",
-      "color.primitive.rose.350",
-      "color.primitive.rose.550",
-      "color.primitive.rose.600",
-      "color.primitive.rose.650",
       "color.primitive.rose.700",
       "color.primitive.rose.800",
       "color.surface.canvas",
@@ -284,11 +277,9 @@
         "decisionIds": []
       },
       "color.border.control": {
-        "action": "use-and-report",
-        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
-        "decisionIds": [
-          "D-007"
-        ]
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
       },
       "color.code.current-line": {
         "action": "use",
@@ -536,6 +527,6 @@
   "copy": {
     "directory": "copy/terminal/",
     "manifest": "copy/terminal/manifest.json",
-    "digest": "sha256-neXCFwYNgbQNRYU4N4Hta6zirL1qhtE0fcWeG7fIHqg="
+    "digest": "sha256-lbwsKX1Abnm+C2Op9SsA3roFXaqsrf/BM/35NvkZka8="
   }
 }

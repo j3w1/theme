@@ -62,11 +62,11 @@
     "color.diff.removed.bg": [
       "Deleted.background"
     ],
-    "color.text.accent": [
-      "Codex accent.foreground"
-    ],
     "color.text.link": [
       "Link.foreground"
+    ],
+    "color.text.accent-strong": [
+      "Codex accent.foreground"
     ]
   },
   "unmapped": {
@@ -311,7 +311,6 @@
     "color.terminal.prompt-text": "The terminal draws this; a tmTheme has no key for it, so it comes from the terminal's own palette (the Orca port sets it).",
     "color.terminal.selection-bg": "The terminal draws this; a tmTheme has no key for it, so it comes from the terminal's own palette (the Orca port sets it).",
     "color.terminal.selection-text": "The terminal draws this; a tmTheme has no key for it, so it comes from the terminal's own palette (the Orca port sets it).",
-    "color.text.accent-strong": "Interface colour role; a Codex tmTheme colours code only.",
     "color.text.bright": "Interface colour role; a Codex tmTheme colours code only.",
     "color.text.default": "Interface colour role; a Codex tmTheme colours code only.",
     "color.text.disabled": "Interface colour role; a Codex tmTheme colours code only.",
@@ -404,6 +403,30 @@
     "color.interaction.text-selection.tint": "Interface colour role; a Codex tmTheme colours code only.",
     "color.primitive.alpha.red-50": "Primitive; ports consume roles, never primitives.",
     "color.primitive.red.40": "Primitive; ports consume roles, never primitives.",
-    "color.surface.accent": "Interface colour role; a Codex tmTheme colours code only."
+    "color.surface.accent": "Interface colour role; a Codex tmTheme colours code only.",
+    "color.text.accent": "The strong accent is used for Codex accent.foreground because code may appear on diff tints.",
+    "color.primitive.modern.panel": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.raised": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.overlay": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.hover": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.divider": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.control": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.disabled": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.subtle": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.muted": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.text": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.bright": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.red": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.green": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.amber": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.blue": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.violet": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.cyan": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.bright-red": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.bright-green": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.bright-amber": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.bright-blue": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.bright-violet": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.bright-cyan": "Primitive; ports consume roles, never primitives."
   }
 }

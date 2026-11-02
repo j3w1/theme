@@ -1,8 +1,53 @@
 # j3w1 theme for Orca
 
-Gives Orca's terminal the j3w1 colours: the sixteen terminal colours,
-background, text, cursor, selection, the pane divider and the terminal font.
-Status: experimental (no recorded import evidence).
+Gives Orca 1.4.246 and later the j3w1 app, editor and terminal colours.
+The data-only plugin themes the full application through supported public
+colour tokens, including sidebars, tabs, settings and structured agent views.
+TextMate scopes colour code, including green inserted text and red deletions.
+Status: experimental; structural validation is separate from live import evidence.
+
+## App, editor and terminal plugin (recommended)
+
+From a checkout, generate the files and load the plugin folder:
+
+```powershell
+npm run generate
+orca plugin validate ./ports/orca/dist --json
+orca plugin dev load ./ports/orca/dist --json
+```
+
+Keep `orca-plugin.json`, `app-theme.json` and `terminal-theme.json` together.
+The plugin contains data only: no executable entry point or capabilities.
+It requires Orca 1.4.246 or newer. Enable plugins in Settings if Orca reports
+that the plugin system is disabled.
+
+In Settings > Appearance:
+
+1. Select **Dark** mode and **j3w1** as the Dark theme.
+2. Select **Same as app theme** for the Dark editor theme.
+3. Select **j3w1** as the terminal Dark Theme. Remove old custom colour
+   overrides, or import the current `config.ghostty` to update them; overrides
+   take precedence over a selected terminal palette.
+4. Use the app theme for sidebar appearance. A separately configured sidebar
+   tint or Match Terminal mode can override the app theme's sidebar colours.
+
+The app and editor theme applies to Orca-rendered Claude and Codex chats.
+CLI agent tabs additionally need the terminal palette and their respective
+[Claude Code](../claude-code/README.md) and [Codex](../codex/README.md) ports.
+The plugin preserves font size, zoom and layout. Orca retains its own trust
+and approval dialog colours, geometry, focus behavior and unsupported syntax
+selectors. It owns diff backgrounds; the theme supplies supported syntax
+foregrounds and terminal ANSI slots without injecting CSS.
+
+To restore, select the previous app, editor and terminal themes and run
+`orca plugin dev unload ./ports/orca/dist --json`. Keep the loaded folder at a
+stable path: development loading watches it for updates. This is a local
+installation, not a public plugin-catalog release.
+
+## Legacy Ghostty installer
+
+The following PowerShell lifecycle remains available for terminal settings
+and font import. It does not install or select the full app plugin above.
 
 You need Windows, [PowerShell 7.4 or later](https://learn.microsoft.com/powershell/scripting/install/installing-powershell-on-windows)
 (`winget install Microsoft.PowerShell`), Orca started at least once, and the
@@ -10,7 +55,7 @@ You need Windows, [PowerShell 7.4 or later](https://learn.microsoft.com/powershe
 `SourceCodePro` download. Without the font the installer stops and says how to
 get it; `-SkipFontCheck` goes on without it.
 
-## Install
+## Legacy install
 
 <!-- install:start -->
 Release v3.0.0 (commit `f0e9e25a00357c0b47ae3d1392b87e5bc0aa91e6`).
@@ -99,7 +144,8 @@ earlier value is unknown.
     (`color.border.divider`, use-and-report under D-008; every run says so).
   - `terminalFontFamily`: `SauceCodePro NFM`.
   - `leftSidebarAppearanceMode` = Match Terminal, at the owner's request; it
-    is the only part of Orca's window that can follow the terminal.
+    affects the legacy terminal-derived sidebar. The app plugin above themes
+    the full app independently.
 - **`%APPDATA%\ghostty\config.ghostty`**: one marked block. Every line outside
   it is kept, byte for byte. A symbolic link is written through and stays a
   link. A file with two marked blocks is refused until you delete one.
@@ -133,8 +179,8 @@ These are Orca's limits; Apply and Test print them every time.
   1.4.209 always turns this on and has no setting for it.
 - Light mode gets the same dark colours: Orca stores one set of colour
   overrides for both modes.
-- Tabs, the right sidebar, the status bar and the settings pages follow Orca's
-  own theme. Only the left sidebar can match the terminal.
+- The legacy Ghostty route alone does not theme tabs, the right sidebar,
+  status bar or settings. Use the app plugin above for those surfaces.
 - The terminal has no current-line highlight.
 - Programs choose which colour means what; the theme only sets the sixteen.
 - The Warp-format file in `../warp/` also imports through Orca's Import from
@@ -150,7 +196,8 @@ These are Orca's limits; Apply and Test print them every time.
   `src/specimen.json` with the Claude Code and Codex previews resolved to
   tokens. Do not edit it.
 - `host.json`: which Orca setting takes which role, and the limits above.
-- `dist/config.ghostty`: generated from `mapping.json`; do not edit it.
+- `src/theme.json`: public Orca app tokens, TextMate scopes and terminal keys.
+- `dist/`: generated Ghostty config and data plugin files; do not edit them.
 - `port.json`, `mapping.json`, `capabilities.json`: the port's scope, every
   native key, and the reason for each role that is not mapped.
 

@@ -22,6 +22,7 @@ import { windowsArtifacts } from "./windows-port.mjs";
 import { obsidianArtifacts } from "./obsidian-port.mjs";
 import { telegramArtifacts } from "./telegram-port.mjs";
 import { portArtifactBasename } from "../../schemas/port.mjs";
+import { orcaArtifacts } from "./orca-port.mjs";
 
 const ANSI = ["black", "red", "green", "yellow", "blue", "magenta", "cyan", "white"];
 
@@ -154,7 +155,7 @@ const chatgptFile = ({ manifest, port, mapping, exported, source }) => {
 
 // Keep the existing text renderers intact; only their result envelope changes.
 const singleArtifact = render => args => [{ path: args.port.files[0]?.path, text: render(args) }];
-export const PORT_EMITTERS = { "warp-yaml": singleArtifact(warpYaml), "ghostty-config": singleArtifact(ghosttyConfig), "claude-theme-json": singleArtifact(claudeThemeJson), "codex-tmtheme": singleArtifact(codexTmThemeFile), "chatgpt-appearance": singleArtifact(chatgptFile), "obsidian-theme": obsidianArtifacts, "windows-theme": windowsArtifacts, "telegram-theme": telegramArtifacts };
+export const PORT_EMITTERS = { "warp-yaml": singleArtifact(warpYaml), "ghostty-config": singleArtifact(ghosttyConfig), "orca-theme": args => orcaArtifacts(args, ghosttyConfig), "claude-theme-json": singleArtifact(claudeThemeJson), "codex-tmtheme": singleArtifact(codexTmThemeFile), "chatgpt-appearance": singleArtifact(chatgptFile), "obsidian-theme": obsidianArtifacts, "windows-theme": windowsArtifacts, "telegram-theme": telegramArtifacts };
 
 // Validate the complete set before any write. Paths stay relative to a port,
 // under dist/, with the same portable filename policy as other exports.
@@ -183,7 +184,7 @@ export const portArtifactsGenerator = {
       const mapping = await readJson(`ports/${port.id}/${port.mappingPath}`);
       const hostFile = `ports/${port.id}/host.json`;
       const host = (await exists(hostFile)) ? await readJson(hostFile) : null;
-      const source = port.format === "chatgpt-appearance" ? await readJson(CHATGPT_SOURCE) : null;
+      const source = port.format === "chatgpt-appearance" ? await readJson(CHATGPT_SOURCE) : port.format === "orca-theme" ? await readJson("ports/orca/src/theme.json") : null;
       const profile = manifest.profiles.find((p) => p.id === port.profile);
       const exported = toResolvedExport(profiles.get(port.profile), profile);
       const artifacts = emit({ manifest, port, mapping, host, exported, source, resolved: profiles.get(port.profile) });

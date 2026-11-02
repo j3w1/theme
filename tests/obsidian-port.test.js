@@ -135,9 +135,9 @@ test("native semantic families keep surfaces, text, controls, status, focus and 
   for (const [key, role] of Object.entries(owner)) if (/^color\.status\.(warning|success|info)\./.test(role)) assert.match(key, /^--(?:text-(?:warning|success)|background-modifier-(?:warning|success)|callout-(?:warning|success|info))/);
   for (const key of Object.keys(owner).filter(k => k.startsWith("--code-") && k !== "--code-background" && !k.includes("border") && k !== "--code-radius")) assert.match(owner[key], /^color\.code\.syntax\./);
 });
-test("rose reading scopes, semantic headings and inherited bold, compact command rows and filled focus match the audited gaps", () => {
-  assert.equal(exported["color.text.default"].css, "#e99499");
-  assert.equal(exported["color.text.prose"].css, "#e99499");
+test("neutral reading scopes, semantic headings and inherited bold, compact command rows and filled focus match the audited gaps", () => {
+  assert.equal(exported["color.text.default"].css, "#d8dee9");
+  assert.equal(exported["color.text.prose"].css, "#d8dee9");
   assertRole(".theme-dark .markdown-preview-view | color", "color.text.prose");
   assertRole(".theme-dark .markdown-source-view.mod-cm6 .cm-content | color", "color.text.prose");
   assert.deepEqual(Object.keys(owner).filter(k => owner[k] === "color.text.heading").sort(), ["--h1-color", "--h2-color", "--h3-color", "--h4-color", "--h5-color", "--h6-color", "--inline-title-color"].sort());

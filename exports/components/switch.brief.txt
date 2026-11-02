@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — switch
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-o4R1QcVREh4X3VMinZljRvfzhRgfN1pUaC1bgNc444o=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-uUyex258/cCN40I3QfAc17Y4Big+7Dc2v2FeXtKT5bE=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/switch.json
 spec: spec/components/switch.md  site: https://j3w1.github.io/theme/reference/#c-switch
 maturity: stable  priority: R1
@@ -9,21 +9,20 @@ Summary: An on/off control that takes effect immediately; a button with role swi
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
   track.bg                #000000  ({color.surface.input})  use
-  track.border            #a3676b  ({color.border.control})  use-and-report (D-007)
-  track.bg-hover          #1c0a09  ({color.interaction.hover.bg})  use
+  track.border            #747e8e  ({color.border.control})  use
+  track.bg-hover          #191c22  ({color.interaction.hover.bg})  use
   track.ring              #e53935  ({color.interaction.focus.ring})  use
   track.bg-checked        #7d1310  ({color.action.primary.bg})  use
   track.bg-checked-hover  #911410  ({color.action.primary.hover-bg})  use
   track.ring-checked      #ffa2a7  ({color.interaction.focus.ring-container})  use
-  track.bg-disabled       #160b0b  ({color.interaction.disabled.bg})  use
-  track.border-disabled   #7d1310  ({color.border.disabled})  use
-  thumb.bg                #e99499  ({color.text.default})  use
-  thumb.bg-checked        #ffa2a7  ({color.action.primary.text})  use
-  thumb.bg-disabled       #8a5559  ({color.text.disabled})  use
-  name.text               #e99499  ({color.text.default})  use
-  state.text              #bd787d  ({color.text.muted})  use
-  name.text-disabled      #8a5559  ({color.text.disabled})  use
-State dependency disclosures: D-007
+  track.bg-disabled       #0e1014  ({color.interaction.disabled.bg})  use
+  track.border-disabled   #303640  ({color.border.disabled})  use
+  thumb.bg                #d8dee9  ({color.text.default})  use
+  thumb.bg-checked        #f1f5f9  ({color.action.primary.text})  use
+  thumb.bg-disabled       #727b89  ({color.text.disabled})  use
+  name.text               #d8dee9  ({color.text.default})  use
+  state.text              #a6afbd  ({color.text.muted})  use
+  name.text-disabled      #727b89  ({color.text.disabled})  use
 
 States: default, hover, focus-visible, checked, checked+focus-visible, disabled, checked+disabled
   default: track 1px {color.border.control} on {color.surface.input}; thumb {color.text.default} at the start [thumb position]

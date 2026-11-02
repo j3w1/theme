@@ -4,15 +4,15 @@
   "files": [
     {
       "path": "dist/j3w1-explorer-native.wh.cpp",
-      "sha256": "9567e7457ad049753d150761717ad9d7843200e48fdb72b399dbde18d2e5e26e"
+      "sha256": "3052ce8470b3463fe4b40f52cefaeda189c89230c722b840b21a31b779f36469"
     },
     {
       "path": "dist/j3w1-explorer-native.json",
-      "sha256": "bd0c68e9e05fb552cfbb60a318e81fe4a93c30f1829fd678c00328b909a5f242"
+      "sha256": "dd5d2d370ff06804003f945400f4c542995c9be61e3361f0c77da6e731d53dfb"
     },
     {
       "path": "dist/j3w1-powertoys-preview.wh.cpp",
-      "sha256": "aa24170ff4ebb40bf78ad6abe14e3d88cebfeacde21c8c392e659c7207ebb7a1"
+      "sha256": "e2f54428a2b4dfd16d6ecd4cd39bbb67a9d61e8150c15cbe00382bf07c160f37"
     },
     {
       "path": "dist/j3w1-powertoys-preview.json",
@@ -20,7 +20,7 @@
     },
     {
       "path": "dist/j3w1-calculator.wh.cpp",
-      "sha256": "f76e2d688fa8bddb50a9f2d059c1319278f6f8c7722187d3c30f3ea6d4dba626"
+      "sha256": "a62d81c2b12a30df02d34e1d8f057f9b8590fdaf4a1ba5bc7a533eb30a80dbb1"
     },
     {
       "path": "dist/j3w1-calculator.json",
@@ -28,7 +28,7 @@
     },
     {
       "path": "dist/j3w1-notepad-native.wh.cpp",
-      "sha256": "55f6825db1f71a0f7da4504cc38bac93e99b1f7a71137b0199420bb8797d50aa"
+      "sha256": "5e12bfc3ef5c569db5a331887289a305c9bdc050dd70a3b5d13b3e73b43aebf0"
     },
     {
       "path": "dist/j3w1-notepad-native.json",
@@ -36,7 +36,7 @@
     },
     {
       "path": "dist/j3w1-notepad-chrome.wh.cpp",
-      "sha256": "b60cf5235b224690e77911481ed95b490d6bbb1109254007a7d2d866a1cc9703"
+      "sha256": "99d6264e5fe2a532b11df1c3731931ec5a1083273d3d92ef09aa64e810a0152c"
     },
     {
       "path": "dist/j3w1-notepad-chrome.json",
@@ -44,7 +44,7 @@
     },
     {
       "path": "dist/j3w1-paint-chrome.wh.cpp",
-      "sha256": "dd8d8577c95bf7cdee7979a18d7f60c6b7bf8e195f9f75c1863fff47f21c10da"
+      "sha256": "7497529fbd54032d85be4d35a444742bb9d3549070e3df25faf2e6ed1b8a16c8"
     },
     {
       "path": "dist/j3w1-paint-chrome.json",
@@ -52,7 +52,7 @@
     },
     {
       "path": "dist/j3w1-terminal-chrome.wh.cpp",
-      "sha256": "18a7ca52f8ba614d2a3068fddca7844ec07563544f45b9ab1fb33bb100796bae"
+      "sha256": "4ddf9b4badd32206f647fea5c695ca85295eedda1d29cd06a2b7a07645cc41c8"
     },
     {
       "path": "dist/j3w1-terminal-chrome.json",
@@ -60,11 +60,11 @@
     },
     {
       "path": "dist/j3w1-powertoys-markdown.wh.cpp",
-      "sha256": "0ae68b4df825d38fc45080f10c6edd56831cefa284140e9edb8998c8ec7bd686"
+      "sha256": "aff31db2ab79e616c69a0a0c1cc0bcbe4801e6162d7cbf0eb06d6b4e4dfa557d"
     },
     {
       "path": "dist/markdown-theme.css",
-      "sha256": "9bc14a459abcb6c2bee9a00ba7a2fc95b17661b048ff3a55a4a43382e742e323"
+      "sha256": "6d152a5a36e75d4537fccec1cdef804d067291f38b5f63ef8532245f241c22ed"
     },
     {
       "path": "dist/j3w1-powertoys-markdown.json",
@@ -72,15 +72,15 @@
     },
     {
       "path": "dist/windows-settings.json",
-      "sha256": "f5f7c7a5a3599838e1d0d344d82c14e28c4b7f85b432730f5c83c4f453734578"
+      "sha256": "4c0686fc93c398ddc3ca380a2a14ee94a4481244284084954427ba3476cc71db"
     },
     {
       "path": "dist/terminal-fragment.json",
-      "sha256": "8257fa6a6ef05f94246773880df133893eb26c3ac1f7629bda62bea71c1d1f05"
+      "sha256": "33845d635c397af421a54ae755635a9f3aa83ca75d316385ff386ed0dc9549ea"
     },
     {
       "path": "dist/terminal-theme.json",
-      "sha256": "603542a9c0dcd021411370773b1831c94fdc90a665cac589af245fbbfc86b622"
+      "sha256": "76e75d3362e88e3b5ff7ac9414c45578f48818e0dd14a2f46291b15e42e1c378"
     },
     {
       "path": "dist/fancyzones-layouts.json",
@@ -88,23 +88,23 @@
     },
     {
       "path": "dist/windows-11-taskbar-styler.json",
-      "sha256": "9b4421219ba00f27168abb88361f6af040fe3114f7317876dcb593e6becc9ee8"
+      "sha256": "1a3b1717a2082665d5dba8c0ffae90946fb41e293891b208de68e57306558305"
     },
     {
       "path": "dist/windows-11-start-menu-styler.json",
-      "sha256": "f95c19843c7a9ac48e1fad044eea9a202e70734d740013beacbfb48b1e91c55f"
+      "sha256": "cfd7426161b1895c641d229a8c011a6495c37c8edd86d3eed380500c1a3c941e"
     },
     {
       "path": "dist/windows-11-file-explorer-styler.json",
-      "sha256": "be1c3ad8f3cb8baa98c462fa77da1bb7c0620ffaa903c9752519921994671a73"
+      "sha256": "af148d85db2de491e0336d31890faeb993c8ceadb931ead18fd3ecf21780ace2"
     },
     {
       "path": "dist/windows-11-notification-center-styler.json",
-      "sha256": "d4fe4efc193ca38a838b21b5027eb95d60867cd13d215755ade2cc200ab7672e"
+      "sha256": "64b79131c8ef81104a7e2a0ab2216d72f646d6465462b2a349136045e7a20cd3"
     },
     {
       "path": "dist/windows-11-settings-styler.json",
-      "sha256": "b835b97b70262a6dbfa87a43fbbdb4b57a7ff3239e1cdd4ccc6d32a5a92dfa89"
+      "sha256": "d46b70e031e9b10c4fe4ff0ca3888634258f7666081750a9e3ed5f903e5029af"
     },
     {
       "path": "dist/j3w1-wallpaper.bmp",
@@ -212,7 +212,7 @@
     },
     {
       "path": "host.json",
-      "sha256": "5c07a91168d2cd8ea32081cb71254bba1bb435ea6ff04885bfb2492ca950b1be"
+      "sha256": "ae8cfb257711f14eb77c57cc542f46d33aec00d0d3277000349598dc3a8a5545"
     }
   ]
 }

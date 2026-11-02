@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — terminal
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-o4R1QcVREh4X3VMinZljRvfzhRgfN1pUaC1bgNc444o=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-uUyex258/cCN40I3QfAc17Y4Big+7Dc2v2FeXtKT5bE=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/terminal.json
 spec: spec/components/terminal.md  site: https://j3w1.github.io/theme/reference/#c-terminal
 maturity: stable  priority: R1
@@ -8,41 +8,40 @@ Summary: Terminal text with the readable heritage sixteen ANSI slots (D-029, D-0
 
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg             #0c0909  ({color.terminal.bg})  use
+  root.bg             #000000  ({color.terminal.bg})  use
   root.text           #e99499  ({color.terminal.fg})  use
-  root.border         #a3676b  ({color.border.control})  use-and-report (D-007)
+  root.border         #747e8e  ({color.border.control})  use
   root.ring           #ffa2a7  ({color.interaction.focus.ring-container})  use
-  cursor.bg           #e99499  ({color.terminal.cursor})  use
-  cursor.text         #0c0909  ({color.terminal.bg})  use
+  cursor.bg           #f1f5f9  ({color.terminal.cursor})  use
+  cursor.text         #000000  ({color.terminal.bg})  use
   selection.bg        #911410  ({color.terminal.selection-bg})  use
   selection.text      #f4eeee  ({color.terminal.selection-text})  use
-  current.bg          #1c0a09  ({color.code.current-line})  use
-  prompt.bg           #8c1212  ({color.terminal.prompt-bg})  use
-  prompt.text         #ffa2a7  ({color.terminal.prompt-text})  use
-  prompt.branch-bg    #d4868b  ({color.terminal.ansi.3})  use
-  prompt.branch-text  #0c0909  ({color.terminal.bg})  use
-  dim.text            #bd787d  ({color.text.muted})  use
+  current.bg          #0e1014  ({color.code.current-line})  use
+  prompt.bg           #000000  ({color.terminal.prompt-bg})  use
+  prompt.text         #d8dee9  ({color.terminal.prompt-text})  use
+  prompt.branch-bg    #e5c07b  ({color.terminal.ansi.3})  use
+  prompt.branch-text  #000000  ({color.terminal.bg})  use
+  dim.text            #a6afbd  ({color.text.muted})  use
   inverse.bg          #e99499  ({color.terminal.fg})  use
-  inverse.text        #0c0909  ({color.terminal.bg})  use
-  label.text          #bd787d  ({color.text.muted})  use
+  inverse.text        #000000  ({color.terminal.bg})  use
+  label.text          #a6afbd  ({color.text.muted})  use
   fail.glyph          #e99499  ({color.terminal.fg})  use
-  slot.ansi-0         #0c0909  ({color.terminal.ansi.0})  use
-  slot.ansi-1         #e84b4b  ({color.terminal.ansi.1})  use
-  slot.ansi-2         #bd787d  ({color.terminal.ansi.2})  use
-  slot.ansi-3         #d4868b  ({color.terminal.ansi.3})  use
-  slot.ansi-4         #e53131  ({color.terminal.ansi.4})  use
-  slot.ansi-5         #f73f35  ({color.terminal.ansi.5})  use
-  slot.ansi-6         #ff7a66  ({color.terminal.ansi.6})  use
-  slot.ansi-7         #ffa2a7  ({color.terminal.ansi.7})  use
-  slot.ansi-8         #b71c17  ({color.terminal.ansi.8})  use
-  slot.ansi-9         #ea3833  ({color.terminal.ansi.9})  use
-  slot.ansi-10        #dc4f49  ({color.terminal.ansi.10})  use
-  slot.ansi-11        #b37175  ({color.terminal.ansi.11})  use
-  slot.ansi-12        #db433a  ({color.terminal.ansi.12})  use
-  slot.ansi-13        #ed5360  ({color.terminal.ansi.13})  use
-  slot.ansi-14        #e6565a  ({color.terminal.ansi.14})  use
-  slot.ansi-15        #b17e81  ({color.terminal.ansi.15})  use
-State dependency disclosures: D-007
+  slot.ansi-0         #000000  ({color.terminal.ansi.0})  use
+  slot.ansi-1         #f07178  ({color.terminal.ansi.1})  use
+  slot.ansi-2         #82d9a0  ({color.terminal.ansi.2})  use
+  slot.ansi-3         #e5c07b  ({color.terminal.ansi.3})  use
+  slot.ansi-4         #82b4ff  ({color.terminal.ansi.4})  use
+  slot.ansi-5         #c7a0e8  ({color.terminal.ansi.5})  use
+  slot.ansi-6         #78d4d4  ({color.terminal.ansi.6})  use
+  slot.ansi-7         #e99499  ({color.terminal.ansi.7})  use
+  slot.ansi-8         #909aaa  ({color.terminal.ansi.8})  use
+  slot.ansi-9         #ff9095  ({color.terminal.ansi.9})  use
+  slot.ansi-10        #a2edb8  ({color.terminal.ansi.10})  use
+  slot.ansi-11        #f2d49b  ({color.terminal.ansi.11})  use
+  slot.ansi-12        #a4caff  ({color.terminal.ansi.12})  use
+  slot.ansi-13        #dec0f4  ({color.terminal.ansi.13})  use
+  slot.ansi-14        #a0e7e7  ({color.terminal.ansi.14})  use
+  slot.ansi-15        #ffa2a7  ({color.terminal.ansi.15})  use
 
 States: default, focus-visible, selected, busy, current
   default: text on {color.terminal.bg}; cursor hollow, 1px {color.terminal.cursor} outline; no ring [the hollow cursor]

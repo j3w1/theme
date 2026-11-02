@@ -434,7 +434,7 @@
         [
           {
             "text": " > a message you sent, on userMessageBackground ",
-            "fgToken": "color.text.default",
+            "fgToken": "color.terminal.fg",
             "bgToken": "color.interaction.selection.bg"
           }
         ],
@@ -468,7 +468,7 @@
           },
           {
             "text": "    2. No",
-            "fgToken": "color.text.default"
+            "fgToken": "color.terminal.fg"
           }
         ],
         [
@@ -521,7 +521,7 @@
         [
           {
             "text": "Current session  ",
-            "fgToken": "color.text.default"
+            "fgToken": "color.terminal.fg"
           },
           {
             "text": "████████",
@@ -545,7 +545,7 @@
         [
           {
             "text": "> ",
-            "fgToken": "color.text.default"
+            "fgToken": "color.terminal.fg"
           },
           {
             "text": "type here",
@@ -579,7 +579,7 @@
           },
           {
             "text": "npm test",
-            "fgToken": "color.text.accent"
+            "fgToken": "color.text.accent-strong"
           }
         ],
         [

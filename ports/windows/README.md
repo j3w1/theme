@@ -1,6 +1,6 @@
 # j3w1 for Windows 11
 
-Black surfaces, rose text, red accents and small black/red cursors, generated
+True-black surfaces, neutral text, restrained red accents and small black/red cursors, generated
 from the canonical j3w1 tokens. This port is **experimental**. Full styling
 requires an exact supported Windows 11 x64 host; it does not theme every
 application. [Coverage](COVERAGE.md) lists implemented surfaces, owner
@@ -97,9 +97,9 @@ for missing-cache, lock or conflict handling.
 | Area | Treatment |
 | --- | --- |
 | Windows personalization | Dark mode, transparency off, red accents/borders, black wallpaper, recoverable lock-screen image and 17 compact cursor roles |
-| Start, Search, taskbar and notifications | Full-mode shell adapters; black/rose/red surfaces, selection and focus. Search uses a continuous dark-red selected row with a rose frame |
+| Start, Search, taskbar and notifications | Full-mode shell adapters; black surfaces, neutral text, selection and red focus. Search uses a continuous selected row and visible frame |
 | Explorer | Themed chrome, native lists and menus, selection, scrollbars, pins, dividers and generic red closed/open folder defaults |
-| PowerToys previews | Exact-version text/code and Markdown adapters; black/rose previews and token-derived Markdown typography. Reselect the file after an update or rollback |
+| PowerToys previews | Exact-version text/code and Markdown adapters; black previews with neutral text and token-derived Markdown typography. Reselect the file after an update or rollback |
 | Notepad, Calculator and Paint | Separate exact-package adapters for their supported chrome and controls; Notepad also has a native editor adapter. Document and artwork colors remain under the host's control |
 | Windows Terminal | Existing supported settings plus Full-mode tab/menu chrome; commands, shortcuts and text sizes are preserved |
 | Existing PowerToys utilities | Supported FancyZones, Always On Top and Command Palette settings; optional layouts are added without assigning them |

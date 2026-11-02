@@ -13,7 +13,7 @@
     },
     "fixed-ansi": {
       "state": "unsupported",
-      "reason": "Highlighted code, links (slot 12), diff + and - markers and file previews use fixed ANSI slots that no theme reaches."
+      "reason": "Highlighted code, links and file previews use host ANSI colors. Line signs may inherit ANSI or row text; summary counts use the mapped word-emphasis keys."
     },
     "light-mode": {
       "state": "unsupported",
@@ -491,34 +491,34 @@
       "reason": "Written to the theme's diffAdded and diffAddedWord keys."
     },
     "color.diff.added.emphasis": {
-      "state": "unsupported",
-      "surface": "fixed-ansi",
-      "reason": "Claude Code paints diff lines with its added and removed backgrounds only; the + and - markers and file previews use fixed ANSI slots, and there is no modified-line colour."
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Mapped to diffAddedWord."
     },
     "color.diff.added.gutter": {
       "state": "unsupported",
       "surface": "fixed-ansi",
-      "reason": "Claude Code paints diff lines with its added and removed backgrounds only; the + and - markers and file previews use fixed ANSI slots, and there is no modified-line colour."
+      "reason": "No independent Claude Code key for this role; line signs inherit host ANSI or row text, while summary counts share word-emphasis colors."
     },
     "color.diff.conflict-border": {
       "state": "unsupported",
       "surface": "fixed-ansi",
-      "reason": "Claude Code paints diff lines with its added and removed backgrounds only; the + and - markers and file previews use fixed ANSI slots, and there is no modified-line colour."
+      "reason": "No independent Claude Code key for this role; line signs inherit host ANSI or row text, while summary counts share word-emphasis colors."
     },
     "color.diff.header-bg": {
       "state": "unsupported",
       "surface": "fixed-ansi",
-      "reason": "Claude Code paints diff lines with its added and removed backgrounds only; the + and - markers and file previews use fixed ANSI slots, and there is no modified-line colour."
+      "reason": "No independent Claude Code key for this role; line signs inherit host ANSI or row text, while summary counts share word-emphasis colors."
     },
     "color.diff.modified.bg": {
       "state": "unsupported",
       "surface": "fixed-ansi",
-      "reason": "Claude Code paints diff lines with its added and removed backgrounds only; the + and - markers and file previews use fixed ANSI slots, and there is no modified-line colour."
+      "reason": "No independent Claude Code key for this role; line signs inherit host ANSI or row text, while summary counts share word-emphasis colors."
     },
     "color.diff.modified.gutter": {
       "state": "unsupported",
       "surface": "fixed-ansi",
-      "reason": "Claude Code paints diff lines with its added and removed backgrounds only; the + and - markers and file previews use fixed ANSI slots, and there is no modified-line colour."
+      "reason": "No independent Claude Code key for this role; line signs inherit host ANSI or row text, while summary counts share word-emphasis colors."
     },
     "color.diff.removed.bg": {
       "state": "mapped",
@@ -526,14 +526,14 @@
       "reason": "Written to the theme's diffRemoved and diffRemovedWord keys."
     },
     "color.diff.removed.emphasis": {
-      "state": "unsupported",
-      "surface": "fixed-ansi",
-      "reason": "Claude Code paints diff lines with its added and removed backgrounds only; the + and - markers and file previews use fixed ANSI slots, and there is no modified-line colour."
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Mapped to diffRemovedWord."
     },
     "color.diff.removed.gutter": {
       "state": "unsupported",
       "surface": "fixed-ansi",
-      "reason": "Claude Code paints diff lines with its added and removed backgrounds only; the + and - markers and file previews use fixed ANSI slots, and there is no modified-line colour."
+      "reason": "No independent Claude Code key for this role; line signs inherit host ANSI or row text, while summary counts share word-emphasis colors."
     },
     "color.icon.decorative": {
       "state": "out-of-scope",
@@ -1226,29 +1226,29 @@
       "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
     },
     "color.terminal.ansi.10": {
-      "state": "inherited",
-      "surface": "terminal-palette",
-      "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Mapped to green_FOR_SUBAGENTS_ONLY."
     },
     "color.terminal.ansi.11": {
-      "state": "inherited",
-      "surface": "terminal-palette",
-      "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Mapped to yellow_FOR_SUBAGENTS_ONLY."
     },
     "color.terminal.ansi.12": {
-      "state": "inherited",
-      "surface": "terminal-palette",
-      "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Mapped to blue_FOR_SUBAGENTS_ONLY."
     },
     "color.terminal.ansi.13": {
-      "state": "inherited",
-      "surface": "terminal-palette",
-      "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Mapped to pink_FOR_SUBAGENTS_ONLY."
     },
     "color.terminal.ansi.14": {
-      "state": "inherited",
-      "surface": "terminal-palette",
-      "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Mapped to cyan_FOR_SUBAGENTS_ONLY."
     },
     "color.terminal.ansi.15": {
       "state": "inherited",
@@ -1261,9 +1261,9 @@
       "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
     },
     "color.terminal.ansi.3": {
-      "state": "inherited",
-      "surface": "terminal-palette",
-      "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Mapped to orange_FOR_SUBAGENTS_ONLY."
     },
     "color.terminal.ansi.4": {
       "state": "inherited",
@@ -1271,9 +1271,9 @@
       "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
     },
     "color.terminal.ansi.5": {
-      "state": "inherited",
-      "surface": "terminal-palette",
-      "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Mapped to purple_FOR_SUBAGENTS_ONLY."
     },
     "color.terminal.ansi.6": {
       "state": "inherited",
@@ -1291,9 +1291,9 @@
       "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
     },
     "color.terminal.ansi.9": {
-      "state": "inherited",
-      "surface": "terminal-palette",
-      "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Mapped to red_FOR_SUBAGENTS_ONLY."
     },
     "color.terminal.bg": {
       "state": "mapped",
@@ -1306,9 +1306,9 @@
       "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
     },
     "color.terminal.fg": {
-      "state": "inherited",
-      "surface": "terminal-palette",
-      "reason": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it)."
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Written to the theme's text key for rose terminal and agent prose."
     },
     "color.terminal.prompt-bg": {
       "state": "inherited",
@@ -1348,7 +1348,7 @@
     "color.text.default": {
       "state": "mapped",
       "surface": "theme-roles",
-      "reason": "Written to the theme's claudeBlueShimmer_FOR_SYSTEM_SPINNER, inactiveShimmer, text and yellow_FOR_SUBAGENTS_ONLY keys."
+      "reason": "Written to the theme's claudeBlueShimmer_FOR_SYSTEM_SPINNER and inactiveShimmer keys."
     },
     "color.text.disabled": {
       "state": "out-of-scope",
@@ -1406,9 +1406,9 @@
       "reason": "Interface colour role that no Claude Code theme key takes."
     },
     "color.text.prose": {
-      "state": "mapped",
-      "surface": "theme-roles",
-      "reason": "Written to the theme's green_FOR_SUBAGENTS_ONLY key."
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "No longer consumed by a Claude Code theme key; the host retains its other uses."
     },
     "color.text.subtle": {
       "state": "mapped",
@@ -1809,6 +1809,121 @@
       "state": "not-implemented",
       "surface": "theme-roles",
       "reason": "Claude Code's userMessageBackground keeps color.interaction.selection.bg; adopting color.surface.accent there is a separate change for this port."
+    },
+    "color.primitive.modern.panel": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.raised": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.overlay": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.hover": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.divider": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.control": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.disabled": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.subtle": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.muted": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.text": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.bright": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.red": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.green": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.amber": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.blue": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.violet": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.cyan": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.bright-red": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.bright-green": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.bright-amber": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.bright-blue": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.bright-violet": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.bright-cyan": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
     }
   },
   "rollback": "Run node ports/claude-code/install.mjs restore in the same clone. By hand: set \"theme\" in ~/.claude/settings.json back to your previous theme (or remove the key) and delete ~/.claude/themes/j3w1.json."

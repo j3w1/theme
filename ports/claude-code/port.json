@@ -4,13 +4,14 @@
   "displayName": "Claude Code (custom theme)",
   "status": "experimental",
   "themeVersion": "4.0.0",
-  "tokenDigest": "sha256-bXayCdQMks1SP9DAswzrBp0H09xuxsAmb1JbTSYceDg=",
+  "tokenDigest": "sha256-q2UNDq/WVqLj9Gg/bcr7/y4wM+iddqbKALT8QieNwDA=",
   "profile": "default",
   "format": "claude-theme-json",
   "targetVersions": [
     "2.1.281",
     "2.1.282",
-    "2.1.283"
+    "2.1.283",
+    "2.1.301"
   ],
   "testedVersions": [],
   "os": [

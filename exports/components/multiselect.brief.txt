@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — multiselect
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-o4R1QcVREh4X3VMinZljRvfzhRgfN1pUaC1bgNc444o=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-uUyex258/cCN40I3QfAc17Y4Big+7Dc2v2FeXtKT5bE=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/multiselect.json
 spec: spec/components/multiselect.md  site: https://j3w1.github.io/theme/reference/#c-multiselect
 maturity: stable  priority: R2
@@ -8,16 +8,16 @@ Summary: A searchable native checkbox group that preserves all selected form val
 
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg                                                 #100c0c  ({color.surface.default})  use
-  root.text                                               #e99499  ({color.text.default})  use
-  root.border                                             #a3676b  ({color.border.control})  use-and-report (D-007)
-  heading.text                                            #ffa2a7  ({color.text.bright})  use
-  secondary.text                                          #bd787d  ({color.text.muted})  use
+  root.bg                                                 #0e1014  ({color.surface.default})  use
+  root.text                                               #d8dee9  ({color.text.default})  use
+  root.border                                             #747e8e  ({color.border.control})  use
+  heading.text                                            #f1f5f9  ({color.text.bright})  use
+  secondary.text                                          #a6afbd  ({color.text.muted})  use
   control.bg                                              #000000  ({color.surface.input})  use
   control.focus                                           #e53935  ({color.interaction.focus.ring})  use
   button.bg                                               rgb(0 0 0 / 0%)  ({color.action.secondary.bg})  use
-  button.text                                             #ffa2a7  ({color.action.secondary.text})  use
-  button.border                                           #a3676b  ({color.action.secondary.border})  use
+  button.text                                             #f1f5f9  ({color.action.secondary.text})  use
+  button.border                                           #747e8e  ({color.action.secondary.border})  use
   button.bg-hover                                         #630f0d  ({color.action.secondary.hover-bg})  use
   button.bg-active                                        #420f0c  ({color.action.secondary.pressed-bg})  use
   button.border-active                                    #e53935  ({color.border.active})  use
@@ -26,15 +26,15 @@ Tokens (resolved):
   dependency.role-border-width-emphasis                   2px  ({border.width.emphasis})  use
   dependency.role-color-action-primary-bg                 #7d1310  ({color.action.primary.bg})  use
   dependency.role-color-action-primary-hover-bg           #911410  ({color.action.primary.hover-bg})  use
-  dependency.role-color-action-primary-text               #ffa2a7  ({color.action.primary.text})  use
+  dependency.role-color-action-primary-text               #f1f5f9  ({color.action.primary.text})  use
   dependency.role-color-border-active                     #e53935  ({color.border.active})  use
-  dependency.role-color-border-disabled                   #7d1310  ({color.border.disabled})  use
-  dependency.role-color-interaction-disabled-bg           #160b0b  ({color.interaction.disabled.bg})  use
+  dependency.role-color-border-disabled                   #303640  ({color.border.disabled})  use
+  dependency.role-color-interaction-disabled-bg           #0e1014  ({color.interaction.disabled.bg})  use
   dependency.role-color-interaction-focus-ring-container  #ffa2a7  ({color.interaction.focus.ring-container})  use
-  dependency.role-color-interaction-hover-bg              #1c0a09  ({color.interaction.hover.bg})  use
+  dependency.role-color-interaction-hover-bg              #191c22  ({color.interaction.hover.bg})  use
   dependency.role-color-status-danger-border              #e53935  ({color.status.danger.border})  use
-  dependency.role-color-status-danger-text                #f73f35  ({color.status.danger.text})  use
-  dependency.role-color-text-disabled                     #8a5559  ({color.text.disabled})  use
+  dependency.role-color-status-danger-text                #f07178  ({color.status.danger.text})  use
+  dependency.role-color-text-disabled                     #727b89  ({color.text.disabled})  use
   dependency.role-density-comfortable-control-height      32px  ({density.comfortable.control-height})  use
   dependency.role-density-compact-control-height          24px  ({density.compact.control-height})  use
   dependency.role-focus-offset                            -2px  ({focus.offset})  use
@@ -50,7 +50,6 @@ Tokens (resolved):
   dependency.role-space-24                                24px  ({space.24})  use
   dependency.role-space-4                                 4px  ({space.4})  use
   dependency.role-space-8                                 8px  ({space.8})  use
-State dependency disclosures: D-007
 
 States: default, checked, focus-visible, disabled, no-results
   default: Named content on the default surface. Button controls are the secondary button (button.md); inputs keep the input look. [Native text and structure.]

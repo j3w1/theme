@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — diagnostics
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-o4R1QcVREh4X3VMinZljRvfzhRgfN1pUaC1bgNc444o=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-uUyex258/cCN40I3QfAc17Y4Big+7Dc2v2FeXtKT5bE=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/diagnostics.json
 spec: spec/components/diagnostics.md  site: https://j3w1.github.io/theme/reference/#c-diagnostics
 maturity: stable  priority: R1
@@ -8,39 +8,38 @@ Summary: Inline problem markers in code (underline patterns, an error line and a
 
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg            #100c0c  ({color.surface.default})  use
-  root.border        #a3676b  ({color.border.control})  use-and-report (D-007)
-  code.bg            #0c0909  ({color.code.bg})  use
-  code.text          #e99499  ({color.text.default})  use
-  code.line-number   #ad7175  ({color.code.line-number})  use
-  code.gutter-rule   #2b0e0d  ({color.code.gutter-rule})  use
+  root.bg            #0e1014  ({color.surface.default})  use
+  root.border        #747e8e  ({color.border.control})  use
+  code.bg            #000000  ({color.code.bg})  use
+  code.text          #d8dee9  ({color.text.default})  use
+  code.line-number   #909aaa  ({color.code.line-number})  use
+  code.gutter-rule   #303640  ({color.code.gutter-rule})  use
   code.selection-bg  #420f0c  ({color.code.selection-bg})  use
   error.underline    #e53935  ({color.diagnostic.error.underline})  use
   error.text         #f73f35  ({color.diagnostic.error.text})  use
   error.stripe       #e53935  ({color.diagnostic.error.stripe})  use
   error.line-bg      #2b0e0d  ({color.diagnostic.error.bg})  use
-  warning.underline  #c9973f  ({color.diagnostic.warning.underline})  use
-  warning.text       #c9973f  ({color.diagnostic.warning.text})  use
-  warning.stripe     #c9973f  ({color.diagnostic.warning.stripe})  use
-  info.underline     #7e9ebb  ({color.diagnostic.info.underline})  use
-  info.text          #7e9ebb  ({color.diagnostic.info.text})  use
-  hint.underline     #ad7175  ({color.diagnostic.hint.underline})  use
-  hint.text          #ad7175  ({color.text.subtle})  use
-  unused.text        #bd787d  ({color.diagnostic.unused.text})  use
-  deprecated.text    #ad7175  ({color.code.syntax.deprecated})  use
-  row.text           #e99499  ({color.text.default})  use
-  row.location       #bd787d  ({color.text.muted})  use
-  row.divider        #2b0e0d  ({color.border.divider})  use-and-report (D-008)
-  row.bg-hover       #1c0a09  ({color.interaction.hover.bg})  use
+  warning.underline  #e5c07b  ({color.diagnostic.warning.underline})  use
+  warning.text       #e5c07b  ({color.diagnostic.warning.text})  use
+  warning.stripe     #e5c07b  ({color.diagnostic.warning.stripe})  use
+  info.underline     #82b4ff  ({color.diagnostic.info.underline})  use
+  info.text          #82b4ff  ({color.diagnostic.info.text})  use
+  hint.underline     #909aaa  ({color.diagnostic.hint.underline})  use
+  hint.text          #909aaa  ({color.text.subtle})  use
+  unused.text        #a6afbd  ({color.diagnostic.unused.text})  use
+  deprecated.text    #909aaa  ({color.code.syntax.deprecated})  use
+  row.text           #d8dee9  ({color.text.default})  use
+  row.location       #a6afbd  ({color.text.muted})  use
+  row.divider        #303640  ({color.border.divider})  use
+  row.bg-hover       #191c22  ({color.interaction.hover.bg})  use
   row.ring           #e53935  ({color.interaction.focus.ring})  use
   row.bg-selected    #531310  ({color.interaction.selection.bg})  use
   row.text-selected  #f4eeee  ({color.interaction.selection.text})  use
   row.ring-selected  #e53935  ({color.interaction.focus.ring})  use
-  header.text        #ffa2a7  ({color.text.bright})  use
-  status.text        #f73f35  ({color.status.danger.text})  use
-  empty.text         #bd787d  ({color.text.muted})  use
-  empty.glyph        #86a46f  ({color.status.success.text})  use
-State dependency disclosures: D-007
+  header.text        #f1f5f9  ({color.text.bright})  use
+  status.text        #f07178  ({color.status.danger.text})  use
+  empty.text         #a6afbd  ({color.text.muted})  use
+  empty.glyph        #82d9a0  ({color.status.success.text})  use
 
 States: default, hover, focus-visible, selected, selected+focus-visible, error, empty
   default: ranges decorated on {color.code.bg}; the error row filled {color.diagnostic.error.bg}; panel rows on {color.surface.default}, 1px {color.border.divider} between [underline pattern; glyph]

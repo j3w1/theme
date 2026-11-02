@@ -1,0 +1,29 @@
+{
+  "manifestVersion": 2,
+  "id": "j3w1-theme",
+  "name": "j3w1",
+  "version": "4.0.0",
+  "description": "True-black developer theme for Orca's app, code editor and terminal.",
+  "repository": "https://github.com/j3w1/theme",
+  "license": "MIT",
+  "engines": {
+    "orca": ">=1.4.246"
+  },
+  "execution": "data",
+  "contributes": {
+    "themes": [
+      {
+        "id": "j3w1-dark",
+        "title": "j3w1",
+        "path": "app-theme.json"
+      }
+    ],
+    "terminalThemes": [
+      {
+        "id": "j3w1-terminal",
+        "title": "j3w1",
+        "path": "terminal-theme.json"
+      }
+    ]
+  }
+}

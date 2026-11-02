@@ -807,7 +807,7 @@ test("deployed lookup preserves Pages default and supports Telegram, empty histo
   assert.equal(lookup(["telegram"], { LOOKUP_FAIL: "1" }).status, 2);
 });
 
-test("release change gate publishes only the tip of main with new bytes, and reruns never republish older files", async t => {
+test("release change gate publishes only the tip of main with new bytes, and reruns never republish older files", { skip: process.platform === "win32" ? "POSIX CI shell fixture; never invoke the Windows bash/WSL alias" : false }, async t => {
   const f = await fixture(t);
   const bin = path.join(f.root, "bin");
   await fs.mkdir(bin);

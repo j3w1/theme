@@ -23,15 +23,15 @@ test("the token validator accepts the committed sources", async () => {
   assert.ok(profiles.get("default").size >= 300);
 });
 
-test("approved corrections and extension hues carry the expected values", async () => {
+test("D-041 neutral typography and semantic hues carry the expected values", async () => {
   const { profiles } = await validateTokens();
   const d = profiles.get("default");
-  assert.equal(d.get("color.text.subtle").resolved.hex, "#ad7175");
-  assert.equal(d.get("color.text.disabled").resolved.hex, "#8a5559");
-  assert.equal(d.get("color.code.line-number").resolved.hex, "#ad7175");
-  assert.equal(d.get("color.status.warning.text").resolved.hex, "#c9973f");
-  assert.equal(d.get("color.status.success.text").resolved.hex, "#86a46f");
-  assert.equal(d.get("color.status.info.text").resolved.hex, "#7e9ebb");
+  assert.equal(d.get("color.text.subtle").resolved.hex, "#909aaa");
+  assert.equal(d.get("color.text.disabled").resolved.hex, "#727b89");
+  assert.equal(d.get("color.code.line-number").resolved.hex, "#909aaa");
+  assert.equal(d.get("color.status.warning.text").resolved.hex, "#e5c07b");
+  assert.equal(d.get("color.status.success.text").resolved.hex, "#82d9a0");
+  assert.equal(d.get("color.status.info.text").resolved.hex, "#82b4ff");
   assert.equal(d.get("color.interaction.focus.ring").resolved.hex, "#e53935");
   assert.equal(d.get("color.interaction.selection.bg").resolved.hex, "#531310");
   assert.equal(d.get("radius.none").resolved.value, 0);

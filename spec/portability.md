@@ -42,7 +42,7 @@ percentage means something only with its denominator.
 | No separate inactive selection | selection fill everywhere; record it |
 | No read-only styling hook | treat as default text with a dotted bottom edge if borders are available, else as default |
 | No pattern fills (charts) | keep the glyph or label channel; never colour alone |
-| Sixteen-colour terminal | `default` (the readable heritage sixteen, D-029, D-032); `heritage-ansi` for fidelity; the `extended` slots when approved; document bold-as-bright and whether 256/24-bit colours bypass the slots |
+| Sixteen-colour terminal | `default` (the semantic sixteen, D-041); `heritage-ansi` only for historical fidelity; `extended` remains proposed; document bold-as-bright and whether 256/24-bit colours bypass the slots |
 | Fixed radii in the host | document; do not fight the toolkit |
 | Host forbids removing its focus indicator | keep the host's indicator; never draw two |
 
@@ -100,13 +100,15 @@ when work begins.
   regenerate.
 - `npm run generate` writes `dist/` for every port whose `format` has an
   emitter in `scripts/lib/port-artifacts.mjs` (`warp-yaml`, `ghostty-config`,
-  `claude-theme-json`, `codex-tmtheme`, `chatgpt-appearance`,
+  `claude-theme-json`, `codex-tmtheme`, `chatgpt-appearance`, `orca-theme`,
   `obsidian-theme`, `windows-theme` and `telegram-theme` today). Each emitter
   returns the complete declared array of text or byte artifacts. Binary files
   are hashed and copied byte for byte; text files retain the existing line-ending
   convention. Unsafe or duplicate paths and missing/extra outputs fail before
   any port artifact is written. Obsidian emits a manifest and CSS together;
-  Telegram emits Android text and a Desktop zip.
+  Telegram emits Android text and a Desktop zip. Orca emits its app/editor and
+  terminal data-theme plugin alongside the compatible Ghostty export; the
+  Ghostty file alone does not configure full application appearance.
 - The README downloads table links each file at the release tag; the site
   serves a copy at `ports/<slug>/<file>`.
 

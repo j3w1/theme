@@ -1978,19 +1978,19 @@
   ],
   "compatibility": [
     {
-      "settingsVersion": "10.0.26100.9549",
+      "settingsVersion": "10.0.26100.9818",
       "build": 26300,
       "architecture": "X64",
-      "startDockedVersion": "10.0.26100.9711",
-      "shellExperienceVersion": "10.0.26100.9549",
-      "shellPackageVersion": "10.0.26100.8115",
-      "explorerFixedVersion": "10.0.26100.9711",
-      "clientPackageVersion": "1000.26100.372.0",
+      "startDockedVersion": "10.0.26100.9818",
+      "shellExperienceVersion": "10.0.26100.9818",
+      "shellPackageVersion": "10.0.26100.9818",
+      "explorerFixedVersion": "10.0.26100.9818",
+      "clientPackageVersion": "1000.26100.385.0",
       "startLayout": "redesigned",
-      "explorerVersion": "10.0.26100.8117",
-      "searchVersion": "2608.25008.200.0",
+      "explorerVersion": "10.0.26100.9818",
+      "searchVersion": "2609.12000.100.0",
       "startPackageVersion": "10.0.26100.4768",
-      "ubr": 9711,
+      "ubr": 9818,
       "status": "candidate"
     }
   ],
@@ -2002,7 +2002,7 @@
     "Static cursor shapes preserve roles; host accessibility pointer overrides take priority."
   ],
   "nativeExplorer": {
-    "version": "1.8.6",
+    "version": "1.8.7",
     "background": "color.surface.canvas",
     "foreground": "color.text.default",
     "hover": "color.interaction.hover.bg",
@@ -2025,15 +2025,15 @@
     "folderEdge": "color.border.active"
   },
   "nativeExplorerModules": {
-    "FRAME": "10.0.26100.9549",
-    "DUI": "10.0.26100.9549",
-    "COMCTL": "6.10.26100.9711",
-    "WIC": "10.0.26100.9711",
-    "SHELLCOMMON": "10.0.26100.9711"
+    "FRAME": "10.0.26100.9818",
+    "DUI": "10.0.26100.9818",
+    "COMCTL": "6.10.26100.9818",
+    "WIC": "10.0.26100.9818",
+    "SHELLCOMMON": "10.0.26100.9818"
   },
   "monacoPreview": {
-    "version": "1.1",
-    "hostVersion": "0.101.2362.0",
+    "version": "1.1.1",
+    "hostVersion": "0.102.2933.0",
     "templateSha256": "7e8f2bfb81aa6498bd2d236c3eae54c8e42633cf288f9299df62d2537b553bac",
     "colors": {
       "editor.background": "color.surface.canvas",
@@ -2279,11 +2279,11 @@
     "buttonStyleTarget": "CalculatorApp.Controls.CalculatorButton, CalculatorApp, Version=11.2607.0.0, Culture=neutral, PublicKeyToken=null"
   },
   "markdownPreview": {
-    "version": "1.4.2",
-    "hostVersion": "0.101.2362.0",
-    "hostSha256": "d48704360aa8c8d5a3f572a055b176d50d58206f386cda49b2760beb3fd00cd9",
-    "controlSha256": "e47fcc38944ab5920aa49a31a2d0fef212865d1f5a62a65a08012a1767bed9cc",
-    "helperSha256": "35cb5f5e8e1d201d22db5d6b956195c04ae1a79469d36f25b90b6eeee6240ab7",
+    "version": "1.4.3",
+    "hostVersion": "0.102.2933.0",
+    "hostSha256": "e4ed4dfc3e8b3b97b1214e5655fa4ed76b2f47b8f988ef3477ccaa3608b23c53",
+    "controlSha256": "da51a0c36f615ed34219d810aaf4ce3806721bcbeba2b7e01100ed3ff94a700e",
+    "helperSha256": "d4659bdd5ae3fdf622063149b3133b5af6716bcd2a9907653ce0cc0001b01b09",
     "headers": [
       {
         "theme": "dark",
@@ -2395,12 +2395,21 @@
         "backgroundGetterRva": 354176,
         "backgroundSetterRva": 354368,
         "controllerCloseRva": 347328
+      },
+      {
+        "version": "156.0.4314.58",
+        "sha256": "f01ee4397e3f366460011ce1224e7e0f779d96321f97b6de5a0bb435d319dcc4",
+        "navigateToStringRva": 558352,
+        "navigateRva": 558192,
+        "backgroundGetterRva": 354128,
+        "backgroundSetterRva": 354320,
+        "controllerCloseRva": 347232
       }
     ],
     "nativeHost": {
       "version": "10.0.26100.8115",
       "sha256": "0402afd1e3231da4841a093040f861b1af321f3dd6740c879de9d1e3d600d95e",
-      "explorerSha256": "eee089fe6f927c7f0d51b0abd9d70c094157e33673ad760713ec7b1cea18ee11"
+      "explorerSha256": "0c857b2af68be73283875745a4aee812761e58ff966d005953c3b4378a244526"
     }
   },
   "notepadNative": {
@@ -2415,11 +2424,11 @@
     }
   },
   "notepadChrome": {
-    "version": "1.2.34",
+    "version": "1.2.35",
     "packageFullName": "Microsoft.WindowsNotepad_11.2607.14.0_x64__8wekyb3d8bbwe",
-    "runtimePackage": "Microsoft.WindowsAppRuntime.2_2.5.1.0_x64__8wekyb3d8bbwe",
-    "runtimeSha256": "aad12524765e6fb63f0ae26a45a9ba3104f24fde66413d8a3036fbed74a1e990",
-    "diagnosticsBridgeSha256": "76fa4a93d1ae9c77f8c89222fbe7870e9b7c6eccf8d35d91ec43404df180e29c",
+    "runtimePackage": "Microsoft.WindowsAppRuntime.2_2.6.4.0_x64__8wekyb3d8bbwe",
+    "runtimeSha256": "3feb212dd3255f8b977f71197e692e4a4ef5d515eafc9c8b3cac49936783aa4b",
+    "diagnosticsBridgeSha256": "ca1a3c68c2474beb2521d46a13f3c4a8bad90aaea394b43c67bbb6b31a23053d",
     "captionColors": {},
     "existingCaptionRollback": "windows-default"
   },
@@ -2777,11 +2786,11 @@
     "ScrollBarButtonArrowForegroundDisabled": "color.text.disabled"
   },
   "paintChrome": {
-    "version": "1.0.31",
+    "version": "1.0.32",
     "packageFullName": "Microsoft.Paint_11.2605.81.0_x64__8wekyb3d8bbwe",
-    "runtimePackage": "Microsoft.WindowsAppRuntime.2_2.5.1.0_x64__8wekyb3d8bbwe",
-    "runtimeSha256": "aad12524765e6fb63f0ae26a45a9ba3104f24fde66413d8a3036fbed74a1e990",
-    "diagnosticsBridgeSha256": "76fa4a93d1ae9c77f8c89222fbe7870e9b7c6eccf8d35d91ec43404df180e29c",
+    "runtimePackage": "Microsoft.WindowsAppRuntime.2_2.6.4.0_x64__8wekyb3d8bbwe",
+    "runtimeSha256": "3feb212dd3255f8b977f71197e692e4a4ef5d515eafc9c8b3cac49936783aa4b",
+    "diagnosticsBridgeSha256": "ca1a3c68c2474beb2521d46a13f3c4a8bad90aaea394b43c67bbb6b31a23053d",
     "captionColors": {
       "BackgroundColor": "color.surface.canvas",
       "ForegroundColor": "color.text.default",
@@ -2798,21 +2807,21 @@
     }
   },
   "nativeExplorerModuleDigests": {
-    "WIC": "e82652590bce20641926956a65eade7c54e71c240557dba37335f061352b58e0",
-    "SHELLCOMMON": "a76a9246b16a3c237607cc3d99815e03986ef7731c2b88480cfbd6edf1ef4d3d"
+    "WIC": "389703886cdf613073d405cc6ddea1a3097a27258770cd3e7ea8ac4940180bce",
+    "SHELLCOMMON": "176583a40ed6f0ab9414bebafa66fe443711937468c2b335a7fc96fb0e35a55a"
   },
   "terminalChrome": {
-    "version": "1.0.15",
+    "version": "1.0.16",
     "packageFullName": "Microsoft.WindowsTerminal_1.24.12741.0_x64__8wekyb3d8bbwe",
-    "runtimeSha256": "67d90ad2f75bbd50607bfd7c3d73694e948eb993c135b6bb23d4965287ca4bad",
-    "diagnosticsBridgeSha256": "67d90ad2f75bbd50607bfd7c3d73694e948eb993c135b6bb23d4965287ca4bad",
+    "runtimeSha256": "da3ae828c807b56eab79981e68dd605daec066b088ff8836afbb8bd04de18c01",
+    "diagnosticsBridgeSha256": "da3ae828c807b56eab79981e68dd605daec066b088ff8836afbb8bd04de18c01",
     "captionColors": {},
     "controlsPackage": "Microsoft.UI.Xaml.2.8_8.2511.26001.0_x64__8wekyb3d8bbwe",
     "controlsSha256": "fe5f8d9d545f778e6778e31c7fb4b01227f12dd6aec4d4bfc54ef76ba920baae"
   },
   "settingsStartup": {
     "sourceSha256": "7424d3b2298d06b4c8dc0e2b16a6e49011c4af2e97ec92ef28ecd2ad53bf8571",
-    "executableSha256": "c514b73f3b9cc38be1dc817c177d07ecf12ce4ce9e21df5d54128e7359198bba",
-    "xamlSha256": "67d90ad2f75bbd50607bfd7c3d73694e948eb993c135b6bb23d4965287ca4bad"
+    "executableSha256": "310e83f20fe92416371916d829e9e6d0d16a8fa91485e10caa67dbb8e5f9f870",
+    "xamlSha256": "da3ae828c807b56eab79981e68dd605daec066b088ff8836afbb8bd04de18c01"
   }
 }

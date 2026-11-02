@@ -10,7 +10,7 @@ const entry = value => ({ value, reason: "Explicit analytical test value.", trad
 
 test("candidate alias resolution is isolated from baseline and preserves ANSI", () => {
   const before = structuredClone([...baseline.resolved]);
-  const { resolved } = applyOverlay(baseline.flat, input({ "color.primitive.rose.700": entry("#eebac2"), "color.primitive.red.650": entry("#ff7788") }), baseline.baselineDigest);
+  const { resolved } = applyOverlay(baseline.flat, input({ "color.primitive.modern.text": entry("#eebac2"), "color.primitive.red.650": entry("#ff7788") }), baseline.baselineDigest);
   assert.equal(resolved.get("color.text.default").resolved.hex, "#eebac2");
   assert.deepEqual([...baseline.resolved], before);
   for (let i = 0; i < 16; i++) assert.deepEqual(resolved.get(`color.primitive.ansi.${i}`).resolved, baseline.resolved.get(`color.primitive.ansi.${i}`).resolved);

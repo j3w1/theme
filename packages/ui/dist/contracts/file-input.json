@@ -234,9 +234,16 @@
       "color.interaction.text-selection.text",
       "color.primitive.alpha.transparent",
       "color.primitive.ink.0",
-      "color.primitive.ink.30",
       "color.primitive.ink.40",
-      "color.primitive.ink.60",
+      "color.primitive.modern.bright",
+      "color.primitive.modern.control",
+      "color.primitive.modern.disabled",
+      "color.primitive.modern.divider",
+      "color.primitive.modern.muted",
+      "color.primitive.modern.panel",
+      "color.primitive.modern.red",
+      "color.primitive.modern.subtle",
+      "color.primitive.modern.text",
       "color.primitive.paper.100",
       "color.primitive.paper.90",
       "color.primitive.red.100",
@@ -248,12 +255,6 @@
       "color.primitive.red.550",
       "color.primitive.red.750",
       "color.primitive.red.800",
-      "color.primitive.red.850",
-      "color.primitive.rose.300",
-      "color.primitive.rose.350",
-      "color.primitive.rose.450",
-      "color.primitive.rose.600",
-      "color.primitive.rose.700",
       "color.primitive.rose.800",
       "color.status.danger.border",
       "color.status.danger.text",
@@ -400,11 +401,9 @@
         "decisionIds": []
       },
       "color.border.control": {
-        "action": "use-and-report",
-        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
-        "decisionIds": [
-          "D-007"
-        ]
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
       },
       "color.border.disabled": {
         "action": "use",
@@ -412,11 +411,9 @@
         "decisionIds": []
       },
       "color.border.divider": {
-        "action": "use-and-report",
-        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
-        "decisionIds": [
-          "D-008"
-        ]
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
       },
       "color.interaction.disabled.bg": {
         "action": "use",
@@ -624,6 +621,6 @@
   "copy": {
     "directory": "copy/file-input/",
     "manifest": "copy/file-input/manifest.json",
-    "digest": "sha256-ZlS6DvxSc1HK7pDLkYkz1tr2T8iyiVuQT+MNAj32HJc="
+    "digest": "sha256-09IhTHNQcFDiGDOHIu14ueyLNFTe2Gbeu3Ud2NcWUlU="
   }
 }

@@ -24,7 +24,7 @@
 #include <string>
 #include <mutex>
 #include <algorithm>
-static constexpr COLORREF canvas=RGB(0,0,0),prose=RGB(233,148,153),selection=RGB(145,20,16),selectedText=RGB(244,238,238);
+static constexpr COLORREF canvas=RGB(0,0,0),prose=RGB(216,222,233),selection=RGB(145,20,16),selectedText=RGB(244,238,238);
 static const wchar_t* property=L"j3w1-notepad-native-owner";
 static std::atomic<bool> enabled{false};
 static UINT dispatch=0;

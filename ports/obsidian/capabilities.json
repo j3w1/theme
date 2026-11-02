@@ -1821,6 +1821,121 @@
       "state": "unsupported",
       "surface": "interface",
       "reason": "Obsidian has no surface for the user's own messages."
+    },
+    "color.primitive.modern.panel": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.modern.raised": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.modern.overlay": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.modern.hover": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.modern.divider": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.modern.control": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.modern.disabled": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.modern.subtle": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.modern.muted": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.modern.text": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.modern.bright": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.modern.red": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.modern.green": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.modern.amber": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.modern.blue": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.modern.violet": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.modern.cyan": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.modern.bright-red": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.modern.bright-green": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.modern.bright-amber": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.modern.bright-blue": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.modern.bright-violet": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
+    },
+    "color.primitive.modern.bright-cyan": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives."
     }
   },
   "rollback": "Select the previous theme or Default in Settings → Appearance → Themes; restore both previous files together to roll back a j3w1 update."

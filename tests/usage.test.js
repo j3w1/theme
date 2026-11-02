@@ -26,7 +26,7 @@ test("the browser query projection returns the same documented results", () => {
 test("semantic queries require one documented edge and preserve eligibility", () => {
   const results = queryUsage(index, { component: "text-field", state: "default", part: "border" });
   assert.deepEqual(results.map((t) => t.path), ["color.border.control"]);
-  assert.equal(results[0].eligibility.action, "use-and-report");
+  assert.equal(results[0].eligibility.action, "use");
   assert.equal(queryUsage(index, { component: "text-field", part: "root.border", state: "default" }).length, 0);
   assert.equal(queryUsage(index, { profile: "extended", eligible: true }).length, 0);
   assert.ok(queryUsage(index, { query: "#e53935" }).length > 1);
@@ -39,8 +39,8 @@ test("a controlled mapping change updates reverse usage without merging equal va
   changed.find((c) => c.id === "text-field").tokens["root.border"] = "color.border.active";
   const next = buildUsageIndex({ manifest, profiles, components: changed });
   assert.equal(queryUsage(next, { component: "text-field", part: "root.border" })[0].path, "color.border.active");
-  assert.notDeepEqual(next.profiles.default.tokens["color.border.active"].uses, next.profiles.default.tokens["color.border.overlay"].uses);
-  assert.equal(next.profiles.default.tokens["color.border.active"].css, next.profiles.default.tokens["color.border.overlay"].css);
+  assert.notDeepEqual(next.profiles.default.tokens["color.border.active"].uses, next.profiles.default.tokens["color.border.selected-indicator"].uses);
+  assert.equal(next.profiles.default.tokens["color.border.active"].css, next.profiles.default.tokens["color.border.selected-indicator"].css);
 });
 
 test("every indexed source resolves to an actual source line and the schema is closed", async () => {

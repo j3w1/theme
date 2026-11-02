@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — error-state
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-o4R1QcVREh4X3VMinZljRvfzhRgfN1pUaC1bgNc444o=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-uUyex258/cCN40I3QfAc17Y4Big+7Dc2v2FeXtKT5bE=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/error-state.json
 spec: spec/components/error-state.md  site: https://j3w1.github.io/theme/reference/#c-error-state
 maturity: stable  priority: R2
@@ -8,32 +8,31 @@ Summary: A specific failure explanation with an explicit recovery request.
 
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg                                             #100c0c  ({color.surface.default})  use
-  root.text                                           #e99499  ({color.text.default})  use
-  root.border                                         #a3676b  ({color.border.control})  use-and-report (D-007)
-  heading.text                                        #ffa2a7  ({color.text.bright})  use
-  secondary.text                                      #bd787d  ({color.text.muted})  use
+  root.bg                                             #0e1014  ({color.surface.default})  use
+  root.text                                           #d8dee9  ({color.text.default})  use
+  root.border                                         #747e8e  ({color.border.control})  use
+  heading.text                                        #f1f5f9  ({color.text.bright})  use
+  secondary.text                                      #a6afbd  ({color.text.muted})  use
   control.bg                                          rgb(0 0 0 / 0%)  ({color.action.secondary.bg})  use
-  control.text                                        #ffa2a7  ({color.action.secondary.text})  use
-  control.border                                      #a3676b  ({color.action.secondary.border})  use
+  control.text                                        #f1f5f9  ({color.action.secondary.text})  use
+  control.border                                      #747e8e  ({color.action.secondary.border})  use
   control.bg-hover                                    #630f0d  ({color.action.secondary.hover-bg})  use
   control.bg-active                                   #420f0c  ({color.action.secondary.pressed-bg})  use
   control.border-active                               #e53935  ({color.border.active})  use
   control.focus                                       #e53935  ({color.interaction.focus.ring})  use
   dependency.role-border-width-default                1px  ({border.width.default})  use
   dependency.role-border-width-emphasis               2px  ({border.width.emphasis})  use
-  dependency.role-color-border-disabled               #7d1310  ({color.border.disabled})  use
-  dependency.role-color-interaction-disabled-bg       #160b0b  ({color.interaction.disabled.bg})  use
+  dependency.role-color-border-disabled               #303640  ({color.border.disabled})  use
+  dependency.role-color-interaction-disabled-bg       #0e1014  ({color.interaction.disabled.bg})  use
   dependency.role-color-status-danger-border          #e53935  ({color.status.danger.border})  use
-  dependency.role-color-status-danger-text            #f73f35  ({color.status.danger.text})  use
-  dependency.role-color-text-disabled                 #8a5559  ({color.text.disabled})  use
+  dependency.role-color-status-danger-text            #f07178  ({color.status.danger.text})  use
+  dependency.role-color-text-disabled                 #727b89  ({color.text.disabled})  use
   dependency.role-density-comfortable-control-height  32px  ({density.comfortable.control-height})  use
   dependency.role-density-compact-control-height      24px  ({density.compact.control-height})  use
   dependency.role-focus-offset                        -2px  ({focus.offset})  use
   dependency.role-radius-none                         0px  ({radius.none})  use
   dependency.role-space-12                            12px  ({space.12})  use
   dependency.role-space-8                             8px  ({space.8})  use
-State dependency disclosures: D-007
 
 States: default, error, loading, disabled, focus-visible
   default: Danger border and text heading. Its buttons are the secondary button (button.md). [Specific written explanation and error glyph.]

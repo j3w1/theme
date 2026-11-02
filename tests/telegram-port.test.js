@@ -118,7 +118,7 @@ test("emission is byte-identical across repeats and time zones", () => {
 });
 
 test("every token and upstream key has one classification with direct, non-redundant inheritance", () => {
-  assert.equal(resolved.size, 357);
+  assert.equal(resolved.size, 380); // D-041 adds 23 named developer palette primitives.
   assertPortMapping({ ...port, mapping }, resolved.keys());
   assertCapabilities({ ...port, mapping }, capabilities);
   const keys = Object.values(mapping.mappings).flat(); assert.equal(new Set(keys).size, keys.length);
@@ -311,7 +311,7 @@ test("Desktop zip has ordered STORED entries, fixed metadata and a minimal valid
   assert.deepEqual([...inflateSync(chunks[1].data)], [0, ...android.get("chat_wallpaper").slice(0, 3), 0, ...android.get("chat_wallpaper_gradient_to").slice(0, 3)]);
 });
 
-test("wallpaper, solid bubbles, rose messages, chrome emphasis and avatars keep the requested hierarchy", () => {
+test("wallpaper, solid bubbles, neutral messages, chrome emphasis and avatars keep the requested hierarchy", () => {
   assert.equal(roleOf("android", "chat_wallpaper"), "color.surface.canvas");
   assert.equal(roleOf("android", "chat_wallpaper_gradient_to"), "color.surface.chrome");
   const wallpaper = [android.get("chat_wallpaper"), android.get("chat_wallpaper_gradient_to")];
@@ -343,19 +343,28 @@ test("wallpaper, solid bubbles, rose messages, chrome emphasis and avatars keep 
   assert.equal(roleOf("android", "voipgroup_mutedIconUnscrolled"), "color.text.muted");
 });
 
-test("on-fill foregrounds retain contrast, near-white stays restricted and interface hues stay red/rose", () => {
+test("on-fill foregrounds retain contrast, neutral reading is explicit and semantic hues stay scoped", () => {
   const whiteRoles = ["color.text.on-selection", "color.interaction.selection.text", "color.text.on-action", "color.text.on-danger", "color.status.danger.on-fill", "color.text.link-hover", "color.text.highlight"];
   assert.deepEqual(mapping.mappings["color.text.highlight"], ["desktop:historyFileThumbIconFg"], "only the contrast-critical thumbnail control owns a deliberate highlight");
   assert.equal(effective("desktop", "historyFileThumbRadialFg").role, "color.text.highlight", "the thumbnail radial control inherits the same contrast-critical highlight");
-  // Near-white by relative luminance, not by literal value, so a token change
-  // cannot silently widen it. Bright rose (text.bright) stays well below.
+  // D-041 explicitly admits neutral reading and emphasis. This is separate
+  // from the on-fill ledger, whose complete contrast coverage stays intact.
+  const readingRoles = ["color.text.default", "color.text.prose", "color.text.bright", "color.text.heading", "color.icon.default", "color.code.syntax.operator"];
+  const neutralRoles = new Set([
+    ...readingRoles, "color.text.muted", "color.text.subtle", "color.text.disabled", "color.text.placeholder",
+    "color.surface.chrome-alt", "color.surface.default", "color.surface.raised", "color.surface.overlay",
+    "color.border.divider", "color.border.default", "color.border.control", "color.border.overlay", "color.border.disabled",
+    "color.interaction.hover.bg", "color.interaction.hover.bg-strong", "color.interaction.disabled.bg",
+    "color.interaction.scrollbar.thumb", "color.interaction.scrollbar.thumb-hover", "color.interaction.selection.inactive-text",
+    "color.action.secondary.text", "color.action.secondary.border", "color.action.tertiary.text", "color.icon.decorative",
+  ]);
   // Fills a near-white glyph may sit on, plus the dark media scrim behind
   // loader icons over photos.
   const fills = new Set(["color.action.primary.bg", "color.action.primary.hover-bg", "color.action.primary.pressed-bg", "color.interaction.selection.bg", "color.interaction.selection.inactive-bg", "color.interaction.hover.bg-strong", "color.status.danger.fill", "color.interaction.text-selection.bg", "color.surface.backdrop"]);
   for (const target of ["android", "desktop"]) {
-    // Every near-white key is in the reviewed table. The same table also
-    // retains all rose on-fill pairs, so D-033 cannot remove their contrast checks.
-    const near = registry[target].keys.filter(key => { const e = effective(target, key); return e && luminance(e.color) > 0.6; }).sort();
+    // Every non-reading near-white key is in the reviewed on-fill table.
+    // Reading colours cannot remove or skip any on-fill pair checks.
+    const near = registry[target].keys.filter(key => { const e = effective(target, key); return e && !readingRoles.includes(e.role) && luminance(e.color) > 0.6; }).sort();
     assert.deepEqual(near, Object.keys(coverage[target].onFill).filter(key => luminance(effective(target, key).color) > 0.6).sort(), `${target} near-white keys`);
     for (const [key, backgrounds] of Object.entries(coverage[target].onFill)) {
       assert.ok(backgrounds.length, `${target}:${key} names its backgrounds`);
@@ -372,8 +381,12 @@ test("on-fill foregrounds retain contrast, near-white stays restricted and inter
   for (const [native, role] of Object.entries(owner)) {
     const [target, key] = native.split(":"), color = rgba(target, key), hex = rgbHex(color);
     if (luminance(color) > 0.6) {
-      assert.ok(whiteRoles.includes(role), `${native}: ${role}`);
+      assert.ok([...whiteRoles, ...readingRoles].includes(role), `${native}: ${role}`);
       continue; // Explicitly allowed near-white roles have no interface hue assignment.
+    }
+    if (neutralRoles.has(role)) {
+      assert.equal(hex, resolved.get(role).resolved.hex, `${native}: neutral value follows its canonical role`);
+      continue;
     }
     if (/^color\.(status|code|terminal|chart|diagnostic)\./.test(role)) continue;
     const [r, g, b] = color.slice(0, 3).map(n => n / 255), max = Math.max(r, g, b), min = Math.min(r, g, b), delta = max - min;

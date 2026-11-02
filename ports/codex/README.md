@@ -1,10 +1,9 @@
 # j3w1 theme for Codex
 
 A syntax theme for the Codex CLI, `j3w1`, built only from approved roles. It
-uses the opt-in coloured code roles (D-030): green strings; amber numbers,
-constants, functions, attributes and escapes; blue types and properties;
-bright-rose operators. Keywords, tags, comments, variables and punctuation
-keep the rose code roles. Status: experimental (no recorded import evidence).
+uses the shared semantic code roles (D-041): distinct syntax hues with rose
+variables/operators and terminal reading text, plus muted punctuation on a true-black terminal base. The
+Codex accent uses the strong accent role so it remains suitable for diff tints. Status: experimental (no recorded import evidence).
 
 Needs Node 24, Git, a clone of this repository (with `npm ci` done) and Codex
 CLI 0.156.1 or later. Codex also uses the terminal's colours (see Limits), so
@@ -83,8 +82,9 @@ Codex's own; `test` prints them.
   invalid code are not underlined.
 - Codex paints no code background, current line, selection, gutter or find
   highlight, and no tint for modified lines. The file still carries them.
-- Inside diff lines Codex keeps the code colours on the line tint; headings,
-  invalid code and the Codex accent fall below 4.5:1 there.
+- Inside diff lines Codex keeps the code colours on the line tint. The shared
+  palette and strong accent must be checked against those actual tints; a
+  valid tmTheme file alone does not verify the running renderer.
 
 ## Files
 

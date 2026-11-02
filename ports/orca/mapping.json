@@ -2,77 +2,232 @@
   "schemaVersion": 1,
   "mappings": {
     "color.border.divider": [
-      "split-divider-color"
+      "split-divider-color",
+      "app.tokens.--border",
+      "app.tokens.--sidebar-border",
+      "app.tokens.--worktree-sidebar-border"
     ],
     "color.terminal.ansi.0": [
-      "palette[0]"
+      "palette[0]",
+      "terminal.black"
     ],
     "color.terminal.ansi.1": [
-      "palette[1]"
+      "palette[1]",
+      "terminal.red"
     ],
     "color.terminal.ansi.10": [
-      "palette[10]"
+      "palette[10]",
+      "terminal.brightGreen"
     ],
     "color.terminal.ansi.11": [
-      "palette[11]"
+      "palette[11]",
+      "terminal.brightYellow"
     ],
     "color.terminal.ansi.12": [
-      "palette[12]"
+      "palette[12]",
+      "terminal.brightBlue"
     ],
     "color.terminal.ansi.13": [
-      "palette[13]"
+      "palette[13]",
+      "terminal.brightMagenta"
     ],
     "color.terminal.ansi.14": [
-      "palette[14]"
+      "palette[14]",
+      "terminal.brightCyan"
     ],
     "color.terminal.ansi.15": [
-      "palette[15]"
+      "palette[15]",
+      "terminal.brightWhite"
     ],
     "color.terminal.ansi.2": [
-      "palette[2]"
+      "palette[2]",
+      "terminal.green"
     ],
     "color.terminal.ansi.3": [
-      "palette[3]"
+      "palette[3]",
+      "terminal.yellow"
     ],
     "color.terminal.ansi.4": [
-      "palette[4]"
+      "palette[4]",
+      "terminal.blue"
     ],
     "color.terminal.ansi.5": [
-      "palette[5]"
+      "palette[5]",
+      "terminal.magenta"
     ],
     "color.terminal.ansi.6": [
-      "palette[6]"
+      "palette[6]",
+      "terminal.cyan"
     ],
     "color.terminal.ansi.7": [
-      "palette[7]"
+      "palette[7]",
+      "terminal.white"
     ],
     "color.terminal.ansi.8": [
-      "palette[8]"
+      "palette[8]",
+      "terminal.brightBlack"
     ],
     "color.terminal.ansi.9": [
-      "palette[9]"
+      "palette[9]",
+      "terminal.brightRed"
     ],
     "color.terminal.bg": [
       "background",
-      "cursor-text"
+      "cursor-text",
+      "terminal.background",
+      "terminal.cursorAccent"
     ],
     "color.terminal.cursor": [
-      "cursor-color"
+      "cursor-color",
+      "terminal.cursor"
     ],
     "color.terminal.fg": [
-      "foreground"
+      "foreground",
+      "terminal.foreground"
     ],
     "color.terminal.selection-bg": [
-      "selection-background"
+      "selection-background",
+      "terminal.selectionBackground"
     ],
     "color.terminal.selection-text": [
-      "selection-foreground"
+      "selection-foreground",
+      "terminal.selectionForeground"
     ],
     "font.family.mono": [
       "font-family"
     ],
     "font.size.terminal": [
       "font-size"
+    ],
+    "color.surface.canvas": [
+      "app.tokens.--background"
+    ],
+    "color.code.bg": [
+      "app.tokens.--editor-surface"
+    ],
+    "color.text.default": [
+      "app.tokens.--foreground",
+      "app.tokens.--card-foreground",
+      "app.tokens.--popover-foreground",
+      "app.tokens.--secondary-foreground",
+      "app.tokens.--sidebar-foreground",
+      "app.tokens.--worktree-sidebar-foreground"
+    ],
+    "color.surface.default": [
+      "app.tokens.--card",
+      "app.tokens.--muted"
+    ],
+    "color.surface.raised": [
+      "app.tokens.--popover",
+      "app.tokens.--secondary"
+    ],
+    "color.text.muted": [
+      "app.tokens.--muted-foreground"
+    ],
+    "color.interaction.selection.bg": [
+      "app.tokens.--accent",
+      "app.tokens.--sidebar-accent",
+      "app.tokens.--worktree-sidebar-accent"
+    ],
+    "color.interaction.selection.text": [
+      "app.tokens.--accent-foreground",
+      "app.tokens.--sidebar-accent-foreground",
+      "app.tokens.--worktree-sidebar-accent-foreground"
+    ],
+    "color.border.control": [
+      "app.tokens.--input"
+    ],
+    "color.interaction.focus.ring": [
+      "app.tokens.--ring",
+      "app.tokens.--sidebar-ring",
+      "app.tokens.--worktree-sidebar-ring"
+    ],
+    "color.chart.series-1": [
+      "app.tokens.--chart-1"
+    ],
+    "color.chart.series-2": [
+      "app.tokens.--chart-2"
+    ],
+    "color.chart.series-3": [
+      "app.tokens.--chart-3"
+    ],
+    "color.chart.series-4": [
+      "app.tokens.--chart-4"
+    ],
+    "color.status.info.text": [
+      "app.tokens.--chart-5"
+    ],
+    "color.surface.chrome": [
+      "app.tokens.--sidebar",
+      "app.tokens.--worktree-sidebar"
+    ],
+    "color.code.syntax.comment": [
+      "app.tokenColors.comment.foreground"
+    ],
+    "color.code.syntax.keyword": [
+      "app.tokenColors.keyword.foreground"
+    ],
+    "color.code.syntax.variable": [
+      "app.tokenColors.variable.foreground"
+    ],
+    "color.code.syntax.tag": [
+      "app.tokenColors.tag.foreground"
+    ],
+    "color.code.syntax.punctuation": [
+      "app.tokenColors.punctuation.foreground"
+    ],
+    "color.text.heading": [
+      "app.tokenColors.heading.foreground"
+    ],
+    "color.text.link": [
+      "app.tokenColors.link.foreground"
+    ],
+    "color.diff.added.gutter": [
+      "app.tokenColors.inserted.foreground"
+    ],
+    "color.diff.removed.gutter": [
+      "app.tokenColors.deleted.foreground"
+    ],
+    "color.diff.modified.gutter": [
+      "app.tokenColors.changed.foreground"
+    ],
+    "color.diagnostic.error.text": [
+      "app.tokenColors.invalid.foreground"
+    ],
+    "color.code.syntax.operator": [
+      "app.tokenColors.operator.foreground"
+    ],
+    "color.code.syntax.string": [
+      "app.tokenColors.string.foreground"
+    ],
+    "color.code.syntax.number": [
+      "app.tokenColors.number.foreground"
+    ],
+    "color.code.syntax.constant": [
+      "app.tokenColors.constant.foreground"
+    ],
+    "color.code.syntax.function": [
+      "app.tokenColors.function.foreground"
+    ],
+    "color.code.syntax.type": [
+      "app.tokenColors.type.foreground"
+    ],
+    "color.code.syntax.property": [
+      "app.tokenColors.property.foreground"
+    ],
+    "color.code.syntax.attribute": [
+      "app.tokenColors.attribute.foreground"
+    ],
+    "color.code.syntax.escape": [
+      "app.tokenColors.escape.foreground"
+    ],
+    "color.text.accent-strong": [
+      "app.tokens.--primary",
+      "app.tokens.--sidebar-primary"
+    ],
+    "color.text.inverse": [
+      "app.tokens.--primary-foreground",
+      "app.tokens.--sidebar-primary-foreground"
     ]
   },
   "unmapped": {
@@ -82,120 +237,82 @@
     "breakpoint.md": "Not a colour; a terminal theme file carries colours only.",
     "breakpoint.sm": "Not a colour; a terminal theme file carries colours only.",
     "breakpoint.xs": "Not a colour; a terminal theme file carries colours only.",
-    "color.action.destructive.border": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.action.destructive.filled-bg": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.action.destructive.filled-text": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.action.destructive.hover-bg": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.action.destructive.hover-text": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.action.destructive.pressed-bg": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.action.destructive.text": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.action.primary.bg": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.action.primary.border": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.action.primary.hover-bg": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.action.primary.pressed-bg": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.action.primary.text": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.action.secondary.bg": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.action.secondary.border": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.action.secondary.hover-bg": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.action.secondary.pressed-bg": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.action.secondary.text": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.action.tertiary.hover-bg": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.action.tertiary.text": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.border.active": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.border.control": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.border.default": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.border.disabled": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.border.overlay": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.border.selected-indicator": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.border.selected-indicator-inactive": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.border.strong": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.chart.axis": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.chart.grid": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.chart.label": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.chart.series-1": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.chart.series-2": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.chart.series-3": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.chart.series-4": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.code.bg": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.code.bracket-match": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.code.caret": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.code.current-line": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.code.gutter-bg": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.code.gutter-rule": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.code.hued.attribute": "Syntax colour; a terminal theme file carries terminal colours only.",
-    "color.code.hued.constant": "Syntax colour; a terminal theme file carries terminal colours only.",
-    "color.code.hued.escape": "Syntax colour; a terminal theme file carries terminal colours only.",
-    "color.code.hued.function": "Syntax colour; a terminal theme file carries terminal colours only.",
-    "color.code.hued.number": "Syntax colour; a terminal theme file carries terminal colours only.",
-    "color.code.hued.operator": "Syntax colour; a terminal theme file carries terminal colours only.",
-    "color.code.hued.property": "Syntax colour; a terminal theme file carries terminal colours only.",
-    "color.code.hued.string": "Syntax colour; a terminal theme file carries terminal colours only.",
-    "color.code.hued.type": "Syntax colour; a terminal theme file carries terminal colours only.",
-    "color.code.indent-guide": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.code.line-number": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.code.line-number-active": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.code.search-current-bg": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.code.search-current-text": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.code.search-match-bg": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.code.selection-bg": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.code.syntax.attribute": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.code.syntax.comment": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.code.syntax.constant": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.code.syntax.deprecated": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.code.syntax.escape": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.code.syntax.function": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.code.syntax.heading": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.code.syntax.invalid": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.code.syntax.keyword": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.code.syntax.number": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.code.syntax.operator": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.code.syntax.property": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.code.syntax.punctuation": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.code.syntax.string": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.code.syntax.tag": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.code.syntax.type": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.code.syntax.variable": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.code.whitespace": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.diagnostic.error.bg": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.diagnostic.error.stripe": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.diagnostic.error.text": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.diagnostic.error.underline": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.diagnostic.hint.underline": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.diagnostic.info.text": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.diagnostic.info.underline": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.diagnostic.unused.text": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.diagnostic.warning.stripe": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.diagnostic.warning.text": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.diagnostic.warning.underline": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.diff.added.bg": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.diff.added.emphasis": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.diff.added.gutter": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.diff.conflict-border": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.diff.header-bg": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.diff.modified.bg": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.diff.modified.gutter": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.diff.removed.bg": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.diff.removed.emphasis": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.diff.removed.gutter": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.icon.decorative": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.icon.default": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.interaction.disabled.bg": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.interaction.drop-target": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.interaction.focus.ring": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.interaction.focus.ring-container": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.interaction.hover.bg": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.interaction.hover.bg-strong": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.interaction.marquee": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.interaction.pressed.bg": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.interaction.scrollbar.thumb": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.interaction.scrollbar.thumb-hover": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.interaction.scrollbar.track": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.interaction.selection.bg": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.interaction.selection.inactive-bg": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.interaction.selection.inactive-text": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.interaction.selection.text": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.interaction.text-selection.bg": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.interaction.text-selection.text": "Interface colour role; a terminal theme file carries terminal colours only.",
+    "color.action.destructive.border": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.action.destructive.filled-bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.action.destructive.filled-text": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.action.destructive.hover-bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.action.destructive.hover-text": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.action.destructive.pressed-bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.action.destructive.text": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.action.primary.border": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.action.primary.hover-bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.action.primary.pressed-bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.action.secondary.bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.action.secondary.border": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.action.secondary.hover-bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.action.secondary.pressed-bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.action.secondary.text": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.action.tertiary.hover-bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.action.tertiary.text": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.border.active": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.border.default": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.border.disabled": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.border.overlay": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.border.selected-indicator": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.border.selected-indicator-inactive": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.border.strong": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.chart.axis": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.chart.grid": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.chart.label": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.code.bracket-match": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.code.caret": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.code.current-line": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.code.gutter-bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.code.gutter-rule": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.code.indent-guide": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.code.line-number": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.code.line-number-active": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.code.search-current-bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.code.search-current-text": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.code.search-match-bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.code.selection-bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.code.syntax.deprecated": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.code.syntax.heading": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.code.syntax.invalid": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.code.whitespace": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.diagnostic.error.bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.diagnostic.error.stripe": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.diagnostic.error.underline": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.diagnostic.hint.underline": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.diagnostic.info.text": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.diagnostic.info.underline": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.diagnostic.unused.text": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.diagnostic.warning.stripe": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.diagnostic.warning.text": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.diagnostic.warning.underline": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.diff.added.bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.diff.added.emphasis": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.diff.conflict-border": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.diff.header-bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.diff.modified.bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.diff.removed.bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.diff.removed.emphasis": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.icon.decorative": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.icon.default": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.interaction.disabled.bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.interaction.drop-target": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.interaction.focus.ring-container": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.interaction.hover.bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.interaction.hover.bg-strong": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.interaction.marquee": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.interaction.pressed.bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.interaction.scrollbar.thumb": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.interaction.scrollbar.thumb-hover": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.interaction.scrollbar.track": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.interaction.selection.inactive-bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.interaction.selection.inactive-text": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.interaction.text-selection.bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.interaction.text-selection.text": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.primitive.alpha.black-55": "Primitive; ports consume roles, never primitives.",
     "color.primitive.alpha.black-65": "Primitive; ports consume roles, never primitives.",
     "color.primitive.alpha.red-12": "Primitive; ports consume roles, never primitives.",
@@ -276,62 +393,52 @@
     "color.primitive.rose.650": "Primitive; ports consume roles, never primitives.",
     "color.primitive.rose.700": "Primitive; ports consume roles, never primitives.",
     "color.primitive.rose.800": "Primitive; ports consume roles, never primitives.",
-    "color.status.danger.border": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.status.danger.fill": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.status.danger.on-fill": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.status.danger.text": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.status.danger.tint": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.status.info.border": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.status.info.fill": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.status.info.on-fill": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.status.info.text": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.status.info.tint": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.status.neutral.border": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.status.neutral.fill": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.status.neutral.on-fill": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.status.neutral.text": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.status.neutral.tint": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.status.success.border": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.status.success.fill": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.status.success.on-fill": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.status.success.text": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.status.success.tint": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.status.warning.border": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.status.warning.fill": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.status.warning.on-fill": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.status.warning.text": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.status.warning.tint": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.surface.backdrop": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.surface.canvas": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.surface.chrome": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.surface.chrome-alt": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.surface.code": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.surface.default": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.surface.desktop": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.surface.input": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.surface.overlay": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.surface.raised": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.surface.sunken": "Interface colour role; a terminal theme file carries terminal colours only.",
+    "color.status.danger.border": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.status.danger.fill": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.status.danger.on-fill": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.status.danger.text": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.status.danger.tint": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.status.info.border": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.status.info.fill": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.status.info.on-fill": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.status.info.tint": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.status.neutral.border": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.status.neutral.fill": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.status.neutral.on-fill": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.status.neutral.text": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.status.neutral.tint": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.status.success.border": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.status.success.fill": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.status.success.on-fill": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.status.success.text": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.status.success.tint": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.status.warning.border": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.status.warning.fill": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.status.warning.on-fill": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.status.warning.text": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.status.warning.tint": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.surface.backdrop": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.surface.chrome-alt": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.surface.code": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.surface.desktop": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.surface.input": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.surface.overlay": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.surface.sunken": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.surface.terminal": "The config has one background key, which carries color.terminal.bg (equal to ANSI 0); the pane surface has no separate key.",
     "color.terminal.prompt-bg": "The prompt chooses its own segment colours; a terminal theme carries the palette only.",
     "color.terminal.prompt-text": "The prompt chooses its own segment colours; a terminal theme carries the palette only.",
-    "color.text.accent": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.text.accent-strong": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.text.bright": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.text.default": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.text.disabled": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.text.inverse": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.text.link": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.text.link-hover": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.text.link-underline": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.text.muted": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.text.on-action": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.text.on-danger": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.text.on-light": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.text.on-selection": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.text.placeholder": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.text.prose": "Interface colour role; a terminal theme file carries terminal colours only.",
-    "color.text.subtle": "Interface colour role; a terminal theme file carries terminal colours only.",
+    "color.text.accent": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.text.bright": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.text.disabled": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.text.link-hover": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.text.link-underline": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.text.on-action": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.text.on-danger": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.text.on-light": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.text.on-selection": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.text.placeholder": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.text.prose": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.text.subtle": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "density.comfortable.control-height": "Not a colour; a terminal theme file carries colours only.",
     "density.comfortable.control-padding-x": "Not a colour; a terminal theme file carries colours only.",
     "density.comfortable.gap": "Not a colour; a terminal theme file carries colours only.",
@@ -403,11 +510,44 @@
     "z.raised": "Not a colour; a terminal theme file carries colours only.",
     "z.skip-link": "Not a colour; a terminal theme file carries colours only.",
     "z.toast": "Not a colour; a terminal theme file carries colours only.",
-    "color.text.heading": "Host exposes no separately mapped content heading/highlight foreground in this port.",
     "color.text.highlight": "Host exposes no separately mapped content heading/highlight foreground in this port.",
-    "color.interaction.text-selection.tint": "Interface colour role; a terminal theme file carries terminal colours only.",
+    "color.interaction.text-selection.tint": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.primitive.alpha.red-50": "Primitive; ports consume roles, never primitives.",
     "color.primitive.red.40": "Primitive; ports consume roles, never primitives.",
-    "color.surface.accent": "Interface colour role; a terminal theme file carries terminal colours only."
+    "color.surface.accent": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
+    "color.code.hued.operator": "The app theme maps the canonical code.syntax role; optional hued aliases are not separate host keys.",
+    "color.code.hued.string": "The app theme maps the canonical code.syntax role; optional hued aliases are not separate host keys.",
+    "color.code.hued.number": "The app theme maps the canonical code.syntax role; optional hued aliases are not separate host keys.",
+    "color.code.hued.constant": "The app theme maps the canonical code.syntax role; optional hued aliases are not separate host keys.",
+    "color.code.hued.function": "The app theme maps the canonical code.syntax role; optional hued aliases are not separate host keys.",
+    "color.code.hued.type": "The app theme maps the canonical code.syntax role; optional hued aliases are not separate host keys.",
+    "color.code.hued.property": "The app theme maps the canonical code.syntax role; optional hued aliases are not separate host keys.",
+    "color.code.hued.attribute": "The app theme maps the canonical code.syntax role; optional hued aliases are not separate host keys.",
+    "color.code.hued.escape": "The app theme maps the canonical code.syntax role; optional hued aliases are not separate host keys.",
+    "color.primitive.modern.panel": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.raised": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.overlay": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.hover": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.divider": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.control": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.disabled": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.subtle": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.muted": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.text": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.bright": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.red": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.green": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.amber": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.blue": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.violet": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.cyan": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.bright-red": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.bright-green": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.bright-amber": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.bright-blue": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.bright-violet": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.bright-cyan": "Primitive; ports consume roles, never primitives.",
+    "color.action.primary.bg": "No independent app or terminal key uses this role.",
+    "color.action.primary.text": "No independent app or terminal key uses this role."
   }
 }

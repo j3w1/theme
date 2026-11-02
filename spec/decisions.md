@@ -37,6 +37,7 @@ ordered by topic.
 
 | # | Title | Status | Date | Decided by |
 | --- | --- | --- | --- | --- |
+| D-041 | True-black developer palette and semantic terminal colours | accepted | 2026-11-02 | owner (explicit authorization to renovate all ports and replace #0c0909 with true black) |
 | D-001 | Controlled three-hue extension for status, diagnostics and diffs | accepted | 2026-09-06 | owner |
 | D-003 | Text-role corrections with new in-hue values | accepted | 2026-09-06 | owner |
 | D-007 | `border.control` uses `#A3676B` | proposed | 2026-09-06 | — |
@@ -88,6 +89,33 @@ ordered by topic.
 | --- | --- | --- | --- | --- |
 | D-018 | Declared port capabilities and fresh import evidence | proposed | 2026-09-08 | — |
 | D-034 | Versioned Windows native and Windhawk adapters | accepted | 2026-09-28 | owner (explicit implementation plan) |
+
+## D-041 True-black developer palette and semantic terminal colours
+
+**Decision.** Use true black for the default editor and terminal interiors and
+ANSI 0, neutral application text and near-black application layers, rose
+terminal and agent prose (`#e99499`), bright rose ANSI 15 (`#ffa2a7`),
+and distinguishable green, amber, blue, violet and cyan coding colours. Keep red
+for identity, focus, selected indicators and danger. Preserve historical ANSI
+primitives and the explicitly historical profile. App, terminal, syntax and
+native ports consume the same semantic roles. Rule: `spec/foundations.md`.
+
+**Why.** The owner reported pervasive red text, dim Claude edit additions and
+an unwanted tinted base. Rejected: making every surface black and every item
+red; a terminal-only import that leaves Orca's application appearance behind;
+editing generated exports independently. Colour remains paired with the host's
+text markers, glyphs and focus geometry. This supersedes the default colour
+assignments in D-023, D-029, D-032, D-033 and D-039 where they conflict, without
+changing their historical record or approving the extended profile.
+
+**Status.** accepted · 2026-11-02 · owner, through the explicit instruction to
+fully renovate the existing schemes for modern development, use true black
+instead of #0c0909 overall, and test/import the resulting ports. This records
+the authorized design scope, including the owner’s 2026-11-02 follow-up that
+ordinary white terminal text was too intense: use rose for terminal/agent
+prose and variables/operators, retaining white only for limited emphasis and
+neutral application UI. It does not claim visual acceptance, a release,
+publication or merge.
 
 ## D-000 Responsibility split
 

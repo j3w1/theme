@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — link
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-o4R1QcVREh4X3VMinZljRvfzhRgfN1pUaC1bgNc444o=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-uUyex258/cCN40I3QfAc17Y4Big+7Dc2v2FeXtKT5bE=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/link.json
 spec: spec/components/link.md  site: https://j3w1.github.io/theme/reference/#c-link
 maturity: stable  priority: R1
@@ -11,12 +11,12 @@ Tokens (resolved):
   root.text          #f73f35  ({color.text.link})  use
   root.underline     #dc282e  ({color.text.link-underline})  use
   root.text-hover    #f4eeee  ({color.text.link-hover})  use
-  root.bg-hover      #1c0a09  ({color.interaction.hover.bg})  use
+  root.bg-hover      #191c22  ({color.interaction.hover.bg})  use
   root.ring          #e53935  ({color.interaction.focus.ring})  use
   root.text-visited  #f73f35  ({color.text.link})  use
-  root.text-current  #ffa2a7  ({color.text.bright})  use
+  root.text-current  #f1f5f9  ({color.text.bright})  use
   root.indicator     #e53935  ({color.border.selected-indicator})  use
-  icon.stroke        #e99499  ({color.icon.default})  use
+  icon.stroke        #d8dee9  ({color.icon.default})  use
 
 States: default, hover, focus-visible, visited, current
   default: {color.text.link}; 1px {color.text.link-underline} underline, offset 2px [the underline]

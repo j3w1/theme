@@ -11,25 +11,27 @@
     },
     "--chrome": {
       "token": "color.surface.chrome",
-      "divergence": "D-023: owner-selected near-black chrome; the historical assignment remains in the heritage profile."
+      "divergence": "D-041: the owner-authorized developer palette supersedes this observed colour for the canonical role; the pinned source snapshot remains unchanged historical evidence."
     },
     "--chrome-alt": {
-      "token": "color.surface.chrome-alt"
+      "token": "color.surface.chrome-alt",
+      "divergence": "D-041: the owner-authorized developer palette supersedes this observed colour for the canonical role; the pinned source snapshot remains unchanged historical evidence."
     },
     "--surface": {
       "token": "color.surface.default",
-      "divergence": "D-023: owner-selected near-black panels; the historical assignment remains in the heritage profile."
+      "divergence": "D-041: the owner-authorized developer palette supersedes this observed colour for the canonical role; the pinned source snapshot remains unchanged historical evidence."
     },
     "--surface-raised": {
       "token": "color.surface.raised",
-      "divergence": "D-027: recessed so an open list reads as depth rather than a lighter panel; the observed value remains in the historical primitive."
+      "divergence": "D-041: the owner-authorized developer palette supersedes this observed colour for the canonical role; the pinned source snapshot remains unchanged historical evidence."
     },
     "--selection": {
       "token": "color.interaction.selection.bg",
       "divergence": "D-027: recessed selection fill; the check glyph and the 2px indicator carry selection, and the observed value remains in the historical primitive."
     },
     "--selection-dark": {
-      "token": "color.interaction.hover.bg-strong"
+      "token": "color.interaction.hover.bg-strong",
+      "divergence": "D-041: the owner-authorized developer palette supersedes this observed colour for the canonical role; the pinned source snapshot remains unchanged historical evidence."
     },
     "--selection-soft": {
       "token": "color.interaction.selection.inactive-bg"
@@ -45,27 +47,32 @@
       "token": "color.text.link-underline"
     },
     "--foreground": {
-      "token": "color.text.default"
+      "token": "color.text.default",
+      "divergence": "D-041: the owner-authorized developer palette supersedes this observed colour for the canonical role; the pinned source snapshot remains unchanged historical evidence."
     },
     "--foreground-bright": {
-      "token": "color.text.bright"
+      "token": "color.text.bright",
+      "divergence": "D-041: the owner-authorized developer palette supersedes this observed colour for the canonical role; the pinned source snapshot remains unchanged historical evidence."
     },
     "--prose": {
       "token": "color.text.prose",
-      "divergence": "D-033: rose prose is the approved 4.0 default; the original near-white snapshot remains historical evidence."
+      "divergence": "D-041: the owner-authorized developer palette supersedes this observed colour for the canonical role; the pinned source snapshot remains unchanged historical evidence."
     },
     "--muted": {
-      "token": "color.text.muted"
+      "token": "color.text.muted",
+      "divergence": "D-041: the owner-authorized developer palette supersedes this observed colour for the canonical role; the pinned source snapshot remains unchanged historical evidence."
     },
     "--quiet": {
       "token": "color.text.subtle",
-      "divergence": "D-003: #a3676b measured 4.45:1 as text; text.subtle is #ad7175. The observed value survives as color.border.control and color.icon.decorative."
+      "divergence": "D-041: the owner-authorized developer palette supersedes this observed colour for the canonical role; the pinned source snapshot remains unchanged historical evidence."
     },
     "--inactive": {
-      "token": "color.border.disabled"
+      "token": "color.border.disabled",
+      "divergence": "D-041: the owner-authorized developer palette supersedes this observed colour for the canonical role; the pinned source snapshot remains unchanged historical evidence."
     },
     "--border": {
-      "token": "color.border.default"
+      "token": "color.border.default",
+      "divergence": "D-041: the owner-authorized developer palette supersedes this observed colour for the canonical role; the pinned source snapshot remains unchanged historical evidence."
     },
     "--border-strong": {
       "token": "color.border.strong"

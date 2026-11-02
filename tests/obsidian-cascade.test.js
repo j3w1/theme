@@ -48,7 +48,7 @@ test("specificity includes :not and variants; same-weight source order remains d
 
 for (const { version } of audit.versions) {
   const native = nativeCss(version), css = native + emitted;
-  test(`${version}: Reading View and CM6 text are rose while note headings are near-white and bold inherits`, () => {
+  test(`${version}: Reading View and CM6 text are neutral while note headings are near-white and bold inherits`, () => {
     const root = body(), preview = element("div", ["markdown-preview-view"], root);
     const view = element("div", ["markdown-source-view", "mod-cm6"], root);
     const content = element("div", ["cm-content"], element("div", ["cm-scroller"], view));
@@ -144,10 +144,10 @@ for (const { version } of audit.versions) {
     assert.equal(result.value("background-color"), role("color.action.secondary.bg"));
     assert.equal(result.winner("background-color").selector, ".is-mobile button.mod-warning");
     assert.ok(pair(result.value("color"), result.value("background-color")).pass);
-    assert.equal(pair(result.value("color"), result.value("background-color")).display, "4.94", "exact emitted hex values, with the transparent mobile fill composited over the modal overlay");
+    assert.equal(pair(result.value("color"), result.value("background-color") ).display, "5.96", "exact emitted hex values, with the transparent mobile fill composited over the modal overlay");
     const broken = cascade(css + `.theme-dark button.mod-warning { background-color: ${role("color.action.destructive.filled-bg")}; }`, node);
     assert.equal(pair(broken.value("color"), broken.value("background-color")).pass, false);
-    assert.equal(pair(broken.value("color"), broken.value("background-color")).display, "1.30");
+    assert.equal(pair(broken.value("color"), broken.value("background-color")).display, "1.67");
   });
   test(`${version}: mobile standard buttons and text fields retain readable fills`, () => {
     const root = body(true);
@@ -191,7 +191,8 @@ for (const { version } of audit.versions) {
       const broken = cascade(native + removeRule(emitted, selector), input);
       assert.equal(broken.value("background-color"), "transparent", `${selector} native field`);
       assert.equal(broken.value("--input-placeholder-color"), role("color.text.placeholder"));
-      assert.equal(pair(broken.value("--input-placeholder-color"), underlayColor).pass, false, `${selector} regression`);
+      assert.notEqual(broken.value("background-color"), field.value("background-color"), `${selector} regression loses the canonical input surface`);
+      assert.ok(pair(broken.value("--input-placeholder-color"), underlayColor).pass, `${selector}: D-041 also makes native fallback text readable`);
     }
     assert.equal(audit.transparentFieldFacts.length, 12);
   });
@@ -210,7 +211,7 @@ for (const { version } of audit.versions) {
       const selected = ".theme-dark .prompt .suggestion-item.is-selected";
       const ast = postcss.parse(emitted);
       ast.walkRules(r => { if (r.selector === selected) r.walkDecls(d => { if (d.prop.startsWith("--text-")) d.remove(); }); });
-      for (const child of ["suggestion-note", "suggestion-flair", "suggestion-empty-suggestion", "suggestion-action"]) assert.equal(pair(cascade(native + ast.toString(), element("span", [child], row)).value("color"), bg).pass, false);
+      for (const child of ["suggestion-note", "suggestion-flair", "suggestion-empty-suggestion", "suggestion-action"]) assert.notEqual(cascade(native + ast.toString(), element("span", [child], row)).value("color"), role("color.interaction.selection.text"), "mutation loses the selected foreground contract even when D-041 text remains readable");
       const style = cascade(css, row);
       assert.equal(style.value("outline"), undefined);
       assert.equal(style.value("box-shadow"), undefined);
@@ -242,17 +243,18 @@ for (const { version } of audit.versions) {
     for (const state of ["hover", "mobile-tap"]) {
       const node = element("div", ["search-result-file-match", ...(state === "mobile-tap" ? [state] : [])], body(), {}, state === "hover" ? [state] : []);
       const result = cascade(css, node), contrast = pair(result.value("color"), result.value("background-color"));
-      assert.equal(contrast.pass, false);
-      assert.equal(contrast.display, "3.96");
+      assert.equal(contrast.pass, true);
+      assert.equal(contrast.display, "6.73");
     }
-    for (const fg of ["color.text.default", "color.text.muted", "color.text.subtle"]) assert.equal(pair(role(fg), role("color.interaction.text-selection.bg")).pass, false);
+    assert.equal(pair(role("color.text.default"), role("color.interaction.text-selection.bg")).pass, true);
+    for (const fg of ["color.text.muted", "color.text.subtle"]) assert.equal(pair(role(fg), role("color.interaction.text-selection.bg")).pass, false);
     assert.ok(pair(role("color.interaction.text-selection.text"), role("color.interaction.text-selection.bg")).pass);
     const preview = element("div", ["markdown-preview-view"], body());
     assert.equal(cascade(css, preview).value("color"), role("color.text.default"));
-    assert.equal(pair(cascade(css, preview).value("color"), cascade(css, preview).value("--text-selection")).pass, false, "native Reading View selection needs host-selected foreground handling");
+    assert.equal(pair(cascade(css, preview).value("color"), cascade(css, preview).value("--text-selection")).pass, true, "D-041 ordinary Reading View text remains readable in native selection");
     const cm = element("div", ["cm-content"], element("div", ["cm-scroller"], element("div", ["markdown-source-view", "mod-cm6"], body())));
-    assert.ok(pair(cascade(css, cm).value("color"), cascade(css, cm).value("--text-selection")).pass, "CM6 scoped fill contrasts with ordinary rose text; selected syntax behavior remains host-owned");
-    for (const text of ["3.96:1", "below the 4.5:1", "muted/faint", "`:hover`", "`.mobile-tap`", "not a contrast waiver"]) assert.ok(implementation.includes(text), text);
+    assert.ok(pair(cascade(css, cm).value("color"), cascade(css, cm).value("--text-selection")).pass, "CM6 scoped fill contrasts with ordinary neutral text; selected syntax behavior remains host-owned");
+    for (const text of ["D-041", "below the 4.5:1", "muted/faint", "`:hover`", "`.mobile-tap`", "not a contrast waiver"]) assert.ok(implementation.includes(text), text);
   });
   test(`${version}: selected tree and main/sidebar tab borders keep label geometry constant`, () => {
     for (const mobile of [false, true]) for (const dir of ["ltr", "rtl"]) {

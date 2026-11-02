@@ -18,11 +18,15 @@
       "selectionBg"
     ],
     "color.diff.added.bg": [
-      "diffAdded",
+      "diffAdded"
+    ],
+    "color.diff.added.emphasis": [
       "diffAddedWord"
     ],
     "color.diff.removed.bg": [
-      "diffRemoved",
+      "diffRemoved"
+    ],
+    "color.diff.removed.emphasis": [
       "diffRemovedWord"
     ],
     "color.interaction.disabled.bg": [
@@ -43,7 +47,8 @@
     ],
     "color.status.info.text": [
       "merged",
-      "planMode"
+      "planMode",
+      "professionalBlue"
     ],
     "color.status.success.text": [
       "success"
@@ -63,6 +68,30 @@
     "color.surface.overlay": [
       "memoryBackgroundColor"
     ],
+    "color.terminal.ansi.10": [
+      "green_FOR_SUBAGENTS_ONLY"
+    ],
+    "color.terminal.ansi.11": [
+      "yellow_FOR_SUBAGENTS_ONLY"
+    ],
+    "color.terminal.ansi.12": [
+      "blue_FOR_SUBAGENTS_ONLY"
+    ],
+    "color.terminal.ansi.13": [
+      "pink_FOR_SUBAGENTS_ONLY"
+    ],
+    "color.terminal.ansi.14": [
+      "cyan_FOR_SUBAGENTS_ONLY"
+    ],
+    "color.terminal.ansi.3": [
+      "orange_FOR_SUBAGENTS_ONLY"
+    ],
+    "color.terminal.ansi.5": [
+      "purple_FOR_SUBAGENTS_ONLY"
+    ],
+    "color.terminal.ansi.9": [
+      "red_FOR_SUBAGENTS_ONLY"
+    ],
     "color.terminal.bg": [
       "clawd_background"
     ],
@@ -70,7 +99,6 @@
       "briefLabelClaude",
       "claude",
       "clawd_body",
-      "orange_FOR_SUBAGENTS_ONLY",
       "rainbow_blue",
       "rainbow_green",
       "rainbow_indigo",
@@ -91,24 +119,19 @@
       "rainbow_orange_shimmer",
       "rainbow_red_shimmer",
       "rainbow_violet_shimmer",
-      "rainbow_yellow_shimmer",
-      "red_FOR_SUBAGENTS_ONLY"
+      "rainbow_yellow_shimmer"
     ],
     "color.text.bright": [
       "background",
       "briefLabelYou",
       "chromeYellow",
-      "cyan_FOR_SUBAGENTS_ONLY",
       "fastModeShimmer",
-      "pink_FOR_SUBAGENTS_ONLY",
       "remember",
       "skill"
     ],
     "color.text.default": [
       "claudeBlueShimmer_FOR_SYSTEM_SPINNER",
-      "inactiveShimmer",
-      "text",
-      "yellow_FOR_SUBAGENTS_ONLY"
+      "inactiveShimmer"
     ],
     "color.text.inverse": [
       "inverseText"
@@ -116,16 +139,13 @@
     "color.text.muted": [
       "claudeBlue_FOR_SYSTEM_SPINNER",
       "ide",
-      "inactive",
-      "professionalBlue",
-      "purple_FOR_SUBAGENTS_ONLY"
-    ],
-    "color.text.prose": [
-      "green_FOR_SUBAGENTS_ONLY"
+      "inactive"
     ],
     "color.text.subtle": [
-      "blue_FOR_SUBAGENTS_ONLY",
       "subtle"
+    ],
+    "color.terminal.fg": [
+      "text"
     ]
   },
   "unmapped": {
@@ -216,14 +236,12 @@
     "color.diagnostic.warning.stripe": "Interface colour role that no Claude Code theme key takes.",
     "color.diagnostic.warning.text": "Interface colour role that no Claude Code theme key takes.",
     "color.diagnostic.warning.underline": "Interface colour role that no Claude Code theme key takes.",
-    "color.diff.added.emphasis": "Claude Code paints diff lines with its added and removed backgrounds only; the + and - markers and file previews use fixed ANSI slots, and there is no modified-line colour.",
-    "color.diff.added.gutter": "Claude Code paints diff lines with its added and removed backgrounds only; the + and - markers and file previews use fixed ANSI slots, and there is no modified-line colour.",
-    "color.diff.conflict-border": "Claude Code paints diff lines with its added and removed backgrounds only; the + and - markers and file previews use fixed ANSI slots, and there is no modified-line colour.",
-    "color.diff.header-bg": "Claude Code paints diff lines with its added and removed backgrounds only; the + and - markers and file previews use fixed ANSI slots, and there is no modified-line colour.",
-    "color.diff.modified.bg": "Claude Code paints diff lines with its added and removed backgrounds only; the + and - markers and file previews use fixed ANSI slots, and there is no modified-line colour.",
-    "color.diff.modified.gutter": "Claude Code paints diff lines with its added and removed backgrounds only; the + and - markers and file previews use fixed ANSI slots, and there is no modified-line colour.",
-    "color.diff.removed.emphasis": "Claude Code paints diff lines with its added and removed backgrounds only; the + and - markers and file previews use fixed ANSI slots, and there is no modified-line colour.",
-    "color.diff.removed.gutter": "Claude Code paints diff lines with its added and removed backgrounds only; the + and - markers and file previews use fixed ANSI slots, and there is no modified-line colour.",
+    "color.diff.added.gutter": "No independent Claude Code key for this role; line signs inherit host ANSI or row text, while summary counts share word-emphasis colors.",
+    "color.diff.conflict-border": "No independent Claude Code key for this role; line signs inherit host ANSI or row text, while summary counts share word-emphasis colors.",
+    "color.diff.header-bg": "No independent Claude Code key for this role; line signs inherit host ANSI or row text, while summary counts share word-emphasis colors.",
+    "color.diff.modified.bg": "No independent Claude Code key for this role; line signs inherit host ANSI or row text, while summary counts share word-emphasis colors.",
+    "color.diff.modified.gutter": "No independent Claude Code key for this role; line signs inherit host ANSI or row text, while summary counts share word-emphasis colors.",
+    "color.diff.removed.gutter": "No independent Claude Code key for this role; line signs inherit host ANSI or row text, while summary counts share word-emphasis colors.",
     "color.icon.decorative": "Interface colour role that no Claude Code theme key takes.",
     "color.icon.default": "Interface colour role that no Claude Code theme key takes.",
     "color.interaction.drop-target": "Interface colour role that no Claude Code theme key takes.",
@@ -351,22 +369,13 @@
     "color.surface.terminal": "Interface colour role that no Claude Code theme key takes.",
     "color.terminal.ansi.0": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it).",
     "color.terminal.ansi.1": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it).",
-    "color.terminal.ansi.10": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it).",
-    "color.terminal.ansi.11": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it).",
-    "color.terminal.ansi.12": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it).",
-    "color.terminal.ansi.13": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it).",
-    "color.terminal.ansi.14": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it).",
     "color.terminal.ansi.15": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it).",
     "color.terminal.ansi.2": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it).",
-    "color.terminal.ansi.3": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it).",
     "color.terminal.ansi.4": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it).",
-    "color.terminal.ansi.5": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it).",
     "color.terminal.ansi.6": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it).",
     "color.terminal.ansi.7": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it).",
     "color.terminal.ansi.8": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it).",
-    "color.terminal.ansi.9": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it).",
     "color.terminal.cursor": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it).",
-    "color.terminal.fg": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it).",
     "color.terminal.prompt-bg": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it).",
     "color.terminal.prompt-text": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it).",
     "color.terminal.selection-bg": "The terminal draws this; Claude Code's theme has no key for it, so it comes from the terminal's own palette (the Orca port sets it).",
@@ -458,6 +467,30 @@
     "color.interaction.text-selection.tint": "Interface colour role that no Claude Code theme key takes.",
     "color.primitive.alpha.red-50": "Primitive; ports consume roles, never primitives.",
     "color.primitive.red.40": "Primitive; ports consume roles, never primitives.",
-    "color.surface.accent": "Claude Code's userMessageBackground keeps color.interaction.selection.bg; adopting color.surface.accent there is a separate change for this port."
+    "color.surface.accent": "Claude Code's userMessageBackground keeps color.interaction.selection.bg; adopting color.surface.accent there is a separate change for this port.",
+    "color.text.prose": "No longer consumed by a Claude Code theme key; the host retains its other uses.",
+    "color.primitive.modern.panel": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.raised": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.overlay": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.hover": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.divider": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.control": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.disabled": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.subtle": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.muted": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.text": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.bright": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.red": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.green": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.amber": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.blue": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.violet": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.cyan": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.bright-red": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.bright-green": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.bright-amber": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.bright-blue": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.bright-violet": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.bright-cyan": "Primitive; ports consume roles, never primitives."
   }
 }

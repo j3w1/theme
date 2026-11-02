@@ -13,38 +13,41 @@ it may be used. Every rule is normative for the `default` profile.
 `surface.desktop` and `surface.canvas` are true black (`#000000`). Readable
 content sits on the canvas or on:
 
-- `default` (`#100c0c`) for panels and cards;
-- `raised` (`#160b0b`) for sticky headers, menus and popovers;
-- `overlay` for dialogs and drawers;
+- `default` (`#0e1014`) for panels and cards;
+- `raised` (`#15181e`) for sticky headers, menus and popovers;
+- `overlay` (`#191c22`) for dialogs and drawers;
 - `accent` (`#3d0c0a`) for the user's own content set apart from its neighbours, such as outgoing chat messages; secondary text on it uses `text.muted`, never `text.subtle`. Red links cap its brightness: at this hue it stays at or below `#3f0c0a` (D-035);
 - `sunken` (`#000000`) for reading and detail panes;
 - `input` for form-control fills;
-- `chrome` and `chrome-alt` for window frames and bars.
+- true-black `chrome` and neutral `chrome-alt` for window frames and bars.
+
+D-041 keeps ordinary application layers neutral; `surface.accent` remains a
+bounded red message surface, not a tint for every panel.
 
 The layers differ only slightly, so controls also carry `border.control`.
 Never tint photos, video, document content or user-defined data colours.
 
 ## Text ladder
 
-| Role | Value | Use |
-| --- | --- | --- |
-| `text.prose` | `#e99499` | long-form reading; aliases text.default (D-033) |
-| `text.heading` | `#f4eeee` | content titles and H1–H6 |
-| `text.highlight` | `#f4eeee` | deliberate exceptional highlights |
-| `text.bright` | `#ffa2a7` | brighter UI labels and semantic rose emphasis |
-| `text.default` | `#e99499` | interface and body text |
-| `text.muted` | `#bd787d` | secondary text; the darkest colour permitted for chrome text |
-| `text.subtle` | `#ad7175` | metadata, comments, line numbers |
-| `text.disabled` | `#8a5559` | disabled controls only (exempt under WCAG 1.4.3; at least 3:1 by policy) |
-| `text.accent` | `#e53935` | accent text on canvas and default surfaces only |
-| `text.accent-strong` | `#f73f35` | accent text safe on every surface |
-| `text.link` | `#f73f35` | links, always underlined, distinct from rose body and headings (D-024); hover is near-white `text.link-hover` on `interaction.hover.bg` (D-027) |
+| Role | Use |
+| --- | --- |
+| `text.prose` | long-form reading; aliases neutral `text.default` |
+| `text.heading` | bright neutral content titles and H1–H6 |
+| `text.highlight` | deliberate exceptional highlights |
+| `text.bright` | brighter neutral UI labels |
+| `text.default` | neutral interface and body text |
+| `text.muted` | secondary text; the darkest colour permitted for ordinary chrome text |
+| `text.subtle` | metadata, comments, line numbers |
+| `text.disabled` | disabled controls only (exempt under WCAG 1.4.3; at least 3:1 by policy) |
+| `text.accent` | restrained red accent text on canvas and default surfaces |
+| `text.accent-strong` | red emphasis suitable for raised surfaces |
+| `text.link` | underlined links; hover uses `text.link-hover` on `interaction.hover.bg` |
 
-Ratios per surface are in the contrast report. `#a3676b` and `#7d1310` are
-never text roles in `default`, even on a darker background (D-003); they serve
-as `border.control`, `icon.decorative`, `status.neutral.fill`,
-`chart.series.4`, `border.disabled` and `code.whitespace`. Metadata and
-comments people need to read use `text.subtle`, not a graphic colour.
+D-041 uses neutral greys for application text while terminal and agent prose
+uses `terminal.fg` (rose `#e99499`). Exact values
+and ratios per surface are in the token and contrast reports. Metadata and
+comments people need to read use `text.subtle`, never a decorative border or
+historical ANSI primitive.
 
 ## Borders
 
@@ -53,12 +56,12 @@ only for the selected indicator bar, the sticky-header rule and the invalid
 border. The quote rule, which marks a block rather than bounding a control, is
 the one wider edge, at twice the emphasis width.
 
-- `border.divider` (`#2b0e0d`) separates rows and sections.
-- `border.default` (`#531310`) is decorative, never the only visible edge of
+- `border.divider` (`#303640`) separates rows and sections.
+- `border.default` (`#303640`) is decorative, never the only visible edge of
   a control.
-- `border.control` (`#a3676b`) is the edge of every form control at rest.
+- `border.control` (`#747e8e`) is the edge of every form control at rest.
 - `border.active` (`#e53935`) marks the focused or active control.
-- `border.overlay` (`#e53935`) frames every floating layer.
+- `border.overlay` (`#747e8e`) frames every floating layer.
 
 Styles: solid by default; dashed only for focus, drop targets and read-only
 fields; dotted for hints; double for conflicts. Radius is `0` everywhere,
@@ -106,7 +109,7 @@ Rules that apply everywhere:
 Four button tones:
 
 - `primary`, the only filled button at rest: `action.primary.bg` (`#7d1310`)
-  with `action.primary.text` (bright rose; D-033).
+  with `action.primary.text` (bright neutral; D-041).
 - `secondary`, an outline: `border.control`, text `text.bright`.
 - `tertiary`, a ghost or icon button: `text.default`, hover
   `interaction.hover.bg`.
@@ -117,17 +120,16 @@ Four button tones:
 Destructive actions also need a confirmation step or an undo; the colour is
 not the safeguard.
 
-## Status, diagnostics and diffs (D-001)
+## Status, diagnostics and diffs (D-001, D-041)
 
-Five statuses: `danger` (`#f73f35` text, `#dc282e` fill), `warning`
-(`#c9973f`), `success` (`#86a46f`), `info` (`#7e9ebb`), `neutral` (`#bd787d`
-text, `#a3676b` fill). Each has `text`, `fill`, `on-fill`, `tint` and `border`
+Five statuses: red `danger`, amber `warning`, green `success`, blue `info`,
+and grey `neutral`. Each has `text`, `fill`, `on-fill`, `tint` and `border`
 roles, a required glyph (`✕ ! ✓ i ·`) and its own underline or border pattern
-(wavy, dashed, solid, dotted, double). The three extension hues are
-desaturated and shifted warm to fit the identity, and meet 4.5:1 as text on
-every surface. They are **forbidden** in `surface`, `text`, `border`,
-`interaction` and `action`. Purple, cyan and magenta do not exist in the
-theme.
+(wavy, dashed, solid, dotted, double). Use the explicit on-fill role on a
+status fill, not ordinary body text. Coding and terminal roles also have
+violet and cyan; these distinguish syntax and named terminal colours rather
+than tinting ordinary application chrome. Every use follows its role and
+measures contrast on the actual surface.
 
 Diagnostics:
 
@@ -151,52 +153,52 @@ Always keep textual markers and existing status icons.
 
 ## Code and terminal
 
-Two background pairs (D-039): `surface.code` and `surface.terminal` (pure
-black) are what a static code block or a terminal pane sits on; `code.bg` and
-`terminal.bg` (`#0c0909`) fill the inside of an editor and the cell grid of a
-terminal, where `terminal.bg` equals ANSI 0.
+The surface and interior roles remain distinct in scope, but D-041 makes
+`surface.code`, `surface.terminal`, `code.bg`, `code.gutter-bg`, `terminal.bg`
+and default ANSI 0 all true black (`#000000`). This replaces the earlier
+`#0c0909` interior assignment without changing historical ANSI primitives.
 
 Editor surfaces:
 
-- background `code.bg` (`#0c0909`), current line `code.current-line`
-  (`#1c0a09`);
-- line numbers `code.line-number` (`text.subtle`, replacing the site's
-  `#7d1310`);
-- caret `#e99499`;
-- selection `#420f0c` (muted text stays above 4.5:1 inside it);
-- search matches `#630f0d`, with the current match inverted (`#ffa2a7` on
-  `#0c0909`);
-- bracket match as a 1px `#e53935` border;
-- indent guides `#531310`; rendered whitespace `#7d1310` (decorative).
+- `code.current-line` uses the neutral default layer;
+- `code.line-number` uses the readable subtle tier; active numbers and the
+  caret step up to the normal and bright text tiers;
+- `code.selection-bg` is a subdued red selection fill;
+- `code.search-match-bg` marks matches, with the current match inverted by
+  `code.search-current-bg` and `code.search-current-text`;
+- `code.bracket-match` is a 1px accent border;
+- `code.indent-guide` is a neutral separator and `code.whitespace` is a
+  decorative neutral mark.
 
-Syntax in `default` is monochrome: keywords `#f7463c`, strings `#bd787d`,
-comments `#ad7175` italic, numbers and constants `#d4868b`, functions
-`#ffa2a7`, variables and operators `#e99499`, types `#b37175`, properties and
-headings `#e95551`, tags `#f7463c`, attributes and escapes `#d4868b` (the two
-reds as lifted by D-029). Hosts that want hue can opt in to `code.hued.*`
-(D-030): strings green `#86a46f`; numbers, constants, functions, attributes and
-escapes amber `#c9973f`; types and properties blue `#7e9ebb`; operators
-`#ffa2a7`. Keywords, tags, comments, variables and punctuation do not change.
-Invalid text takes a wavy underline; deprecated text a line-through. Languages
-inherit these roles; a language-specific override needs a written reason.
-Inside an editor selection some syntax roles fall below 4.5:1; see
-`spec/accessibility.md`, Limitations.
+Syntax in `default` is semantic: violet keywords, green strings, amber
+numbers/constants/attributes/escapes, blue functions, cyan types/properties,
+coral tags/invalid text, rose variables/operators, muted punctuation and
+subtle italic comments. Headings use the bright text tier. The existing
+`code.hued.*` roles resolve to the corresponding semantic syntax assignments;
+ports need no separate palette. Invalid text takes a wavy underline and
+deprecated text a line-through. Languages inherit these roles; a
+language-specific override needs a written reason. Selection and diff fills
+must be checked with the syntax foregrounds they retain.
 
 Terminal slots:
 
 - `heritage-ansi` carries the sixteen `Xresources` slots exactly.
-  `color.primitive.ansi.*` keeps those values byte for byte; lifted values
-  live in `color.primitive.ansi-readable.*`, and `heritage-ansi` pins every
-  changed role back to the heritage primitive (D-029).
-- `default` carries the readable heritage sixteen (D-029): every slot that
-  fell below the text floor keeps its hue and saturation and gains lightness,
-  except slot 6, which is coral `#ff7a66` (D-032). Slots 1–7 and 9–15 reach
-  4.5:1 on the terminal background; slot 8 (bright black) stays the dim tier,
-  at 3:1.
-- The `extended` overlay proposes a semantic sixteen that all reach 4.5:1.
+  `color.primitive.ansi.*` remains byte-for-byte historical; the heritage
+  profile explicitly restores its historical slot and background assignments.
+- `default` uses the semantic sixteen (D-041): black, red, green, amber,
+  blue, violet, cyan and rose, followed by their bright variants.
+  Slots 7 and 15 use rose `#e99499` and bright rose `#ffa2a7` respectively.
+  Slot 0 is the true-black background; slots 1–15, including neutral bright
+  black, target at least 4.5:1 on it. Slots 2 and 10 remain green so programs
+  using ANSI additions can be read correctly.
+- `extended` remains a proposed overlay, not an approved alternative needed
+  to obtain coloured syntax or terminal slots.
 
-Programs, not the theme, choose which slot means what; the readable sixteen
-make that choice safe for text.
+Programs choose the slots and may emit 256-colour or true-colour values that
+bypass them. A theme cannot repair host dimming or independently recolour
+text that shares a host theme key with a background. Port guides record
+those limits; Claude Code's shared word-highlight and edit-summary keys are
+one example.
 
 ## Typography
 
@@ -259,7 +261,7 @@ popup and what kind it is belong to the component's contract.
 SVG line icons on a 16px grid, 1.5px stroke, `stroke: currentColor`,
 `fill: none`, sizes 12 / 16 / 20. No icon font is needed; Nerd Font glyphs
 appear only in terminal and heritage specimens. Icon-only controls carry
-`aria-label` and a tooltip. `icon.decorative` (`#a3676b`) is for glyphs that
+`aria-label` and a tooltip. `icon.decorative` (`#747e8e`) is for glyphs that
 mean nothing on their own.
 
 ## Layout
@@ -274,13 +276,15 @@ Breakpoints 320 (reflow floor), 600, 900, 1280.
 - Right-to-left mirrors breadcrumb separators, pagination, sidebar and drawer
   sides, wizard progression, affixes and tree indentation.
 
-## Typography semantics (D-033)
+## Typography semantics (D-033, D-041)
 
 All content titles and H1–H6 use `text.heading`; size, weight and spacing carry
 the hierarchy. Chrome and window titles use `text.default` or `text.bright`;
 body and long-form prose use `text.default` and `text.prose`. Bold inherits the
 current semantic colour, including inside headings, muted text, links and
-selections, and never requests white by itself. Near-white is limited to
-headings, deliberate highlights, selections, hover highlights and documented
-contrast-critical on-fill text; measure the actual state pair. Role audit:
-`docs/rose-typography-migration.md`.
+selections, and never requests white by itself. D-041 makes ordinary reading
+application text neutral and brighter labels/headings near-white. Terminal
+and agent prose uses rose `terminal.fg`; the semantic hierarchy
+and inherited bold rule remain. Selection and on-fill roles are explicit and
+must be measured against their actual backgrounds. The historical D-033
+migration audit is `docs/rose-typography-migration.md`.

@@ -1,8 +1,8 @@
 # j3w1 theme for Claude Code
 
 A Claude Code custom theme, `custom:j3w1`, built only from approved roles:
-rose text, the red accent, your messages on the selected-row red, status,
-diff and usage colours. Status: experimental (no recorded import evidence).
+rose reading text, a restrained red accent, semantic agent hues, and distinct
+status, diff and usage colours (D-041). Status: experimental (no recorded import evidence).
 
 Needs Node 24, Git, a clone of this repository and Claude Code 2.1.281 or
 later. Claude Code also uses the terminal's sixteen colours (see Limits), so
@@ -53,7 +53,8 @@ if the installer created it. Claude Code only.
 ## What it changes
 
 - `~/.claude/themes/j3w1.json`: created or replaced (base `dark-ansi`, every
-  role Claude Code 2.1.281 to 2.1.283 has, so nothing falls back to a default).
+  role observed in Claude Code 2.1.281 to 2.1.283, with the shared diff-word
+  behavior also inspected in 2.1.301).
 - `"theme": "custom:j3w1"` in `~/.claude/settings.json`. Only that key changes;
   every other byte, the byte-order mark and the line endings are kept.
 - It follows `CLAUDE_CONFIG_DIR` and `HOME`, so inside an agent session it acts
@@ -68,14 +69,19 @@ created need one restart; after that, changes load live.
 
 Claude Code's own; `test` prints them.
 
-- Highlighted code, links (slot 12), diff + and - markers and file previews
-  use fixed terminal colours; the terminal theme decides how they look.
-- Word-level diff changes can only be a background, so they keep the line
-  tint instead of the theme's underline.
+- Highlighted code, links (slot 12) and file previews use terminal colours.
+  Line-level `+` and `-` markers may inherit ANSI slots or the row foreground,
+  depending on Claude's renderer; there is no independent line-marker token.
+- **Edit-summary `+N` / `-N` counts:** Claude Code 2.1.301 uses
+  `diffAddedWord` / `diffRemovedWord` as foregrounds here as well as word-level
+  backgrounds. They now use green/red emphasis, fixing the nearly black `+`
+  caused by assigning a dark line tint to `diffAddedWord`. The host shares
+  these settings: bright word backgrounds can reduce contrast behind syntax
+  text, and no separate summary-color key exists. This limit is not a pass.
 - The selected item in a picker changes its text colour only; there is no
   selection fill.
-- Subagent names get seven colours for eight names (cyan and pink share one):
-  the theme has no extra hues for text.
+- Subagent names follow the semantic terminal hues. Normal/bright pairs may
+  share values; the displayed name remains the identity channel.
 - Mouse selection keeps each span's own colour on the selection background;
   some colours fall below 4.5:1 there.
 - Inline code uses Claude Code's permission colour (the dialog border).
@@ -91,3 +97,8 @@ Claude Code's own; `test` prints them.
   `npm run generate`; do not edit it.
 - `port.json`, `mapping.json`, `capabilities.json`: the port's scope, every
   native key, and the reason for each role that is not mapped.
+
+The [Claude Code color reference](https://code.claude.com/docs/en/terminal-config#create-a-custom-theme)
+documents the word-background keys. The shared summary-foreground use was
+inspected in the installed 2.1.301 renderer; this is source inspection, not
+installed visual acceptance.

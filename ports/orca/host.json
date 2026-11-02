@@ -12,7 +12,8 @@
     "name": "Orca",
     "targetVersions": [
       "1.4.209",
-      "1.4.211"
+      "1.4.211",
+      "1.4.246"
     ],
     "settingsFile": "%APPDATA%\\orca\\profiles\\<activeProfileId>\\orca-data.json",
     "profileIndex": "%APPDATA%\\orca\\orca-profile-index.json",
@@ -268,7 +269,7 @@
       "kind": "unsupported",
       "specValue": "surface and border roles for tabs, right sidebar, status bar and settings",
       "applied": null,
-      "reason": "Orca 1.4.209 has no app-chrome appearance setting; only the left sidebar can match the terminal."
+      "reason": "The legacy Ghostty installer themes terminal settings only. On Orca 1.4.246 and later, separately load the generated data plugin and select its app/editor theme for full chrome."
     }
   ]
 }

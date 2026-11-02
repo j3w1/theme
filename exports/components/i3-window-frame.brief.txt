@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — i3-window-frame
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-o4R1QcVREh4X3VMinZljRvfzhRgfN1pUaC1bgNc444o=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-uUyex258/cCN40I3QfAc17Y4Big+7Dc2v2FeXtKT5bE=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/i3-window-frame.json
 spec: spec/components/i3-window-frame.md  site: https://j3w1.github.io/theme/reference/#c-i3-window-frame
 maturity: stable  priority: R1
@@ -9,37 +9,37 @@ Summary: The workstation frame; an i3 bar with workspaces and Chinese i3status l
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
   root.bg                      #000000  ({color.surface.desktop})  use
-  root.border                  #531310  ({color.border.default})  use
-  bar.bg                       #090707  ({color.surface.chrome})  use
-  bar.text                     #e99499  ({color.text.default})  use
-  bar.rule                     #2b0e0d  ({color.border.divider})  use-and-report (D-008)
-  workspace.text               #e99499  ({color.text.default})  use
+  root.border                  #303640  ({color.border.default})  use
+  bar.bg                       #000000  ({color.surface.chrome})  use
+  bar.text                     #d8dee9  ({color.text.default})  use
+  bar.rule                     #303640  ({color.border.divider})  use
+  workspace.text               #d8dee9  ({color.text.default})  use
   workspace.selected-bg        #531310  ({color.interaction.selection.bg})  use
   workspace.selected-text      #f4eeee  ({color.interaction.selection.text})  use
-  workspace.bg-hover           #1c0a09  ({color.interaction.hover.bg})  use
+  workspace.bg-hover           #191c22  ({color.interaction.hover.bg})  use
   workspace.ring               #e53935  ({color.interaction.focus.ring})  use
   workspace.ring-on-selection  #e53935  ({color.interaction.focus.ring})  use
   workspace.urgent-bg          #dc282e  ({color.status.danger.fill})  use
   workspace.urgent-text        #f9faf9  ({color.status.danger.on-fill})  use
-  status.separator             #bd787d  ({color.text.muted})  use
-  status.glyph                 #a3676b  ({color.icon.decorative})  use
-  clock.text                   #ffa2a7  ({color.text.bright})  use
+  status.separator             #a6afbd  ({color.text.muted})  use
+  status.glyph                 #747e8e  ({color.icon.decorative})  use
+  clock.text                   #f1f5f9  ({color.text.bright})  use
   area.bg                      #000000  ({color.surface.desktop})  use
   window.bg                    #000000  ({color.surface.canvas})  use
-  window.border                #531310  ({color.border.default})  use
+  window.border                #303640  ({color.border.default})  use
   window.border-focused        #e53935  ({color.border.active})  use
   window.ring                  #ffa2a7  ({color.interaction.focus.ring-container})  use
-  title.bg                     #090707  ({color.surface.chrome})  use
-  title.text                   #bd787d  ({color.text.muted})  use
-  title.bg-focused             #1c0a09  ({color.surface.chrome-alt})  use
-  title.text-focused           #ffa2a7  ({color.text.bright})  use
+  title.bg                     #000000  ({color.surface.chrome})  use
+  title.text                   #a6afbd  ({color.text.muted})  use
+  title.bg-focused             #15181e  ({color.surface.chrome-alt})  use
+  title.text-focused           #f1f5f9  ({color.text.bright})  use
   tab.indicator                #e53935  ({color.border.selected-indicator})  use
   tab.indicator-inactive       #9e231f  ({color.border.selected-indicator-inactive})  use
-  floating.border              #e53935  ({color.border.overlay})  use-and-report (D-008)
+  floating.border              #747e8e  ({color.border.overlay})  use
   floating.shadow              0px 6px 22px 0px rgb(0 0 0 / 55%)  ({shadow.floating})  use
-  terminal.bg                  #0c0909  ({color.terminal.bg})  use
+  terminal.bg                  #000000  ({color.terminal.bg})  use
   terminal.text                #e99499  ({color.terminal.fg})  use
-  editor.bg                    #0c0909  ({color.code.bg})  use
+  editor.bg                    #000000  ({color.code.bg})  use
 
 States: default, focus-visible, selected, container-inactive, error
   default: terminal window focused: {color.border.active} frame, bright title; editor at rest; workspace 1 filled [the title text; `aria-selected`]

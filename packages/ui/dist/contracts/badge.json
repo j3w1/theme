@@ -165,11 +165,15 @@
       "color.interaction.selection.text",
       "color.interaction.text-selection.bg",
       "color.interaction.text-selection.text",
-      "color.primitive.amber.500",
-      "color.primitive.blue.500",
-      "color.primitive.green.500",
       "color.primitive.ink.0",
-      "color.primitive.ink.20",
+      "color.primitive.modern.amber",
+      "color.primitive.modern.blue",
+      "color.primitive.modern.bright",
+      "color.primitive.modern.control",
+      "color.primitive.modern.green",
+      "color.primitive.modern.muted",
+      "color.primitive.modern.red",
+      "color.primitive.modern.text",
       "color.primitive.paper.100",
       "color.primitive.paper.90",
       "color.primitive.red.100",
@@ -178,11 +182,6 @@
       "color.primitive.red.400",
       "color.primitive.red.750",
       "color.primitive.red.800",
-      "color.primitive.red.850",
-      "color.primitive.rose.350",
-      "color.primitive.rose.600",
-      "color.primitive.rose.700",
-      "color.primitive.rose.800",
       "color.status.danger.border",
       "color.status.danger.fill",
       "color.status.danger.on-fill",
@@ -452,6 +451,6 @@
   "copy": {
     "directory": "copy/badge/",
     "manifest": "copy/badge/manifest.json",
-    "digest": "sha256-lfdKrnKa4SmpXnVTmFFlIibrCBrmmbLJOMw/nQPSK5s="
+    "digest": "sha256-X14gMa5PyYbHGAtz/oEcwtQOQEX97W9ENUz+Lp8nu0Y="
   }
 }

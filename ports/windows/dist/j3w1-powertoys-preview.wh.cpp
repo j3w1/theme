@@ -2,7 +2,7 @@
 // @id j3w1-powertoys-preview
 // @name j3w1 PowerToys text preview
 // @description Token palette for the exact reviewed Monaco preview template
-// @version 1.1
+// @version 1.1.1
 // @author j3w1
 // @include PowerToys.MonacoPreviewHandler.exe
 // @architecture x86-64
@@ -28,7 +28,7 @@ static std::atomic<bool> enabled{false};
 static thread_local bool redirecting=false;
 static constexpr COLORREF progressTrack=RGB(66,15,12);
 static constexpr COLORREF progressFill=RGB(125,19,16);
-static constexpr COLORREF progressBorder=RGB(163,103,107);
+static constexpr COLORREF progressBorder=RGB(116,126,142);
 static decltype(&DrawThemeBackground) originalProgressBackground;
 using ThemeClassFn=HRESULT(WINAPI*)(HTHEME,LPWSTR,int);
 static ThemeClassFn themeClass;
@@ -46,7 +46,7 @@ static decltype(&BeginPaint) originalBeginPaint;
 static decltype(&EndPaint) originalEndPaint;
 static thread_local std::vector<HWND> paintWindows;
 static constexpr COLORREF loadingBackground=RGB(0,0,0);
-static constexpr COLORREF loadingForeground=RGB(233,148,153);
+static constexpr COLORREF loadingForeground=RGB(216,222,233);
 // The pinned host's loading UI uses WinForms Window/STATIC controls. Its
 // opaque BackColor is painted with GDI FillRect; label text uses TextRenderer.
 // Scope memory DCs to the originating paint HWND. Never recolor WebView content,
@@ -171,8 +171,8 @@ static bool ReviewedVersion(const wchar_t* exe) {
     return GetFileVersionInfoW(exe,0,size,data.data())
         && VerQueryValueW(data.data(),L"\\",reinterpret_cast<void**>(&fixed),&length)
         && length>=sizeof(*fixed) && fixed->dwSignature==0xfeef04bd
-        && fixed->dwFileVersionMS==MAKELONG(101,0)
-        && fixed->dwFileVersionLS==MAKELONG(0,2362);
+        && fixed->dwFileVersionMS==MAKELONG(102,0)
+        && fixed->dwFileVersionLS==MAKELONG(0,2933);
 }
 static bool ReviewedTemplate(const std::string& bytes) {
     BCRYPT_ALG_HANDLE algorithm=nullptr;BCRYPT_HASH_HANDLE hash=nullptr;
@@ -214,10 +214,10 @@ static bool ReplaceOnce(std::string& text,const std::string& from,const std::str
 static bool ApplyPalette(std::string& html) {
     // Called only on the hash-verified installed template, before PowerToys adds
     // any document content. Tokenization, layout, size and behavior stay intact.
-    return ReplaceOnce(html,"colors: {}",R"J3W1(colors: {"editor.background":"#000000","editor.foreground":"#e99499","editorGutter.background":"#000000","editorLineNumber.foreground":"#ad7175","editorLineNumber.activeForeground":"#ffa2a7","editor.selectionBackground":"#420f0c","editor.inactiveSelectionBackground":"#420f0c","editor.selectionForeground":"#e99499","editor.lineHighlightBackground":"#000000","editor.lineHighlightBorder":"#000000","editorCursor.foreground":"#e99499","editorIndentGuide.background1":"#531310","editorWhitespace.foreground":"#7d1310","editorStickyScroll.background":"#000000","editorStickyScrollHover.background":"#1c0a09","minimap.background":"#000000","scrollbarSlider.background":"#420f0c","scrollbarSlider.hoverBackground":"#911410","scrollbarSlider.activeBackground":"#911410","editorWidget.background":"#241010","editorWidget.foreground":"#e99499","editorWidget.border":"#e53935","menu.background":"#241010","menu.foreground":"#e99499","menu.selectionBackground":"#531310","menu.selectionForeground":"#e99499","menu.border":"#e53935","menu.separatorBackground":"#2b0e0d","focusBorder":"#e53935","descriptionForeground":"#bd787d","input.background":"#000000","input.foreground":"#e99499","input.border":"#a3676b"})J3W1")
-        && ReplaceOnce(html,"rules: customTokenThemeRules",R"J3W1(rules: customTokenThemeRules.concat([{"token":"","foreground":"e99499"},{"token":"comment","foreground":"ad7175"},{"token":"string","foreground":"bd787d"},{"token":"keyword","foreground":"f7463c"},{"token":"number","foreground":"d4868b"},{"token":"regexp","foreground":"d4868b"},{"token":"operator","foreground":"e99499"},{"token":"delimiter","foreground":"e99499"},{"token":"type","foreground":"b37175"},{"token":"variable","foreground":"e99499"},{"token":"function","foreground":"ffa2a7"},{"token":"tag","foreground":"f7463c"},{"token":"attribute.name","foreground":"e95551"}]))J3W1")
+    return ReplaceOnce(html,"colors: {}",R"J3W1(colors: {"editor.background":"#000000","editor.foreground":"#d8dee9","editorGutter.background":"#000000","editorLineNumber.foreground":"#909aaa","editorLineNumber.activeForeground":"#f1f5f9","editor.selectionBackground":"#420f0c","editor.inactiveSelectionBackground":"#420f0c","editor.selectionForeground":"#d8dee9","editor.lineHighlightBackground":"#000000","editor.lineHighlightBorder":"#000000","editorCursor.foreground":"#f1f5f9","editorIndentGuide.background1":"#303640","editorWhitespace.foreground":"#747e8e","editorStickyScroll.background":"#000000","editorStickyScrollHover.background":"#191c22","minimap.background":"#000000","scrollbarSlider.background":"#747e8e","scrollbarSlider.hoverBackground":"#a6afbd","scrollbarSlider.activeBackground":"#a6afbd","editorWidget.background":"#191c22","editorWidget.foreground":"#d8dee9","editorWidget.border":"#747e8e","menu.background":"#191c22","menu.foreground":"#d8dee9","menu.selectionBackground":"#531310","menu.selectionForeground":"#d8dee9","menu.border":"#747e8e","menu.separatorBackground":"#303640","focusBorder":"#e53935","descriptionForeground":"#a6afbd","input.background":"#000000","input.foreground":"#d8dee9","input.border":"#747e8e"})J3W1")
+        && ReplaceOnce(html,"rules: customTokenThemeRules",R"J3W1(rules: customTokenThemeRules.concat([{"token":"","foreground":"d8dee9"},{"token":"comment","foreground":"909aaa"},{"token":"string","foreground":"82d9a0"},{"token":"keyword","foreground":"c7a0e8"},{"token":"number","foreground":"e5c07b"},{"token":"regexp","foreground":"e5c07b"},{"token":"operator","foreground":"e99499"},{"token":"delimiter","foreground":"a6afbd"},{"token":"type","foreground":"78d4d4"},{"token":"variable","foreground":"e99499"},{"token":"function","foreground":"82b4ff"},{"token":"tag","foreground":"f07178"},{"token":"attribute.name","foreground":"78d4d4"}]))J3W1")
         && ReplaceOnce(html,"/* Fits content to window size */",
-            R"J3W1(@media (forced-colors: none) { html, body, #container { background: #000000; color: #e99499; } }
+            R"J3W1(@media (forced-colors: none) { html, body, #container { background: #000000; color: #d8dee9; } }
         /* Fits content to window size */)J3W1");
 }
 static HANDLE ThemedTemplate(HANDLE source) {
