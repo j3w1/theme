@@ -138,7 +138,7 @@ profile. Consume roles, never primitives.
 | `color.text.prose` | `#e99499` | approved; use | Neutral long-form reading text; aliases text.default (D-041). |
 | `color.text.muted` | `#d4868b` | approved; use | D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills. |
 | `color.text.subtle` | `#bd787d` | approved; use | D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills. |
-| `color.border.control` | `#986f72` | approved; use | D-041 border.control: color.primitive.modern.control. |
+| `color.border.control` | `#c81a1a` | approved; use | D-041 owner correction: red control and floating-frame borders, distinct from rose text. |
 | `color.border.default` | `#482b2b` | approved; use | D-041 border.default: color.primitive.modern.divider. |
 | `color.interaction.focus.ring` | `#e53935` | observed; use | 1px dashed focus ring on controls and rows. |
 | `color.interaction.selection.bg` | `#531310` | approved; use | Selected row, tab, workspace; D-027 recessed the fill, leaving the 2px indicator and the check to carry selection. |

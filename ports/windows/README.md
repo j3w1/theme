@@ -1,6 +1,6 @@
 # j3w1 for Windows 11
 
-True-black surfaces, neutral text, restrained red accents and small black/red cursors, generated
+True-black surfaces, rose text, red borders and small black/red cursors, generated
 from the canonical j3w1 tokens. This port is **experimental**. Full styling
 requires an exact supported Windows 11 x64 host; it does not theme every
 application. [Coverage](COVERAGE.md) lists implemented surfaces, owner

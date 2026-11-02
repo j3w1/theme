@@ -117,11 +117,11 @@
       "color.interaction.text-selection.bg",
       "color.interaction.text-selection.text",
       "color.primitive.ink.0",
-      "color.primitive.modern.control",
       "color.primitive.modern.raised",
       "color.primitive.paper.90",
       "color.primitive.red.100",
       "color.primitive.red.50",
+      "color.primitive.red.650",
       "color.primitive.red.800",
       "color.primitive.rose.700",
       "color.primitive.rose.800",
@@ -281,6 +281,6 @@
   "copy": {
     "directory": "copy/skip-link/",
     "manifest": "copy/skip-link/manifest.json",
-    "digest": "sha256-MM7KJIKsSXALG4aw6wb+sqyjQ07UoMBqf1Rt/mdLRJc="
+    "digest": "sha256-RHhopEYfYYCAIJsnNYh/snrzL4ikhKMQto16D6RM2bc="
   }
 }

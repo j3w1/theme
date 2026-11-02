@@ -4,7 +4,7 @@ name: j3w1 theme
 accent: "#e53935"
 cursor: "#ffa2a7"
 background: "#000000"
-foreground: "#e99499"
+foreground: "#ffa2a7"
 details: darker
 terminal_colors:
   normal:
@@ -15,7 +15,7 @@ terminal_colors:
     blue: "#82b4ff"
     magenta: "#c7a0e8"
     cyan: "#78d4d4"
-    white: "#e99499"
+    white: "#ffa2a7"
   bright:
     black: "#bd787d"
     red: "#ff9095"

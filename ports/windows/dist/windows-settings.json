@@ -4,7 +4,7 @@
   "values": {
     "native.accent": "#e53935",
     "native.desktop": "#000000",
-    "terminal.foreground": "#e99499",
+    "terminal.foreground": "#ffa2a7",
     "terminal.background": "#000000",
     "terminal.cursor": "#ffa2a7",
     "terminal.selection": "#420f0c",
@@ -20,7 +20,7 @@
     "cursor.outline": "#e53935",
     "powertoys.highlight": "#e53935",
     "powertoys.inactive": "#140b0b",
-    "powertoys.border": "#986f72",
+    "powertoys.border": "#c81a1a",
     "powertoys.number": "#ffa2a7",
     "font.family": "\"SauceCodePro NFM\", \"Source Code Pro\", \"Cascadia Mono\", \"Consolas\", \"Liberation Mono\", \"DejaVu Sans Mono\", monospace",
     "terminal.ansi.0": "#000000",
@@ -30,7 +30,7 @@
     "terminal.ansi.4": "#82b4ff",
     "terminal.ansi.5": "#c7a0e8",
     "terminal.ansi.6": "#78d4d4",
-    "terminal.ansi.7": "#e99499",
+    "terminal.ansi.7": "#ffa2a7",
     "terminal.ansi.8": "#bd787d",
     "terminal.ansi.9": "#ff9095",
     "terminal.ansi.10": "#a2edb8",
@@ -55,7 +55,7 @@
           "target": "StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement",
           "styles": [
             "Background=#000000",
-            "BorderBrush=#986f72",
+            "BorderBrush=#c81a1a",
             "BorderThickness=1",
             "CornerRadius=0"
           ]
@@ -66,7 +66,7 @@
           "target": "StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement",
           "styles": [
             "Background=#000000",
-            "BorderBrush=#986f72",
+            "BorderBrush=#c81a1a",
             "BorderThickness=1",
             "CornerRadius=0"
           ]
@@ -90,7 +90,7 @@
           "target": "StartMenu.FolderModal > Grid > Border",
           "styles": [
             "Background=#140b0b",
-            "BorderBrush=#986f72",
+            "BorderBrush=#c81a1a",
             "BorderThickness=1",
             "CornerRadius=0"
           ]
@@ -127,19 +127,19 @@
       "id": "j3w1-explorer-native",
       "version": "1.8.8",
       "path": "dist/j3w1-explorer-native.wh.cpp",
-      "sha256": "d8c9438f3366be005ae0b030dfabfaded5051d0b2d77a441589f285b9d0cd450"
+      "sha256": "9f78b59ec2cf87766bc1da96791ab8cc8dd0e6a6585d0b962f5c8d15535e65ba"
     },
     {
       "id": "j3w1-powertoys-preview",
       "version": "1.1.1",
       "path": "dist/j3w1-powertoys-preview.wh.cpp",
-      "sha256": "6da392ba0bf95a3de3141035121e0ead7754e43a32ea4de4f5061cf1f6c2b6b2"
+      "sha256": "7a144ada66002556ddde1b7931686b21efda649858b2086d8221c51840b4d9b7"
     },
     {
       "id": "j3w1-calculator",
       "version": "1.4.13",
       "path": "dist/j3w1-calculator.wh.cpp",
-      "sha256": "dd703738edcf4bd3eb82f13ef7f6e0d2a88419ffae5cc3f409b50414af45dbcd"
+      "sha256": "f210fe9cec1bacfdc15f424f4b8dda6498b023e08bc814fef8c87fc214829b02"
     },
     {
       "id": "j3w1-notepad-native",
@@ -151,25 +151,25 @@
       "id": "j3w1-notepad-chrome",
       "version": "1.2.35",
       "path": "dist/j3w1-notepad-chrome.wh.cpp",
-      "sha256": "ce36e337c04cf086344a97d5c73820855e2ba991fe38609adfbb47d7a5ecf7fa"
+      "sha256": "58a72cb5a81543981fec9c6bf73a221fbb2b72b81ec515e0cc5011cc5613817a"
     },
     {
       "id": "j3w1-paint-chrome",
       "version": "1.0.32",
       "path": "dist/j3w1-paint-chrome.wh.cpp",
-      "sha256": "e5fd28e0e0eb47542053b7a5ba2281431c3e9a814048ca02952251360b1218ac"
+      "sha256": "874deba51da5e7f87ec4557bbcdddcf4ea145e4e071662bce8212da99e468353"
     },
     {
       "id": "j3w1-terminal-chrome",
       "version": "1.0.16",
       "path": "dist/j3w1-terminal-chrome.wh.cpp",
-      "sha256": "ba13fe5e477d306992cd9387024fc890517a33a809420177c0ed1429a1890b5c"
+      "sha256": "906b87ec4947ee46d5b2348999f42ecc5f15718a204b7b2e1804aee8226c243b"
     },
     {
       "id": "j3w1-powertoys-markdown",
       "version": "1.4.3",
       "path": "dist/j3w1-powertoys-markdown.wh.cpp",
-      "sha256": "db37b1a2070549bd4a377205247448e1b971c997e231482b678a472dc754085e"
+      "sha256": "5ea3bcf7156ab0a09f54edb9205f4afebb6e8a8129737c443df8fc8c5c15f93f"
     }
   ],
   "settingsStartup": {

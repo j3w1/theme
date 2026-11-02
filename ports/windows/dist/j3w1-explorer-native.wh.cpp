@@ -27,7 +27,7 @@
 - focusRing: "#e53935"
 - menuHover: "#1c1010"
 - menuHoverText: "#f4eeee"
-- menuBorder: "#986f72"
+- menuBorder: "#c81a1a"
 - marquee: "#1f911410"
 - marqueeBorder: "#e53935"
 */

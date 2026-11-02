@@ -1950,12 +1950,12 @@
     "color.diff.added.shared-word": {
       "state": "out-of-scope",
       "surface": "primitives",
-      "reason": "Host-specific shared diff foreground/background compromise; this port has no such shared role."
+      "reason": "Only for a host sharing diff-summary foreground and word-highlight background; this port uses independent semantic roles."
     },
     "color.diff.removed.shared-word": {
       "state": "out-of-scope",
       "surface": "primitives",
-      "reason": "Host-specific shared diff foreground/background compromise; this port has no such shared role."
+      "reason": "Only for a host sharing diff-summary foreground and word-highlight background; this port uses independent semantic roles."
     }
   },
   "rollback": "Select the previous theme or Default in Settings → Appearance → Themes; restore both previous files together to roll back a j3w1 update."

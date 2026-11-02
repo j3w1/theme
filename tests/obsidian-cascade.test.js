@@ -144,7 +144,7 @@ for (const { version } of audit.versions) {
     assert.equal(result.value("background-color"), role("color.action.secondary.bg"));
     assert.equal(result.winner("background-color").selector, ".is-mobile button.mod-warning");
     assert.ok(pair(result.value("color"), result.value("background-color")).pass);
-    assert.equal(pair(result.value("color"), result.value("background-color") ).display, "5.96", "exact emitted hex values, with the transparent mobile fill composited over the modal overlay");
+    assert.equal(pair(result.value("color"), result.value("background-color") ).display, "6.49", "exact emitted hex values, with the transparent mobile fill composited over the modal overlay");
     const broken = cascade(css + `.theme-dark button.mod-warning { background-color: ${role("color.action.destructive.filled-bg")}; }`, node);
     assert.equal(pair(broken.value("color"), broken.value("background-color")).pass, false);
     assert.equal(pair(broken.value("color"), broken.value("background-color")).display, "1.67");

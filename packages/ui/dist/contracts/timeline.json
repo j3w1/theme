@@ -128,12 +128,12 @@
       "color.interaction.text-selection.bg",
       "color.interaction.text-selection.text",
       "color.primitive.ink.0",
-      "color.primitive.modern.control",
       "color.primitive.modern.divider",
       "color.primitive.modern.panel",
       "color.primitive.paper.90",
       "color.primitive.red.100",
       "color.primitive.red.50",
+      "color.primitive.red.650",
       "color.primitive.red.800",
       "color.primitive.rose.650",
       "color.primitive.rose.700",
@@ -279,6 +279,6 @@
   "copy": {
     "directory": "copy/timeline/",
     "manifest": "copy/timeline/manifest.json",
-    "digest": "sha256-BFkd89rQ4+T//th9kv6/L0hu5ImAV67qrRNODD8T6Dc="
+    "digest": "sha256-uEJM2Pc5hRmaR+PpqU3brCfP2aRC/fB3Itfx59Sa2Q0="
   }
 }

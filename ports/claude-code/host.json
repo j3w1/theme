@@ -173,8 +173,8 @@
       "why": "Preserve the named categorical terminal hue so concurrent agents remain distinguishable (D-041)."
     },
     "permission": {
-      "token": "color.border.overlay",
-      "why": "Permission prompts and pickers are floating layers: the overlay border (use-and-report, D-008)."
+      "token": "color.text.accent-strong",
+      "why": "Shared dialog border and inline-code foreground: use readable strong red rather than a decorative border role."
     },
     "permissionShimmer": {
       "token": "color.text.accent-strong",
@@ -375,8 +375,8 @@
       "target": "inline code",
       "kind": "substituted",
       "specValue": "code roles",
-      "applied": "color.border.overlay",
-      "reason": "Claude Code draws inline code in its permission colour, which the kit maps to the overlay border for dialogs."
+      "applied": "color.text.accent-strong",
+      "reason": "Claude Code shares permission between dialog borders and inline-code text. Strong red preserves readable inline code while keeping dialogs red."
     },
     {
       "component": "terminal",

@@ -93,8 +93,8 @@ ordered by topic.
 ## D-041 True-black developer palette and semantic terminal colours
 
 **Decision.** Use true black for the default editor and terminal interiors and
-ANSI 0, warm rose-black application layers and rose-gray borders, rose ordinary application text,
-terminal and agent prose (`#e99499`), bright rose UI labels and ANSI 15 (`#ffa2a7`),
+ANSI 0, warm rose-black application layers and red borders, rose ordinary application text
+(`#e99499`), bright rose terminal prose, prompts, UI labels and ANSI 7/15 (`#ffa2a7`),
 and distinguishable green, amber, blue, violet and cyan coding colours. Keep red
 for identity, focus, selected indicators and danger. Preserve historical ANSI
 primitives and the explicitly historical profile. App, terminal, syntax and
@@ -124,7 +124,9 @@ ordinary white text was too intense: use rose throughout ordinary application
 UI, terminal/agent prose and variables/operators. Reserve white for document
 headings, exceptional highlights and contrast-critical roles, not ordinary UI
 labels or chrome. The owner's further visual review rejected the cool blue-gray
-surfaces and borders: use warm rose-black layers and rose-gray control boundaries,
+surfaces and borders. The latest correction uses red control and floating-frame
+boundaries (`#c81a1a`) instead of rose-gray, while Orca panels, browser chrome
+and menus use black fills,
 with semantic green reserved for meaningful code/status rather than shell prompt
 branding. Host-default chrome is a port coverage gap, not approved styling.
 It does not claim visual acceptance, a release,

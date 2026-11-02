@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — i3-window-frame
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-sCxjZdAqLlE1Q9ukwiB7Cju9jv2KO1vefm66CYFf/yg=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-zrj0mf6Yyhv/nw0hY+v8ZhfGq+qqDZck9essMG6c3a4=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/i3-window-frame.json
 spec: spec/components/i3-window-frame.md  site: https://j3w1.github.io/theme/reference/#c-i3-window-frame
 maturity: stable  priority: R1
@@ -35,10 +35,10 @@ Tokens (resolved):
   title.text-focused           #ffa2a7  ({color.text.bright})  use
   tab.indicator                #e53935  ({color.border.selected-indicator})  use
   tab.indicator-inactive       #9e231f  ({color.border.selected-indicator-inactive})  use
-  floating.border              #986f72  ({color.border.overlay})  use
+  floating.border              #c81a1a  ({color.border.overlay})  use
   floating.shadow              0px 6px 22px 0px rgb(0 0 0 / 55%)  ({shadow.floating})  use
   terminal.bg                  #000000  ({color.terminal.bg})  use
-  terminal.text                #e99499  ({color.terminal.fg})  use
+  terminal.text                #ffa2a7  ({color.terminal.fg})  use
   editor.bg                    #000000  ({color.code.bg})  use
 
 States: default, focus-visible, selected, container-inactive, error

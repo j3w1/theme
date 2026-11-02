@@ -118,7 +118,7 @@ test("emission is byte-identical across repeats and time zones", () => {
 });
 
 test("every token and upstream key has one classification with direct, non-redundant inheritance", () => {
-  assert.equal(resolved.size, 380); // D-041 adds 23 named developer palette primitives.
+  assert.equal(resolved.size, 384); // D-041 includes 25 developer primitives and two shared diff roles.
   assertPortMapping({ ...port, mapping }, resolved.keys());
   assertCapabilities({ ...port, mapping }, capabilities);
   const keys = Object.values(mapping.mappings).flat(); assert.equal(new Set(keys).size, keys.length);

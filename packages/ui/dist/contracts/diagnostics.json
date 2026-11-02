@@ -219,7 +219,6 @@
       "color.primitive.ink.60",
       "color.primitive.modern.amber",
       "color.primitive.modern.blue",
-      "color.primitive.modern.control",
       "color.primitive.modern.divider",
       "color.primitive.modern.green",
       "color.primitive.modern.hover",
@@ -228,6 +227,7 @@
       "color.primitive.paper.90",
       "color.primitive.red.100",
       "color.primitive.red.50",
+      "color.primitive.red.650",
       "color.primitive.red.800",
       "color.primitive.red.850",
       "color.primitive.rose.600",
@@ -559,6 +559,6 @@
   "copy": {
     "directory": "copy/diagnostics/",
     "manifest": "copy/diagnostics/manifest.json",
-    "digest": "sha256-JrPTvudD8gNYdT/kiLaeWs38smacWonQvvGsmax4giM="
+    "digest": "sha256-/tKvGRBc6hhqnfZJ7dYirqMb358NCxUY8e4KhG4y9j0="
   }
 }

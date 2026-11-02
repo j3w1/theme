@@ -134,11 +134,11 @@
       "color.interaction.text-selection.bg",
       "color.interaction.text-selection.text",
       "color.primitive.ink.0",
-      "color.primitive.modern.control",
       "color.primitive.modern.panel",
       "color.primitive.paper.90",
       "color.primitive.red.100",
       "color.primitive.red.50",
+      "color.primitive.red.650",
       "color.primitive.red.800",
       "color.primitive.rose.700",
       "color.surface.canvas",
@@ -273,6 +273,6 @@
   "copy": {
     "directory": "copy/avatar/",
     "manifest": "copy/avatar/manifest.json",
-    "digest": "sha256-P8qgYsjWuiREzjBE8/veVOzW+5vZEDLhbJgTd4EFhvU="
+    "digest": "sha256-h6E9Gq/zG5cpoR8salWCBZib2LAeN/HoEWUAjUuO1eM="
   }
 }

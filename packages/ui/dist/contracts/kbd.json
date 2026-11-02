@@ -122,11 +122,11 @@
       "color.interaction.text-selection.bg",
       "color.interaction.text-selection.text",
       "color.primitive.ink.0",
-      "color.primitive.modern.control",
       "color.primitive.modern.panel",
       "color.primitive.paper.90",
       "color.primitive.red.100",
       "color.primitive.red.50",
+      "color.primitive.red.650",
       "color.primitive.red.800",
       "color.primitive.rose.700",
       "color.surface.canvas",
@@ -261,6 +261,6 @@
   "copy": {
     "directory": "copy/kbd/",
     "manifest": "copy/kbd/manifest.json",
-    "digest": "sha256-ucXuIRqzCzva3zJNSEGJYofQi4+eWE5MTjsbEUTfzC8="
+    "digest": "sha256-I1PrxYTqlOTc/bjc9Cqz3tX3S9MkTOKiKZfDj6GaoMU="
   }
 }

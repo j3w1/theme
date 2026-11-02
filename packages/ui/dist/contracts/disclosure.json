@@ -147,11 +147,11 @@
       "color.interaction.text-selection.bg",
       "color.interaction.text-selection.text",
       "color.primitive.ink.0",
-      "color.primitive.modern.control",
       "color.primitive.modern.panel",
       "color.primitive.paper.90",
       "color.primitive.red.100",
       "color.primitive.red.50",
+      "color.primitive.red.650",
       "color.primitive.red.800",
       "color.primitive.rose.700",
       "color.surface.canvas",
@@ -303,6 +303,6 @@
   "copy": {
     "directory": "copy/disclosure/",
     "manifest": "copy/disclosure/manifest.json",
-    "digest": "sha256-deqOn50Yu0oWiMbtgLkgG5IgTqPwzT5iMoRZrwg1fz4="
+    "digest": "sha256-pMODL78LTWx5czys20cATaHYiUuOfzpWx9mq9jiVF6k="
   }
 }

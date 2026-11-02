@@ -265,7 +265,6 @@
       "color.interaction.text-selection.text",
       "color.primitive.ink.0",
       "color.primitive.ink.40",
-      "color.primitive.modern.control",
       "color.primitive.modern.divider",
       "color.primitive.modern.hover",
       "color.primitive.modern.panel",
@@ -275,6 +274,7 @@
       "color.primitive.red.100",
       "color.primitive.red.200",
       "color.primitive.red.50",
+      "color.primitive.red.650",
       "color.primitive.red.800",
       "color.primitive.rose.350",
       "color.primitive.rose.600",
@@ -606,6 +606,6 @@
   "copy": {
     "directory": "copy/number-field/",
     "manifest": "copy/number-field/manifest.json",
-    "digest": "sha256-fYjWHV+HcUao5YZDYqw9UgDV/XP94WUP/T06GDYNbpA="
+    "digest": "sha256-4UO59ACgoGrblshjRtY9Nx6Z3wv201gT5Yl/YrkjOIo="
   }
 }

@@ -63,7 +63,8 @@ if the installer created it. Claude Code only.
   every other byte, the byte-order mark and the line endings are kept.
 - It follows `CLAUDE_CONFIG_DIR` and `HOME`, so inside an agent session it acts
   on that session's configuration; `--claude-config-dir` picks another one.
-- Dialog borders follow the approved default overlay role (D-041).
+- Dialog borders use the strong red text role because Claude shares their
+  colour with inline-code text; this keeps both uses readable (D-041).
 
 **Restart once.** Sessions already running when the themes folder was first
 created need one restart; after that, changes load live.
@@ -92,7 +93,8 @@ Claude Code's own; `test` prints them.
   share values; the displayed name remains the identity channel.
 - Mouse selection keeps each span's own colour on the selection background;
   some colours fall below 4.5:1 there.
-- Inline code uses Claude Code's permission colour (the dialog border).
+- Inline code uses Claude Code's permission colour (the dialog border);
+  both use strong red so the shared colour meets ordinary text contrast.
 - The shell-mode input border is the same as the normal one; the `!` marker
   shows the mode.
 

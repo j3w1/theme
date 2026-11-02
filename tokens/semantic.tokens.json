@@ -364,8 +364,8 @@
         "$description": "Emphasised 2px rule: sticky headers, section ends."
       },
       "control": {
-        "$value": "{color.primitive.modern.control}",
-        "$description": "D-041 border.control: color.primitive.modern.control.",
+        "$value": "{color.primitive.red.650}",
+        "$description": "D-041 owner correction: red control and floating-frame borders, distinct from rose text.",
         "$extensions": {
           "io.github.j3w1.theme": {
             "status": "approved",
@@ -380,8 +380,8 @@
         "$description": "Active or focused control border."
       },
       "overlay": {
-        "$value": "{color.primitive.modern.control}",
-        "$description": "D-041 border.overlay: color.primitive.modern.control.",
+        "$value": "{color.primitive.red.650}",
+        "$description": "D-041 owner correction: red control and floating-frame borders, distinct from rose text.",
         "$extensions": {
           "io.github.j3w1.theme": {
             "status": "approved",
@@ -1655,8 +1655,8 @@
         }
       },
       "fg": {
-        "$value": "{color.primitive.rose.700}",
-        "$description": "D-041 owner correction: ordinary terminal and agent text is rose, not near-white.",
+        "$value": "{color.text.bright}",
+        "$description": "D-041: bright rose terminal text for readable black-background shells.",
         "$extensions": {
           "io.github.j3w1.theme": {
             "status": "approved",
@@ -1699,8 +1699,8 @@
         }
       },
       "prompt-text": {
-        "$value": "{color.terminal.fg}",
-        "$description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
+        "$value": "{color.text.bright}",
+        "$description": "D-041: bright rose terminal text for readable black-background shells.",
         "$extensions": {
           "io.github.j3w1.theme": {
             "status": "approved",
@@ -1796,7 +1796,7 @@
           }
         },
         "7": {
-          "$value": "{color.primitive.rose.700}",
+          "$value": "{color.text.bright}",
           "$description": "D-041 ordinary ANSI foreground: rose.",
           "$extensions": {
             "io.github.j3w1.theme": {

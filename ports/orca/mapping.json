@@ -100,10 +100,24 @@
     ],
     "color.surface.canvas": [
       "app.tokens.--background",
-      "app.tokens.--card"
-    ],
-    "color.code.bg": [
-      "app.tokens.--editor-surface"
+      "app.tokens.--editor-surface",
+      "app.tokens.--card",
+      "app.tokens.--popover",
+      "app.tokens.--secondary",
+      "app.tokens.--muted",
+      "app.tokens.--accent",
+      "app.tokens.--sidebar",
+      "app.tokens.--sidebar-primary",
+      "app.tokens.--sidebar-accent",
+      "app.tokens.--worktree-sidebar",
+      "app.tokens.--worktree-sidebar-accent",
+      "app.tokens.--worktree-sidebar-active",
+      "app.tokens.--host-badge",
+      "app.tokens.--tab-bar",
+      "app.tokens.--tab-active",
+      "app.tokens.--tab-inactive",
+      "app.tokens.--chat-user-message",
+      "app.tokens.--input"
     ],
     "color.text.default": [
       "app.tokens.--foreground",
@@ -118,17 +132,7 @@
       "shell.LS_COLORS.no",
       "shell.LS_COLORS.fi"
     ],
-    "color.surface.default": [
-      "app.tokens.--muted",
-      "app.tokens.--worktree-sidebar-active"
-    ],
     "color.surface.raised": [
-      "app.tokens.--popover",
-      "app.tokens.--secondary",
-      "app.tokens.--sidebar-primary",
-      "app.tokens.--host-badge",
-      "app.tokens.--tab-active",
-      "app.tokens.--chat-user-message",
       "prompt.AGNOSTER_GIT_CLEAN_BG",
       "prompt.AGNOSTER_GIT_DIRTY_BG"
     ],
@@ -139,7 +143,6 @@
       "shell.LS_COLORS.ln"
     ],
     "color.border.control": [
-      "app.tokens.--input",
       "app.tokens.--split-divider"
     ],
     "color.interaction.focus.ring": [
@@ -162,12 +165,6 @@
     ],
     "color.status.info.text": [
       "app.tokens.--chart-5"
-    ],
-    "color.surface.chrome": [
-      "app.tokens.--sidebar",
-      "app.tokens.--worktree-sidebar",
-      "app.tokens.--tab-bar",
-      "app.tokens.--tab-inactive"
     ],
     "color.code.syntax.comment": [
       "app.tokenColors.comment.foreground"
@@ -239,7 +236,6 @@
       "app.tokenColors.escape.foreground"
     ],
     "color.text.bright": [
-      "app.tokens.--primary-foreground",
       "app.tokens.--sidebar-primary-foreground",
       "app.tokens.--worktree-sidebar-accent-foreground",
       "app.tokens.--worktree-sidebar-foreground",
@@ -247,11 +243,6 @@
       "app.tokens.--git-decoration-renamed",
       "app.tokens.--git-decoration-copied",
       "shell.LS_COLORS.di"
-    ],
-    "color.interaction.hover.bg": [
-      "app.tokens.--accent",
-      "app.tokens.--sidebar-accent",
-      "app.tokens.--worktree-sidebar-accent"
     ],
     "color.border.selected-indicator": [
       "app.tokens.--worktree-sidebar-active-border",
@@ -301,11 +292,16 @@
       "prompt.AGNOSTER_STATUS_ROOT_FG"
     ],
     "color.interaction.text-selection.bg": [
-      "prompt.AGNOSTER_DIR_BG",
-      "app.tokens.--primary"
+      "prompt.AGNOSTER_DIR_BG"
     ],
     "color.border.strong": [
       "app.tokens.--border"
+    ],
+    "color.text.accent-strong": [
+      "app.tokens.--primary"
+    ],
+    "color.text.inverse": [
+      "app.tokens.--primary-foreground"
     ]
   },
   "unmapped": {
@@ -618,11 +614,13 @@
     "color.action.primary.text": "No independent app or terminal key uses this role.",
     "color.interaction.selection.bg": "No independent Orca public token consumes this role; supported controls use canonical surface and rose foreground roles.",
     "color.interaction.selection.text": "No independent Orca public token consumes this role; supported controls use canonical surface and rose foreground roles.",
-    "color.text.accent-strong": "No independent Orca public token consumes this role; supported controls use canonical surface and rose foreground roles.",
-    "color.text.inverse": "No independent Orca public token consumes this role; supported controls use canonical surface and rose foreground roles.",
     "color.primitive.modern.diff-shared-green": "Primitive; ports consume roles, never primitives.",
     "color.primitive.modern.diff-shared-red": "Primitive; ports consume roles, never primitives.",
     "color.diff.added.shared-word": "Only for a host sharing diff-summary foreground and word-highlight background; this port uses independent semantic roles.",
-    "color.diff.removed.shared-word": "Only for a host sharing diff-summary foreground and word-highlight background; this port uses independent semantic roles."
+    "color.diff.removed.shared-word": "Only for a host sharing diff-summary foreground and word-highlight background; this port uses independent semantic roles.",
+    "color.code.bg": "No independent Orca public key consumes this role; owner-requested application fills use black while semantic text and diff colors remain explicit.",
+    "color.surface.default": "No independent Orca public key consumes this role; owner-requested application fills use black while semantic text and diff colors remain explicit.",
+    "color.surface.chrome": "No independent Orca public key consumes this role; owner-requested application fills use black while semantic text and diff colors remain explicit.",
+    "color.interaction.hover.bg": "No independent Orca public key consumes this role; owner-requested application fills use black while semantic text and diff colors remain explicit."
   }
 }

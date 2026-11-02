@@ -42,6 +42,18 @@
     "shell-prompt": {
       "state": "supported",
       "reason": "Generated agnoster variables set prompt surfaces and ordinary text from canonical terminal prompt roles; status icons retain semantic colors."
+    },
+    "browser-loading": {
+      "state": "unsupported",
+      "reason": "Installed Orca 1.4.246 uses bg-callout-note for the address progress bar and hardcoded text-blue-500 for tab loading spinners and fallback icons. Neither color is exposed by the public app-theme token contract."
+    },
+    "tooltips": {
+      "state": "unsupported",
+      "reason": "Installed Orca 1.4.246 tooltips invert foreground/background; no separate tooltip token is exposed. Setting foreground black would hide ordinary app text."
+    },
+    "app-text-selection": {
+      "state": "inherited",
+      "reason": "Shared inputs use primary/primary-foreground; plain prose and explicit system Highlight selections remain host-owned."
     }
   },
   "roles": {
@@ -251,9 +263,9 @@
       "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.bg": {
-      "state": "mapped",
-      "surface": "app-chrome",
-      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "No independent Orca public key consumes this role; owner-requested application fills use black while semantic text and diff colors remain explicit."
     },
     "color.code.bracket-match": {
       "state": "out-of-scope",
@@ -586,9 +598,9 @@
       "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.interaction.hover.bg": {
-      "state": "mapped",
-      "surface": "app-chrome",
-      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "No independent Orca public key consumes this role; owner-requested application fills use black while semantic text and diff colors remain explicit."
     },
     "color.interaction.hover.bg-strong": {
       "state": "out-of-scope",
@@ -642,8 +654,8 @@
     },
     "color.interaction.text-selection.bg": {
       "state": "mapped",
-      "surface": "app-chrome",
-      "reason": "Orca shared inputs select text with the primary fill; the same dark red also paints primary buttons."
+      "surface": "shell-prompt",
+      "reason": "Dark red path segment; Orca input selections share the brighter primary role with action links."
     },
     "color.interaction.text-selection.text": {
       "state": "out-of-scope",
@@ -1183,12 +1195,12 @@
     "color.surface.canvas": {
       "state": "mapped",
       "surface": "app-chrome",
-      "reason": "Canonical black shared card surfaces and red boundaries also paint the status-bar fallback."
+      "reason": "Owner-requested solid-black application fills. The shared input token also paints idle input borders, which become black; browser address fields retain their separate red outer border and focus rings remain explicit."
     },
     "color.surface.chrome": {
-      "state": "mapped",
-      "surface": "app-chrome",
-      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "No independent Orca public key consumes this role; owner-requested application fills use black while semantic text and diff colors remain explicit."
     },
     "color.surface.chrome-alt": {
       "state": "out-of-scope",
@@ -1201,9 +1213,9 @@
       "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.surface.default": {
-      "state": "mapped",
-      "surface": "app-chrome",
-      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "No independent Orca public key consumes this role; owner-requested application fills use black while semantic text and diff colors remain explicit."
     },
     "color.surface.desktop": {
       "state": "out-of-scope",
@@ -1356,9 +1368,9 @@
       "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.text.accent-strong": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "No independent Orca public token consumes this role; supported controls use canonical surface and rose foreground roles."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Orca shares primary across action links, buttons and input selections. Readable red primary with black foreground preserves contrast in both uses; no independent link/selection token exists."
     },
     "color.text.bright": {
       "state": "mapped",
@@ -1376,9 +1388,9 @@
       "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.text.inverse": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "No independent Orca public token consumes this role; supported controls use canonical surface and rose foreground roles."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Orca shares primary across action links, buttons and input selections. Readable red primary with black foreground preserves contrast in both uses; no independent link/selection token exists."
     },
     "color.text.link": {
       "state": "mapped",

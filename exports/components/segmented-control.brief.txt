@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — segmented-control
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-sCxjZdAqLlE1Q9ukwiB7Cju9jv2KO1vefm66CYFf/yg=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-zrj0mf6Yyhv/nw0hY+v8ZhfGq+qqDZck9essMG6c3a4=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/segmented-control.json
 spec: spec/components/segmented-control.md  site: https://j3w1.github.io/theme/reference/#c-segmented-control
 maturity: stable  priority: R2
@@ -10,7 +10,7 @@ Use the pinned approved default profile. Pending roles in that profile use-and-r
 Tokens (resolved):
   root.bg                                                 #0d0707  ({color.surface.default})  use
   root.text                                               #e99499  ({color.text.default})  use
-  root.border                                             #986f72  ({color.border.control})  use
+  root.border                                             #c81a1a  ({color.border.control})  use
   heading.text                                            #ffa2a7  ({color.text.bright})  use
   secondary.text                                          #d4868b  ({color.text.muted})  use
   control.bg                                              #000000  ({color.surface.input})  use

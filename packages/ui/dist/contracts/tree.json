@@ -161,11 +161,11 @@
       "color.interaction.text-selection.bg",
       "color.interaction.text-selection.text",
       "color.primitive.ink.0",
-      "color.primitive.modern.control",
       "color.primitive.modern.panel",
       "color.primitive.paper.90",
       "color.primitive.red.100",
       "color.primitive.red.50",
+      "color.primitive.red.650",
       "color.primitive.red.800",
       "color.primitive.rose.350",
       "color.primitive.rose.700",
@@ -323,6 +323,6 @@
   "copy": {
     "directory": "copy/tree/",
     "manifest": "copy/tree/manifest.json",
-    "digest": "sha256-URJHhDCGyS5aGCr9tWHARgmmk7nNq1/ZraIHhY1As2U="
+    "digest": "sha256-0GYN1Udf5ShojtuoMvLc3+3RUgiFtLW7Aao6WiS2uqg="
   }
 }

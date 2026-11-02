@@ -176,9 +176,9 @@
       "reason": "Interface colour role that no Claude Code theme key takes."
     },
     "color.border.overlay": {
-      "state": "mapped",
-      "surface": "theme-roles",
-      "reason": "Written to the theme's permission key."
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "The permission key also paints inline-code text; strong red text replaces the decorative overlay role."
     },
     "color.border.selected-indicator": {
       "state": "out-of-scope",
@@ -1338,7 +1338,7 @@
     "color.text.accent-strong": {
       "state": "mapped",
       "surface": "theme-roles",
-      "reason": "Written to the theme's claudeShimmer, effortUltra, fastMode, permissionShimmer, promptBorderShimmer, rainbow_blue_shimmer, rainbow_green_shimmer, rainbow_indigo_shimmer, rainbow_orange_shimmer, rainbow_red_shimmer, rainbow_violet_shimmer, rainbow_yellow_shimmer and red_FOR_SUBAGENTS_ONLY keys."
+      "reason": "Written to the theme's claudeShimmer, effortUltra, fastMode, permission, permissionShimmer, promptBorderShimmer, rainbow_blue_shimmer, rainbow_green_shimmer, rainbow_indigo_shimmer, rainbow_orange_shimmer, rainbow_red_shimmer, rainbow_violet_shimmer, rainbow_yellow_shimmer and red_FOR_SUBAGENTS_ONLY keys."
     },
     "color.text.bright": {
       "state": "mapped",

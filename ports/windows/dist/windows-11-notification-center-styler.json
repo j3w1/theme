@@ -13,7 +13,7 @@
       "styles": [
         "Background=#140b0b",
         "CornerRadius=0",
-        "BorderBrush=#986f72",
+        "BorderBrush=#c81a1a",
         "BorderThickness=1"
       ]
     },
@@ -79,7 +79,7 @@
       "target": "Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar",
       "styles": [
         "Background=#140b0b",
-        "BorderBrush=#986f72",
+        "BorderBrush=#c81a1a",
         "CornerRadius=0",
         "Foreground=#e99499"
       ]
@@ -88,7 +88,7 @@
       "target": "Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar > Grid#LayoutRoot > Grid#OuterContentRoot > Grid#ContentRoot > Grid#PrimaryItemsRoot",
       "styles": [
         "Background=#140b0b",
-        "BorderBrush=#986f72",
+        "BorderBrush=#c81a1a",
         "CornerRadius=0"
       ]
     },
@@ -96,7 +96,7 @@
       "target": "CommandBarOverflowPresenter#SecondaryItemsControl > Grid#LayoutRoot",
       "styles": [
         "Background=#140b0b",
-        "BorderBrush=#986f72",
+        "BorderBrush=#c81a1a",
         "CornerRadius=0"
       ]
     },
@@ -117,7 +117,7 @@
       "styles": [
         "Background=#140b0b",
         "Foreground=#e99499",
-        "BorderBrush=#986f72",
+        "BorderBrush=#c81a1a",
         "CornerRadius=0"
       ]
     },
@@ -133,7 +133,7 @@
       "styles": [
         "Background=#140b0b",
         "Foreground=#e99499",
-        "BorderBrush=#986f72",
+        "BorderBrush=#c81a1a",
         "CornerRadius=0"
       ]
     },
@@ -141,7 +141,7 @@
       "target": "FlyoutPresenter > Border",
       "styles": [
         "Background=#140b0b",
-        "BorderBrush=#986f72",
+        "BorderBrush=#c81a1a",
         "BorderThickness=1",
         "CornerRadius=0"
       ]
@@ -150,7 +150,7 @@
       "target": "Border#SuggestionsContainer",
       "styles": [
         "Background=#140b0b",
-        "BorderBrush=#986f72",
+        "BorderBrush=#c81a1a",
         "BorderThickness=1",
         "CornerRadius=0"
       ]
@@ -166,7 +166,7 @@
       "target": "Grid#SuggestionsContainer",
       "styles": [
         "Background=#140b0b",
-        "BorderBrush=#986f72",
+        "BorderBrush=#c81a1a",
         "BorderThickness=1",
         "CornerRadius=0"
       ]
@@ -187,7 +187,7 @@
       "target": "Grid#ControlCenterRegion",
       "styles": [
         "Background=#000000",
-        "BorderBrush=#986f72",
+        "BorderBrush=#c81a1a",
         "BorderThickness=1",
         "CornerRadius=0"
       ]
@@ -196,7 +196,7 @@
       "target": "Grid#NotificationCenterGrid",
       "styles": [
         "Background=#000000",
-        "BorderBrush=#986f72",
+        "BorderBrush=#c81a1a",
         "BorderThickness=1",
         "CornerRadius=0"
       ]
@@ -211,7 +211,7 @@
       "target": "Grid#CalendarCenterGrid",
       "styles": [
         "Background=#000000",
-        "BorderBrush=#986f72",
+        "BorderBrush=#c81a1a",
         "BorderThickness=1",
         "CornerRadius=0"
       ]
@@ -256,7 +256,7 @@
       "styles": [
         "Background=#000000",
         "CornerRadius=0",
-        "BorderBrush=#986f72",
+        "BorderBrush=#c81a1a",
         "BorderThickness=1"
       ]
     },
@@ -265,7 +265,7 @@
       "styles": [
         "Background=#000000",
         "CornerRadius=0",
-        "BorderBrush=#986f72",
+        "BorderBrush=#c81a1a",
         "BorderThickness=1"
       ]
     },
@@ -436,10 +436,10 @@
         "BorderThickness=1",
         "Background@Normal=#000000",
         "Foreground@Normal=#e99499",
-        "BorderBrush@Normal=#986f72",
+        "BorderBrush@Normal=#c81a1a",
         "Background@PointerOver=#1c1010",
         "Foreground@PointerOver=#e99499",
-        "BorderBrush@PointerOver=#986f72",
+        "BorderBrush@PointerOver=#c81a1a",
         "Background@Pressed=#420f0c",
         "Foreground@Pressed=#e99499",
         "BorderBrush@Pressed=#e53935",
@@ -448,10 +448,10 @@
         "BorderBrush@Disabled=#482b2b",
         "Background@Checked=#7d1310",
         "Foreground@Checked=#ffa2a7",
-        "BorderBrush@Checked=#986f72",
+        "BorderBrush@Checked=#c81a1a",
         "Background@CheckedPointerOver=#911410",
         "Foreground@CheckedPointerOver=#ffa2a7",
-        "BorderBrush@CheckedPointerOver=#986f72",
+        "BorderBrush@CheckedPointerOver=#c81a1a",
         "Background@CheckedPressed=#630f0d",
         "Foreground@CheckedPressed=#ffa2a7",
         "BorderBrush@CheckedPressed=#e53935",
@@ -466,10 +466,10 @@
         "CornerRadius=0",
         "Background@Normal=#000000",
         "Foreground@Normal=#e99499",
-        "BorderBrush@Normal=#986f72",
+        "BorderBrush@Normal=#c81a1a",
         "Background@PointerOver=#1c1010",
         "Foreground@PointerOver=#e99499",
-        "BorderBrush@PointerOver=#986f72",
+        "BorderBrush@PointerOver=#c81a1a",
         "Background@Pressed=#420f0c",
         "Foreground@Pressed=#ffa2a7",
         "BorderBrush@Pressed=#e53935",
@@ -484,10 +484,10 @@
         "CornerRadius=0",
         "Background@Normal=#000000",
         "Foreground@Normal=#e99499",
-        "BorderBrush@Normal=#986f72",
+        "BorderBrush@Normal=#c81a1a",
         "Background@PointerOver=#1c1010",
         "Foreground@PointerOver=#e99499",
-        "BorderBrush@PointerOver=#986f72",
+        "BorderBrush@PointerOver=#c81a1a",
         "Background@Pressed=#420f0c",
         "Foreground@Pressed=#ffa2a7",
         "BorderBrush@Pressed=#e53935",
@@ -502,10 +502,10 @@
         "CornerRadius=0",
         "Background@Normal=#000000",
         "Foreground@Normal=#e99499",
-        "BorderBrush@Normal=#986f72",
+        "BorderBrush@Normal=#c81a1a",
         "Background@PointerOver=#1c1010",
         "Foreground@PointerOver=#e99499",
-        "BorderBrush@PointerOver=#986f72",
+        "BorderBrush@PointerOver=#c81a1a",
         "Background@Pressed=#420f0c",
         "Foreground@Pressed=#ffa2a7",
         "BorderBrush@Pressed=#e53935",
@@ -520,10 +520,10 @@
         "CornerRadius=0",
         "Background@Normal=#000000",
         "Foreground@Normal=#e99499",
-        "BorderBrush@Normal=#986f72",
+        "BorderBrush@Normal=#c81a1a",
         "Background@PointerOver=#1c1010",
         "Foreground@PointerOver=#e99499",
-        "BorderBrush@PointerOver=#986f72",
+        "BorderBrush@PointerOver=#c81a1a",
         "Background@Pressed=#420f0c",
         "Foreground@Pressed=#ffa2a7",
         "BorderBrush@Pressed=#e53935",
@@ -538,10 +538,10 @@
         "CornerRadius=0",
         "Background@Normal=#000000",
         "Foreground@Normal=#e99499",
-        "BorderBrush@Normal=#986f72",
+        "BorderBrush@Normal=#c81a1a",
         "Background@PointerOver=#1c1010",
         "Foreground@PointerOver=#e99499",
-        "BorderBrush@PointerOver=#986f72",
+        "BorderBrush@PointerOver=#c81a1a",
         "Background@Pressed=#420f0c",
         "Foreground@Pressed=#ffa2a7",
         "BorderBrush@Pressed=#e53935",
@@ -553,7 +553,7 @@
     {
       "target": "ControlCenter.AsyncSlider",
       "styles": [
-        "Background=#986f72",
+        "Background=#c81a1a",
         "Foreground=#7d1310",
         "CornerRadius=0"
       ]
@@ -561,9 +561,9 @@
     {
       "target": "ControlCenter.AsyncSlider > Grid@CommonStates > * > Windows.UI.Xaml.Shapes.Rectangle#HorizontalTrackRect",
       "styles": [
-        "Fill@Normal=#986f72",
-        "Fill@PointerOver=#986f72",
-        "Fill@Pressed=#986f72",
+        "Fill@Normal=#c81a1a",
+        "Fill@PointerOver=#c81a1a",
+        "Fill@Pressed=#c81a1a",
         "Fill@Disabled=#482b2b"
       ]
     },
@@ -581,11 +581,11 @@
       "styles": [
         "CornerRadius=0",
         "Background@Normal=#000000",
-        "BorderBrush@Normal=#986f72",
+        "BorderBrush@Normal=#c81a1a",
         "Background@PointerOver=#000000",
-        "BorderBrush@PointerOver=#986f72",
+        "BorderBrush@PointerOver=#c81a1a",
         "Background@Pressed=#000000",
-        "BorderBrush@Pressed=#986f72",
+        "BorderBrush@Pressed=#c81a1a",
         "Background@Disabled=#0d0707",
         "BorderBrush@Disabled=#482b2b"
       ]
@@ -602,7 +602,7 @@
     {
       "target": "Slider",
       "styles": [
-        "Background=#986f72",
+        "Background=#c81a1a",
         "Foreground=#7d1310",
         "CornerRadius=0"
       ]
@@ -610,9 +610,9 @@
     {
       "target": "Slider > Grid@CommonStates > * > Windows.UI.Xaml.Shapes.Rectangle#HorizontalTrackRect",
       "styles": [
-        "Fill@Normal=#986f72",
-        "Fill@PointerOver=#986f72",
-        "Fill@Pressed=#986f72",
+        "Fill@Normal=#c81a1a",
+        "Fill@PointerOver=#c81a1a",
+        "Fill@Pressed=#c81a1a",
         "Fill@Disabled=#482b2b"
       ]
     },
@@ -630,11 +630,11 @@
       "styles": [
         "CornerRadius=0",
         "Background@Normal=#000000",
-        "BorderBrush@Normal=#986f72",
+        "BorderBrush@Normal=#c81a1a",
         "Background@PointerOver=#000000",
-        "BorderBrush@PointerOver=#986f72",
+        "BorderBrush@PointerOver=#c81a1a",
         "Background@Pressed=#000000",
-        "BorderBrush@Pressed=#986f72",
+        "BorderBrush@Pressed=#c81a1a",
         "Background@Disabled=#0d0707",
         "BorderBrush@Disabled=#482b2b"
       ]
@@ -666,7 +666,7 @@
       "target": "Border#JumpListRestyledAcrylic",
       "styles": [
         "Background=#140b0b",
-        "BorderBrush=#986f72",
+        "BorderBrush=#c81a1a",
         "BorderThickness=1",
         "CornerRadius=0"
       ]
@@ -772,7 +772,7 @@
     "ControlFillColorDefault=#000000",
     "ControlFillColorSecondary=#1c1010",
     "ControlFillColorTertiary=#420f0c",
-    "ControlStrokeColorDefault=#986f72",
+    "ControlStrokeColorDefault=#c81a1a",
     "AccentFillColorDefault=#7d1310",
     "AccentTextFillColorPrimary=#ffa2a7",
     "TextOnAccentFillColorPrimary=#ffa2a7",
@@ -807,14 +807,14 @@
     "ButtonForegroundPointerOver=#e99499",
     "ButtonForegroundPressed=#e99499",
     "ButtonForegroundDisabled=#a3676b",
-    "ButtonBorderBrush=#986f72",
+    "ButtonBorderBrush=#c81a1a",
     "ButtonBorderBrushPointerOver=#e53935",
     "ButtonBorderBrushPressed=#e53935",
     "ButtonBorderBrushDisabled=#482b2b",
     "ButtonBackgroundDisabled=#0d0707",
     "SubtleButtonBackground=#000000",
     "SubtleButtonForeground=#e99499",
-    "SubtleButtonBorderBrush=#986f72",
+    "SubtleButtonBorderBrush=#c81a1a",
     "SubtleButtonBackgroundPointerOver=#1c1010",
     "SubtleButtonForegroundPointerOver=#e99499",
     "SubtleButtonBorderBrushPointerOver=#e53935",
@@ -826,7 +826,7 @@
     "SubtleButtonBorderBrushDisabled=#482b2b",
     "SplitButtonBackground=#000000",
     "SplitButtonForeground=#e99499",
-    "SplitButtonBorderBrush=#986f72",
+    "SplitButtonBorderBrush=#c81a1a",
     "SplitButtonBackgroundPointerOver=#1c1010",
     "SplitButtonForegroundPointerOver=#e99499",
     "SplitButtonBorderBrushPointerOver=#e53935",
@@ -870,7 +870,7 @@
     "AccentButtonBorderBrushDisabled=#482b2b",
     "MenuFlyoutItemBackgroundBrush=#140b0b",
     "MenuFlyoutPresenterBackground=#140b0b",
-    "MenuFlyoutPresenterBorderBrush=#986f72",
+    "MenuFlyoutPresenterBorderBrush=#c81a1a",
     "MenuFlyoutSeparatorBackground=#482b2b",
     "MenuFlyoutItemForeground=#e99499",
     "MenuFlyoutItemForegroundPointerOver=#e99499",
@@ -897,10 +897,10 @@
     "MenuFlyoutItemKeyboardAcceleratorTextForegroundPressed=#d4868b",
     "CommandBarFlyoutBackground=#140b0b",
     "CommandBarFlyoutForeground=#e99499",
-    "CommandBarFlyoutBorderBrush=#986f72",
+    "CommandBarFlyoutBorderBrush=#c81a1a",
     "CommandBarFlyoutButtonBackground=#140b0b",
     "CommandBarOverflowPresenterBackground=#140b0b",
-    "CommandBarOverflowPresenterBorderBrush=#986f72",
+    "CommandBarOverflowPresenterBorderBrush=#c81a1a",
     "CommandBarFlyoutAppBarButtonBackground=#140b0b",
     "CommandBarFlyoutAppBarButtonBackgroundPointerOver=#1c1010",
     "CommandBarFlyoutAppBarButtonBackgroundPressed=#420f0c",
@@ -928,12 +928,12 @@
     "CommandBarFlyoutAppBarButtonBorderBrush=#482b2b",
     "FlyoutPresenterBackground=#140b0b",
     "FlyoutPresenterForeground=#e99499",
-    "FlyoutPresenterBorderBrush=#986f72",
+    "FlyoutPresenterBorderBrush=#c81a1a",
     "AutoSuggestBoxSuggestionsListBackground=#140b0b",
-    "AutoSuggestBoxSuggestionsListBorderBrush=#986f72",
-    "SliderTrackFill=#986f72",
-    "SliderTrackFillPointerOver=#986f72",
-    "SliderTrackFillPressed=#986f72",
+    "AutoSuggestBoxSuggestionsListBorderBrush=#c81a1a",
+    "SliderTrackFill=#c81a1a",
+    "SliderTrackFillPointerOver=#c81a1a",
+    "SliderTrackFillPressed=#c81a1a",
     "SliderTrackFillDisabled=#482b2b",
     "SliderTrackValueFill=#7d1310",
     "SliderTrackValueFillPointerOver=#911410",
@@ -943,10 +943,10 @@
     "SliderThumbBackgroundPointerOver=#911410",
     "SliderThumbBackgroundPressed=#630f0d",
     "SliderThumbBackgroundDisabled=#0d0707",
-    "SliderThumbBorderBrush=#986f72",
+    "SliderThumbBorderBrush=#c81a1a",
     "SliderOuterThumbBackground=#000000",
     "SliderHeaderForeground=#e99499",
-    "SliderTickBarFill=#986f72",
+    "SliderTickBarFill=#c81a1a",
     "SliderInlineTickBarFill=#000000",
     "SliderContainerBackground=#000000",
     "SliderContainerBackgroundPointerOver=#000000",

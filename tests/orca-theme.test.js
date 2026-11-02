@@ -82,12 +82,17 @@ test("Orca maps the complete installed public app token contract without fallbac
   assert.equal(contract.hostVersion, "1.4.246");
   assert.deepEqual(source.appTokens, contract.tokens);
   assert.deepEqual(Object.keys(app.tokens), contract.tokens);
-  for (const key of ["--primary-foreground", "--sidebar-primary-foreground", "--accent-foreground", "--sidebar-accent-foreground", "--worktree-sidebar-accent-foreground", "--host-badge-foreground", "--tab-active-foreground", "--tab-inactive-foreground"]) {
+  for (const key of ["--sidebar-primary-foreground", "--accent-foreground", "--sidebar-accent-foreground", "--worktree-sidebar-accent-foreground", "--host-badge-foreground", "--tab-active-foreground", "--tab-inactive-foreground"]) {
     assert.ok([tokens["color.text.default"].css, tokens["color.text.bright"].css].includes(app.tokens[key]), key + " uses ordinary rose text");
   }
-  for (const key of ["--sidebar-primary", "--tab-active", "--host-badge", "--chat-user-message"]) assert.equal(app.tokens[key], tokens["color.surface.raised"].css, key + " uses a dark control surface");
-  assert.equal(app.tokens["--primary"], tokens["color.interaction.text-selection.bg"].css);
-  assert.equal(app.tokens["--worktree-sidebar-active"], tokens["color.surface.default"].css);
+  for (const key of ["--background","--editor-surface","--card","--popover","--secondary","--muted","--accent","--sidebar","--sidebar-primary","--sidebar-accent","--worktree-sidebar","--worktree-sidebar-accent","--worktree-sidebar-active","--host-badge","--tab-bar","--tab-active","--tab-inactive","--chat-user-message","--input"]) assert.equal(app.tokens[key], "#000000", key + " preserves the requested solid-black application surface");
+  assert.equal(app.tokens["--primary"], tokens["color.text.accent-strong"].css);
+  assert.equal(app.tokens["--primary-foreground"], tokens["color.text.inverse"].css);
+  const channels = hex => hex.slice(1).match(/../g).map(c => { const v = parseInt(c, 16) / 255; return v <= .04045 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4; });
+  const luminance = hex => channels(hex).reduce((n, v, i) => n + v * [.2126, .7152, .0722][i], 0);
+  const ratio = (a, b) => (Math.max(luminance(a), luminance(b)) + .05) / (Math.min(luminance(a), luminance(b)) + .05);
+  assert.ok(ratio(app.tokens["--primary"], app.tokens["--background"]) >= 4.5, "active primary links must not look disabled");
+  assert.ok(ratio(app.tokens["--primary-foreground"], app.tokens["--primary"]) >= 4.5, "shared primary selections and buttons remain readable");
   assert.equal(app.tokens["--card"], tokens["color.surface.canvas"].css);
   assert.equal(app.tokens["--border"], tokens["color.border.strong"].css);
   assert.equal(app.tokens["--diff-added"], tokens["color.diff.added.gutter"].css);

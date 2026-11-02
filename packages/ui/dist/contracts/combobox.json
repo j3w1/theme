@@ -226,7 +226,6 @@
       "color.interaction.text-selection.text",
       "color.primitive.ink.0",
       "color.primitive.ink.40",
-      "color.primitive.modern.control",
       "color.primitive.modern.divider",
       "color.primitive.modern.hover",
       "color.primitive.modern.panel",
@@ -235,6 +234,7 @@
       "color.primitive.paper.90",
       "color.primitive.red.100",
       "color.primitive.red.50",
+      "color.primitive.red.650",
       "color.primitive.red.800",
       "color.primitive.rose.350",
       "color.primitive.rose.600",
@@ -543,6 +543,6 @@
   "copy": {
     "directory": "copy/combobox/",
     "manifest": "copy/combobox/manifest.json",
-    "digest": "sha256-QvvKDbpE2UEJQAEVk6/S+5DgQigVkGCwJ6aEqLIKy64="
+    "digest": "sha256-JN1xqFQwRlRkbdXeaWnCDAO5xaE514+8b2SFoCppq1I="
   }
 }

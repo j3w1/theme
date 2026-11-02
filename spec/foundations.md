@@ -13,9 +13,9 @@ it may be used. Every rule is normative for the `default` profile.
 `surface.desktop` and `surface.canvas` are true black (`#000000`). Readable
 content sits on the canvas or on:
 
-- `default` (`#0e1014`) for panels and cards;
-- `raised` (`#15181e`) for sticky headers, menus and popovers;
-- `overlay` (`#191c22`) for dialogs and drawers;
+- `default` (`#0d0707`) for panels and cards;
+- `raised` (`#140b0b`) for sticky headers, menus and popovers;
+- `overlay` (`#1c1010`) for dialogs and drawers;
 - `accent` (`#3d0c0a`) for the user's own content set apart from its neighbours, such as outgoing chat messages; secondary text on it uses `text.muted`, never `text.subtle`. Red links cap its brightness: at this hue it stays at or below `#3f0c0a` (D-035);
 - `sunken` (`#000000`) for reading and detail panes;
 - `input` for form-control fills;
@@ -44,7 +44,8 @@ Never tint photos, video, document content or user-defined data colours.
 | `text.link` | underlined links; hover uses `text.link-hover` on `interaction.hover.bg` |
 
 D-041 uses rose for ordinary application text and terminal/agent prose
-(`text.default` and `terminal.fg`, `#e99499`). White is limited to document
+(`text.default`, `#e99499`); terminal prose and prompts use bright rose
+(`terminal.fg`, `#ffa2a7`) for clearer small text. White is limited to document
 headings, exceptional highlights and contrast-critical roles. Exact values
 and ratios per surface are in the token and contrast reports. Metadata and
 comments people need to read use `text.subtle`, never a decorative border or
@@ -57,12 +58,12 @@ only for the selected indicator bar, the sticky-header rule and the invalid
 border. The quote rule, which marks a block rather than bounding a control, is
 the one wider edge, at twice the emphasis width.
 
-- `border.divider` (`#303640`) separates rows and sections.
-- `border.default` (`#303640`) is decorative, never the only visible edge of
+- `border.divider` (`#482b2b`) separates rows and sections.
+- `border.default` (`#482b2b`) is decorative, never the only visible edge of
   a control.
-- `border.control` (`#747e8e`) is the edge of every form control at rest.
+- `border.control` (`#c81a1a`) is the edge of every form control at rest.
 - `border.active` (`#e53935`) marks the focused or active control.
-- `border.overlay` (`#747e8e`) frames every floating layer.
+- `border.overlay` (`#c81a1a`) frames every floating layer.
 
 Styles: solid by default; dashed only for focus, drop targets and read-only
 fields; dotted for hints; double for conflicts. Radius is `0` everywhere,
@@ -190,7 +191,7 @@ Terminal slots:
   profile explicitly restores its historical slot and background assignments.
 - `default` uses the semantic sixteen (D-041): black, red, green, amber,
   blue, violet, cyan and rose, followed by their bright variants.
-  Slots 7 and 15 use rose `#e99499` and bright rose `#ffa2a7` respectively.
+  Slots 7 and 15 both use bright rose `#ffa2a7` for readable terminal text.
   Slot 0 is the true-black background; slots 1–15, including neutral bright
   black, target at least 4.5:1 on it. Slots 2 and 10 remain green so programs
   using ANSI additions can be read correctly.
@@ -268,7 +269,7 @@ popup and what kind it is belong to the component's contract.
 SVG line icons on a 16px grid, 1.5px stroke, `stroke: currentColor`,
 `fill: none`, sizes 12 / 16 / 20. No icon font is needed; Nerd Font glyphs
 appear only in terminal and heritage specimens. Icon-only controls carry
-`aria-label` and a tooltip. `icon.decorative` (`#747e8e`) is for glyphs that
+`aria-label` and a tooltip. `icon.decorative` (`#986f72`) is for glyphs that
 mean nothing on their own.
 
 ## Layout

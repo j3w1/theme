@@ -1,7 +1,7 @@
 # j3w1 theme for Orca
 
 Gives Orca 1.4.246 and later the j3w1 app, editor and terminal colours.
-The data-only plugin themes the full application through supported public
+The data-only plugin themes supported application surfaces through public
 colour tokens, including sidebars, tabs, settings and structured agent views.
 TextMate scopes colour code, including green inserted text and red deletions.
 Status: experimental; structural validation is separate from live import evidence.
@@ -43,6 +43,36 @@ To restore, select the previous app, editor and terminal themes and run
 `orca plugin dev unload ./ports/orca/dist --json`. Keep the loaded folder at a
 stable path: development loading watches it for updates. This is a local
 installation, not a public plugin-catalog release.
+
+## Host limits in Orca 1.4.246
+
+Application panels, menus, resource manager and browser chrome use black fills;
+rose carries ordinary text and red carries boundaries. Input backgrounds are
+black, including the address field. Orca shares its input token with idle input
+borders, so those borders also become black; focus rings and the browser address
+field's separate outer red border remain.
+
+Orca shares primary color between active links, buttons and input selections.
+The port uses readable red with black text on primary fills, so links such as
+Settings → Agents remain visible. A dark-red selection with rose text cannot
+be configured independently of those links in this host version. Terminal and
+editor selections keep their separately supported palette.
+
+Some surfaces are not exposed by the public theme contract:
+
+- The browser loading line uses the private callout-note color, and tab loading spinners and fallback
+  icons use a fixed blue utility. A data theme cannot replace these colors.
+- Tooltips invert the ordinary foreground and background, producing rose fills.
+  There is no independent tooltip token.
+- Plain prose selection and explicitly system-colored selections can retain
+  Chromium blue; only shared input selection uses the primary colors above.
+- Sleeping/disconnected workspaces and some navigation labels apply host-owned
+  opacity. Theme colors do not remove those opacity reductions.
+- Websites inside browser tabs own their document colors. The app theme styles
+  browser chrome, not external page content.
+
+These limits require host theme hooks; the plugin does not patch Orca binaries
+or inject unsupported CSS.
 
 ## Legacy Ghostty installer
 

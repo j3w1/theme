@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — filterable-table
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-sCxjZdAqLlE1Q9ukwiB7Cju9jv2KO1vefm66CYFf/yg=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-zrj0mf6Yyhv/nw0hY+v8ZhfGq+qqDZck9essMG6c3a4=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/filterable-table.json
 spec: spec/components/filterable-table.md  site: https://j3w1.github.io/theme/reference/#c-filterable-table
 maturity: stable  priority: R1
@@ -14,16 +14,16 @@ Tokens (resolved):
   toolbar.border           #482b2b  ({color.border.divider})  use
   toolbar.separator        #482b2b  ({color.border.default})  use
   search.bg                #000000  ({color.surface.input})  use
-  search.border            #986f72  ({color.border.control})  use
+  search.border            #c81a1a  ({color.border.control})  use
   search.text              #e99499  ({color.text.default})  use
   search.placeholder       #bd787d  ({color.text.placeholder})  use
   search.icon              #e99499  ({color.icon.default})  use
   filter.text              #e99499  ({color.text.default})  use
-  filter.border            #986f72  ({color.border.control})  use
+  filter.border            #c81a1a  ({color.border.control})  use
   new.bg                   #7d1310  ({color.action.primary.bg})  use
   new.text                 #ffa2a7  ({color.action.primary.text})  use
   chip.bg                  #0d0707  ({color.surface.default})  use
-  chip.border              #986f72  ({color.border.control})  use
+  chip.border              #c81a1a  ({color.border.control})  use
   chip.text                #e99499  ({color.text.default})  use
   chip.remove              #d4868b  ({color.text.muted})  use
   header.text              #ffa2a7  ({color.text.bright})  use
@@ -36,7 +36,7 @@ Tokens (resolved):
   row.selected-text        #f4eeee  ({color.interaction.selection.text})  use
   row.ring-on-selection    #ffa2a7  ({color.interaction.focus.ring-container})  use
   check.bg                 #000000  ({color.surface.input})  use
-  check.border             #986f72  ({color.border.control})  use
+  check.border             #c81a1a  ({color.border.control})  use
   check.checked-bg         #7d1310  ({color.action.primary.bg})  use
   check.glyph              #ffa2a7  ({color.action.primary.text})  use
   badge.tested-fill        #82d9a0  ({color.status.success.fill})  use

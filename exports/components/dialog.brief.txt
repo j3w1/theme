@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — dialog
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-sCxjZdAqLlE1Q9ukwiB7Cju9jv2KO1vefm66CYFf/yg=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-zrj0mf6Yyhv/nw0hY+v8ZhfGq+qqDZck9essMG6c3a4=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/dialog.json
 spec: spec/components/dialog.md  site: https://j3w1.github.io/theme/reference/#c-dialog
 maturity: stable  priority: R1
@@ -10,7 +10,7 @@ Use the pinned approved default profile. Pending roles in that profile use-and-r
 Tokens (resolved):
   backdrop.bg           rgb(0 0 0 / 65%)  ({color.surface.backdrop})  use-and-report (D-008)
   root.bg               #1c1010  ({color.surface.overlay})  use
-  root.border           #986f72  ({color.border.overlay})  use
+  root.border           #c81a1a  ({color.border.overlay})  use
   root.ring             #ffa2a7  ({color.interaction.focus.ring-container})  use
   root.z                30  ({z.dialog})  use
   title.text            #ffa2a7  ({color.text.bright})  use
@@ -28,7 +28,7 @@ Tokens (resolved):
   destructive.text      #f9faf9  ({color.action.destructive.filled-text})  use
   destructive.bg-hover  #dc282e  ({color.action.destructive.hover-bg})  use
   field.bg              #000000  ({color.surface.input})  use
-  field.border          #986f72  ({color.border.control})  use
+  field.border          #c81a1a  ({color.border.control})  use
   field.label           #ffa2a7  ({color.text.bright})  use
   note.text             #d4868b  ({color.text.muted})  use
 

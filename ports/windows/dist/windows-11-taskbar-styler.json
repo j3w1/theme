@@ -13,7 +13,7 @@
       "styles": [
         "Background=#140b0b",
         "CornerRadius=0",
-        "BorderBrush=#986f72",
+        "BorderBrush=#c81a1a",
         "BorderThickness=1"
       ]
     },
@@ -79,7 +79,7 @@
       "target": "Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar",
       "styles": [
         "Background=#140b0b",
-        "BorderBrush=#986f72",
+        "BorderBrush=#c81a1a",
         "CornerRadius=0",
         "Foreground=#e99499"
       ]
@@ -88,7 +88,7 @@
       "target": "Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar > Grid#LayoutRoot > Grid#OuterContentRoot > Grid#ContentRoot > Grid#PrimaryItemsRoot",
       "styles": [
         "Background=#140b0b",
-        "BorderBrush=#986f72",
+        "BorderBrush=#c81a1a",
         "CornerRadius=0"
       ]
     },
@@ -96,7 +96,7 @@
       "target": "CommandBarOverflowPresenter#SecondaryItemsControl > Grid#LayoutRoot",
       "styles": [
         "Background=#140b0b",
-        "BorderBrush=#986f72",
+        "BorderBrush=#c81a1a",
         "CornerRadius=0"
       ]
     },
@@ -117,7 +117,7 @@
       "styles": [
         "Background=#140b0b",
         "Foreground=#e99499",
-        "BorderBrush=#986f72",
+        "BorderBrush=#c81a1a",
         "CornerRadius=0"
       ]
     },
@@ -133,7 +133,7 @@
       "styles": [
         "Background=#140b0b",
         "Foreground=#e99499",
-        "BorderBrush=#986f72",
+        "BorderBrush=#c81a1a",
         "CornerRadius=0"
       ]
     },
@@ -141,7 +141,7 @@
       "target": "FlyoutPresenter > Border",
       "styles": [
         "Background=#140b0b",
-        "BorderBrush=#986f72",
+        "BorderBrush=#c81a1a",
         "BorderThickness=1",
         "CornerRadius=0"
       ]
@@ -150,7 +150,7 @@
       "target": "Border#SuggestionsContainer",
       "styles": [
         "Background=#140b0b",
-        "BorderBrush=#986f72",
+        "BorderBrush=#c81a1a",
         "BorderThickness=1",
         "CornerRadius=0"
       ]
@@ -166,7 +166,7 @@
       "target": "Grid#SuggestionsContainer",
       "styles": [
         "Background=#140b0b",
-        "BorderBrush=#986f72",
+        "BorderBrush=#c81a1a",
         "BorderThickness=1",
         "CornerRadius=0"
       ]
@@ -205,7 +205,7 @@
       "target": "Grid#ConfirmatorMainGrid",
       "styles": [
         "Background=#000000",
-        "BorderBrush=#986f72",
+        "BorderBrush=#c81a1a",
         "BorderThickness=1",
         "CornerRadius=0"
       ]
@@ -220,7 +220,7 @@
     {
       "target": "Rectangle#HorizontalTrackRect, Rectangle#ProgressBarTrack",
       "styles": [
-        "Fill=#986f72"
+        "Fill=#c81a1a"
       ]
     },
     {
@@ -233,7 +233,7 @@
       "target": "WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid",
       "styles": [
         "Background=#000000",
-        "BorderBrush=#986f72",
+        "BorderBrush=#c81a1a",
         "BorderThickness=1",
         "CornerRadius=0"
       ]
@@ -270,7 +270,7 @@
       "target": "WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher",
       "styles": [
         "Background=#000000",
-        "BorderBrush=#986f72",
+        "BorderBrush=#c81a1a",
         "BorderThickness=1",
         "CornerRadius=0"
       ]
@@ -279,7 +279,7 @@
       "target": "WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid > Border",
       "styles": [
         "Background=#000000",
-        "BorderBrush=#986f72",
+        "BorderBrush=#c81a1a",
         "BorderThickness=1",
         "CornerRadius=0"
       ]
@@ -288,7 +288,7 @@
       "target": "Windows.UI.Xaml.Controls.Primitives.Popup > Border#InputSwitcherPopupBorder",
       "styles": [
         "Background=#000000",
-        "BorderBrush=#986f72",
+        "BorderBrush=#c81a1a",
         "BorderThickness=1",
         "CornerRadius=0"
       ]
@@ -305,7 +305,7 @@
       "styles": [
         "Background=#140b0b",
         "CornerRadius=0",
-        "BorderBrush=#986f72",
+        "BorderBrush=#c81a1a",
         "BorderThickness=1"
       ]
     }
@@ -327,7 +327,7 @@
     "ControlFillColorDefault=#000000",
     "ControlFillColorSecondary=#1c1010",
     "ControlFillColorTertiary=#420f0c",
-    "ControlStrokeColorDefault=#986f72",
+    "ControlStrokeColorDefault=#c81a1a",
     "AccentFillColorDefault=#7d1310",
     "AccentTextFillColorPrimary=#ffa2a7",
     "TextOnAccentFillColorPrimary=#ffa2a7",
@@ -362,14 +362,14 @@
     "ButtonForegroundPointerOver=#e99499",
     "ButtonForegroundPressed=#e99499",
     "ButtonForegroundDisabled=#a3676b",
-    "ButtonBorderBrush=#986f72",
+    "ButtonBorderBrush=#c81a1a",
     "ButtonBorderBrushPointerOver=#e53935",
     "ButtonBorderBrushPressed=#e53935",
     "ButtonBorderBrushDisabled=#482b2b",
     "ButtonBackgroundDisabled=#0d0707",
     "SubtleButtonBackground=#000000",
     "SubtleButtonForeground=#e99499",
-    "SubtleButtonBorderBrush=#986f72",
+    "SubtleButtonBorderBrush=#c81a1a",
     "SubtleButtonBackgroundPointerOver=#1c1010",
     "SubtleButtonForegroundPointerOver=#e99499",
     "SubtleButtonBorderBrushPointerOver=#e53935",
@@ -381,7 +381,7 @@
     "SubtleButtonBorderBrushDisabled=#482b2b",
     "SplitButtonBackground=#000000",
     "SplitButtonForeground=#e99499",
-    "SplitButtonBorderBrush=#986f72",
+    "SplitButtonBorderBrush=#c81a1a",
     "SplitButtonBackgroundPointerOver=#1c1010",
     "SplitButtonForegroundPointerOver=#e99499",
     "SplitButtonBorderBrushPointerOver=#e53935",
@@ -425,7 +425,7 @@
     "AccentButtonBorderBrushDisabled=#482b2b",
     "MenuFlyoutItemBackgroundBrush=#140b0b",
     "MenuFlyoutPresenterBackground=#140b0b",
-    "MenuFlyoutPresenterBorderBrush=#986f72",
+    "MenuFlyoutPresenterBorderBrush=#c81a1a",
     "MenuFlyoutSeparatorBackground=#482b2b",
     "MenuFlyoutItemForeground=#e99499",
     "MenuFlyoutItemForegroundPointerOver=#e99499",
@@ -452,10 +452,10 @@
     "MenuFlyoutItemKeyboardAcceleratorTextForegroundPressed=#d4868b",
     "CommandBarFlyoutBackground=#140b0b",
     "CommandBarFlyoutForeground=#e99499",
-    "CommandBarFlyoutBorderBrush=#986f72",
+    "CommandBarFlyoutBorderBrush=#c81a1a",
     "CommandBarFlyoutButtonBackground=#140b0b",
     "CommandBarOverflowPresenterBackground=#140b0b",
-    "CommandBarOverflowPresenterBorderBrush=#986f72",
+    "CommandBarOverflowPresenterBorderBrush=#c81a1a",
     "CommandBarFlyoutAppBarButtonBackground=#140b0b",
     "CommandBarFlyoutAppBarButtonBackgroundPointerOver=#1c1010",
     "CommandBarFlyoutAppBarButtonBackgroundPressed=#420f0c",
@@ -483,8 +483,8 @@
     "CommandBarFlyoutAppBarButtonBorderBrush=#482b2b",
     "FlyoutPresenterBackground=#140b0b",
     "FlyoutPresenterForeground=#e99499",
-    "FlyoutPresenterBorderBrush=#986f72",
+    "FlyoutPresenterBorderBrush=#c81a1a",
     "AutoSuggestBoxSuggestionsListBackground=#140b0b",
-    "AutoSuggestBoxSuggestionsListBorderBrush=#986f72"
+    "AutoSuggestBoxSuggestionsListBorderBrush=#c81a1a"
   ]
 }

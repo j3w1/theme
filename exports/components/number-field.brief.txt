@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — number-field
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-sCxjZdAqLlE1Q9ukwiB7Cju9jv2KO1vefm66CYFf/yg=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-zrj0mf6Yyhv/nw0hY+v8ZhfGq+qqDZck9essMG6c3a4=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/number-field.json
 spec: spec/components/number-field.md  site: https://j3w1.github.io/theme/reference/#c-number-field
 maturity: stable  priority: R1
@@ -9,7 +9,7 @@ Summary: The text-field box around a native number input with right-aligned tabu
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
   root.bg               #000000  ({color.surface.input})  use
-  root.border           #986f72  ({color.border.control})  use
+  root.border           #c81a1a  ({color.border.control})  use
   root.bg-hover         #1c1010  ({color.interaction.hover.bg})  use
   root.border-focus     #e53935  ({color.border.active})  use
   root.ring             #e53935  ({color.interaction.focus.ring})  use

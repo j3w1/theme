@@ -242,7 +242,6 @@
       "color.interaction.text-selection.bg",
       "color.interaction.text-selection.text",
       "color.primitive.ink.0",
-      "color.primitive.modern.control",
       "color.primitive.modern.divider",
       "color.primitive.modern.hover",
       "color.primitive.modern.panel",
@@ -250,6 +249,7 @@
       "color.primitive.paper.90",
       "color.primitive.red.100",
       "color.primitive.red.50",
+      "color.primitive.red.650",
       "color.primitive.red.800",
       "color.primitive.rose.350",
       "color.primitive.rose.600",
@@ -490,6 +490,6 @@
   "copy": {
     "directory": "copy/textarea/",
     "manifest": "copy/textarea/manifest.json",
-    "digest": "sha256-YfV/+l7JY9J66rZntRtrI6WJxXxDF9/O2ubccm8zJ/o="
+    "digest": "sha256-DyaG2k7o6BlcPa+H2TJnjk2tqWxwmqrMOE5RDZJkxBw="
   }
 }

@@ -206,7 +206,6 @@
       "color.primitive.modern.bright-green",
       "color.primitive.modern.bright-red",
       "color.primitive.modern.bright-violet",
-      "color.primitive.modern.control",
       "color.primitive.modern.cyan",
       "color.primitive.modern.green",
       "color.primitive.modern.panel",
@@ -215,6 +214,7 @@
       "color.primitive.paper.90",
       "color.primitive.red.100",
       "color.primitive.red.50",
+      "color.primitive.red.650",
       "color.primitive.red.800",
       "color.primitive.rose.600",
       "color.primitive.rose.650",
@@ -527,6 +527,6 @@
   "copy": {
     "directory": "copy/terminal/",
     "manifest": "copy/terminal/manifest.json",
-    "digest": "sha256-KsP+Ht5T9aDCyV/aSIDk/sA96i3BnBh6ItiP+fN0NQk="
+    "digest": "sha256-R6fteNdTjGjYY6RLBBUjM7wUCoxN1QCxe7DGXnqO9Yg="
   }
 }

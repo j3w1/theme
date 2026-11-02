@@ -267,7 +267,6 @@
       "color.interaction.text-selection.bg",
       "color.interaction.text-selection.text",
       "color.primitive.ink.0",
-      "color.primitive.modern.control",
       "color.primitive.modern.divider",
       "color.primitive.modern.hover",
       "color.primitive.modern.panel",
@@ -277,6 +276,7 @@
       "color.primitive.red.100",
       "color.primitive.red.200",
       "color.primitive.red.50",
+      "color.primitive.red.650",
       "color.primitive.red.800",
       "color.primitive.rose.350",
       "color.primitive.rose.600",
@@ -604,6 +604,6 @@
   "copy": {
     "directory": "copy/select/",
     "manifest": "copy/select/manifest.json",
-    "digest": "sha256-gyFSMLJUGOwMIeo2aQX5MgA4yeh1b5y+t9MFAHWMnFQ="
+    "digest": "sha256-jvw2jUqqMRw42q/rCfMJ1eS6/dOU257qg8Qtc/DI5OE="
   }
 }

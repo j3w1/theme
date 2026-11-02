@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — code-editor
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-sCxjZdAqLlE1Q9ukwiB7Cju9jv2KO1vefm66CYFf/yg=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-zrj0mf6Yyhv/nw0hY+v8ZhfGq+qqDZck9essMG6c3a4=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/code-editor.json
 spec: spec/components/code-editor.md  site: https://j3w1.github.io/theme/reference/#c-code-editor
 maturity: stable  priority: R1
@@ -9,7 +9,7 @@ Summary: The editor surface, gutter, caret, current line, selection, bracket mat
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
   root.bg                  #000000  ({color.code.bg})  use
-  root.border              #986f72  ({color.border.control})  use
+  root.border              #c81a1a  ({color.border.control})  use
   root.ring                #ffa2a7  ({color.interaction.focus.ring-container})  use
   gutter.bg                #000000  ({color.code.gutter-bg})  use
   gutter.rule              #482b2b  ({color.code.gutter-rule})  use
@@ -25,7 +25,7 @@ Tokens (resolved):
   indent.guide             #482b2b  ({color.code.indent-guide})  use
   whitespace.text          #986f72  ({color.code.whitespace})  use
   fold.text                #d4868b  ({color.text.muted})  use
-  fold.border              #986f72  ({color.border.control})  use
+  fold.border              #c81a1a  ({color.border.control})  use
   syntax.keyword           #c7a0e8  ({color.code.syntax.keyword})  use
   syntax.string            #82d9a0  ({color.code.syntax.string})  use
   syntax.comment           #bd787d  ({color.code.syntax.comment})  use

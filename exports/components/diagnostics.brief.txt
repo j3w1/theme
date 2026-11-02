@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — diagnostics
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-sCxjZdAqLlE1Q9ukwiB7Cju9jv2KO1vefm66CYFf/yg=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-zrj0mf6Yyhv/nw0hY+v8ZhfGq+qqDZck9essMG6c3a4=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/diagnostics.json
 spec: spec/components/diagnostics.md  site: https://j3w1.github.io/theme/reference/#c-diagnostics
 maturity: stable  priority: R1
@@ -9,7 +9,7 @@ Summary: Inline problem markers in code (underline patterns, an error line and a
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
   root.bg            #0d0707  ({color.surface.default})  use
-  root.border        #986f72  ({color.border.control})  use
+  root.border        #c81a1a  ({color.border.control})  use
   code.bg            #000000  ({color.code.bg})  use
   code.text          #e99499  ({color.text.default})  use
   code.line-number   #bd787d  ({color.code.line-number})  use

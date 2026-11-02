@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-sCxjZdAqLlE1Q9ukwiB7Cju9jv2KO1vefm66CYFf/yg=",
+  "sourceDigest": "sha256-zrj0mf6Yyhv/nw0hY+v8ZhfGq+qqDZck9essMG6c3a4=",
   "id": "switch",
   "family": "forms-basic",
   "maturity": "stable",
@@ -77,7 +77,7 @@
     },
     "track.border": {
       "alias": "color.border.control",
-      "value": "#986f72",
+      "value": "#c81a1a",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -264,7 +264,7 @@
         },
         "border": {
           "alias": "color.border.control",
-          "value": "#986f72",
+          "value": "#c81a1a",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -295,7 +295,7 @@
         },
         "border": {
           "alias": "color.border.control",
-          "value": "#986f72",
+          "value": "#c81a1a",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -326,7 +326,7 @@
         },
         "border": {
           "alias": "color.border.control",
-          "value": "#986f72",
+          "value": "#c81a1a",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -486,9 +486,9 @@
       "min": 3,
       "fg": "color.border.control",
       "bg": "color.surface.input",
-      "fgHex": "#986f72",
+      "fgHex": "#c81a1a",
       "bgHex": "#000000",
-      "ratio": 4.85,
+      "ratio": 3.62,
       "pass": true,
       "waiver": null
     },
@@ -499,9 +499,9 @@
       "min": 3,
       "fg": "color.border.control",
       "bg": "color.interaction.hover.bg",
-      "fgHex": "#986f72",
+      "fgHex": "#c81a1a",
       "bgHex": "#1c1010",
-      "ratio": 4.29,
+      "ratio": 3.2,
       "pass": true,
       "waiver": null
     },
@@ -512,9 +512,9 @@
       "min": 3,
       "fg": "color.border.control",
       "bg": "color.surface.input",
-      "fgHex": "#986f72",
+      "fgHex": "#c81a1a",
       "bgHex": "#000000",
-      "ratio": 4.85,
+      "ratio": 3.62,
       "pass": true,
       "waiver": null
     },
@@ -616,9 +616,9 @@
       "min": 3,
       "fg": "color.border.control",
       "bg": "color.surface.default",
-      "fgHex": "#986f72",
+      "fgHex": "#c81a1a",
       "bgHex": "#0d0707",
-      "ratio": 4.62,
+      "ratio": 3.44,
       "pass": true,
       "waiver": null
     },

@@ -64,9 +64,9 @@
   --link-color-hover: #f4eeee;
   --link-external-color-hover: #f4eeee;
   --text-accent-hover: #f4eeee;
-  --background-modifier-border: #986f72;
-  --checkbox-border-color: #986f72;
-  --slider-thumb-border-color: #986f72;
+  --background-modifier-border: #c81a1a;
+  --checkbox-border-color: #c81a1a;
+  --slider-thumb-border-color: #c81a1a;
   --background-modifier-border-hover: #e53935;
   --checkbox-border-color-hover: #e53935;
   --divider-color-hover: #e53935;
@@ -78,9 +78,9 @@
   --metadata-divider-color: #482b2b;
   --code-border-color: #482b2b;
   --tab-outline-color: #482b2b;
-  --modal-border-color: #986f72;
-  --menu-border-color: #986f72;
-  --prompt-border-color: #986f72;
+  --modal-border-color: #c81a1a;
+  --menu-border-color: #c81a1a;
+  --prompt-border-color: #c81a1a;
   --background-modifier-border-focus: #e53935;
   --nav-item-background-active: #531310;
   --nav-item-background-selected: #531310;
@@ -217,7 +217,7 @@
   --background-modifier-cover: rgb(0 0 0 / 65%);
   --background-modifier-hover: #1c1010;
   --background-modifier-message: #140b0b;
-  --modal-border-color: #986f72;
+  --modal-border-color: #c81a1a;
   --settings-background: #0d0707;
   --setting-items-background: #0d0707;
   --modal-background: #1c1010;
@@ -282,7 +282,7 @@
 /* Native tooltip hardcodes white text and has no border variables. */
 .theme-dark .tooltip {
   color: #e99499;
-  border-color: #986f72;
+  border-color: #c81a1a;
   border-width: 1px;
   border-style: solid;
   box-shadow: none;
@@ -296,7 +296,7 @@
 /* Native prompt field needs a fill and border; compact start padding preserves the native clear-button end reservation. */
 .theme-dark .prompt input.prompt-input {
   background-color: #000000;
-  border-color: #986f72;
+  border-color: #c81a1a;
   border-width: 1px;
   padding-block: 4px;
   padding-inline-start: 8px;
@@ -442,21 +442,21 @@
 /* Native select uses decorative input shadow as its edge; replace with a real control border. */
 .theme-dark select {
   border-width: 1px;
-  border-color: #986f72;
+  border-color: #c81a1a;
   border-style: solid;
 }
 
 /* Native dropdown uses input shadow as its edge; replace with a real control border. */
 .theme-dark .dropdown {
   border-width: 1px;
-  border-color: #986f72;
+  border-color: #c81a1a;
   border-style: solid;
 }
 
 /* Native combobox button uses input shadow as its edge; replace with a real control border. */
 .theme-dark .combobox-button {
   border-width: 1px;
-  border-color: #986f72;
+  border-color: #c81a1a;
   border-style: solid;
 }
 

@@ -3430,16 +3430,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.5961,
-              0.4353,
-              0.4471
+              0.7843,
+              0.102,
+              0.102
             ],
             "alpha": 1,
-            "hex": "#986f72"
+            "hex": "#c81a1a"
           },
-          "css": "#986f72",
-          "aliasOf": "color.primitive.modern.control",
-          "description": "D-041 border.control: color.primitive.modern.control.",
+          "css": "#c81a1a",
+          "aliasOf": "color.primitive.red.650",
+          "description": "D-041 owner correction: red control and floating-frame borders, distinct from rose text.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -3478,16 +3478,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.5961,
-              0.4353,
-              0.4471
+              0.7843,
+              0.102,
+              0.102
             ],
             "alpha": 1,
-            "hex": "#986f72"
+            "hex": "#c81a1a"
           },
-          "css": "#986f72",
-          "aliasOf": "color.primitive.modern.control",
-          "description": "D-041 border.overlay: color.primitive.modern.control.",
+          "css": "#c81a1a",
+          "aliasOf": "color.primitive.red.650",
+          "description": "D-041 owner correction: red control and floating-frame borders, distinct from rose text.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -6598,16 +6598,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9137,
-              0.5804,
-              0.6
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#e99499"
+            "hex": "#ffa2a7"
           },
-          "css": "#e99499",
-          "aliasOf": "color.primitive.rose.700",
-          "description": "D-041 owner correction: ordinary terminal and agent text is rose, not near-white.",
+          "css": "#ffa2a7",
+          "aliasOf": "color.text.bright",
+          "description": "D-041: bright rose terminal text for readable black-background shells.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -6718,16 +6718,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9137,
-              0.5804,
-              0.6
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#e99499"
+            "hex": "#ffa2a7"
           },
-          "css": "#e99499",
-          "aliasOf": "color.terminal.fg",
-          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
+          "css": "#ffa2a7",
+          "aliasOf": "color.text.bright",
+          "description": "D-041: bright rose terminal text for readable black-background shells.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -6910,15 +6910,15 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9137,
-              0.5804,
-              0.6
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#e99499"
+            "hex": "#ffa2a7"
           },
-          "css": "#e99499",
-          "aliasOf": "color.primitive.rose.700",
+          "css": "#ffa2a7",
+          "aliasOf": "color.text.bright",
           "description": "D-041 ordinary ANSI foreground: rose.",
           "status": "approved",
           "deprecated": false,
@@ -12219,16 +12219,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.5961,
-              0.4353,
-              0.4471
+              0.7843,
+              0.102,
+              0.102
             ],
             "alpha": 1,
-            "hex": "#986f72"
+            "hex": "#c81a1a"
           },
-          "css": "#986f72",
-          "aliasOf": "color.primitive.modern.control",
-          "description": "D-041 border.control: color.primitive.modern.control.",
+          "css": "#c81a1a",
+          "aliasOf": "color.primitive.red.650",
+          "description": "D-041 owner correction: red control and floating-frame borders, distinct from rose text.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -15387,16 +15387,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9137,
-              0.5804,
-              0.6
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#e99499"
+            "hex": "#ffa2a7"
           },
-          "css": "#e99499",
-          "aliasOf": "color.primitive.rose.700",
-          "description": "D-041 owner correction: ordinary terminal and agent text is rose, not near-white.",
+          "css": "#ffa2a7",
+          "aliasOf": "color.text.bright",
+          "description": "D-041: bright rose terminal text for readable black-background shells.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -21008,16 +21008,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.5961,
-              0.4353,
-              0.4471
+              0.7843,
+              0.102,
+              0.102
             ],
             "alpha": 1,
-            "hex": "#986f72"
+            "hex": "#c81a1a"
           },
-          "css": "#986f72",
-          "aliasOf": "color.primitive.modern.control",
-          "description": "D-041 border.control: color.primitive.modern.control.",
+          "css": "#c81a1a",
+          "aliasOf": "color.primitive.red.650",
+          "description": "D-041 owner correction: red control and floating-frame borders, distinct from rose text.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -21056,16 +21056,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.5961,
-              0.4353,
-              0.4471
+              0.7843,
+              0.102,
+              0.102
             ],
             "alpha": 1,
-            "hex": "#986f72"
+            "hex": "#c81a1a"
           },
-          "css": "#986f72",
-          "aliasOf": "color.primitive.modern.control",
-          "description": "D-041 border.overlay: color.primitive.modern.control.",
+          "css": "#c81a1a",
+          "aliasOf": "color.primitive.red.650",
+          "description": "D-041 owner correction: red control and floating-frame borders, distinct from rose text.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -24214,16 +24214,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9137,
-              0.5804,
-              0.6
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#e99499"
+            "hex": "#ffa2a7"
           },
-          "css": "#e99499",
-          "aliasOf": "color.primitive.rose.700",
-          "description": "D-041 owner correction: ordinary terminal and agent text is rose, not near-white.",
+          "css": "#ffa2a7",
+          "aliasOf": "color.text.bright",
+          "description": "D-041: bright rose terminal text for readable black-background shells.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -24334,16 +24334,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9137,
-              0.5804,
-              0.6
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#e99499"
+            "hex": "#ffa2a7"
           },
-          "css": "#e99499",
-          "aliasOf": "color.terminal.fg",
-          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
+          "css": "#ffa2a7",
+          "aliasOf": "color.text.bright",
+          "description": "D-041: bright rose terminal text for readable black-background shells.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",

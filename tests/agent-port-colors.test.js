@@ -48,3 +48,12 @@ test("Codex accent remains readable on both actual diff line tints", () => {
     assert.ok(contrast(fg, scope(name).background) >= 4.5, name);
   }
 });
+
+test("Claude shared permission color keeps inline code readable and borders red", () => {
+  const theme = claudeTheme(ctx).overrides;
+  for (const role of ["color.terminal.bg", "color.surface.default", "color.surface.overlay"]) {
+    assert.ok(contrast(theme.permission, color(role)) >= 4.5, role);
+  }
+  const [r, g, b] = rgb(theme.permission);
+  assert.ok(r > g && r > b, "permission borders remain red");
+});
