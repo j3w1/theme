@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-Dovcr9Ky.js";
-import { t as pagination } from "../chunks/tables-Cjr1EIJz.js";
-//#region .cache/ui-build/entries/components/pagination.js
+import { t as J3w1Element } from "../chunks/element-DcrNU9Wh.js";
+import { t as pagination } from "../chunks/tables-zo8ebTOo.js";
+// .cache/ui-build/entries/components/pagination.js
 var J3w1Pagination = class extends J3w1Element {
 	static componentId = "pagination";
 	static version = "4.0.0";
-	static implementationId = "sha256-HgWIYJ3ex0Ayw+BLic3BdN3dNV9ChkM7wiwgp/qkkAE=";
+	static implementationId = "sha256-MIZZYUoTVmPnN0QSV3/TqHlUbLXmXItH+lOBusJQhPQ=";
 	static connect = pagination;
 	static upgradeProperties = [
 		"disabled",
@@ -24,5 +24,4 @@ var J3w1Pagination = class extends J3w1Element {
 		});
 	}
 };
-//#endregion
 export { J3w1Pagination };

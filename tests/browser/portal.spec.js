@@ -38,6 +38,8 @@ test("global command search loads once and finds components, token swatches and 
   await page.goto("./", { waitUntil: "networkidle" });
   expect(indexRequests).toBe(0);
   const opener = page.getByRole("button", { name: "Search the design system", exact: true });
+  await expect(opener).toHaveAttribute("aria-keyshortcuts", "Control+k Meta+k");
+  if (info.project.name === "desktop") expect((await new AxeBuilder({ page }).include(".site-command [data-open]").analyze()).violations).toEqual([]);
   await opener.focus();
   await page.keyboard.press("Control+k");
   const dialog = page.getByRole("dialog");

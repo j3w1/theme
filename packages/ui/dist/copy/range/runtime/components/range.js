@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-Dovcr9Ky.js";
-import { r as fields } from "../chunks/native-BjBt1sUh.js";
-//#region .cache/ui-build/entries/components/range.js
+import { t as J3w1Element } from "../chunks/element-DcrNU9Wh.js";
+import { r as fields } from "../chunks/native-D61761VL.js";
+// .cache/ui-build/entries/components/range.js
 var J3w1Range = class extends J3w1Element {
 	static componentId = "range";
 	static version = "4.0.0";
-	static implementationId = "sha256-zCJuNTps0+QV29mUu6dGnyhnpifuS7WnpWWjLJtkpdo=";
+	static implementationId = "sha256-i6nR59cp/+WnCt0GMdESQTDAwvHuvPWB0oPhG86AZOs=";
 	static connect = fields;
 	static upgradeProperties = [
 		"disabled",
@@ -27,5 +27,4 @@ var J3w1Range = class extends J3w1Element {
 		return this._api.clear(...args);
 	}
 };
-//#endregion
 export { J3w1Range };

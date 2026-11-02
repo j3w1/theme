@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-Dovcr9Ky.js";
-import { r as developerView } from "../chunks/display-Jm9bAsnb.js";
-//#region .cache/ui-build/entries/components/terminal.js
+import { t as J3w1Element } from "../chunks/element-DcrNU9Wh.js";
+import { r as developerView } from "../chunks/display-l54fb8vw.js";
+// .cache/ui-build/entries/components/terminal.js
 var J3w1Terminal = class extends J3w1Element {
 	static componentId = "terminal";
 	static version = "4.0.0";
-	static implementationId = "sha256-vnYvMfEFdH6UbGXHQ5OrfeJTspczt8hiaTWYnXnhlJc=";
+	static implementationId = "sha256-EaWsX7/hfvpbco1yseFqk/elrH1deuvBKjBPCqnnO2A=";
 	static connect = developerView;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];
@@ -13,5 +13,4 @@ var J3w1Terminal = class extends J3w1Element {
 		return this._api.setText(...args);
 	}
 };
-//#endregion
 export { J3w1Terminal };

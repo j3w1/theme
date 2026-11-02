@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-Dovcr9Ky.js";
-import { n as table } from "../chunks/tables-Cjr1EIJz.js";
-//#region .cache/ui-build/entries/components/table.js
+import { t as J3w1Element } from "../chunks/element-DcrNU9Wh.js";
+import { n as table } from "../chunks/tables-zo8ebTOo.js";
+// .cache/ui-build/entries/components/table.js
 var J3w1Table = class extends J3w1Element {
 	static componentId = "table";
 	static version = "4.0.0";
-	static implementationId = "sha256-dYinCl3vod1TSMh+SSPtibWEFlVRwhAF7TZ09eviokw=";
+	static implementationId = "sha256-qzueems4nlIVXm/5XT2r1R4us1YNkmAFjQkeOBgWPiM=";
 	static connect = table;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];
@@ -17,5 +17,4 @@ var J3w1Table = class extends J3w1Element {
 		return this._api.filter(...args);
 	}
 };
-//#endregion
 export { J3w1Table };

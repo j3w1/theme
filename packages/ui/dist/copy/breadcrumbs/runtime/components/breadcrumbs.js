@@ -1,13 +1,12 @@
-import { t as J3w1Element } from "../chunks/element-Dovcr9Ky.js";
-import { n as disclosure } from "../chunks/navigation-BfNzDYZB.js";
-//#region .cache/ui-build/entries/components/breadcrumbs.js
+import { t as J3w1Element } from "../chunks/element-DcrNU9Wh.js";
+import { n as disclosure } from "../chunks/navigation-CknoksQ5.js";
+// .cache/ui-build/entries/components/breadcrumbs.js
 var J3w1Breadcrumbs = class extends J3w1Element {
 	static componentId = "breadcrumbs";
 	static version = "4.0.0";
-	static implementationId = "sha256-9uiBLPIbEVI200s39xDO7x0K09v+wPg5xcoMI5B5TbY=";
+	static implementationId = "sha256-UzuPAevxgWxvLwLS5TgOGWH3gWcdZo9B3pvbMu/55Yc=";
 	static connect = disclosure;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];
 };
-//#endregion
 export { J3w1Breadcrumbs };

@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-Dovcr9Ky.js";
-import { i as tabs } from "../chunks/navigation-BfNzDYZB.js";
-//#region .cache/ui-build/entries/components/tabs.js
+import { t as J3w1Element } from "../chunks/element-DcrNU9Wh.js";
+import { i as tabs } from "../chunks/navigation-CknoksQ5.js";
+// .cache/ui-build/entries/components/tabs.js
 var J3w1Tabs = class extends J3w1Element {
 	static componentId = "tabs";
 	static version = "4.0.0";
-	static implementationId = "sha256-vWyT4Mr1GxnXVkpNXHK/nd/+0BmdRogsb7+eE6EnQ7A=";
+	static implementationId = "sha256-264IAmFxjdMOK5kPIhdYJogO9fMeVwBYQiMzGB9GxdU=";
 	static connect = tabs;
 	static upgradeProperties = [
 		"disabled",
@@ -32,5 +32,4 @@ var J3w1Tabs = class extends J3w1Element {
 		});
 	}
 };
-//#endregion
 export { J3w1Tabs };

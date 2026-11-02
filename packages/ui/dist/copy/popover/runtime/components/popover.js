@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-Dovcr9Ky.js";
-import { r as popover } from "../chunks/overlays-BwgpF4jI.js";
-//#region .cache/ui-build/entries/components/popover.js
+import { t as J3w1Element } from "../chunks/element-DcrNU9Wh.js";
+import { r as popover } from "../chunks/overlays-BW66WXLm.js";
+// .cache/ui-build/entries/components/popover.js
 var J3w1Popover = class extends J3w1Element {
 	static componentId = "popover";
 	static version = "4.0.0";
-	static implementationId = "sha256-544d7ON825LY8X5xEBzRzpHfZ1h2hjozJQ8CIUd0dwQ=";
+	static implementationId = "sha256-0lpdoNXcJ4OtvOncSedDRAZh8Qqu3IC+U2AFJbsDWgo=";
 	static connect = popover;
 	static upgradeProperties = [
 		"disabled",
@@ -32,5 +32,4 @@ var J3w1Popover = class extends J3w1Element {
 		});
 	}
 };
-//#endregion
 export { J3w1Popover };

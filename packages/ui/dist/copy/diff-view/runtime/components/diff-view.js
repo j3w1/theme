@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-Dovcr9Ky.js";
-import { r as developerView } from "../chunks/display-Jm9bAsnb.js";
-//#region .cache/ui-build/entries/components/diff-view.js
+import { t as J3w1Element } from "../chunks/element-DcrNU9Wh.js";
+import { r as developerView } from "../chunks/display-l54fb8vw.js";
+// .cache/ui-build/entries/components/diff-view.js
 var J3w1DiffView = class extends J3w1Element {
 	static componentId = "diff-view";
 	static version = "4.0.0";
-	static implementationId = "sha256-7zzFpU0Y2cQR1wO8DWE4bqkofCnJMaERCXRLdai7u0A=";
+	static implementationId = "sha256-xbLfnA1/siCeNpzpHk8FA2PFnz+aDd3RON68QHJ7WnM=";
 	static connect = developerView;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];
@@ -13,5 +13,4 @@ var J3w1DiffView = class extends J3w1Element {
 		return this._api.setText(...args);
 	}
 };
-//#endregion
 export { J3w1DiffView };

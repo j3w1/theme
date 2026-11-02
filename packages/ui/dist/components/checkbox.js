@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-Dovcr9Ky.js";
-import { r as fields } from "../chunks/native-BjBt1sUh.js";
-//#region .cache/ui-build/entries/components/checkbox.js
+import { t as J3w1Element } from "../chunks/element-DcrNU9Wh.js";
+import { r as fields } from "../chunks/native-D61761VL.js";
+// .cache/ui-build/entries/components/checkbox.js
 var J3w1Checkbox = class extends J3w1Element {
 	static componentId = "checkbox";
 	static version = "4.0.0";
-	static implementationId = "sha256-Izbz5fVyhrSfF5rLvCHcElWnQgwhYuvOSm5StKMlqUg=";
+	static implementationId = "sha256-qZohpwxrLq3iJ7JFmE0EmXgp3pJGmBpalNJzpOSs2jQ=";
 	static connect = fields;
 	static upgradeProperties = [
 		"disabled",
@@ -51,5 +51,4 @@ var J3w1Checkbox = class extends J3w1Element {
 		});
 	}
 };
-//#endregion
 export { J3w1Checkbox };

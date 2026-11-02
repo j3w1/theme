@@ -1,0 +1,52 @@
+import { t as J3w1Element } from "./element-DcrNU9Wh.js";
+import { t as mountBuilder } from "./form-builder-DbZUZMo1.js";
+// packages/ui/src/behaviors/form-builder.js
+function formBuilder(root, { signal }) {
+	const editor = root.querySelector("[data-builder]");
+	if (!editor) throw new Error("The form builder requires the complete maintained editor and preview markup");
+	const api = mountBuilder(editor, { signal });
+	return {
+		exportDefinition: api.exportDefinition,
+		importDefinition: api.importDefinition,
+		get definitionJson() {
+			return api.exportDefinition();
+		},
+		set definitionJson(text) {
+			if (!api.importDefinition(String(text))) throw new TypeError("Invalid form definition; previous definition retained");
+		},
+		cleanup: api.destroy
+	};
+}
+// .cache/ui-build/entries/components/form-builder.js
+var J3w1FormBuilder = class extends J3w1Element {
+	static componentId = "form-builder";
+	static version = "4.0.0";
+	static implementationId = "sha256-FO3zSzWMChoC10L1NZoNUpgmEHttCO6FI00qTLTik28=";
+	static connect = formBuilder;
+	static upgradeProperties = [
+		"disabled",
+		"name",
+		"definitionJson"
+	];
+	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];
+	exportDefinition(...args) {
+		if (!this._api?.exportDefinition) throw new Error("Connect the component before calling exportDefinition");
+		return this._api.exportDefinition(...args);
+	}
+	importDefinition(...args) {
+		if (!this._api?.importDefinition) throw new Error("Connect the component before calling importDefinition");
+		return this._api.importDefinition(...args);
+	}
+	get definitionJson() {
+		return this._api?.definitionJson;
+	}
+	set definitionJson(value) {
+		if (this._api) this._api.definitionJson = value;
+		else Object.defineProperty(this, "definitionJson", {
+			value,
+			configurable: true,
+			writable: true
+		});
+	}
+};
+export { J3w1FormBuilder as t };

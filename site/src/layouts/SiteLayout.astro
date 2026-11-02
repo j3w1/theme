@@ -132,10 +132,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
       <span class="site-version">{theme.version}</span>
       <j3w1-command-palette shortcut class="site-command" data-search-index={withBase("search.json")}>
         <div class="command-palette">
-          <button class="button button-secondary" type="button" data-open aria-label="Search the design system">
+          <button class="button button-secondary" type="button" data-open aria-label="Search the design system" aria-keyshortcuts="Control+k Meta+k">
             <svg class="button-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M7 2.5a4.5 4.5 0 1 0 0 9a4.5 4.5 0 1 0 0-9zM10.5 10.5l3 3" /></svg>
             <span class="button-label">Search</span>
-            <kbd>Ctrl K</kbd>
+            <kbd aria-hidden="true">(Ctrl K)</kbd>
           </button>
           <dialog class="command-palette-dialog" aria-labelledby={id("command-title")}>
             <h2 id={id("command-title")}>j3w1 / command</h2>
