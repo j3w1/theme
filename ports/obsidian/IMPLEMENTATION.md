@@ -107,8 +107,9 @@ pinned to revision `c56c7e770ba25dd0ea392aacf4588f9425970d36`.
 - Global UI selection preserves its foreground. D-041 rose `--text-normal`
   meets the text floor on `--text-selection`; Search `:hover`, `.mobile-tap`
   and ordinary Reading View selection now retain readable text. The
-  muted/faint UI foregrounds remain below the 4.5:1 text floor on that fill,
-  so host-selected foreground handling is still needed for those cases.
+  muted/faint UI foregrounds also meet the 4.5:1 text floor on the dark
+  red selection fill. D-041 uses this deeper fill because the host preserves
+  foregrounds during selection; ordinary rose text must remain readable.
   CM6's scoped fill passes for ordinary text in synthetic cascade tests;
   selected syntax handling remains host-owned. This limitation is explicit,
   not a contrast waiver or a conformance claim. The canonical near-white

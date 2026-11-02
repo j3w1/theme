@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — text-field
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-0jrAhUhMk1y0cVuA9UcymrJJSN6hyxQFjD82B97Ze6s=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-rNI2P3qyuDl1VSgOAYjezzCL8WtErJDqrU/JFBDlYWY=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/text-field.json
 spec: spec/components/text-field.md  site: https://j3w1.github.io/theme/reference/#c-text-field
 maturity: stable  priority: R1
@@ -22,7 +22,7 @@ Tokens (resolved):
   input.text-disabled   #a3676b  ({color.text.disabled})  use
   input.placeholder     #bd787d  ({color.text.placeholder})  use
   input.caret           #ffa2a7  ({color.code.caret})  use
-  input.selection-bg    #911410  ({color.interaction.text-selection.bg})  use
+  input.selection-bg    #420f0c  ({color.interaction.text-selection.bg})  use
   input.selection-text  #f4eeee  ({color.interaction.text-selection.text})  use
   label.text            #ffa2a7  ({color.text.bright})  use
   label.required-mark   #f07178  ({color.status.danger.text})  use

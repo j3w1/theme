@@ -119,7 +119,7 @@ static constexpr Rule rules[]={
  {L"AccentFillColorTertiaryBrush",{255,99,15,13},L"color.action.primary.pressed-bg"},
  {L"AccentTextFillColorPrimaryBrush",{255,255,162,167},L"color.text.bright"},
  {L"TextOnAccentFillColorPrimaryBrush",{255,255,162,167},L"color.text.bright"},
- {L"TextSelectionHighlightColorThemeBrush",{255,145,20,16},L"color.interaction.text-selection.bg"},
+ {L"TextSelectionHighlightColorThemeBrush",{255,66,15,12},L"color.interaction.text-selection.bg"},
  {L"TabViewItemHeaderBackgroundSelected",{255,83,19,16},L"color.interaction.selection.bg"},
  {L"TabViewItemHeaderBackground",{255,0,0,0},L"color.surface.chrome"},
  {L"SystemControlFocusVisualPrimaryBrush",{255,229,57,53},L"color.interaction.focus.ring"},

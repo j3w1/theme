@@ -244,17 +244,17 @@ for (const { version } of audit.versions) {
       const node = element("div", ["search-result-file-match", ...(state === "mobile-tap" ? [state] : [])], body(), {}, state === "hover" ? [state] : []);
       const result = cascade(css, node), contrast = pair(result.value("color"), result.value("background-color"));
       assert.equal(contrast.pass, true);
-      assert.equal(contrast.display, "6.73");
+      assert.equal(contrast.display, "7.02");
     }
     assert.equal(pair(role("color.text.default"), role("color.interaction.text-selection.bg")).pass, true);
-    for (const fg of ["color.text.muted", "color.text.subtle"]) assert.equal(pair(role(fg), role("color.interaction.text-selection.bg")).pass, false);
+    for (const fg of ["color.text.muted", "color.text.subtle"]) assert.equal(pair(role(fg), role("color.interaction.text-selection.bg")).pass, true);
     assert.ok(pair(role("color.interaction.text-selection.text"), role("color.interaction.text-selection.bg")).pass);
     const preview = element("div", ["markdown-preview-view"], body());
     assert.equal(cascade(css, preview).value("color"), role("color.text.default"));
     assert.equal(pair(cascade(css, preview).value("color"), cascade(css, preview).value("--text-selection")).pass, true, "D-041 ordinary Reading View text remains readable in native selection");
     const cm = element("div", ["cm-content"], element("div", ["cm-scroller"], element("div", ["markdown-source-view", "mod-cm6"], body())));
     assert.ok(pair(cascade(css, cm).value("color"), cascade(css, cm).value("--text-selection")).pass, "CM6 scoped fill contrasts with ordinary rose text; selected syntax behavior remains host-owned");
-    for (const text of ["D-041", "below the 4.5:1", "muted/faint", "`:hover`", "`.mobile-tap`", "not a contrast waiver"]) assert.ok(implementation.includes(text), text);
+    for (const text of ["D-041", "4.5:1", "muted/faint", "`:hover`", "`.mobile-tap`", "not a contrast waiver"]) assert.ok(implementation.includes(text), text);
   });
   test(`${version}: selected tree and main/sidebar tab borders keep label geometry constant`, () => {
     for (const mobile of [false, true]) for (const dir of ["ltr", "rtl"]) {

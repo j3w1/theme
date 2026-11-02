@@ -155,7 +155,7 @@
   --color-interaction-selection-text: #f4eeee;
   --color-interaction-selection-inactive-bg: #420f0c;
   --color-interaction-selection-inactive-text: #e99499;
-  --color-interaction-text-selection-bg: #911410;
+  --color-interaction-text-selection-bg: #420f0c;
   --color-interaction-text-selection-text: #f4eeee;
   --color-interaction-text-selection-tint: rgb(145 20 16 / 50%);
   --color-interaction-hover-bg: #191c22;
@@ -275,7 +275,7 @@
   --color-terminal-bg: #000000;
   --color-terminal-fg: #e99499;
   --color-terminal-cursor: #ffa2a7;
-  --color-terminal-selection-bg: #911410;
+  --color-terminal-selection-bg: #420f0c;
   --color-terminal-selection-text: #f4eeee;
   --color-terminal-prompt-bg: #000000;
   --color-terminal-prompt-text: #e99499;

@@ -459,8 +459,8 @@
       },
       "text-selection": {
         "bg": {
-          "$value": "{color.primitive.red.350}",
-          "$description": "::selection background."
+          "$value": "{color.primitive.red.50}",
+          "$description": "D-041 subdued burgundy selection keeps rose text readable in hosts retaining its foreground."
         },
         "text": {
           "$value": "{color.primitive.paper.90}",
@@ -1655,7 +1655,7 @@
         }
       },
       "selection-bg": {
-        "$value": "{color.primitive.red.350}",
+        "$value": "{color.interaction.text-selection.bg}",
         "$description": "Terminal selection."
       },
       "selection-text": {

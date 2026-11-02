@@ -8688,9 +8688,9 @@
         "color.interaction.text-selection.bg": {
           "path": "color.interaction.text-selection.bg",
           "group": "interaction",
-          "css": "#911410",
+          "css": "#420f0c",
           "variable": "--color-interaction-text-selection-bg",
-          "description": "::selection background.",
+          "description": "D-041 subdued burgundy selection keeps rose text readable in hosts retaining its foreground.",
           "status": "observed",
           "deprecated": false,
           "eligibility": {
@@ -8705,9 +8705,11 @@
           },
           "provenance": null,
           "aliases": [
-            "color.primitive.red.350"
+            "color.primitive.red.50"
           ],
-          "usedByAliases": [],
+          "usedByAliases": [
+            "color.terminal.selection-bg"
+          ],
           "unmappedPorts": [
             {"port":"chatgpt","reason":"Focus, hover, pressed and selection colours are derived by ChatGPT from the accent and contrast; only the accent is set.","source":{"file":"ports/chatgpt/mapping.json","pointer":"/unmapped/color.interaction.text-selection.bg","line":155}},
             {"port":"claude-code","reason":"Interface colour role that no Claude Code theme key takes.","source":{"file":"ports/claude-code/mapping.json","pointer":"/unmapped/color.interaction.text-selection.bg","line":258}},
@@ -8803,7 +8805,7 @@
             {"port":"claude-code","reason":"Interface colour role that no Claude Code theme key takes.","source":{"file":"ports/claude-code/mapping.json","pointer":"/unmapped/color.interaction.text-selection.tint","line":467}},
             {"port":"codex","reason":"Interface colour role; a Codex tmTheme colours code only.","source":{"file":"ports/codex/mapping.json","pointer":"/unmapped/color.interaction.text-selection.tint","line":403}},
             {"port":"ghostty","reason":"Interface colour role; a terminal theme file carries terminal colours only.","source":{"file":"ports/ghostty/mapping.json","pointer":"/unmapped/color.interaction.text-selection.tint","line":404}},
-            {"port":"obsidian","reason":"Obsidian keeps the text colour inside a selection (rose 3.96:1 on --text-selection, IMPLEMENTATION.md), so the tint fits it; adopting it changes the Obsidian artifact and needs its own import check, so --text-selection keeps text-selection.bg for now.","source":{"file":"ports/obsidian/mapping.json","pointer":"/unmapped/color.interaction.text-selection.tint","line":716}},
+            {"port":"obsidian","reason":"Obsidian preserves text colour inside a selection. D-041 darkens the opaque text-selection.bg so ordinary, muted and faint rose text pass 4.5:1 without a translucent alternative; --text-selection keeps that canonical opaque role.","source":{"file":"ports/obsidian/mapping.json","pointer":"/unmapped/color.interaction.text-selection.tint","line":716}},
             {"port":"orca","reason":"No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.","source":{"file":"ports/orca/mapping.json","pointer":"/unmapped/color.interaction.text-selection.tint","line":514}},
             {"port":"warp","reason":"Interface colour role; a terminal theme file carries terminal colours only.","source":{"file":"ports/warp/mapping.json","pointer":"/unmapped/color.interaction.text-selection.tint","line":399}},
             {"port":"windows","reason":"The Windows adapters retain native selection foregrounds and their existing opaque selection or marquee mappings; no host requiring this tint is admitted.","source":{"file":"ports/windows/mapping.json","pointer":"/unmapped/color.interaction.text-selection.tint","line":2525}}
@@ -12483,9 +12485,7 @@
           },
           "aliases": [],
           "usedByAliases": [
-            "color.action.primary.hover-bg",
-            "color.interaction.text-selection.bg",
-            "color.terminal.selection-bg"
+            "color.action.primary.hover-bg"
           ],
           "unmappedPorts": [
             {"port":"chatgpt","reason":"Primitive; ports consume roles, never primitives.","source":{"file":"ports/chatgpt/mapping.json","pointer":"/unmapped/color.primitive.red.350","line":214}},
@@ -12670,7 +12670,9 @@
             "color.action.secondary.pressed-bg",
             "color.code.selection-bg",
             "color.interaction.pressed.bg",
-            "color.interaction.selection.inactive-bg"
+            "color.interaction.selection.inactive-bg",
+            "color.interaction.text-selection.bg",
+            "color.terminal.selection-bg"
           ],
           "unmappedPorts": [
             {"port":"chatgpt","reason":"Primitive; ports consume roles, never primitives.","source":{"file":"ports/chatgpt/mapping.json","pointer":"/unmapped/color.primitive.red.50","line":217}},
@@ -18570,7 +18572,7 @@
         "color.terminal.selection-bg": {
           "path": "color.terminal.selection-bg",
           "group": "terminal",
-          "css": "#911410",
+          "css": "#420f0c",
           "variable": "--color-terminal-selection-bg",
           "description": "Terminal selection.",
           "status": "observed",
@@ -18587,7 +18589,8 @@
           },
           "provenance": null,
           "aliases": [
-            "color.primitive.red.350"
+            "color.interaction.text-selection.bg",
+            "color.primitive.red.50"
           ],
           "usedByAliases": [],
           "unmappedPorts": [
@@ -30458,9 +30461,9 @@
         "color.interaction.text-selection.bg": {
           "path": "color.interaction.text-selection.bg",
           "group": "interaction",
-          "css": "#911410",
+          "css": "#420f0c",
           "variable": "--color-interaction-text-selection-bg",
-          "description": "::selection background.",
+          "description": "D-041 subdued burgundy selection keeps rose text readable in hosts retaining its foreground.",
           "status": "observed",
           "deprecated": false,
           "eligibility": {
@@ -30475,9 +30478,11 @@
           },
           "provenance": null,
           "aliases": [
-            "color.primitive.red.350"
+            "color.primitive.red.50"
           ],
-          "usedByAliases": [],
+          "usedByAliases": [
+            "color.terminal.selection-bg"
+          ],
           "unmappedPorts": [],
           "uses": [
             {"kind":"part","component":"text-field","part":"input.selection-bg","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/text-field.md","pointer":"/tokens/input.selection-bg","line":56}},
@@ -33421,9 +33426,7 @@
           },
           "aliases": [],
           "usedByAliases": [
-            "color.action.primary.hover-bg",
-            "color.interaction.text-selection.bg",
-            "color.terminal.selection-bg"
+            "color.action.primary.hover-bg"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -33570,7 +33573,9 @@
             "color.action.secondary.pressed-bg",
             "color.code.selection-bg",
             "color.interaction.pressed.bg",
-            "color.interaction.selection.inactive-bg"
+            "color.interaction.selection.inactive-bg",
+            "color.interaction.text-selection.bg",
+            "color.terminal.selection-bg"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -38011,7 +38016,7 @@
         "color.terminal.selection-bg": {
           "path": "color.terminal.selection-bg",
           "group": "terminal",
-          "css": "#911410",
+          "css": "#420f0c",
           "variable": "--color-terminal-selection-bg",
           "description": "Terminal selection.",
           "status": "observed",
@@ -38028,7 +38033,8 @@
           },
           "provenance": null,
           "aliases": [
-            "color.primitive.red.350"
+            "color.interaction.text-selection.bg",
+            "color.primitive.red.50"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -47799,9 +47805,9 @@
         "color.interaction.text-selection.bg": {
           "path": "color.interaction.text-selection.bg",
           "group": "interaction",
-          "css": "#911410",
+          "css": "#420f0c",
           "variable": "--color-interaction-text-selection-bg",
-          "description": "::selection background.",
+          "description": "D-041 subdued burgundy selection keeps rose text readable in hosts retaining its foreground.",
           "status": "observed",
           "deprecated": false,
           "eligibility": {
@@ -47816,9 +47822,11 @@
           },
           "provenance": null,
           "aliases": [
-            "color.primitive.red.350"
+            "color.primitive.red.50"
           ],
-          "usedByAliases": [],
+          "usedByAliases": [
+            "color.terminal.selection-bg"
+          ],
           "unmappedPorts": [],
           "uses": [
             {"kind":"part","component":"text-field","part":"input.selection-bg","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/text-field.md","pointer":"/tokens/input.selection-bg","line":56}},
@@ -50746,9 +50754,7 @@
           },
           "aliases": [],
           "usedByAliases": [
-            "color.action.primary.hover-bg",
-            "color.interaction.text-selection.bg",
-            "color.terminal.selection-bg"
+            "color.action.primary.hover-bg"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -50893,7 +50899,9 @@
             "color.action.secondary.pressed-bg",
             "color.code.selection-bg",
             "color.interaction.pressed.bg",
-            "color.interaction.selection.inactive-bg"
+            "color.interaction.selection.inactive-bg",
+            "color.interaction.text-selection.bg",
+            "color.terminal.selection-bg"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -55417,7 +55425,7 @@
         "color.terminal.selection-bg": {
           "path": "color.terminal.selection-bg",
           "group": "terminal",
-          "css": "#911410",
+          "css": "#420f0c",
           "variable": "--color-terminal-selection-bg",
           "description": "Terminal selection.",
           "status": "observed",
@@ -55434,7 +55442,8 @@
           },
           "provenance": null,
           "aliases": [
-            "color.primitive.red.350"
+            "color.interaction.text-selection.bg",
+            "color.primitive.red.50"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],

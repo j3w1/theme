@@ -713,7 +713,7 @@
     "color.text.highlight": "Host exposes no separately mapped content heading/highlight foreground in this port.",
     "color.primitive.red.40": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
     "color.primitive.alpha.red-50": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
-    "color.interaction.text-selection.tint": "Obsidian keeps the text colour inside a selection (rose 3.96:1 on --text-selection, IMPLEMENTATION.md), so the tint fits it; adopting it changes the Obsidian artifact and needs its own import check, so --text-selection keeps text-selection.bg for now.",
+    "color.interaction.text-selection.tint": "Obsidian preserves text colour inside a selection. D-041 darkens the opaque text-selection.bg so ordinary, muted and faint rose text pass 4.5:1 without a translucent alternative; --text-selection keeps that canonical opaque role.",
     "color.surface.accent": "Obsidian has no surface for the user's own messages.",
     "color.primitive.modern.panel": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",
     "color.primitive.modern.raised": "Inspection-only primitive; Obsidian consumes semantic roles, never primitives.",

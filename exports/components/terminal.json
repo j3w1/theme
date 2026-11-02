@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-0jrAhUhMk1y0cVuA9UcymrJJSN6hyxQFjD82B97Ze6s=",
+  "sourceDigest": "sha256-rNI2P3qyuDl1VSgOAYjezzCL8WtErJDqrU/JFBDlYWY=",
   "id": "terminal",
   "family": "developer",
   "maturity": "stable",
@@ -139,7 +139,7 @@
     },
     "selection.bg": {
       "alias": "color.terminal.selection-bg",
-      "value": "#911410",
+      "value": "#420f0c",
       "status": "observed",
       "deprecated": false,
       "decisionId": null,
@@ -580,7 +580,7 @@
         },
         "bg": {
           "alias": "color.terminal.selection-bg",
-          "value": "#911410",
+          "value": "#420f0c",
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
@@ -758,8 +758,8 @@
       "fg": "color.terminal.selection-text",
       "bg": "color.terminal.selection-bg",
       "fgHex": "#f4eeee",
-      "bgHex": "#911410",
-      "ratio": 7.92,
+      "bgHex": "#420f0c",
+      "ratio": 14.03,
       "pass": true,
       "waiver": null
     },

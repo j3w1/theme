@@ -841,7 +841,7 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | terminal default border | default | ui | `color.border.control` #747e8e | `color.terminal.bg` #000000 | 5.12 | 3 | pass |
 | terminal focus-visible text | focus-visible | text | `color.terminal.fg` #e99499 | `color.terminal.bg` #000000 | 9.16 | 4.5 | pass |
 | terminal focus-visible outline | focus-visible | ui | `color.interaction.focus.ring-container` #ffa2a7 | `color.terminal.bg` #000000 | 10.98 | 3 | pass |
-| terminal selected text | selected | text | `color.terminal.selection-text` #f4eeee | `color.terminal.selection-bg` #911410 | 7.92 | 4.5 | pass |
+| terminal selected text | selected | text | `color.terminal.selection-text` #f4eeee | `color.terminal.selection-bg` #420f0c | 14.03 | 4.5 | pass |
 | terminal busy text | busy | text | `color.terminal.bg` #000000 | `color.terminal.cursor` #ffa2a7 | 10.98 | 4.5 | pass |
 | terminal current text | current | text | `color.terminal.fg` #e99499 | `color.code.current-line` #0e1014 | 8.31 | 4.5 | pass |
 | hollow cursor outline at rest | — | ui | `color.terminal.cursor` #ffa2a7 | `color.terminal.bg` #000000 | 10.98 | 3 | pass |
