@@ -52,7 +52,7 @@ black, including the address field. Orca shares its input token with idle input
 borders, so those borders also become black; focus rings and the browser address
 field's separate outer red border remain.
 
-Selected segmented controls and active menu rows use dark red `#7d1310` with
+Selected segmented controls and active menu rows use dark red `action.primary.bg` with
 bright rose labels (5.57:1). Unselected controls and surrounding panels stay
 black with rose text. Orca also forces focused agent rows to 70% of this same
 accent while retaining ordinary rose foreground: full-opacity labels reach
