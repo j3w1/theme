@@ -29,7 +29,8 @@ test("four-component kits contain complete selected contracts and alias closure 
   assert.doesNotMatch(files["theme.compact.md"], /^### (menu|tabs|table|link) /m);
   assert.ok(!Object.keys(files).some((f) => /components\/(menu|tabs|table|link)\./.test(f)));
   for (const file of index.sharedFiles.filter((f) => !f.startsWith("exports/"))) assert.equal(files[file], await readText(file));
-  assert.ok(kit.pendingDecisionIds.includes("D-007"));
+  // D-041 replaces the proposed control border; the remaining D-008 dependency must still be disclosed.
+  assert.deepEqual(kit.pendingDecisionIds, ["D-008"]);
   assert.equal(kit.derived["tokens.subset.json"].parentDigest, index.files["exports/tokens.resolved.json"]);
   assert.equal(kit.derived["tokens.subset.json"].digest, await kitDigest(files["tokens.subset.json"]));
   assert.notEqual(kit.derived["tokens.subset.json"].digest, kit.derived["tokens.subset.json"].parentDigest);

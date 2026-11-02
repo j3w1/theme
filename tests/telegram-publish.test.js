@@ -3,6 +3,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
 import { spawnSync } from "node:child_process";
 import { parse } from "yaml";
 import { converge, digest, run, redactor, stateDirectory, atomicJson, gitAdapter, parseArgs, liveTransport } from "../ports/telegram/publish.mjs";
@@ -376,12 +377,12 @@ test("logs, thrown errors and receipts redact seeded credentials, phone, code an
 test("state directories are 0700, atomic files 0600, and repository paths including symlinks are refused", async t => {
   const f = await fixture(t);
   await run([], f.deps);
-  for (const dir of [f.stateRoot, f.state, path.join(f.state, "receipts")]) assert.equal((await fs.stat(dir)).mode & 0o777, 0o700);
+  if (process.platform !== "win32") for (const dir of [f.stateRoot, f.state, path.join(f.state, "receipts")]) assert.equal((await fs.stat(dir)).mode & 0o777, 0o700);
   const receiptFile = (await fs.readdir(path.join(f.state, "receipts")))[0];
-  for (const file of [path.join(f.state, "auth.json"), path.join(f.state, "receipts", receiptFile)]) assert.equal((await fs.stat(file)).mode & 0o777, 0o600);
+  if (process.platform !== "win32") for (const file of [path.join(f.state, "auth.json"), path.join(f.state, "receipts", receiptFile)]) assert.equal((await fs.stat(file)).mode & 0o777, 0o600);
   await assert.rejects(stateDirectory({ J3W1_THEME_STATE_DIR: path.join(f.repo, "state") }, f.repo), /outside the git work tree/);
   const link = path.join(f.root, "link");
-  await fs.symlink(f.repo, link);
+  await fs.symlink(f.repo, link, process.platform === "win32" ? "junction" : "dir");
   await assert.rejects(stateDirectory({ J3W1_THEME_STATE_DIR: path.join(link, "state") }, f.repo), /outside the git work tree/);
 });
 
@@ -800,7 +801,7 @@ test("deployed lookup preserves Pages default and supports Telegram, empty histo
     const environment = new URL(url).searchParams.get('environment');
     return { ok: true, json: async () => process.env.LOOKUP_EMPTY ? [] : [{id:1,sha:environment}] };
   };`);
-  const lookup = (args, extra = {}) => spawnSync(process.execPath, ["--import", preload, "scripts/ci/deployed.mjs", "fixture/theme", ...args], { encoding: "utf8", env: { ...process.env, ...extra } });
+  const lookup = (args, extra = {}) => spawnSync(process.execPath, ["--import", pathToFileURL(preload).href, "scripts/ci/deployed.mjs", "fixture/theme", ...args], { encoding: "utf8", env: { ...process.env, ...extra } });
   assert.equal(lookup([]).stdout, "github-pages");
   assert.equal(lookup(["telegram"]).stdout, "telegram");
   assert.equal(lookup(["telegram"], { LOOKUP_EMPTY: "1" }).status, 1);

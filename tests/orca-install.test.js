@@ -149,7 +149,7 @@ const makeTree = async (t, { ghostty = GHOSTTY } = {}) => {
 /* PowerShell prints an uncaught error (Get-J3w1Orca.ps1 throws, so it can
    run as a scriptblock) in colour and wrapped to the console width: the
    colour codes go and the wrapped lines are joined again. */
-const unwrap = (text) => text.replace(/\u001b\[[0-9;]*m/g, "").replace(/\n\s*\|\s?(?!\s*~)/g, " ");
+const unwrap = (text) => text.replace(/\r\n?/g, "\n").replace(/\u001b\[[0-9;]*m/g, "").replace(/\n\s*\|\s?(?!\s*~)/g, " ").replace(/\n[ \t]+/g, " ");
 
 /* One script, from this clone's ports/orca/install unless `dir` names
    another folder (a downloaded release, a clone). */
@@ -167,6 +167,7 @@ const run = (tree, script, args = [], env = {}, { dir = install } = {}) => {
       XDG_DATA_HOME: path.join(tree.root, "xdg-data"),
       XDG_CONFIG_HOME: path.join(tree.root, "xdg-config"),
       NO_COLOR: "1",
+      TERM: "xterm-256color", // Ensure the redirected Windows host preserves specimen ANSI.
       POWERSHELL_TELEMETRY_OPTOUT: "1",
       POWERSHELL_UPDATECHECK: "Off",
       DOTNET_CLI_TELEMETRY_OPTOUT: "1",
@@ -668,7 +669,7 @@ test("Test passes after apply, renders the specimen, and fails after a manual ta
   assert.match(checked.stdout, /\u001b\[0;38;2;\d+;\d+;\d+m/, "tokens and roles are drawn in 24-bit colour");
   assert.ok(checked.stdout.includes(color("color.terminal.ansi.1")), "the expected hex is printed beside the slot");
   for (const deviation of roles.deviations) assert.ok(checked.stdout.includes(deviation.reason), `prints the ${deviation.target} deviation`);
-  assert.match(checked.stdout, /D-008\s+color\.border\.divider/, "discloses the use-and-report role");
+  assert.doesNotMatch(checked.stdout, /D-008\s+color\.border\.divider/, "D-041 approved the divider role; no pending disclosure");
 
   const store = await readStore(tree);
   store.settings.terminalColorOverrides.red = color("color.terminal.fg");
@@ -705,7 +706,7 @@ test("manifests name only managed and preserved keys; the lock follows its schem
     assert.deepEqual(manifest.preferences, { terminalFontSize: 14 });
     assert.deepEqual(manifest.settings.find((entry) => entry.key === "terminalMinimumContrastRatio").before, { absent: true });
     assert.deepEqual(manifest.deviations, roles.deviations);
-    assert.deepEqual(manifest.disclosures, [{ decisionId: "D-008", token: "color.border.divider" }]);
+    assert.deepEqual(manifest.disclosures, [], "D-041 approved the default border roles");
     for (const secret of ["repos", "sshTargets", "devbox.example", "workspaces", "greeting", "sidebarWidth"]) {
       assert.equal(text.includes(secret), false, `no unrelated Orca state (${secret})`);
     }
@@ -972,7 +973,7 @@ test("warning only: the working tree differs from HEAD, whose values the scripts
 
 test("an export that differs from its digests is refused before anything is written", { skip }, async (t) => {
   const tree = await makeTree(t);
-  const source = await plainRelease(path.join(tree.root, "source"), { edit: (text) => text.replace("Terminal background.", "Terminal background!") });
+  const source = await plainRelease(path.join(tree.root, "source"), { edit: (text) => text + " " });
   const result = run(tree, "Apply-J3w1OrcaTheme.ps1", [], WORKTREE, { dir: path.join(source, "ports/orca/install") });
   assert.notEqual(result.status, 0);
   assert.match(result.stderr, /Digest mismatch for exports\/tokens\.resolved\.json/);

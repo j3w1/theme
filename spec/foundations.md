@@ -121,7 +121,9 @@ Four button tones:
 Destructive actions also need a confirmation step or an undo; the colour is
 not the safeguard.
 
-## Status, diagnostics and diffs (D-001, D-041)
+## Status, diagnostics and diffs (D-001)
+
+D-041 updates the palette while preserving the D-001 semantic roles.
 
 Five statuses: red `danger`, amber `warning`, green `success`, blue `info`,
 and grey `neutral`. Each has `text`, `fill`, `on-fill`, `tint` and `border`
@@ -277,7 +279,7 @@ Breakpoints 320 (reflow floor), 600, 900, 1280.
 - Right-to-left mirrors breadcrumb separators, pagination, sidebar and drawer
   sides, wizard progression, affixes and tree indentation.
 
-## Typography semantics (D-033, D-041)
+## Typography semantics (D-033)
 
 All content titles and H1–H6 use `text.heading`; size, weight and spacing carry
 the hierarchy. Chrome and window titles use `text.default` or `text.bright`;

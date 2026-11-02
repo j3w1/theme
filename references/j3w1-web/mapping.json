@@ -47,12 +47,10 @@
       "token": "color.text.link-underline"
     },
     "--foreground": {
-      "token": "color.text.default",
-      "divergence": "D-041: the owner-authorized developer palette supersedes this observed colour for the canonical role; the pinned source snapshot remains unchanged historical evidence."
+      "token": "color.text.default"
     },
     "--foreground-bright": {
-      "token": "color.text.bright",
-      "divergence": "D-041: the owner-authorized developer palette supersedes this observed colour for the canonical role; the pinned source snapshot remains unchanged historical evidence."
+      "token": "color.text.bright"
     },
     "--prose": {
       "token": "color.text.prose",
