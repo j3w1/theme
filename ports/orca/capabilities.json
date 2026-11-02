@@ -123,9 +123,9 @@
       "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.action.primary.bg": {
-      "state": "out-of-scope",
+      "state": "mapped",
       "surface": "app-chrome",
-      "reason": "No independent app or terminal key uses this role."
+      "reason": "Dark red shared accent keeps selected-segment labels readable and avoids bright selected agent rows. Orca also mixes this accent at 70% for focused rows while retaining rose foreground; no independent row hook exists."
     },
     "color.action.primary.border": {
       "state": "out-of-scope",
@@ -1370,12 +1370,12 @@
     "color.text.accent-strong": {
       "state": "mapped",
       "surface": "app-chrome",
-      "reason": "Readable red with black foreground serves shared primary links/buttons/input selections and accent selected segments/menu rows. Distinct active fills preserve state visibility while panel and popover backgrounds stay black."
+      "reason": "Readable red with black foreground serves shared primary links/buttons/input selections. Accent segments and agent rows use a separate dark-red/rose compromise."
     },
     "color.text.bright": {
       "state": "mapped",
       "surface": "shell-prompt",
-      "reason": "GNU ls directory foreground follows bright rose UI labels; semantic ANSI blue remains unchanged."
+      "reason": "Bright rose selected-accent labels, sidebar labels and GNU ls directories; semantic ANSI blue remains unchanged."
     },
     "color.text.default": {
       "state": "mapped",
@@ -1390,7 +1390,7 @@
     "color.text.inverse": {
       "state": "mapped",
       "surface": "app-chrome",
-      "reason": "Readable red with black foreground serves shared primary links/buttons/input selections and accent selected segments/menu rows. Distinct active fills preserve state visibility while panel and popover backgrounds stay black."
+      "reason": "Readable red with black foreground serves shared primary links/buttons/input selections. Accent segments and agent rows use a separate dark-red/rose compromise."
     },
     "color.text.link": {
       "state": "mapped",

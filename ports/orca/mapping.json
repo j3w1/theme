@@ -240,7 +240,8 @@
       "app.tokens.--tab-active-foreground",
       "app.tokens.--git-decoration-renamed",
       "app.tokens.--git-decoration-copied",
-      "shell.LS_COLORS.di"
+      "shell.LS_COLORS.di",
+      "app.tokens.--accent-foreground"
     ],
     "color.border.selected-indicator": [
       "app.tokens.--worktree-sidebar-active-border",
@@ -296,12 +297,13 @@
       "app.tokens.--border"
     ],
     "color.text.accent-strong": [
-      "app.tokens.--primary",
-      "app.tokens.--accent"
+      "app.tokens.--primary"
     ],
     "color.text.inverse": [
-      "app.tokens.--primary-foreground",
-      "app.tokens.--accent-foreground"
+      "app.tokens.--primary-foreground"
+    ],
+    "color.action.primary.bg": [
+      "app.tokens.--accent"
     ]
   },
   "unmapped": {
@@ -610,7 +612,6 @@
     "color.primitive.modern.bright-blue": "Primitive; ports consume roles, never primitives.",
     "color.primitive.modern.bright-violet": "Primitive; ports consume roles, never primitives.",
     "color.primitive.modern.bright-cyan": "Primitive; ports consume roles, never primitives.",
-    "color.action.primary.bg": "No independent app or terminal key uses this role.",
     "color.action.primary.text": "No independent app or terminal key uses this role.",
     "color.interaction.selection.bg": "No independent Orca public token consumes this role; supported controls use canonical surface and rose foreground roles.",
     "color.interaction.selection.text": "No independent Orca public token consumes this role; supported controls use canonical surface and rose foreground roles.",

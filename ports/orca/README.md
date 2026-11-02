@@ -52,13 +52,16 @@ black, including the address field. Orca shares its input token with idle input
 borders, so those borders also become black; focus rings and the browser address
 field's separate outer red border remain.
 
-Selected segmented controls and active menu rows use the shared accent pair:
-strong red fill with black text. Unselected segments and the surrounding panel
-remain black with rose text. Orca exposes no separate segmented-control token;
-using a black accent would hide the selected state, and a dark-red fill with
-rose text cannot simultaneously provide 3:1 state distinction against black
-and 4.5:1 label contrast. This red state fill also applies to shared accent hover
-rows; it does not change panel, popover, input or browser base backgrounds.
+Selected segmented controls and active menu rows use dark red `#7d1310` with
+bright rose labels (5.57:1). Unselected controls and surrounding panels stay
+black with rose text. Orca also forces focused agent rows to 70% of this same
+accent while retaining ordinary rose foreground: full-opacity labels reach
+6.20:1, but host-dimmed metadata reaches only 3.76:1. Separate worktree tokens
+cannot override that host CSS rule. The owner's correction prioritizes readable,
+restrained rows over the rejected bright-red fill. Selected-vs-black fill
+contrast is 1.97:1, below 3:1; the host's font-weight change also marks selected
+segments. This is a documented host compromise, not an accessibility pass.
+Panel, popover, input and browser base backgrounds stay black.
 
 Orca shares primary color between active links, buttons and input selections.
 The port uses readable red with black text on primary fills, so links such as

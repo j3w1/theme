@@ -100,6 +100,15 @@ for identity, focus, selected indicators and danger. Preserve historical ANSI
 primitives and the explicitly historical profile. App, terminal, syntax and
 native ports consume the same semantic roles. Rule: `spec/foundations.md`.
 
+**Shared Orca accent.** The owner's further screenshot rejected bright-red
+focused agent rows. Orca 1.4.246 shares accent between selected segments and
+70%-mixed focused rows, which keep ordinary rose text instead of the accent
+foreground. Use existing dark-red `action.primary.bg` with bright rose accent
+labels: selected text 5.57:1 and full-opacity focused row labels 6.20:1.
+Selected-vs-black fill distinction is 1.97:1 and host-dimmed row metadata is
+3.76:1. These are recorded limitations, not contrast waivers or an accessibility
+pass; separate host state/row hooks are needed to satisfy all uses at once.
+
 **Shared Claude diff colours.** The owner’s live review rejected glaring word
 highlights. Dedicated shared-word roles balance the host’s summary foreground
 and word background near 3:1 against black and rose prose. Claude 2.1.303
