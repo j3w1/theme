@@ -5,8 +5,8 @@ import { hexOf as tokenHex } from "../scripts/lib/color.mjs";
 import { contrastHex as contrast } from "../scripts/lib/contrast.mjs";
 import { HERITAGE_ANSI } from "../schemas/roles.mjs";
 
-/* D-029: the default profile carries the readable heritage sixteen and two
-   lifted syntax reds; heritage-ansi keeps the historical values exactly. */
+/* D-041: the default profile carries semantic ANSI colours and hued syntax;
+   heritage-ansi keeps the historical values exactly. */
 
 const resolved = await loadTokenExports();
 const hexOf = (profile, path) => {
@@ -21,27 +21,21 @@ test("heritage-ansi keeps every terminal slot and the lifted syntax reds at thei
   for (const [role, hex] of Object.entries(HERITAGE_SYNTAX)) assert.equal(hexOf("heritage-ansi", `color.code.syntax.${role}`), hex, role);
 });
 
-test("the default profile's terminal slots reach the text floor, except the background and the dim tier", () => {
+test("D-041 terminal slots are exact semantic colours, all readable except background", () => {
+  const expected = ["#000000", "#f07178", "#82d9a0", "#e5c07b", "#82b4ff", "#c7a0e8", "#78d4d4", "#ffa2a7", "#bd787d", "#ff9095", "#a2edb8", "#f2d49b", "#a4caff", "#dec0f4", "#a0e7e7", "#ffa2a7"];
   const bg = hexOf("default", "color.terminal.bg");
-  for (let i = 1; i < 16; i += 1) {
-    const ratio = contrast(hexOf("default", `color.terminal.ansi.${i}`), bg);
-    if (i === 8) assert.ok(ratio >= 3 && ratio < 4.5, `slot 8 is the dim tier (${ratio.toFixed(2)}:1)`);
-    else assert.ok(ratio >= 4.5, `slot ${i} measures ${ratio.toFixed(2)}:1`);
+  assert.equal(bg, "#000000");
+  for (const [i, hex] of expected.entries()) {
+    assert.equal(hexOf("default", `color.terminal.ansi.${i}`), hex, `slot ${i}`);
+    if (i > 0) assert.ok(contrast(hex, bg) >= 4.5, `slot ${i} reaches the text floor`);
+  }
+  assert.equal(expected[7], expected[15], "both neutral slots use bright rose under D-041");
+  for (const normal of [1, 2, 3, 4, 5, 6]) {
+    assert.ok(contrast(expected[normal + 8], bg) > contrast(expected[normal], bg), `bright slot ${normal + 8} is brighter than ${normal}`);
   }
 });
 
-test("the lift keeps the heritage light-to-dark order of the changed slots", () => {
-  // D-032 gives slot 6 its own coral; the D-029 lift order holds for the other nine.
-  const changed = [1, 4, 8, 9, 10, 12, 13, 14, 15];
-  const bg = hexOf("default", "color.terminal.bg");
-  const order = (profile) => [...changed].sort((a, b) => contrast(hexOf(profile, `color.terminal.ansi.${a}`), bg) - contrast(hexOf(profile, `color.terminal.ansi.${b}`), bg));
-  const heritage = order("heritage-ansi");
-  const lifted = order("default");
-  assert.equal(lifted[0], 8, "slot 8 stays the darkest");
-  assert.deepEqual(lifted.slice(-3).sort(), heritage.slice(-3).sort(), "the brightest heritage slots stay the brightest");
-});
-
-test("the lifted syntax reds stay readable inside an editor selection", () => {
+test("semantic syntax stays readable inside an editor selection", () => {
   const selection = hexOf("default", "color.code.selection-bg");
   const code = hexOf("default", "color.code.bg");
   for (const role of Object.keys(HERITAGE_SYNTAX)) {
@@ -51,36 +45,31 @@ test("the lifted syntax reds stay readable inside an editor selection", () => {
   }
 });
 
-test("the prompt's path segment keeps the heritage background and readable text in both profiles (D-032)", () => {
+test("D-041 prompt uses true black and rose text, while heritage keeps its original pair", () => {
+  assert.equal(hexOf("default", "color.terminal.prompt-bg"), "#000000");
+  assert.equal(hexOf("default", "color.terminal.prompt-text"), "#ffa2a7");
+  assert.equal(hexOf("heritage-ansi", "color.terminal.prompt-bg"), "#8c1212");
+  assert.equal(hexOf("heritage-ansi", "color.terminal.prompt-text"), "#f4eeee");
   for (const profile of ["default", "heritage-ansi"]) {
-    assert.equal(hexOf(profile, "color.terminal.prompt-bg"), "#8c1212", `${profile}: prompt background`);
     const ratio = contrast(hexOf(profile, "color.terminal.prompt-text"), hexOf(profile, "color.terminal.prompt-bg"));
     assert.ok(ratio >= 4.5, `${profile}: ${ratio.toFixed(2)}:1`);
   }
-  assert.equal(hexOf("default", "color.terminal.prompt-text"), "#ffa2a7");
-  assert.equal(hexOf("heritage-ansi", "color.terminal.prompt-text"), "#f4eeee");
 });
 
-test("slot 6 is coral in the default profile, and stays heritage in heritage-ansi (D-032)", () => {
-  assert.equal(hexOf("default", "color.terminal.ansi.6"), "#ff7a66");
-  assert.ok(contrast("#ff7a66", hexOf("default", "color.terminal.bg")) >= 7);
-  assert.equal(hexOf("heritage-ansi", "color.terminal.ansi.6"), HERITAGE_ANSI[6]);
-});
-
-test("interface reds are unchanged by D-029", () => {
+test("interaction reds retain their identity under D-041", () => {
   for (const [path, hex] of Object.entries({ "color.text.accent": "#e53935", "color.text.accent-strong": "#f73f35", "color.text.link": "#f73f35", "color.interaction.focus.ring": "#e53935", "color.border.active": "#e53935" })) {
     assert.equal(hexOf("default", path), hex, path);
   }
 });
 
-test("D-030 hued syntax roles are approved default-profile roles that stay readable inside a selection", () => {
-  const expected = { string: "#86a46f", number: "#c9973f", constant: "#c9973f", function: "#c9973f", attribute: "#c9973f", escape: "#c9973f", type: "#7e9ebb", property: "#7e9ebb", operator: "#ffa2a7" };
+test("D-041 canonical and hued syntax roles agree and remain readable inside a selection", () => {
+  const expected = { string: "#82d9a0", number: "#e5c07b", constant: "#e5c07b", function: "#82b4ff", attribute: "#e5c07b", escape: "#e5c07b", type: "#78d4d4", property: "#78d4d4", operator: "#e99499" };
   const selection = hexOf("default", "color.code.selection-bg");
   for (const [role, hex] of Object.entries(expected)) {
     const token = resolved.profiles.default.tokens[`color.code.hued.${role}`];
     assert.equal(token.value.hex, hex, role);
+    assert.equal(hexOf("default", `color.code.syntax.${role}`), hex, `${role} uses the same canonical syntax colour`);
     assert.equal(token.eligibility.action, "use", `${role} is deliverable`);
     assert.ok(contrast(hex, selection) >= 4.5, `${role} in the selection: ${contrast(hex, selection).toFixed(2)}:1`);
   }
-  assert.equal(hexOf("default", "color.code.syntax.string"), "#bd787d", "the reference editor stays monochrome");
 });

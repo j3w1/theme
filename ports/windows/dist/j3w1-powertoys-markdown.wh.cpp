@@ -2,7 +2,7 @@
 // @id j3w1-powertoys-markdown
 // @name j3w1 Windows preview backing and PowerToys Markdown
 // @description Exact-version black and rose Markdown rendering adapter
-// @version 1.4.2
+// @version 1.4.3
 // @author j3w1
 // @include PowerToys.MarkdownPreviewHandler.exe
 // @include prevhost.exe
@@ -38,7 +38,7 @@ static constexpr HeaderPin headers[]={
  {2452,175,2240,"449a8fe0d7c0bca0b8792cf7d9597d0702773cb3ef71daf09c783c8bc39839ab"},
  {2467,190,2240,"30bebcadec2095b34c18f9a77e85dd3327b556a6864b84b5e55bb15eafecd651"},
 };
-static constexpr char palette[]=R"MD(*{box-sizing:border-box}body{margin:0;font:15px/24px "SauceCodePro NFM", "Source Code Pro", "Cascadia Mono", "Consolas", "Liberation Mono", "DejaVu Sans Mono", monospace;text-align:left}.container{width:100%;max-width:min(72ch,680px);margin:auto;padding:16px;overflow-wrap:anywhere}.container>:first-child{margin-top:0}p,ul,ol,pre,blockquote,table{margin:0 0 16px}li{margin-block:4px}ul,ol{padding-left:24px}li>p{margin:0}img{max-width:100%;height:auto}h1,h2,h3,h4,h5,h6{margin:24px 0 12px;font-weight:700;text-wrap:balance}h1{font-size:20px;line-height:28px}h2{font-size:16px;line-height:24px}h3,h4,h5,h6{font-size:13px;line-height:18px}pre{padding:12px;border:1px solid;overflow-x:auto}code,tt{font-size:13px;line-height:19px;padding:2px 4px}pre code{display:block;padding:0;font:inherit;white-space:pre;overflow-wrap:normal}strong,th{font-weight:700}em{font-style:italic}hr{border:0;border-top:1px solid;margin:24px 0}table{width:100%;border-spacing:0;border-collapse:collapse}td,th{padding:8px 12px;border:1px solid;text-align:left;vertical-align:top}blockquote{margin-inline:0;padding:8px 12px;border-left:4px solid}blockquote>:last-child{margin-bottom:0}input[type=checkbox]{accent-color:#e53935}@media(forced-colors:none){html,body{background:#000000;color:#e99499}h1,h2,h3,h4,h5,h6{color:#f4eeee}hr,td,th{border-color:#2b0e0d}th{background:#160b0b}pre,code,tt{font-family:"SauceCodePro NFM", "Source Code Pro", "Cascadia Mono", "Consolas", "Liberation Mono", "DejaVu Sans Mono", monospace;color:#e99499;background:#000000;border-radius:0}pre{font-size:13px;line-height:19px;border-color:#a3676b}blockquote{background:#160b0b;color:#e99499;border-color:#e53935}a{color:#f73f35;text-decoration:underline;text-decoration-color:#dc282e}a:hover{color:#f4eeee}a:focus-visible{outline:1px dashed #e53935;outline-offset:-2px}::selection{background:#911410;color:#f4eeee}html{scrollbar-color:#420f0c #000000}})MD";
+static constexpr char palette[]=R"MD(*{box-sizing:border-box}body{margin:0;font:15px/24px "SauceCodePro NFM", "Source Code Pro", "Cascadia Mono", "Consolas", "Liberation Mono", "DejaVu Sans Mono", monospace;text-align:left}.container{width:100%;max-width:min(72ch,680px);margin:auto;padding:16px;overflow-wrap:anywhere}.container>:first-child{margin-top:0}p,ul,ol,pre,blockquote,table{margin:0 0 16px}li{margin-block:4px}ul,ol{padding-left:24px}li>p{margin:0}img{max-width:100%;height:auto}h1,h2,h3,h4,h5,h6{margin:24px 0 12px;font-weight:700;text-wrap:balance}h1{font-size:20px;line-height:28px}h2{font-size:16px;line-height:24px}h3,h4,h5,h6{font-size:13px;line-height:18px}pre{padding:12px;border:1px solid;overflow-x:auto}code,tt{font-size:13px;line-height:19px;padding:2px 4px}pre code{display:block;padding:0;font:inherit;white-space:pre;overflow-wrap:normal}strong,th{font-weight:700}em{font-style:italic}hr{border:0;border-top:1px solid;margin:24px 0}table{width:100%;border-spacing:0;border-collapse:collapse}td,th{padding:8px 12px;border:1px solid;text-align:left;vertical-align:top}blockquote{margin-inline:0;padding:8px 12px;border-left:4px solid}blockquote>:last-child{margin-bottom:0}input[type=checkbox]{accent-color:#e53935}@media(forced-colors:none){html,body{background:#000000;color:#e99499}h1,h2,h3,h4,h5,h6{color:#f4eeee}hr,td,th{border-color:#482b2b}th{background:#140b0b}pre,code,tt{font-family:"SauceCodePro NFM", "Source Code Pro", "Cascadia Mono", "Consolas", "Liberation Mono", "DejaVu Sans Mono", monospace;color:#e99499;background:#000000;border-radius:0}pre{font-size:13px;line-height:19px;border-color:#c81a1a}blockquote{background:#140b0b;color:#e99499;border-color:#e53935}a{color:#f73f35;text-decoration:underline;text-decoration-color:#dc282e}a:hover{color:#f4eeee}a:focus-visible{outline:1px dashed #e53935;outline-offset:-2px}::selection{background:#420f0c;color:#f4eeee}html{scrollbar-color:#986f72 #000000}})MD";
 static constexpr IID coreViewIID={0x76eceacb,0x0462,0x4d94,{0xac,0x83,0x42,0x3a,0x67,0x93,0x77,0x5e}};
 static std::atomic<bool> enabled{false};
 static std::mutex hookMutex,filesMutex;
@@ -56,6 +56,7 @@ static constexpr BrowserPin browserPins[]={
  {"07b9416907225b99556c2a5242ecc6d16afd83d374b151285cfe41f164843c1c",0x8a290,0x8a1f0,0x58e50,0x58f10,0x57380}, // 154.0.4258.53
  {"0cfcd55c5095aec1ab484f15af1ef24bb4dd87b2807557ef7feeb4535c70e0e7",0x8a290,0x8a1f0,0x58e50,0x58f10,0x57380}, // 154.0.4258.62
  {"19eec800fb666a0f939c1fc2113c3bcfc2ad352776d5ddfcb4994d15f77d9b4c",0x87bb0,0x87b10,0x56780,0x56840,0x54cc0}, // 155.0.4283.45
+ {"f01ee4397e3f366460011ce1224e7e0f779d96321f97b6de5a0bb435d319dcc4",0x88510,0x88470,0x56750,0x56810,0x54c60}, // 156.0.4314.58
 };
 struct Boundary {HMODULE module=nullptr;bool attempted=false;std::atomic<bool> ready{false};NavigateFn originalString=nullptr,originalNavigate=nullptr;GetBackgroundFn getBackground=nullptr;SetBackgroundFn originalBackground=nullptr,publicBackground=nullptr;CloseControllerFn originalClose=nullptr;};
 static Boundary boundaries[std::size(browserPins)];
@@ -204,7 +205,7 @@ static BOOL CALLBACK DiscoverPreviewOwner(HWND window,LPARAM) {
  wchar_t exe[32768]{};DWORD length=std::size(exe);
  try{
   if(QueryFullProcessImageNameW(lifetime,0,exe,&length)&&length<std::size(exe)
-   &&DigestFile(exe,"eee089fe6f927c7f0d51b0abd9d70c094157e33673ad760713ec7b1cea18ee11")&&CachePreviewOwner(process,lifetime))return TRUE;
+   &&DigestFile(exe,"0c857b2af68be73283875745a4aee812761e58ff966d005953c3b4378a244526")&&CachePreviewOwner(process,lifetime))return TRUE;
  }catch(...){} // Native notifications must retain fallback after allocation failure.
  CloseHandle(lifetime);return TRUE;
 }
@@ -558,6 +559,7 @@ static bool InstallBoundary(HMODULE module){
   case 2:return HookBoundary<2>(module);
   case 3:return HookBoundary<3>(module);
   case 4:return HookBoundary<4>(module);
+  case 5:return HookBoundary<5>(module);
  }
  return false;
 }
@@ -585,8 +587,8 @@ BOOL Wh_ModInit(){
  if(_wcsicmp(folder.c_str()+split+1,L"prevhost.exe")==0)return InitNativePreviewHost(folder);
  if(_wcsicmp(folder.c_str()+split+1,L"PowerToys.MarkdownPreviewHandler.exe"))return FALSE;
  folder.resize(split);
- if(!DigestFile(exe,"d48704360aa8c8d5a3f572a055b176d50d58206f386cda49b2760beb3fd00cd9")||!DigestFile(folder+L"\\PowerToys.MarkdownPreviewHandler.dll","e47fcc38944ab5920aa49a31a2d0fef212865d1f5a62a65a08012a1767bed9cc")
-  ||!DigestFile(folder+L"\\PowerToys.FilePreviewCommon.dll","35cb5f5e8e1d201d22db5d6b956195c04ae1a79469d36f25b90b6eeee6240ab7"))return FALSE;
+ if(!DigestFile(exe,"e4ed4dfc3e8b3b97b1214e5655fa4ed76b2f47b8f988ef3477ccaa3608b23c53")||!DigestFile(folder+L"\\PowerToys.MarkdownPreviewHandler.dll","da51a0c36f615ed34219d810aaf4ce3806721bcbeba2b7e01100ed3ff94a700e")
+  ||!DigestFile(folder+L"\\PowerToys.FilePreviewCommon.dll","d4659bdd5ae3fdf622063149b3133b5af6716bcd2a9907653ce0cc0001b01b09"))return FALSE;
  PWSTR low=nullptr;if(FAILED(SHGetKnownFolderPath(FOLDERID_LocalAppDataLow,0,nullptr,&low)))return FALSE;
  tempFolder=low;CoTaskMemFree(low);tempFolder+=L"\\Microsoft\\PowerToys\\MarkdownPreview-Temp\\";
  enabled=Wh_GetIntSetting(L"enabled")!=0;

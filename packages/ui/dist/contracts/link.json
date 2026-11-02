@@ -140,10 +140,10 @@
       "color.interaction.text-selection.bg",
       "color.interaction.text-selection.text",
       "color.primitive.ink.0",
-      "color.primitive.ink.40",
+      "color.primitive.modern.hover",
       "color.primitive.paper.90",
       "color.primitive.red.100",
-      "color.primitive.red.350",
+      "color.primitive.red.50",
       "color.primitive.red.750",
       "color.primitive.red.800",
       "color.primitive.red.850",
@@ -322,6 +322,6 @@
   "copy": {
     "directory": "copy/link/",
     "manifest": "copy/link/manifest.json",
-    "digest": "sha256-JGUeXMS30rGMVa06iThss91lAtwn+UWQVV+ExxPjN6A="
+    "digest": "sha256-oTafIE+IAViI0oHnUU2yc+nCoe21J1ceIY04WDL80cE="
   }
 }

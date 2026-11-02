@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — admin-form
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-o4R1QcVREh4X3VMinZljRvfzhRgfN1pUaC1bgNc444o=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-70Zio4Hy/D9gW+eB+0+voDzUpG18WrjnAQqIN+GBNU0=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/admin-form.json
 spec: spec/components/admin-form.md  site: https://j3w1.github.io/theme/reference/#c-admin-form
 maturity: stable  priority: R1
@@ -8,45 +8,44 @@ Summary: A create-or-edit record screen composed from breadcrumbs, a wizard step
 
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg                 #100c0c  ({color.surface.default})  use
-  root.border             #531310  ({color.border.default})  use
+  root.bg                 #0d0707  ({color.surface.default})  use
+  root.border             #482b2b  ({color.border.default})  use
   crumbs.link             #f73f35  ({color.text.link})  use
   crumbs.current          #ffa2a7  ({color.text.bright})  use
   title.text              #ffa2a7  ({color.text.bright})  use
   step.text               #e99499  ({color.text.default})  use
   step.current-text       #ffa2a7  ({color.text.bright})  use
   step.current-indicator  #e53935  ({color.border.selected-indicator})  use
-  step.complete           #86a46f  ({color.status.success.text})  use
-  step.invalid            #f73f35  ({color.status.danger.text})  use
+  step.complete           #82d9a0  ({color.status.success.text})  use
+  step.invalid            #f07178  ({color.status.danger.text})  use
   notice.tint             #0f141c  ({color.status.info.tint})  use
-  notice.border           #7e9ebb  ({color.status.info.border})  use
-  notice.text             #7e9ebb  ({color.status.info.text})  use
+  notice.border           #82b4ff  ({color.status.info.border})  use
+  notice.text             #82b4ff  ({color.status.info.text})  use
   summary.tint            #2b0e0d  ({color.status.danger.tint})  use
   summary.border          #e53935  ({color.status.danger.border})  use
-  summary.text            #f73f35  ({color.status.danger.text})  use
+  summary.text            #f07178  ({color.status.danger.text})  use
   field.bg                #000000  ({color.surface.input})  use
-  field.border            #a3676b  ({color.border.control})  use-and-report (D-007)
+  field.border            #c81a1a  ({color.border.control})  use
   field.text              #e99499  ({color.text.default})  use
   field.label             #ffa2a7  ({color.text.bright})  use
-  field.help              #bd787d  ({color.text.muted})  use
-  field.affix             #bd787d  ({color.text.muted})  use
+  field.help              #d4868b  ({color.text.muted})  use
+  field.affix             #d4868b  ({color.text.muted})  use
   invalid.border          #e53935  ({color.status.danger.border})  use
-  invalid.message         #f73f35  ({color.status.danger.text})  use
-  disabled.bg             #160b0b  ({color.interaction.disabled.bg})  use
-  disabled.text           #8a5559  ({color.text.disabled})  use
-  disabled.border         #7d1310  ({color.border.disabled})  use
-  review.key              #bd787d  ({color.text.muted})  use
+  invalid.message         #f07178  ({color.status.danger.text})  use
+  disabled.bg             #0d0707  ({color.interaction.disabled.bg})  use
+  disabled.text           #a3676b  ({color.text.disabled})  use
+  disabled.border         #482b2b  ({color.border.disabled})  use
+  review.key              #d4868b  ({color.text.muted})  use
   review.header-rule      #9e231f  ({color.border.strong})  use
-  review.row-rule         #2b0e0d  ({color.border.divider})  use-and-report (D-008)
-  footer.border           #2b0e0d  ({color.border.divider})  use-and-report (D-008)
+  review.row-rule         #482b2b  ({color.border.divider})  use
+  footer.border           #482b2b  ({color.border.divider})  use
   continue.bg             #7d1310  ({color.action.primary.bg})  use
   continue.text           #ffa2a7  ({color.action.primary.text})  use
   continue.busy-glyph     #ffa2a7  ({color.action.primary.text})  use
   back.text               #ffa2a7  ({color.action.secondary.text})  use
-  back.border             #a3676b  ({color.action.secondary.border})  use
+  back.border             #986f72  ({color.action.secondary.border})  use
   draft.text              #e99499  ({color.action.tertiary.text})  use
   draft.bg-hover          #1c0a09  ({color.action.tertiary.hover-bg})  use
-State dependency disclosures: D-007
 
 States: default, invalid, busy, disabled
   default: every component's rest tokens on {color.surface.default}; the current step carries the indicator bar, future steps are disabled [`aria-current="step"`]

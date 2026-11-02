@@ -25,16 +25,14 @@ test("D-027 declares an ordinary, unwaived ring on every corrected selection fil
   assert.equal(byId.get("toast").tokens["danger.text"], "color.status.danger.on-fill", "danger fill keeps its on-fill mapping");
 });
 
-test("code selection syntax limits are measured as waived decoration at the text floor", () => {
+test("D-041 code selection syntax meets the text floor without decorative waivers", () => {
   for (const role of ["comment", "type"]) {
     const pair = pairs.find(pair => pair.source === "code-editor" && pair.fgPath === `color.code.syntax.${role}` && pair.bgPath === "color.code.selection-bg");
-    assert.ok(pair, `${role}: missing recorded limitation`);
+    assert.ok(pair, `${role}: missing contrast pair`);
     assert.equal(pair.min, 4.5);
-    assert.equal(pair.kind, "ui");
-    assert.equal(pair.pass, false, "a waiver never turns the measured failure into a pass");
-    assert.match(pair.waiver, /syntax colour is decoration/);
-    assert.match(pair.waiver, /short-lived selection/);
-    assert.match(pair.waiver, /recorded selection value/);
+    assert.equal(pair.kind, "text");
+    assert.equal(pair.pass, true);
+    assert.equal(pair.waiver, null);
   }
 });
 

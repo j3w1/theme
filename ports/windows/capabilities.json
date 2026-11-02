@@ -1813,6 +1813,141 @@
       "state": "out-of-scope",
       "surface": "desktop",
       "reason": "The Windows adapters retain native selection foregrounds and their existing opaque selection or marquee mappings; no host requiring this tint is admitted."
+    },
+    "color.primitive.modern.panel": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.modern.raised": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.modern.overlay": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.modern.hover": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.modern.divider": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.modern.control": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.modern.disabled": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.modern.subtle": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.modern.muted": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.modern.text": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.modern.bright": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.modern.red": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.modern.green": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.modern.amber": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.modern.blue": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.modern.violet": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.modern.cyan": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.modern.bright-red": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.modern.bright-green": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.modern.bright-amber": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.modern.bright-blue": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.modern.bright-violet": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.modern.bright-cyan": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.modern.diff-shared-green": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.primitive.modern.diff-shared-red": {
+      "state": "unsupported",
+      "surface": "unsupported",
+      "reason": "Outside Windows visual adapter scope; preserve host semantics."
+    },
+    "color.diff.added.shared-word": {
+      "state": "out-of-scope",
+      "surface": "desktop",
+      "reason": "Host-specific shared diff foreground/background compromise; this port has no such shared role."
+    },
+    "color.diff.removed.shared-word": {
+      "state": "out-of-scope",
+      "surface": "desktop",
+      "reason": "Host-specific shared diff foreground/background compromise; this port has no such shared role."
     }
   },
   "rollback": "Run install.ps1 -Action Restore for original settings, or add -Latest for the previous transaction; Uninstall also removes owned theme assets."

@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — empty-state
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-o4R1QcVREh4X3VMinZljRvfzhRgfN1pUaC1bgNc444o=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-70Zio4Hy/D9gW+eB+0+voDzUpG18WrjnAQqIN+GBNU0=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/empty-state.json
 spec: spec/components/empty-state.md  site: https://j3w1.github.io/theme/reference/#c-empty-state
 maturity: stable  priority: R1
@@ -8,13 +8,13 @@ Summary: What a container shows when it has nothing to list; a glyph, a heading 
 
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg          #100c0c  ({color.surface.default})  use
-  root.border      #2b0e0d  ({color.border.divider})  use-and-report (D-008)
-  glyph.text       #a3676b  ({color.icon.decorative})  use
+  root.bg          #0d0707  ({color.surface.default})  use
+  root.border      #482b2b  ({color.border.divider})  use
+  glyph.text       #986f72  ({color.icon.decorative})  use
   heading.text     #ffa2a7  ({color.text.bright})  use
-  text.text        #bd787d  ({color.text.muted})  use
+  text.text        #d4868b  ({color.text.muted})  use
   action.text      #ffa2a7  ({color.action.secondary.text})  use
-  action.border    #a3676b  ({color.action.secondary.border})  use
+  action.border    #986f72  ({color.action.secondary.border})  use
   action.bg-hover  #630f0d  ({color.action.secondary.hover-bg})  use
   action.ring      #e53935  ({color.interaction.focus.ring})  use
 

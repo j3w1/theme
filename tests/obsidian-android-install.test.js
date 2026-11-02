@@ -25,6 +25,7 @@ const VERSION = JSON.parse(DIST["manifest.json"]).version;
 const OLD = { "manifest.json": Buffer.from('{"name":"j3w1","version":"0.0.1","minAppVersion":"1.13.4"}\n'), "theme.css": Buffer.from("/* j3w1 theme 0.0.1, default profile, for Obsidian.\n */\n") };
 
 const which = (name) => {
+  if (process.platform === "win32") return null; // POSIX installer fixtures never launch Windows shell aliases.
   for (const dir of (process.env.PATH ?? "").split(path.delimiter)) {
     const candidate = path.join(dir, name);
     try { accessSync(candidate, constants.X_OK); return candidate; } catch { /* next */ }
@@ -152,7 +153,7 @@ const refused = async (v, pattern, args) => {
   return result;
 };
 
-test("the installer requires sh, and sh and dash run PATH stubs so no failure case is skipped there", () => {
+test("the installer requires sh, and sh and dash run PATH stubs so no failure case is skipped there", { skip: process.platform === "win32" ? "POSIX Android installer requires a native POSIX test host; WSL is not a fallback" : false }, () => {
   assert.ok(SHELLS[0].command, "sh is on PATH");
   for (const shell of SHELLS.slice(0, 2)) if (shell.command) assert.ok(shell.interposes, `${shell.label} honours PATH stubs`);
 });

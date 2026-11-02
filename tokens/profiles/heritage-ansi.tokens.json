@@ -230,10 +230,34 @@
     },
     "terminal": {
       "ansi": {
+        "0": {
+          "$value": "{color.primitive.ansi.0}",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "heritage"
+            }
+          }
+        },
         "1": {
           "$value": "{color.primitive.ansi.1}",
           "$description": "ANSI slot 1, exact heritage value (#c81a1a).",
           "$deprecated": "fails 4.5:1 (3.42); historical fidelity only",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "heritage"
+            }
+          }
+        },
+        "2": {
+          "$value": "{color.primitive.ansi.2}",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "heritage"
+            }
+          }
+        },
+        "3": {
+          "$value": "{color.primitive.ansi.3}",
           "$extensions": {
             "io.github.j3w1.theme": {
               "status": "heritage"
@@ -250,10 +274,26 @@
             }
           }
         },
+        "5": {
+          "$value": "{color.primitive.ansi.5}",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "heritage"
+            }
+          }
+        },
         "6": {
           "$value": "{color.primitive.ansi.6}",
           "$description": "ANSI slot 6, exact heritage value (#9e474a).",
           "$deprecated": "fails 4.5:1 (3.26); historical fidelity only",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "heritage"
+            }
+          }
+        },
+        "7": {
+          "$value": "{color.primitive.ansi.7}",
           "$extensions": {
             "io.github.j3w1.theme": {
               "status": "heritage"
@@ -284,6 +324,14 @@
           "$value": "{color.primitive.ansi.10}",
           "$description": "ANSI slot 10, exact heritage value (#ad2721).",
           "$deprecated": "fails 4.5:1 (2.92); historical fidelity only",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "heritage"
+            }
+          }
+        },
+        "11": {
+          "$value": "{color.primitive.ansi.11}",
           "$extensions": {
             "io.github.j3w1.theme": {
               "status": "heritage"

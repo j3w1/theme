@@ -23,15 +23,19 @@ test("the token validator accepts the committed sources", async () => {
   assert.ok(profiles.get("default").size >= 300);
 });
 
-test("approved corrections and extension hues carry the expected values", async () => {
+test("D-041 rose typography and semantic hues carry the expected values", async () => {
   const { profiles } = await validateTokens();
   const d = profiles.get("default");
-  assert.equal(d.get("color.text.subtle").resolved.hex, "#ad7175");
-  assert.equal(d.get("color.text.disabled").resolved.hex, "#8a5559");
-  assert.equal(d.get("color.code.line-number").resolved.hex, "#ad7175");
-  assert.equal(d.get("color.status.warning.text").resolved.hex, "#c9973f");
-  assert.equal(d.get("color.status.success.text").resolved.hex, "#86a46f");
-  assert.equal(d.get("color.status.info.text").resolved.hex, "#7e9ebb");
+  for (const role of ["color.surface.default", "color.surface.raised", "color.surface.overlay", "color.border.default", "color.border.control"]) {
+    const [r, g, b] = d.get(role).resolved.components;
+    assert.ok(r > b && b >= g, `${role} must remain warm rose-gray, without a blue cast`);
+  }
+  assert.equal(d.get("color.text.subtle").resolved.hex, "#bd787d");
+  assert.equal(d.get("color.text.disabled").resolved.hex, "#a3676b");
+  assert.equal(d.get("color.code.line-number").resolved.hex, "#bd787d");
+  assert.equal(d.get("color.status.warning.text").resolved.hex, "#e5c07b");
+  assert.equal(d.get("color.status.success.text").resolved.hex, "#82d9a0");
+  assert.equal(d.get("color.status.info.text").resolved.hex, "#82b4ff");
   assert.equal(d.get("color.interaction.focus.ring").resolved.hex, "#e53935");
   assert.equal(d.get("color.interaction.selection.bg").resolved.hex, "#531310");
   assert.equal(d.get("radius.none").resolved.value, 0);

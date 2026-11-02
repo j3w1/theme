@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — dialog
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-o4R1QcVREh4X3VMinZljRvfzhRgfN1pUaC1bgNc444o=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-70Zio4Hy/D9gW+eB+0+voDzUpG18WrjnAQqIN+GBNU0=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/dialog.json
 spec: spec/components/dialog.md  site: https://j3w1.github.io/theme/reference/#c-dialog
 maturity: stable  priority: R1
@@ -9,8 +9,8 @@ Summary: A native dialog on the overlay surface behind a 1px overlay border and 
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
   backdrop.bg           rgb(0 0 0 / 65%)  ({color.surface.backdrop})  use-and-report (D-008)
-  root.bg               #241010  ({color.surface.overlay})  use
-  root.border           #e53935  ({color.border.overlay})  use-and-report (D-008)
+  root.bg               #1c1010  ({color.surface.overlay})  use
+  root.border           #c81a1a  ({color.border.overlay})  use
   root.ring             #ffa2a7  ({color.interaction.focus.ring-container})  use
   root.z                30  ({z.dialog})  use
   title.text            #ffa2a7  ({color.text.bright})  use
@@ -19,7 +19,7 @@ Tokens (resolved):
   close.bg-hover        #1c0a09  ({color.action.tertiary.hover-bg})  use
   close.ring            #e53935  ({color.interaction.focus.ring})  use
   button.text           #ffa2a7  ({color.action.secondary.text})  use
-  button.border         #a3676b  ({color.action.secondary.border})  use
+  button.border         #986f72  ({color.action.secondary.border})  use
   button.bg-hover       #630f0d  ({color.action.secondary.hover-bg})  use
   primary.bg            #7d1310  ({color.action.primary.bg})  use
   primary.text          #ffa2a7  ({color.action.primary.text})  use
@@ -28,10 +28,9 @@ Tokens (resolved):
   destructive.text      #f9faf9  ({color.action.destructive.filled-text})  use
   destructive.bg-hover  #dc282e  ({color.action.destructive.hover-bg})  use
   field.bg              #000000  ({color.surface.input})  use
-  field.border          #a3676b  ({color.border.control})  use-and-report (D-007)
+  field.border          #c81a1a  ({color.border.control})  use
   field.label           #ffa2a7  ({color.text.bright})  use
-  note.text             #bd787d  ({color.text.muted})  use
-State dependency disclosures: D-008
+  note.text             #d4868b  ({color.text.muted})  use
 
 States: default, open, closed, focus-trapped, hover, focus-visible, reduced-motion
   default: the dialog open on its backdrop [`open`; the page behind is inert]

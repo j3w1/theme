@@ -20,6 +20,23 @@ also read, and has been checked against Orca 1.4.209's parser.
 - Orca reads the background, foreground, cursor and the ANSI slots. It uses
   `accent` only when `cursor` is missing.
 
+## One-click setup from this checkout
+
+Double-click the repository root's [setup.cmd](../../setup.cmd) on Windows and
+select Warp, or run from the repository root with Node 24 and Git available:
+
+```sh
+node setup.mjs --ports warp
+```
+
+Setup installs the committed custom theme in Warp's platform theme directory
+and backs up a replaced file. Select it under Settings → Appearance → Themes
+afterward. Repeat setup after reviewing and checking out a newer revision; the
+printed backup location can restore the previous theme file. See
+[common setup options](../README.md#one-click-setup-from-a-checkout).
+For full Orca application appearance, select the Orca port instead of relying
+on this terminal-only YAML import.
+
 ## Install in Orca
 
 1. Download `j3w1.yaml` from the Downloads table in the repository README.

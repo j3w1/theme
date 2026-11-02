@@ -1,12 +1,35 @@
 # j3w1 theme for Claude Code
 
 A Claude Code custom theme, `custom:j3w1`, built only from approved roles:
-rose text, the red accent, your messages on the selected-row red, status,
-diff and usage colours. Status: experimental (no recorded import evidence).
+rose reading text, a restrained red accent, semantic agent hues, and distinct
+status, diff and usage colours (D-041). Status: experimental (no recorded import evidence).
+
+Ordinary agent text follows the shared rose UI/terminal palette; white is
+reserved for document headings, exceptional highlights and contrast-critical
+roles. Semantic code, status and diff colours remain distinct.
 
 Needs Node 24, Git, a clone of this repository and Claude Code 2.1.281 or
 later. Claude Code also uses the terminal's sixteen colours (see Limits), so
 install a terminal theme too, for example [`../orca/`](../orca/README.md).
+
+## One-click setup from this checkout
+
+Double-click the repository root's [setup.cmd](../../setup.cmd) on Windows and
+select Claude Code, or run from the repository root:
+
+```sh
+node setup.mjs --ports claude-code
+```
+
+This uses the committed checkout's theme through the existing installer, then
+runs its installed-file check. Add Orca or another terminal port to the same
+selection when needed. Existing backup and restore behavior is retained; no
+running agent is restarted. Sessions that keep their startup theme need to be
+reopened. See [common setup options](../README.md#one-click-setup-from-a-checkout)
+for dry runs and platform prerequisites.
+
+The release commands below install the recorded published release, which can
+be older than this checkout's candidate.
 
 ## Install
 
@@ -53,13 +76,14 @@ if the installer created it. Claude Code only.
 ## What it changes
 
 - `~/.claude/themes/j3w1.json`: created or replaced (base `dark-ansi`, every
-  role Claude Code 2.1.281 to 2.1.283 has, so nothing falls back to a default).
+  role observed in Claude Code 2.1.281 to 2.1.283, with the shared diff-word
+  behavior also inspected in 2.1.301).
 - `"theme": "custom:j3w1"` in `~/.claude/settings.json`. Only that key changes;
   every other byte, the byte-order mark and the line endings are kept.
 - It follows `CLAUDE_CONFIG_DIR` and `HOME`, so inside an agent session it acts
   on that session's configuration; `--claude-config-dir` picks another one.
-- `color.border.overlay` (dialog borders) is a use-and-report role under D-008;
-  every run says so.
+- Dialog borders use the strong red text role because Claude shares their
+  colour with inline-code text; this keeps both uses readable (D-041).
 
 **Restart once.** Sessions already running when the themes folder was first
 created need one restart; after that, changes load live.
@@ -68,17 +92,27 @@ created need one restart; after that, changes load live.
 
 Claude Code's own; `test` prints them.
 
-- Highlighted code, links (slot 12), diff + and - markers and file previews
-  use fixed terminal colours; the terminal theme decides how they look.
-- Word-level diff changes can only be a background, so they keep the line
-  tint instead of the theme's underline.
+- Highlighted code, links (slot 12) and file previews use terminal colours.
+  Line-level `+` and `-` markers may inherit ANSI slots or the row foreground,
+  depending on Claude's renderer; there is no independent line-marker token.
+- **Edit-summary `+N` / `-N` counts:** Claude Code 2.1.303 shares
+  `diffAddedWord` / `diffRemovedWord` between summary foreground and word
+  background. Dedicated `diff.*.shared-word` roles use muted green and red:
+  each remains above 3:1 on black and beneath rose text. These reduce the glaring fills without returning
+  the summary to nearly black. Both uses cannot reach 4.5:1 with the same
+  colour; the best balanced ratio is about 3.03:1. This is a documented host
+  compromise, not a generic text waiver or a syntax-wide contrast pass.
+  There is no independent summary or word-text foreground setting.
+- Dimmed/rejected diff rows retain their added/removed line tint; those theme
+  keys are backgrounds, not disabled foreground text.
 - The selected item in a picker changes its text colour only; there is no
   selection fill.
-- Subagent names get seven colours for eight names (cyan and pink share one):
-  the theme has no extra hues for text.
+- Subagent names follow the semantic terminal hues. Normal/bright pairs may
+  share values; the displayed name remains the identity channel.
 - Mouse selection keeps each span's own colour on the selection background;
   some colours fall below 4.5:1 there.
-- Inline code uses Claude Code's permission colour (the dialog border).
+- Inline code uses Claude Code's permission colour (the dialog border);
+  both use strong red so the shared colour meets ordinary text contrast.
 - The shell-mode input border is the same as the normal one; the `!` marker
   shows the mode.
 
@@ -91,3 +125,8 @@ Claude Code's own; `test` prints them.
   `npm run generate`; do not edit it.
 - `port.json`, `mapping.json`, `capabilities.json`: the port's scope, every
   native key, and the reason for each role that is not mapped.
+
+The [Claude Code color reference](https://code.claude.com/docs/en/terminal-config#create-a-custom-theme)
+documents the word-background keys. The shared summary-foreground use was
+inspected in the installed 2.1.301 renderer; this is source inspection, not
+installed visual acceptance.

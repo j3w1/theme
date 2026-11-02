@@ -8,7 +8,7 @@
   "source": {
     "algorithm": "sha256 over LF file bytes, base64",
     "files": {
-      "theme.json": "sha256-4NYtr9+dtCjVshxiuC/YkB+7FzdUbd4E60lcZknHTLE=",
+      "theme.json": "sha256-M6YnnhussoaYCa37J0loH4NgosP0GjyVqFSp7QlS4Ow=",
       "site/recipes.json": "sha256-71h0SYIOKbPRh+V/IhtLV7ZGuX90wfmeo84Rx0sm494=",
       "scripts/lib/recipe-generator.mjs": "sha256-Bx+XV4uu1Ha1lvB+SFJ08FwyhsJFXITpvg37hICAdTM=",
       "scripts/lib/recipe-css.mjs": "sha256-pYVBZWuIylisk1RECCR78awarge02KZZwVi9+nyBwlw=",
@@ -21,11 +21,11 @@
       "site/src/styles/partials/field.css": "sha256-WTZb/N3/3OT12dHJbvImC02NJBaOkGX8rQ+alodB3S0=",
       "site/src/styles/components/dialog.css": "sha256-LsgLtsmzj87glU24kBSLeKNmpLIUDCqe3ojq5+mrXEs=",
       "LICENSE.md": "sha256-Ih5+DpqcNXGWJX6BbYgpt6psmJi9lGcXGJzuiU7elE0=",
-      "tokens/primitives.tokens.json": "sha256-cmydigBuNgi4hyQLi+3VS5JBhDQ8VMStlmUtPSSc05E=",
-      "tokens/semantic.tokens.json": "sha256-hoLfjJ7cwYVdapgaC/ZP0Ou1qQv6HBX0T14qv5GPqd4=",
+      "tokens/primitives.tokens.json": "sha256-+5ALj3StcjIgqCUMubKZz0Egg4Bhc32gY6o2ALxS7ys=",
+      "tokens/semantic.tokens.json": "sha256-KQRhemmP+WCIvndj37063ttK/iPNJCy5cySmK7cBaS4=",
       "tokens/foundations.tokens.json": "sha256-rCrhBaYt63CHz5/v3r/oC5qF83JoqaM8O7kzQyDr8cY="
     },
-    "digest": "sha256-0iXOlWFgMFG1NYyoKFfuEbk0SLXntbapFSCEXjco7xg=",
+    "digest": "sha256-vrgAJx8MsJXP8V9HY/Fzr/Ca5hR1NWdVmpTNFG0UgXw=",
     "revisionPolicy": "Resolve these paths at the same pinned commit as this manifest. The hosted source viewer identifies its supplying commit; generated source files contain content digests, never a floating revision claim."
   },
   "dependencies": {
@@ -72,9 +72,12 @@
     "color.primitive.alpha.black-65",
     "color.primitive.alpha.transparent",
     "color.primitive.ink.0",
-    "color.primitive.ink.30",
     "color.primitive.ink.40",
-    "color.primitive.ink.52",
+    "color.primitive.modern.control",
+    "color.primitive.modern.divider",
+    "color.primitive.modern.overlay",
+    "color.primitive.modern.panel",
+    "color.primitive.modern.red",
     "color.primitive.paper.100",
     "color.primitive.paper.90",
     "color.primitive.red.150",
@@ -83,12 +86,11 @@
     "color.primitive.red.400",
     "color.primitive.red.50",
     "color.primitive.red.550",
+    "color.primitive.red.650",
     "color.primitive.red.750",
     "color.primitive.red.800",
-    "color.primitive.red.850",
-    "color.primitive.rose.300",
     "color.primitive.rose.350",
-    "color.primitive.rose.600",
+    "color.primitive.rose.650",
     "color.primitive.rose.700",
     "color.primitive.rose.800",
     "color.status.danger.text",
@@ -301,11 +303,9 @@
       "decisionIds": []
     },
     "color.border.control": {
-      "action": "use-and-report",
-      "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
-      "decisionIds": [
-        "D-007"
-      ]
+      "action": "use",
+      "reason": "Use within the role's documented scope and restrictions.",
+      "decisionIds": []
     },
     "color.border.disabled": {
       "action": "use",
@@ -313,11 +313,9 @@
       "decisionIds": []
     },
     "color.border.overlay": {
-      "action": "use-and-report",
-      "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
-      "decisionIds": [
-        "D-008"
-      ]
+      "action": "use",
+      "reason": "Use within the role's documented scope and restrictions.",
+      "decisionIds": []
     },
     "color.code.caret": {
       "action": "use",
@@ -553,12 +551,12 @@
   "files": {
     "markup.html": "sha256-3KkpFAZ9Id+n/Pmpuu4Os4Wea88fXD39tHcFoCINEDQ=",
     "template.html": "sha256-ekYfQWlHu6z/dh7Wi1W3GZayMjEjxB5ru5nU7CKIqMg=",
-    "tokens.css": "sha256-8v2razLbiqxJ36LPLf8rHQG219Ns6nFnyRGKJqh/evs=",
+    "tokens.css": "sha256-ok8queKEkLGrkiAYZ1aT2zEAp1RNvj89zhZeSst6aIA=",
     "foundation.css": "sha256-jm66ZdmdAhTyMVQIMKhzVZZm/NhB5ZbLq8g3UASzy98=",
     "component.css": "sha256-4rB4zaZ85zCcwBibahNlsmkeHocfBbSHfwT9xY/jwE8=",
-    "example.html": "sha256-NfEbyJuZuMeGI56eQN6PW+EXPWfv8OjpngN0eMztvPQ=",
-    "two-instances.html": "sha256-g3casyVMkw4tWfmMAkD3Aq9kp+I7vebgRqjir2H/52c=",
+    "example.html": "sha256-tmrm7tsbM0d23rPE1yirt8f6i1caLe58sCa+bP9/20s=",
+    "two-instances.html": "sha256-6I0iinjGM5M2kdmELDJZC6Xx2wHmEmQr+uI9BpRtze8=",
     "LICENSE.md": "sha256-vVf/G6WKJRqbyGZCppbAxMh+UAJdSzaPt5xWUujehyU=",
-    "README.md": "sha256-1opuFssLS9hrVsviW1sRoOXq/l9P7pCwx5o/mD/lnpA="
+    "README.md": "sha256-rfrGVyWajF3RtU7VAZ3DcnbXvtT/zZ+A3baD6aSJD0k="
   }
 }

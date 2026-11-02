@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — code-editor
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-o4R1QcVREh4X3VMinZljRvfzhRgfN1pUaC1bgNc444o=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-70Zio4Hy/D9gW+eB+0+voDzUpG18WrjnAQqIN+GBNU0=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/code-editor.json
 spec: spec/components/code-editor.md  site: https://j3w1.github.io/theme/reference/#c-code-editor
 maturity: stable  priority: R1
@@ -8,42 +8,41 @@ Summary: The editor surface, gutter, caret, current line, selection, bracket mat
 
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg                  #0c0909  ({color.code.bg})  use
-  root.border              #a3676b  ({color.border.control})  use-and-report (D-007)
+  root.bg                  #000000  ({color.code.bg})  use
+  root.border              #c81a1a  ({color.border.control})  use
   root.ring                #ffa2a7  ({color.interaction.focus.ring-container})  use
-  gutter.bg                #0c0909  ({color.code.gutter-bg})  use
-  gutter.rule              #2b0e0d  ({color.code.gutter-rule})  use
+  gutter.bg                #000000  ({color.code.gutter-bg})  use
+  gutter.rule              #482b2b  ({color.code.gutter-rule})  use
   gutter.bg-read-only      #000000  ({color.surface.sunken})  use
-  line-number.text         #ad7175  ({color.code.line-number})  use
+  line-number.text         #bd787d  ({color.code.line-number})  use
   line-number.text-active  #e99499  ({color.code.line-number-active})  use
-  line.bg-current          #1c0a09  ({color.code.current-line})  use
-  caret.bg                 #e99499  ({color.code.caret})  use
+  line.bg-current          #0d0707  ({color.code.current-line})  use
+  caret.bg                 #ffa2a7  ({color.code.caret})  use
   selection.bg             #420f0c  ({color.code.selection-bg})  use
   selection.bg-inactive    #420f0c  ({color.interaction.selection.inactive-bg})  use
   selection.text-inactive  #e99499  ({color.interaction.selection.inactive-text})  use
   bracket.outline          #e53935  ({color.code.bracket-match})  use
-  indent.guide             #531310  ({color.code.indent-guide})  use
-  whitespace.text          #7d1310  ({color.code.whitespace})  use
-  fold.text                #bd787d  ({color.text.muted})  use
-  fold.border              #a3676b  ({color.border.control})  use-and-report (D-007)
-  syntax.keyword           #f7463c  ({color.code.syntax.keyword})  use
-  syntax.string            #bd787d  ({color.code.syntax.string})  use
-  syntax.comment           #ad7175  ({color.code.syntax.comment})  use
-  syntax.number            #d4868b  ({color.code.syntax.number})  use
-  syntax.constant          #d4868b  ({color.code.syntax.constant})  use
-  syntax.function          #ffa2a7  ({color.code.syntax.function})  use
+  indent.guide             #482b2b  ({color.code.indent-guide})  use
+  whitespace.text          #986f72  ({color.code.whitespace})  use
+  fold.text                #d4868b  ({color.text.muted})  use
+  fold.border              #c81a1a  ({color.border.control})  use
+  syntax.keyword           #c7a0e8  ({color.code.syntax.keyword})  use
+  syntax.string            #82d9a0  ({color.code.syntax.string})  use
+  syntax.comment           #bd787d  ({color.code.syntax.comment})  use
+  syntax.number            #e5c07b  ({color.code.syntax.number})  use
+  syntax.constant          #e5c07b  ({color.code.syntax.constant})  use
+  syntax.function          #82b4ff  ({color.code.syntax.function})  use
   syntax.variable          #e99499  ({color.code.syntax.variable})  use
-  syntax.type              #b37175  ({color.code.syntax.type})  use
+  syntax.type              #78d4d4  ({color.code.syntax.type})  use
   syntax.operator          #e99499  ({color.code.syntax.operator})  use
-  syntax.punctuation       #e99499  ({color.code.syntax.punctuation})  use
-  syntax.property          #e95551  ({color.code.syntax.property})  use
-  syntax.heading           #e95551  ({color.code.syntax.heading})  use
-  syntax.tag               #f7463c  ({color.code.syntax.tag})  use
-  syntax.attribute         #d4868b  ({color.code.syntax.attribute})  use
-  syntax.escape            #d4868b  ({color.code.syntax.escape})  use
-  syntax.invalid           #e95551  ({color.code.syntax.invalid})  use
-  syntax.deprecated        #ad7175  ({color.code.syntax.deprecated})  use
-State dependency disclosures: D-007
+  syntax.punctuation       #d4868b  ({color.code.syntax.punctuation})  use
+  syntax.property          #78d4d4  ({color.code.syntax.property})  use
+  syntax.heading           #f4eeee  ({color.code.syntax.heading})  use
+  syntax.tag               #f07178  ({color.code.syntax.tag})  use
+  syntax.attribute         #e5c07b  ({color.code.syntax.attribute})  use
+  syntax.escape            #e5c07b  ({color.code.syntax.escape})  use
+  syntax.invalid           #f07178  ({color.code.syntax.invalid})  use
+  syntax.deprecated        #bd787d  ({color.code.syntax.deprecated})  use
 
 States: default, focus-visible, selected, selected+container-inactive, current, read-only
   default: code on {color.code.bg}; comments italic; invalid text wavy-underlined in {color.code.syntax.invalid}; deprecated text struck through [italic, wavy underline, line-through]

@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — button
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-o4R1QcVREh4X3VMinZljRvfzhRgfN1pUaC1bgNc444o=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-70Zio4Hy/D9gW+eB+0+voDzUpG18WrjnAQqIN+GBNU0=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/button.json
 spec: spec/components/button.md  site: https://j3w1.github.io/theme/reference/#c-button
 maturity: stable  priority: R1
@@ -16,14 +16,14 @@ Tokens (resolved):
   root.ring                  #ffa2a7  ({color.interaction.focus.ring-container})  use
   secondary.bg               rgb(0 0 0 / 0%)  ({color.action.secondary.bg})  use
   secondary.text             #ffa2a7  ({color.action.secondary.text})  use
-  secondary.border           #a3676b  ({color.action.secondary.border})  use
+  secondary.border           #986f72  ({color.action.secondary.border})  use
   secondary.bg-hover         #630f0d  ({color.action.secondary.hover-bg})  use
   secondary.bg-active        #420f0c  ({color.action.secondary.pressed-bg})  use
   secondary.ring             #e53935  ({color.interaction.focus.ring})  use
   tertiary.text              #e99499  ({color.action.tertiary.text})  use
   tertiary.bg-hover          #1c0a09  ({color.action.tertiary.hover-bg})  use
   tertiary.bg-active         #420f0c  ({color.interaction.pressed.bg})  use
-  destructive.text           #f73f35  ({color.action.destructive.text})  use
+  destructive.text           #f07178  ({color.action.destructive.text})  use
   destructive.border         #e53935  ({color.action.destructive.border})  use
   destructive.bg-hover       #dc282e  ({color.action.destructive.hover-bg})  use
   destructive.text-hover     #f9faf9  ({color.action.destructive.hover-text})  use
@@ -34,9 +34,9 @@ Tokens (resolved):
   secondary.border-active    #e53935  ({color.border.active})  use
   tertiary.border-active     #e53935  ({color.border.active})  use
   destructive.border-active  #e53935  ({color.action.destructive.border})  use
-  root.text-disabled         #8a5559  ({color.text.disabled})  use
-  root.bg-disabled           #160b0b  ({color.interaction.disabled.bg})  use
-  root.border-disabled       #7d1310  ({color.border.disabled})  use
+  root.text-disabled         #a3676b  ({color.text.disabled})  use
+  root.bg-disabled           #0d0707  ({color.interaction.disabled.bg})  use
+  root.border-disabled       #482b2b  ({color.border.disabled})  use
   loading.glyph              #ffa2a7  ({color.action.primary.text})  use
 
 States: default, hover, focus-visible, active, disabled, loading

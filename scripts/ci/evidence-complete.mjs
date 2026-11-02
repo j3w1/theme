@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { fileURLToPath } from "node:url";
 // The merged evidence must record every configured test in every configured
 // project (D-031). merge-reports only sees the tests in the blobs it was given,
 // so a missing shard would silently shrink the matrix; this check refuses it.
@@ -16,7 +17,7 @@ const digest = (b) => createHash("sha256").update(b).digest("hex");
 const before = digest(bytes);
 const evidence = JSON.parse(bytes.toString("utf8"));
 
-const listed = JSON.parse(execFileSync("npx", ["playwright", "test", "--list", "--reporter=json"], { encoding: "utf8", env: { ...process.env, CI: "1" }, maxBuffer: 64 * 1024 * 1024 }));
+const listed = JSON.parse(execFileSync(process.execPath, [fileURLToPath(import.meta.resolve("@playwright/test/cli")), "test", "--list", "--reporter=json"], { encoding: "utf8", env: { ...process.env, CI: "1" }, maxBuffer: 64 * 1024 * 1024 }));
 const count = (suite) => (suite.specs ?? []).reduce((n, spec) => n + (spec.tests ?? []).length, 0) + (suite.suites ?? []).reduce((n, s) => n + count(s), 0);
 const total = listed.suites.reduce((n, s) => n + count(s), 0);
 const projects = projectNames(readFileSync("playwright.config.mjs", "utf8")).sort();

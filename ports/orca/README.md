@@ -1,8 +1,127 @@
 # j3w1 theme for Orca
 
-Gives Orca's terminal the j3w1 colours: the sixteen terminal colours,
-background, text, cursor, selection, the pane divider and the terminal font.
-Status: experimental (no recorded import evidence).
+Gives Orca 1.4.246 and later the j3w1 app, editor and terminal colours.
+The data-only plugin themes supported application surfaces through public
+colour tokens, including sidebars, tabs, settings and structured agent views.
+TextMate scopes colour code, including green inserted text and red deletions.
+Status: experimental; structural validation is separate from live import evidence.
+
+## One-click setup from this checkout
+
+With Node 24, Git and Orca 1.4.246 or later available, double-click the repository
+root's [setup.cmd](../../setup.cmd) on Windows and select Orca. On any supported
+platform, run from the repository root:
+
+```sh
+node setup.mjs --ports orca
+```
+
+The common setup copies the committed app/editor/terminal plugin to a retained
+local folder, validates it and registers it through Orca's supported plugin
+CLI. Keep that folder: Orca reloads the registered development folder on later
+starts. This data-only plugin needs no executable permissions. Appearance
+selection is still an app step: use the settings below to choose j3w1 and
+remove old terminal overrides. No app restart is forced and running sessions
+are preserved. [Common setup options](../README.md#one-click-setup-from-a-checkout)
+include a dry run and multi-port setup.
+
+The published legacy terminal-only commands later in this guide are separate
+from this checkout's full application plugin setup.
+
+## Appearance selection and manual plugin setup
+
+For manual development loading directly from the checkout:
+
+```powershell
+npm run generate
+orca plugin validate ./ports/orca/dist --json
+orca plugin dev load ./ports/orca/dist --json
+```
+
+Keep `orca-plugin.json`, `app-theme.json` and `terminal-theme.json` together.
+The plugin contains data only: no executable entry point or capabilities.
+It requires Orca 1.4.246 or newer. Enable plugins in Settings if Orca reports
+that the plugin system is disabled.
+
+In Settings > Appearance:
+
+1. Select **Dark** mode and **j3w1** as the Dark theme.
+2. Select **Same as app theme** for the Dark editor theme.
+3. Select **j3w1** as the terminal Dark Theme. Remove old custom colour
+   overrides, or import the current `config.ghostty` to update them; overrides
+   take precedence over a selected terminal palette.
+4. Use the app theme for sidebar appearance. A separately configured sidebar
+   tint or Match Terminal mode can override the app theme's sidebar colours.
+
+The app and editor theme applies to Orca-rendered Claude and Codex chats.
+CLI agent tabs additionally need the terminal palette and their respective
+[Claude Code](../claude-code/README.md) and [Codex](../codex/README.md) ports.
+The plugin preserves font size, zoom and layout. Orca retains its own trust
+and approval dialog colours, geometry, focus behavior and unsupported syntax
+selectors. It owns diff backgrounds; the theme supplies supported syntax
+foregrounds and terminal ANSI slots without injecting CSS.
+
+For a plugin loaded manually from the checkout, restore by selecting the
+previous app, editor and terminal themes, then run
+`orca plugin dev unload ./ports/orca/dist --json`. Keep the loaded folder at a
+stable path: development loading watches it for updates. This is a local
+installation, not a public plugin-catalog release.
+
+## Update or remove the full app plugin
+
+For common setup, review and check out the desired newer revision, then rerun
+`node setup.mjs --ports orca`. Setup retains and registers that revision's
+plugin folder; Appearance selections remain an Orca setting. To stop using it,
+select the previous app, editor and terminal themes, then unload the registered
+folder using the exact retained path printed by setup. The legacy PowerShell
+Restore script below applies only to settings managed by that terminal-only
+installer, not the new data plugin.
+
+## Host limits in Orca 1.4.246
+
+Application panels, menus, resource manager and browser chrome use black fills;
+rose carries ordinary text and red carries boundaries. Input backgrounds are
+black, including the address field. Orca shares its input token with idle input
+borders, so those borders also become black; focus rings and the browser address
+field's separate outer red border remain.
+
+Selected segmented controls and active menu rows use dark red `action.primary.bg` with
+bright rose labels (5.57:1). Unselected controls and surrounding panels stay
+black with rose text. Orca also forces focused agent rows to 70% of this same
+accent while retaining ordinary rose foreground: full-opacity labels reach
+6.20:1, but host-dimmed metadata reaches only 3.76:1. Separate worktree tokens
+cannot override that host CSS rule. The owner's correction prioritizes readable,
+restrained rows over the rejected bright-red fill. Selected-vs-black fill
+contrast is 1.97:1, below 3:1; the host's font-weight change also marks selected
+segments. This is a documented host compromise, not an accessibility pass.
+Panel, popover, input and browser base backgrounds stay black.
+
+Orca shares primary color between active links, buttons and input selections.
+The port uses readable red with black text on primary fills, so links such as
+Settings → Agents remain visible. A dark-red selection with rose text cannot
+be configured independently of those links in this host version. Terminal and
+editor selections keep their separately supported palette.
+
+Some surfaces are not exposed by the public theme contract:
+
+- The browser loading line uses the private callout-note color, and tab loading spinners and fallback
+  icons use a fixed blue utility. A data theme cannot replace these colors.
+- Tooltips invert the ordinary foreground and background, producing rose fills.
+  There is no independent tooltip token.
+- Plain prose selection and explicitly system-colored selections can retain
+  Chromium blue; only shared input selection uses the primary colors above.
+- Sleeping/disconnected workspaces and some navigation labels apply host-owned
+  opacity. Theme colors do not remove those opacity reductions.
+- Websites inside browser tabs own their document colors. The app theme styles
+  browser chrome, not external page content.
+
+These limits require host theme hooks; the plugin does not patch Orca binaries
+or inject unsupported CSS.
+
+## Legacy Ghostty installer
+
+The following PowerShell lifecycle remains available for terminal settings
+and font import. It does not install or select the full app plugin above.
 
 You need Windows, [PowerShell 7.4 or later](https://learn.microsoft.com/powershell/scripting/install/installing-powershell-on-windows)
 (`winget install Microsoft.PowerShell`), Orca started at least once, and the
@@ -10,7 +129,7 @@ You need Windows, [PowerShell 7.4 or later](https://learn.microsoft.com/powershe
 `SourceCodePro` download. Without the font the installer stops and says how to
 get it; `-SkipFontCheck` goes on without it.
 
-## Install
+## Legacy install
 
 <!-- install:start -->
 Release v3.0.0 (commit `f0e9e25a00357c0b47ae3d1392b87e5bc0aa91e6`).
@@ -99,7 +218,8 @@ earlier value is unknown.
     (`color.border.divider`, use-and-report under D-008; every run says so).
   - `terminalFontFamily`: `SauceCodePro NFM`.
   - `leftSidebarAppearanceMode` = Match Terminal, at the owner's request; it
-    is the only part of Orca's window that can follow the terminal.
+    affects the legacy terminal-derived sidebar. The app plugin above themes
+    the full app independently.
 - **`%APPDATA%\ghostty\config.ghostty`**: one marked block. Every line outside
   it is kept, byte for byte. A symbolic link is written through and stays a
   link. A file with two marked blocks is refused until you delete one.
@@ -125,6 +245,91 @@ recorded. Before writing anything the installer plans every change and makes a
 backup; a problem found while planning stops the run with nothing written.
 `-WhatIf` prints the plan and writes nothing.
 
+## Agnoster shell prompt
+
+`dist/agnoster.zsh` assigns the canonical prompt roles to Agnoster's configurable
+segments: rose text, a dark-red path, a warm near-black Git branch and black
+context/environment fills. The path and branch remain visually distinct. Dirty
+Git state keeps its existing `±` / `✚` markers; errors and root warnings retain
+semantic foregrounds. This changes prompt branding without changing green ANSI
+diffs or status text. Load it **after** oh-my-zsh/Agnoster; it does not replace
+prompt functions or change other themes. Agnoster's hard-coded Conda and
+Terraform segments are outside these configurable variables.
+
+The same optional Zsh file sets GNU `ls` ordinary files to rose, directories
+to bright rose, links to muted rose and missing/broken links to danger red.
+It preserves existing executable, permission and extension rules, and repeated
+sourcing replaces only these owned type entries. This is independent of ANSI
+blue used by code, links and status in other programs.
+
+On Linux or macOS, common setup can install this optional shell configuration
+and its source line with backups:
+
+```sh
+node setup.mjs --ports claude-code,codex --shell-prompt
+```
+
+The flag is opt-in and can accompany another port selection. It uses the
+existing CE Devbox user override when present, otherwise the user's `.zshrc`;
+it does not install Agnoster. It sets `CE_THEME=off` in `~/.zshenv` only when
+the older `/etc/profile.d/ce-theme.sh` exists. Source the installed prompt once
+or open a new shell to see the change. Existing agent sessions are preserved.
+
+For manual installation, copy `dist/agnoster.zsh` to `~/.config/j3w1-theme/agnoster.zsh`, preserving a
+backup if it already exists, then source it from your final shell configuration:
+
+```zsh
+source "$HOME/.config/j3w1-theme/agnoster.zsh"
+```
+
+On CE Devbox, put that line in `~/.config/ce-devbox/zshrc.local`, the supported
+user override sourced after its generated `.zshrc`. If its older generated
+`/etc/profile.d/ce-theme.sh` resets the terminal palette, use its documented
+opt-out, `export CE_THEME=off` in `~/.zshenv`, to keep Orca's selected terminal
+theme authoritative. Preserve existing file contents; do not edit generated
+system files. This opt-out requires the terminal itself to have the current
+theme installed. It does not migrate CE Devbox's console, Hermes or browser
+theme. Existing shells can load the prompt with the source command above;
+new shells load the final override automatically. Active agents need no restart.
+
+## Public app color coverage
+
+The plugin explicitly maps all 66 public app tokens accepted by Orca 1.4.246,
+including workspace selection, host badges, active/inactive tabs, split dividers,
+chat user messages, links, diff fills and Git decorations. This prevents omitted
+tokens from falling back to Orca's stock colors. Buttons and selected rows use
+rose foregrounds on dark canonical surfaces. Semantic green remains for additions
+and added/untracked files. Character diff emphasis uses the same dark semantic
+fill as the line, preserving readable syntax instead of a saturated opaque fill.
+
+App tokens color Orca-owned browser chrome and notifications where those surfaces
+consume the public app roles. They do not style external web pages such as GitHub;
+those pages own their content CSS. Browser profiles or explicit site theming are a
+separate integration, not an effect claimed by this plugin.
+
+Orca 1.4.246 hardcodes sleeping-workspace text to a 52% OKLab mix with the sidebar
+background. Its sidebar navigation also uses 60% text and 30% icon opacity. These
+factors have no public theme token. Bright rose sidebar text improves the base
+color but cannot remove the host's dimming. The repository does not patch Orca's
+private styles or configuration to override it.
+
+Orca's standard tooltip component also inverts the global foreground/background
+roles (`bg-foreground text-background`). Orca 1.4.246 exposes neither tooltip
+color tokens nor a documented custom-CSS field in its strict app-theme schema.
+A black tooltip with rose text therefore requires an Orca-side theme hook;
+changing the global foreground to black would make the rest of the app unreadable.
+The status bar uses the shared card surface and border tokens, not an independent
+status-bar token. The plugin maps these to black and canonical red respectively;
+other cards and separators share those colors.
+
+Ordinary app-text selection has no public theme token or global selection override.
+Orca leaves it to Chromium/system Highlight colors. Some workspace detail inputs
+explicitly request Highlight/HighlightText; the shared input component instead
+uses the primary/primary-foreground roles for selection. The plugin maps this
+shared pair to a visible dark-red selection fill and bright rose text, which also
+colors primary buttons. Terminal selection is
+independently mapped by the terminal theme.
+
 ## Limits
 
 These are Orca's limits; Apply and Test print them every time.
@@ -133,8 +338,8 @@ These are Orca's limits; Apply and Test print them every time.
   1.4.209 always turns this on and has no setting for it.
 - Light mode gets the same dark colours: Orca stores one set of colour
   overrides for both modes.
-- Tabs, the right sidebar, the status bar and the settings pages follow Orca's
-  own theme. Only the left sidebar can match the terminal.
+- The legacy Ghostty route alone does not theme tabs, the right sidebar,
+  status bar or settings. Use the app plugin above for those surfaces.
 - The terminal has no current-line highlight.
 - Programs choose which colour means what; the theme only sets the sixteen.
 - The Warp-format file in `../warp/` also imports through Orca's Import from
@@ -150,7 +355,8 @@ These are Orca's limits; Apply and Test print them every time.
   `src/specimen.json` with the Claude Code and Codex previews resolved to
   tokens. Do not edit it.
 - `host.json`: which Orca setting takes which role, and the limits above.
-- `dist/config.ghostty`: generated from `mapping.json`; do not edit it.
+- `src/theme.json`: public Orca app tokens, TextMate scopes and terminal keys.
+- `dist/`: generated Ghostty config and data plugin files; do not edit them.
 - `port.json`, `mapping.json`, `capabilities.json`: the port's scope, every
   native key, and the reason for each role that is not mapped.
 

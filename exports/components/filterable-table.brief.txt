@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — filterable-table
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-o4R1QcVREh4X3VMinZljRvfzhRgfN1pUaC1bgNc444o=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-70Zio4Hy/D9gW+eB+0+voDzUpG18WrjnAQqIN+GBNU0=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/filterable-table.json
 spec: spec/components/filterable-table.md  site: https://j3w1.github.io/theme/reference/#c-filterable-table
 maturity: stable  priority: R1
@@ -8,48 +8,48 @@ Summary: A list screen composed from a toolbar with search and filter, removable
 
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg                  #100c0c  ({color.surface.default})  use
-  root.border              #531310  ({color.border.default})  use
-  toolbar.bg               #090707  ({color.surface.chrome})  use
-  toolbar.border           #2b0e0d  ({color.border.divider})  use-and-report (D-008)
-  toolbar.separator        #531310  ({color.border.default})  use
+  root.bg                  #0d0707  ({color.surface.default})  use
+  root.border              #482b2b  ({color.border.default})  use
+  toolbar.bg               #000000  ({color.surface.chrome})  use
+  toolbar.border           #482b2b  ({color.border.divider})  use
+  toolbar.separator        #482b2b  ({color.border.default})  use
   search.bg                #000000  ({color.surface.input})  use
-  search.border            #a3676b  ({color.border.control})  use-and-report (D-007)
+  search.border            #c81a1a  ({color.border.control})  use
   search.text              #e99499  ({color.text.default})  use
-  search.placeholder       #a3676b  ({color.text.placeholder})  use
+  search.placeholder       #bd787d  ({color.text.placeholder})  use
   search.icon              #e99499  ({color.icon.default})  use
   filter.text              #e99499  ({color.text.default})  use
-  filter.border            #a3676b  ({color.border.control})  use-and-report (D-007)
+  filter.border            #c81a1a  ({color.border.control})  use
   new.bg                   #7d1310  ({color.action.primary.bg})  use
   new.text                 #ffa2a7  ({color.action.primary.text})  use
-  chip.bg                  #100c0c  ({color.surface.default})  use
-  chip.border              #a3676b  ({color.border.control})  use-and-report (D-007)
+  chip.bg                  #0d0707  ({color.surface.default})  use
+  chip.border              #c81a1a  ({color.border.control})  use
   chip.text                #e99499  ({color.text.default})  use
-  chip.remove              #bd787d  ({color.text.muted})  use
+  chip.remove              #d4868b  ({color.text.muted})  use
   header.text              #ffa2a7  ({color.text.bright})  use
   header.rule              #9e231f  ({color.border.strong})  use
   row.text                 #e99499  ({color.text.default})  use
-  row.rule                 #2b0e0d  ({color.border.divider})  use-and-report (D-008)
-  row.bg-hover             #1c0a09  ({color.interaction.hover.bg})  use
+  row.rule                 #482b2b  ({color.border.divider})  use
+  row.bg-hover             #1c1010  ({color.interaction.hover.bg})  use
   row.ring                 #e53935  ({color.interaction.focus.ring})  use
   row.selected-bg          #531310  ({color.interaction.selection.bg})  use
   row.selected-text        #f4eeee  ({color.interaction.selection.text})  use
   row.ring-on-selection    #ffa2a7  ({color.interaction.focus.ring-container})  use
   check.bg                 #000000  ({color.surface.input})  use
-  check.border             #a3676b  ({color.border.control})  use-and-report (D-007)
+  check.border             #c81a1a  ({color.border.control})  use
   check.checked-bg         #7d1310  ({color.action.primary.bg})  use
   check.glyph              #ffa2a7  ({color.action.primary.text})  use
-  badge.tested-fill        #86a46f  ({color.status.success.fill})  use
-  badge.tested-text        #0c0909  ({color.status.success.on-fill})  use
-  badge.demonstrated-fill  #7e9ebb  ({color.status.info.fill})  use
-  badge.demonstrated-text  #0c0909  ({color.status.info.on-fill})  use
-  empty.text               #bd787d  ({color.text.muted})  use
+  badge.tested-fill        #82d9a0  ({color.status.success.fill})  use
+  badge.tested-text        #000000  ({color.status.success.on-fill})  use
+  badge.demonstrated-fill  #82b4ff  ({color.status.info.fill})  use
+  badge.demonstrated-text  #000000  ({color.status.info.on-fill})  use
+  empty.text               #d4868b  ({color.text.muted})  use
   empty.heading            #ffa2a7  ({color.text.bright})  use
-  empty.glyph              #a3676b  ({color.icon.decorative})  use
-  count.text               #bd787d  ({color.text.muted})  use
+  empty.glyph              #986f72  ({color.icon.decorative})  use
+  count.text               #d4868b  ({color.text.muted})  use
   pagination.text          #e99499  ({color.text.default})  use
   pagination.current       #ffa2a7  ({color.text.bright})  use
-  pagination.disabled      #8a5559  ({color.text.disabled})  use
+  pagination.disabled      #a3676b  ({color.text.disabled})  use
 
 States: default, hover, focus-visible, selected, no-results
   default: each component at rest; Name sorted ascending with ▲; Prev disabled [`aria-sort`; the glyph]

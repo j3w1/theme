@@ -13,7 +13,8 @@
     "name": "Codex CLI",
     "observedVersions": [
       "0.156.1",
-      "0.157.0"
+      "0.157.0",
+      "0.166.0"
     ],
     "setting": "tui.theme",
     "themesDir": "$CODEX_HOME/themes",
@@ -160,7 +161,7 @@
     {
       "name": "Codex accent",
       "scope": "codex.accent",
-      "foreground": "color.text.accent"
+      "foreground": "color.text.accent-strong"
     }
   ],
   "deviations": [
@@ -210,8 +211,8 @@
       "kind": "substituted",
       "specValue": "row text color.text.default with an emphasis underline",
       "applied": "syntax colours on the line tint",
-      "reason": "Codex keeps syntax colours inside diff lines and draws no underlines; the tmTheme sets only the line backgrounds. On those tints code.syntax.heading, code.syntax.invalid and the codex.accent (text.accent) measure 4.23:1 on diff.added.bg and 4.24:1 on diff.removed.bg, below 4.5:1; every other syntax role measures 4.59:1 or more. text.accent is also used here outside its documented canvas-and-surface scope."
+      "reason": "Codex keeps syntax foregrounds inside diff lines and draws no underlines. The theme provides line tints and uses the strong accent role on these raised backgrounds; terminal sign colors remain host-selected ANSI colors."
     }
   ],
-  "note": "Codex opts in to the hued syntax roles (D-030): green strings; amber numbers, constants, functions, attributes and escapes; blue types and properties; bright-rose operators. Keywords, tags, comments, variables and punctuation keep code.syntax."
+  "note": "Codex uses the semantic syntax palette (D-041): neutral variables and punctuation with distinct keyword, string, numeric, function and type hues. It carries the shared true-black code background; terminal chrome is supplied by the terminal theme."
 }

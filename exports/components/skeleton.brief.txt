@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — skeleton
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-o4R1QcVREh4X3VMinZljRvfzhRgfN1pUaC1bgNc444o=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-70Zio4Hy/D9gW+eB+0+voDzUpG18WrjnAQqIN+GBNU0=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/skeleton.json
 spec: spec/components/skeleton.md  site: https://j3w1.github.io/theme/reference/#c-skeleton
 maturity: stable  priority: R2
@@ -8,21 +8,20 @@ Summary: Static layout placeholders with a named loading status.
 
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg                               #100c0c  ({color.surface.default})  use
+  root.bg                               #0d0707  ({color.surface.default})  use
   root.text                             #e99499  ({color.text.default})  use
-  root.border                           #a3676b  ({color.border.control})  use-and-report (D-007)
+  root.border                           #c81a1a  ({color.border.control})  use
   heading.text                          #ffa2a7  ({color.text.bright})  use
-  secondary.text                        #bd787d  ({color.text.muted})  use
+  secondary.text                        #d4868b  ({color.text.muted})  use
   control.bg                            #000000  ({color.surface.input})  use
   control.focus                         #e53935  ({color.interaction.focus.ring})  use
   dependency.role-border-width-default  1px  ({border.width.default})  use
-  dependency.role-color-border-divider  #2b0e0d  ({color.border.divider})  use-and-report (D-008)
-  dependency.role-color-surface-raised  #160b0b  ({color.surface.raised})  use
+  dependency.role-color-border-divider  #482b2b  ({color.border.divider})  use
+  dependency.role-color-surface-raised  #140b0b  ({color.surface.raised})  use
   dependency.role-focus-offset          -2px  ({focus.offset})  use
   dependency.role-radius-none           0px  ({radius.none})  use
   dependency.role-space-12              12px  ({space.12})  use
   dependency.role-space-16              16px  ({space.16})  use
-State dependency disclosures: D-007
 
 States: default, loading, reduced-motion
   default: static decorative blocks [named loading status]

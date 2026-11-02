@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "integrationKind": "terminal-16",
+  "integrationKind": "other",
   "themeRevision": "7b045d1a7bc32fddc7c9946e7084ffe74f62b5b5",
   "surfaces": {
     "terminal-colours": {
@@ -29,7 +29,31 @@
     },
     "outside-terminal": {
       "state": "out-of-scope",
-      "reason": "Application window, sidebar and settings chrome are not themed by a terminal theme file."
+      "reason": "Layout geometry, fonts outside the terminal and trust/approval dialogs remain host-owned; the plugin sets only public colour tokens."
+    },
+    "app-chrome": {
+      "state": "supported",
+      "reason": "Orca 1.4.246 data theme tokens colour the application, sidebars, settings and structured agent views. Trust and approval dialogs remain host-owned."
+    },
+    "code-editor": {
+      "state": "supported",
+      "reason": "App theme editor-surface and TextMate tokenColors colour the editor and supported code previews."
+    },
+    "shell-prompt": {
+      "state": "supported",
+      "reason": "Generated agnoster variables set prompt surfaces and ordinary text from canonical terminal prompt roles; status icons retain semantic colors."
+    },
+    "browser-loading": {
+      "state": "unsupported",
+      "reason": "Installed Orca 1.4.246 uses bg-callout-note for the address progress bar and hardcoded text-blue-500 for tab loading spinners and fallback icons. Neither color is exposed by the public app-theme token contract."
+    },
+    "tooltips": {
+      "state": "unsupported",
+      "reason": "Installed Orca 1.4.246 tooltips invert foreground/background; no separate tooltip token is exposed. Setting foreground black would hide ordinary app text."
+    },
+    "app-text-selection": {
+      "state": "inherited",
+      "reason": "Shared inputs use primary/primary-foreground; plain prose and explicit system Highlight selections remain host-owned."
     }
   },
   "roles": {
@@ -66,577 +90,577 @@
     "color.action.destructive.border": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.action.destructive.filled-bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.action.destructive.filled-text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.action.destructive.hover-bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.action.destructive.hover-text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.action.destructive.pressed-bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.action.destructive.text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.action.primary.bg": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Dark red shared accent keeps selected-segment labels readable and avoids bright selected agent rows. Orca also mixes this accent at 70% for focused rows while retaining rose foreground; no independent row hook exists."
     },
     "color.action.primary.border": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.action.primary.hover-bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.action.primary.pressed-bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.action.primary.text": {
       "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "surface": "app-chrome",
+      "reason": "No independent app or terminal key uses this role."
     },
     "color.action.secondary.bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.action.secondary.border": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.action.secondary.hover-bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.action.secondary.pressed-bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.action.secondary.text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.action.tertiary.hover-bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.action.tertiary.text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.border.active": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.border.control": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.border.default": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.border.disabled": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.border.divider": {
       "state": "mapped",
-      "surface": "pane-divider",
-      "reason": "Written to the file's split-divider-color key."
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.border.overlay": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.border.selected-indicator": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.border.selected-indicator-inactive": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.border.strong": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Canonical black shared card surfaces and red boundaries also paint the status-bar fallback."
     },
     "color.chart.axis": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.chart.grid": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.chart.label": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.chart.series-1": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.chart.series-2": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.chart.series-3": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.chart.series-4": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No independent Orca public key consumes this role; owner-requested application fills use black while semantic text and diff colors remain explicit."
     },
     "color.code.bracket-match": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.code.caret": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.code.current-line": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.code.gutter-bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.code.gutter-rule": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.code.hued.attribute": {
       "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "surface": "code-editor",
+      "reason": "The app theme maps the canonical code.syntax role; optional hued aliases are not separate host keys."
     },
     "color.code.hued.constant": {
       "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "surface": "code-editor",
+      "reason": "The app theme maps the canonical code.syntax role; optional hued aliases are not separate host keys."
     },
     "color.code.hued.escape": {
       "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "surface": "code-editor",
+      "reason": "The app theme maps the canonical code.syntax role; optional hued aliases are not separate host keys."
     },
     "color.code.hued.function": {
       "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "surface": "code-editor",
+      "reason": "The app theme maps the canonical code.syntax role; optional hued aliases are not separate host keys."
     },
     "color.code.hued.number": {
       "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "surface": "code-editor",
+      "reason": "The app theme maps the canonical code.syntax role; optional hued aliases are not separate host keys."
     },
     "color.code.hued.operator": {
       "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "surface": "code-editor",
+      "reason": "The app theme maps the canonical code.syntax role; optional hued aliases are not separate host keys."
     },
     "color.code.hued.property": {
       "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "surface": "code-editor",
+      "reason": "The app theme maps the canonical code.syntax role; optional hued aliases are not separate host keys."
     },
     "color.code.hued.string": {
       "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "surface": "code-editor",
+      "reason": "The app theme maps the canonical code.syntax role; optional hued aliases are not separate host keys."
     },
     "color.code.hued.type": {
       "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "surface": "code-editor",
+      "reason": "The app theme maps the canonical code.syntax role; optional hued aliases are not separate host keys."
     },
     "color.code.indent-guide": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.code.line-number": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.code.line-number-active": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.code.search-current-bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.code.search-current-text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.code.search-match-bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.code.selection-bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.code.syntax.attribute": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.syntax.comment": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.syntax.constant": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.syntax.deprecated": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.code.syntax.escape": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.syntax.function": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.syntax.heading": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.code.syntax.invalid": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.code.syntax.keyword": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.syntax.number": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.syntax.operator": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.syntax.property": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.syntax.punctuation": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.syntax.string": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.syntax.tag": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.syntax.type": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.syntax.variable": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.whitespace": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.diagnostic.error.bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.diagnostic.error.stripe": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.diagnostic.error.text": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.diagnostic.error.underline": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.diagnostic.hint.underline": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.diagnostic.info.text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.diagnostic.info.underline": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.diagnostic.unused.text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.diagnostic.warning.stripe": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.diagnostic.warning.text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.diagnostic.warning.underline": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.diff.added.bg": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.diff.added.emphasis": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.diff.added.gutter": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.diff.conflict-border": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.diff.header-bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.diff.modified.bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.diff.modified.gutter": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.diff.removed.bg": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.diff.removed.emphasis": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.diff.removed.gutter": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.icon.decorative": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.icon.default": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.interaction.disabled.bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.interaction.drop-target": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.interaction.focus.ring": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.interaction.focus.ring-container": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.interaction.hover.bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No independent Orca public key consumes this role; owner-requested application fills use black while semantic text and diff colors remain explicit."
     },
     "color.interaction.hover.bg-strong": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.interaction.marquee": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.interaction.pressed.bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.interaction.scrollbar.thumb": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.interaction.scrollbar.thumb-hover": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.interaction.scrollbar.track": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.interaction.selection.bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No independent Orca public token consumes this role; supported controls use canonical surface and rose foreground roles."
     },
     "color.interaction.selection.inactive-bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.interaction.selection.inactive-text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.interaction.selection.text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No independent Orca public token consumes this role; supported controls use canonical surface and rose foreground roles."
     },
     "color.interaction.text-selection.bg": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "shell-prompt",
+      "reason": "Dark red path segment; Orca input selections share the brighter primary role with action links."
     },
     "color.interaction.text-selection.text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.primitive.alpha.black-55": {
       "state": "out-of-scope",
@@ -1041,182 +1065,182 @@
     "color.status.danger.border": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.status.danger.fill": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.status.danger.on-fill": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.status.danger.text": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "shell-prompt",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.status.danger.tint": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.status.info.border": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.status.info.fill": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.status.info.on-fill": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.status.info.text": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.status.info.tint": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.status.neutral.border": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.status.neutral.fill": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.status.neutral.on-fill": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.status.neutral.text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.status.neutral.tint": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.status.success.border": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.status.success.fill": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.status.success.on-fill": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.status.success.text": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.status.success.tint": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.status.warning.border": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.status.warning.fill": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.status.warning.on-fill": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.status.warning.text": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "shell-prompt",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.status.warning.tint": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.surface.backdrop": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.surface.canvas": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Owner-requested solid-black application fills. The shared input token also paints idle input borders, which become black; browser address fields retain their separate red outer border and focus rings remain explicit."
     },
     "color.surface.chrome": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No independent Orca public key consumes this role; owner-requested application fills use black while semantic text and diff colors remain explicit."
     },
     "color.surface.chrome-alt": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.surface.code": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.surface.default": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No independent Orca public key consumes this role; owner-requested application fills use black while semantic text and diff colors remain explicit."
     },
     "color.surface.desktop": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.surface.input": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.surface.overlay": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.surface.raised": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.surface.sunken": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.surface.terminal": {
       "state": "unsupported",
@@ -1226,202 +1250,202 @@
     "color.terminal.ansi.0": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the file's palette[0] key."
+      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
     },
     "color.terminal.ansi.1": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the file's palette[1] key."
+      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
     },
     "color.terminal.ansi.10": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the file's palette[10] key."
+      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
     },
     "color.terminal.ansi.11": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the file's palette[11] key."
+      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
     },
     "color.terminal.ansi.12": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the file's palette[12] key."
+      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
     },
     "color.terminal.ansi.13": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the file's palette[13] key."
+      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
     },
     "color.terminal.ansi.14": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the file's palette[14] key."
+      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
     },
     "color.terminal.ansi.15": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the file's palette[15] key."
+      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
     },
     "color.terminal.ansi.2": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the file's palette[2] key."
+      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
     },
     "color.terminal.ansi.3": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the file's palette[3] key."
+      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
     },
     "color.terminal.ansi.4": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the file's palette[4] key."
+      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
     },
     "color.terminal.ansi.5": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the file's palette[5] key."
+      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
     },
     "color.terminal.ansi.6": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the file's palette[6] key."
+      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
     },
     "color.terminal.ansi.7": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the file's palette[7] key."
+      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
     },
     "color.terminal.ansi.8": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the file's palette[8] key."
+      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
     },
     "color.terminal.ansi.9": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the file's palette[9] key."
+      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
     },
     "color.terminal.bg": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the file's background and cursor-text keys."
+      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
     },
     "color.terminal.cursor": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the file's cursor-color key."
+      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
     },
     "color.terminal.fg": {
       "state": "mapped",
       "surface": "terminal-colours",
-      "reason": "Written to the file's foreground key."
+      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
     },
     "color.terminal.prompt-bg": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "The prompt chooses its own segment colours; a terminal theme carries the palette only."
+      "state": "mapped",
+      "surface": "shell-prompt",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.terminal.prompt-text": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "The prompt chooses its own segment colours; a terminal theme carries the palette only."
+      "state": "mapped",
+      "surface": "shell-prompt",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.terminal.selection-bg": {
       "state": "mapped",
-      "surface": "terminal-selection",
-      "reason": "Written to the file's selection-background key."
+      "surface": "terminal-colours",
+      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
     },
     "color.terminal.selection-text": {
       "state": "mapped",
-      "surface": "terminal-selection",
-      "reason": "Written to the file's selection-foreground key."
+      "surface": "terminal-colours",
+      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
     },
     "color.text.accent": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.text.accent-strong": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Readable red with black foreground serves shared primary links/buttons/input selections. Accent segments and agent rows use a separate dark-red/rose compromise."
     },
     "color.text.bright": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "shell-prompt",
+      "reason": "Bright rose selected-accent labels, sidebar labels and GNU ls directories; semantic ANSI blue remains unchanged."
     },
     "color.text.default": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.text.disabled": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.text.inverse": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Readable red with black foreground serves shared primary links/buttons/input selections. Accent segments and agent rows use a separate dark-red/rose compromise."
     },
     "color.text.link": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.text.link-hover": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.text.link-underline": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.text.muted": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.text.on-action": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.text.on-danger": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.text.on-light": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.text.on-selection": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.text.placeholder": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.text.prose": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.text.subtle": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "density.comfortable.control-height": {
       "state": "out-of-scope",
@@ -1789,9 +1813,9 @@
       "reason": "Not a colour; a terminal theme file carries colours only."
     },
     "color.text.heading": {
-      "state": "unsupported",
-      "surface": "terminal-line-height",
-      "reason": "Host exposes no separately mapped content heading/highlight foreground in this port."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.text.highlight": {
       "state": "unsupported",
@@ -1801,7 +1825,7 @@
     "color.interaction.text-selection.tint": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.primitive.alpha.red-50": {
       "state": "out-of-scope",
@@ -1816,8 +1840,143 @@
     "color.surface.accent": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
+    },
+    "color.primitive.modern.panel": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.raised": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.overlay": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.hover": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.divider": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.control": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.disabled": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.subtle": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.muted": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.text": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.bright": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.red": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.green": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.amber": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.blue": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.violet": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.cyan": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.bright-red": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.bright-green": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.bright-amber": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.bright-blue": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.bright-violet": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.bright-cyan": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.diff-shared-green": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.diff-shared-red": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.diff.added.shared-word": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Host-specific shared diff foreground/background compromise; this port has no such shared role."
+    },
+    "color.diff.removed.shared-word": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Host-specific shared diff foreground/background compromise; this port has no such shared role."
     }
   },
-  "rollback": "In Orca, open Settings → Terminal and choose \"Reset all color overrides\"; set the font family, font size and divider colours back to your previous values. Remove or rename %APPDATA%\\ghostty\\config.ghostty so a later Ghostty import does not re-apply it."
+  "rollback": "Select the previous app, editor and terminal themes, then orca plugin dev unload the plugin folder. For the legacy Ghostty installer, use its key-scoped Restore script."
 }

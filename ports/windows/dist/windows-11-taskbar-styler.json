@@ -4,16 +4,16 @@
     {
       "target": "MenuFlyoutPresenter",
       "styles": [
-        "Background=#160b0b",
+        "Background=#140b0b",
         "CornerRadius=0"
       ]
     },
     {
       "target": "MenuFlyoutPresenter > Border",
       "styles": [
-        "Background=#160b0b",
+        "Background=#140b0b",
         "CornerRadius=0",
-        "BorderBrush=#e53935",
+        "BorderBrush=#c81a1a",
         "BorderThickness=1"
       ]
     },
@@ -28,10 +28,10 @@
       "target": "MenuFlyoutItem > Grid#LayoutRoot@CommonStates",
       "styles": [
         "CornerRadius=0",
-        "Background@Normal=#160b0b",
-        "Background@PointerOver=#630f0d",
+        "Background@Normal=#140b0b",
+        "Background@PointerOver=#1c1010",
         "Background@Pressed=#420f0c",
-        "Background@Disabled=#160b0b"
+        "Background@Disabled=#140b0b"
       ]
     },
     {
@@ -45,11 +45,11 @@
       "target": "MenuFlyoutSubItem > Grid#LayoutRoot@CommonStates",
       "styles": [
         "CornerRadius=0",
-        "Background@Normal=#160b0b",
-        "Background@PointerOver=#630f0d",
+        "Background@Normal=#140b0b",
+        "Background@PointerOver=#1c1010",
         "Background@Pressed=#420f0c",
-        "Background@Disabled=#160b0b",
-        "Background@SubMenuOpened=#630f0d"
+        "Background@Disabled=#140b0b",
+        "Background@SubMenuOpened=#1c1010"
       ]
     },
     {
@@ -63,23 +63,23 @@
       "target": "ToggleMenuFlyoutItem > Grid#LayoutRoot@CommonStates",
       "styles": [
         "CornerRadius=0",
-        "Background@Normal=#160b0b",
-        "Background@PointerOver=#630f0d",
+        "Background@Normal=#140b0b",
+        "Background@PointerOver=#1c1010",
         "Background@Pressed=#420f0c",
-        "Background@Disabled=#160b0b"
+        "Background@Disabled=#140b0b"
       ]
     },
     {
       "target": "MenuFlyoutSeparator > Windows.UI.Xaml.Shapes.Rectangle",
       "styles": [
-        "Fill=#2b0e0d"
+        "Fill=#482b2b"
       ]
     },
     {
       "target": "Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar",
       "styles": [
-        "Background=#160b0b",
-        "BorderBrush=#e53935",
+        "Background=#140b0b",
+        "BorderBrush=#c81a1a",
         "CornerRadius=0",
         "Foreground=#e99499"
       ]
@@ -87,61 +87,61 @@
     {
       "target": "Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar > Grid#LayoutRoot > Grid#OuterContentRoot > Grid#ContentRoot > Grid#PrimaryItemsRoot",
       "styles": [
-        "Background=#160b0b",
-        "BorderBrush=#e53935",
+        "Background=#140b0b",
+        "BorderBrush=#c81a1a",
         "CornerRadius=0"
       ]
     },
     {
       "target": "CommandBarOverflowPresenter#SecondaryItemsControl > Grid#LayoutRoot",
       "styles": [
-        "Background=#160b0b",
-        "BorderBrush=#e53935",
+        "Background=#140b0b",
+        "BorderBrush=#c81a1a",
         "CornerRadius=0"
       ]
     },
     {
       "target": "AppBarSeparator",
       "styles": [
-        "Foreground=#2b0e0d"
+        "Foreground=#482b2b"
       ]
     },
     {
       "target": "AppBarSeparator > Grid#RootGrid > Rectangle#SeparatorRectangle",
       "styles": [
-        "Fill=#2b0e0d"
+        "Fill=#482b2b"
       ]
     },
     {
       "target": "CommandBarOverflowPresenter#SecondaryItemsControl",
       "styles": [
-        "Background=#160b0b",
+        "Background=#140b0b",
         "Foreground=#e99499",
-        "BorderBrush=#e53935",
+        "BorderBrush=#c81a1a",
         "CornerRadius=0"
       ]
     },
     {
       "target": "Grid#OverflowContentRoot",
       "styles": [
-        "Background=#160b0b",
+        "Background=#140b0b",
         "CornerRadius=0"
       ]
     },
     {
       "target": "FlyoutPresenter",
       "styles": [
-        "Background=#160b0b",
+        "Background=#140b0b",
         "Foreground=#e99499",
-        "BorderBrush=#e53935",
+        "BorderBrush=#c81a1a",
         "CornerRadius=0"
       ]
     },
     {
       "target": "FlyoutPresenter > Border",
       "styles": [
-        "Background=#160b0b",
-        "BorderBrush=#e53935",
+        "Background=#140b0b",
+        "BorderBrush=#c81a1a",
         "BorderThickness=1",
         "CornerRadius=0"
       ]
@@ -149,8 +149,8 @@
     {
       "target": "Border#SuggestionsContainer",
       "styles": [
-        "Background=#160b0b",
-        "BorderBrush=#e53935",
+        "Background=#140b0b",
+        "BorderBrush=#c81a1a",
         "BorderThickness=1",
         "CornerRadius=0"
       ]
@@ -158,15 +158,15 @@
     {
       "target": "ListView#SuggestionsList",
       "styles": [
-        "Background=#160b0b",
+        "Background=#140b0b",
         "Foreground=#e99499"
       ]
     },
     {
       "target": "Grid#SuggestionsContainer",
       "styles": [
-        "Background=#160b0b",
-        "BorderBrush=#e53935",
+        "Background=#140b0b",
+        "BorderBrush=#c81a1a",
         "BorderThickness=1",
         "CornerRadius=0"
       ]
@@ -186,26 +186,26 @@
     {
       "target": "Taskbar.TaskbarFrame > Grid#RootGrid",
       "styles": [
-        "Background=#090707"
+        "Background=#000000"
       ]
     },
     {
       "target": "Rectangle#BackgroundFill",
       "styles": [
-        "Fill=#090707"
+        "Fill=#000000"
       ]
     },
     {
       "target": "Rectangle#BackgroundStroke",
       "styles": [
-        "Fill=#2b0e0d"
+        "Fill=#482b2b"
       ]
     },
     {
       "target": "Grid#ConfirmatorMainGrid",
       "styles": [
         "Background=#000000",
-        "BorderBrush=#e53935",
+        "BorderBrush=#c81a1a",
         "BorderThickness=1",
         "CornerRadius=0"
       ]
@@ -220,7 +220,7 @@
     {
       "target": "Rectangle#HorizontalTrackRect, Rectangle#ProgressBarTrack",
       "styles": [
-        "Fill=#a3676b"
+        "Fill=#c81a1a"
       ]
     },
     {
@@ -233,7 +233,7 @@
       "target": "WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid",
       "styles": [
         "Background=#000000",
-        "BorderBrush=#e53935",
+        "BorderBrush=#c81a1a",
         "BorderThickness=1",
         "CornerRadius=0"
       ]
@@ -257,7 +257,7 @@
       "target": "Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter",
       "styles": [
         "Background=#000000",
-        "PointerOverBackground=#1c0a09",
+        "PointerOverBackground=#1c1010",
         "PressedBackground=#420f0c",
         "SelectedBackground=#531310",
         "SelectedPointerOverBackground=#531310",
@@ -270,7 +270,7 @@
       "target": "WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher",
       "styles": [
         "Background=#000000",
-        "BorderBrush=#e53935",
+        "BorderBrush=#c81a1a",
         "BorderThickness=1",
         "CornerRadius=0"
       ]
@@ -279,7 +279,7 @@
       "target": "WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid > Border",
       "styles": [
         "Background=#000000",
-        "BorderBrush=#e53935",
+        "BorderBrush=#c81a1a",
         "BorderThickness=1",
         "CornerRadius=0"
       ]
@@ -288,7 +288,7 @@
       "target": "Windows.UI.Xaml.Controls.Primitives.Popup > Border#InputSwitcherPopupBorder",
       "styles": [
         "Background=#000000",
-        "BorderBrush=#e53935",
+        "BorderBrush=#c81a1a",
         "BorderThickness=1",
         "CornerRadius=0"
       ]
@@ -296,50 +296,50 @@
     {
       "target": "Grid#OverflowRootGrid",
       "styles": [
-        "Background=#160b0b",
+        "Background=#140b0b",
         "CornerRadius=0"
       ]
     },
     {
       "target": "Grid#OverflowRootGrid > Border#OverflowFlyoutBackgroundBorder",
       "styles": [
-        "Background=#160b0b",
+        "Background=#140b0b",
         "CornerRadius=0",
-        "BorderBrush=#e53935",
+        "BorderBrush=#c81a1a",
         "BorderThickness=1"
       ]
     }
   ],
   "themeResourceVariables": [
     "TextFillColorPrimary=#e99499",
-    "TextFillColorSecondary=#bd787d",
-    "TextFillColorTertiary=#ad7175",
-    "TextFillColorDisabled=#8a5559",
+    "TextFillColorSecondary=#d4868b",
+    "TextFillColorTertiary=#bd787d",
+    "TextFillColorDisabled=#a3676b",
     "SystemControlForegroundBaseHighBrush=#e99499",
-    "SystemControlForegroundBaseMediumBrush=#bd787d",
-    "SystemControlForegroundBaseLowBrush=#8a5559",
+    "SystemControlForegroundBaseMediumBrush=#d4868b",
+    "SystemControlForegroundBaseLowBrush=#a3676b",
     "SolidBackgroundFillColorBase=#000000",
-    "SolidBackgroundFillColorSecondary=#100c0c",
-    "LayerFillColorDefault=#100c0c",
-    "LayerFillColorAlt=#160b0b",
-    "CardBackgroundFillColorDefault=#100c0c",
-    "CardBackgroundFillColorSecondary=#160b0b",
+    "SolidBackgroundFillColorSecondary=#0d0707",
+    "LayerFillColorDefault=#0d0707",
+    "LayerFillColorAlt=#140b0b",
+    "CardBackgroundFillColorDefault=#0d0707",
+    "CardBackgroundFillColorSecondary=#140b0b",
     "ControlFillColorDefault=#000000",
-    "ControlFillColorSecondary=#1c0a09",
+    "ControlFillColorSecondary=#1c1010",
     "ControlFillColorTertiary=#420f0c",
-    "ControlStrokeColorDefault=#a3676b",
+    "ControlStrokeColorDefault=#c81a1a",
     "AccentFillColorDefault=#7d1310",
     "AccentTextFillColorPrimary=#ffa2a7",
     "TextOnAccentFillColorPrimary=#ffa2a7",
     "SystemAccentColor=#e53935",
     "SystemControlHighlightAccentBrush=#e53935",
-    "ScrollBarThumbBackground=#420f0c",
-    "ScrollBarPanningThumbBackground=#420f0c",
-    "ScrollBarThumbFill=#420f0c",
-    "ScrollBarThumbFillPointerOver=#911410",
-    "ScrollBarThumbFillPressed=#911410",
-    "ScrollBarThumbFillDisabled=#160b0b",
-    "ScrollBarPanningThumbBackgroundDisabled=#160b0b",
+    "ScrollBarThumbBackground=#986f72",
+    "ScrollBarPanningThumbBackground=#986f72",
+    "ScrollBarThumbFill=#986f72",
+    "ScrollBarThumbFillPointerOver=#d4868b",
+    "ScrollBarThumbFillPressed=#d4868b",
+    "ScrollBarThumbFillDisabled=#0d0707",
+    "ScrollBarPanningThumbBackgroundDisabled=#0d0707",
     "ScrollBarThumbBorderBrush=#000000",
     "ScrollBarTrackFill=#000000",
     "ScrollBarTrackFillPointerOver=#000000",
@@ -350,9 +350,9 @@
     "ScrollBarButtonArrowForeground=#e99499",
     "ScrollBarButtonArrowForegroundPointerOver=#ffa2a7",
     "ScrollBarButtonArrowForegroundPressed=#ffa2a7",
-    "ScrollBarButtonArrowForegroundDisabled=#8a5559",
+    "ScrollBarButtonArrowForegroundDisabled=#a3676b",
     "ButtonBackground=#000000",
-    "ButtonBackgroundPointerOver=#1c0a09",
+    "ButtonBackgroundPointerOver=#1c1010",
     "ButtonBackgroundPressed=#420f0c",
     "ButtonForeground=#e99499",
     "AccentFillColorDefaultBrush=#7d1310",
@@ -361,36 +361,36 @@
     "TextOnAccentFillColorPrimaryBrush=#ffa2a7",
     "ButtonForegroundPointerOver=#e99499",
     "ButtonForegroundPressed=#e99499",
-    "ButtonForegroundDisabled=#8a5559",
-    "ButtonBorderBrush=#a3676b",
+    "ButtonForegroundDisabled=#a3676b",
+    "ButtonBorderBrush=#c81a1a",
     "ButtonBorderBrushPointerOver=#e53935",
     "ButtonBorderBrushPressed=#e53935",
-    "ButtonBorderBrushDisabled=#7d1310",
-    "ButtonBackgroundDisabled=#160b0b",
+    "ButtonBorderBrushDisabled=#482b2b",
+    "ButtonBackgroundDisabled=#0d0707",
     "SubtleButtonBackground=#000000",
     "SubtleButtonForeground=#e99499",
-    "SubtleButtonBorderBrush=#a3676b",
-    "SubtleButtonBackgroundPointerOver=#1c0a09",
+    "SubtleButtonBorderBrush=#c81a1a",
+    "SubtleButtonBackgroundPointerOver=#1c1010",
     "SubtleButtonForegroundPointerOver=#e99499",
     "SubtleButtonBorderBrushPointerOver=#e53935",
     "SubtleButtonBackgroundPressed=#420f0c",
     "SubtleButtonForegroundPressed=#e99499",
     "SubtleButtonBorderBrushPressed=#e53935",
-    "SubtleButtonBackgroundDisabled=#160b0b",
-    "SubtleButtonForegroundDisabled=#8a5559",
-    "SubtleButtonBorderBrushDisabled=#7d1310",
+    "SubtleButtonBackgroundDisabled=#0d0707",
+    "SubtleButtonForegroundDisabled=#a3676b",
+    "SubtleButtonBorderBrushDisabled=#482b2b",
     "SplitButtonBackground=#000000",
     "SplitButtonForeground=#e99499",
-    "SplitButtonBorderBrush=#a3676b",
-    "SplitButtonBackgroundPointerOver=#1c0a09",
+    "SplitButtonBorderBrush=#c81a1a",
+    "SplitButtonBackgroundPointerOver=#1c1010",
     "SplitButtonForegroundPointerOver=#e99499",
     "SplitButtonBorderBrushPointerOver=#e53935",
     "SplitButtonBackgroundPressed=#420f0c",
     "SplitButtonForegroundPressed=#e99499",
     "SplitButtonBorderBrushPressed=#e53935",
-    "SplitButtonBackgroundDisabled=#160b0b",
-    "SplitButtonForegroundDisabled=#8a5559",
-    "SplitButtonBorderBrushDisabled=#7d1310",
+    "SplitButtonBackgroundDisabled=#0d0707",
+    "SplitButtonForegroundDisabled=#a3676b",
+    "SplitButtonBorderBrushDisabled=#482b2b",
     "SplitButtonBackgroundChecked=#531310",
     "SplitButtonForegroundChecked=#f4eeee",
     "SplitButtonBorderBrushChecked=#e53935",
@@ -400,17 +400,17 @@
     "SplitButtonBackgroundCheckedPressed=#420f0c",
     "SplitButtonForegroundCheckedPressed=#e99499",
     "SplitButtonBorderBrushCheckedPressed=#e53935",
-    "SplitButtonBackgroundCheckedDisabled=#160b0b",
-    "SplitButtonForegroundCheckedDisabled=#8a5559",
-    "SplitButtonBorderBrushCheckedDisabled=#7d1310",
-    "SplitButtonForegroundSecondary=#bd787d",
-    "SplitButtonForegroundSecondaryPressed=#bd787d",
-    "SplitButtonBorderBrushDivider=#2b0e0d",
-    "SplitButtonBorderBrushCheckedDivider=#2b0e0d",
+    "SplitButtonBackgroundCheckedDisabled=#0d0707",
+    "SplitButtonForegroundCheckedDisabled=#a3676b",
+    "SplitButtonBorderBrushCheckedDisabled=#482b2b",
+    "SplitButtonForegroundSecondary=#d4868b",
+    "SplitButtonForegroundSecondaryPressed=#d4868b",
+    "SplitButtonBorderBrushDivider=#482b2b",
+    "SplitButtonBorderBrushCheckedDivider=#482b2b",
     "SplitButtonInAppBarUnfocusedPointerOver=#420f0c",
-    "DropDownButtonForegroundSecondary=#bd787d",
-    "DropDownButtonForegroundSecondaryPointerOver=#bd787d",
-    "DropDownButtonForegroundSecondaryPressed=#bd787d",
+    "DropDownButtonForegroundSecondary=#d4868b",
+    "DropDownButtonForegroundSecondaryPointerOver=#d4868b",
+    "DropDownButtonForegroundSecondaryPressed=#d4868b",
     "AccentButtonBackground=#7d1310",
     "AccentButtonForeground=#ffa2a7",
     "AccentButtonBorderBrush=#9e231f",
@@ -420,71 +420,71 @@
     "AccentButtonBackgroundPressed=#630f0d",
     "AccentButtonForegroundPressed=#ffa2a7",
     "AccentButtonBorderBrushPressed=#9e231f",
-    "AccentButtonBackgroundDisabled=#160b0b",
-    "AccentButtonForegroundDisabled=#8a5559",
-    "AccentButtonBorderBrushDisabled=#7d1310",
-    "MenuFlyoutItemBackgroundBrush=#160b0b",
-    "MenuFlyoutPresenterBackground=#160b0b",
-    "MenuFlyoutPresenterBorderBrush=#e53935",
-    "MenuFlyoutSeparatorBackground=#2b0e0d",
+    "AccentButtonBackgroundDisabled=#0d0707",
+    "AccentButtonForegroundDisabled=#a3676b",
+    "AccentButtonBorderBrushDisabled=#482b2b",
+    "MenuFlyoutItemBackgroundBrush=#140b0b",
+    "MenuFlyoutPresenterBackground=#140b0b",
+    "MenuFlyoutPresenterBorderBrush=#c81a1a",
+    "MenuFlyoutSeparatorBackground=#482b2b",
     "MenuFlyoutItemForeground=#e99499",
     "MenuFlyoutItemForegroundPointerOver=#e99499",
     "MenuFlyoutItemForegroundPressed=#e99499",
     "MenuFlyoutSubItemForeground=#e99499",
     "MenuFlyoutSubItemForegroundSubMenuOpened=#e99499",
-    "MenuFlyoutItemKeyboardAcceleratorTextForeground=#bd787d",
-    "MenuFlyoutSubItemChevron=#bd787d",
-    "MenuFlyoutItemForegroundDisabled=#8a5559",
-    "MenuFlyoutSubItemForegroundDisabled=#8a5559",
-    "MenuFlyoutItemBackgroundPointerOver=#630f0d",
-    "MenuFlyoutSubItemBackgroundPointerOver=#630f0d",
-    "MenuFlyoutSubItemBackgroundSubMenuOpened=#630f0d",
+    "MenuFlyoutItemKeyboardAcceleratorTextForeground=#d4868b",
+    "MenuFlyoutSubItemChevron=#d4868b",
+    "MenuFlyoutItemForegroundDisabled=#a3676b",
+    "MenuFlyoutSubItemForegroundDisabled=#a3676b",
+    "MenuFlyoutItemBackgroundPointerOver=#1c1010",
+    "MenuFlyoutSubItemBackgroundPointerOver=#1c1010",
+    "MenuFlyoutSubItemBackgroundSubMenuOpened=#1c1010",
     "MenuFlyoutItemBackgroundPressed=#420f0c",
     "MenuFlyoutSubItemBackgroundPressed=#420f0c",
-    "MenuFlyoutItemBackground=#160b0b",
-    "MenuFlyoutItemBackgroundDisabled=#160b0b",
-    "MenuFlyoutSubItemBackground=#160b0b",
-    "MenuFlyoutSubItemBackgroundDisabled=#160b0b",
+    "MenuFlyoutItemBackground=#140b0b",
+    "MenuFlyoutItemBackgroundDisabled=#140b0b",
+    "MenuFlyoutSubItemBackground=#140b0b",
+    "MenuFlyoutSubItemBackgroundDisabled=#140b0b",
     "MenuFlyoutSubItemForegroundPointerOver=#e99499",
     "MenuFlyoutSubItemForegroundPressed=#e99499",
-    "MenuFlyoutItemKeyboardAcceleratorTextForegroundDisabled=#8a5559",
-    "MenuFlyoutItemKeyboardAcceleratorTextForegroundPointerOver=#bd787d",
-    "MenuFlyoutItemKeyboardAcceleratorTextForegroundPressed=#bd787d",
-    "CommandBarFlyoutBackground=#160b0b",
+    "MenuFlyoutItemKeyboardAcceleratorTextForegroundDisabled=#a3676b",
+    "MenuFlyoutItemKeyboardAcceleratorTextForegroundPointerOver=#d4868b",
+    "MenuFlyoutItemKeyboardAcceleratorTextForegroundPressed=#d4868b",
+    "CommandBarFlyoutBackground=#140b0b",
     "CommandBarFlyoutForeground=#e99499",
-    "CommandBarFlyoutBorderBrush=#e53935",
-    "CommandBarFlyoutButtonBackground=#160b0b",
-    "CommandBarOverflowPresenterBackground=#160b0b",
-    "CommandBarOverflowPresenterBorderBrush=#e53935",
-    "CommandBarFlyoutAppBarButtonBackground=#160b0b",
-    "CommandBarFlyoutAppBarButtonBackgroundPointerOver=#630f0d",
+    "CommandBarFlyoutBorderBrush=#c81a1a",
+    "CommandBarFlyoutButtonBackground=#140b0b",
+    "CommandBarOverflowPresenterBackground=#140b0b",
+    "CommandBarOverflowPresenterBorderBrush=#c81a1a",
+    "CommandBarFlyoutAppBarButtonBackground=#140b0b",
+    "CommandBarFlyoutAppBarButtonBackgroundPointerOver=#1c1010",
     "CommandBarFlyoutAppBarButtonBackgroundPressed=#420f0c",
-    "CommandBarFlyoutAppBarButtonBackgroundDisabled=#160b0b",
+    "CommandBarFlyoutAppBarButtonBackgroundDisabled=#140b0b",
     "CommandBarFlyoutAppBarButtonForeground=#e99499",
     "CommandBarFlyoutAppBarButtonForegroundPointerOver=#e99499",
     "CommandBarFlyoutAppBarButtonForegroundPressed=#e99499",
-    "CommandBarFlyoutAppBarButtonForegroundDisabled=#8a5559",
-    "CommandBarFlyoutAppBarButtonKeyboardTextLabelForeground=#bd787d",
-    "CommandBarFlyoutAppBarButtonKeyboardTextLabelForegroundPointerOver=#bd787d",
-    "CommandBarFlyoutAppBarButtonKeyboardTextLabelForegroundPressed=#bd787d",
-    "CommandBarFlyoutAppBarButtonSubItemChevronForeground=#bd787d",
-    "CommandBarFlyoutAppBarButtonSubItemChevronPointerOverForeground=#bd787d",
-    "CommandBarFlyoutAppBarButtonSubItemChevronPressedForeground=#bd787d",
-    "CommandBarFlyoutAppBarButtonSubItemChevronSubMenuOpenedForeground=#bd787d",
-    "CommandBarFlyoutAppBarButtonSubItemChevronDisabledForeground=#8a5559",
+    "CommandBarFlyoutAppBarButtonForegroundDisabled=#a3676b",
+    "CommandBarFlyoutAppBarButtonKeyboardTextLabelForeground=#d4868b",
+    "CommandBarFlyoutAppBarButtonKeyboardTextLabelForegroundPointerOver=#d4868b",
+    "CommandBarFlyoutAppBarButtonKeyboardTextLabelForegroundPressed=#d4868b",
+    "CommandBarFlyoutAppBarButtonSubItemChevronForeground=#d4868b",
+    "CommandBarFlyoutAppBarButtonSubItemChevronPointerOverForeground=#d4868b",
+    "CommandBarFlyoutAppBarButtonSubItemChevronPressedForeground=#d4868b",
+    "CommandBarFlyoutAppBarButtonSubItemChevronSubMenuOpenedForeground=#d4868b",
+    "CommandBarFlyoutAppBarButtonSubItemChevronDisabledForeground=#a3676b",
     "CommandBarFlyoutAppBarButtonBackgroundChecked=#531310",
     "CommandBarFlyoutAppBarButtonBackgroundCheckedPointerOver=#531310",
     "CommandBarFlyoutAppBarButtonBackgroundCheckedPressed=#420f0c",
-    "CommandBarFlyoutAppBarButtonBackgroundCheckedDisabled=#160b0b",
+    "CommandBarFlyoutAppBarButtonBackgroundCheckedDisabled=#0d0707",
     "CommandBarFlyoutAppBarButtonForegroundChecked=#f4eeee",
     "CommandBarFlyoutAppBarButtonForegroundCheckedPointerOver=#f4eeee",
     "CommandBarFlyoutAppBarButtonForegroundCheckedPressed=#e99499",
-    "CommandBarFlyoutAppBarButtonForegroundCheckedDisabled=#8a5559",
-    "CommandBarFlyoutAppBarButtonBorderBrush=#2b0e0d",
-    "FlyoutPresenterBackground=#160b0b",
+    "CommandBarFlyoutAppBarButtonForegroundCheckedDisabled=#a3676b",
+    "CommandBarFlyoutAppBarButtonBorderBrush=#482b2b",
+    "FlyoutPresenterBackground=#140b0b",
     "FlyoutPresenterForeground=#e99499",
-    "FlyoutPresenterBorderBrush=#e53935",
-    "AutoSuggestBoxSuggestionsListBackground=#160b0b",
-    "AutoSuggestBoxSuggestionsListBorderBrush=#e53935"
+    "FlyoutPresenterBorderBrush=#c81a1a",
+    "AutoSuggestBoxSuggestionsListBackground=#140b0b",
+    "AutoSuggestBoxSuggestionsListBorderBrush=#c81a1a"
   ]
 }

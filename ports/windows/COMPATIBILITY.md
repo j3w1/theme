@@ -2,31 +2,56 @@
 
 ## Compatibility boundary
 
-The recorded candidate is Windows 11 x64 build 26300.9711 with the
-redesigned Start layout. It replaces the retired 26200.9550 and 26300.9550
+The recorded candidate is Windows 11 x64 build 26300.9818 with the
+redesigned Start layout. It replaces the retired 26300.9711, 26200.9550 and 26300.9550
 candidates; those builds no longer qualify for Full mode. `host.json` records exact Explorer, StartDocked, SystemSettings,
 ShellExperienceHost and SearchHost versions, plus Start, shell and Client.CBS
 package versions. A changed, absent or unreadable input refuses Full mode.
 
-The 26300.9711 readout changed StartDocked and Explorer's fixed version to
-10.0.26100.9711. Explorer's display version remains 10.0.26100.8117, while
-ExplorerFrame, DirectUI and SystemSettings remain at fixed version
-10.0.26100.9549. Common Controls, Windows Imaging Component, shellcommon and
-system XAML have new exact identities. The adapter pins use the observed
-versions and hashes, not an assumed common revision across all Windows files.
-Terminal's separate package pin is 1.24.12741.0; its controls package and the
-Notepad, Paint, Calculator, App Runtime and PowerToys identities remain unchanged.
-These identity checks do not establish installed appearance or symbol resolution.
+The 26300.9818 readout changed the shell executable versions, Explorer's fixed
+version, and the shell package to 10.0.26100.9818. Search is 2609.12000.100.0
+and Client.CBS is 1000.26100.385.0; the Start package remains
+10.0.26100.4768. ExplorerFrame and DirectUI retain older display-version
+strings but their fixed versions are 10.0.26100.9818. Common Controls,
+Windows Imaging Component, shellcommon and system XAML have new exact
+identities. Adapter pins use observed versions and hashes, not an assumed
+common revision across all Windows files.
 
-WebView2 155.0.4283.45 also requires a separate Markdown boundary entry. An
+The folder-bitmap caller pin names `windowsudk.shellcommon.dll`, whose exact
+hash is separate from `ShellCommonCommonProxyStub.dll`. Substituting the proxy
+DLL's hash rejects the tab-folder caller even when both modules share a fixed
+version. Native Explorer's loaded-module presence must also be checked during
+appearance review: enabled configuration and an installer Test pass do not
+prove successful in-process initialization.
+
+Terminal's separate package pin remains 1.24.12741.0. Notepad 11.2607.14.0
+and Paint 11.2605.81.0 retain their app identities, but their package dependency
+graphs now select Windows App Runtime 2.6.4.0. The chrome adapters pin that
+runtime and its diagnostics bridge by full hash. The old 2.5.1.0 runtime pin
+refused these updated applications; updating Windows alone would leave their
+chrome unstyled. Notepad's native editor binary is unchanged. Its status bar
+uses the neutral text roles and canvas background, including the existing
+scoped override for its local translucent template backing. The frame accent
+is independent of the status bar. These identity checks do not establish
+installed appearance or symbol resolution.
+
+PowerToys preview handlers are pinned to installed version 0.102.2933.0.
+Monaco's HTML template is byte-identical to the preceding supported version.
+An isolated invocation of the installed Markdown helper with empty content
+reproduced all four existing header hashes, lengths and CSS extents (dark/light,
+local images disabled/enabled). The Markdown executable, control assembly and
+helper assembly pins are updated to their measured full hashes; no template
+extent or document-content boundary was relaxed.
+
+WebView2 156.0.4314.58 also requires a separate Markdown boundary entry. An
 isolated empty controller created with the public WebView2 SDK measured
-NavigateToString at RVA 0x87bb0, Navigate at 0x87b10, the Controller2 background
-getter at 0x56780, setter at 0x56840 and Close at 0x54cc0. All five addresses
+NavigateToString at RVA 0x88510, Navigate at 0x88470, the Controller2 background
+getter at 0x56750, setter at 0x56810 and Close at 0x54c60. All five addresses
 belonged to executable memory in the same complete-hash-pinned module. The
 transparent-white, opaque-black and original background round trips passed;
 empty HTML navigation, about:blank navigation and Close returned success.
 Those calls do not establish navigation completion or installed preview
-appearance. Markdown adapter 1.4.2 retains the earlier reviewed runtime entries
+appearance. Markdown adapter 1.4.3 retains the earlier reviewed runtime entries
 and their separate original-call storage; no version range is admitted.
 
 Start detection reads the same three feature-state inputs as pinned Start Menu

@@ -22,10 +22,11 @@ test("port explorer lists every published port with a working download and the c
     await expect(page.getByRole("heading", { name: port.displayName, exact: true })).toBeVisible();
     for (const file of port.files) {
       const name = file.path.split("/").at(-1);
-      const matches=downloads.filter(link=>link.name===`Download ${name}`);
+      const href = `/theme/ports/${port.id}/${name}`;
+      const matches=downloads.filter(link=>link.href===href);
       expect(matches).toHaveLength(1);
       const [link]=matches;
-      expect(link.href).toBe(`/theme/ports/${port.id}/${name}`);
+      expect(link.name).toBe(`Download ${name}`);
       expect(link.download).toBe("");
       const response = await page.request.get(link.href);
       expect(response.ok()).toBe(true);

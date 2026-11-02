@@ -255,18 +255,20 @@
       "color.interaction.text-selection.bg",
       "color.interaction.text-selection.text",
       "color.primitive.ink.0",
-      "color.primitive.ink.30",
-      "color.primitive.ink.40",
-      "color.primitive.ink.60",
+      "color.primitive.modern.divider",
+      "color.primitive.modern.hover",
+      "color.primitive.modern.panel",
+      "color.primitive.modern.raised",
+      "color.primitive.modern.red",
       "color.primitive.paper.90",
       "color.primitive.red.100",
       "color.primitive.red.200",
-      "color.primitive.red.350",
+      "color.primitive.red.50",
+      "color.primitive.red.650",
       "color.primitive.red.800",
-      "color.primitive.red.850",
-      "color.primitive.rose.300",
       "color.primitive.rose.350",
       "color.primitive.rose.600",
+      "color.primitive.rose.650",
       "color.primitive.rose.700",
       "color.primitive.rose.800",
       "color.status.danger.border",
@@ -328,11 +330,9 @@
         "decisionIds": []
       },
       "color.border.control": {
-        "action": "use-and-report",
-        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
-        "decisionIds": [
-          "D-007"
-        ]
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
       },
       "color.border.disabled": {
         "action": "use",
@@ -340,18 +340,14 @@
         "decisionIds": []
       },
       "color.border.divider": {
-        "action": "use-and-report",
-        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
-        "decisionIds": [
-          "D-008"
-        ]
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
       },
       "color.border.overlay": {
-        "action": "use-and-report",
-        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
-        "decisionIds": [
-          "D-008"
-        ]
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
       },
       "color.border.selected-indicator": {
         "action": "use",
@@ -584,6 +580,6 @@
   "copy": {
     "directory": "copy/date-picker/",
     "manifest": "copy/date-picker/manifest.json",
-    "digest": "sha256-uB3MfKTg02uq8H1zMmiJcRNfp/M9DM+eb6TOIr3JB8M="
+    "digest": "sha256-LiBwzgSr30/e/fN9ddg+q4sCYu9syKXj3tCBtq107No="
   }
 }

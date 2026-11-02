@@ -17,7 +17,7 @@ static BOOL WINAPI FixtureFree(HMODULE module){assert(modulePaths.erase(module)=
 static DWORD WINAPI FixtureName(HMODULE module,LPWSTR path,DWORD count){if(truncatePath)return count;auto found=modulePaths.find(module);if(found==modulePaths.end())return 0;wcscpy(path,found->second.c_str());return static_cast<DWORD>(found->second.size());}
 static DWORD WINAPI FixtureVersionSize(LPCWSTR,LPDWORD){return 1;}
 static BOOL WINAPI FixtureVersionInfo(LPCWSTR,DWORD,DWORD,LPVOID){return TRUE;}
-static BOOL WINAPI FixtureVersionQuery(LPCVOID,LPCWSTR,LPVOID* result,PUINT size){static VS_FIXEDFILEINFO version{};version.dwFileVersionMS=wrongVersion?0:MAKELONG(0,10);version.dwFileVersionLS=MAKELONG(9549,26100);*result=&version;*size=sizeof(version);return TRUE;}
+static BOOL WINAPI FixtureVersionQuery(LPCVOID,LPCWSTR,LPVOID* result,PUINT size){static VS_FIXEDFILEINFO version{};version.dwFileVersionMS=wrongVersion?0:MAKELONG(0,10);version.dwFileVersionLS=MAKELONG(9818,26100);*result=&version;*size=sizeof(version);return TRUE;}
 static BOOL Wh_SetFunctionHook(void*,void*,void**){++hooks;return TRUE;}
 static PCWSTR Wh_GetStringSetting(PCWSTR){return L"#000000";}
 static void Wh_FreeStringSetting(PCWSTR){}

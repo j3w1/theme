@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-o4R1QcVREh4X3VMinZljRvfzhRgfN1pUaC1bgNc444o=",
+  "sourceDigest": "sha256-70Zio4Hy/D9gW+eB+0+voDzUpG18WrjnAQqIN+GBNU0=",
   "id": "i3-window-frame",
   "family": "composed",
   "maturity": "stable",
@@ -79,10 +79,10 @@
     },
     "root.border": {
       "alias": "color.border.default",
-      "value": "#531310",
-      "status": "observed",
+      "value": "#482b2b",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-041",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -91,10 +91,10 @@
     },
     "bar.bg": {
       "alias": "color.surface.chrome",
-      "value": "#090707",
+      "value": "#000000",
       "status": "approved",
       "deprecated": false,
-      "decisionId": "D-023",
+      "decisionId": "D-041",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -104,9 +104,9 @@
     "bar.text": {
       "alias": "color.text.default",
       "value": "#e99499",
-      "status": "observed",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-041",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -115,24 +115,22 @@
     },
     "bar.rule": {
       "alias": "color.border.divider",
-      "value": "#2b0e0d",
-      "status": "proposed",
+      "value": "#482b2b",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": "D-008",
+      "decisionId": "D-041",
       "eligibility": {
-        "action": "use-and-report",
-        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
-        "decisionIds": [
-          "D-008"
-        ]
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
       }
     },
     "workspace.text": {
       "alias": "color.text.default",
       "value": "#e99499",
-      "status": "observed",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-041",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -165,10 +163,10 @@
     },
     "workspace.bg-hover": {
       "alias": "color.interaction.hover.bg",
-      "value": "#1c0a09",
-      "status": "observed",
+      "value": "#1c1010",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-041",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -225,10 +223,10 @@
     },
     "status.separator": {
       "alias": "color.text.muted",
-      "value": "#bd787d",
-      "status": "observed",
+      "value": "#d4868b",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-041",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -237,10 +235,10 @@
     },
     "status.glyph": {
       "alias": "color.icon.decorative",
-      "value": "#a3676b",
-      "status": "observed",
+      "value": "#986f72",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-041",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -250,9 +248,9 @@
     "clock.text": {
       "alias": "color.text.bright",
       "value": "#ffa2a7",
-      "status": "observed",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-041",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -285,10 +283,10 @@
     },
     "window.border": {
       "alias": "color.border.default",
-      "value": "#531310",
-      "status": "observed",
+      "value": "#482b2b",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-041",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -321,10 +319,10 @@
     },
     "title.bg": {
       "alias": "color.surface.chrome",
-      "value": "#090707",
+      "value": "#000000",
       "status": "approved",
       "deprecated": false,
-      "decisionId": "D-023",
+      "decisionId": "D-041",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -333,10 +331,10 @@
     },
     "title.text": {
       "alias": "color.text.muted",
-      "value": "#bd787d",
-      "status": "observed",
+      "value": "#d4868b",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-041",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -345,10 +343,10 @@
     },
     "title.bg-focused": {
       "alias": "color.surface.chrome-alt",
-      "value": "#1c0a09",
-      "status": "observed",
+      "value": "#140b0b",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-041",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -358,9 +356,9 @@
     "title.text-focused": {
       "alias": "color.text.bright",
       "value": "#ffa2a7",
-      "status": "observed",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-041",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -393,16 +391,14 @@
     },
     "floating.border": {
       "alias": "color.border.overlay",
-      "value": "#e53935",
-      "status": "proposed",
+      "value": "#c81a1a",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": "D-008",
+      "decisionId": "D-041",
       "eligibility": {
-        "action": "use-and-report",
-        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
-        "decisionIds": [
-          "D-008"
-        ]
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
       }
     },
     "floating.shadow": {
@@ -419,10 +415,10 @@
     },
     "terminal.bg": {
       "alias": "color.terminal.bg",
-      "value": "#0c0909",
-      "status": "observed",
+      "value": "#000000",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-041",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -431,10 +427,10 @@
     },
     "terminal.text": {
       "alias": "color.terminal.fg",
-      "value": "#e99499",
-      "status": "observed",
+      "value": "#ffa2a7",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-041",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -443,10 +439,10 @@
     },
     "editor.bg": {
       "alias": "color.code.bg",
-      "value": "#0c0909",
-      "status": "observed",
+      "value": "#000000",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-041",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -462,10 +458,10 @@
       "tokens": {
         "fg": {
           "alias": "color.text.muted",
-          "value": "#bd787d",
-          "status": "observed",
+          "value": "#d4868b",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-041",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -474,10 +470,10 @@
         },
         "bg": {
           "alias": "color.surface.chrome",
-          "value": "#090707",
+          "value": "#000000",
           "status": "approved",
           "deprecated": false,
-          "decisionId": "D-023",
+          "decisionId": "D-041",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -494,9 +490,9 @@
         "fg": {
           "alias": "color.text.bright",
           "value": "#ffa2a7",
-          "status": "observed",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-041",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -505,10 +501,10 @@
         },
         "bg": {
           "alias": "color.surface.chrome-alt",
-          "value": "#1c0a09",
-          "status": "observed",
+          "value": "#140b0b",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-041",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -567,10 +563,10 @@
       "tokens": {
         "fg": {
           "alias": "color.text.muted",
-          "value": "#bd787d",
-          "status": "observed",
+          "value": "#d4868b",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-041",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -579,10 +575,10 @@
         },
         "bg": {
           "alias": "color.surface.chrome",
-          "value": "#090707",
+          "value": "#000000",
           "status": "approved",
           "deprecated": false,
-          "decisionId": "D-023",
+          "decisionId": "D-041",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -676,9 +672,9 @@
       "min": 4.5,
       "fg": "color.text.muted",
       "bg": "color.surface.chrome",
-      "fgHex": "#bd787d",
-      "bgHex": "#090707",
-      "ratio": 5.88,
+      "fgHex": "#d4868b",
+      "bgHex": "#000000",
+      "ratio": 7.58,
       "pass": true,
       "waiver": null
     },
@@ -690,8 +686,8 @@
       "fg": "color.text.bright",
       "bg": "color.surface.chrome-alt",
       "fgHex": "#ffa2a7",
-      "bgHex": "#1c0a09",
-      "ratio": 10.01,
+      "bgHex": "#140b0b",
+      "ratio": 10.14,
       "pass": true,
       "waiver": null
     },
@@ -703,8 +699,8 @@
       "fg": "color.interaction.focus.ring-container",
       "bg": "color.surface.chrome-alt",
       "fgHex": "#ffa2a7",
-      "bgHex": "#1c0a09",
-      "ratio": 10.01,
+      "bgHex": "#140b0b",
+      "ratio": 10.14,
       "pass": true,
       "waiver": null
     },
@@ -728,9 +724,9 @@
       "min": 4.5,
       "fg": "color.text.muted",
       "bg": "color.surface.chrome",
-      "fgHex": "#bd787d",
-      "bgHex": "#090707",
-      "ratio": 5.88,
+      "fgHex": "#d4868b",
+      "bgHex": "#000000",
+      "ratio": 7.58,
       "pass": true,
       "waiver": null
     },
@@ -768,8 +764,8 @@
       "fg": "color.text.default",
       "bg": "color.surface.chrome",
       "fgHex": "#e99499",
-      "bgHex": "#090707",
-      "ratio": 8.77,
+      "bgHex": "#000000",
+      "ratio": 9.16,
       "pass": true,
       "waiver": null
     },
@@ -781,8 +777,8 @@
       "fg": "color.text.bright",
       "bg": "color.surface.chrome",
       "fgHex": "#ffa2a7",
-      "bgHex": "#090707",
-      "ratio": 10.5,
+      "bgHex": "#000000",
+      "ratio": 10.98,
       "pass": true,
       "waiver": null
     },
@@ -794,8 +790,8 @@
       "fg": "color.text.bright",
       "bg": "color.surface.chrome-alt",
       "fgHex": "#ffa2a7",
-      "bgHex": "#1c0a09",
-      "ratio": 10.01,
+      "bgHex": "#140b0b",
+      "ratio": 10.14,
       "pass": true,
       "waiver": null
     },
@@ -819,9 +815,9 @@
       "min": 3,
       "fg": "color.border.overlay",
       "bg": "color.surface.desktop",
-      "fgHex": "#e53935",
+      "fgHex": "#c81a1a",
       "bgHex": "#000000",
-      "ratio": 4.97,
+      "ratio": 3.62,
       "pass": true,
       "waiver": null
     },
@@ -846,8 +842,8 @@
       "fg": "color.interaction.focus.ring",
       "bg": "color.surface.chrome",
       "fgHex": "#e53935",
-      "bgHex": "#090707",
-      "ratio": 4.75,
+      "bgHex": "#000000",
+      "ratio": 4.97,
       "pass": true,
       "waiver": null
     },
@@ -859,8 +855,8 @@
       "fg": "color.border.selected-indicator",
       "bg": "color.surface.chrome",
       "fgHex": "#e53935",
-      "bgHex": "#090707",
-      "ratio": 4.75,
+      "bgHex": "#000000",
+      "ratio": 4.97,
       "pass": true,
       "waiver": null
     },
@@ -872,8 +868,8 @@
       "fg": "color.status.danger.fill",
       "bg": "color.surface.chrome",
       "fgHex": "#dc282e",
-      "bgHex": "#090707",
-      "ratio": 4.2,
+      "bgHex": "#000000",
+      "ratio": 4.39,
       "pass": true,
       "waiver": null
     },
@@ -885,8 +881,8 @@
       "fg": "color.interaction.selection.bg",
       "bg": "color.surface.chrome",
       "fgHex": "#531310",
-      "bgHex": "#090707",
-      "ratio": 1.41,
+      "bgHex": "#000000",
+      "ratio": 1.47,
       "pass": true,
       "waiver": "the fill is identified by its on-fill text (12.47:1) and aria-selected, as every selection fill in the theme"
     },
@@ -898,8 +894,8 @@
       "fg": "color.border.selected-indicator-inactive",
       "bg": "color.surface.chrome",
       "fgHex": "#9e231f",
-      "bgHex": "#090707",
-      "ratio": 2.6,
+      "bgHex": "#000000",
+      "ratio": 2.71,
       "pass": true,
       "waiver": "an unfocused container's indicator is informative only; the visible tab is still named by aria-selected and bright text is withheld on purpose"
     },
@@ -910,9 +906,9 @@
       "min": 1,
       "fg": "color.border.default",
       "bg": "color.surface.desktop",
-      "fgHex": "#531310",
+      "fgHex": "#482b2b",
       "bgHex": "#000000",
-      "ratio": 1.47,
+      "ratio": 1.66,
       "pass": true,
       "waiver": "an unfocused window is identified by its title bar and its client; the 1px frame only separates it from the desktop, as pixel borders do in i3"
     },
@@ -923,9 +919,9 @@
       "min": 1,
       "fg": "color.text.muted",
       "bg": "color.surface.chrome",
-      "fgHex": "#bd787d",
-      "bgHex": "#090707",
-      "ratio": 5.88,
+      "fgHex": "#d4868b",
+      "bgHex": "#000000",
+      "ratio": 7.58,
       "pass": true,
       "waiver": "the separators only space blocks that are already distinct text"
     },
@@ -936,9 +932,9 @@
       "min": 1,
       "fg": "color.icon.decorative",
       "bg": "color.surface.chrome",
-      "fgHex": "#a3676b",
-      "bgHex": "#090707",
-      "ratio": 4.51,
+      "fgHex": "#986f72",
+      "bgHex": "#000000",
+      "ratio": 4.85,
       "pass": true,
       "waiver": "every glyph is followed by its label; the glyphs are aria-hidden"
     }

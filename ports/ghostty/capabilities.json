@@ -1813,6 +1813,141 @@
       "state": "out-of-scope",
       "surface": "outside-terminal",
       "reason": "Interface colour role; a terminal theme file carries terminal colours only."
+    },
+    "color.primitive.modern.panel": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.raised": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.overlay": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.hover": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.divider": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.control": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.disabled": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.subtle": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.muted": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.text": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.bright": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.red": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.green": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.amber": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.blue": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.violet": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.cyan": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.bright-red": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.bright-green": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.bright-amber": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.bright-blue": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.bright-violet": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.bright-cyan": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.diff-shared-green": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.diff-shared-red": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.diff.added.shared-word": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Host-specific shared diff foreground/background compromise; this port has no such shared role."
+    },
+    "color.diff.removed.shared-word": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Host-specific shared diff foreground/background compromise; this port has no such shared role."
     }
   },
   "rollback": "Remove the `theme = j3w1` line (or point it at your previous theme) and delete ~/.config/ghostty/themes/j3w1."

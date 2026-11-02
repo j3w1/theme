@@ -1,27 +1,27 @@
-# j3w1 theme 4.0.0, default profile, for Orca (Ghostty config import).
+# j3w1 theme 4.0.0, default profile, for Orca (app, editor and terminal).
 # Generated from ports/orca/mapping.json by npm run generate; do not edit.
-background = #0c0909
-foreground = #e99499
-cursor-color = #e99499
-cursor-text = #0c0909
-selection-background = #911410
+background = #000000
+foreground = #ffa2a7
+cursor-color = #ffa2a7
+cursor-text = #000000
+selection-background = #420f0c
 selection-foreground = #f4eeee
-palette = 0=#0c0909
-palette = 1=#e84b4b
-palette = 2=#bd787d
-palette = 3=#d4868b
-palette = 4=#e53131
-palette = 5=#f73f35
-palette = 6=#ff7a66
+palette = 0=#000000
+palette = 1=#f07178
+palette = 2=#82d9a0
+palette = 3=#e5c07b
+palette = 4=#82b4ff
+palette = 5=#c7a0e8
+palette = 6=#78d4d4
 palette = 7=#ffa2a7
-palette = 8=#b71c17
-palette = 9=#ea3833
-palette = 10=#dc4f49
-palette = 11=#b37175
-palette = 12=#db433a
-palette = 13=#ed5360
-palette = 14=#e6565a
-palette = 15=#b17e81
-split-divider-color = #2b0e0d
+palette = 8=#bd787d
+palette = 9=#ff9095
+palette = 10=#a2edb8
+palette = 11=#f2d49b
+palette = 12=#a4caff
+palette = 13=#dec0f4
+palette = 14=#a0e7e7
+palette = 15=#ffa2a7
+split-divider-color = #482b2b
 font-family = SauceCodePro NFM
 font-size = 13

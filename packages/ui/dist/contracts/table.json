@@ -189,17 +189,16 @@
       "color.interaction.text-selection.bg",
       "color.interaction.text-selection.text",
       "color.primitive.ink.0",
-      "color.primitive.ink.28",
-      "color.primitive.ink.30",
-      "color.primitive.ink.40",
-      "color.primitive.ink.60",
+      "color.primitive.modern.divider",
+      "color.primitive.modern.hover",
+      "color.primitive.modern.panel",
+      "color.primitive.modern.raised",
       "color.primitive.paper.90",
       "color.primitive.red.100",
-      "color.primitive.red.350",
       "color.primitive.red.400",
       "color.primitive.red.50",
       "color.primitive.red.800",
-      "color.primitive.rose.600",
+      "color.primitive.rose.650",
       "color.primitive.rose.700",
       "color.primitive.rose.800",
       "color.surface.canvas",
@@ -240,11 +239,9 @@
         "decisionIds": []
       },
       "color.border.divider": {
-        "action": "use-and-report",
-        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
-        "decisionIds": [
-          "D-008"
-        ]
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
       },
       "color.border.strong": {
         "action": "use",
@@ -422,6 +419,6 @@
   "copy": {
     "directory": "copy/table/",
     "manifest": "copy/table/manifest.json",
-    "digest": "sha256-aoOvMgurbkNygqz8bKhJNTPJP69mv2XCbF0vQC6Hj9w="
+    "digest": "sha256-tvWu57ODVYxvIxTP4E2tRSr1XXn+jCQ6wIPEYa1/jAs="
   }
 }

@@ -4,41 +4,41 @@
   "values": {
     "native.accent": "#e53935",
     "native.desktop": "#000000",
-    "terminal.foreground": "#e99499",
+    "terminal.foreground": "#ffa2a7",
     "terminal.background": "#000000",
-    "terminal.cursor": "#e99499",
+    "terminal.cursor": "#ffa2a7",
     "terminal.selection": "#420f0c",
-    "terminal.chrome": "#090707",
+    "terminal.chrome": "#000000",
     "native.foreground": "#e99499",
     "native.bright": "#ffa2a7",
     "native.heading": "#f4eeee",
     "native.highlight": "#f4eeee",
-    "native.muted": "#bd787d",
-    "native.disabled": "#8a5559",
+    "native.muted": "#d4868b",
+    "native.disabled": "#a3676b",
     "native.selection": "#531310",
     "cursor.foreground": "#000000",
     "cursor.outline": "#e53935",
     "powertoys.highlight": "#e53935",
-    "powertoys.inactive": "#160b0b",
-    "powertoys.border": "#a3676b",
+    "powertoys.inactive": "#140b0b",
+    "powertoys.border": "#c81a1a",
     "powertoys.number": "#ffa2a7",
     "font.family": "\"SauceCodePro NFM\", \"Source Code Pro\", \"Cascadia Mono\", \"Consolas\", \"Liberation Mono\", \"DejaVu Sans Mono\", monospace",
-    "terminal.ansi.0": "#0c0909",
-    "terminal.ansi.1": "#e84b4b",
-    "terminal.ansi.2": "#bd787d",
-    "terminal.ansi.3": "#d4868b",
-    "terminal.ansi.4": "#e53131",
-    "terminal.ansi.5": "#f73f35",
-    "terminal.ansi.6": "#ff7a66",
+    "terminal.ansi.0": "#000000",
+    "terminal.ansi.1": "#f07178",
+    "terminal.ansi.2": "#82d9a0",
+    "terminal.ansi.3": "#e5c07b",
+    "terminal.ansi.4": "#82b4ff",
+    "terminal.ansi.5": "#c7a0e8",
+    "terminal.ansi.6": "#78d4d4",
     "terminal.ansi.7": "#ffa2a7",
-    "terminal.ansi.8": "#b71c17",
-    "terminal.ansi.9": "#ea3833",
-    "terminal.ansi.10": "#dc4f49",
-    "terminal.ansi.11": "#b37175",
-    "terminal.ansi.12": "#db433a",
-    "terminal.ansi.13": "#ed5360",
-    "terminal.ansi.14": "#e6565a",
-    "terminal.ansi.15": "#b17e81",
+    "terminal.ansi.8": "#bd787d",
+    "terminal.ansi.9": "#ff9095",
+    "terminal.ansi.10": "#a2edb8",
+    "terminal.ansi.11": "#f2d49b",
+    "terminal.ansi.12": "#a4caff",
+    "terminal.ansi.13": "#dec0f4",
+    "terminal.ansi.14": "#a0e7e7",
+    "terminal.ansi.15": "#ffa2a7",
     "folder.fill": "#7d1310",
     "folder.edge": "#e53935"
   },
@@ -55,7 +55,7 @@
           "target": "StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement",
           "styles": [
             "Background=#000000",
-            "BorderBrush=#a3676b",
+            "BorderBrush=#c81a1a",
             "BorderThickness=1",
             "CornerRadius=0"
           ]
@@ -66,7 +66,7 @@
           "target": "StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement",
           "styles": [
             "Background=#000000",
-            "BorderBrush=#a3676b",
+            "BorderBrush=#c81a1a",
             "BorderThickness=1",
             "CornerRadius=0"
           ]
@@ -80,8 +80,8 @@
         {
           "target": "StartMenu.CategoryControl > Grid > Border",
           "styles": [
-            "Background=#100c0c",
-            "BorderBrush=#531310",
+            "Background=#0d0707",
+            "BorderBrush=#482b2b",
             "BorderThickness=1",
             "CornerRadius=0"
           ]
@@ -89,8 +89,8 @@
         {
           "target": "StartMenu.FolderModal > Grid > Border",
           "styles": [
-            "Background=#160b0b",
-            "BorderBrush=#e53935",
+            "Background=#140b0b",
+            "BorderBrush=#c81a1a",
             "BorderThickness=1",
             "CornerRadius=0"
           ]
@@ -125,72 +125,72 @@
   "bundledMods": [
     {
       "id": "j3w1-explorer-native",
-      "version": "1.8.6",
+      "version": "1.8.8",
       "path": "dist/j3w1-explorer-native.wh.cpp",
-      "sha256": "9567e7457ad049753d150761717ad9d7843200e48fdb72b399dbde18d2e5e26e"
+      "sha256": "9f78b59ec2cf87766bc1da96791ab8cc8dd0e6a6585d0b962f5c8d15535e65ba"
     },
     {
       "id": "j3w1-powertoys-preview",
-      "version": "1.1",
+      "version": "1.1.1",
       "path": "dist/j3w1-powertoys-preview.wh.cpp",
-      "sha256": "aa24170ff4ebb40bf78ad6abe14e3d88cebfeacde21c8c392e659c7207ebb7a1"
+      "sha256": "7a144ada66002556ddde1b7931686b21efda649858b2086d8221c51840b4d9b7"
     },
     {
       "id": "j3w1-calculator",
       "version": "1.4.13",
       "path": "dist/j3w1-calculator.wh.cpp",
-      "sha256": "f76e2d688fa8bddb50a9f2d059c1319278f6f8c7722187d3c30f3ea6d4dba626"
+      "sha256": "f210fe9cec1bacfdc15f424f4b8dda6498b023e08bc814fef8c87fc214829b02"
     },
     {
       "id": "j3w1-notepad-native",
       "version": "1.1.1",
       "path": "dist/j3w1-notepad-native.wh.cpp",
-      "sha256": "55f6825db1f71a0f7da4504cc38bac93e99b1f7a71137b0199420bb8797d50aa"
+      "sha256": "55a85a65696d0ee9387bbbe35b20741bbdfe638d55d9c064bc7ba8cbb0cd6ba2"
     },
     {
       "id": "j3w1-notepad-chrome",
-      "version": "1.2.34",
+      "version": "1.2.35",
       "path": "dist/j3w1-notepad-chrome.wh.cpp",
-      "sha256": "b60cf5235b224690e77911481ed95b490d6bbb1109254007a7d2d866a1cc9703"
+      "sha256": "58a72cb5a81543981fec9c6bf73a221fbb2b72b81ec515e0cc5011cc5613817a"
     },
     {
       "id": "j3w1-paint-chrome",
-      "version": "1.0.31",
+      "version": "1.0.32",
       "path": "dist/j3w1-paint-chrome.wh.cpp",
-      "sha256": "dd8d8577c95bf7cdee7979a18d7f60c6b7bf8e195f9f75c1863fff47f21c10da"
+      "sha256": "874deba51da5e7f87ec4557bbcdddcf4ea145e4e071662bce8212da99e468353"
     },
     {
       "id": "j3w1-terminal-chrome",
-      "version": "1.0.15",
+      "version": "1.0.16",
       "path": "dist/j3w1-terminal-chrome.wh.cpp",
-      "sha256": "18a7ca52f8ba614d2a3068fddca7844ec07563544f45b9ab1fb33bb100796bae"
+      "sha256": "906b87ec4947ee46d5b2348999f42ecc5f15718a204b7b2e1804aee8226c243b"
     },
     {
       "id": "j3w1-powertoys-markdown",
-      "version": "1.4.2",
+      "version": "1.4.3",
       "path": "dist/j3w1-powertoys-markdown.wh.cpp",
-      "sha256": "0ae68b4df825d38fc45080f10c6edd56831cefa284140e9edb8998c8ec7bd686"
+      "sha256": "5ea3bcf7156ab0a09f54edb9205f4afebb6e8a8129737c443df8fc8c5c15f93f"
     }
   ],
   "settingsStartup": {
     "sourceSha256": "7424d3b2298d06b4c8dc0e2b16a6e49011c4af2e97ec92ef28ecd2ad53bf8571",
-    "replacement": "// Owned startup and recovery boundary for the pinned Settings rendering adapter.\n// No window text, document data or pixels participate in admission.\n#include <bcrypt.h>\nnamespace j3w1Settings {\nstatic bool DigestFile(const std::wstring& path,const char* expected) {\n    HANDLE file=CreateFileW(path.c_str(),GENERIC_READ,FILE_SHARE_READ,nullptr,\n        OPEN_EXISTING,FILE_FLAG_OPEN_REPARSE_POINT,nullptr);\n    if(file==INVALID_HANDLE_VALUE)return false;\n    BY_HANDLE_FILE_INFORMATION info{};BCRYPT_ALG_HANDLE algorithm=nullptr;\n    BCRYPT_HASH_HANDLE hash=nullptr;bool ok=false;\n    if(GetFileInformationByHandle(file,&info)&&!(info.dwFileAttributes&FILE_ATTRIBUTE_REPARSE_POINT)\n        &&BCryptOpenAlgorithmProvider(&algorithm,BCRYPT_SHA256_ALGORITHM,nullptr,0)>=0\n        &&BCryptCreateHash(algorithm,&hash,nullptr,0,nullptr,0,0)>=0) {\n        BYTE buffer[65536],digest[32]{};DWORD count=0;ok=true;\n        for(;;) {\n            if(!ReadFile(file,buffer,sizeof(buffer),&count,nullptr)){ok=false;break;}\n            if(!count)break;\n            if(BCryptHashData(hash,buffer,count,0)<0){ok=false;break;}\n        }\n        ok=ok&&BCryptFinishHash(hash,digest,sizeof(digest),0)>=0;\n        const char hex[]=\"0123456789abcdef\";char actual[65]{};\n        for(size_t i=0;i<32;i++){actual[i*2]=hex[digest[i]>>4];actual[i*2+1]=hex[digest[i]&15];}\n        ok=ok&&strcmp(actual,expected)==0;\n    }\n    if(hash)BCryptDestroyHash(hash);\n    if(algorithm)BCryptCloseAlgorithmProvider(algorithm,0);\n    CloseHandle(file);return ok;\n}\nstatic bool Admit() {\n    wchar_t exe[32768]{},system[32768]{},modulePath[32768]{};\n    const DWORD exeLength=GetModuleFileNameW(nullptr,exe,32768);\n    const DWORD systemLength=GetSystemWindowsDirectoryW(system,32768);\n    const HMODULE module=GetModuleHandleW(L\"Windows.UI.Xaml.dll\");\n    const DWORD moduleLength=module?GetModuleFileNameW(module,modulePath,32768):0;\n    HIGHCONTRASTW contrast{sizeof(contrast)};\n    return exeLength&&exeLength<32768&&systemLength&&systemLength<32768\n        &&moduleLength&&moduleLength<32768\n        &&_wcsicmp(exe,(std::wstring(system)+L\"\\\\ImmersiveControlPanel\\\\SystemSettings.exe\").c_str())==0\n        &&DigestFile(exe,\"c514b73f3b9cc38be1dc817c177d07ecf12ce4ce9e21df5d54128e7359198bba\")\n        &&DigestFile(modulePath,\"67d90ad2f75bbd50607bfd7c3d73694e948eb993c135b6bb23d4965287ca4bad\")\n        &&SystemParametersInfoW(SPI_GETHIGHCONTRAST,sizeof(contrast),&contrast,0)\n        &&!(contrast.dwFlags&HCF_HIGHCONTRASTON);\n}\n}\n\nHWND GetCoreWnd() {\n    struct Candidates { HWND window=nullptr;unsigned count=0;DWORD thread=0; };\n    Candidates candidates{nullptr,0,g_targetThreadId.load()};\n    EnumWindows([](HWND top,LPARAM parameter)->BOOL {\n        auto& candidates=*reinterpret_cast<Candidates*>(parameter);\n        const auto admit=[&](HWND window) {\n            DWORD process=0;const DWORD thread=GetWindowThreadProcessId(window,&process);\n            if(!thread||process!=GetCurrentProcessId()\n                ||(candidates.thread&&thread!=candidates.thread))return;\n            if(window!=candidates.window){candidates.window=window;++candidates.count;}\n        };\n        wchar_t className[64]{};\n        if(!GetClassNameW(top,className,64))return TRUE;\n        if(_wcsicmp(className,L\"Windows.UI.Core.CoreWindow\")==0)admit(top);\n        else if(_wcsicmp(className,L\"ApplicationFrameWindow\")==0) {\n            HWND child=nullptr;\n            while((child=FindWindowExW(top,child,L\"Windows.UI.Core.CoreWindow\",nullptr)))admit(child);\n        }\n        return TRUE;\n    },reinterpret_cast<LPARAM>(&candidates));\n    // An ambiguous or missing owner cannot initialize or restore another root.\n    return candidates.count==1?candidates.window:nullptr;\n}\n"
+    "replacement": "// Owned startup and recovery boundary for the pinned Settings rendering adapter.\n// No window text, document data or pixels participate in admission.\n#include <bcrypt.h>\nnamespace j3w1Settings {\nstatic bool DigestFile(const std::wstring& path,const char* expected) {\n    HANDLE file=CreateFileW(path.c_str(),GENERIC_READ,FILE_SHARE_READ,nullptr,\n        OPEN_EXISTING,FILE_FLAG_OPEN_REPARSE_POINT,nullptr);\n    if(file==INVALID_HANDLE_VALUE)return false;\n    BY_HANDLE_FILE_INFORMATION info{};BCRYPT_ALG_HANDLE algorithm=nullptr;\n    BCRYPT_HASH_HANDLE hash=nullptr;bool ok=false;\n    if(GetFileInformationByHandle(file,&info)&&!(info.dwFileAttributes&FILE_ATTRIBUTE_REPARSE_POINT)\n        &&BCryptOpenAlgorithmProvider(&algorithm,BCRYPT_SHA256_ALGORITHM,nullptr,0)>=0\n        &&BCryptCreateHash(algorithm,&hash,nullptr,0,nullptr,0,0)>=0) {\n        BYTE buffer[65536],digest[32]{};DWORD count=0;ok=true;\n        for(;;) {\n            if(!ReadFile(file,buffer,sizeof(buffer),&count,nullptr)){ok=false;break;}\n            if(!count)break;\n            if(BCryptHashData(hash,buffer,count,0)<0){ok=false;break;}\n        }\n        ok=ok&&BCryptFinishHash(hash,digest,sizeof(digest),0)>=0;\n        const char hex[]=\"0123456789abcdef\";char actual[65]{};\n        for(size_t i=0;i<32;i++){actual[i*2]=hex[digest[i]>>4];actual[i*2+1]=hex[digest[i]&15];}\n        ok=ok&&strcmp(actual,expected)==0;\n    }\n    if(hash)BCryptDestroyHash(hash);\n    if(algorithm)BCryptCloseAlgorithmProvider(algorithm,0);\n    CloseHandle(file);return ok;\n}\nstatic bool Admit() {\n    wchar_t exe[32768]{},system[32768]{},modulePath[32768]{};\n    const DWORD exeLength=GetModuleFileNameW(nullptr,exe,32768);\n    const DWORD systemLength=GetSystemWindowsDirectoryW(system,32768);\n    const HMODULE module=GetModuleHandleW(L\"Windows.UI.Xaml.dll\");\n    const DWORD moduleLength=module?GetModuleFileNameW(module,modulePath,32768):0;\n    HIGHCONTRASTW contrast{sizeof(contrast)};\n    return exeLength&&exeLength<32768&&systemLength&&systemLength<32768\n        &&moduleLength&&moduleLength<32768\n        &&_wcsicmp(exe,(std::wstring(system)+L\"\\\\ImmersiveControlPanel\\\\SystemSettings.exe\").c_str())==0\n        &&DigestFile(exe,\"310e83f20fe92416371916d829e9e6d0d16a8fa91485e10caa67dbb8e5f9f870\")\n        &&DigestFile(modulePath,\"da3ae828c807b56eab79981e68dd605daec066b088ff8836afbb8bd04de18c01\")\n        &&SystemParametersInfoW(SPI_GETHIGHCONTRAST,sizeof(contrast),&contrast,0)\n        &&!(contrast.dwFlags&HCF_HIGHCONTRASTON);\n}\n}\n\nHWND GetCoreWnd() {\n    struct Candidates { HWND window=nullptr;unsigned count=0;DWORD thread=0; };\n    Candidates candidates{nullptr,0,g_targetThreadId.load()};\n    EnumWindows([](HWND top,LPARAM parameter)->BOOL {\n        auto& candidates=*reinterpret_cast<Candidates*>(parameter);\n        const auto admit=[&](HWND window) {\n            DWORD process=0;const DWORD thread=GetWindowThreadProcessId(window,&process);\n            if(!thread||process!=GetCurrentProcessId()\n                ||(candidates.thread&&thread!=candidates.thread))return;\n            if(window!=candidates.window){candidates.window=window;++candidates.count;}\n        };\n        wchar_t className[64]{};\n        if(!GetClassNameW(top,className,64))return TRUE;\n        if(_wcsicmp(className,L\"Windows.UI.Core.CoreWindow\")==0)admit(top);\n        else if(_wcsicmp(className,L\"ApplicationFrameWindow\")==0) {\n            HWND child=nullptr;\n            while((child=FindWindowExW(top,child,L\"Windows.UI.Core.CoreWindow\",nullptr)))admit(child);\n        }\n        return TRUE;\n    },reinterpret_cast<LPARAM>(&candidates));\n    // An ambiguous or missing owner cannot initialize or restore another root.\n    return candidates.count==1?candidates.window:nullptr;\n}\n"
   },
   "compatibility": [
     {
-      "settingsVersion": "10.0.26100.9549",
+      "settingsVersion": "10.0.26100.9818",
       "build": 26300,
       "architecture": "X64",
-      "startDockedVersion": "10.0.26100.9711",
-      "shellExperienceVersion": "10.0.26100.9549",
-      "shellPackageVersion": "10.0.26100.8115",
-      "explorerFixedVersion": "10.0.26100.9711",
-      "clientPackageVersion": "1000.26100.372.0",
+      "startDockedVersion": "10.0.26100.9818",
+      "shellExperienceVersion": "10.0.26100.9818",
+      "shellPackageVersion": "10.0.26100.9818",
+      "explorerFixedVersion": "10.0.26100.9818",
+      "clientPackageVersion": "1000.26100.385.0",
       "startLayout": "redesigned",
-      "explorerVersion": "10.0.26100.8117",
-      "searchVersion": "2608.25008.200.0",
+      "explorerVersion": "10.0.26100.9818",
+      "searchVersion": "2609.12000.100.0",
       "startPackageVersion": "10.0.26100.4768",
-      "ubr": 9711,
+      "ubr": 9818,
       "status": "candidate"
     }
   ],

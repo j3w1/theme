@@ -208,23 +208,22 @@
       "color.interaction.selection.text",
       "color.interaction.text-selection.bg",
       "color.interaction.text-selection.text",
-      "color.primitive.amber.500",
       "color.primitive.amber.tint",
-      "color.primitive.green.500",
       "color.primitive.green.tint",
       "color.primitive.ink.0",
-      "color.primitive.ink.20",
-      "color.primitive.ink.40",
       "color.primitive.ink.52",
       "color.primitive.ink.60",
+      "color.primitive.modern.amber",
+      "color.primitive.modern.divider",
+      "color.primitive.modern.green",
+      "color.primitive.modern.hover",
       "color.primitive.paper.90",
       "color.primitive.red.100",
-      "color.primitive.red.150",
-      "color.primitive.red.350",
+      "color.primitive.red.50",
+      "color.primitive.red.650",
       "color.primitive.red.800",
       "color.primitive.red.850",
-      "color.primitive.rose.350",
-      "color.primitive.rose.600",
+      "color.primitive.rose.650",
       "color.primitive.rose.700",
       "color.primitive.rose.800",
       "color.surface.canvas",
@@ -266,18 +265,14 @@
         "decisionIds": []
       },
       "color.border.control": {
-        "action": "use-and-report",
-        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
-        "decisionIds": [
-          "D-007"
-        ]
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
       },
       "color.border.divider": {
-        "action": "use-and-report",
-        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
-        "decisionIds": [
-          "D-008"
-        ]
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
       },
       "color.code.bg": {
         "action": "use",
@@ -510,6 +505,6 @@
   "copy": {
     "directory": "copy/diff-view/",
     "manifest": "copy/diff-view/manifest.json",
-    "digest": "sha256-Rdtj4Xs/jYIkUyj0Kq8skspivGcTqjSmvGsvvwj+XH4="
+    "digest": "sha256-9Y803JsNKTzO9FZrSrjpWhyIAFnC0ZGfnQWxqX0Mz/w="
   }
 }

@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-o4R1QcVREh4X3VMinZljRvfzhRgfN1pUaC1bgNc444o=",
+  "sourceDigest": "sha256-70Zio4Hy/D9gW+eB+0+voDzUpG18WrjnAQqIN+GBNU0=",
   "id": "editor-search",
   "family": "developer",
   "maturity": "stable",
@@ -54,10 +54,10 @@
   "tokens": {
     "root.bg": {
       "alias": "color.surface.default",
-      "value": "#100c0c",
+      "value": "#0d0707",
       "status": "approved",
       "deprecated": false,
-      "decisionId": "D-023",
+      "decisionId": "D-041",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -67,9 +67,9 @@
     "root.text": {
       "alias": "color.text.default",
       "value": "#e99499",
-      "status": "observed",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-041",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -78,24 +78,22 @@
     },
     "root.border": {
       "alias": "color.border.control",
-      "value": "#a3676b",
-      "status": "proposed",
+      "value": "#c81a1a",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": "D-007",
+      "decisionId": "D-041",
       "eligibility": {
-        "action": "use-and-report",
-        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
-        "decisionIds": [
-          "D-007"
-        ]
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
       }
     },
     "heading.text": {
       "alias": "color.text.bright",
       "value": "#ffa2a7",
-      "status": "observed",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-041",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -104,10 +102,10 @@
     },
     "secondary.text": {
       "alias": "color.text.muted",
-      "value": "#bd787d",
-      "status": "observed",
+      "value": "#d4868b",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-041",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -153,9 +151,9 @@
     "button.text": {
       "alias": "color.action.secondary.text",
       "value": "#ffa2a7",
-      "status": "observed",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-041",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -164,10 +162,10 @@
     },
     "button.border": {
       "alias": "color.action.secondary.border",
-      "value": "#a3676b",
-      "status": "observed",
+      "value": "#986f72",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-041",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -248,10 +246,10 @@
     },
     "dependency.role-color-code-search-current-text": {
       "alias": "color.code.search-current-text",
-      "value": "#0c0909",
-      "status": "observed",
+      "value": "#000000",
+      "status": "approved",
       "deprecated": false,
-      "decisionId": null,
+      "decisionId": "D-041",
       "eligibility": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
@@ -376,9 +374,9 @@
         "fg": {
           "alias": "color.text.default",
           "value": "#e99499",
-          "status": "observed",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": null,
+          "decisionId": "D-041",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -387,10 +385,10 @@
         },
         "bg": {
           "alias": "color.surface.default",
-          "value": "#100c0c",
+          "value": "#0d0707",
           "status": "approved",
           "deprecated": false,
-          "decisionId": "D-023",
+          "decisionId": "D-041",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -399,16 +397,14 @@
         },
         "border": {
           "alias": "color.border.control",
-          "value": "#a3676b",
-          "status": "proposed",
+          "value": "#c81a1a",
+          "status": "approved",
           "deprecated": false,
-          "decisionId": "D-007",
+          "decisionId": "D-041",
           "eligibility": {
-            "action": "use-and-report",
-            "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
-            "decisionIds": [
-              "D-007"
-            ]
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
           }
         }
       }
@@ -477,8 +473,8 @@
       "fg": "color.text.default",
       "bg": "color.surface.default",
       "fgHex": "#e99499",
-      "bgHex": "#100c0c",
-      "ratio": 8.48,
+      "bgHex": "#0d0707",
+      "ratio": 8.72,
       "pass": true,
       "waiver": null
     },
@@ -489,9 +485,9 @@
       "min": 3,
       "fg": "color.border.control",
       "bg": "color.surface.default",
-      "fgHex": "#a3676b",
-      "bgHex": "#100c0c",
-      "ratio": 4.36,
+      "fgHex": "#c81a1a",
+      "bgHex": "#0d0707",
+      "ratio": 3.44,
       "pass": true,
       "waiver": null
     },
@@ -503,8 +499,8 @@
       "fg": "color.text.default",
       "bg": "color.surface.default",
       "fgHex": "#e99499",
-      "bgHex": "#100c0c",
-      "ratio": 8.48,
+      "bgHex": "#0d0707",
+      "ratio": 8.72,
       "pass": true,
       "waiver": null
     },
@@ -515,9 +511,9 @@
       "min": 4.5,
       "fg": "color.text.muted",
       "bg": "color.surface.default",
-      "fgHex": "#bd787d",
-      "bgHex": "#100c0c",
-      "ratio": 5.69,
+      "fgHex": "#d4868b",
+      "bgHex": "#0d0707",
+      "ratio": 7.22,
       "pass": true,
       "waiver": null
     },
@@ -528,9 +524,9 @@
       "min": 3,
       "fg": "color.border.control",
       "bg": "color.surface.default",
-      "fgHex": "#a3676b",
-      "bgHex": "#100c0c",
-      "ratio": 4.36,
+      "fgHex": "#c81a1a",
+      "bgHex": "#0d0707",
+      "ratio": 3.44,
       "pass": true,
       "waiver": null
     },
@@ -542,8 +538,8 @@
       "fg": "color.action.secondary.text",
       "bg": "color.surface.default",
       "fgHex": "#ffa2a7",
-      "bgHex": "#100c0c",
-      "ratio": 10.17,
+      "bgHex": "#0d0707",
+      "ratio": 10.45,
       "pass": true,
       "waiver": null
     },

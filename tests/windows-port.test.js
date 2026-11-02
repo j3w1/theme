@@ -107,7 +107,7 @@ test('Windows native values, Terminal ANSI and styler selectors resolve from can
  const settings=await readJson('ports/windows/dist/windows-settings.json');
  for(const [key,role]of Object.entries(host.roles))assert.equal(settings.values[key],tokens[role].css,key);
  const terminal=await readJson('ports/windows/dist/terminal-fragment.json');
- assert.equal(terminal.schemes[0].foreground,'#e99499');
+ assert.equal(terminal.schemes[0].foreground,tokens['color.terminal.fg'].css);
  const ansi=['black','red','green','yellow','blue','purple','cyan','white','brightBlack','brightRed','brightGreen','brightYellow','brightBlue','brightPurple','brightCyan','brightWhite'];
  ansi.forEach((key,i)=>assert.equal(terminal.schemes[0][key],tokens[`color.terminal.ansi.${i}`].css));
  for(const styler of host.stylers){const x=await readJson(`ports/windows/dist/${styler.id}.json`);assert.deepEqual(x.controlStyles,[...host.menuTargets,...styler.targets].map(t=>({target:t.target,styles:Object.entries(t.styles).map(([k,r])=>`${k}=${windowsStyleValue(k,{type:tokens[r].type,resolved:tokens[r].value})}`)})));}
@@ -222,8 +222,8 @@ test('Explorer marquee settings encode canonical alpha and module compatibility'
  assert.equal(settings.marquee,'#1f911410');
  assert.equal(settings.marqueeBorder,'#e53935');
  const source=fs.readFileSync(path.join(repoRoot,'ports/windows/dist/j3w1-explorer-native.wh.cpp'),'utf8');
- assert.match(source,/FixedModuleVersion\(frame,MAKELONG\(0,10\),MAKELONG\(9549,26100\)\)/);
- assert.match(source,/FixedModuleVersion\(dui,MAKELONG\(0,10\),MAKELONG\(9549,26100\)\)/);
+ assert.match(source,/FixedModuleVersion\(frame,MAKELONG\(0,10\),MAKELONG\(9818,26100\)\)/);
+ assert.match(source,/FixedModuleVersion\(dui,MAKELONG\(0,10\),MAKELONG\(9818,26100\)\)/);
  assert.doesNotMatch(source,/@[A-Z0-9_]+@/);
 });
 
@@ -361,7 +361,7 @@ test('Windhawk uses local installed IDs, verifies staged version and nested enab
  assert.deepEqual(f.journal().transactions[0].mods.slice(1).map(mod=>mod.id),read(path.join(source,'dist/windows-settings.json')).bundledMods.map(mod=>'local@'+mod.id));
  assert.equal(f.journal().transactions[0].mods[1].id,'local@j3w1-explorer-native');
  assert.equal(f.db()['local@j3w1-explorer-native'].settings.background,'#000000');
- assert.equal(f.db()['local@j3w1-explorer-native'].settings.foreground,'#e99499');
+ assert.equal(f.db()['local@j3w1-explorer-native'].settings.foreground,read(path.join(source,'dist/j3w1-explorer-native.json')).foreground);
  assert.equal(f.db()['local@fixture-styler'].config.disabled,false);
  const db=f.db();db['local@fixture-styler'].config.disabled=true;write(path.join(f.state,'fixture-windhawk.json'),db);
  const failed=f.run('Test',f.args);assert.equal(failed.status,1);assert.match(failed.stdout,/disabled or unknown state/);
@@ -476,12 +476,13 @@ test('compact cursors use a black body and canonical red edge with visible bound
 
 test('Start geometry and font values use XAML syntax without changing layout or icon fonts',async()=>{
  const payload=await readJson('ports/windows/dist/windows-11-start-menu-styler.json');
+ const tokens=await defaultTokens();
  const variants=(await readJson('ports/windows/dist/windows-settings.json')).stylerVariants['windows-11-start-menu-styler'];
  const all=[...payload.controlStyles,...Object.values(variants).flat()];
  const acrylic=payload.controlStyles.find(t=>t.target==='Border#AcrylicBorder');
  assert.ok(acrylic.styles.includes('CornerRadius=0'));
  assert.ok(acrylic.styles.includes('BorderThickness=1'));
- assert.ok(acrylic.styles.includes('BorderBrush=#e53935'));
+ assert.ok(acrylic.styles.includes('BorderBrush='+tokens['color.border.overlay'].css));
  const fonts=all.filter(t=>t.styles.some(s=>s.startsWith('FontFamily=')));
  assert.ok(fonts.length>0);
  for(const t of fonts){assert.match(t.target,/^TextBlock#[A-Za-z]+$/);assert.ok(t.styles.includes('FontFamily=SauceCodePro NFM'));}
@@ -503,6 +504,7 @@ test('Start geometry and font values use XAML syntax without changing layout or 
 
 test('notification styling preserves content, layout and native focus without nested frames',async()=>{
  const payload=await readJson('ports/windows/dist/windows-11-notification-center-styler.json');
+ const tokens=await defaultTokens();
  const styles=target=>payload.controlStyles.find(t=>t.target===target)?.styles??[];
  for(const target of ['Grid#NotificationCenterGrid','Grid#CalendarCenterGrid','Grid#ControlCenterRegion']){
   assert.ok(styles(target).includes('Background=#000000'));
@@ -512,8 +514,8 @@ test('notification styling preserves content, layout and native focus without ne
  for(const target of ['Border#ItemOpaquePlating'])
   assert.ok(!styles(target).some(s=>s.startsWith('Border')), 'cards must not acquire nested frames');
  const calendar=styles('CalendarView');
- assert.ok(calendar.includes('CalendarItemForeground=#e99499'));
- assert.ok(calendar.includes('TodayForeground=#ffa2a7'));
+ assert.ok(calendar.includes('CalendarItemForeground='+tokens['color.text.default'].css));
+ assert.ok(calendar.includes('TodayForeground='+tokens['color.text.bright'].css));
  for(const {target,styles:values} of payload.controlStyles)for(const value of values){
   if(/^FocusVisual(?:Primary|Secondary)Brush=/.test(value)){
    // Jump-list focus keeps the native focus geometry and behavior; only its
@@ -570,9 +572,10 @@ test('shorter styler arrays terminate retained targets, nested styles and resour
 
 test('standalone toast variants use black surfaces with one outer frame',async()=>{
  const payload=await readJson('ports/windows/dist/windows-11-notification-center-styler.json');
+ const tokens=await defaultTokens();
  for(const target of ['Border#ToastBackgroundBorder','Border#ToastBackgroundBorder2']){
   const styles=payload.controlStyles.find(t=>t.target===target).styles;
-  for(const value of ['Background=#000000','BorderThickness=1','BorderBrush=#e53935','CornerRadius=0'])assert.ok(styles.includes(value));
+  for(const value of ['Background=#000000','BorderThickness=1','BorderBrush='+tokens['color.border.overlay'].css,'CornerRadius=0'])assert.ok(styles.includes(value));
  }
 });
 
@@ -583,13 +586,14 @@ test('bundled native source is generated, pinned and rejected on tampering',t=>{
  assert.equal((text.match(/CreateFileW\(/g)||[]).length,1,'Only the module digest reader opens files');
  assert.match(text,/CreateFileW\(path,GENERIC_READ,FILE_SHARE_READ,nullptr,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,nullptr\)/);
  assert.match(text,/GetModuleFileNameW\(module,path/);
- assert.match(text,/MAKELONG\(9711,26100\)/);
+ assert.match(text,/MAKELONG\(9818,26100\)/);
  fs.appendFileSync(file,'\n// changed');
  const result=f.run('Apply',f.args);assert.notEqual(result.status,0);assert.match(result.stderr,/Missing verified mod source/);
  assert.deepEqual(f.db(),{});
 });
 
-test('preview adapter is pinned and journaled; taskbar edge uses the canonical divider',t=>{
+test('preview adapter is pinned and journaled; taskbar edge uses the canonical divider',async t=>{
+ const tokens=await defaultTokens();
  const f=windhawkFixture(t);
  const settings=read(path.join(source,'dist/windows-settings.json'));
  const mod=settings.bundledMods.find(m=>m.id==='j3w1-powertoys-preview');
@@ -604,7 +608,7 @@ test('preview adapter is pinned and journaled; taskbar edge uses the canonical d
  fs.appendFileSync(file,'// corrupt source');
  assert.match(f.run('Apply',f.args).stderr,/Missing verified mod source/);
  const taskbar=read(path.join(source,'dist/windows-11-taskbar-styler.json'));
- assert.deepEqual(taskbar.controlStyles.find(t=>t.target==='Rectangle#BackgroundStroke').styles,['Fill=#2b0e0d']);
+ assert.deepEqual(taskbar.controlStyles.find(t=>t.target==='Rectangle#BackgroundStroke').styles,['Fill='+tokens['color.border.divider'].css]);
 });
 
 test('Markdown adapter settings and source follow setup update, Test and rollback',t=>{
@@ -1034,12 +1038,13 @@ test('Quick Settings maps its own media, toggle and slider states without changi
 
 test('taskbar popup styling preserves icon artwork, commands and native focus',async()=>{
  const host=await readJson('ports/windows/host.json'),mapping=await readJson('ports/windows/mapping.json');
+ const tokens=await defaultTokens();
  const id='windows-11-taskbar-styler',config=host.stylers.find(m=>m.id===id);
  const payload=await readJson('ports/windows/dist/'+id+'.json');
  const rules=target=>payload.controlStyles.find(t=>t.target===target)?.styles??[];
  for(const target of ['MenuFlyoutPresenter > Border','Grid#OverflowRootGrid > Border#OverflowFlyoutBackgroundBorder']){
-  assert.ok(rules(target).includes('Background=#160b0b'));
-  assert.ok(rules(target).includes('BorderBrush=#e53935'));
+  assert.ok(rules(target).includes('Background='+tokens['color.surface.raised'].css));
+  assert.ok(rules(target).includes('BorderBrush='+tokens['color.border.overlay'].css));
   assert.ok(rules(target).includes('CornerRadius=0'));
   assert.ok(rules(target).includes('BorderThickness=1'));
  }
@@ -1050,7 +1055,7 @@ test('taskbar popup styling preserves icon artwork, commands and native focus',a
    assert.ok(!states.some(v=>v.startsWith('Foreground')),'Grid colors text through named menu resources');
   }
  }
- assert.ok(rules('MenuFlyoutSeparator > Windows.UI.Xaml.Shapes.Rectangle').includes('Fill=#2b0e0d'));
+ assert.ok(rules('MenuFlyoutSeparator > Windows.UI.Xaml.Shapes.Rectangle').includes('Fill='+tokens['color.border.divider'].css));
  const menuResources=Object.entries(host.resources).filter(([key])=>key.startsWith('MenuFlyout'));
  assert.equal(menuResources.length,27);
  assert.equal(config.resources,undefined,'taskbar consumes the shared menu palette');

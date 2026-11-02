@@ -63,7 +63,7 @@ test("generation rebuilds deleted Obsidian files, validation stays strict, and f
   // A source-only fixture, no checkout, browser or upstream app.
   for (const directory of ["scripts/lib", "schemas", "tokens", "ports"]) await fs.cp(path.join(repoRoot, directory), path.join(root, directory), { recursive: true });
   await fs.copyFile(path.join(repoRoot, "theme.json"), path.join(root, "theme.json"));
-  await fs.symlink(path.join(repoRoot, "node_modules"), path.join(root, "node_modules"), "dir");
+  await fs.symlink(path.join(repoRoot, "node_modules"), path.join(root, "node_modules"), process.platform === "win32" ? "junction" : "dir");
   const original = await Promise.all(["manifest.json", "theme.css"].map(name => fs.readFile(path.join(root, "ports/obsidian/dist", name), "utf8")));
   for (const name of ["manifest.json", "theme.css"]) await fs.unlink(path.join(root, "ports/obsidian/dist", name));
   execFileSync(process.execPath, ["--input-type=module", "-e", `

@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — card
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-o4R1QcVREh4X3VMinZljRvfzhRgfN1pUaC1bgNc444o=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-70Zio4Hy/D9gW+eB+0+voDzUpG18WrjnAQqIN+GBNU0=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/card.json
 spec: spec/components/card.md  site: https://j3w1.github.io/theme/reference/#c-card
 maturity: stable  priority: R1
@@ -8,18 +8,17 @@ Summary: A bordered panel that groups a title, body and metadata; a link card ma
 
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg            #100c0c  ({color.surface.default})  use
-  root.border        #531310  ({color.border.default})  use
-  root.bg-hover      #1c0a09  ({color.interaction.hover.bg})  use
-  root.border-hover  #a3676b  ({color.border.control})  use-and-report (D-007)
+  root.bg            #0d0707  ({color.surface.default})  use
+  root.border        #482b2b  ({color.border.default})  use
+  root.bg-hover      #1c1010  ({color.interaction.hover.bg})  use
+  root.border-hover  #c81a1a  ({color.border.control})  use
   root.ring          #ffa2a7  ({color.interaction.focus.ring-container})  use
   title.text         #ffa2a7  ({color.text.bright})  use
   body.text          #e99499  ({color.text.default})  use
-  meta.text          #bd787d  ({color.text.muted})  use
+  meta.text          #d4868b  ({color.text.muted})  use
   selected.bg        #531310  ({color.interaction.selection.bg})  use
   selected.text      #f4eeee  ({color.interaction.selection.text})  use
   selected.ring      #e53935  ({color.interaction.focus.ring})  use
-State dependency disclosures: D-007
 
 States: default, hover, focus-visible, selected, selected+focus-visible
   default: 1px {color.border.default} on {color.surface.default} [—]

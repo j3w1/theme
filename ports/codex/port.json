@@ -4,17 +4,19 @@
   "displayName": "Codex CLI (tmTheme)",
   "status": "experimental",
   "themeVersion": "4.0.0",
-  "tokenDigest": "sha256-bXayCdQMks1SP9DAswzrBp0H09xuxsAmb1JbTSYceDg=",
+  "tokenDigest": "sha256-bKeJEQ8PJBiSh5jYcq6SyeSgWpeVWAE0Fh0KiTihHRk=",
   "profile": "default",
   "format": "codex-tmtheme",
   "targetVersions": [
     "0.156.1",
-    "0.157.0"
+    "0.157.0",
+    "0.166.0"
   ],
   "testedVersions": [],
   "os": [
     "linux",
-    "macos"
+    "macos",
+    "windows"
   ],
   "surfaces": {
     "supported": [
