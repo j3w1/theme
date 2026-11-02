@@ -1,6 +1,5 @@
-import { n as registerElement } from "../chunks/element-Dovcr9Ky.js";
+import { n as registerElement } from "../chunks/element-DcrNU9Wh.js";
 import { J3w1Pagination } from "../components/pagination.js";
-//#region .cache/ui-build/entries/register/pagination.js
+// .cache/ui-build/entries/register/pagination.js
 var element = registerElement("j3w1-pagination", J3w1Pagination);
-//#endregion
 export { element };

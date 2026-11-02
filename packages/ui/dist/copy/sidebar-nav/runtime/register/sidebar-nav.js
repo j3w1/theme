@@ -1,6 +1,5 @@
-import { n as registerElement } from "../chunks/element-Dovcr9Ky.js";
+import { n as registerElement } from "../chunks/element-DcrNU9Wh.js";
 import { J3w1SidebarNav } from "../components/sidebar-nav.js";
-//#region .cache/ui-build/entries/register/sidebar-nav.js
+// .cache/ui-build/entries/register/sidebar-nav.js
 var element = registerElement("j3w1-sidebar-nav", J3w1SidebarNav);
-//#endregion
 export { element };

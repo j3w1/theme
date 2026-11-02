@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-Dovcr9Ky.js";
-import { n as modal } from "../chunks/overlays-BwgpF4jI.js";
-//#region .cache/ui-build/entries/components/drawer.js
+import { t as J3w1Element } from "../chunks/element-DcrNU9Wh.js";
+import { n as modal } from "../chunks/overlays-BW66WXLm.js";
+// .cache/ui-build/entries/components/drawer.js
 var J3w1Drawer = class extends J3w1Element {
 	static componentId = "drawer";
 	static version = "4.0.0";
-	static implementationId = "sha256-yvpVNrlpyZhfuppx1D3pNtgoOjBrDBDX4gavOIbYSWM=";
+	static implementationId = "sha256-jlOQ9dUQ9/eHs5sJ9RXnG8JOrwjs9I7YeDZOvcPBU2Q=";
 	static connect = modal;
 	static upgradeProperties = [
 		"disabled",
@@ -35,5 +35,4 @@ var J3w1Drawer = class extends J3w1Element {
 		return this._api?.returnValue;
 	}
 };
-//#endregion
 export { J3w1Drawer };

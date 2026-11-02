@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-Dovcr9Ky.js";
-import { r as repeater } from "../chunks/advanced-CqBF0dSb.js";
-//#region .cache/ui-build/entries/components/repeater.js
+import { t as J3w1Element } from "../chunks/element-DcrNU9Wh.js";
+import { r as repeater } from "../chunks/advanced-BrFnVc0y.js";
+// .cache/ui-build/entries/components/repeater.js
 var J3w1Repeater = class extends J3w1Element {
 	static componentId = "repeater";
 	static version = "4.0.0";
-	static implementationId = "sha256-G3uVYtEsLo70OmMPhofMD2YylFEq1kezRvUEMrNnRII=";
+	static implementationId = "sha256-w4XS7/LW7dUC4L/+YrgFuI+YMBos9KBQBiuK80Uns6g=";
 	static connect = repeater;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...[
@@ -28,5 +28,4 @@ var J3w1Repeater = class extends J3w1Element {
 		return this._api?.rowIds;
 	}
 };
-//#endregion
 export { J3w1Repeater };

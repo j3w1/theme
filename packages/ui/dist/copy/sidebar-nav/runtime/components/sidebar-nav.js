@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-Dovcr9Ky.js";
-import { n as disclosure } from "../chunks/navigation-BfNzDYZB.js";
-//#region .cache/ui-build/entries/components/sidebar-nav.js
+import { t as J3w1Element } from "../chunks/element-DcrNU9Wh.js";
+import { n as disclosure } from "../chunks/navigation-CknoksQ5.js";
+// .cache/ui-build/entries/components/sidebar-nav.js
 var J3w1SidebarNav = class extends J3w1Element {
 	static componentId = "sidebar-nav";
 	static version = "4.0.0";
-	static implementationId = "sha256-rKjBWaKv0/VZBCTIvYNnUx/X/HyPypn7MJrL9+nt6cM=";
+	static implementationId = "sha256-p1RculkZB6rOKcsc85xvS+ftYOHY9F7U48/gV/8p3dk=";
 	static connect = disclosure;
 	static upgradeProperties = [
 		"disabled",
@@ -24,5 +24,4 @@ var J3w1SidebarNav = class extends J3w1Element {
 		});
 	}
 };
-//#endregion
 export { J3w1SidebarNav };

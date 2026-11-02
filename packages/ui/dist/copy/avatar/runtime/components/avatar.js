@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-Dovcr9Ky.js";
-import { t as avatar } from "../chunks/display-Jm9bAsnb.js";
-//#region .cache/ui-build/entries/components/avatar.js
+import { t as J3w1Element } from "../chunks/element-DcrNU9Wh.js";
+import { t as avatar } from "../chunks/display-l54fb8vw.js";
+// .cache/ui-build/entries/components/avatar.js
 var J3w1Avatar = class extends J3w1Element {
 	static componentId = "avatar";
 	static version = "4.0.0";
-	static implementationId = "sha256-y5w6c1MQTafVvxzhJ5TzYxwGvju264CUxS2D23RvGCQ=";
+	static implementationId = "sha256-h7ZI0GBRPh8k+G66StFqOp3ztZR+AceNt5+PiDohQ+M=";
 	static connect = avatar;
 	static upgradeProperties = [
 		"disabled",
@@ -28,5 +28,4 @@ var J3w1Avatar = class extends J3w1Element {
 		});
 	}
 };
-//#endregion
 export { J3w1Avatar };

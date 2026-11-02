@@ -1,6 +1,5 @@
-import { n as registerElement } from "../chunks/element-Dovcr9Ky.js";
+import { n as registerElement } from "../chunks/element-DcrNU9Wh.js";
 import { J3w1Alert } from "../components/alert.js";
-//#region .cache/ui-build/entries/register/alert.js
+// .cache/ui-build/entries/register/alert.js
 var element = registerElement("j3w1-alert", J3w1Alert);
-//#endregion
 export { element };

@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-Dovcr9Ky.js";
-import { i as tree } from "../chunks/advanced-CqBF0dSb.js";
-//#region .cache/ui-build/entries/components/tree.js
+import { t as J3w1Element } from "../chunks/element-DcrNU9Wh.js";
+import { i as tree } from "../chunks/advanced-BrFnVc0y.js";
+// .cache/ui-build/entries/components/tree.js
 var J3w1Tree = class extends J3w1Element {
 	static componentId = "tree";
 	static version = "4.0.0";
-	static implementationId = "sha256-8E6bGMMWEmhgjIAfuDs1+pxcabRicShQao3beIvcNBY=";
+	static implementationId = "sha256-4tyCeiJO1ktFeL6tRtS1nNUZhSguTNcVzLun9Gw4gX0=";
 	static connect = tree;
 	static upgradeProperties = [
 		"disabled",
@@ -28,5 +28,4 @@ var J3w1Tree = class extends J3w1Element {
 		});
 	}
 };
-//#endregion
 export { J3w1Tree };

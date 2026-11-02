@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-Dovcr9Ky.js";
-import { n as multiselect } from "../chunks/advanced-CqBF0dSb.js";
-//#region .cache/ui-build/entries/components/multiselect.js
+import { t as J3w1Element } from "../chunks/element-DcrNU9Wh.js";
+import { n as multiselect } from "../chunks/advanced-BrFnVc0y.js";
+// .cache/ui-build/entries/components/multiselect.js
 var J3w1Multiselect = class extends J3w1Element {
 	static componentId = "multiselect";
 	static version = "4.0.0";
-	static implementationId = "sha256-M7eRaWl+u1uQgXFKvnBd0GCc8U7xIWfp5yT7U9eMjTg=";
+	static implementationId = "sha256-FXj0+g9cQaR/0ZBHov7023bXRTw6cKww+3uPo9AtwN8=";
 	static connect = multiselect;
 	static upgradeProperties = [
 		"disabled",
@@ -28,5 +28,4 @@ var J3w1Multiselect = class extends J3w1Element {
 		});
 	}
 };
-//#endregion
 export { J3w1Multiselect };

@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-Dovcr9Ky.js";
-import { t as feedback } from "../chunks/overlays-BwgpF4jI.js";
-//#region .cache/ui-build/entries/components/error-state.js
+import { t as J3w1Element } from "../chunks/element-DcrNU9Wh.js";
+import { t as feedback } from "../chunks/overlays-BW66WXLm.js";
+// .cache/ui-build/entries/components/error-state.js
 var J3w1ErrorState = class extends J3w1Element {
 	static componentId = "error-state";
 	static version = "4.0.0";
-	static implementationId = "sha256-tOUjSBC5VAWfv+AicnePxVZaKItd4HUgjbSSn0EAnj4=";
+	static implementationId = "sha256-LDQJ+yUJQFusNMFvRdiX+9xXps1b5gKkDGOIKUsi3is=";
 	static connect = feedback;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];
@@ -13,5 +13,4 @@ var J3w1ErrorState = class extends J3w1Element {
 		return this._api.dismiss(...args);
 	}
 };
-//#endregion
 export { J3w1ErrorState };

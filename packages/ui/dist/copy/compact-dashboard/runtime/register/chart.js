@@ -1,6 +1,5 @@
-import { n as registerElement } from "../chunks/element-Dovcr9Ky.js";
+import { n as registerElement } from "../chunks/element-DcrNU9Wh.js";
 import { J3w1Chart } from "../components/chart.js";
-//#region .cache/ui-build/entries/register/chart.js
+// .cache/ui-build/entries/register/chart.js
 var element = registerElement("j3w1-chart", J3w1Chart);
-//#endregion
 export { element };

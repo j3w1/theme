@@ -1,10 +1,10 @@
-import { t as J3w1Element } from "../chunks/element-Dovcr9Ky.js";
-import { r as fields } from "../chunks/native-BjBt1sUh.js";
-//#region .cache/ui-build/entries/components/search-field.js
+import { t as J3w1Element } from "../chunks/element-DcrNU9Wh.js";
+import { r as fields } from "../chunks/native-D61761VL.js";
+// .cache/ui-build/entries/components/search-field.js
 var J3w1SearchField = class extends J3w1Element {
 	static componentId = "search-field";
 	static version = "4.0.0";
-	static implementationId = "sha256-nopARV2ViNiuyBqGv6KjxLJ3uaaVqRJ3K7Mgtg/mS7Q=";
+	static implementationId = "sha256-tI6csnLzo3YwSslahWEtsgW+3pvLdmXr4NI4noiRcxA=";
 	static connect = fields;
 	static upgradeProperties = [
 		"disabled",
@@ -27,5 +27,4 @@ var J3w1SearchField = class extends J3w1Element {
 		return this._api.clear(...args);
 	}
 };
-//#endregion
 export { J3w1SearchField };
