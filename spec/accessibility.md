@@ -38,7 +38,9 @@ control.
 ## Text hierarchy
 
 The colour roles are in `spec/foundations.md`, Typography semantics (D-033);
-near-white is not a readability or boldness requirement. Selection and
+D-041 uses rose application text and terminal/agent prose; white is limited
+to document headings, exceptional highlights and contrast-critical roles. Bold inherits its
+context. Selection and
 contrast-critical on-fill roles are checked against their actual
 backgrounds. Heading level is conveyed through structure, size and weight,
 never colour alone.
@@ -108,29 +110,23 @@ recorded limit.
   does not test every success criterion. Manual checks (keyboard walks,
   screen-reader reading, zoom) need their own execution evidence; a missing
   protocol stays not run.
-- In `default`, terminal slot 8 is the dim tier, under 4.5:1 on the terminal
-  background (D-029; slot 0 is the background); programs drawing text in it
-  inherit that. In `heritage-ansi`, slots 1, 4, 6, 8, 9, 10, 12, 13, 14 and 15
-  fail 4.5:1. The `extended` overlay proposes a semantic set.
-- Inside an editor selection, type and comment syntax drop below 4.5:1 on
-  `code.selection-bg`; keyword, tag, property and heading stay above it after
-  D-029. A selection is short-lived; the code-editor specification records
-  this limit.
-- `interaction.text-selection.tint` (D-036) keeps text at 4.5:1 only where the
-  host draws the tint under the text.
-  - **Over the text:** where a host paints it over the text, as in Telegram's
-    rich editor and rich translation preview, selected text falls below 4.5:1.
-  - **Links and code:** inside a selection they drop below 4.5:1. Links are
-    not a declared pair: a failing pair needs a waiver, and waivers cover
-    decorative graphics only.
-  - **Strength:** no tint strength meets both the over-the-text case and the
-    floor on `surface.accent`.
-  - **Outgoing code blocks:** inside one, the selection stands only ΔE 18.3
-    (CIE76) from the block.
-
-  The global contrast pairs composite the tint over the canvas only; the
-  Telegram port's tests enforce the raised and accent cases. A selection is
-  short-lived, as in an editor.
+- The default semantic terminal palette targets 4.5:1 for slots 1–15 on
+  true-black `terminal.bg` (D-041); ANSI 0 is the background. In
+  `heritage-ansi`, slots 1, 4, 6, 8, 9, 10, 12, 13, 14 and 15 fail 4.5:1.
+  Host dimming, non-default backgrounds and explicit true-colour output need
+  their own measurements.
+- Editors and diff viewers may preserve syntax foregrounds over selection
+  or change fills. Check those actual pairs, not only syntax on the canvas.
+  Claude Code reuses word-highlight backgrounds as edit-summary foregrounds;
+  its port documents the resulting limitation separately from normal diff
+  line contrast.
+- `interaction.text-selection.tint` (D-036) requires the host's compositing
+  behavior to be known. A tint under text and the same tint painted over text
+  have different contrast. The global pairs composite it over the canvas;
+  Telegram's tests cover its raised and accent surfaces. Those measurements
+  do not certify every host, selected link or syntax span. The earlier
+  rose-palette selection measurements are historical after D-041 and cannot
+  be carried forward as current results.
 
 ## Verification evidence and freshness
 

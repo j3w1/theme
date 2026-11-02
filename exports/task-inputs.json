@@ -200,7 +200,7 @@
     "z.skip-link",
     "z.toast"
   ],
-  "usageDigest": "sha256-YfOuc5ZsVeTby4y2ZnmvIDA5tNLSiN2tCE2noUGu+u4=",
+  "usageDigest": "sha256-QDrYDU8viRRMPL7qcFjiTng9jKWDe5PXF13XmIRGiOg=",
   "tokenDependencies": {
     "border.width.default": [],
     "border.width.emphasis": [],
@@ -227,7 +227,8 @@
       "color.primitive.red.550"
     ],
     "color.action.destructive.text": [
-      "color.primitive.red.850"
+      "color.status.danger.text",
+      "color.primitive.modern.red"
     ],
     "color.action.primary.bg": [
       "color.primitive.red.200"
@@ -250,7 +251,7 @@
       "color.primitive.alpha.transparent"
     ],
     "color.action.secondary.border": [
-      "color.primitive.rose.350"
+      "color.primitive.modern.control"
     ],
     "color.action.secondary.hover-bg": [
       "color.primitive.red.150"
@@ -259,31 +260,33 @@
       "color.primitive.red.50"
     ],
     "color.action.secondary.text": [
+      "color.text.bright",
       "color.primitive.rose.800"
     ],
     "color.action.tertiary.hover-bg": [
       "color.primitive.ink.40"
     ],
     "color.action.tertiary.text": [
+      "color.text.default",
       "color.primitive.rose.700"
     ],
     "color.border.active": [
       "color.primitive.red.800"
     ],
     "color.border.control": [
-      "color.primitive.rose.350"
+      "color.primitive.red.650"
     ],
     "color.border.default": [
-      "color.primitive.red.100"
+      "color.primitive.modern.divider"
     ],
     "color.border.disabled": [
-      "color.primitive.red.200"
+      "color.primitive.modern.divider"
     ],
     "color.border.divider": [
-      "color.primitive.ink.60"
+      "color.primitive.modern.divider"
     ],
     "color.border.overlay": [
-      "color.primitive.red.800"
+      "color.primitive.red.650"
     ],
     "color.border.selected-indicator": [
       "color.primitive.red.800"
@@ -301,7 +304,8 @@
       "color.primitive.ink.60"
     ],
     "color.chart.label": [
-      "color.primitive.rose.600"
+      "color.text.muted",
+      "color.primitive.rose.650"
     ],
     "color.chart.series-1": [
       "color.primitive.rose.800"
@@ -316,64 +320,76 @@
       "color.primitive.rose.350"
     ],
     "color.code.bg": [
-      "color.primitive.ink.20"
+      "color.primitive.ink.0"
     ],
     "color.code.bracket-match": [
       "color.primitive.red.800"
     ],
     "color.code.caret": [
-      "color.primitive.rose.700"
-    ],
-    "color.code.current-line": [
-      "color.primitive.ink.40"
-    ],
-    "color.code.gutter-bg": [
-      "color.primitive.ink.20"
-    ],
-    "color.code.gutter-rule": [
-      "color.primitive.ink.60"
-    ],
-    "color.code.hued.attribute": [
-      "color.primitive.amber.500"
-    ],
-    "color.code.hued.constant": [
-      "color.primitive.amber.500"
-    ],
-    "color.code.hued.escape": [
-      "color.primitive.amber.500"
-    ],
-    "color.code.hued.function": [
-      "color.primitive.amber.500"
-    ],
-    "color.code.hued.number": [
-      "color.primitive.amber.500"
-    ],
-    "color.code.hued.operator": [
+      "color.text.bright",
       "color.primitive.rose.800"
     ],
+    "color.code.current-line": [
+      "color.primitive.modern.panel"
+    ],
+    "color.code.gutter-bg": [
+      "color.primitive.ink.0"
+    ],
+    "color.code.gutter-rule": [
+      "color.primitive.modern.divider"
+    ],
+    "color.code.hued.attribute": [
+      "color.code.syntax.attribute",
+      "color.primitive.modern.amber"
+    ],
+    "color.code.hued.constant": [
+      "color.code.syntax.constant",
+      "color.primitive.modern.amber"
+    ],
+    "color.code.hued.escape": [
+      "color.code.syntax.escape",
+      "color.primitive.modern.amber"
+    ],
+    "color.code.hued.function": [
+      "color.code.syntax.function",
+      "color.primitive.modern.blue"
+    ],
+    "color.code.hued.number": [
+      "color.code.syntax.number",
+      "color.primitive.modern.amber"
+    ],
+    "color.code.hued.operator": [
+      "color.code.syntax.operator",
+      "color.primitive.rose.700"
+    ],
     "color.code.hued.property": [
-      "color.primitive.blue.500"
+      "color.code.syntax.property",
+      "color.primitive.modern.cyan"
     ],
     "color.code.hued.string": [
-      "color.primitive.green.500"
+      "color.code.syntax.string",
+      "color.primitive.modern.green"
     ],
     "color.code.hued.type": [
-      "color.primitive.blue.500"
+      "color.code.syntax.type",
+      "color.primitive.modern.cyan"
     ],
     "color.code.indent-guide": [
-      "color.primitive.red.100"
+      "color.primitive.modern.divider"
     ],
     "color.code.line-number": [
-      "color.primitive.rose.450"
+      "color.text.subtle",
+      "color.primitive.rose.600"
     ],
     "color.code.line-number-active": [
+      "color.text.default",
       "color.primitive.rose.700"
     ],
     "color.code.search-current-bg": [
       "color.primitive.rose.800"
     ],
     "color.code.search-current-text": [
-      "color.primitive.ink.20"
+      "color.primitive.ink.0"
     ],
     "color.code.search-match-bg": [
       "color.primitive.red.150"
@@ -382,58 +398,61 @@
       "color.primitive.red.50"
     ],
     "color.code.syntax.attribute": [
-      "color.primitive.rose.650"
+      "color.primitive.modern.amber"
     ],
     "color.code.syntax.comment": [
-      "color.primitive.rose.450"
+      "color.text.subtle",
+      "color.primitive.rose.600"
     ],
     "color.code.syntax.constant": [
-      "color.primitive.rose.650"
+      "color.primitive.modern.amber"
     ],
     "color.code.syntax.deprecated": [
-      "color.primitive.rose.450"
+      "color.text.subtle",
+      "color.primitive.rose.600"
     ],
     "color.code.syntax.escape": [
-      "color.primitive.rose.650"
+      "color.primitive.modern.amber"
     ],
     "color.code.syntax.function": [
-      "color.primitive.rose.800"
+      "color.primitive.modern.blue"
     ],
     "color.code.syntax.heading": [
-      "color.primitive.red.810"
+      "color.primitive.modern.bright"
     ],
     "color.code.syntax.invalid": [
-      "color.primitive.red.810"
+      "color.primitive.modern.red"
     ],
     "color.code.syntax.keyword": [
-      "color.primitive.red.860"
+      "color.primitive.modern.violet"
     ],
     "color.code.syntax.number": [
-      "color.primitive.rose.650"
+      "color.primitive.modern.amber"
     ],
     "color.code.syntax.operator": [
       "color.primitive.rose.700"
     ],
     "color.code.syntax.property": [
-      "color.primitive.red.810"
+      "color.primitive.modern.cyan"
     ],
     "color.code.syntax.punctuation": [
-      "color.primitive.rose.700"
+      "color.text.muted",
+      "color.primitive.rose.650"
     ],
     "color.code.syntax.string": [
-      "color.primitive.rose.600"
+      "color.primitive.modern.green"
     ],
     "color.code.syntax.tag": [
-      "color.primitive.red.860"
+      "color.primitive.modern.red"
     ],
     "color.code.syntax.type": [
-      "color.primitive.rose.550"
+      "color.primitive.modern.cyan"
     ],
     "color.code.syntax.variable": [
       "color.primitive.rose.700"
     ],
     "color.code.whitespace": [
-      "color.primitive.red.200"
+      "color.primitive.modern.control"
     ],
     "color.diagnostic.error.bg": [
       "color.primitive.ink.60"
@@ -448,34 +467,39 @@
       "color.primitive.red.800"
     ],
     "color.diagnostic.hint.underline": [
-      "color.primitive.rose.450"
-    ],
-    "color.diagnostic.info.text": [
-      "color.primitive.blue.500"
-    ],
-    "color.diagnostic.info.underline": [
-      "color.primitive.blue.500"
-    ],
-    "color.diagnostic.unused.text": [
+      "color.text.subtle",
       "color.primitive.rose.600"
     ],
+    "color.diagnostic.info.text": [
+      "color.primitive.modern.blue"
+    ],
+    "color.diagnostic.info.underline": [
+      "color.primitive.modern.blue"
+    ],
+    "color.diagnostic.unused.text": [
+      "color.text.muted",
+      "color.primitive.rose.650"
+    ],
     "color.diagnostic.warning.stripe": [
-      "color.primitive.amber.500"
+      "color.primitive.modern.amber"
     ],
     "color.diagnostic.warning.text": [
-      "color.primitive.amber.500"
+      "color.primitive.modern.amber"
     ],
     "color.diagnostic.warning.underline": [
-      "color.primitive.amber.500"
+      "color.primitive.modern.amber"
     ],
     "color.diff.added.bg": [
       "color.primitive.green.tint"
     ],
     "color.diff.added.emphasis": [
-      "color.primitive.green.500"
+      "color.primitive.modern.green"
     ],
     "color.diff.added.gutter": [
-      "color.primitive.green.500"
+      "color.primitive.modern.green"
+    ],
+    "color.diff.added.shared-word": [
+      "color.primitive.modern.diff-shared-green"
     ],
     "color.diff.conflict-border": [
       "color.primitive.red.850"
@@ -487,7 +511,7 @@
       "color.primitive.amber.tint"
     ],
     "color.diff.modified.gutter": [
-      "color.primitive.amber.500"
+      "color.primitive.modern.amber"
     ],
     "color.diff.removed.bg": [
       "color.primitive.ink.60"
@@ -498,14 +522,18 @@
     "color.diff.removed.gutter": [
       "color.primitive.red.800"
     ],
+    "color.diff.removed.shared-word": [
+      "color.primitive.modern.diff-shared-red"
+    ],
     "color.icon.decorative": [
-      "color.primitive.rose.350"
+      "color.primitive.modern.control"
     ],
     "color.icon.default": [
+      "color.text.default",
       "color.primitive.rose.700"
     ],
     "color.interaction.disabled.bg": [
-      "color.primitive.ink.30"
+      "color.primitive.modern.panel"
     ],
     "color.interaction.drop-target": [
       "color.primitive.red.800"
@@ -517,10 +545,10 @@
       "color.primitive.rose.800"
     ],
     "color.interaction.hover.bg": [
-      "color.primitive.ink.40"
+      "color.primitive.modern.hover"
     ],
     "color.interaction.hover.bg-strong": [
-      "color.primitive.red.150"
+      "color.primitive.modern.hover"
     ],
     "color.interaction.marquee": [
       "color.primitive.alpha.red-12"
@@ -529,13 +557,13 @@
       "color.primitive.red.50"
     ],
     "color.interaction.scrollbar.thumb": [
-      "color.primitive.red.50"
+      "color.primitive.modern.control"
     ],
     "color.interaction.scrollbar.thumb-hover": [
-      "color.primitive.red.350"
+      "color.primitive.modern.muted"
     ],
     "color.interaction.scrollbar.track": [
-      "color.primitive.ink.20"
+      "color.primitive.ink.0"
     ],
     "color.interaction.selection.bg": [
       "color.primitive.red.100"
@@ -544,13 +572,14 @@
       "color.primitive.red.50"
     ],
     "color.interaction.selection.inactive-text": [
+      "color.text.default",
       "color.primitive.rose.700"
     ],
     "color.interaction.selection.text": [
       "color.primitive.paper.90"
     ],
     "color.interaction.text-selection.bg": [
-      "color.primitive.red.350"
+      "color.primitive.red.50"
     ],
     "color.interaction.text-selection.text": [
       "color.primitive.paper.90"
@@ -641,6 +670,31 @@
     "color.primitive.ink.40": [],
     "color.primitive.ink.52": [],
     "color.primitive.ink.60": [],
+    "color.primitive.modern.amber": [],
+    "color.primitive.modern.blue": [],
+    "color.primitive.modern.bright": [],
+    "color.primitive.modern.bright-amber": [],
+    "color.primitive.modern.bright-blue": [],
+    "color.primitive.modern.bright-cyan": [],
+    "color.primitive.modern.bright-green": [],
+    "color.primitive.modern.bright-red": [],
+    "color.primitive.modern.bright-violet": [],
+    "color.primitive.modern.control": [],
+    "color.primitive.modern.cyan": [],
+    "color.primitive.modern.diff-shared-green": [],
+    "color.primitive.modern.diff-shared-red": [],
+    "color.primitive.modern.disabled": [],
+    "color.primitive.modern.divider": [],
+    "color.primitive.modern.green": [],
+    "color.primitive.modern.hover": [],
+    "color.primitive.modern.muted": [],
+    "color.primitive.modern.overlay": [],
+    "color.primitive.modern.panel": [],
+    "color.primitive.modern.raised": [],
+    "color.primitive.modern.red": [],
+    "color.primitive.modern.subtle": [],
+    "color.primitive.modern.text": [],
+    "color.primitive.modern.violet": [],
     "color.primitive.paper.100": [],
     "color.primitive.paper.90": [],
     "color.primitive.red.100": [],
@@ -682,67 +736,68 @@
       "color.primitive.paper.100"
     ],
     "color.status.danger.text": [
-      "color.primitive.red.850"
+      "color.primitive.modern.red"
     ],
     "color.status.danger.tint": [
       "color.primitive.ink.60"
     ],
     "color.status.info.border": [
-      "color.primitive.blue.500"
+      "color.primitive.modern.blue"
     ],
     "color.status.info.fill": [
-      "color.primitive.blue.500"
+      "color.primitive.modern.blue"
     ],
     "color.status.info.on-fill": [
-      "color.primitive.ink.20"
+      "color.primitive.ink.0"
     ],
     "color.status.info.text": [
-      "color.primitive.blue.500"
+      "color.primitive.modern.blue"
     ],
     "color.status.info.tint": [
       "color.primitive.blue.tint"
     ],
     "color.status.neutral.border": [
-      "color.primitive.rose.350"
+      "color.primitive.modern.control"
     ],
     "color.status.neutral.fill": [
-      "color.primitive.rose.350"
+      "color.primitive.modern.control"
     ],
     "color.status.neutral.on-fill": [
       "color.primitive.ink.0"
     ],
     "color.status.neutral.text": [
-      "color.primitive.rose.600"
+      "color.text.muted",
+      "color.primitive.rose.650"
     ],
     "color.status.neutral.tint": [
-      "color.primitive.ink.52"
+      "color.primitive.modern.raised"
     ],
     "color.status.success.border": [
-      "color.primitive.green.500"
+      "color.primitive.modern.green"
     ],
     "color.status.success.fill": [
-      "color.primitive.green.500"
+      "color.primitive.modern.green"
     ],
     "color.status.success.on-fill": [
-      "color.primitive.ink.20"
+      "color.primitive.ink.0"
     ],
     "color.status.success.text": [
-      "color.primitive.green.500"
+      "color.primitive.modern.green"
     ],
     "color.status.success.tint": [
       "color.primitive.green.tint"
     ],
     "color.status.warning.border": [
-      "color.primitive.amber.500"
+      "color.primitive.modern.amber"
     ],
     "color.status.warning.fill": [
-      "color.primitive.amber.500"
+      "color.primitive.modern.amber"
     ],
     "color.status.warning.on-fill": [
-      "color.primitive.ink.20"
+      "color.primitive.ink.0"
     ],
     "color.status.warning.text": [
-      "color.primitive.amber.500"
+      "color.primitive.modern.amber"
     ],
     "color.status.warning.tint": [
       "color.primitive.amber.tint"
@@ -757,16 +812,16 @@
       "color.primitive.ink.0"
     ],
     "color.surface.chrome": [
-      "color.primitive.ink.14"
+      "color.primitive.ink.0"
     ],
     "color.surface.chrome-alt": [
-      "color.primitive.ink.40"
+      "color.primitive.modern.raised"
     ],
     "color.surface.code": [
       "color.primitive.ink.0"
     ],
     "color.surface.default": [
-      "color.primitive.ink.28"
+      "color.primitive.modern.panel"
     ],
     "color.surface.desktop": [
       "color.primitive.ink.0"
@@ -775,10 +830,10 @@
       "color.primitive.ink.0"
     ],
     "color.surface.overlay": [
-      "color.primitive.ink.52"
+      "color.primitive.modern.overlay"
     ],
     "color.surface.raised": [
-      "color.primitive.ink.30"
+      "color.primitive.modern.raised"
     ],
     "color.surface.sunken": [
       "color.primitive.ink.0"
@@ -787,77 +842,76 @@
       "color.primitive.ink.0"
     ],
     "color.terminal.ansi.0": [
-      "color.primitive.ansi.0",
-      "color.primitive.ink.20"
+      "color.primitive.ink.0"
     ],
     "color.terminal.ansi.1": [
-      "color.primitive.ansi-readable.1"
+      "color.primitive.modern.red"
     ],
     "color.terminal.ansi.10": [
-      "color.primitive.ansi-readable.10"
+      "color.primitive.modern.bright-green"
     ],
     "color.terminal.ansi.11": [
-      "color.primitive.ansi.11",
-      "color.primitive.rose.550"
+      "color.primitive.modern.bright-amber"
     ],
     "color.terminal.ansi.12": [
-      "color.primitive.ansi-readable.12"
+      "color.primitive.modern.bright-blue"
     ],
     "color.terminal.ansi.13": [
-      "color.primitive.ansi-readable.13"
+      "color.primitive.modern.bright-violet"
     ],
     "color.terminal.ansi.14": [
-      "color.primitive.ansi-readable.14"
+      "color.primitive.modern.bright-cyan"
     ],
     "color.terminal.ansi.15": [
-      "color.primitive.ansi-readable.15"
+      "color.primitive.rose.800"
     ],
     "color.terminal.ansi.2": [
-      "color.primitive.ansi.2",
-      "color.primitive.rose.600"
+      "color.primitive.modern.green"
     ],
     "color.terminal.ansi.3": [
-      "color.primitive.ansi.3",
-      "color.primitive.rose.650"
+      "color.primitive.modern.amber"
     ],
     "color.terminal.ansi.4": [
-      "color.primitive.ansi-readable.4"
+      "color.primitive.modern.blue"
     ],
     "color.terminal.ansi.5": [
-      "color.primitive.ansi.5",
-      "color.primitive.red.850"
+      "color.primitive.modern.violet"
     ],
     "color.terminal.ansi.6": [
-      "color.primitive.coral.700"
+      "color.primitive.modern.cyan"
     ],
     "color.terminal.ansi.7": [
-      "color.primitive.ansi.7",
+      "color.text.bright",
       "color.primitive.rose.800"
     ],
     "color.terminal.ansi.8": [
-      "color.primitive.ansi-readable.8"
+      "color.text.subtle",
+      "color.primitive.rose.600"
     ],
     "color.terminal.ansi.9": [
-      "color.primitive.ansi-readable.9"
+      "color.primitive.modern.bright-red"
     ],
     "color.terminal.bg": [
-      "color.primitive.ink.20"
+      "color.primitive.ink.0"
     ],
     "color.terminal.cursor": [
-      "color.primitive.rose.700"
+      "color.text.bright",
+      "color.primitive.rose.800"
     ],
     "color.terminal.fg": [
-      "color.primitive.rose.700"
+      "color.text.bright",
+      "color.primitive.rose.800"
     ],
     "color.terminal.prompt-bg": [
-      "color.primitive.ansi.4",
-      "color.primitive.red.250"
+      "color.primitive.ink.0"
     ],
     "color.terminal.prompt-text": [
+      "color.text.bright",
       "color.primitive.rose.800"
     ],
     "color.terminal.selection-bg": [
-      "color.primitive.red.350"
+      "color.interaction.text-selection.bg",
+      "color.primitive.red.50"
     ],
     "color.terminal.selection-text": [
       "color.primitive.paper.90"
@@ -875,16 +929,16 @@
       "color.primitive.rose.700"
     ],
     "color.text.disabled": [
-      "color.primitive.rose.300"
+      "color.primitive.rose.350"
     ],
     "color.text.heading": [
-      "color.primitive.paper.90"
+      "color.primitive.modern.bright"
     ],
     "color.text.highlight": [
-      "color.primitive.paper.90"
+      "color.primitive.modern.bright"
     ],
     "color.text.inverse": [
-      "color.primitive.ink.20"
+      "color.primitive.ink.0"
     ],
     "color.text.link": [
       "color.primitive.red.850"
@@ -896,7 +950,7 @@
       "color.primitive.red.750"
     ],
     "color.text.muted": [
-      "color.primitive.rose.600"
+      "color.primitive.rose.650"
     ],
     "color.text.on-action": [
       "color.text.bright",
@@ -906,20 +960,20 @@
       "color.primitive.paper.100"
     ],
     "color.text.on-light": [
-      "color.primitive.ink.20"
+      "color.primitive.ink.0"
     ],
     "color.text.on-selection": [
       "color.primitive.paper.90"
     ],
     "color.text.placeholder": [
-      "color.primitive.rose.350"
+      "color.primitive.rose.600"
     ],
     "color.text.prose": [
       "color.text.default",
       "color.primitive.rose.700"
     ],
     "color.text.subtle": [
-      "color.primitive.rose.450"
+      "color.primitive.rose.600"
     ],
     "density.comfortable.control-height": [],
     "density.comfortable.control-padding-x": [],
@@ -1009,109 +1063,109 @@
   },
   "files": {
     "agents/consume.md": "sha256-I7gvGchrdAXnxI1VpW1sIodxyPy9hNvveANaO2p7h8w=",
-    "exports/components/admin-form.json": "sha256-mGq6p24iD7FFWXPtEqN+9D62hVLhGunTPB+v373mf8M=",
-    "exports/components/alert.json": "sha256-nicIQjtEYAkSo61Zi/SS6LXgPajR9yfZ8vimmGuEE2Y=",
-    "exports/components/avatar.json": "sha256-yt8JYMsqYpNdp2FC/u4AouhlZgaiJ55msYDuLsWby0g=",
-    "exports/components/badge.json": "sha256-TWHcpVotZtNBl/CmZp4Cwuq2dpT75MMU7uXDiILKoKw=",
-    "exports/components/breadcrumbs.json": "sha256-uJYyMxAhvzihHGDWMYV6GDdYZmPEIGrxPLYnal9FEaY=",
-    "exports/components/button-group.json": "sha256-U3tIjUIxzB1uUeXg82yXutLb7SkvBr1ASA5HjY7KRkk=",
-    "exports/components/button.json": "sha256-PWCXNzWleZkVQtwsKjeiZECQDmnhH/Q0Xei1e3o2yd8=",
-    "exports/components/card.json": "sha256-eYtNxQ2hS4e/jcUR87VqLSDFMGRk6hHZ/o4NNBhbR2g=",
-    "exports/components/chart.json": "sha256-o0B2irz8ssJzs0AjwcU5ttEPhwi8elwGuOXB08TX/3c=",
-    "exports/components/checkbox.json": "sha256-oa8Jwj73IRfL1XjYWMblXglksU/uF4Lkvmf7YdSD3XU=",
-    "exports/components/chip.json": "sha256-zaFTr7qluvvJSISqCmYbCi2Gj1g8jFMIJzGk3mExa5g=",
-    "exports/components/code-editor.json": "sha256-fLZXQqZLfHeQOm2vbiNbcnhBoph3nHrpJ63jp2EXwrU=",
-    "exports/components/combobox.json": "sha256-5e0Xfv+7jH5PN8DaKfKgy4Vny5T54Pc7XZQ9yCatoVg=",
-    "exports/components/command-palette.json": "sha256-DJjjMMleSDQeROdTMb1jNOW/qspz4VDk2TGKWOVlyP4=",
-    "exports/components/compact-dashboard.json": "sha256-U7fvgUZQ+yPgySeOTGDwhTyOn69n/w6ynT6b2LX2LuM=",
-    "exports/components/data-table.json": "sha256-m7NpvgvnJjjyRZX9rHAWYwUgfjf7N8+bWF0vckkNXnI=",
-    "exports/components/date-picker.json": "sha256-rNwHUE7pxq28p1aQ+icNn/y9/44ctJVpS66rTU2JsRI=",
-    "exports/components/description-list.json": "sha256-VWbbGvfkBSuAwbcYsqBAQBrVkn4Vkq2P3WwZtxjGBkk=",
-    "exports/components/diagnostics.json": "sha256-ermheSxXGAY77/ObrEPf51qR7IMLYql28nDuA6RqPBY=",
-    "exports/components/dialog.json": "sha256-ctY94Q5uazqdIoSLJJ/Y3n1+VWT/tLeSp8CoczMEieg=",
-    "exports/components/diff-view.json": "sha256-o+MurUlK+F9sfFdM69dUFiavUZ9x71gTuyLER6SCoo4=",
-    "exports/components/disclosure.json": "sha256-GbE+WEvkQL/h1CRdL5mmDC8cM4DqoBP2L21S4XfrZSA=",
-    "exports/components/drawer.json": "sha256-s6DyB2NRFzujnmyZCBjTq+0WkyR8VfunwRnu17Hjx14=",
-    "exports/components/editor-search.json": "sha256-6xtLN2oxQ/kz/gHUtHEh9Xz1j1jQy11SRCk1USo0ZU8=",
-    "exports/components/empty-state.json": "sha256-N8gAhJJR19VpYZkqV6OFu0ZHq3e1bVhOBMDptkiOEe8=",
-    "exports/components/error-state.json": "sha256-te22yGkEsatac2fmGv3F4fd9zjnIbatPtgOfTu+PFmI=",
-    "exports/components/field.json": "sha256-FCJryFVAlhiDzCuEjsWKo4g2pm9Jb0MXxM5p91dlKpU=",
-    "exports/components/fieldset.json": "sha256-yFWoJULeHV80sAsnIwKq1R0veqdKyxB/0/v9nImZB4E=",
-    "exports/components/file-browser.json": "sha256-2Tlk/zwzWuxEZbflWymfBSpr353uxtslC7eo/ZGmg2w=",
-    "exports/components/file-input.json": "sha256-CvE3woclpSp8hkqgcupgZy3/s4hqXHMMUhlk6Qs1rqQ=",
-    "exports/components/filterable-table.json": "sha256-6c29dQ0xcVDqYXMMgohP0skm2TUo/JqgwuuSvNZ6xDI=",
-    "exports/components/form-builder.json": "sha256-lmOSBBuKivZRdzDLrurF+cg1CHHJrDq41mHudRyJ5r4=",
-    "exports/components/i3-window-frame.json": "sha256-KBYx57+sCd0prtqY0xRYtO000tTtufVMCL56B5XOGzU=",
-    "exports/components/icon-button.json": "sha256-givivxuq5mcmrUQ8NLSLgvqFqRgWHXGM2E317Oi9/v4=",
-    "exports/components/kbd.json": "sha256-E1Ojgg9J0S7ro3XLGcwDiiNihA1O3QFSXf1IUpiuVeY=",
-    "exports/components/link.json": "sha256-5Q2uwiU0g69WvdGo1U3Jn5jaay+FY3XPumTSnwjNhek=",
-    "exports/components/list.json": "sha256-+Fzh1CDjpJwRyAQ+Bvizd0hoR4Jm3sm3nghAN93PrjU=",
-    "exports/components/loading-indicator.json": "sha256-KkPi52i9uFoP2WKqfmGlMwygYyApN/8vAl5LH1pwpes=",
-    "exports/components/menu.json": "sha256-Ufa/l3VJU1CD+SpCO8j5Pf78ScxPG+QD3rK0JUdf7C0=",
-    "exports/components/multiselect.json": "sha256-J2VzV0FsakvuLoX+8yNgp6euyFjND2GMnWY1FnkQiWw=",
-    "exports/components/number-field.json": "sha256-Ao9MqhMy1nRxL9gle1AoNplDUDuqX040LK3CSGs2bIQ=",
-    "exports/components/pagination.json": "sha256-cTsnLPlUFnzOOlZTkpUz2PmY8J2m2z5sxk/5ZL9Yhuo=",
-    "exports/components/popover.json": "sha256-HkJ150g5zUkb/iQqN0uuN/kL4uliwQhAIsBhjvG6W2E=",
-    "exports/components/progress.json": "sha256-nrKtOsV9BuuUI6e2zHo2l9UMeSZoLIimiJHm579Hdns=",
-    "exports/components/radio-group.json": "sha256-IwlxKnFzOGjJ9192Y9K+ezX+aAtrMABa6ePssB7bwK0=",
-    "exports/components/range.json": "sha256-fhEijJB1NOwa1mcg5IypweIDNwG+w4ZE0RGyQlpDUsE=",
-    "exports/components/repeater.json": "sha256-UEo//llQdVJDIVlxNlJVpKXs6/Fty4mRsCf9+iV6xes=",
-    "exports/components/search-field.json": "sha256-zIxtGgkIlR7MWmTQlbbR/ErYbtwUZ+dmka4lBqYl5bY=",
-    "exports/components/segmented-control.json": "sha256-pNUSFuXSR6u6Rp3yz4DDQ+mntSqzT1oJv6LJCa49Qxw=",
-    "exports/components/select.json": "sha256-vWnr6N316JDA9ft7J+pW8auONnRwNEpcfUDVkM5RT4A=",
-    "exports/components/settings-panel.json": "sha256-re3uQTt8HVPIFIwQHeQyXM8ty5YSXhiJraDK2QvpGOc=",
-    "exports/components/sidebar-nav.json": "sha256-5tTrxJDoDkAgoWI4w2qHfpE2gGHIVRP9Sw3vojUBk7A=",
-    "exports/components/skeleton.json": "sha256-MLEBpVvBSXPBtmg1x3wMXPhcPssg+fwNKvz/b+AbCAg=",
-    "exports/components/skip-link.json": "sha256-wbvhfKuGYnQzRyC6oj8z2l+p2283mtcgz4cb1e6NjAM=",
-    "exports/components/switch.json": "sha256-EcZ0LS9qFQ5RbF0gVEoggNi0T0ljFNQOimLBFhBE4ic=",
-    "exports/components/table.json": "sha256-fmpDW3/zcv46PG5X3HtxDsdie6Zuiwl2eVpesjuC1HE=",
-    "exports/components/tabs.json": "sha256-be5b2uoYQffej+HICEfALLc4lCvb7343bCw0VJlGRTQ=",
-    "exports/components/terminal.json": "sha256-TDaHzyst/MStEsQh6OmyKErNGVsYKLiReuj1qhHH1mk=",
-    "exports/components/text-field.json": "sha256-ZK7PcxjPvBgXx+hTP97rCBTSPSEjO/1nR6MRy918hSc=",
-    "exports/components/textarea.json": "sha256-4x/x6eXXo2aao/Dx5gSPrlKcXj6ztblnltTmrhpzm4g=",
-    "exports/components/time-picker.json": "sha256-J4gzGRbl2pt5Dax8giwl/Nzeqy/MW2eGkxQcIKEAfHE=",
-    "exports/components/timeline.json": "sha256-1tik8bOHu+sO2CI1hzgfDzA554N7789dStmbWWXXFr4=",
-    "exports/components/toast.json": "sha256-h+noqWcEh7HxybkZ7geHfw+BAmnuxwc1JqjgfjBWHo4=",
-    "exports/components/toolbar.json": "sha256-sB0fTIk7fgNXFjshKAKJQJd8W8kL7LmEcvXPIPUemiE=",
-    "exports/components/tooltip.json": "sha256-zHJOkbFWm8kVW4pUZNvO+RWzZO6o4abhNChnoK/8ePU=",
-    "exports/components/tree.json": "sha256-vx+JXco/UlIBtpKY7l6JlQn1MY45aQ56j+l0Ur6vRC8=",
-    "exports/components/wizard.json": "sha256-QzvuXUR2D5Xx74KpgTmlHsaq2cDmQEJ/5nh+ZDbDG1U=",
-    "exports/port-capabilities.json": "sha256-GZzHHeZ1JUrbr0zcErzYtoS9ZN29T8KNYmWY75l9lMM=",
+    "exports/components/admin-form.json": "sha256-tIjEc50Q/7zP58J+j2aAZbMBNk5l1fsKe/Gs8iUzNZw=",
+    "exports/components/alert.json": "sha256-IvUBUiCf7XacZi6krxpToV1DgdbPHX1L9rV0B3jFYfs=",
+    "exports/components/avatar.json": "sha256-gIaxIGolbNIw599bUjtYsTrd/NQQt4+e9PRNDqxf95k=",
+    "exports/components/badge.json": "sha256-yfhyrqtOhSZat/2/QDt+RZNIe6F8QYFNp3zaCsKFLEk=",
+    "exports/components/breadcrumbs.json": "sha256-5v4NrcWHhJgMDJRwQGjaiclYWPOmRY36Up9DU9e5VBk=",
+    "exports/components/button-group.json": "sha256-Wx28iuoNYhmup4A3p7rcMdMk9DyskEAHvSGeeN1vUvI=",
+    "exports/components/button.json": "sha256-fzP0GXijGDcOfHcm1RiXFPGHeG3/3Gu2OtEDV8bQtYc=",
+    "exports/components/card.json": "sha256-6q4E7sI4K4BOqhOofhgQmZDz+w03RazTh3RVQQfCVEY=",
+    "exports/components/chart.json": "sha256-mVUGUuRCibPNFz1/bUHejVPb+vuaX5fH74MUtDwaflc=",
+    "exports/components/checkbox.json": "sha256-7Gv9dJU+0CV48Osr9dG2EP8HBaC3Va2Lg+7IWQoeiKk=",
+    "exports/components/chip.json": "sha256-x2lyyfQDgpgdiYb7AeTJCPmO/ndDXv9s+6I+JtCmH3M=",
+    "exports/components/code-editor.json": "sha256-Y2syx71wvf7/MjVl8zzlIoBdKPdARn6gdZ1p4oIaDLw=",
+    "exports/components/combobox.json": "sha256-XgmYSVzCoRoCWUiyo+/qXWUwVqsCx2+2j6/U52bNtAU=",
+    "exports/components/command-palette.json": "sha256-d95HUzqjZoGqPQb+QImhpiX6oR3D+lxD3bbH9VxHUUI=",
+    "exports/components/compact-dashboard.json": "sha256-aRQ8FvigYI+pq37u3By46BShMuQT8VW1+A/FfccOjog=",
+    "exports/components/data-table.json": "sha256-uG6shqP/m2cS//ebIxzw6a07pFeDaTz+6FTQdul/bTY=",
+    "exports/components/date-picker.json": "sha256-ObKJH9PRhc6Zr8rZjsSX5En+EKrMmM6cCSrPDwpD95s=",
+    "exports/components/description-list.json": "sha256-JZZtqeP1x76y+r3S+Az4Cu6qRiRxGofhsIoVZMdn4Pc=",
+    "exports/components/diagnostics.json": "sha256-0Ev54L2dZWQODuogSvM0gqajVJqqdQ2xtw1hdOqsopw=",
+    "exports/components/dialog.json": "sha256-30192XALnsR2oaW0sHge2q859qybkk66XbVxb11yxTI=",
+    "exports/components/diff-view.json": "sha256-/lV5PsyCeii40LHKLtK9KEzWoxoNM/dOpQIGXNoV8ps=",
+    "exports/components/disclosure.json": "sha256-6sp/yN0TlLIrUjA7hroRejAGoDjvLINfjTmYL/xcGSM=",
+    "exports/components/drawer.json": "sha256-xm7iTv755P9kYetaUYbFzqhDWO3f2QucU0nAPiOmS/Q=",
+    "exports/components/editor-search.json": "sha256-keatHtbMAyGFVDGeAETPFijWv1ahmdIzU6dvbxw1n9w=",
+    "exports/components/empty-state.json": "sha256-samnce2XLmoaSq81Fo6nhGic79BP9s4GGS6zLlSwpVw=",
+    "exports/components/error-state.json": "sha256-fh2vhZ5qIsO9WQwwtu6BcR0Oc7DGQhltyhGqvDgk6ok=",
+    "exports/components/field.json": "sha256-1/oI4mOKwW8y3nHWymZJautxWOJJwNMDrO+ZsvFb+Jo=",
+    "exports/components/fieldset.json": "sha256-kmhttT79nBMxixEsaY02aLRnStRpvFhwc/nLgH+eJeE=",
+    "exports/components/file-browser.json": "sha256-usVNMckAETDLxEhw9AsddrxDK4yNj21QTJgDax8EKfI=",
+    "exports/components/file-input.json": "sha256-HRdmXXIN7GvBFahtFUMB+bN74Pjp1pUZpFtY9EbmJ9s=",
+    "exports/components/filterable-table.json": "sha256-TEssVUGgz9Z3afejteVmayUcvlzVuZgrtyn5tBm+QsQ=",
+    "exports/components/form-builder.json": "sha256-u8K7afkJindN0BiaTneGzyeULXY9ziJjQyN8jyxOdyE=",
+    "exports/components/i3-window-frame.json": "sha256-Bp7q+f+p+oQrig7ceBsPAV3lYV6USGIVFQGEJWbTRzc=",
+    "exports/components/icon-button.json": "sha256-h7RdNd8GAGYXqR7hFUWmfjIJ7RLTXG85JpeEB8ATxPk=",
+    "exports/components/kbd.json": "sha256-cFk0gzpbdaRNaOK69y+3V4vg2K5NebmSI+fyb5HMtbY=",
+    "exports/components/link.json": "sha256-24xCd0ikt08C3lLkBKQujf35XwVq92iBuGds2IhhLWk=",
+    "exports/components/list.json": "sha256-IG15F+yhKXuKjaM3AtwCz12e4+9IvBniIQ9SMDwdJTU=",
+    "exports/components/loading-indicator.json": "sha256-dFctWZ5iCbQHnPuwwIrAEZE+tbvFlmEsI0Cpe3AD978=",
+    "exports/components/menu.json": "sha256-5m4gkjY7uyIc5T09wVOOfIx78JBa07fL7mWW0ozUl54=",
+    "exports/components/multiselect.json": "sha256-A6GoJuTdi+ZzMewYXVNVhxgx1sLcToHJGBHC3rR/wK4=",
+    "exports/components/number-field.json": "sha256-YJmfo0oQSJ4c/pNgMYP3LInjl4IPA31s9nkyD90lSqA=",
+    "exports/components/pagination.json": "sha256-Mu780+FU/fRNpHk/EtpZojBQVVy+JcZuMUjz43u+iLY=",
+    "exports/components/popover.json": "sha256-iBGE9fuo9SdYCOAs7c0CFRab3oo87v6jAvlG6R09pPA=",
+    "exports/components/progress.json": "sha256-ffK1O9XM/AyXkZ2Hyrs0eGhPFxVToGWCNzF5yxQ9r6Q=",
+    "exports/components/radio-group.json": "sha256-ax9wxoF1AntCqs6leIoDwfSLZvGTWWFy4e//uHSaZMg=",
+    "exports/components/range.json": "sha256-8pb7sD1jRFcGvOt0XJ97C5s+IbGUvLXZ2SglYpU0C+k=",
+    "exports/components/repeater.json": "sha256-9tS+4o0xlXcBhja4FvcXmCScojj98kJli0TizZAMR/A=",
+    "exports/components/search-field.json": "sha256-hRUeeBhfqdBbTczVV3anqtdrJlvhbJ044/ewaDrFxDA=",
+    "exports/components/segmented-control.json": "sha256-a6VT+Y1OgiU5uPmqw1KcwFKN7Ft2p4tcAHF0/Q98S1M=",
+    "exports/components/select.json": "sha256-0lW4MXEML25btNdguFMHRJz7HbEuQPtRQsqtPme+iDE=",
+    "exports/components/settings-panel.json": "sha256-tsVdSx7mz0uqfeGAJ0fKUquPIYpWEpMDtl1fgpFTn3Y=",
+    "exports/components/sidebar-nav.json": "sha256-IqxJ1PGeKnY+n3PUbI0BIQgDlRCH4mOwb4OesrVxZtg=",
+    "exports/components/skeleton.json": "sha256-/3qEaMkj6VfNr92xoUN8Gb2R156Kh8EH/xRLp4Sjt4Q=",
+    "exports/components/skip-link.json": "sha256-86kseFBoJeDQcEaDTmFaizjUkRmnCFEroQQ0OxN3RfU=",
+    "exports/components/switch.json": "sha256-CJw6IL6giPJbB+zZgXQ52+593t2/U34kSckSosVBfXs=",
+    "exports/components/table.json": "sha256-o902ttOdPZR9XGkzRmKIWcublSUTUwQdFHX7SNGDJHE=",
+    "exports/components/tabs.json": "sha256-ROJ5GUPQX2pDFBOirei54GGQGm7iDyiWvyoEijppvaE=",
+    "exports/components/terminal.json": "sha256-Wu9sX6+/3Mgtoj4cusWKcRJ/KRX8ADBeW/Hju5ZrkNI=",
+    "exports/components/text-field.json": "sha256-gbmgSHjYJYXZHQbSO2+rzd2PNttYd8EHVcfqAt+Ppl4=",
+    "exports/components/textarea.json": "sha256-n1HfTdP2bZaYD99Ip0OXZ9V7BLJApzxTI/5V7YivU2Y=",
+    "exports/components/time-picker.json": "sha256-wVZ6wLlpk4CPfMlKSIqxe1dINdZEHqWoByEwQDnVAoM=",
+    "exports/components/timeline.json": "sha256-MuG/Zj7yXPxbtKyPqE3Z9ESS6NHHR86Yk/qjI7IN1z4=",
+    "exports/components/toast.json": "sha256-2lXoeWR6sLil/Tp/wEj9n0CK56OpFSjQUw+D8+JUQjc=",
+    "exports/components/toolbar.json": "sha256-Q8VEBm+SgloofB3iZvOslsB8/+McnmKvtoG/PqMV0so=",
+    "exports/components/tooltip.json": "sha256-uO2XlhHlEuuv2Z9ysTOV91Zskb1TyeIVBWU1jBTzqt0=",
+    "exports/components/tree.json": "sha256-39FZlz/luqyF+23QGHoDYOZ/QX2SOJYvclcJFjzRLhc=",
+    "exports/components/wizard.json": "sha256-MSTAzMc9nVS7dxUP+YnGmYTkI9oYNuKp9giGvFJnHik=",
+    "exports/port-capabilities.json": "sha256-nGcNxye3P8G94e8ZFDol1erpY5S6YtrbHeDKQE8TX38=",
     "exports/recipes/button/component.css": "sha256-fO1HSQ+wy0Zku8pqVotCypnOH+iDz8SAX9GxMspxA8U=",
-    "exports/recipes/button/example.html": "sha256-6Jd+ynSweVG+DO3EUHUbEUNSEbj5+6+iBzqXU4YLtIs=",
+    "exports/recipes/button/example.html": "sha256-4B2wGJr9wcM4Gd8XDvQQ/HklBVFzgFCQFhj/6f6IG+8=",
     "exports/recipes/button/foundation.css": "sha256-jm66ZdmdAhTyMVQIMKhzVZZm/NhB5ZbLq8g3UASzy98=",
     "exports/recipes/button/LICENSE.md": "sha256-vVf/G6WKJRqbyGZCppbAxMh+UAJdSzaPt5xWUujehyU=",
-    "exports/recipes/button/manifest.json": "sha256-F53gXYmWmlcFnCqjGbt0tOxf9Y8uKkpZB8C/R1oVcSI=",
+    "exports/recipes/button/manifest.json": "sha256-3PzFhFPKiulXWQ6hJ5iKfk4Xtjqhlsf3I2ffa6CmH5Y=",
     "exports/recipes/button/markup.html": "sha256-be2Beb08aKEqIKaDsxTq8IJdSdfNPJyWS2M5aav7R7k=",
-    "exports/recipes/button/README.md": "sha256-80dVa3TLTwhDpEaXVdkXftTNdzUISSIfCLjoSp/v7eU=",
+    "exports/recipes/button/README.md": "sha256-q+2emLMtoeIV0IzuiJrhzlmyWgvohZNlq4iK3zCzCeA=",
     "exports/recipes/button/template.html": "sha256-FfylFZ+qzMUFxQKnIdqJiYmC8p4F+cNxK8BJSTo8XU8=",
-    "exports/recipes/button/tokens.css": "sha256-AJa/NV2e+fHrwjzGqedaXaFmM54azgP/b9wytMJiVCs=",
-    "exports/recipes/button/two-instances.html": "sha256-HrqWaokDwmbQXfgRiFeyWToB617qs6c+t/UQLJs0Blk=",
+    "exports/recipes/button/tokens.css": "sha256-SSjGE97CwWJEj0dJ9y2dRWEXflWTkktp6jlzLppQ+AM=",
+    "exports/recipes/button/two-instances.html": "sha256-tS6QJLEu6eRMhPcmwvyr0yKxzCsY6Eml3qkm8TlmTL0=",
     "exports/recipes/dialog/component.css": "sha256-4rB4zaZ85zCcwBibahNlsmkeHocfBbSHfwT9xY/jwE8=",
-    "exports/recipes/dialog/example.html": "sha256-NfEbyJuZuMeGI56eQN6PW+EXPWfv8OjpngN0eMztvPQ=",
+    "exports/recipes/dialog/example.html": "sha256-tmrm7tsbM0d23rPE1yirt8f6i1caLe58sCa+bP9/20s=",
     "exports/recipes/dialog/foundation.css": "sha256-jm66ZdmdAhTyMVQIMKhzVZZm/NhB5ZbLq8g3UASzy98=",
     "exports/recipes/dialog/LICENSE.md": "sha256-vVf/G6WKJRqbyGZCppbAxMh+UAJdSzaPt5xWUujehyU=",
-    "exports/recipes/dialog/manifest.json": "sha256-oOFNDVTJqOuDPDd+167iDlcT1HQJSKVYJ19JqdgMg/Q=",
+    "exports/recipes/dialog/manifest.json": "sha256-o4Itbq33gXE5wwR3CXj2pTDdnPrWY0xL96sfGoh/1hM=",
     "exports/recipes/dialog/markup.html": "sha256-3KkpFAZ9Id+n/Pmpuu4Os4Wea88fXD39tHcFoCINEDQ=",
-    "exports/recipes/dialog/README.md": "sha256-1opuFssLS9hrVsviW1sRoOXq/l9P7pCwx5o/mD/lnpA=",
+    "exports/recipes/dialog/README.md": "sha256-rfrGVyWajF3RtU7VAZ3DcnbXvtT/zZ+A3baD6aSJD0k=",
     "exports/recipes/dialog/template.html": "sha256-ekYfQWlHu6z/dh7Wi1W3GZayMjEjxB5ru5nU7CKIqMg=",
-    "exports/recipes/dialog/tokens.css": "sha256-8v2razLbiqxJ36LPLf8rHQG219Ns6nFnyRGKJqh/evs=",
-    "exports/recipes/dialog/two-instances.html": "sha256-g3casyVMkw4tWfmMAkD3Aq9kp+I7vebgRqjir2H/52c=",
+    "exports/recipes/dialog/tokens.css": "sha256-ok8queKEkLGrkiAYZ1aT2zEAp1RNvj89zhZeSst6aIA=",
+    "exports/recipes/dialog/two-instances.html": "sha256-6I0iinjGM5M2kdmELDJZC6Xx2wHmEmQr+uI9BpRtze8=",
     "exports/recipes/text-field/component.css": "sha256-HLK6PSsbThQsRH4Y6wgRJXw4vWcrki2Vs0MZO6ANnGw=",
-    "exports/recipes/text-field/example.html": "sha256-t5lfDU+uh3gq1zaNtyPjyo1bRZ1kjRL/Niomvp9iguk=",
+    "exports/recipes/text-field/example.html": "sha256-9Scb3OuqAvTehG3p1ZCLXsk19yDS0joKqHmLyvo6nd8=",
     "exports/recipes/text-field/foundation.css": "sha256-jm66ZdmdAhTyMVQIMKhzVZZm/NhB5ZbLq8g3UASzy98=",
     "exports/recipes/text-field/LICENSE.md": "sha256-vVf/G6WKJRqbyGZCppbAxMh+UAJdSzaPt5xWUujehyU=",
-    "exports/recipes/text-field/manifest.json": "sha256-7U10sKwBOIQvZtIvDp/jWg224BkZ2tqppgto6jt3eCU=",
+    "exports/recipes/text-field/manifest.json": "sha256-16s0TmvTWW/KpW+snDXpIyY0jfJOT495lF30SdlwimM=",
     "exports/recipes/text-field/markup.html": "sha256-wARfGY6V60eMUhV8JNGMhY+EnikQvcPlSqkD5WPOULo=",
-    "exports/recipes/text-field/README.md": "sha256-Y76lmDknYtjOnDPP/kAcDy0bOLeF7/0c6wJ5EWE1OhI=",
+    "exports/recipes/text-field/README.md": "sha256-AasKLX3+Kz1Xafr4JpZo11vY4JD/CGUWVygV9q1EzMM=",
     "exports/recipes/text-field/template.html": "sha256-IlSlLS7sPC3MLqIdxMRQUP4sFnn/58lwM3AFALtdY3c=",
-    "exports/recipes/text-field/tokens.css": "sha256-zjVcq7LwtSQfrFMkCNQ3qgqOctaVyaz3bTbWiXOvDVw=",
-    "exports/recipes/text-field/two-instances.html": "sha256-IHBsJlaIcd5hGRPnWVXegcrdrvG287OvtxoWBW+Yua4=",
-    "exports/theme.compact.md": "sha256-JSKpZk12od+qtrVK7NbrVMY/zYwpG41Wjg5CTqROl9A=",
-    "exports/tokens.resolved.json": "sha256-bXayCdQMks1SP9DAswzrBp0H09xuxsAmb1JbTSYceDg=",
+    "exports/recipes/text-field/tokens.css": "sha256-0gFFEGEdjD7b8sZ7+Y4iIP94xuaZxxxnPnnzkhYKLTc=",
+    "exports/recipes/text-field/two-instances.html": "sha256-+pCrhwEeXS+rJvnq/UtykCXOwiUNsgobLLMYfI7oha0=",
+    "exports/theme.compact.md": "sha256-bjxH+hULBAdUfVbC//Msrpy5Fi0g7NzSjdstWUTPinw=",
+    "exports/tokens.resolved.json": "sha256-bKeJEQ8PJBiSh5jYcq6SyeSgWpeVWAE0Fh0KiTihHRk=",
     "LICENSE.md": "sha256-Ih5+DpqcNXGWJX6BbYgpt6psmJi9lGcXGJzuiU7elE0=",
     "schemas/json/theme.lock.schema.json": "sha256-y6m+IekX0jzgI6Rhel1Vx33fgz8RIT5A2OPyBL0qlXw=",
-    "spec/accessibility.md": "sha256-v0OBqI/EIrp4qIargTKTGld4OB6awm5yFGOImprAmh0=",
+    "spec/accessibility.md": "sha256-sOYlo9iV4Q08+36u9OQmsPMnt7A9TBBjFzJ/y6anSYw=",
     "spec/components/admin-form.md": "sha256-psXNtkf0hWi0tt/m7vTi3eRJmtJhprzxyNBFodDbAkw=",
     "spec/components/alert.md": "sha256-k9IwqPx1bXIWXpfPH18gn+BNvV/vzePBDlPQFEkKTa0=",
     "spec/components/avatar.md": "sha256-Fw+mYmdrJ7dafmDLnuWGb/ZJRv+QUtrz68tTom0bGkk=",
@@ -1123,7 +1177,7 @@
     "spec/components/chart.md": "sha256-PjKnFosDg/xhEVmQysfTsbsYZAFNX+a7BvRtiutPubc=",
     "spec/components/checkbox.md": "sha256-HZnoDCHM05Z0DZaceewmf2wMw07YUUdxD3E4ZXsbpwQ=",
     "spec/components/chip.md": "sha256-5qHXu5lXCe63CSVzuC22OtUaWtYYnR0tLeIIIyJoFPU=",
-    "spec/components/code-editor.md": "sha256-yTWy6hpE8boZgYrfCtF7Rn2VJc2SFHWuxg+mrfOIx/Y=",
+    "spec/components/code-editor.md": "sha256-8xjb1xKIVlcEZbULncadHfyj05G28riCb/eArq+uuGA=",
     "spec/components/combobox.md": "sha256-UBmG6Ete1ugeivGWwSysOZRr6drMX5ui9t56HQiGbiI=",
     "spec/components/command-palette.md": "sha256-S6aeFdk57991A+veoYUhEDNcxKY4mFoEdOafXR/eRhg=",
     "spec/components/compact-dashboard.md": "sha256-3xhw1Niyjz687vwrh5HI9E+EP2GEuZR1b1epUVWJ4/c=",
@@ -1179,10 +1233,10 @@
     "spec/components/tooltip.md": "sha256-BaZV6dUGOZ1PfS/P4nvccUicQfqeW5APITKiDmAEPJQ=",
     "spec/components/tree.md": "sha256-xzH6p2tk0R5fZ4uCs4AAKahHWG410WexZKTKPo/jHzM=",
     "spec/components/wizard.md": "sha256-N+fEu9MTa4QwIjeJcMtlOKjZ3OdS5ebVH1tA+BSU8cs=",
-    "spec/foundations.md": "sha256-067YclZNA1bc93tN7BC7CUq6zwltS4eluBvM1PLL7jw=",
-    "spec/identity.md": "sha256-TrKV9nW1uFJMYUzZSGsa/vcXkD0NDIlcjCHJgNEz4YA=",
-    "spec/portability.md": "sha256-KGDmt7UGop7xbh1z07rkGqGZLFz9+BIPlr8XIXDm6o0=",
-    "theme.json": "sha256-4NYtr9+dtCjVshxiuC/YkB+7FzdUbd4E60lcZknHTLE="
+    "spec/foundations.md": "sha256-WjZ2RjncO+tVDuuCQ+Qd4udDPKbF5Vo+yTmskxtpr8Q=",
+    "spec/identity.md": "sha256-2rbl1YJ6Zzv4o5eG59LCzGA2z3mLBtZWmAW9KVGbDd8=",
+    "spec/portability.md": "sha256-BnS8h3bj+VPRTIq4+dW5ImZTWJSPwnMALFwhFN6CMIQ=",
+    "theme.json": "sha256-M6YnnhussoaYCa37J0loH4NgosP0GjyVqFSp7QlS4Ow="
   },
   "components": {
     "admin-form": {
@@ -1573,7 +1627,6 @@
         "color.code.current-line",
         "color.code.gutter-bg",
         "color.code.gutter-rule",
-        "color.code.hued.string",
         "color.code.indent-guide",
         "color.code.line-number",
         "color.code.line-number-active",

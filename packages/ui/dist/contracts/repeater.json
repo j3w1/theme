@@ -227,9 +227,11 @@
       "color.interaction.text-selection.text",
       "color.primitive.alpha.transparent",
       "color.primitive.ink.0",
-      "color.primitive.ink.28",
-      "color.primitive.ink.30",
       "color.primitive.ink.40",
+      "color.primitive.modern.control",
+      "color.primitive.modern.divider",
+      "color.primitive.modern.panel",
+      "color.primitive.modern.red",
       "color.primitive.paper.100",
       "color.primitive.paper.90",
       "color.primitive.red.100",
@@ -239,14 +241,14 @@
       "color.primitive.red.400",
       "color.primitive.red.50",
       "color.primitive.red.550",
+      "color.primitive.red.650",
       "color.primitive.red.750",
       "color.primitive.red.800",
-      "color.primitive.red.850",
-      "color.primitive.rose.300",
       "color.primitive.rose.350",
-      "color.primitive.rose.600",
+      "color.primitive.rose.650",
       "color.primitive.rose.700",
       "color.primitive.rose.800",
+      "color.status.danger.text",
       "color.surface.canvas",
       "color.surface.default",
       "color.surface.input",
@@ -385,11 +387,9 @@
         "decisionIds": []
       },
       "color.border.control": {
-        "action": "use-and-report",
-        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
-        "decisionIds": [
-          "D-007"
-        ]
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
       },
       "color.border.disabled": {
         "action": "use",
@@ -562,6 +562,6 @@
   "copy": {
     "directory": "copy/repeater/",
     "manifest": "copy/repeater/manifest.json",
-    "digest": "sha256-NrLOtQpkc1mMpis4qt4+A5l1/BbQDwknMjXrmGKQP8s="
+    "digest": "sha256-WHPo/96QBm03LMBbG5dmCIDwDKsHFHH4485Ks5GK3Yw="
   }
 }

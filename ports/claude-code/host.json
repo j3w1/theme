@@ -18,7 +18,8 @@
     "observedVersions": [
       "2.1.281",
       "2.1.282",
-      "2.1.283"
+      "2.1.283",
+      "2.1.301"
     ],
     "themesDir": "$CLAUDE_CONFIG_DIR/themes (default ~/.claude/themes)",
     "setting": "theme",
@@ -52,8 +53,8 @@
       "why": "Shell entries on the default surface, distinct from your messages."
     },
     "blue_FOR_SUBAGENTS_ONLY": {
-      "token": "color.text.subtle",
-      "why": "Subagent names are text; seven distinct text roles for eight names, no hue outside status roles (D-001)."
+      "token": "color.terminal.ansi.12",
+      "why": "Preserve the named categorical terminal hue so concurrent agents remain distinguishable (D-041)."
     },
     "briefLabelClaude": {
       "token": "color.text.accent",
@@ -96,32 +97,32 @@
       "why": "The fullscreen sidebar is window chrome."
     },
     "cyan_FOR_SUBAGENTS_ONLY": {
-      "token": "color.text.bright",
-      "why": "Subagent names are text; the text roles give seven distinct readable values for eight names, so cyan shares pink's (see deviations)."
+      "token": "color.terminal.ansi.14",
+      "why": "Preserve the named categorical terminal hue so concurrent agents remain distinguishable (D-041)."
     },
     "diffAdded": {
       "token": "color.diff.added.bg",
       "why": "Added line background."
     },
     "diffAddedDimmed": {
-      "token": "color.interaction.disabled.bg",
-      "why": "A rejected edit is inert: the disabled background."
+      "token": "color.diff.added.bg",
+      "why": "Dimmed/rejected lines retain the corresponding semantic line tint; the host key is a background, not disabled text."
     },
     "diffAddedWord": {
-      "token": "color.diff.added.bg",
-      "why": "j3w1 marks word-level changes with an underline in the emphasis colour; Claude can only paint a background, and the emphasis colour fails text contrast as a fill, so the word keeps the line tint (see deviations)."
+      "token": "color.diff.added.shared-word",
+      "why": "Shared summary foreground and word background: balanced ~3:1 against black and rose text; an explicit host limitation, not an ordinary-text contrast pass."
     },
     "diffRemoved": {
       "token": "color.diff.removed.bg",
       "why": "Removed line background."
     },
     "diffRemovedDimmed": {
-      "token": "color.interaction.disabled.bg",
-      "why": "A rejected edit is inert: the disabled background."
+      "token": "color.diff.removed.bg",
+      "why": "Dimmed/rejected lines retain the corresponding semantic line tint; the host key is a background, not disabled text."
     },
     "diffRemovedWord": {
-      "token": "color.diff.removed.bg",
-      "why": "As diffAddedWord."
+      "token": "color.diff.removed.shared-word",
+      "why": "Shared summary foreground and word background: balanced ~3:1 against black and rose text; an explicit host limitation, not an ordinary-text contrast pass."
     },
     "effortUltra": {
       "token": "color.text.accent-strong",
@@ -140,8 +141,8 @@
       "why": "Shimmer step of the fast-mode accent."
     },
     "green_FOR_SUBAGENTS_ONLY": {
-      "token": "color.text.prose",
-      "why": "Subagent names are text; seven distinct text roles for eight names, no hue outside status roles (D-001)."
+      "token": "color.terminal.ansi.10",
+      "why": "Preserve the named categorical terminal hue so concurrent agents remain distinguishable (D-041)."
     },
     "ide": {
       "token": "color.text.muted",
@@ -165,31 +166,31 @@
     },
     "merged": {
       "token": "color.status.info.text",
-      "why": "A merged pull request is an informational end state; there is no purple (D-001)."
+      "why": "Informational end state; uses the shared information role."
     },
     "orange_FOR_SUBAGENTS_ONLY": {
-      "token": "color.text.accent",
-      "why": "Subagent names are text; seven distinct text roles for eight names, no hue outside status roles (D-001)."
+      "token": "color.terminal.ansi.3",
+      "why": "Preserve the named categorical terminal hue so concurrent agents remain distinguishable (D-041)."
     },
     "permission": {
-      "token": "color.border.overlay",
-      "why": "Permission prompts and pickers are floating layers: the overlay border (use-and-report, D-008)."
+      "token": "color.text.accent-strong",
+      "why": "Shared dialog border and inline-code foreground: use readable strong red rather than a decorative border role."
     },
     "permissionShimmer": {
       "token": "color.text.accent-strong",
       "why": "Shimmer step of the permission accent."
     },
     "pink_FOR_SUBAGENTS_ONLY": {
-      "token": "color.text.bright",
-      "why": "Subagent names are text; seven distinct text roles for eight names, no hue outside status roles (D-001)."
+      "token": "color.terminal.ansi.13",
+      "why": "Preserve the named categorical terminal hue so concurrent agents remain distinguishable (D-041)."
     },
     "planMode": {
       "token": "color.status.info.text",
       "why": "Plan mode is an informational state (status.info)."
     },
     "professionalBlue": {
-      "token": "color.text.muted",
-      "why": "Secondary informational text; no blue outside status roles (D-001)."
+      "token": "color.status.info.text",
+      "why": "Informational application indicator uses the blue informational role."
     },
     "promptBorder": {
       "token": "color.border.active",
@@ -200,8 +201,8 @@
       "why": "Shimmer step of the input border."
     },
     "purple_FOR_SUBAGENTS_ONLY": {
-      "token": "color.text.muted",
-      "why": "Subagent names are text; seven distinct text roles for eight names, no hue outside status roles (D-001)."
+      "token": "color.terminal.ansi.5",
+      "why": "Preserve the named categorical terminal hue so concurrent agents remain distinguishable (D-041)."
     },
     "rainbow_blue": {
       "token": "color.text.accent",
@@ -268,8 +269,8 @@
       "why": "A single-series meter uses the approved red chart role (spec/components/chart.md)."
     },
     "red_FOR_SUBAGENTS_ONLY": {
-      "token": "color.text.accent-strong",
-      "why": "Subagent names are text; seven distinct text roles for eight names, no hue outside status roles (D-001)."
+      "token": "color.terminal.ansi.9",
+      "why": "Preserve the named categorical terminal hue so concurrent agents remain distinguishable (D-041)."
     },
     "remember": {
       "token": "color.text.bright",
@@ -296,16 +297,16 @@
       "why": "The selected picker item takes the menu's selected-item text; Claude cannot paint the selection fill (see deviations)."
     },
     "text": {
-      "token": "color.text.default",
-      "why": "Default foreground; dark-ansi uses slot 15, which measures 4.45:1."
+      "token": "color.terminal.fg",
+      "why": "Owner-selected rose ordinary terminal and agent foreground, independent of the host base ANSI slot."
     },
     "userMessageBackground": {
       "token": "color.interaction.selection.bg",
-      "why": "Your messages sit on the selected-row red, a clearly visible band (6.24:1 for the rose text); chosen by the owner over the fainter raised surface."
+      "why": "Selected-row fill distinguishes the user message without tinting its readable neutral text."
     },
     "userMessageBackgroundHover": {
       "token": "color.interaction.hover.bg-strong",
-      "why": "Hover and expanded rows step up to the strong hover fill (5.71:1)."
+      "why": "Expanded and hovered user messages use the stronger hover fill."
     },
     "warning": {
       "token": "color.status.warning.text",
@@ -316,8 +317,8 @@
       "why": "The default profile has one approved amber; the shimmer stays flat."
     },
     "yellow_FOR_SUBAGENTS_ONLY": {
-      "token": "color.text.default",
-      "why": "Subagent names are text; seven distinct text roles for eight names, no hue outside status roles (D-001)."
+      "token": "color.terminal.ansi.11",
+      "why": "Preserve the named categorical terminal hue so concurrent agents remain distinguishable (D-041)."
     }
   },
   "deviations": [
@@ -326,7 +327,7 @@
       "target": "code blocks with a language",
       "kind": "unsupported",
       "specValue": "code.syntax.* roles",
-      "applied": "heritage ANSI slots chosen by Claude Code",
+      "applied": "semantic ANSI slots chosen by Claude Code",
       "reason": "Claude Code colours highlighted code from fixed ANSI slots that a theme cannot override; the terminal spec lets programs choose slot semantics."
     },
     {
@@ -339,19 +340,19 @@
     },
     {
       "component": "diff-view",
-      "target": "+ and - markers, file preview colours",
+      "target": "line + and - markers, file preview colours",
       "kind": "unsupported",
       "specValue": "color.diff.*.gutter",
-      "applied": "ANSI slots 10 and 9 and the preview slots",
-      "reason": "Hard-coded to ANSI slots in Claude Code."
+      "applied": "host-selected ANSI slots or inherited row foreground",
+      "reason": "Line-marker rendering depends on Claude Code renderer and syntax path; no independent line-marker theme key exists. The +N/-N edit summary is separately reached through the shared word-emphasis tokens."
     },
     {
       "component": "diff-view",
       "target": "word-level change",
       "kind": "substituted",
       "specValue": "color.diff.*.emphasis underline",
-      "applied": "color.diff.added.bg / color.diff.removed.bg",
-      "reason": "Claude Code can only paint word changes as a background; the emphasis colours fail text contrast as fills."
+      "applied": "color.diff.added.shared-word / color.diff.removed.shared-word",
+      "reason": "Claude Code 2.1.303 reuses diffAddedWord/diffRemovedWord for summary foreground and word background. Dedicated shared-word roles balance both at about 3:1 for black and ordinary rose; neither a 4.5:1 pass nor a guarantee for every syntax foreground. No separate summary or word-foreground setting exists."
     },
     {
       "component": "menu",
@@ -374,16 +375,16 @@
       "target": "inline code",
       "kind": "substituted",
       "specValue": "code roles",
-      "applied": "color.border.overlay",
-      "reason": "Claude Code draws inline code in its permission colour, which the kit maps to the overlay border for dialogs."
+      "applied": "color.text.accent-strong",
+      "reason": "Claude Code shares permission between dialog borders and inline-code text. Strong red preserves readable inline code while keeping dialogs red."
     },
     {
       "component": "terminal",
       "target": "subagent name colours",
       "kind": "substituted",
       "specValue": "eight distinct colours",
-      "applied": "seven distinct text roles; cyan shares pink's value",
-      "reason": "j3w1 has no categorical text palette and permits no hue outside status roles (D-001). Cyan and pink share one role (text.bright); two further pairs are close: orange text.accent / red text.accent-strong, purple text.muted / blue text.subtle."
+      "applied": "semantic terminal palette slots 3, 5, 9, 10, 11, 12, 13 and 14",
+      "reason": "Named agent hues follow the semantic terminal palette (D-041); normal and bright pairs may share values, so names and labels remain the identity channel."
     },
     {
       "component": "terminal",
@@ -391,7 +392,7 @@
       "kind": "substituted",
       "specValue": "color.interaction.text-selection.bg with color.interaction.text-selection.text",
       "applied": "color.code.selection-bg; spans keep their own colour",
-      "reason": "Claude Code has a selection background token only, so spans keep their own colour on color.code.selection-bg: text.default 7.02:1 and text.muted 4.71:1 stay above 4.5:1, while text.subtle (4.13:1), text.accent-strong and status.danger.text (4.38:1), and text.accent and border.overlay (3.81:1) fall below it inside the selection, as spec/foundations.md accepts for syntax roles in an editor selection."
+      "reason": "Claude Code has only a selection-background token; spans keep their own foreground. Contrast depends on each foreground, the selection fill and any host dimming; no selection-text override exists."
     }
   ]
 }

@@ -1,11 +1,32 @@
 # j3w1 for Windows 11
 
-Black surfaces, rose text, red accents and small black/red cursors, generated
+True-black surfaces, rose text, red borders and small black/red cursors, generated
 from the canonical j3w1 tokens. This port is **experimental**. Full styling
 requires an exact supported Windows 11 x64 host; it does not theme every
 application. [Coverage](COVERAGE.md) lists implemented surfaces, owner
 acceptances and open checks; [Compatibility](COMPATIBILITY.md) holds exact host
 boundaries, technical details, developer/offline instructions and history.
+
+## One-click setup from this checkout
+
+For a reviewed Git checkout with Node 24 and Git available, double-click the
+repository root's [setup.cmd](../../setup.cmd) and select Windows, or run from
+the repository root:
+
+```powershell
+node setup.mjs --ports windows
+```
+
+The common setup delegates to this port's existing installer with the exact
+committed checkout revision and runs its normal checks. Full mode remains the
+default and requires an exact supported host. To choose reduced native styling
+explicitly, use `--windows-mode Native`. Compatibility and runtime restrictions
+still apply. Save work, close app settings windows and reopen affected apps
+afterward. See [common setup options](../README.md#one-click-setup-from-a-checkout).
+
+This checkout route needs Node and Git. The standalone published-release
+installer below obtains its own dependencies and has different prerequisites.
+An unpublished candidate remains a candidate until a release is published.
 
 ## Install
 
@@ -97,9 +118,9 @@ for missing-cache, lock or conflict handling.
 | Area | Treatment |
 | --- | --- |
 | Windows personalization | Dark mode, transparency off, red accents/borders, black wallpaper, recoverable lock-screen image and 17 compact cursor roles |
-| Start, Search, taskbar and notifications | Full-mode shell adapters; black/rose/red surfaces, selection and focus. Search uses a continuous dark-red selected row with a rose frame |
+| Start, Search, taskbar and notifications | Full-mode shell adapters; black surfaces, neutral text, selection and red focus. Search uses a continuous selected row and visible frame |
 | Explorer | Themed chrome, native lists and menus, selection, scrollbars, pins, dividers and generic red closed/open folder defaults |
-| PowerToys previews | Exact-version text/code and Markdown adapters; black/rose previews and token-derived Markdown typography. Reselect the file after an update or rollback |
+| PowerToys previews | Exact-version text/code and Markdown adapters; black previews with neutral text and token-derived Markdown typography. Reselect the file after an update or rollback |
 | Notepad, Calculator and Paint | Separate exact-package adapters for their supported chrome and controls; Notepad also has a native editor adapter. Document and artwork colors remain under the host's control |
 | Windows Terminal | Existing supported settings plus Full-mode tab/menu chrome; commands, shortcuts and text sizes are preserved |
 | Existing PowerToys utilities | Supported FancyZones, Always On Top and Command Palette settings; optional layouts are added without assigning them |

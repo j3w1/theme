@@ -4,30 +4,30 @@
  */
 .theme-dark {
   --background-primary: #000000;
-  --background-primary-alt: #100c0c;
-  --background-secondary: #100c0c;
-  --settings-background: #100c0c;
-  --setting-items-background: #100c0c;
-  --modal-sidebar-background: #100c0c;
-  --search-result-background: #100c0c;
-  --background-secondary-alt: #160b0b;
-  --menu-background: #160b0b;
-  --suggestion-background: #160b0b;
-  --prompt-background: #160b0b;
-  --background-modifier-message: #160b0b;
-  --raised-background: #160b0b;
-  --modal-background: #241010;
+  --background-primary-alt: #0d0707;
+  --background-secondary: #0d0707;
+  --settings-background: #0d0707;
+  --setting-items-background: #0d0707;
+  --modal-sidebar-background: #0d0707;
+  --search-result-background: #0d0707;
+  --background-secondary-alt: #140b0b;
+  --menu-background: #140b0b;
+  --suggestion-background: #140b0b;
+  --prompt-background: #140b0b;
+  --background-modifier-message: #140b0b;
+  --raised-background: #140b0b;
+  --modal-background: #1c1010;
   --background-modifier-form-field: #000000;
   --background-modifier-form-field-hover: #000000;
   --dropdown-background: #000000;
-  --ribbon-background: #090707;
-  --ribbon-background-collapsed: #090707;
-  --titlebar-background: #090707;
-  --tab-container-background: #090707;
-  --status-bar-background: #090707;
-  --file-header-background: #090707;
-  --titlebar-background-focused: #1c0a09;
-  --file-header-background-focused: #1c0a09;
+  --ribbon-background: #000000;
+  --ribbon-background-collapsed: #000000;
+  --titlebar-background: #000000;
+  --tab-container-background: #000000;
+  --status-bar-background: #000000;
+  --file-header-background: #000000;
+  --titlebar-background-focused: #140b0b;
+  --file-header-background-focused: #140b0b;
   --background-modifier-cover: rgb(0 0 0 / 65%);
   --text-normal: #e99499;
   --nav-item-color: #e99499;
@@ -43,17 +43,17 @@
   --h4-color: #f4eeee;
   --h5-color: #f4eeee;
   --h6-color: #f4eeee;
-  --text-muted: #bd787d;
-  --titlebar-text-color: #bd787d;
-  --status-bar-text-color: #bd787d;
-  --tab-text-color: #bd787d;
-  --tab-text-color-focused: #bd787d;
-  --metadata-label-text-color: #bd787d;
-  --nav-heading-color-collapsed: #bd787d;
-  --nav-tag-color: #bd787d;
-  --text-faint: #ad7175;
-  --list-marker-color: #ad7175;
-  --input-placeholder-color: #a3676b;
+  --text-muted: #d4868b;
+  --titlebar-text-color: #d4868b;
+  --status-bar-text-color: #d4868b;
+  --tab-text-color: #d4868b;
+  --tab-text-color-focused: #d4868b;
+  --metadata-label-text-color: #d4868b;
+  --nav-heading-color-collapsed: #d4868b;
+  --nav-tag-color: #d4868b;
+  --text-faint: #bd787d;
+  --list-marker-color: #bd787d;
+  --input-placeholder-color: #bd787d;
   --text-accent: #f73f35;
   --color-accent: #f73f35;
   --nav-item-color-highlighted: #f73f35;
@@ -64,23 +64,23 @@
   --link-color-hover: #f4eeee;
   --link-external-color-hover: #f4eeee;
   --text-accent-hover: #f4eeee;
-  --background-modifier-border: #a3676b;
-  --checkbox-border-color: #a3676b;
-  --slider-thumb-border-color: #a3676b;
+  --background-modifier-border: #c81a1a;
+  --checkbox-border-color: #c81a1a;
+  --slider-thumb-border-color: #c81a1a;
   --background-modifier-border-hover: #e53935;
   --checkbox-border-color-hover: #e53935;
   --divider-color-hover: #e53935;
-  --divider-color: #2b0e0d;
-  --tab-divider-color: #2b0e0d;
-  --status-bar-border-color: #2b0e0d;
-  --hr-color: #2b0e0d;
-  --table-border-color: #2b0e0d;
-  --metadata-divider-color: #2b0e0d;
-  --code-border-color: #531310;
-  --tab-outline-color: #531310;
-  --modal-border-color: #e53935;
-  --menu-border-color: #e53935;
-  --prompt-border-color: #e53935;
+  --divider-color: #482b2b;
+  --tab-divider-color: #482b2b;
+  --status-bar-border-color: #482b2b;
+  --hr-color: #482b2b;
+  --table-border-color: #482b2b;
+  --metadata-divider-color: #482b2b;
+  --code-border-color: #482b2b;
+  --tab-outline-color: #482b2b;
+  --modal-border-color: #c81a1a;
+  --menu-border-color: #c81a1a;
+  --prompt-border-color: #c81a1a;
   --background-modifier-border-focus: #e53935;
   --nav-item-background-active: #531310;
   --nav-item-background-selected: #531310;
@@ -91,14 +91,14 @@
   --tab-text-color-focused-active: #f4eeee;
   --tab-text-color-focused-active-current: #f4eeee;
   --tab-text-color-active: #e99499;
-  --text-selection: #911410;
-  --background-modifier-hover: #1c0a09;
-  --nav-item-background-hover: #1c0a09;
-  --dropdown-background-hover: #1c0a09;
+  --text-selection: #420f0c;
+  --background-modifier-hover: #1c1010;
+  --nav-item-background-hover: #1c1010;
+  --dropdown-background-hover: #1c1010;
   --background-modifier-active-hover: #420f0c;
-  --scrollbar-bg: #0c0909;
-  --scrollbar-thumb-bg: #420f0c;
-  --scrollbar-active-thumb-bg: #911410;
+  --scrollbar-bg: #000000;
+  --scrollbar-thumb-bg: #986f72;
+  --scrollbar-active-thumb-bg: #d4868b;
   --interactive-accent: #7d1310;
   --checkbox-color: #7d1310;
   --text-on-accent: #ffa2a7;
@@ -112,34 +112,34 @@
   --icon-color-hover: #e99499;
   --icon-color-focused: #e99499;
   --icon-color-active: #f73f35;
-  --text-error: #f73f35;
-  --callout-error: #f73f35;
-  --callout-fail: #f73f35;
-  --callout-bug: #f73f35;
+  --text-error: #f07178;
+  --callout-error: #f07178;
+  --callout-fail: #f07178;
+  --callout-bug: #f07178;
   --background-modifier-error: #dc282e;
   --background-modifier-error-hover: #dc282e;
-  --text-warning: #c9973f;
-  --callout-warning: #c9973f;
-  --text-success: #86a46f;
-  --callout-success: #86a46f;
+  --text-warning: #e5c07b;
+  --callout-warning: #e5c07b;
+  --text-success: #82d9a0;
+  --callout-success: #82d9a0;
   --background-modifier-success: #0f1a0e;
-  --callout-info: #7e9ebb;
-  --code-background: #0c0909;
-  --caret-color: #e99499;
+  --callout-info: #82b4ff;
+  --code-background: #000000;
+  --caret-color: #ffa2a7;
   --text-highlight-bg: #630f0d;
-  --indentation-guide-color: #531310;
-  --indentation-guide-color-active: #531310;
+  --indentation-guide-color: #482b2b;
+  --indentation-guide-color-active: #482b2b;
   --code-normal: #e99499;
-  --code-comment: #ad7175;
-  --code-function: #ffa2a7;
-  --code-important: #d4868b;
-  --code-keyword: #f7463c;
+  --code-comment: #bd787d;
+  --code-function: #82b4ff;
+  --code-important: #e5c07b;
+  --code-keyword: #c7a0e8;
   --code-operator: #e99499;
-  --code-property: #e95551;
-  --code-punctuation: #e99499;
-  --code-string: #bd787d;
-  --code-tag: #f7463c;
-  --code-value: #d4868b;
+  --code-property: #78d4d4;
+  --code-punctuation: #d4868b;
+  --code-string: #82d9a0;
+  --code-tag: #f07178;
+  --code-value: #e5c07b;
   --font-interface-theme: "SauceCodePro NFM", "Source Code Pro", "Cascadia Mono", "Consolas", "Liberation Mono", "DejaVu Sans Mono", monospace;
   --font-text-theme: "SauceCodePro NFM", "Source Code Pro", "Cascadia Mono", "Consolas", "Liberation Mono", "DejaVu Sans Mono", monospace;
   --font-monospace-theme: "SauceCodePro NFM", "Source Code Pro", "Cascadia Mono", "Consolas", "Liberation Mono", "DejaVu Sans Mono", monospace;
@@ -212,30 +212,30 @@
 
 /* Preserve mapped roles where native dark mobile roots redeclare them. */
 .theme-dark.is-mobile {
-  --search-result-background: #100c0c;
+  --search-result-background: #0d0707;
   --background-modifier-form-field: #000000;
   --background-modifier-cover: rgb(0 0 0 / 65%);
-  --background-modifier-hover: #1c0a09;
-  --background-modifier-message: #160b0b;
-  --modal-border-color: #e53935;
-  --settings-background: #100c0c;
-  --setting-items-background: #100c0c;
-  --modal-background: #241010;
+  --background-modifier-hover: #1c1010;
+  --background-modifier-message: #140b0b;
+  --modal-border-color: #c81a1a;
+  --settings-background: #0d0707;
+  --setting-items-background: #0d0707;
+  --modal-background: #1c1010;
   --interactive-normal: rgb(0 0 0 / 0%);
   --interactive-hover: #630f0d;
 }
 
 .theme-dark.is-mobile.is-tablet {
-  --settings-background: #100c0c;
+  --settings-background: #0d0707;
 }
 
 .theme-dark.is-tablet {
-  --titlebar-background: #090707;
-  --titlebar-background-focused: #1c0a09;
+  --titlebar-background: #000000;
+  --titlebar-background-focused: #140b0b;
 }
 
 .theme-dark.is-phone {
-  --modal-sidebar-background: #100c0c;
+  --modal-sidebar-background: #0d0707;
 }
 
 
@@ -276,13 +276,13 @@
 
 /* File preview popovers use the canvas variable locally; raised content requires a scoped value. */
 .theme-dark .popover {
-  --background-primary: #160b0b;
+  --background-primary: #140b0b;
 }
 
 /* Native tooltip hardcodes white text and has no border variables. */
 .theme-dark .tooltip {
   color: #e99499;
-  border-color: #e53935;
+  border-color: #c81a1a;
   border-width: 1px;
   border-style: solid;
   box-shadow: none;
@@ -296,7 +296,7 @@
 /* Native prompt field needs a fill and border; compact start padding preserves the native clear-button end reservation. */
 .theme-dark .prompt input.prompt-input {
   background-color: #000000;
-  border-color: #a3676b;
+  border-color: #c81a1a;
   border-width: 1px;
   padding-block: 4px;
   padding-inline-start: 8px;
@@ -334,7 +334,7 @@
 
 /* Menus consume general hover fill; local strong hover keeps other surfaces restrained. */
 .theme-dark .menu {
-  --background-modifier-hover: #630f0d;
+  --background-modifier-hover: #1c1010;
 }
 
 /* Reserve the selected tree indicator in every state so labels do not move. */
@@ -376,7 +376,7 @@
 /* Native standard buttons use shadow as their boundary; supply a real outline edge after removing decorative shadows. */
 .theme-dark button:not(.clickable-icon) {
   border-width: 1px;
-  border-color: #a3676b;
+  border-color: #986f72;
   --text-color: #ffa2a7;
   border-style: solid;
 }
@@ -406,7 +406,7 @@
 /* Restore plain destructive text and border after the standard-button rule; confirmation variants override the text below. */
 .theme-dark button.mod-destructive {
   border-color: #e53935;
-  --text-color: #f73f35;
+  --text-color: #f07178;
 }
 
 /* Destructive hover uses its canonical fill and on-fill text; recolor the single native focus shadow on that fill. */
@@ -442,39 +442,39 @@
 /* Native select uses decorative input shadow as its edge; replace with a real control border. */
 .theme-dark select {
   border-width: 1px;
-  border-color: #a3676b;
+  border-color: #c81a1a;
   border-style: solid;
 }
 
 /* Native dropdown uses input shadow as its edge; replace with a real control border. */
 .theme-dark .dropdown {
   border-width: 1px;
-  border-color: #a3676b;
+  border-color: #c81a1a;
   border-style: solid;
 }
 
 /* Native combobox button uses input shadow as its edge; replace with a real control border. */
 .theme-dark .combobox-button {
   border-width: 1px;
-  border-color: #a3676b;
+  border-color: #c81a1a;
   border-style: solid;
 }
 
 /* Native disabled button uses opacity; explicit disabled roles retain contrast accounting. */
 .theme-dark button:not(.clickable-icon)[disabled] {
-  --text-color: #8a5559;
-  color: #8a5559;
-  background-color: #160b0b;
-  border-color: #7d1310;
+  --text-color: #a3676b;
+  color: #a3676b;
+  background-color: #0d0707;
+  border-color: #482b2b;
   opacity: 1;
 }
 
 /* Native disabled button uses opacity; explicit disabled roles retain contrast accounting. */
 .theme-dark button:not(.clickable-icon)[aria-disabled="true"] {
-  --text-color: #8a5559;
-  color: #8a5559;
-  background-color: #160b0b;
-  border-color: #7d1310;
+  --text-color: #a3676b;
+  color: #a3676b;
+  background-color: #0d0707;
+  border-color: #482b2b;
   opacity: 1;
 }
 

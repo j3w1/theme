@@ -17,6 +17,22 @@ Theme row is a guess. The strings count as verified only once imported into a
 real ChatGPT build and checked against the table; the tables work on their
 own.
 
+## Prepare an import from this checkout
+
+Double-click the repository root's [setup.cmd](../../setup.cmd) on Windows and
+select ChatGPT, or run from the repository root with Node 24 and Git available:
+
+```sh
+node setup.mjs --ports chatgpt
+```
+
+Setup stages the committed preset file and prints the next import steps. The
+app's Appearance import remains manual; the script does not change account or
+app settings. Choose a preset and follow the instructions below. See
+[common setup options](../README.md#one-click-setup-from-a-checkout) for dry runs,
+updates and multi-port selections. Staging does not establish that a given app
+build supports the import format.
+
 ## Install
 
 1. Open ChatGPT > Settings > Appearance. If you have a custom theme you want
@@ -50,7 +66,7 @@ Strongest j3w1 identity: bright rose text on true black.
 Import string (Settings > Appearance > Dark theme > Import):
 
 ```text
-codex-theme-v1:{"codeThemeId":"chatgpt","theme":{"accent":"#e53935","contrast":46,"fonts":{"code":null,"ui":null},"ink":"#ffa2a7","opaqueWindows":true,"semanticColors":{"diffAdded":"#86a46f","diffRemoved":"#f73f35","skill":"#e53935"},"surface":"#000000"},"variant":"dark"}
+codex-theme-v1:{"codeThemeId":"chatgpt","theme":{"accent":"#e53935","contrast":46,"fonts":{"code":null,"ui":null},"ink":"#ffa2a7","opaqueWindows":true,"semanticColors":{"diffAdded":"#82d9a0","diffRemoved":"#f07178","skill":"#e53935"},"surface":"#000000"},"variant":"dark"}
 ```
 
 ### j3w1 Reading
@@ -75,7 +91,7 @@ Calmer rose for long reading sessions.
 Import string (Settings > Appearance > Dark theme > Import):
 
 ```text
-codex-theme-v1:{"codeThemeId":"chatgpt","theme":{"accent":"#e53935","contrast":52,"fonts":{"code":null,"ui":null},"ink":"#e99499","opaqueWindows":true,"semanticColors":{"diffAdded":"#86a46f","diffRemoved":"#f73f35","skill":"#e53935"},"surface":"#000000"},"variant":"dark"}
+codex-theme-v1:{"codeThemeId":"chatgpt","theme":{"accent":"#e53935","contrast":52,"fonts":{"code":null,"ui":null},"ink":"#e99499","opaqueWindows":true,"semanticColors":{"diffAdded":"#82d9a0","diffRemoved":"#f07178","skill":"#e53935"},"surface":"#000000"},"variant":"dark"}
 ```
 <!-- presets:end -->
 

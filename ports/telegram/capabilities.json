@@ -1829,6 +1829,141 @@
       "state": "mapped",
       "surface": "controls",
       "reason": "The two Desktop thumbnail controls use an explicit near-white highlight over the media scrim: canonical bright-rose on-action text falls to 3.66:1 over white media. All ordinary action foregrounds remain bright rose under D-033."
+    },
+    "color.primitive.modern.panel": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.modern.raised": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.modern.overlay": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.modern.hover": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.modern.divider": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.modern.control": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.modern.disabled": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.modern.subtle": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.modern.muted": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.modern.text": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.modern.bright": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.modern.red": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.modern.green": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.modern.amber": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.modern.blue": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.modern.violet": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.modern.cyan": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.modern.bright-red": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.modern.bright-green": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.modern.bright-amber": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.modern.bright-blue": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.modern.bright-violet": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.modern.bright-cyan": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.modern.diff-shared-green": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.modern.diff-shared-red": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.diff.added.shared-word": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Host-specific shared diff foreground/background compromise; this port has no such shared role."
+    },
+    "color.diff.removed.shared-word": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Host-specific shared diff foreground/background compromise; this port has no such shared role."
     }
   },
   "rollback": "Choose the previous Telegram theme in Settings → Chat Settings/Appearance; restore the previous chat background if it was customised.",

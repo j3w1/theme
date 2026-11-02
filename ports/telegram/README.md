@@ -2,6 +2,22 @@
 
 For the official Telegram for Android and Telegram Desktop (Windows, Linux and macOS).
 
+## Prepare imports from this checkout
+
+Double-click the repository root's [setup.cmd](../../setup.cmd) on Windows and
+select Telegram, or run from the repository root with Node 24 and Git available:
+
+```sh
+node setup.mjs --ports telegram
+```
+
+Setup stages both committed theme files and prints their import steps. Open
+the matching file in Android or Telegram Desktop and confirm Apply and, on
+Desktop, Keep changes. Cloud publication, account login and app confirmation
+remain separate owner actions; this setup does not publish an account theme.
+Repeat after reviewing and checking out a newer revision. See
+[common setup options](../README.md#one-click-setup-from-a-checkout).
+
 <!-- install:start -->
 **Cloud installation: awaiting owner verification.** Until then, install from the files below.
 

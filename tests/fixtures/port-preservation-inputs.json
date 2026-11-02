@@ -1,0 +1,3366 @@
+{
+  "revision": "ac60902f8747bcfd321b795c2ba364db1790d1aa",
+  "manifest": {
+    "version": "3.0.0",
+    "name": "j3w1-theme"
+  },
+  "tokens": {
+    "color.border.active": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.898,
+          0.2235,
+          0.2078
+        ],
+        "alpha": 1,
+        "hex": "#e53935"
+      },
+      "css": "#e53935",
+      "aliasOf": "color.primitive.red.800",
+      "description": "Active or focused control border.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.border.divider": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1686,
+          0.0549,
+          0.051
+        ],
+        "alpha": 1,
+        "hex": "#2b0e0d"
+      },
+      "css": "#2b0e0d",
+      "aliasOf": "color.primitive.ink.60",
+      "description": "Hairline between rows and sections.",
+      "status": "proposed",
+      "deprecated": false,
+      "decisionId": "D-008",
+      "eligibility": {
+        "action": "use-and-report",
+        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+        "decisionIds": [
+          "D-008"
+        ]
+      }
+    },
+    "color.border.overlay": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.898,
+          0.2235,
+          0.2078
+        ],
+        "alpha": 1,
+        "hex": "#e53935"
+      },
+      "css": "#e53935",
+      "aliasOf": "color.primitive.red.800",
+      "description": "Every floating layer's 1px border.",
+      "status": "proposed",
+      "deprecated": false,
+      "decisionId": "D-008",
+      "eligibility": {
+        "action": "use-and-report",
+        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
+        "decisionIds": [
+          "D-008"
+        ]
+      }
+    },
+    "color.chart.grid": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1686,
+          0.0549,
+          0.051
+        ],
+        "alpha": 1,
+        "hex": "#2b0e0d"
+      },
+      "css": "#2b0e0d",
+      "aliasOf": "color.primitive.ink.60",
+      "description": "Grid lines.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.chart.series-2": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9686,
+          0.2471,
+          0.2078
+        ],
+        "alpha": 1,
+        "hex": "#f73f35"
+      },
+      "css": "#f73f35",
+      "aliasOf": "color.primitive.red.850",
+      "description": "Second series.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.code.bg": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.0471,
+          0.0353,
+          0.0353
+        ],
+        "alpha": 1,
+        "hex": "#0c0909"
+      },
+      "css": "#0c0909",
+      "aliasOf": "color.primitive.ink.20",
+      "description": "Editor background.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.code.caret": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9137,
+          0.5804,
+          0.6
+        ],
+        "alpha": 1,
+        "hex": "#e99499"
+      },
+      "css": "#e99499",
+      "aliasOf": "color.primitive.rose.700",
+      "description": "Caret (Xresources *cursorColor).",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.code.current-line": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1098,
+          0.0392,
+          0.0353
+        ],
+        "alpha": 1,
+        "hex": "#1c0a09"
+      },
+      "css": "#1c0a09",
+      "aliasOf": "color.primitive.ink.40",
+      "description": "Current line background.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.code.gutter-bg": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.0471,
+          0.0353,
+          0.0353
+        ],
+        "alpha": 1,
+        "hex": "#0c0909"
+      },
+      "css": "#0c0909",
+      "aliasOf": "color.primitive.ink.20",
+      "description": "Gutter background.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.code.hued.attribute": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7882,
+          0.5922,
+          0.2471
+        ],
+        "alpha": 1,
+        "hex": "#c9973f"
+      },
+      "css": "#c9973f",
+      "aliasOf": "color.primitive.amber.500",
+      "description": "Markup attribute names in amber (D-030).",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-030",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.code.hued.constant": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7882,
+          0.5922,
+          0.2471
+        ],
+        "alpha": 1,
+        "hex": "#c9973f"
+      },
+      "css": "#c9973f",
+      "aliasOf": "color.primitive.amber.500",
+      "description": "Constants in amber (D-030).",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-030",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.code.hued.escape": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7882,
+          0.5922,
+          0.2471
+        ],
+        "alpha": 1,
+        "hex": "#c9973f"
+      },
+      "css": "#c9973f",
+      "aliasOf": "color.primitive.amber.500",
+      "description": "Escapes in amber (D-030).",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-030",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.code.hued.function": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7882,
+          0.5922,
+          0.2471
+        ],
+        "alpha": 1,
+        "hex": "#c9973f"
+      },
+      "css": "#c9973f",
+      "aliasOf": "color.primitive.amber.500",
+      "description": "Function and method names in amber (D-030).",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-030",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.code.hued.number": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7882,
+          0.5922,
+          0.2471
+        ],
+        "alpha": 1,
+        "hex": "#c9973f"
+      },
+      "css": "#c9973f",
+      "aliasOf": "color.primitive.amber.500",
+      "description": "Numbers in amber (D-030).",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-030",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.code.hued.operator": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          0.6353,
+          0.6549
+        ],
+        "alpha": 1,
+        "hex": "#ffa2a7"
+      },
+      "css": "#ffa2a7",
+      "aliasOf": "color.primitive.rose.800",
+      "description": "Operators in bright rose (D-030).",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-030",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.code.hued.property": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.4941,
+          0.6196,
+          0.7333
+        ],
+        "alpha": 1,
+        "hex": "#7e9ebb"
+      },
+      "css": "#7e9ebb",
+      "aliasOf": "color.primitive.blue.500",
+      "description": "Object properties in blue (D-030).",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-030",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.code.hued.string": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.5255,
+          0.6431,
+          0.4353
+        ],
+        "alpha": 1,
+        "hex": "#86a46f"
+      },
+      "css": "#86a46f",
+      "aliasOf": "color.primitive.green.500",
+      "description": "Strings in green (D-030).",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-030",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.code.hued.type": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.4941,
+          0.6196,
+          0.7333
+        ],
+        "alpha": 1,
+        "hex": "#7e9ebb"
+      },
+      "css": "#7e9ebb",
+      "aliasOf": "color.primitive.blue.500",
+      "description": "Types in blue (D-030).",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-030",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.code.line-number": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6784,
+          0.4431,
+          0.4588
+        ],
+        "alpha": 1,
+        "hex": "#ad7175"
+      },
+      "css": "#ad7175",
+      "aliasOf": "color.primitive.rose.450",
+      "description": "Line numbers (5.10:1; replaces the site's #7d1310).",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-003",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.code.search-match-bg": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.3882,
+          0.0588,
+          0.051
+        ],
+        "alpha": 1,
+        "hex": "#630f0d"
+      },
+      "css": "#630f0d",
+      "aliasOf": "color.primitive.red.150",
+      "description": "Other search matches.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.code.selection-bg": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.2588,
+          0.0588,
+          0.0471
+        ],
+        "alpha": 1,
+        "hex": "#420f0c"
+      },
+      "css": "#420f0c",
+      "aliasOf": "color.primitive.red.50",
+      "description": "Editor selection background (muted text stays 4.71:1).",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.code.syntax.comment": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6784,
+          0.4431,
+          0.4588
+        ],
+        "alpha": 1,
+        "hex": "#ad7175"
+      },
+      "css": "#ad7175",
+      "aliasOf": "color.primitive.rose.450",
+      "description": "Comments, italic (color8 lineage, corrected for contrast).",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-003",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.code.syntax.deprecated": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6784,
+          0.4431,
+          0.4588
+        ],
+        "alpha": 1,
+        "hex": "#ad7175"
+      },
+      "css": "#ad7175",
+      "aliasOf": "color.primitive.rose.450",
+      "description": "Deprecated symbol: line-through.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.code.syntax.heading": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9137,
+          0.3333,
+          0.3176
+        ],
+        "alpha": 1,
+        "hex": "#e95551"
+      },
+      "css": "#e95551",
+      "aliasOf": "color.primitive.red.810",
+      "description": "Markup headings (site .syntax-heading), lifted by D-029.",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-029",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.code.syntax.invalid": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9137,
+          0.3333,
+          0.3176
+        ],
+        "alpha": 1,
+        "hex": "#e95551"
+      },
+      "css": "#e95551",
+      "aliasOf": "color.primitive.red.810",
+      "description": "Invalid text: wavy underline; lifted by D-029.",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-029",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.code.syntax.keyword": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9686,
+          0.2745,
+          0.2353
+        ],
+        "alpha": 1,
+        "hex": "#f7463c"
+      },
+      "css": "#f7463c",
+      "aliasOf": "color.primitive.red.860",
+      "description": "Keywords (Xresources color5 lineage), lifted by D-029.",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-029",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.code.syntax.punctuation": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9137,
+          0.5804,
+          0.6
+        ],
+        "alpha": 1,
+        "hex": "#e99499"
+      },
+      "css": "#e99499",
+      "aliasOf": "color.primitive.rose.700",
+      "description": "Punctuation.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.code.syntax.tag": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9686,
+          0.2745,
+          0.2353
+        ],
+        "alpha": 1,
+        "hex": "#f7463c"
+      },
+      "css": "#f7463c",
+      "aliasOf": "color.primitive.red.860",
+      "description": "Markup tags, lifted by D-029.",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-029",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.code.syntax.variable": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9137,
+          0.5804,
+          0.6
+        ],
+        "alpha": 1,
+        "hex": "#e99499"
+      },
+      "css": "#e99499",
+      "aliasOf": "color.primitive.rose.700",
+      "description": "Variables and default text.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.code.whitespace": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.4902,
+          0.0745,
+          0.0627
+        ],
+        "alpha": 1,
+        "hex": "#7d1310"
+      },
+      "css": "#7d1310",
+      "aliasOf": "color.primitive.red.200",
+      "description": "Rendered whitespace (decorative).",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.diff.added.bg": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.0588,
+          0.102,
+          0.0549
+        ],
+        "alpha": 1,
+        "hex": "#0f1a0e"
+      },
+      "css": "#0f1a0e",
+      "aliasOf": "color.primitive.green.tint",
+      "description": "Added line background.",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-001",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.diff.modified.bg": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1216,
+          0.102,
+          0.0471
+        ],
+        "alpha": 1,
+        "hex": "#1f1a0c"
+      },
+      "css": "#1f1a0c",
+      "aliasOf": "color.primitive.amber.tint",
+      "description": "Modified line background.",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-001",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.diff.modified.gutter": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7882,
+          0.5922,
+          0.2471
+        ],
+        "alpha": 1,
+        "hex": "#c9973f"
+      },
+      "css": "#c9973f",
+      "aliasOf": "color.primitive.amber.500",
+      "description": "Modified gutter mark and ~.",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-001",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.diff.removed.bg": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1686,
+          0.0549,
+          0.051
+        ],
+        "alpha": 1,
+        "hex": "#2b0e0d"
+      },
+      "css": "#2b0e0d",
+      "aliasOf": "color.primitive.ink.60",
+      "description": "Removed line background.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.interaction.disabled.bg": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.0863,
+          0.0431,
+          0.0431
+        ],
+        "alpha": 1,
+        "hex": "#160b0b"
+      },
+      "css": "#160b0b",
+      "aliasOf": "color.primitive.ink.30",
+      "description": "Disabled control fill.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.interaction.focus.ring": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.898,
+          0.2235,
+          0.2078
+        ],
+        "alpha": 1,
+        "hex": "#e53935"
+      },
+      "css": "#e53935",
+      "aliasOf": "color.primitive.red.800",
+      "description": "1px dashed focus ring on controls and rows.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.interaction.hover.bg-strong": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.3882,
+          0.0588,
+          0.051
+        ],
+        "alpha": 1,
+        "hex": "#630f0d"
+      },
+      "css": "#630f0d",
+      "aliasOf": "color.primitive.red.150",
+      "description": "Hover on menu items; D-027 moved links to interaction.hover.bg.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.interaction.selection.bg": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.3255,
+          0.0745,
+          0.0627
+        ],
+        "alpha": 1,
+        "hex": "#531310"
+      },
+      "css": "#531310",
+      "aliasOf": "color.primitive.red.100",
+      "description": "Selected row, tab, workspace; D-027 recessed the fill, leaving the 2px indicator and the check to carry selection.",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-027",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.interaction.selection.text": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9569,
+          0.9333,
+          0.9333
+        ],
+        "alpha": 1,
+        "hex": "#f4eeee"
+      },
+      "css": "#f4eeee",
+      "aliasOf": "color.primitive.paper.90",
+      "description": "Text on the selection.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.status.danger.text": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9686,
+          0.2471,
+          0.2078
+        ],
+        "alpha": 1,
+        "hex": "#f73f35"
+      },
+      "css": "#f73f35",
+      "aliasOf": "color.primitive.red.850",
+      "description": "Danger text (5.40:1).",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.status.info.text": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.4941,
+          0.6196,
+          0.7333
+        ],
+        "alpha": 1,
+        "hex": "#7e9ebb"
+      },
+      "css": "#7e9ebb",
+      "aliasOf": "color.primitive.blue.500",
+      "description": "Info text (7.08:1).",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-001",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.status.success.text": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.5255,
+          0.6431,
+          0.4353
+        ],
+        "alpha": 1,
+        "hex": "#86a46f"
+      },
+      "css": "#86a46f",
+      "aliasOf": "color.primitive.green.500",
+      "description": "Success text (7.13:1).",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-001",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.status.warning.text": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7882,
+          0.5922,
+          0.2471
+        ],
+        "alpha": 1,
+        "hex": "#c9973f"
+      },
+      "css": "#c9973f",
+      "aliasOf": "color.primitive.amber.500",
+      "description": "Warning text (7.54:1).",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-001",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.surface.canvas": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0,
+          0,
+          0
+        ],
+        "alpha": 1,
+        "hex": "#000000"
+      },
+      "css": "#000000",
+      "aliasOf": "color.primitive.ink.0",
+      "description": "Page and terminal background.",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-023",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.surface.chrome": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.03529411764705882,
+          0.027450980392156862,
+          0.027450980392156862
+        ],
+        "alpha": 1,
+        "hex": "#090707"
+      },
+      "css": "#090707",
+      "aliasOf": "color.primitive.ink.14",
+      "description": "Window chrome, title bars, bars.",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-023",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.surface.default": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.06274509803921569,
+          0.047058823529411764,
+          0.047058823529411764
+        ],
+        "alpha": 1,
+        "hex": "#100c0c"
+      },
+      "css": "#100c0c",
+      "aliasOf": "color.primitive.ink.28",
+      "description": "Panels and cards.",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-023",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.surface.overlay": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1412,
+          0.0627,
+          0.0627
+        ],
+        "alpha": 1,
+        "hex": "#241010"
+      },
+      "css": "#241010",
+      "aliasOf": "color.primitive.ink.52",
+      "description": "Dialogs and drawers.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.terminal.ansi.0": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.0471,
+          0.0353,
+          0.0353
+        ],
+        "alpha": 1,
+        "hex": "#0c0909"
+      },
+      "css": "#0c0909",
+      "aliasOf": "color.primitive.ansi.0",
+      "description": "ANSI slot 0, exact heritage value.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.terminal.ansi.1": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9098,
+          0.2941,
+          0.2941
+        ],
+        "alpha": 1,
+        "hex": "#e84b4b"
+      },
+      "css": "#e84b4b",
+      "aliasOf": "color.primitive.ansi-readable.1",
+      "description": "ANSI slot 1, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-029",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.terminal.ansi.10": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.8627,
+          0.3098,
+          0.2863
+        ],
+        "alpha": 1,
+        "hex": "#dc4f49"
+      },
+      "css": "#dc4f49",
+      "aliasOf": "color.primitive.ansi-readable.10",
+      "description": "ANSI slot 10, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-029",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.terminal.ansi.11": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.702,
+          0.4431,
+          0.4588
+        ],
+        "alpha": 1,
+        "hex": "#b37175"
+      },
+      "css": "#b37175",
+      "aliasOf": "color.primitive.ansi.11",
+      "description": "ANSI slot 11, exact heritage value.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.terminal.ansi.12": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.8588,
+          0.2627,
+          0.2275
+        ],
+        "alpha": 1,
+        "hex": "#db433a"
+      },
+      "css": "#db433a",
+      "aliasOf": "color.primitive.ansi-readable.12",
+      "description": "ANSI slot 12, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-029",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.terminal.ansi.13": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9294,
+          0.3255,
+          0.3765
+        ],
+        "alpha": 1,
+        "hex": "#ed5360"
+      },
+      "css": "#ed5360",
+      "aliasOf": "color.primitive.ansi-readable.13",
+      "description": "ANSI slot 13, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-029",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.terminal.ansi.14": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.902,
+          0.3373,
+          0.3529
+        ],
+        "alpha": 1,
+        "hex": "#e6565a"
+      },
+      "css": "#e6565a",
+      "aliasOf": "color.primitive.ansi-readable.14",
+      "description": "ANSI slot 14, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-029",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.terminal.ansi.15": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6941,
+          0.4941,
+          0.5059
+        ],
+        "alpha": 1,
+        "hex": "#b17e81"
+      },
+      "css": "#b17e81",
+      "aliasOf": "color.primitive.ansi-readable.15",
+      "description": "ANSI slot 15, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-029",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.terminal.ansi.2": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7412,
+          0.4706,
+          0.4902
+        ],
+        "alpha": 1,
+        "hex": "#bd787d"
+      },
+      "css": "#bd787d",
+      "aliasOf": "color.primitive.ansi.2",
+      "description": "ANSI slot 2, exact heritage value.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.terminal.ansi.3": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.8314,
+          0.5255,
+          0.5451
+        ],
+        "alpha": 1,
+        "hex": "#d4868b"
+      },
+      "css": "#d4868b",
+      "aliasOf": "color.primitive.ansi.3",
+      "description": "ANSI slot 3, exact heritage value.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.terminal.ansi.4": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.898,
+          0.1922,
+          0.1922
+        ],
+        "alpha": 1,
+        "hex": "#e53131"
+      },
+      "css": "#e53131",
+      "aliasOf": "color.primitive.ansi-readable.4",
+      "description": "ANSI slot 4, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-029",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.terminal.ansi.5": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9686,
+          0.2471,
+          0.2078
+        ],
+        "alpha": 1,
+        "hex": "#f73f35"
+      },
+      "css": "#f73f35",
+      "aliasOf": "color.primitive.ansi.5",
+      "description": "ANSI slot 5, exact heritage value.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.terminal.ansi.6": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          0.4784,
+          0.4
+        ],
+        "alpha": 1,
+        "hex": "#ff7a66"
+      },
+      "css": "#ff7a66",
+      "aliasOf": "color.primitive.coral.700",
+      "description": "ANSI slot 6, coral (D-032); the heritage-ansi profile keeps the exact value.",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-032",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.terminal.ansi.7": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          0.6353,
+          0.6549
+        ],
+        "alpha": 1,
+        "hex": "#ffa2a7"
+      },
+      "css": "#ffa2a7",
+      "aliasOf": "color.primitive.ansi.7",
+      "description": "ANSI slot 7, exact heritage value.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.terminal.ansi.8": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7176,
+          0.1098,
+          0.0902
+        ],
+        "alpha": 1,
+        "hex": "#b71c17"
+      },
+      "css": "#b71c17",
+      "aliasOf": "color.primitive.ansi-readable.8",
+      "description": "ANSI slot 8, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-029",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.terminal.ansi.9": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9176,
+          0.2196,
+          0.2
+        ],
+        "alpha": 1,
+        "hex": "#ea3833"
+      },
+      "css": "#ea3833",
+      "aliasOf": "color.primitive.ansi-readable.9",
+      "description": "ANSI slot 9, readable heritage (D-029); the heritage-ansi profile keeps the exact value.",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-029",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.terminal.bg": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.0471,
+          0.0353,
+          0.0353
+        ],
+        "alpha": 1,
+        "hex": "#0c0909"
+      },
+      "css": "#0c0909",
+      "aliasOf": "color.primitive.ink.20",
+      "description": "Terminal background.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.terminal.cursor": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9137,
+          0.5804,
+          0.6
+        ],
+        "alpha": 1,
+        "hex": "#e99499"
+      },
+      "css": "#e99499",
+      "aliasOf": "color.primitive.rose.700",
+      "description": "Terminal cursor.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.terminal.fg": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9137,
+          0.5804,
+          0.6
+        ],
+        "alpha": 1,
+        "hex": "#e99499"
+      },
+      "css": "#e99499",
+      "aliasOf": "color.primitive.rose.700",
+      "description": "Terminal foreground.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.terminal.selection-bg": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.5686,
+          0.0784,
+          0.0627
+        ],
+        "alpha": 1,
+        "hex": "#911410"
+      },
+      "css": "#911410",
+      "aliasOf": "color.primitive.red.350",
+      "description": "Terminal selection.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.terminal.selection-text": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9569,
+          0.9333,
+          0.9333
+        ],
+        "alpha": 1,
+        "hex": "#f4eeee"
+      },
+      "css": "#f4eeee",
+      "aliasOf": "color.primitive.paper.90",
+      "description": "Terminal selection text.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.text.accent": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.898,
+          0.2235,
+          0.2078
+        ],
+        "alpha": 1,
+        "hex": "#e53935"
+      },
+      "css": "#e53935",
+      "aliasOf": "color.primitive.red.800",
+      "description": "Accent text on canvas and default surfaces only.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.text.accent-strong": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9686,
+          0.2471,
+          0.2078
+        ],
+        "alpha": 1,
+        "hex": "#f73f35"
+      },
+      "css": "#f73f35",
+      "aliasOf": "color.primitive.red.850",
+      "description": "Accent text safe on every surface.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.text.bright": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          0.6353,
+          0.6549
+        ],
+        "alpha": 1,
+        "hex": "#ffa2a7"
+      },
+      "css": "#ffa2a7",
+      "aliasOf": "color.primitive.rose.800",
+      "description": "Headings and emphasis. Links use color.text.link.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.text.default": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9137,
+          0.5804,
+          0.6
+        ],
+        "alpha": 1,
+        "hex": "#e99499"
+      },
+      "css": "#e99499",
+      "aliasOf": "color.primitive.rose.700",
+      "description": "Interface and body text.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.text.inverse": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.0471,
+          0.0353,
+          0.0353
+        ],
+        "alpha": 1,
+        "hex": "#0c0909"
+      },
+      "css": "#0c0909",
+      "aliasOf": "color.primitive.ink.20",
+      "description": "Text on inverted surfaces.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.text.link": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9686,
+          0.2471,
+          0.2078
+        ],
+        "alpha": 1,
+        "hex": "#f73f35"
+      },
+      "css": "#f73f35",
+      "aliasOf": "color.primitive.red.850",
+      "description": "Strong red link text, distinct from rose body text and headings; retain the underline.",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-024",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.text.muted": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7412,
+          0.4706,
+          0.4902
+        ],
+        "alpha": 1,
+        "hex": "#bd787d"
+      },
+      "css": "#bd787d",
+      "aliasOf": "color.primitive.rose.600",
+      "description": "Secondary text; the darkest colour permitted for chrome text.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.text.prose": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9569,
+          0.9333,
+          0.9333
+        ],
+        "alpha": 1,
+        "hex": "#f4eeee"
+      },
+      "css": "#f4eeee",
+      "aliasOf": "color.primitive.paper.90",
+      "description": "Long-form reading text.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "color.text.subtle": {
+      "type": "color",
+      "value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6784,
+          0.4431,
+          0.4588
+        ],
+        "alpha": 1,
+        "hex": "#ad7175"
+      },
+      "css": "#ad7175",
+      "aliasOf": "color.primitive.rose.450",
+      "description": "Metadata, comments, line numbers.",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-003",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "font.family.mono": {
+      "type": "fontFamily",
+      "value": [
+        "SauceCodePro NFM",
+        "Source Code Pro",
+        "Cascadia Mono",
+        "Consolas",
+        "Liberation Mono",
+        "DejaVu Sans Mono",
+        "monospace"
+      ],
+      "css": "\"SauceCodePro NFM\", \"Source Code Pro\", \"Cascadia Mono\", \"Consolas\", \"Liberation Mono\", \"DejaVu Sans Mono\", monospace",
+      "aliasOf": null,
+      "description": "One family for chrome, reading and code. Not bundled; see theme.json font.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "font.size.code": {
+      "type": "dimension",
+      "value": {
+        "value": 13,
+        "unit": "px"
+      },
+      "css": "13px",
+      "aliasOf": null,
+      "description": null,
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "font.size.reading": {
+      "type": "dimension",
+      "value": {
+        "value": 15,
+        "unit": "px"
+      },
+      "css": "15px",
+      "aliasOf": null,
+      "description": null,
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "font.size.terminal": {
+      "type": "dimension",
+      "value": {
+        "value": 13,
+        "unit": "px"
+      },
+      "css": "13px",
+      "aliasOf": null,
+      "description": "URxvt pixelsize 13.",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    }
+  },
+  "ports": {
+    "chatgpt": {
+      "port": {
+        "schemaVersion": 1,
+        "id": "chatgpt",
+        "displayName": "ChatGPT desktop app (Appearance)",
+        "status": "experimental",
+        "themeVersion": "3.0.0",
+        "tokenDigest": "sha256-h3/qJhmqhRVSMyk4fTMOa8x+mqIFdA3yvlyqOqgttp4=",
+        "profile": "default",
+        "format": "chatgpt-appearance",
+        "targetVersions": [
+          "ChatGPT desktop app with Settings > Appearance import (2026-09)"
+        ],
+        "testedVersions": [],
+        "os": [
+          "windows",
+          "macos"
+        ],
+        "surfaces": {
+          "supported": [
+            "appearance-settings"
+          ],
+          "inherited": [],
+          "unsupported": [
+            "text-ladder",
+            "surfaces",
+            "borders",
+            "interaction",
+            "status-colours",
+            "code-colours",
+            "interface-colours",
+            "typography",
+            "geometry"
+          ]
+        },
+        "files": [
+          {
+            "path": "dist/presets.json",
+            "install": "Open ChatGPT > Settings > Appearance > Dark theme > Import and paste a preset's import string, or set the values in the preset's table by hand (see ports/chatgpt/README.md)."
+          }
+        ],
+        "mappingPath": "mapping.json",
+        "capabilitiesPath": "capabilities.json",
+        "evidence": []
+      },
+      "mapping": {
+        "mappings": {
+          "color.interaction.focus.ring": [
+            "Accent",
+            "theme.accent"
+          ],
+          "color.surface.canvas": [
+            "Background",
+            "theme.surface"
+          ],
+          "font.size.reading": [
+            "UI font size"
+          ],
+          "font.size.code": [
+            "Code font size"
+          ],
+          "color.status.success.text": [
+            "theme.semanticColors.diffAdded"
+          ],
+          "color.status.danger.text": [
+            "theme.semanticColors.diffRemoved"
+          ],
+          "color.text.accent": [
+            "theme.semanticColors.skill"
+          ],
+          "color.text.bright": [
+            "Foreground (j3w1 Signature)",
+            "theme.ink (j3w1 Signature)"
+          ],
+          "color.text.default": [
+            "Foreground (j3w1 Reading)",
+            "theme.ink (j3w1 Reading)"
+          ]
+        },
+        "unmapped": {}
+      },
+      "host": null,
+      "source": {
+        "schemaVersion": 1,
+        "payload": "codex-theme-v1",
+        "about": "The source of the ChatGPT port. Colours and sizes name theme roles; the emitter resolves them. Values that are ChatGPT host settings, not theme roles (contrast, diff markers, reduce motion, the base theme), are calibration chosen by the owner in real use.",
+        "shared": {
+          "mode": "dark",
+          "baseTheme": {
+            "label": "ChatGPT",
+            "codeThemeId": "chatgpt"
+          },
+          "accent": "color.interaction.focus.ring",
+          "background": "color.surface.canvas",
+          "uiFontSize": "font.size.reading",
+          "codeFontSize": "font.size.code",
+          "semanticColors": {
+            "diffAdded": "color.status.success.text",
+            "diffRemoved": "color.status.danger.text",
+            "skill": "color.text.accent"
+          },
+          "calibration": {
+            "reduceMotion": "system",
+            "separateLightDarkModes": false,
+            "diffMarkers": "plus-minus",
+            "opaqueWindows": true
+          }
+        },
+        "presets": [
+          {
+            "id": "signature",
+            "displayName": "j3w1 Signature",
+            "recommended": true,
+            "summary": "Strongest j3w1 identity: bright rose text on true black.",
+            "foreground": "color.text.bright",
+            "contrast": 46
+          },
+          {
+            "id": "reading",
+            "displayName": "j3w1 Reading",
+            "recommended": false,
+            "summary": "Calmer rose for long reading sessions.",
+            "foreground": "color.text.default",
+            "contrast": 52
+          }
+        ]
+      }
+    },
+    "claude-code": {
+      "port": {
+        "schemaVersion": 1,
+        "id": "claude-code",
+        "displayName": "Claude Code (custom theme)",
+        "status": "experimental",
+        "themeVersion": "3.0.0",
+        "tokenDigest": "sha256-h3/qJhmqhRVSMyk4fTMOa8x+mqIFdA3yvlyqOqgttp4=",
+        "profile": "default",
+        "format": "claude-theme-json",
+        "targetVersions": [
+          "2.1.281",
+          "2.1.282",
+          "2.1.283"
+        ],
+        "testedVersions": [],
+        "os": [
+          "linux",
+          "macos",
+          "windows"
+        ],
+        "surfaces": {
+          "supported": [
+            "theme-roles"
+          ],
+          "inherited": [
+            "terminal-palette"
+          ],
+          "unsupported": [
+            "fixed-ansi",
+            "light-mode"
+          ]
+        },
+        "files": [
+          {
+            "path": "dist/j3w1.json",
+            "install": "Save as ~/.claude/themes/j3w1.json and set \"theme\": \"custom:j3w1\" in ~/.claude/settings.json; or run node ports/claude-code/install.mjs apply in a clone of this repository (see its README)."
+          }
+        ],
+        "mappingPath": "mapping.json",
+        "capabilitiesPath": "capabilities.json",
+        "evidence": []
+      },
+      "mapping": {
+        "mappings": {
+          "color.border.active": [
+            "bashBorder",
+            "promptBorder"
+          ],
+          "color.border.overlay": [
+            "permission"
+          ],
+          "color.chart.grid": [
+            "rate_limit_empty"
+          ],
+          "color.chart.series-2": [
+            "rate_limit_fill"
+          ],
+          "color.code.selection-bg": [
+            "selectionBg"
+          ],
+          "color.diff.added.bg": [
+            "diffAdded",
+            "diffAddedWord"
+          ],
+          "color.diff.removed.bg": [
+            "diffRemoved",
+            "diffRemovedWord"
+          ],
+          "color.interaction.disabled.bg": [
+            "diffAddedDimmed",
+            "diffRemovedDimmed"
+          ],
+          "color.interaction.hover.bg-strong": [
+            "userMessageBackgroundHover"
+          ],
+          "color.interaction.selection.bg": [
+            "userMessageBackground"
+          ],
+          "color.interaction.selection.text": [
+            "suggestion"
+          ],
+          "color.status.danger.text": [
+            "error"
+          ],
+          "color.status.info.text": [
+            "merged",
+            "planMode"
+          ],
+          "color.status.success.text": [
+            "success"
+          ],
+          "color.status.warning.text": [
+            "autoAccept",
+            "autoAcceptShimmer",
+            "warning",
+            "warningShimmer"
+          ],
+          "color.surface.chrome": [
+            "composerSidebarBackground"
+          ],
+          "color.surface.default": [
+            "bashMessageBackgroundColor"
+          ],
+          "color.surface.overlay": [
+            "memoryBackgroundColor"
+          ],
+          "color.terminal.bg": [
+            "clawd_background"
+          ],
+          "color.text.accent": [
+            "briefLabelClaude",
+            "claude",
+            "clawd_body",
+            "orange_FOR_SUBAGENTS_ONLY",
+            "rainbow_blue",
+            "rainbow_green",
+            "rainbow_indigo",
+            "rainbow_orange",
+            "rainbow_red",
+            "rainbow_violet",
+            "rainbow_yellow"
+          ],
+          "color.text.accent-strong": [
+            "claudeShimmer",
+            "effortUltra",
+            "fastMode",
+            "permissionShimmer",
+            "promptBorderShimmer",
+            "rainbow_blue_shimmer",
+            "rainbow_green_shimmer",
+            "rainbow_indigo_shimmer",
+            "rainbow_orange_shimmer",
+            "rainbow_red_shimmer",
+            "rainbow_violet_shimmer",
+            "rainbow_yellow_shimmer",
+            "red_FOR_SUBAGENTS_ONLY"
+          ],
+          "color.text.bright": [
+            "background",
+            "briefLabelYou",
+            "chromeYellow",
+            "cyan_FOR_SUBAGENTS_ONLY",
+            "fastModeShimmer",
+            "pink_FOR_SUBAGENTS_ONLY",
+            "remember",
+            "skill"
+          ],
+          "color.text.default": [
+            "claudeBlueShimmer_FOR_SYSTEM_SPINNER",
+            "inactiveShimmer",
+            "text",
+            "yellow_FOR_SUBAGENTS_ONLY"
+          ],
+          "color.text.inverse": [
+            "inverseText"
+          ],
+          "color.text.muted": [
+            "claudeBlue_FOR_SYSTEM_SPINNER",
+            "ide",
+            "inactive",
+            "professionalBlue",
+            "purple_FOR_SUBAGENTS_ONLY"
+          ],
+          "color.text.prose": [
+            "green_FOR_SUBAGENTS_ONLY"
+          ],
+          "color.text.subtle": [
+            "blue_FOR_SUBAGENTS_ONLY",
+            "subtle"
+          ]
+        },
+        "unmapped": {
+          "color.interaction.focus.ring": "Interface colour role that no Claude Code theme key takes.",
+          "color.surface.canvas": "Interface colour role that no Claude Code theme key takes.",
+          "font.size.code": "Not a colour; a Claude Code theme carries colours only.",
+          "font.size.reading": "Not a colour; a Claude Code theme carries colours only."
+        }
+      },
+      "host": {
+        "schemaVersion": 1,
+        "integration": {
+          "id": "claude-code-theme",
+          "version": "1",
+          "kind": "other"
+        },
+        "components": [
+          "terminal",
+          "menu",
+          "diff-view",
+          "chart",
+          "badge",
+          "textarea"
+        ],
+        "host": {
+          "name": "Claude Code",
+          "observedVersions": [
+            "2.1.281",
+            "2.1.282",
+            "2.1.283"
+          ],
+          "themesDir": "$CLAUDE_CONFIG_DIR/themes (default ~/.claude/themes)",
+          "setting": "theme",
+          "docs": "https://code.claude.com/docs/en/terminal-config#create-a-custom-theme"
+        },
+        "theme": {
+          "slug": "j3w1",
+          "name": "j3w1",
+          "base": "dark-ansi"
+        },
+        "note": "Every role listed in the observed versions is set, so nothing falls through to a dark-ansi slot. Unknown tokens are ignored by Claude Code, so a role a newer version drops is harmless.",
+        "roles": {
+          "autoAccept": {
+            "token": "color.status.warning.text",
+            "why": "Accept-edits mode skips review: a caution state."
+          },
+          "autoAcceptShimmer": {
+            "token": "color.status.warning.text",
+            "why": "Accept-edits shimmer (2.1.281 only); flat, as warningShimmer."
+          },
+          "background": {
+            "token": "color.text.bright",
+            "why": "Background-task labels are a text accent, one rung above body text."
+          },
+          "bashBorder": {
+            "token": "color.border.active",
+            "why": "The shell-mode input still holds focus: the active border. The `!` marker, not a second border colour, carries the mode (see deviations)."
+          },
+          "bashMessageBackgroundColor": {
+            "token": "color.surface.default",
+            "why": "Shell entries on the default surface, distinct from your messages."
+          },
+          "blue_FOR_SUBAGENTS_ONLY": {
+            "token": "color.text.subtle",
+            "why": "Subagent names are text; seven distinct text roles for eight names, no hue outside status roles (D-001)."
+          },
+          "briefLabelClaude": {
+            "token": "color.text.accent",
+            "why": "Claude's label takes the brand accent."
+          },
+          "briefLabelYou": {
+            "token": "color.text.bright",
+            "why": "Your label, one rung above body text."
+          },
+          "chromeYellow": {
+            "token": "color.text.bright",
+            "why": "A product label; no yellow outside status roles (D-001)."
+          },
+          "claude": {
+            "token": "color.text.accent",
+            "why": "The brand accent and assistant label are emphasis, not links."
+          },
+          "claudeBlueShimmer_FOR_SYSTEM_SPINNER": {
+            "token": "color.text.default",
+            "why": "Shimmer step of the system spinner."
+          },
+          "claudeBlue_FOR_SYSTEM_SPINNER": {
+            "token": "color.text.muted",
+            "why": "The system spinner is secondary activity."
+          },
+          "claudeShimmer": {
+            "token": "color.text.accent-strong",
+            "why": "Shimmer step of the accent."
+          },
+          "clawd_background": {
+            "token": "color.terminal.bg",
+            "why": "The mascot sits on the terminal background."
+          },
+          "clawd_body": {
+            "token": "color.text.accent",
+            "why": "The mascot is drawn in the brand accent."
+          },
+          "composerSidebarBackground": {
+            "token": "color.surface.chrome",
+            "why": "The fullscreen sidebar is window chrome."
+          },
+          "cyan_FOR_SUBAGENTS_ONLY": {
+            "token": "color.text.bright",
+            "why": "Subagent names are text; the text roles give seven distinct readable values for eight names, so cyan shares pink's (see deviations)."
+          },
+          "diffAdded": {
+            "token": "color.diff.added.bg",
+            "why": "Added line background."
+          },
+          "diffAddedDimmed": {
+            "token": "color.interaction.disabled.bg",
+            "why": "A rejected edit is inert: the disabled background."
+          },
+          "diffAddedWord": {
+            "token": "color.diff.added.bg",
+            "why": "j3w1 marks word-level changes with an underline in the emphasis colour; Claude can only paint a background, and the emphasis colour fails text contrast as a fill, so the word keeps the line tint (see deviations)."
+          },
+          "diffRemoved": {
+            "token": "color.diff.removed.bg",
+            "why": "Removed line background."
+          },
+          "diffRemovedDimmed": {
+            "token": "color.interaction.disabled.bg",
+            "why": "A rejected edit is inert: the disabled background."
+          },
+          "diffRemovedWord": {
+            "token": "color.diff.removed.bg",
+            "why": "As diffAddedWord."
+          },
+          "effortUltra": {
+            "token": "color.text.accent-strong",
+            "why": "A mode accent."
+          },
+          "error": {
+            "token": "color.status.danger.text",
+            "why": "Status danger."
+          },
+          "fastMode": {
+            "token": "color.text.accent-strong",
+            "why": "A mode accent."
+          },
+          "fastModeShimmer": {
+            "token": "color.text.bright",
+            "why": "Shimmer step of the fast-mode accent."
+          },
+          "green_FOR_SUBAGENTS_ONLY": {
+            "token": "color.text.prose",
+            "why": "Subagent names are text; seven distinct text roles for eight names, no hue outside status roles (D-001)."
+          },
+          "ide": {
+            "token": "color.text.muted",
+            "why": "The IDE connection indicator is secondary status text."
+          },
+          "inactive": {
+            "token": "color.text.muted",
+            "why": "Secondary text: hints, timestamps and disabled items take the muted rung of the text ladder."
+          },
+          "inactiveShimmer": {
+            "token": "color.text.default",
+            "why": "The lighter step of the inactive shimmer is the next rung up."
+          },
+          "inverseText": {
+            "token": "color.text.inverse",
+            "why": "Text on status fills; the badge on-fill rule for warning, success and info."
+          },
+          "memoryBackgroundColor": {
+            "token": "color.surface.overlay",
+            "why": "Memory entries on the overlay surface."
+          },
+          "merged": {
+            "token": "color.status.info.text",
+            "why": "A merged pull request is an informational end state; there is no purple (D-001)."
+          },
+          "orange_FOR_SUBAGENTS_ONLY": {
+            "token": "color.text.accent",
+            "why": "Subagent names are text; seven distinct text roles for eight names, no hue outside status roles (D-001)."
+          },
+          "permission": {
+            "token": "color.border.overlay",
+            "why": "Permission prompts and pickers are floating layers: the overlay border (use-and-report, D-008)."
+          },
+          "permissionShimmer": {
+            "token": "color.text.accent-strong",
+            "why": "Shimmer step of the permission accent."
+          },
+          "pink_FOR_SUBAGENTS_ONLY": {
+            "token": "color.text.bright",
+            "why": "Subagent names are text; seven distinct text roles for eight names, no hue outside status roles (D-001)."
+          },
+          "planMode": {
+            "token": "color.status.info.text",
+            "why": "Plan mode is an informational state (status.info)."
+          },
+          "professionalBlue": {
+            "token": "color.text.muted",
+            "why": "Secondary informational text; no blue outside status roles (D-001)."
+          },
+          "promptBorder": {
+            "token": "color.border.active",
+            "why": "The input box always holds focus while you type: the active border."
+          },
+          "promptBorderShimmer": {
+            "token": "color.text.accent-strong",
+            "why": "Shimmer step of the input border."
+          },
+          "purple_FOR_SUBAGENTS_ONLY": {
+            "token": "color.text.muted",
+            "why": "Subagent names are text; seven distinct text roles for eight names, no hue outside status roles (D-001)."
+          },
+          "rainbow_blue": {
+            "token": "color.text.accent",
+            "why": "The ultrathink keyword is emphasis; j3w1 draws no gradients."
+          },
+          "rainbow_blue_shimmer": {
+            "token": "color.text.accent-strong",
+            "why": "Shimmer step of the flat accent."
+          },
+          "rainbow_green": {
+            "token": "color.text.accent",
+            "why": "The ultrathink keyword is emphasis; j3w1 draws no gradients."
+          },
+          "rainbow_green_shimmer": {
+            "token": "color.text.accent-strong",
+            "why": "Shimmer step of the flat accent."
+          },
+          "rainbow_indigo": {
+            "token": "color.text.accent",
+            "why": "The ultrathink keyword is emphasis; j3w1 draws no gradients."
+          },
+          "rainbow_indigo_shimmer": {
+            "token": "color.text.accent-strong",
+            "why": "Shimmer step of the flat accent."
+          },
+          "rainbow_orange": {
+            "token": "color.text.accent",
+            "why": "The ultrathink keyword is emphasis; j3w1 draws no gradients."
+          },
+          "rainbow_orange_shimmer": {
+            "token": "color.text.accent-strong",
+            "why": "Shimmer step of the flat accent."
+          },
+          "rainbow_red": {
+            "token": "color.text.accent",
+            "why": "The ultrathink keyword is emphasis; j3w1 draws no gradients."
+          },
+          "rainbow_red_shimmer": {
+            "token": "color.text.accent-strong",
+            "why": "Shimmer step of the flat accent."
+          },
+          "rainbow_violet": {
+            "token": "color.text.accent",
+            "why": "The ultrathink keyword is emphasis; j3w1 draws no gradients."
+          },
+          "rainbow_violet_shimmer": {
+            "token": "color.text.accent-strong",
+            "why": "Shimmer step of the flat accent."
+          },
+          "rainbow_yellow": {
+            "token": "color.text.accent",
+            "why": "The ultrathink keyword is emphasis; j3w1 draws no gradients."
+          },
+          "rainbow_yellow_shimmer": {
+            "token": "color.text.accent-strong",
+            "why": "Shimmer step of the flat accent."
+          },
+          "rate_limit_empty": {
+            "token": "color.chart.grid",
+            "why": "The unfilled track is chart grid."
+          },
+          "rate_limit_fill": {
+            "token": "color.chart.series-2",
+            "why": "A single-series meter uses the approved red chart role (spec/components/chart.md)."
+          },
+          "red_FOR_SUBAGENTS_ONLY": {
+            "token": "color.text.accent-strong",
+            "why": "Subagent names are text; seven distinct text roles for eight names, no hue outside status roles (D-001)."
+          },
+          "remember": {
+            "token": "color.text.bright",
+            "why": "Memory and CLAUDE.md indicators read as a label, one rung above body text."
+          },
+          "selectionBg": {
+            "token": "color.code.selection-bg",
+            "why": "Mouse selection keeps each span's own colour (Claude has no selection-text token), which is the editor-selection case: text stays readable on it (spec/foundations.md, Code and terminal)."
+          },
+          "skill": {
+            "token": "color.text.bright",
+            "why": "Skill labels are a text accent."
+          },
+          "subtle": {
+            "token": "color.text.subtle",
+            "why": "Faint borders and de-emphasised text: metadata, comments and line numbers (D-003)."
+          },
+          "success": {
+            "token": "color.status.success.text",
+            "why": "Status success (D-001)."
+          },
+          "suggestion": {
+            "token": "color.interaction.selection.text",
+            "why": "The selected picker item takes the menu's selected-item text; Claude cannot paint the selection fill (see deviations)."
+          },
+          "text": {
+            "token": "color.text.default",
+            "why": "Default foreground; dark-ansi uses slot 15, which measures 4.45:1."
+          },
+          "userMessageBackground": {
+            "token": "color.interaction.selection.bg",
+            "why": "Your messages sit on the selected-row red, a clearly visible band (6.24:1 for the rose text); chosen by the owner over the fainter raised surface."
+          },
+          "userMessageBackgroundHover": {
+            "token": "color.interaction.hover.bg-strong",
+            "why": "Hover and expanded rows step up to the strong hover fill (5.71:1)."
+          },
+          "warning": {
+            "token": "color.status.warning.text",
+            "why": "Status warning (D-001); Claude also uses it for the auto-mode indicator."
+          },
+          "warningShimmer": {
+            "token": "color.status.warning.text",
+            "why": "The default profile has one approved amber; the shimmer stays flat."
+          },
+          "yellow_FOR_SUBAGENTS_ONLY": {
+            "token": "color.text.default",
+            "why": "Subagent names are text; seven distinct text roles for eight names, no hue outside status roles (D-001)."
+          }
+        },
+        "deviations": [
+          {
+            "component": "code-editor",
+            "target": "code blocks with a language",
+            "kind": "unsupported",
+            "specValue": "code.syntax.* roles",
+            "applied": "heritage ANSI slots chosen by Claude Code",
+            "reason": "Claude Code colours highlighted code from fixed ANSI slots that a theme cannot override; the terminal spec lets programs choose slot semantics."
+          },
+          {
+            "component": "link",
+            "target": "clickable links",
+            "kind": "unsupported",
+            "specValue": "color.text.link",
+            "applied": "ANSI slot 12",
+            "reason": "Claude Code draws OSC 8 links in bright blue (slot 12) regardless of theme."
+          },
+          {
+            "component": "diff-view",
+            "target": "+ and - markers, file preview colours",
+            "kind": "unsupported",
+            "specValue": "color.diff.*.gutter",
+            "applied": "ANSI slots 10 and 9 and the preview slots",
+            "reason": "Hard-coded to ANSI slots in Claude Code."
+          },
+          {
+            "component": "diff-view",
+            "target": "word-level change",
+            "kind": "substituted",
+            "specValue": "color.diff.*.emphasis underline",
+            "applied": "color.diff.added.bg / color.diff.removed.bg",
+            "reason": "Claude Code can only paint word changes as a background; the emphasis colours fail text contrast as fills."
+          },
+          {
+            "component": "menu",
+            "target": "picker selection",
+            "kind": "substituted",
+            "specValue": "color.interaction.selection.bg fill with color.interaction.selection.text",
+            "applied": "color.interaction.selection.text on the default background",
+            "reason": "Claude Code colours the selected item's text only; it has no selection-fill token for pickers."
+          },
+          {
+            "component": "textarea",
+            "target": "shell-mode input border",
+            "kind": "substituted",
+            "specValue": "a distinct border for a distinct input mode",
+            "applied": "color.border.active, as in normal mode",
+            "reason": "j3w1 defines one focused-input border; the `!` prompt marker carries the mode."
+          },
+          {
+            "component": "code-editor",
+            "target": "inline code",
+            "kind": "substituted",
+            "specValue": "code roles",
+            "applied": "color.border.overlay",
+            "reason": "Claude Code draws inline code in its permission colour, which the kit maps to the overlay border for dialogs."
+          },
+          {
+            "component": "terminal",
+            "target": "subagent name colours",
+            "kind": "substituted",
+            "specValue": "eight distinct colours",
+            "applied": "seven distinct text roles; cyan shares pink's value",
+            "reason": "j3w1 has no categorical text palette and permits no hue outside status roles (D-001). Cyan and pink share one role (text.bright); two further pairs are close: orange text.accent / red text.accent-strong, purple text.muted / blue text.subtle."
+          },
+          {
+            "component": "terminal",
+            "target": "mouse selection",
+            "kind": "substituted",
+            "specValue": "color.interaction.text-selection.bg with color.interaction.text-selection.text",
+            "applied": "color.code.selection-bg; spans keep their own colour",
+            "reason": "Claude Code has a selection background token only, so spans keep their own colour on color.code.selection-bg: text.default 7.02:1 and text.muted 4.71:1 stay above 4.5:1, while text.subtle (4.13:1), text.accent-strong and status.danger.text (4.38:1), and text.accent and border.overlay (3.81:1) fall below it inside the selection, as spec/foundations.md accepts for syntax roles in an editor selection."
+          }
+        ]
+      },
+      "source": null
+    },
+    "codex": {
+      "port": {
+        "schemaVersion": 1,
+        "id": "codex",
+        "displayName": "Codex CLI (tmTheme)",
+        "status": "experimental",
+        "themeVersion": "3.0.0",
+        "tokenDigest": "sha256-h3/qJhmqhRVSMyk4fTMOa8x+mqIFdA3yvlyqOqgttp4=",
+        "profile": "default",
+        "format": "codex-tmtheme",
+        "targetVersions": [
+          "0.156.1",
+          "0.157.0"
+        ],
+        "testedVersions": [],
+        "os": [
+          "linux",
+          "macos"
+        ],
+        "surfaces": {
+          "supported": [
+            "theme-scopes"
+          ],
+          "inherited": [
+            "terminal-palette"
+          ],
+          "unsupported": [
+            "editor-surfaces",
+            "font-styles",
+            "fixed-ansi"
+          ]
+        },
+        "files": [
+          {
+            "path": "dist/j3w1.tmTheme",
+            "install": "Save as ~/.codex/themes/j3w1.tmTheme and set theme = \"j3w1\" under [tui] in ~/.codex/config.toml; or run node ports/codex/install.mjs apply in a clone of this repository (see its README)."
+          }
+        ],
+        "mappingPath": "mapping.json",
+        "capabilitiesPath": "capabilities.json",
+        "evidence": []
+      },
+      "mapping": {
+        "mappings": {
+          "color.code.hued.attribute": [
+            "Attribute.foreground"
+          ],
+          "color.code.hued.constant": [
+            "Constant.foreground"
+          ],
+          "color.code.hued.escape": [
+            "Escape.foreground"
+          ],
+          "color.code.hued.function": [
+            "Function.foreground"
+          ],
+          "color.code.hued.number": [
+            "Number.foreground"
+          ],
+          "color.code.hued.operator": [
+            "Operator.foreground"
+          ],
+          "color.code.hued.property": [
+            "Property.foreground"
+          ],
+          "color.code.hued.string": [
+            "String.foreground"
+          ],
+          "color.code.hued.type": [
+            "Type.foreground"
+          ],
+          "color.code.syntax.comment": [
+            "Comment.foreground"
+          ],
+          "color.code.syntax.deprecated": [
+            "Deprecated.foreground"
+          ],
+          "color.code.syntax.heading": [
+            "Heading.foreground"
+          ],
+          "color.code.syntax.invalid": [
+            "Invalid.foreground"
+          ],
+          "color.code.syntax.keyword": [
+            "Keyword.foreground"
+          ],
+          "color.code.syntax.punctuation": [
+            "Punctuation.foreground"
+          ],
+          "color.code.syntax.tag": [
+            "Tag.foreground"
+          ],
+          "color.code.syntax.variable": [
+            "Variable.foreground",
+            "globals.foreground"
+          ],
+          "color.diff.added.bg": [
+            "Inserted.background"
+          ],
+          "color.diff.modified.gutter": [
+            "Changed.foreground"
+          ],
+          "color.diff.removed.bg": [
+            "Deleted.background"
+          ],
+          "color.text.accent": [
+            "Codex accent.foreground"
+          ],
+          "color.text.link": [
+            "Link.foreground"
+          ]
+        },
+        "unmapped": {
+          "color.border.active": "Interface colour role; a Codex tmTheme colours code only.",
+          "color.border.overlay": "Interface colour role; a Codex tmTheme colours code only.",
+          "color.chart.grid": "Interface colour role; a Codex tmTheme colours code only.",
+          "color.chart.series-2": "Interface colour role; a Codex tmTheme colours code only.",
+          "color.code.bg": "The file carries it as globals.background; Codex paints no code background from a tmTheme and keeps the terminal background.",
+          "color.code.caret": "The file carries it as globals.caret; Codex paints no caret from a tmTheme and keeps the terminal background.",
+          "color.code.current-line": "The file carries it as globals.lineHighlight; Codex paints no current-line highlight from a tmTheme and keeps the terminal background.",
+          "color.code.gutter-bg": "The file carries it as globals.gutter; Codex paints no gutter from a tmTheme and keeps the terminal background.",
+          "color.code.line-number": "The file carries it as globals.gutterForeground; Codex paints no line numbers from a tmTheme and keeps the terminal background.",
+          "color.code.search-match-bg": "The file carries it as globals.findHighlight; Codex paints no find highlight from a tmTheme and keeps the terminal background.",
+          "color.code.selection-bg": "The file carries it as globals.selection; Codex paints no selection from a tmTheme and keeps the terminal background.",
+          "color.code.whitespace": "The file carries it as globals.invisibles; Codex paints no whitespace marks from a tmTheme and keeps the terminal background.",
+          "color.diff.modified.bg": "The file carries it as Changed.background; Codex reads backgrounds only for markup.inserted and markup.deleted, so modified lines get no tint.",
+          "color.interaction.disabled.bg": "Interface colour role; a Codex tmTheme colours code only.",
+          "color.interaction.focus.ring": "Interface colour role; a Codex tmTheme colours code only.",
+          "color.interaction.hover.bg-strong": "Interface colour role; a Codex tmTheme colours code only.",
+          "color.interaction.selection.bg": "Interface colour role; a Codex tmTheme colours code only.",
+          "color.interaction.selection.text": "Interface colour role; a Codex tmTheme colours code only.",
+          "color.status.danger.text": "Interface colour role; a Codex tmTheme colours code only.",
+          "color.status.info.text": "Interface colour role; a Codex tmTheme colours code only.",
+          "color.status.success.text": "Interface colour role; a Codex tmTheme colours code only.",
+          "color.status.warning.text": "Interface colour role; a Codex tmTheme colours code only.",
+          "color.surface.canvas": "Interface colour role; a Codex tmTheme colours code only.",
+          "color.surface.chrome": "Interface colour role; a Codex tmTheme colours code only.",
+          "color.surface.default": "Interface colour role; a Codex tmTheme colours code only.",
+          "color.surface.overlay": "Interface colour role; a Codex tmTheme colours code only.",
+          "color.terminal.bg": "The terminal draws this; a tmTheme has no key for it, so it comes from the terminal's own palette (the Orca port sets it).",
+          "color.text.accent-strong": "Interface colour role; a Codex tmTheme colours code only.",
+          "color.text.bright": "Interface colour role; a Codex tmTheme colours code only.",
+          "color.text.default": "Interface colour role; a Codex tmTheme colours code only.",
+          "color.text.inverse": "Interface colour role; a Codex tmTheme colours code only.",
+          "color.text.muted": "Interface colour role; a Codex tmTheme colours code only.",
+          "color.text.prose": "Interface colour role; a Codex tmTheme colours code only.",
+          "color.text.subtle": "Interface colour role; a Codex tmTheme colours code only.",
+          "font.size.code": "Not a colour; a tmTheme carries colours only.",
+          "font.size.reading": "Not a colour; a tmTheme carries colours only."
+        }
+      },
+      "host": {
+        "schemaVersion": 1,
+        "integration": {
+          "id": "codex-tmtheme",
+          "version": "1",
+          "kind": "other"
+        },
+        "components": [
+          "code-editor",
+          "diff-view"
+        ],
+        "host": {
+          "name": "Codex CLI",
+          "observedVersions": [
+            "0.156.1",
+            "0.157.0"
+          ],
+          "setting": "tui.theme",
+          "themesDir": "$CODEX_HOME/themes",
+          "configFile": "$CODEX_HOME/config.toml"
+        },
+        "theme": {
+          "name": "j3w1",
+          "file": "j3w1.tmTheme",
+          "uuid": "6a0c3b8e-2f4d-4c1a-9b7e-1d5f0e3a7c21"
+        },
+        "globals": {
+          "background": "color.code.bg",
+          "foreground": "color.code.syntax.variable",
+          "caret": "color.code.caret",
+          "selection": "color.code.selection-bg",
+          "lineHighlight": "color.code.current-line",
+          "invisibles": "color.code.whitespace",
+          "gutter": "color.code.gutter-bg",
+          "gutterForeground": "color.code.line-number",
+          "findHighlight": "color.code.search-match-bg"
+        },
+        "scopes": [
+          {
+            "name": "Comment",
+            "scope": "comment, punctuation.definition.comment",
+            "foreground": "color.code.syntax.comment",
+            "fontStyle": "italic"
+          },
+          {
+            "name": "String",
+            "scope": "string, string.quoted, markup.raw.inline, markup.inline.raw",
+            "foreground": "color.code.hued.string"
+          },
+          {
+            "name": "Number",
+            "scope": "constant.numeric",
+            "foreground": "color.code.hued.number"
+          },
+          {
+            "name": "Constant",
+            "scope": "constant.language, constant.other, support.constant, variable.other.constant",
+            "foreground": "color.code.hued.constant"
+          },
+          {
+            "name": "Escape",
+            "scope": "constant.character.escape, constant.character, string.regexp",
+            "foreground": "color.code.hued.escape",
+            "fontStyle": "bold"
+          },
+          {
+            "name": "Keyword",
+            "scope": "keyword, keyword.control, storage, storage.type, storage.modifier",
+            "foreground": "color.code.syntax.keyword"
+          },
+          {
+            "name": "Operator",
+            "scope": "keyword.operator",
+            "foreground": "color.code.hued.operator"
+          },
+          {
+            "name": "Function",
+            "scope": "entity.name.function, support.function, meta.function-call entity.name.function, variable.function",
+            "foreground": "color.code.hued.function"
+          },
+          {
+            "name": "Variable",
+            "scope": "variable, variable.parameter, variable.other",
+            "foreground": "color.code.syntax.variable"
+          },
+          {
+            "name": "Type",
+            "scope": "entity.name.type, entity.name.class, entity.other.inherited-class, support.type, support.class",
+            "foreground": "color.code.hued.type"
+          },
+          {
+            "name": "Property",
+            "scope": "variable.other.property, variable.other.member, support.variable.property, meta.object-literal.key, entity.name.tag.yaml",
+            "foreground": "color.code.hued.property"
+          },
+          {
+            "name": "Tag",
+            "scope": "entity.name.tag, punctuation.definition.tag",
+            "foreground": "color.code.syntax.tag"
+          },
+          {
+            "name": "Attribute",
+            "scope": "entity.other.attribute-name",
+            "foreground": "color.code.hued.attribute"
+          },
+          {
+            "name": "Heading",
+            "scope": "markup.heading, entity.name.section",
+            "foreground": "color.code.syntax.heading",
+            "fontStyle": "bold"
+          },
+          {
+            "name": "Punctuation",
+            "scope": "punctuation, meta.brace",
+            "foreground": "color.code.syntax.punctuation"
+          },
+          {
+            "name": "Invalid",
+            "scope": "invalid, invalid.illegal",
+            "foreground": "color.code.syntax.invalid",
+            "fontStyle": "underline"
+          },
+          {
+            "name": "Deprecated",
+            "scope": "invalid.deprecated",
+            "foreground": "color.code.syntax.deprecated"
+          },
+          {
+            "name": "Link",
+            "scope": "markup.underline.link, string.other.link, meta.link",
+            "foreground": "color.text.link",
+            "fontStyle": "underline"
+          },
+          {
+            "name": "Bold",
+            "scope": "markup.bold",
+            "fontStyle": "bold"
+          },
+          {
+            "name": "Italic",
+            "scope": "markup.italic",
+            "fontStyle": "italic"
+          },
+          {
+            "name": "Inserted",
+            "scope": "markup.inserted",
+            "background": "color.diff.added.bg"
+          },
+          {
+            "name": "Deleted",
+            "scope": "markup.deleted",
+            "background": "color.diff.removed.bg"
+          },
+          {
+            "name": "Changed",
+            "scope": "markup.changed",
+            "foreground": "color.diff.modified.gutter",
+            "background": "color.diff.modified.bg"
+          },
+          {
+            "name": "Codex accent",
+            "scope": "codex.accent",
+            "foreground": "color.text.accent"
+          }
+        ],
+        "deviations": [
+          {
+            "component": "terminal",
+            "target": "status, diff signs, brand and status line",
+            "kind": "unsupported",
+            "specValue": "status and diff roles",
+            "applied": "ANSI slots 1-6 chosen by Codex",
+            "reason": "Codex names these colours by ANSI slot; a theme cannot remap them, and the terminal spec lets programs choose slot semantics."
+          },
+          {
+            "component": "textarea",
+            "target": "prompt and composer fills",
+            "kind": "unsupported",
+            "specValue": "color.surface.raised",
+            "applied": "the terminal background blended toward white by Codex",
+            "reason": "Codex computes these fills from the terminal background; no setting reaches them."
+          },
+          {
+            "component": "code-editor",
+            "target": "italic and underline font styles",
+            "kind": "unsupported",
+            "specValue": "comments italic; links, invalid text underlined; deprecated text line-through",
+            "applied": "plain text in the role colour",
+            "reason": "Codex renders only bold from a tmTheme (codex-rs/tui/src/render/highlight.rs skips italic and underline)."
+          },
+          {
+            "component": "code-editor",
+            "target": "editor surfaces",
+            "kind": "unsupported",
+            "specValue": "code.bg, code.current-line, code.selection-bg, code.gutter-bg, code.line-number",
+            "applied": "the terminal background",
+            "reason": "Codex paints no code background, line highlight, selection or gutter from a tmTheme; it uses only scope foregrounds and the inserted/deleted backgrounds."
+          },
+          {
+            "component": "diff-view",
+            "target": "modified lines",
+            "kind": "unsupported",
+            "specValue": "color.diff.modified.bg",
+            "applied": null,
+            "reason": "Codex reads backgrounds only for markup.inserted and markup.deleted."
+          },
+          {
+            "component": "diff-view",
+            "target": "added and removed line text",
+            "kind": "substituted",
+            "specValue": "row text color.text.default with an emphasis underline",
+            "applied": "syntax colours on the line tint",
+            "reason": "Codex keeps syntax colours inside diff lines and draws no underlines; the tmTheme sets only the line backgrounds. On those tints code.syntax.heading, code.syntax.invalid and the codex.accent (text.accent) measure 4.23:1 on diff.added.bg and 4.24:1 on diff.removed.bg, below 4.5:1; every other syntax role measures 4.59:1 or more. text.accent is also used here outside its documented canvas-and-surface scope."
+          }
+        ],
+        "note": "Codex opts in to the hued syntax roles (D-030): green strings; amber numbers, constants, functions, attributes and escapes; blue types and properties; bright-rose operators. Keywords, tags, comments, variables and punctuation keep code.syntax."
+      },
+      "source": null
+    },
+    "ghostty": {
+      "port": {
+        "schemaVersion": 1,
+        "id": "ghostty",
+        "displayName": "Ghostty theme",
+        "status": "experimental",
+        "themeVersion": "3.0.0",
+        "tokenDigest": "sha256-h3/qJhmqhRVSMyk4fTMOa8x+mqIFdA3yvlyqOqgttp4=",
+        "profile": "default",
+        "format": "ghostty-config",
+        "targetVersions": [
+          "1.x"
+        ],
+        "testedVersions": [],
+        "os": [
+          "macos",
+          "linux"
+        ],
+        "surfaces": {
+          "supported": [
+            "terminal-colours",
+            "terminal-selection",
+            "pane-divider"
+          ],
+          "inherited": [
+            "terminal-font"
+          ],
+          "unsupported": [
+            "light-mode"
+          ]
+        },
+        "files": [
+          {
+            "path": "dist/j3w1",
+            "install": "Save as ~/.config/ghostty/themes/j3w1 and add `theme = j3w1` to your Ghostty config."
+          }
+        ],
+        "mappingPath": "mapping.json",
+        "capabilitiesPath": "capabilities.json",
+        "evidence": []
+      },
+      "mapping": {
+        "mappings": {
+          "color.border.divider": [
+            "split-divider-color"
+          ],
+          "color.terminal.ansi.0": [
+            "palette[0]"
+          ],
+          "color.terminal.ansi.1": [
+            "palette[1]"
+          ],
+          "color.terminal.ansi.10": [
+            "palette[10]"
+          ],
+          "color.terminal.ansi.11": [
+            "palette[11]"
+          ],
+          "color.terminal.ansi.12": [
+            "palette[12]"
+          ],
+          "color.terminal.ansi.13": [
+            "palette[13]"
+          ],
+          "color.terminal.ansi.14": [
+            "palette[14]"
+          ],
+          "color.terminal.ansi.15": [
+            "palette[15]"
+          ],
+          "color.terminal.ansi.2": [
+            "palette[2]"
+          ],
+          "color.terminal.ansi.3": [
+            "palette[3]"
+          ],
+          "color.terminal.ansi.4": [
+            "palette[4]"
+          ],
+          "color.terminal.ansi.5": [
+            "palette[5]"
+          ],
+          "color.terminal.ansi.6": [
+            "palette[6]"
+          ],
+          "color.terminal.ansi.7": [
+            "palette[7]"
+          ],
+          "color.terminal.ansi.8": [
+            "palette[8]"
+          ],
+          "color.terminal.ansi.9": [
+            "palette[9]"
+          ],
+          "color.terminal.bg": [
+            "background",
+            "cursor-text"
+          ],
+          "color.terminal.cursor": [
+            "cursor-color"
+          ],
+          "color.terminal.fg": [
+            "foreground"
+          ],
+          "color.terminal.selection-bg": [
+            "selection-background"
+          ],
+          "color.terminal.selection-text": [
+            "selection-foreground"
+          ]
+        },
+        "unmapped": {}
+      },
+      "host": null,
+      "source": null
+    },
+    "orca": {
+      "port": {
+        "schemaVersion": 1,
+        "id": "orca",
+        "displayName": "Orca (Ghostty config import)",
+        "status": "experimental",
+        "themeVersion": "3.0.0",
+        "tokenDigest": "sha256-h3/qJhmqhRVSMyk4fTMOa8x+mqIFdA3yvlyqOqgttp4=",
+        "profile": "default",
+        "format": "ghostty-config",
+        "targetVersions": [
+          "1.4.209"
+        ],
+        "testedVersions": [],
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "surfaces": {
+          "supported": [
+            "terminal-colours",
+            "terminal-selection",
+            "pane-divider",
+            "terminal-font"
+          ],
+          "inherited": [
+            "terminal-line-height"
+          ],
+          "unsupported": [
+            "light-mode"
+          ]
+        },
+        "files": [
+          {
+            "path": "dist/config.ghostty",
+            "install": "Save as %APPDATA%\\ghostty\\config.ghostty (Windows) or ~/.config/ghostty/config.ghostty, then Orca \u2192 Settings \u2192 Terminal \u2192 Import from Ghostty \u2192 Apply Changes."
+          }
+        ],
+        "mappingPath": "mapping.json",
+        "capabilitiesPath": "capabilities.json",
+        "evidence": []
+      },
+      "mapping": {
+        "mappings": {
+          "color.border.divider": [
+            "split-divider-color"
+          ],
+          "color.terminal.ansi.0": [
+            "palette[0]"
+          ],
+          "color.terminal.ansi.1": [
+            "palette[1]"
+          ],
+          "color.terminal.ansi.10": [
+            "palette[10]"
+          ],
+          "color.terminal.ansi.11": [
+            "palette[11]"
+          ],
+          "color.terminal.ansi.12": [
+            "palette[12]"
+          ],
+          "color.terminal.ansi.13": [
+            "palette[13]"
+          ],
+          "color.terminal.ansi.14": [
+            "palette[14]"
+          ],
+          "color.terminal.ansi.15": [
+            "palette[15]"
+          ],
+          "color.terminal.ansi.2": [
+            "palette[2]"
+          ],
+          "color.terminal.ansi.3": [
+            "palette[3]"
+          ],
+          "color.terminal.ansi.4": [
+            "palette[4]"
+          ],
+          "color.terminal.ansi.5": [
+            "palette[5]"
+          ],
+          "color.terminal.ansi.6": [
+            "palette[6]"
+          ],
+          "color.terminal.ansi.7": [
+            "palette[7]"
+          ],
+          "color.terminal.ansi.8": [
+            "palette[8]"
+          ],
+          "color.terminal.ansi.9": [
+            "palette[9]"
+          ],
+          "color.terminal.bg": [
+            "background",
+            "cursor-text"
+          ],
+          "color.terminal.cursor": [
+            "cursor-color"
+          ],
+          "color.terminal.fg": [
+            "foreground"
+          ],
+          "color.terminal.selection-bg": [
+            "selection-background"
+          ],
+          "color.terminal.selection-text": [
+            "selection-foreground"
+          ],
+          "font.family.mono": [
+            "font-family"
+          ],
+          "font.size.terminal": [
+            "font-size"
+          ]
+        },
+        "unmapped": {}
+      },
+      "host": null,
+      "source": null
+    },
+    "warp": {
+      "port": {
+        "schemaVersion": 1,
+        "id": "warp",
+        "displayName": "Warp theme YAML (also Orca's Import from YAML)",
+        "status": "experimental",
+        "themeVersion": "3.0.0",
+        "tokenDigest": "sha256-h3/qJhmqhRVSMyk4fTMOa8x+mqIFdA3yvlyqOqgttp4=",
+        "profile": "default",
+        "format": "warp-yaml",
+        "targetVersions": [
+          "Orca 1.4.209"
+        ],
+        "testedVersions": [],
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "surfaces": {
+          "supported": [
+            "terminal-colours"
+          ],
+          "inherited": [
+            "terminal-font"
+          ],
+          "unsupported": [
+            "terminal-selection",
+            "pane-divider",
+            "light-mode"
+          ]
+        },
+        "files": [
+          {
+            "path": "dist/j3w1.yaml",
+            "install": "Orca \u2192 Settings \u2192 Terminal Themes \u2192 Import from YAML (or save into %APPDATA%\\warp\\Warp\\data\\themes\\ and use Import from Warp), then select \"j3w1 theme\" as the Dark Theme. Warp: save into its themes folder."
+          }
+        ],
+        "mappingPath": "mapping.json",
+        "capabilitiesPath": "capabilities.json",
+        "evidence": []
+      },
+      "mapping": {
+        "mappings": {
+          "color.terminal.ansi.0": [
+            "terminal_colors.normal.black"
+          ],
+          "color.terminal.ansi.1": [
+            "terminal_colors.normal.red"
+          ],
+          "color.terminal.ansi.10": [
+            "terminal_colors.bright.green"
+          ],
+          "color.terminal.ansi.11": [
+            "terminal_colors.bright.yellow"
+          ],
+          "color.terminal.ansi.12": [
+            "terminal_colors.bright.blue"
+          ],
+          "color.terminal.ansi.13": [
+            "terminal_colors.bright.magenta"
+          ],
+          "color.terminal.ansi.14": [
+            "terminal_colors.bright.cyan"
+          ],
+          "color.terminal.ansi.15": [
+            "terminal_colors.bright.white"
+          ],
+          "color.terminal.ansi.2": [
+            "terminal_colors.normal.green"
+          ],
+          "color.terminal.ansi.3": [
+            "terminal_colors.normal.yellow"
+          ],
+          "color.terminal.ansi.4": [
+            "terminal_colors.normal.blue"
+          ],
+          "color.terminal.ansi.5": [
+            "terminal_colors.normal.magenta"
+          ],
+          "color.terminal.ansi.6": [
+            "terminal_colors.normal.cyan"
+          ],
+          "color.terminal.ansi.7": [
+            "terminal_colors.normal.white"
+          ],
+          "color.terminal.ansi.8": [
+            "terminal_colors.bright.black"
+          ],
+          "color.terminal.ansi.9": [
+            "terminal_colors.bright.red"
+          ],
+          "color.terminal.bg": [
+            "background"
+          ],
+          "color.terminal.cursor": [
+            "cursor"
+          ],
+          "color.terminal.fg": [
+            "foreground"
+          ],
+          "color.text.accent": [
+            "accent"
+          ]
+        },
+        "unmapped": {}
+      },
+      "host": null,
+      "source": null
+    }
+  }
+}

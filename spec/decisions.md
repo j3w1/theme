@@ -37,6 +37,7 @@ ordered by topic.
 
 | # | Title | Status | Date | Decided by |
 | --- | --- | --- | --- | --- |
+| D-041 | True-black developer palette and semantic terminal colours | accepted | 2026-11-02 | owner (explicit authorization to renovate all ports and replace #0c0909 with true black) |
 | D-001 | Controlled three-hue extension for status, diagnostics and diffs | accepted | 2026-09-06 | owner |
 | D-003 | Text-role corrections with new in-hue values | accepted | 2026-09-06 | owner |
 | D-007 | `border.control` uses `#A3676B` | proposed | 2026-09-06 | — |
@@ -88,6 +89,57 @@ ordered by topic.
 | --- | --- | --- | --- | --- |
 | D-018 | Declared port capabilities and fresh import evidence | proposed | 2026-09-08 | — |
 | D-034 | Versioned Windows native and Windhawk adapters | accepted | 2026-09-28 | owner (explicit implementation plan) |
+
+## D-041 True-black developer palette and semantic terminal colours
+
+**Decision.** Use true black for the default editor and terminal interiors and
+ANSI 0, warm rose-black application layers and red borders, rose ordinary application text
+(`#e99499`), bright rose terminal prose, prompts, UI labels and ANSI 7/15 (`#ffa2a7`),
+and distinguishable green, amber, blue, violet and cyan coding colours. Keep red
+for identity, focus, selected indicators and danger. Preserve historical ANSI
+primitives and the explicitly historical profile. App, terminal, syntax and
+native ports consume the same semantic roles. Rule: `spec/foundations.md`.
+
+**Shared Orca accent.** The owner's further screenshot rejected bright-red
+focused agent rows. Orca 1.4.246 shares accent between selected segments and
+70%-mixed focused rows, which keep ordinary rose text instead of the accent
+foreground. Use existing dark-red `action.primary.bg` with bright rose accent
+labels: selected text 5.57:1 and full-opacity focused row labels 6.20:1.
+Selected-vs-black fill distinction is 1.97:1 and host-dimmed row metadata is
+3.76:1. These are recorded limitations, not contrast waivers or an accessibility
+pass; separate host state/row hooks are needed to satisfy all uses at once.
+
+**Shared Claude diff colours.** The owner’s live review rejected glaring word
+highlights. Dedicated shared-word roles balance the host’s summary foreground
+and word background near 3:1 against black and rose prose. Claude 2.1.303
+exposes no separate summary or word-foreground control; 4.5:1 for both is
+mathematically impossible with ordinary rose. This is a documented host
+limitation, not a generic text waiver. ANSI green and standard diff emphasis
+remain separate; dimmed rows retain semantic line tints.
+
+**Why.** The owner reported pervasive red text, dim Claude edit additions and
+an unwanted tinted base. Rejected: making every surface black and every item
+red; a terminal-only import that leaves Orca's application appearance behind;
+editing generated exports independently. Colour remains paired with the host's
+text markers, glyphs and focus geometry. This supersedes the default colour
+assignments in D-023, D-029, D-032, D-033 and D-039 where they conflict, without
+changing their historical record or approving the extended profile.
+
+**Status.** accepted · 2026-11-02 · owner, through the explicit instruction to
+fully renovate the existing schemes for modern development, use true black
+instead of #0c0909 overall, and test/import the resulting ports. This records
+the authorized design scope, including the owner’s 2026-11-02 follow-up that
+ordinary white text was too intense: use rose throughout ordinary application
+UI, terminal/agent prose and variables/operators. Reserve white for document
+headings, exceptional highlights and contrast-critical roles, not ordinary UI
+labels or chrome. The owner's further visual review rejected the cool blue-gray
+surfaces and borders. The latest correction uses red control and floating-frame
+boundaries (`#c81a1a`) instead of rose-gray, while Orca panels, browser chrome
+and menus use black fills,
+with semantic green reserved for meaningful code/status rather than shell prompt
+branding. Host-default chrome is a port coverage gap, not approved styling.
+It does not claim visual acceptance, a release,
+publication or merge.
 
 ## D-000 Responsibility split
 

@@ -3,6 +3,81 @@
 One folder per app, holding its theme files, its installer if it has one, and
 one guide.
 
+## One-click setup from a checkout
+
+Use a reviewed Git checkout with Node 24 and Git on your PATH. Check out the
+release tag or reviewed candidate you want before setup: the common entry point
+uses that checkout's committed HEAD, rather than edited theme files or an
+unpinned download. The setup below is available in this checkout; the published
+release commands farther down still refer to the recorded release.
+
+On Windows, double-click [setup.cmd](../setup.cmd) in the repository root and
+choose the ports to install. From any supported platform, run the same menu
+from the repository root:
+
+```sh
+node setup.mjs
+```
+
+To select ports directly, or preview the plan:
+
+```sh
+node setup.mjs --ports orca,claude-code,codex
+node setup.mjs --ports orca,claude-code,codex --dry-run
+```
+
+`--ports all` selects the ports supported on the current platform. Obsidian is
+included only when `--vault` is supplied; explicitly selecting Obsidian without
+a vault is an error. Add `--non-interactive` for an unattended run with an
+explicit port selection. The common setup does not install the target apps.
+It installs repository dependencies when the Codex TOML parser is missing;
+`--skip-dependencies` keeps dependency installation under your control.
+
+| Port | What setup prepares or installs | Remaining app step |
+| --- | --- | --- |
+| Orca | Copies and registers the app/editor/terminal data plugin in a retained local folder | Select j3w1 for app, editor and terminal in Appearance; remove conflicting terminal overrides |
+| Claude Code | Runs its existing theme installer and installed-file check | Restart sessions that do not reload the changed theme |
+| Codex | Runs its existing theme installer and installed-file check | Open a new Codex session |
+| Windows | Runs the existing compatibility-aware installer and its checks | Reopen affected apps; inspect appearance |
+| Obsidian on Windows | Runs the existing helper with the committed theme pair and an explicit vault | Keep Obsidian closed during setup, then select the dark j3w1 theme |
+| Ghostty | Installs the theme file and preserves a replaced file in a backup | Select `theme = j3w1` in Ghostty's config and reload |
+| Warp | Installs the custom theme file and preserves a replaced file in a backup | Select j3w1 under Appearance |
+| ChatGPT | Stages the preset file and prints its import instructions | Import the chosen preset in the app |
+| Telegram | Stages the Android and Desktop files and prints their import instructions | Open the matching file and confirm Apply/Keep changes |
+
+For example, after closing Obsidian:
+
+```powershell
+node setup.mjs --ports obsidian --vault 'C:\Users\you\Documents\MyVault'
+```
+
+The optional `--shell-prompt` flag on Linux and macOS installs the generated
+Agnoster/Zsh prompt and rose file-list colors for GNU `ls`. Stock macOS BSD
+`ls` keeps its native colors; use GNU `ls` to consume `LS_COLORS` there.
+It adds a managed source line to
+the final user shell configuration and preserves replaced content in backups.
+It is not included automatically by `--ports all`. For example:
+
+```sh
+node setup.mjs --ports claude-code,codex --shell-prompt
+```
+
+Source the printed prompt file once, or open a new shell. See the
+[Orca prompt guide](orca/README.md#agnoster-shell-prompt) for the Agnoster
+requirement and CE Devbox's older palette override.
+
+Windows Full mode remains the default and requires an exact supported host.
+Choose `--windows-mode Native` explicitly for the reduced native mode; the
+common setup does not silently substitute it when Full is unavailable.
+Android Obsidian keeps its separate Termux helper and storage requirements.
+
+To update, review and check out the intended newer revision, then repeat the
+same setup selection. Keep the retained Orca plugin directory. Existing
+per-port installers remain the source of backup, test and restore behavior;
+the individual guides below explain those operations and host limitations.
+Staging an import file or passing a structural check is not live visual
+verification.
+
 ## Which one do I need
 
 <!-- guides:start -->
@@ -13,7 +88,7 @@ one guide.
 | Codex CLI (tmTheme) | [codex](codex/README.md) | `j3w1.tmTheme` |
 | Ghostty theme | [ghostty](ghostty/README.md) | `j3w1` |
 | Obsidian theme | [obsidian](obsidian/README.md) | `manifest.json`, `theme.css` |
-| Orca (Ghostty config import) | [orca](orca/README.md) | `config.ghostty` |
+| Orca (app, editor and terminal) | [orca](orca/README.md) | `config.ghostty`, `orca-plugin.json`, `app-theme.json`, `terminal-theme.json`, `agnoster.zsh` |
 | Telegram Android and Desktop | [telegram](telegram/README.md) | `j3w1.attheme`, `j3w1.tdesktop-theme` |
 | Warp theme YAML (also Orca's Import from YAML) | [warp](warp/README.md) | `j3w1.yaml` |
 | Windows 11 native and Windhawk theme | [windows](windows/README.md) | `windows-settings.json`, `terminal-fragment.json`, `terminal-theme.json`, `fancyzones-layouts.json`, `windows-11-taskbar-styler.json`, `windows-11-start-menu-styler.json`, `windows-11-file-explorer-styler.json`, `windows-11-notification-center-styler.json`, `windows-11-settings-styler.json`, `j3w1-wallpaper.bmp`, `j3w1.theme`, `j3w1-arrow.cur`, `j3w1-help.cur`, `j3w1-appstarting.cur`, `j3w1-wait.cur`, `j3w1-crosshair.cur`, `j3w1-ibeam.cur`, `j3w1-nwpen.cur`, `j3w1-no.cur`, `j3w1-sizens.cur`, `j3w1-sizewe.cur`, `j3w1-sizenwse.cur`, `j3w1-sizenesw.cur`, `j3w1-sizeall.cur`, `j3w1-uparrow.cur`, `j3w1-hand.cur`, `j3w1-pin.cur`, `j3w1-person.cur`, `runtime.cjs`, `install-manifest.json`, `j3w1-explorer-native.wh.cpp`, `j3w1-explorer-native.json`, `j3w1-powertoys-preview.wh.cpp`, `j3w1-powertoys-preview.json`, `j3w1-calculator.wh.cpp`, `j3w1-calculator.json`, `j3w1-powertoys-markdown.wh.cpp`, `j3w1-powertoys-markdown.json`, `markdown-theme.css`, `j3w1-folder.ico`, `j3w1-folder-open.ico`, `j3w1-notepad-native.wh.cpp`, `j3w1-notepad-native.json`, `j3w1-notepad-chrome.wh.cpp`, `j3w1-notepad-chrome.json`, `j3w1-paint-chrome.wh.cpp`, `j3w1-paint-chrome.json`, `j3w1-terminal-chrome.wh.cpp`, `j3w1-terminal-chrome.json` |
@@ -22,11 +97,11 @@ one guide.
 Claude Code and Codex use the terminal's sixteen colours for code, links and
 status; install a terminal theme too.
 
-All ports are experimental: generated and checked, with no real import
-recorded. Each file is also in the repository README's Downloads table and on
+All ports remain experimental: published import evidence is incomplete or
+stale. Each file is also in the repository README's Downloads table and on
 the site's Ports page, pinned to a release.
 
-## Install commands
+## Published release commands
 
 <!-- install:start -->
 Release v3.0.0 (commit `f0e9e25a00357c0b47ae3d1392b87e5bc0aa91e6`):

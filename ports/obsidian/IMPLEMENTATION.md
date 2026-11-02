@@ -84,14 +84,15 @@ pinned to revision `c56c7e770ba25dd0ea392aacf4588f9425970d36`.
 - Plain destructive buttons keep danger text/borders at rest and use the
   canonical destructive hover pair on hover and mobile tap, with the native
   focus shadow recolored. Warning confirmations keep desktop error fills and
-  mobile transparent fills over the host surface (4.94:1 on the modal
-  overlay). Disabled/aria-disabled overrides win over all variants.
+  mobile transparent fills over the host surface, with the D-041 danger
+  foreground measured over the modal overlay. Disabled/aria-disabled overrides win over all variants.
 - Native action variables conflate pressed/hover states. Unmapped action,
   inactive-navigation, diagnostic stripe/underline and editor search/current-
   line roles have precise capability reasons; equal hex values add no coverage.
 - Four audited contexts (phone raised Search, mobile drawer Search, metadata
-  multi-select, side-dock Bases Search) clear the native field fill, which
-  would put placeholder text below the contrast floor; scoped rules restore
+  multi-select, side-dock Bases Search) clear the native field fill; scoped
+  rules preserve the explicit input surface even where D-041 text now remains
+  readable over the native underlay. They restore
   `color.surface.input` behind `color.text.placeholder`, including on mobile.
   Surrounding rows and panels keep native geometry and surfaces. A core input
   inside a mobile menu is not established by the audit; plugin-inserted
@@ -103,15 +104,16 @@ pinned to revision `c56c7e770ba25dd0ea392aacf4588f9425970d36`.
 - User CSS snippets and font overrides may alter the result. Third-party
   plugins can inherit semantic variables but get no plugin-specific selectors.
   Non-status callouts and data colors are not reassigned as status hues.
-- Global UI selection preserves its foreground. Rose `--text-normal` on the
-  global `--text-selection` fill measures **3.96:1**, below the 4.5:1 text
-  floor; muted/faint UI foregrounds are lower. Search `:hover` and
-  `.mobile-tap` use this fill with rose text; secondary replacement actions
-  keep their native foregrounds. Reading View ordinary rose text has the same
-  low global pairing; CM6's scoped fill passes for ordinary rose text in
-  synthetic cascade tests, but selected syntax remains host-owned. This
-  limitation is explicit, not a contrast waiver or a conformance claim. The
-  canonical near-white selection pair passes.
+- Global UI selection preserves its foreground. D-041 rose `--text-normal`
+  meets the text floor on `--text-selection`; Search `:hover`, `.mobile-tap`
+  and ordinary Reading View selection now retain readable text. The
+  muted/faint UI foregrounds also meet the 4.5:1 text floor on the dark
+  red selection fill. D-041 uses this deeper fill because the host preserves
+  foregrounds during selection; ordinary rose text must remain readable.
+  CM6's scoped fill passes for ordinary text in synthetic cascade tests;
+  selected syntax handling remains host-owned. This limitation is explicit,
+  not a contrast waiver or a conformance claim. The canonical near-white
+  selection pair passes.
 - Known canonical syntax-selection limitations are in `spec/accessibility.md`.
   Automated mapping and contrast checks are structural, not Windows, keyboard
   or screen-reader evidence.

@@ -7,6 +7,25 @@ files, `manifest.json` and `theme.css`. A Windows 1.13.7 import and visible
 rendering were **user-reported**; no Android import is recorded. The port is
 not `verified`: see [implementation and verification limits](IMPLEMENTATION.md).
 
+## One-click setup from this checkout on Windows
+
+Close Obsidian first. With Node 24 and Git available, double-click the repository
+root's [setup.cmd](../../setup.cmd) and choose Obsidian with an existing vault,
+or run from the repository root:
+
+```powershell
+node setup.mjs --ports obsidian --vault 'C:\Users\you\Documents\MyVault'
+```
+
+The common setup invokes the existing Windows helper using the theme pair from
+this checkout's committed revision. An explicit vault is required; setup does
+not guess among vaults. Keep the app closed until replacement finishes, then
+select j3w1 as described under Enable and verify. The helper's pair validation
+and recovery behavior still apply. See
+[common setup options](../README.md#one-click-setup-from-a-checkout).
+Android uses the separate Termux helper below; common setup does not claim a
+Linux desktop or Android installation.
+
 ## Install on Windows (recommended helper)
 
 1. Completely close Obsidian and keep it closed until the install or update

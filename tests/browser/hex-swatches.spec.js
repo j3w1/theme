@@ -9,7 +9,9 @@ test.describe("actual pointer input without reported hover capability", () => {
     test.skip(!only(testInfo, "desktop"), "one explicit false-hover environment");
     const clean = await openSpec(page);
     expect(await page.evaluate(() => [matchMedia("(hover: hover)").matches, matchMedia("(any-hover: hover)").matches])).toEqual([false, false]);
-    const circle = page.locator('.hex-swatch[data-hex="#000000"][data-token-matches]').first();
+    // A short accent-value match list leaves room for two-axis tracking;
+    // true black now matches enough roles to clamp at the viewport gutter.
+    const circle = page.locator('.hex-swatch[data-hex="#ae1914"][data-token-matches]').first();
     await circle.scrollIntoViewIfNeeded();
     const footprint = () => circle.locator("..").evaluate(el => { const { width, height } = el.getBoundingClientRect(); return { width, height }; });
     const original = await footprint();
@@ -150,7 +152,7 @@ test("inspector uses generated previews and retains all token matches without ne
   await expect(page.locator("#inspector .hex-swatch")).not.toHaveCount(0);
   expect(await page.locator("#inspector .hex-swatch[tabindex]").count()).toBe(0);
   await page.keyboard.press("Escape");
-  const swatch = page.locator('.hex-swatch[data-hex="#e53935"][data-token-matches]').first();
+  const swatch = page.locator('.hex-swatch[data-hex="#000000"][data-token-matches]').first();
   const data = await (await page.request.get("tokens/inspector.json")).json();
   const matches = data.colorIndex[await swatch.getAttribute("data-token-matches")];
   expect(matches.length).toBeGreaterThan(1);
@@ -158,13 +160,20 @@ test("inspector uses generated previews and retains all token matches without ne
   await expect(page.locator("#hex-popup")).toContainText("equality does not assign a role");
   const items = page.locator("#hex-popup li");
   await expect(items).toHaveCount(matches.length);
+  // Dense true-black matches must remain complete while the popup clamps.
+  const bounds = await page.locator("#hex-popup").boundingBox();
+  const viewport = page.viewportSize();
+  expect(bounds.x).toBeGreaterThanOrEqual(8);
+  expect(bounds.y).toBeGreaterThanOrEqual(8);
+  expect(bounds.x + bounds.width).toBeLessThanOrEqual(viewport.width - 8);
+  expect(bounds.y + bounds.height).toBeLessThanOrEqual(viewport.height - 8);
   expect(await items.allTextContents()).toEqual(matches.map((match) => `${match.profile}: ${match.path}`));
 });
 
 test("color popup follows only its circle and revalidates stationary hover on scroll", verification({ component: "page", category: "enhancements", states: ["hover"], variants: [], note: "Mouse tracking, leave, outside press, scroll hit testing and viewport bounds on desktop; no manual accessibility claim." }), async ({ page }, testInfo) => {
   test.skip(!only(testInfo, "desktop"), "mouse lifecycle on desktop");
   const clean = await openSpec(page);
-  const swatch = page.locator('.hex-swatch[data-hex="#000000"][data-token-matches]').first();
+  const swatch = page.locator('.hex-swatch[data-hex="#ae1914"][data-token-matches]').first();
   await swatch.scrollIntoViewIfNeeded();
   await swatch.hover();
   const popup = page.locator("#hex-popup");

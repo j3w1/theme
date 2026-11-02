@@ -215,22 +215,23 @@
       "color.interaction.selection.text",
       "color.interaction.text-selection.bg",
       "color.interaction.text-selection.text",
-      "color.primitive.amber.500",
-      "color.primitive.blue.500",
-      "color.primitive.green.500",
       "color.primitive.ink.0",
-      "color.primitive.ink.20",
-      "color.primitive.ink.28",
-      "color.primitive.ink.40",
       "color.primitive.ink.60",
+      "color.primitive.modern.amber",
+      "color.primitive.modern.blue",
+      "color.primitive.modern.divider",
+      "color.primitive.modern.green",
+      "color.primitive.modern.hover",
+      "color.primitive.modern.panel",
+      "color.primitive.modern.red",
       "color.primitive.paper.90",
       "color.primitive.red.100",
-      "color.primitive.red.350",
+      "color.primitive.red.50",
+      "color.primitive.red.650",
       "color.primitive.red.800",
       "color.primitive.red.850",
-      "color.primitive.rose.350",
-      "color.primitive.rose.450",
       "color.primitive.rose.600",
+      "color.primitive.rose.650",
       "color.primitive.rose.700",
       "color.primitive.rose.800",
       "color.status.danger.text",
@@ -278,18 +279,14 @@
         "decisionIds": []
       },
       "color.border.control": {
-        "action": "use-and-report",
-        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
-        "decisionIds": [
-          "D-007"
-        ]
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
       },
       "color.border.divider": {
-        "action": "use-and-report",
-        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
-        "decisionIds": [
-          "D-008"
-        ]
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
       },
       "color.code.bg": {
         "action": "use",
@@ -562,6 +559,6 @@
   "copy": {
     "directory": "copy/diagnostics/",
     "manifest": "copy/diagnostics/manifest.json",
-    "digest": "sha256-FFhKEoQxAEz5S+UL0ab9UQn/tr8+G5L0etJw0ucJnfc="
+    "digest": "sha256-/tKvGRBc6hhqnfZJ7dYirqMb358NCxUY8e4KhG4y9j0="
   }
 }

@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — field
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-o4R1QcVREh4X3VMinZljRvfzhRgfN1pUaC1bgNc444o=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-70Zio4Hy/D9gW+eB+0+voDzUpG18WrjnAQqIN+GBNU0=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/field.json
 spec: spec/components/field.md  site: https://j3w1.github.io/theme/reference/#c-field
 maturity: stable  priority: R1
@@ -10,15 +10,15 @@ Use the pinned approved default profile. Pending roles in that profile use-and-r
 Tokens (resolved):
   root.text                #e99499  ({color.text.default})  use
   label.text               #ffa2a7  ({color.text.bright})  use
-  label.required-mark      #f73f35  ({color.status.danger.text})  use
+  label.required-mark      #f07178  ({color.status.danger.text})  use
   control.bg               #000000  ({color.surface.input})  use
-  control.border           #a3676b  ({color.border.control})  use-and-report (D-007)
+  control.border           #c81a1a  ({color.border.control})  use
   control.border-invalid   #e53935  ({color.status.danger.border})  use
-  control.text-disabled    #8a5559  ({color.text.disabled})  use
-  control.bg-disabled      #160b0b  ({color.interaction.disabled.bg})  use
-  control.border-disabled  #7d1310  ({color.border.disabled})  use
-  help.text                #bd787d  ({color.text.muted})  use
-  message.text             #f73f35  ({color.status.danger.text})  use
+  control.text-disabled    #a3676b  ({color.text.disabled})  use
+  control.bg-disabled      #0d0707  ({color.interaction.disabled.bg})  use
+  control.border-disabled  #482b2b  ({color.border.disabled})  use
+  help.text                #d4868b  ({color.text.muted})  use
+  message.text             #f07178  ({color.status.danger.text})  use
 
 States: default, required, invalid, disabled
   default: label {color.text.bright}; help {color.text.muted}; control as its own component [—]

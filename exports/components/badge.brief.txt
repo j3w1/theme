@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — badge
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-o4R1QcVREh4X3VMinZljRvfzhRgfN1pUaC1bgNc444o=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-70Zio4Hy/D9gW+eB+0+voDzUpG18WrjnAQqIN+GBNU0=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/badge.json
 spec: spec/components/badge.md  site: https://j3w1.github.io/theme/reference/#c-badge
 maturity: stable  priority: R1
@@ -11,23 +11,23 @@ Tokens (resolved):
   danger.bg             #dc282e  ({color.status.danger.fill})  use
   danger.text           #f9faf9  ({color.status.danger.on-fill})  use
   danger.border         #e53935  ({color.status.danger.border})  use
-  danger.outline-text   #f73f35  ({color.status.danger.text})  use
-  warning.bg            #c9973f  ({color.status.warning.fill})  use
-  warning.text          #0c0909  ({color.status.warning.on-fill})  use
-  warning.border        #c9973f  ({color.status.warning.border})  use
-  warning.outline-text  #c9973f  ({color.status.warning.text})  use
-  success.bg            #86a46f  ({color.status.success.fill})  use
-  success.text          #0c0909  ({color.status.success.on-fill})  use
-  success.border        #86a46f  ({color.status.success.border})  use
-  success.outline-text  #86a46f  ({color.status.success.text})  use
-  info.bg               #7e9ebb  ({color.status.info.fill})  use
-  info.text             #0c0909  ({color.status.info.on-fill})  use
-  info.border           #7e9ebb  ({color.status.info.border})  use
-  info.outline-text     #7e9ebb  ({color.status.info.text})  use
-  neutral.bg            #a3676b  ({color.status.neutral.fill})  use
+  danger.outline-text   #f07178  ({color.status.danger.text})  use
+  warning.bg            #e5c07b  ({color.status.warning.fill})  use
+  warning.text          #000000  ({color.status.warning.on-fill})  use
+  warning.border        #e5c07b  ({color.status.warning.border})  use
+  warning.outline-text  #e5c07b  ({color.status.warning.text})  use
+  success.bg            #82d9a0  ({color.status.success.fill})  use
+  success.text          #000000  ({color.status.success.on-fill})  use
+  success.border        #82d9a0  ({color.status.success.border})  use
+  success.outline-text  #82d9a0  ({color.status.success.text})  use
+  info.bg               #82b4ff  ({color.status.info.fill})  use
+  info.text             #000000  ({color.status.info.on-fill})  use
+  info.border           #82b4ff  ({color.status.info.border})  use
+  info.outline-text     #82b4ff  ({color.status.info.text})  use
+  neutral.bg            #986f72  ({color.status.neutral.fill})  use
   neutral.text          #000000  ({color.status.neutral.on-fill})  use
-  neutral.border        #a3676b  ({color.status.neutral.border})  use
-  neutral.outline-text  #bd787d  ({color.status.neutral.text})  use
+  neutral.border        #986f72  ({color.status.neutral.border})  use
+  neutral.outline-text  #d4868b  ({color.status.neutral.text})  use
   count.bg              #7d1310  ({color.action.primary.bg})  use
   count.text            #ffa2a7  ({color.action.primary.text})  use
 

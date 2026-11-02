@@ -54,7 +54,7 @@ const OBSERVED_CLAUDE_ROLES = [
 ];
 
 /* The pending decisions the host maps disclose. */
-const DISCLOSED = { "color.border.divider": ["D-008"], "color.border.overlay": ["D-008"] };
+const DISCLOSED = {}; // D-041 approves the default divider and overlay roles.
 
 let context;
 const ctx = async () => (context ??= await loadContext({ sourceRoot: repoRoot, offline: true, ...HEAD }));
@@ -628,7 +628,7 @@ test("a BOM is kept on settings.json and config.toml, and restore is byte-exact"
   assert.equal(await fs.readFile(h.config, "utf8"), config);
 });
 
-test("a host that writes its settings when probed loses nothing, and only the named host is probed", async (t) => {
+test("a host that writes its settings when probed loses nothing, and only the named host is probed", { skip: process.platform === "win32" ? "POSIX executable shell fixture; Windows does not implement this mechanism" : false }, async (t) => {
   const h = await setupHome(t);
   const bin = path.join(h.home, "bin");
   await fs.mkdir(bin);
@@ -748,7 +748,7 @@ test("a restore stopped by another program's writes is not a baseline; running i
   assert.match(third.join("\n"), /nothing was applied since the restore/);
 });
 
-test("a restore stopped by a write error is not a baseline; running it again finishes the job", { skip: process.getuid?.() === 0 && "root ignores the permission" }, async (t) => {
+test("a restore stopped by a write error is not a baseline; running it again finishes the job", { skip: process.platform === "win32" ? "POSIX chmod write-denial fixture" : process.getuid?.() === 0 && "root ignores the permission" }, async (t) => {
   const { h, paths, opts } = await inProcess(t);
   assert.equal(await apply(opts(), paths, quiet), 0);
   const codexHome = path.dirname(h.config);
@@ -1136,10 +1136,10 @@ test("the Orca runtime home is checked read-only through Orca's themes link", as
   assert.equal((await cli(h.home, "codex", ["apply"])).code, 0);
   const pending = await cli(h.home, "codex", ["test", "--no-specimen"]);
   assert.equal(pending.code, 0, pending.stderr);
-  assert.match(pending.stdout, /WARN .*orca-runtime\/themes is not there yet/);
+  assert.match(pending.stdout, /WARN .*orca-runtime[\\/]themes is not there yet/);
   assert.match(pending.stdout, /WARN Orca runtime config tui.theme = "ansi"/);
   assert.ok(!existsSync(path.join(rt, "themes")), "the installer never writes into the runtime home");
-  await fs.symlink(path.join(h.home, ".codex/themes"), path.join(rt, "themes"));
+  await fs.symlink(path.join(h.home, ".codex/themes"), path.join(rt, "themes"), process.platform === "win32" ? "junction" : "dir");
   await fs.writeFile(path.join(rt, "config.toml"), CONFIG.replace('"ansi"', '"j3w1"'));
   const linked = await cli(h.home, "codex", ["test", "--no-specimen"]);
   assert.equal(linked.code, 0, linked.stderr);
@@ -1147,7 +1147,7 @@ test("the Orca runtime home is checked read-only through Orca's themes link", as
   assert.match(linked.stdout, /PASS Orca runtime config tui.theme = "j3w1"/);
 });
 
-test("an unwritable state directory stops apply before any file changes", async (t) => {
+test("an unwritable state directory stops apply before any file changes", { skip: process.platform === "win32" ? "POSIX chmod write-denial fixture; Windows does not implement this mechanism" : false }, async (t) => {
   const h = await setupHome(t);
   const locked = path.join(h.home, "locked");
   await fs.mkdir(locked, { mode: 0o500 });

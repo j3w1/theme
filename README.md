@@ -1,6 +1,6 @@
 # j3w1 UI Theme Spec
 
-**True-black canvas. Near-black surfaces. Rose text. Red focus. Square components.**
+**True-black canvas. Rose text. Neutral surfaces. Semantic code colours. Red focus. Square components.**
 
 `j3w1/theme` **defines** the j3w1 look: exact tokens, semantic roles,
 interaction states, accessibility limits, component specifications and
@@ -24,6 +24,11 @@ Approval and consumption eligibility are separate; see the policy above and
 
 ## Quick start
 
+For application setup from a reviewed Git checkout, double-click `setup.cmd`
+on Windows or run `node setup.mjs` on another supported platform. Requires
+Node 24 and Git. The menu installs supported ports or stages their import files;
+see [common setup and remaining app steps](ports/README.md#one-click-setup-from-a-checkout).
+
 Pin a release tag or a full commit, never `main`, and read every file at that
 same revision. Releases are tags.
 
@@ -42,7 +47,11 @@ and rollback; declared status and import evidence are under
 | Ghostty theme | [j3w1](https://raw.githubusercontent.com/j3w1/theme/v4.0.0/ports/ghostty/dist/j3w1) | [download](https://j3w1.github.io/theme/ports/ghostty/j3w1) | Save as ~/.config/ghostty/themes/j3w1 and add `theme = j3w1` to your Ghostty config. | experimental; import evidence not verified |
 | Obsidian theme | [manifest.json](https://raw.githubusercontent.com/j3w1/theme/v4.0.0/ports/obsidian/dist/manifest.json) | [download](https://j3w1.github.io/theme/ports/obsidian/manifest.json) | Copy manifest.json and theme.css into <vault>/.obsidian/themes/j3w1/, choose the Dark base scheme, then select j3w1 under Settings → Appearance → Themes. | experimental; import evidence not verified |
 | Obsidian theme | [theme.css](https://raw.githubusercontent.com/j3w1/theme/v4.0.0/ports/obsidian/dist/theme.css) | [download](https://j3w1.github.io/theme/ports/obsidian/theme.css) | Copy beside manifest.json in <vault>/.obsidian/themes/j3w1/; restart Obsidian after a manifest update. | experimental; import evidence not verified |
-| Orca (Ghostty config import) | [config.ghostty](https://raw.githubusercontent.com/j3w1/theme/v4.0.0/ports/orca/dist/config.ghostty) | [download](https://j3w1.github.io/theme/ports/orca/config.ghostty) | Save as %APPDATA%\ghostty\config.ghostty (Windows) or ~/.config/ghostty/config.ghostty, then Orca → Settings → Terminal → Import from Ghostty → Apply Changes. | experimental; import evidence not verified |
+| Orca (app, editor and terminal) | [config.ghostty](https://raw.githubusercontent.com/j3w1/theme/v4.0.0/ports/orca/dist/config.ghostty) | [download](https://j3w1.github.io/theme/ports/orca/config.ghostty) | Save as %APPDATA%\ghostty\config.ghostty (Windows) or ~/.config/ghostty/config.ghostty, then Orca > Settings > Terminal > Import from Ghostty > Apply Changes. | experimental; import evidence not verified |
+| Orca (app, editor and terminal) | [orca-plugin.json](https://raw.githubusercontent.com/j3w1/theme/v4.0.0/ports/orca/dist/orca-plugin.json) | [download](https://j3w1.github.io/theme/ports/orca/orca-plugin.json) | Keep all three JSON files together, then load this folder with orca plugin dev load and select j3w1 in Appearance for the app, editor and terminal. See ports/orca/README.md. | experimental; import evidence not verified |
+| Orca (app, editor and terminal) | [app-theme.json](https://raw.githubusercontent.com/j3w1/theme/v4.0.0/ports/orca/dist/app-theme.json) | [download](https://j3w1.github.io/theme/ports/orca/app-theme.json) | Keep all three JSON files together, then load this folder with orca plugin dev load and select j3w1 in Appearance for the app, editor and terminal. See ports/orca/README.md. | experimental; import evidence not verified |
+| Orca (app, editor and terminal) | [terminal-theme.json](https://raw.githubusercontent.com/j3w1/theme/v4.0.0/ports/orca/dist/terminal-theme.json) | [download](https://j3w1.github.io/theme/ports/orca/terminal-theme.json) | Keep all three JSON files together, then load this folder with orca plugin dev load and select j3w1 in Appearance for the app, editor and terminal. See ports/orca/README.md. | experimental; import evidence not verified |
+| Orca (app, editor and terminal) | [agnoster.zsh](https://raw.githubusercontent.com/j3w1/theme/v4.0.0/ports/orca/dist/agnoster.zsh) | [download](https://j3w1.github.io/theme/ports/orca/agnoster.zsh) | Source after Agnoster loads. CE Devbox: source from ~/.config/ce-devbox/zshrc.local; see README prompt installation. | experimental; import evidence not verified |
 | Telegram Android and Desktop | [j3w1.attheme](https://raw.githubusercontent.com/j3w1/theme/v4.0.0/ports/telegram/dist/j3w1.attheme) | [download](https://j3w1.github.io/theme/ports/telegram/j3w1.attheme) | File install: open in Telegram for Android (or send to Saved Messages and tap), then Apply. Cloud publication and automatic updates require the separate owner steps in the guide; the current files await a new import check. | experimental; import evidence stale |
 | Telegram Android and Desktop | [j3w1.tdesktop-theme](https://raw.githubusercontent.com/j3w1/theme/v4.0.0/ports/telegram/dist/j3w1.tdesktop-theme) | [download](https://j3w1.github.io/theme/ports/telegram/j3w1.tdesktop-theme) | File install: open with Telegram Desktop, then Apply this theme and Keep changes. Cloud publication and automatic updates require the separate owner steps in the guide; the current files await a new import check. | experimental; import evidence stale |
 | Warp theme YAML (also Orca's Import from YAML) | [j3w1.yaml](https://raw.githubusercontent.com/j3w1/theme/v4.0.0/ports/warp/dist/j3w1.yaml) | [download](https://j3w1.github.io/theme/ports/warp/j3w1.yaml) | Orca → Settings → Terminal Themes → Import from YAML (or save into %APPDATA%\warp\Warp\data\themes\ and use Import from Warp), then select "j3w1 theme" as the Dark Theme. Warp: save into its themes folder. | experimental; import evidence not verified |
@@ -127,22 +136,22 @@ profile. Consume roles, never primitives.
 | Role | Value | Status | Use |
 | --- | --- | --- | --- |
 | `color.surface.canvas` | `#000000` | approved; use | Page and terminal background. |
-| `color.surface.default` | `#100c0c` | approved; use | Panels and cards. |
-| `color.surface.raised` | `#160b0b` | approved; use | Sticky headers, menus, popovers; D-027 recessed it so an open list reads as depth rather than a lighter panel. |
-| `color.text.default` | `#e99499` | observed; use | Interface and body text. |
-| `color.text.bright` | `#ffa2a7` | observed; use | Brighter rose interface labels and explicit semantic emphasis. Bold itself inherits color; content headings use text.heading (D-033). |
-| `color.text.prose` | `#e99499` | approved; use | Long-form reading and body text; rose, never an on-fill or heading shortcut (D-033). |
-| `color.text.muted` | `#bd787d` | observed; use | Secondary text; the darkest colour permitted for chrome text. |
-| `color.text.subtle` | `#ad7175` | approved; use | Metadata, comments, line numbers. |
-| `color.border.control` | `#a3676b` | proposed; use-and-report (D-007) | Form-control boundary (4.45:1, meets the 3:1 non-text minimum). |
-| `color.border.default` | `#531310` | observed; use | Decorative border (1.39:1; never the only edge of a control). |
+| `color.surface.default` | `#0d0707` | approved; use | D-041 surface.default: color.primitive.modern.panel. |
+| `color.surface.raised` | `#140b0b` | approved; use | D-041 surface.raised: color.primitive.modern.raised. |
+| `color.text.default` | `#e99499` | approved; use | D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills. |
+| `color.text.bright` | `#ffa2a7` | approved; use | D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills. |
+| `color.text.prose` | `#e99499` | approved; use | Neutral long-form reading text; aliases text.default (D-041). |
+| `color.text.muted` | `#d4868b` | approved; use | D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills. |
+| `color.text.subtle` | `#bd787d` | approved; use | D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills. |
+| `color.border.control` | `#c81a1a` | approved; use | D-041 owner correction: red control and floating-frame borders, distinct from rose text. |
+| `color.border.default` | `#482b2b` | approved; use | D-041 border.default: color.primitive.modern.divider. |
 | `color.interaction.focus.ring` | `#e53935` | observed; use | 1px dashed focus ring on controls and rows. |
 | `color.interaction.selection.bg` | `#531310` | approved; use | Selected row, tab, workspace; D-027 recessed the fill, leaving the 2px indicator and the check to carry selection. |
 | `color.action.primary.bg` | `#7d1310` | approved; use | Primary button fill; D-026 darkened it off color12, which stays fixed as heritage ANSI 12. |
-| `color.status.danger.text` | `#f73f35` | observed; use | Danger text (5.40:1). |
-| `color.status.warning.text` | `#c9973f` | approved; use | Warning text (7.54:1). |
-| `color.status.success.text` | `#86a46f` | approved; use | Success text (7.13:1). |
-| `color.status.info.text` | `#7e9ebb` | approved; use | Info text (7.08:1). |
+| `color.status.danger.text` | `#f07178` | observed; use | D-041 readable error text on neutral surfaces and native warning tints. |
+| `color.status.warning.text` | `#e5c07b` | approved; use | D-041 status.warning.text: color.primitive.modern.amber. |
+| `color.status.success.text` | `#82d9a0` | approved; use | D-041 status.success.text: color.primitive.modern.green. |
+| `color.status.info.text` | `#82b4ff` | approved; use | D-041 status.info.text: color.primitive.modern.blue. |
 <!-- tokens:end -->
 
 Three bounded hues (amber, green, blue) exist for status, diagnostics and diffs
@@ -236,10 +245,10 @@ evidence fingerprint.
 | --- | --- | --- | --- | --- | --- | --- |
 | ChatGPT desktop app (Appearance) | chatgpt-appearance | experimental | not verified | 4.0.0 | — (windows, macos) | 1 / 0 / 9 |
 | Claude Code (custom theme) | claude-theme-json | experimental | not verified | 4.0.0 | — (linux, macos, windows) | 1 / 1 / 2 |
-| Codex CLI (tmTheme) | codex-tmtheme | experimental | not verified | 4.0.0 | — (linux, macos) | 1 / 1 / 3 |
+| Codex CLI (tmTheme) | codex-tmtheme | experimental | not verified | 4.0.0 | — (linux, macos, windows) | 1 / 1 / 3 |
 | Ghostty theme | ghostty-config | experimental | not verified | 4.0.0 | — (macos, linux) | 3 / 1 / 1 |
 | Obsidian theme | obsidian-theme | experimental | not verified | 4.0.0 | — (any) | 3 / 1 / 2 |
-| Orca (Ghostty config import) | ghostty-config | experimental | not verified | 4.0.0 | — (windows, macos, linux) | 4 / 1 / 1 |
+| Orca (app, editor and terminal) | orca-theme | experimental | not verified | 4.0.0 | — (windows, macos, linux) | 7 / 1 / 1 |
 | Telegram Android and Desktop | telegram-theme | experimental | stale | 4.0.0 | Telegram Android 12.10.6, Telegram Desktop 7.2.9 (android, windows, linux, macos) | 4 / 3 / 1 |
 | Warp theme YAML (also Orca's Import from YAML) | warp-yaml | experimental | not verified | 4.0.0 | — (windows, macos, linux) | 1 / 1 / 3 |
 | Windows 11 native and Windhawk theme | windows-theme | experimental | not verified | 4.0.0 | — (windows) | 4 / 1 / 1 |

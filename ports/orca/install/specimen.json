@@ -19,64 +19,64 @@
     },
     {
       "id": "prompt",
-      "title": "Agnoster prompt (prompt roles for the path, D-032; git segments keep their slots)",
+      "title": "Agnoster prompt (rose text, dark-red path, near-black branch; Git state uses markers)",
       "lines": [
         [
           {
             "text": " ~/dev/theme ",
             "fgToken": "color.terminal.prompt-text",
-            "bgToken": "color.terminal.prompt-bg"
+            "bgToken": "color.interaction.text-selection.bg"
           },
           {
             "text": "",
-            "fgToken": "color.terminal.prompt-bg",
-            "bg": 2
+            "fgToken": "color.interaction.text-selection.bg",
+            "bgToken": "color.surface.raised"
           },
           {
             "text": "  main ",
-            "fg": 0,
-            "bg": 2
+            "bgToken": "color.surface.raised",
+            "fgToken": "color.terminal.prompt-text"
           },
           {
             "text": "",
-            "fg": 2
+            "fgToken": "color.surface.raised"
           }
         ],
         [
           {
             "text": " ~/dev/theme ",
             "fgToken": "color.terminal.prompt-text",
-            "bgToken": "color.terminal.prompt-bg"
+            "bgToken": "color.interaction.text-selection.bg"
           },
           {
             "text": "",
-            "fgToken": "color.terminal.prompt-bg",
-            "bg": 5
+            "fgToken": "color.interaction.text-selection.bg",
+            "bgToken": "color.surface.raised"
           },
           {
             "text": "  main ± ",
-            "fg": 0,
-            "bg": 5
+            "bgToken": "color.surface.raised",
+            "fgToken": "color.terminal.prompt-text"
           },
           {
             "text": "",
-            "fg": 5
+            "fgToken": "color.surface.raised"
           }
         ],
         [
           {
             "text": " ✘ ",
-            "fg": 5,
-            "bg": 0
+            "bgToken": "color.terminal.prompt-bg",
+            "fgToken": "color.status.danger.text"
           },
           {
             "text": " ~/dev/theme ",
             "fgToken": "color.terminal.prompt-text",
-            "bgToken": "color.terminal.prompt-bg"
+            "bgToken": "color.interaction.text-selection.bg"
           },
           {
             "text": "",
-            "fgToken": "color.terminal.prompt-bg"
+            "fgToken": "color.interaction.text-selection.bg"
           }
         ]
       ]
@@ -434,7 +434,7 @@
         [
           {
             "text": " > a message you sent, on userMessageBackground ",
-            "fgToken": "color.text.default",
+            "fgToken": "color.terminal.fg",
             "bgToken": "color.interaction.selection.bg"
           }
         ],
@@ -458,7 +458,7 @@
         [
           {
             "text": "╭─ permission ────────╮",
-            "fgToken": "color.border.overlay"
+            "fgToken": "color.text.accent-strong"
           }
         ],
         [
@@ -468,7 +468,7 @@
           },
           {
             "text": "    2. No",
-            "fgToken": "color.text.default"
+            "fgToken": "color.terminal.fg"
           }
         ],
         [
@@ -521,7 +521,7 @@
         [
           {
             "text": "Current session  ",
-            "fgToken": "color.text.default"
+            "fgToken": "color.terminal.fg"
           },
           {
             "text": "████████",
@@ -545,7 +545,7 @@
         [
           {
             "text": "> ",
-            "fgToken": "color.text.default"
+            "fgToken": "color.terminal.fg"
           },
           {
             "text": "type here",
@@ -579,7 +579,7 @@
           },
           {
             "text": "npm test",
-            "fgToken": "color.text.accent"
+            "fgToken": "color.text.accent-strong"
           }
         ],
         [

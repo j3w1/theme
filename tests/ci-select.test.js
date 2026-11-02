@@ -1,3 +1,4 @@
+import { fileURLToPath } from "node:url";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync, writeFileSync, mkdtempSync, existsSync } from "node:fs";
@@ -183,7 +184,7 @@ test("the base commit's control list still applies to a pull request", async () 
 });
 
 test("the completeness check leaves the evidence untouched and refuses a short one", () => {
-  const listed = JSON.parse(execFileSync("npx", ["playwright", "test", "--list", "--reporter=json"], { encoding: "utf8", env: { ...process.env, CI: "1" }, maxBuffer: 64 * 1024 * 1024 }));
+  const listed = JSON.parse(execFileSync(process.execPath, [fileURLToPath(import.meta.resolve("@playwright/test/cli")), "test", "--list", "--reporter=json"], { encoding: "utf8", env: { ...process.env, CI: "1" }, maxBuffer: 64 * 1024 * 1024 }));
   const records = [];
   const walk = (suite) => { for (const spec of suite.specs ?? []) for (const t of spec.tests ?? []) records.push({ result: "passed", environment: { project: t.projectName } }); for (const s of suite.suites ?? []) walk(s); };
   listed.suites.forEach(walk);

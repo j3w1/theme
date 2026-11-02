@@ -258,10 +258,13 @@
       "color.primitive.alpha.black-65",
       "color.primitive.alpha.transparent",
       "color.primitive.ink.0",
-      "color.primitive.ink.30",
       "color.primitive.ink.40",
-      "color.primitive.ink.52",
-      "color.primitive.ink.60",
+      "color.primitive.modern.control",
+      "color.primitive.modern.divider",
+      "color.primitive.modern.hover",
+      "color.primitive.modern.overlay",
+      "color.primitive.modern.panel",
+      "color.primitive.modern.red",
       "color.primitive.paper.100",
       "color.primitive.paper.90",
       "color.primitive.red.100",
@@ -271,14 +274,14 @@
       "color.primitive.red.400",
       "color.primitive.red.50",
       "color.primitive.red.550",
+      "color.primitive.red.650",
       "color.primitive.red.750",
       "color.primitive.red.800",
-      "color.primitive.red.850",
-      "color.primitive.rose.300",
       "color.primitive.rose.350",
-      "color.primitive.rose.600",
+      "color.primitive.rose.650",
       "color.primitive.rose.700",
       "color.primitive.rose.800",
+      "color.status.danger.text",
       "color.surface.backdrop",
       "color.surface.canvas",
       "color.surface.overlay",
@@ -435,18 +438,14 @@
         "decisionIds": []
       },
       "color.border.divider": {
-        "action": "use-and-report",
-        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
-        "decisionIds": [
-          "D-008"
-        ]
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
       },
       "color.border.overlay": {
-        "action": "use-and-report",
-        "reason": "Use the pinned value and disclose every pending decision ID; approval statuses are unchanged.",
-        "decisionIds": [
-          "D-008"
-        ]
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
       },
       "color.border.selected-indicator": {
         "action": "use",
@@ -696,6 +695,6 @@
   "copy": {
     "directory": "copy/drawer/",
     "manifest": "copy/drawer/manifest.json",
-    "digest": "sha256-GV8Gtw9LhFzPMB2UZc/a1dHPi1zLWQO+YC+I15+X1UY="
+    "digest": "sha256-SyjiZGfW7kf4vufRk3oLDjiS7zw5VEwkSWdPMt7GjaI="
   }
 }
