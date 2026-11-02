@@ -917,18 +917,20 @@
       "profile": "default",
       "targetVersions": [
         "0.156.1",
-        "0.157.0"
+        "0.157.0",
+        "0.166.0"
       ],
       "testedVersions": [],
       "os": [
         "linux",
-        "macos"
+        "macos",
+        "windows"
       ],
       "verification": {
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-LiSAneEF5Y14l8wWdOQnBVC8qRdIOVVh0rLNAIt0Eu0=",
+      "subjectDigest": "sha256-5K3pv22IT+3cLevHM/yUksQ2heO04h/wlj5GDc6M3Rk=",
       "evidencePath": null,
       "surfaces": {
         "theme-scopes": {

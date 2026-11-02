@@ -12,6 +12,25 @@ Needs Node 24, Git, a clone of this repository and Claude Code 2.1.281 or
 later. Claude Code also uses the terminal's sixteen colours (see Limits), so
 install a terminal theme too, for example [`../orca/`](../orca/README.md).
 
+## One-click setup from this checkout
+
+Double-click the repository root's [setup.cmd](../../setup.cmd) on Windows and
+select Claude Code, or run from the repository root:
+
+```sh
+node setup.mjs --ports claude-code
+```
+
+This uses the committed checkout's theme through the existing installer, then
+runs its installed-file check. Add Orca or another terminal port to the same
+selection when needed. Existing backup and restore behavior is retained; no
+running agent is restarted. Sessions that keep their startup theme need to be
+reopened. See [common setup options](../README.md#one-click-setup-from-a-checkout)
+for dry runs and platform prerequisites.
+
+The release commands below install the recorded published release, which can
+be older than this checkout's candidate.
+
 ## Install
 
 <!-- install:start -->

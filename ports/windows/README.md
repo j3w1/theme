@@ -7,6 +7,27 @@ application. [Coverage](COVERAGE.md) lists implemented surfaces, owner
 acceptances and open checks; [Compatibility](COMPATIBILITY.md) holds exact host
 boundaries, technical details, developer/offline instructions and history.
 
+## One-click setup from this checkout
+
+For a reviewed Git checkout with Node 24 and Git available, double-click the
+repository root's [setup.cmd](../../setup.cmd) and select Windows, or run from
+the repository root:
+
+```powershell
+node setup.mjs --ports windows
+```
+
+The common setup delegates to this port's existing installer with the exact
+committed checkout revision and runs its normal checks. Full mode remains the
+default and requires an exact supported host. To choose reduced native styling
+explicitly, use `--windows-mode Native`. Compatibility and runtime restrictions
+still apply. Save work, close app settings windows and reopen affected apps
+afterward. See [common setup options](../README.md#one-click-setup-from-a-checkout).
+
+This checkout route needs Node and Git. The standalone published-release
+installer below obtains its own dependencies and has different prerequisites.
+An unpublished candidate remains a candidate until a release is published.
+
 ## Install
 
 **One script, `install.ps1`, handles installation, updates, checks and rollback.**

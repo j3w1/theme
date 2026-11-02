@@ -15,6 +15,22 @@ default profile by `npm run generate`; never edit it by hand.
   `adjust-cell-height` equivalent).
 - Unsupported: light mode; the theme has no light profile.
 
+## Setup from this checkout
+
+With Node 24 and Git available on macOS or Linux, run from the repository root:
+
+```sh
+node setup.mjs --ports ghostty
+```
+
+Setup installs the theme file from the committed checkout and backs up a
+replaced file. It leaves theme activation explicit: set `theme = j3w1` in
+Ghostty's configuration and reload it. Repeat the command after reviewing and
+checking out a newer revision. The printed backup location can restore the
+previous theme file. See
+[common setup options](../README.md#one-click-setup-from-a-checkout).
+Ghostty is not a native Windows target; use the Orca port there.
+
 ## Install
 
 1. Download `j3w1` from the Downloads table in the repository README.

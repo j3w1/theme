@@ -7536,7 +7536,7 @@ Unlabelled controls, color-only status, drag-only operations, hidden required in
 | --- | --- | --- | --- | --- | --- | --- |
 | ChatGPT desktop app (Appearance) | chatgpt-appearance | experimental | not verified | 4.0.0 | — (windows, macos) | 1 / 0 / 9 |
 | Claude Code (custom theme) | claude-theme-json | experimental | not verified | 4.0.0 | — (linux, macos, windows) | 1 / 1 / 2 |
-| Codex CLI (tmTheme) | codex-tmtheme | experimental | not verified | 4.0.0 | — (linux, macos) | 1 / 1 / 3 |
+| Codex CLI (tmTheme) | codex-tmtheme | experimental | not verified | 4.0.0 | — (linux, macos, windows) | 1 / 1 / 3 |
 | Ghostty theme | ghostty-config | experimental | not verified | 4.0.0 | — (macos, linux) | 3 / 1 / 1 |
 | Obsidian theme | obsidian-theme | experimental | not verified | 4.0.0 | — (any) | 3 / 1 / 2 |
 | Orca (app, editor and terminal) | orca-theme | experimental | not verified | 4.0.0 | — (windows, macos, linux) | 7 / 1 / 1 |

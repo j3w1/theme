@@ -6,9 +6,31 @@ colour tokens, including sidebars, tabs, settings and structured agent views.
 TextMate scopes colour code, including green inserted text and red deletions.
 Status: experimental; structural validation is separate from live import evidence.
 
-## App, editor and terminal plugin (recommended)
+## One-click setup from this checkout
 
-From a checkout, generate the files and load the plugin folder:
+With Node 24, Git and Orca 1.4.246 or later available, double-click the repository
+root's [setup.cmd](../../setup.cmd) on Windows and select Orca. On any supported
+platform, run from the repository root:
+
+```sh
+node setup.mjs --ports orca
+```
+
+The common setup copies the committed app/editor/terminal plugin to a retained
+local folder, validates it and registers it through Orca's supported plugin
+CLI. Keep that folder: Orca reloads the registered development folder on later
+starts. This data-only plugin needs no executable permissions. Appearance
+selection is still an app step: use the settings below to choose j3w1 and
+remove old terminal overrides. No app restart is forced and running sessions
+are preserved. [Common setup options](../README.md#one-click-setup-from-a-checkout)
+include a dry run and multi-port setup.
+
+The published legacy terminal-only commands later in this guide are separate
+from this checkout's full application plugin setup.
+
+## Appearance selection and manual plugin setup
+
+For manual development loading directly from the checkout:
 
 ```powershell
 npm run generate
@@ -39,10 +61,21 @@ and approval dialog colours, geometry, focus behavior and unsupported syntax
 selectors. It owns diff backgrounds; the theme supplies supported syntax
 foregrounds and terminal ANSI slots without injecting CSS.
 
-To restore, select the previous app, editor and terminal themes and run
+For a plugin loaded manually from the checkout, restore by selecting the
+previous app, editor and terminal themes, then run
 `orca plugin dev unload ./ports/orca/dist --json`. Keep the loaded folder at a
 stable path: development loading watches it for updates. This is a local
 installation, not a public plugin-catalog release.
+
+## Update or remove the full app plugin
+
+For common setup, review and check out the desired newer revision, then rerun
+`node setup.mjs --ports orca`. Setup retains and registers that revision's
+plugin folder; Appearance selections remain an Orca setting. To stop using it,
+select the previous app, editor and terminal themes, then unload the registered
+folder using the exact retained path printed by setup. The legacy PowerShell
+Restore script below applies only to settings managed by that terminal-only
+installer, not the new data plugin.
 
 ## Host limits in Orca 1.4.246
 
@@ -229,7 +262,20 @@ It preserves existing executable, permission and extension rules, and repeated
 sourcing replaces only these owned type entries. This is independent of ANSI
 blue used by code, links and status in other programs.
 
-Copy `dist/agnoster.zsh` to `~/.config/j3w1-theme/agnoster.zsh`, preserving a
+On Linux or macOS, common setup can install this optional shell configuration
+and its source line with backups:
+
+```sh
+node setup.mjs --ports claude-code,codex --shell-prompt
+```
+
+The flag is opt-in and can accompany another port selection. It uses the
+existing CE Devbox user override when present, otherwise the user's `.zshrc`;
+it does not install Agnoster. It sets `CE_THEME=off` in `~/.zshenv` only when
+the older `/etc/profile.d/ce-theme.sh` exists. Source the installed prompt once
+or open a new shell to see the change. Existing agent sessions are preserved.
+
+For manual installation, copy `dist/agnoster.zsh` to `~/.config/j3w1-theme/agnoster.zsh`, preserving a
 backup if it already exists, then source it from your final shell configuration:
 
 ```zsh

@@ -13,6 +13,30 @@ Needs Node 24, Git, a clone of this repository (with `npm ci` done) and Codex
 CLI 0.156.1 or later. Codex also uses the terminal's colours (see Limits), so
 install a terminal theme too, for example [`../orca/`](../orca/README.md).
 
+The installer supports native Windows, Linux and macOS. Native Windows
+configuration and installed-file checks were exercised with Codex 0.166.0;
+this does not claim a complete visual import protocol for that host.
+
+## One-click setup from this checkout
+
+Double-click the repository root's [setup.cmd](../../setup.cmd) on Windows and
+select Codex, or run from the repository root:
+
+```sh
+node setup.mjs --ports codex
+```
+
+This installs the committed checkout's theme through the existing installer,
+then runs its installed-file check. Setup installs repository dependencies if
+the TOML parser is missing; use `--skip-dependencies` after preparing them
+yourself. Existing backup and restore behavior is retained. Open a new Codex
+session afterward: running sessions keep their startup theme. Add a terminal
+port to the same selection when needed. See
+[common setup options](../README.md#one-click-setup-from-a-checkout).
+
+The release commands below install the recorded published release, which can
+be older than this checkout's candidate.
+
 ## Install
 
 <!-- install:start -->

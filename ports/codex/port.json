@@ -9,12 +9,14 @@
   "format": "codex-tmtheme",
   "targetVersions": [
     "0.156.1",
-    "0.157.0"
+    "0.157.0",
+    "0.166.0"
   ],
   "testedVersions": [],
   "os": [
     "linux",
-    "macos"
+    "macos",
+    "windows"
   ],
   "surfaces": {
     "supported": [
