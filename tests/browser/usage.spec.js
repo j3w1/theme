@@ -18,7 +18,8 @@ test("usage filters require a documented match and preserve profile restrictions
     const rows = page.locator("[data-usage-path]:visible");
     await expect(rows).toHaveCount(1);
     await expect(rows).toContainText("color.border.control");
-    await expect(rows).toContainText("use-and-report");
+    await expect(rows).toContainText("approved \u00b7 use");
+    await expect(rows).not.toContainText("use-and-report");
     if (["desktop", "narrow"].includes(testInfo.project.name)) await page.screenshot({ path: `.cache/usage-filtered-${testInfo.project.name}.png`, fullPage: true });
     await chooseOptions(page.getByLabel("Profile", { exact: true }), "extended");
     await page.getByLabel("Permitted roles only").check();
@@ -45,7 +46,8 @@ test("token details are persistent, source-linked and readable without scripts",
   await page.goto("tokens/color.border.control/", { waitUntil: "networkidle" });
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("color.border.control");
   await expect(page.locator(".usage-section")).toHaveCount(3);
-  await expect(page.locator("#tp-default-color-border-control")).toContainText("D-007");
+  await expect(page.locator("#tp-default-color-border-control")).toContainText("D-041");
+  await expect(page.locator("#tp-default-color-border-control")).toContainText("None pending.");
   await expect(page.locator("#tp-default-color-border-control")).toContainText("root.border");
   await expect(page.locator("#tp-extended-color-border-control")).toContainText("blocked");
   await expect(page.locator(".hex-swatch").first()).toBeVisible();
