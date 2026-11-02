@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — error-state
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-uUyex258/cCN40I3QfAc17Y4Big+7Dc2v2FeXtKT5bE=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-0jrAhUhMk1y0cVuA9UcymrJJSN6hyxQFjD82B97Ze6s=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/error-state.json
 spec: spec/components/error-state.md  site: https://j3w1.github.io/theme/reference/#c-error-state
 maturity: stable  priority: R2
@@ -9,12 +9,12 @@ Summary: A specific failure explanation with an explicit recovery request.
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
   root.bg                                             #0e1014  ({color.surface.default})  use
-  root.text                                           #d8dee9  ({color.text.default})  use
+  root.text                                           #e99499  ({color.text.default})  use
   root.border                                         #747e8e  ({color.border.control})  use
-  heading.text                                        #f1f5f9  ({color.text.bright})  use
-  secondary.text                                      #a6afbd  ({color.text.muted})  use
+  heading.text                                        #ffa2a7  ({color.text.bright})  use
+  secondary.text                                      #d4868b  ({color.text.muted})  use
   control.bg                                          rgb(0 0 0 / 0%)  ({color.action.secondary.bg})  use
-  control.text                                        #f1f5f9  ({color.action.secondary.text})  use
+  control.text                                        #ffa2a7  ({color.action.secondary.text})  use
   control.border                                      #747e8e  ({color.action.secondary.border})  use
   control.bg-hover                                    #630f0d  ({color.action.secondary.hover-bg})  use
   control.bg-active                                   #420f0c  ({color.action.secondary.pressed-bg})  use
@@ -26,7 +26,7 @@ Tokens (resolved):
   dependency.role-color-interaction-disabled-bg       #0e1014  ({color.interaction.disabled.bg})  use
   dependency.role-color-status-danger-border          #e53935  ({color.status.danger.border})  use
   dependency.role-color-status-danger-text            #f07178  ({color.status.danger.text})  use
-  dependency.role-color-text-disabled                 #727b89  ({color.text.disabled})  use
+  dependency.role-color-text-disabled                 #a3676b  ({color.text.disabled})  use
   dependency.role-density-comfortable-control-height  32px  ({density.comfortable.control-height})  use
   dependency.role-density-compact-control-height      24px  ({density.compact.control-height})  use
   dependency.role-focus-offset                        -2px  ({focus.offset})  use

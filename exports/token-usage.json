@@ -1075,7 +1075,7 @@
         "color.action.primary.text": {
           "path": "color.action.primary.text",
           "group": "action",
-          "css": "#f1f5f9",
+          "css": "#ffa2a7",
           "variable": "--color-action-primary-text",
           "description": "Primary action labels: bright rose across rest, hover and pressed states (D-033).",
           "status": "approved",
@@ -1099,7 +1099,7 @@
           "aliases": [
             "color.text.on-action",
             "color.text.bright",
-            "color.primitive.modern.bright"
+            "color.primitive.rose.800"
           ],
           "usedByAliases": [],
           "unmappedPorts": [
@@ -1495,9 +1495,9 @@
         "color.action.secondary.text": {
           "path": "color.action.secondary.text",
           "group": "action",
-          "css": "#f1f5f9",
+          "css": "#ffa2a7",
           "variable": "--color-action-secondary-text",
-          "description": "D-041 action.secondary.text: color.primitive.modern.bright.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -1517,7 +1517,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.bright"
+            "color.text.bright",
+            "color.primitive.rose.800"
           ],
           "usedByAliases": [],
           "unmappedPorts": [
@@ -1686,9 +1687,9 @@
         "color.action.tertiary.text": {
           "path": "color.action.tertiary.text",
           "group": "action",
-          "css": "#d8dee9",
+          "css": "#e99499",
           "variable": "--color-action-tertiary-text",
-          "description": "D-041 action.tertiary.text: color.primitive.modern.text.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -1708,7 +1709,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.text"
+            "color.text.default",
+            "color.primitive.rose.700"
           ],
           "usedByAliases": [],
           "unmappedPorts": [
@@ -3308,9 +3310,9 @@
         "color.chart.label": {
           "path": "color.chart.label",
           "group": "chart",
-          "css": "#a6afbd",
+          "css": "#d4868b",
           "variable": "--color-chart-label",
-          "description": "D-041 chart.label: color.primitive.modern.muted.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -3330,7 +3332,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.muted"
+            "color.text.muted",
+            "color.primitive.rose.650"
           ],
           "usedByAliases": [],
           "unmappedPorts": [
@@ -3681,9 +3684,9 @@
         "color.code.caret": {
           "path": "color.code.caret",
           "group": "code",
-          "css": "#f1f5f9",
+          "css": "#ffa2a7",
           "variable": "--color-code-caret",
-          "description": "D-041 code.caret: color.primitive.modern.bright.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -3703,7 +3706,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.bright"
+            "color.text.bright",
+            "color.primitive.rose.800"
           ],
           "usedByAliases": [],
           "unmappedPorts": [
@@ -4338,9 +4342,9 @@
         "color.code.line-number": {
           "path": "color.code.line-number",
           "group": "code",
-          "css": "#909aaa",
+          "css": "#bd787d",
           "variable": "--color-code-line-number",
-          "description": "D-041 code.line-number: color.primitive.modern.subtle.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -4360,7 +4364,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.subtle"
+            "color.text.subtle",
+            "color.primitive.rose.600"
           ],
           "usedByAliases": [],
           "unmappedPorts": [
@@ -4391,9 +4396,9 @@
         "color.code.line-number-active": {
           "path": "color.code.line-number-active",
           "group": "code",
-          "css": "#d8dee9",
+          "css": "#e99499",
           "variable": "--color-code-line-number-active",
-          "description": "D-041 code.line-number-active: color.primitive.modern.text.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -4413,7 +4418,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.text"
+            "color.text.default",
+            "color.primitive.rose.700"
           ],
           "usedByAliases": [],
           "unmappedPorts": [
@@ -4672,9 +4678,9 @@
         "color.code.syntax.comment": {
           "path": "color.code.syntax.comment",
           "group": "code",
-          "css": "#909aaa",
+          "css": "#bd787d",
           "variable": "--color-code-syntax-comment",
-          "description": "D-041 code.syntax.comment: color.primitive.modern.subtle.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -4694,7 +4700,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.subtle"
+            "color.text.subtle",
+            "color.primitive.rose.600"
           ],
           "usedByAliases": [],
           "unmappedPorts": [
@@ -4769,9 +4776,9 @@
         "color.code.syntax.deprecated": {
           "path": "color.code.syntax.deprecated",
           "group": "code",
-          "css": "#909aaa",
+          "css": "#bd787d",
           "variable": "--color-code-syntax-deprecated",
-          "description": "D-041 code.syntax.deprecated: color.primitive.modern.subtle.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -4791,7 +4798,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.subtle"
+            "color.text.subtle",
+            "color.primitive.rose.600"
           ],
           "usedByAliases": [],
           "unmappedPorts": [
@@ -5199,9 +5207,9 @@
         "color.code.syntax.punctuation": {
           "path": "color.code.syntax.punctuation",
           "group": "code",
-          "css": "#a6afbd",
+          "css": "#d4868b",
           "variable": "--color-code-syntax-punctuation",
-          "description": "D-041 code.syntax.punctuation: color.primitive.modern.muted.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -5221,7 +5229,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.muted"
+            "color.text.muted",
+            "color.primitive.rose.650"
           ],
           "usedByAliases": [],
           "unmappedPorts": [
@@ -5677,9 +5686,9 @@
         "color.diagnostic.hint.underline": {
           "path": "color.diagnostic.hint.underline",
           "group": "diagnostic",
-          "css": "#909aaa",
+          "css": "#bd787d",
           "variable": "--color-diagnostic-hint-underline",
-          "description": "D-041 diagnostic.hint.underline: color.primitive.modern.subtle.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -5699,7 +5708,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.subtle"
+            "color.text.subtle",
+            "color.primitive.rose.600"
           ],
           "usedByAliases": [],
           "unmappedPorts": [
@@ -5822,9 +5832,9 @@
         "color.diagnostic.unused.text": {
           "path": "color.diagnostic.unused.text",
           "group": "diagnostic",
-          "css": "#a6afbd",
+          "css": "#d4868b",
           "variable": "--color-diagnostic-unused-text",
-          "description": "D-041 diagnostic.unused.text: color.primitive.modern.muted.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -5844,7 +5854,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.muted"
+            "color.text.muted",
+            "color.primitive.rose.650"
           ],
           "usedByAliases": [],
           "unmappedPorts": [
@@ -6557,9 +6568,9 @@
         "color.icon.default": {
           "path": "color.icon.default",
           "group": "icon",
-          "css": "#d8dee9",
+          "css": "#e99499",
           "variable": "--color-icon-default",
-          "description": "D-041 icon.default: color.primitive.modern.text.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -6579,7 +6590,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.text"
+            "color.text.default",
+            "color.primitive.rose.700"
           ],
           "usedByAliases": [],
           "unmappedPorts": [
@@ -8399,9 +8411,9 @@
         "color.interaction.selection.inactive-text": {
           "path": "color.interaction.selection.inactive-text",
           "group": "interaction",
-          "css": "#d8dee9",
+          "css": "#e99499",
           "variable": "--color-interaction-selection-inactive-text",
-          "description": "D-041 interaction.selection.inactive-text: color.text.default.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -8422,7 +8434,7 @@
           },
           "aliases": [
             "color.text.default",
-            "color.primitive.modern.text"
+            "color.primitive.rose.700"
           ],
           "usedByAliases": [],
           "unmappedPorts": [
@@ -11139,15 +11151,9 @@
           },
           "aliases": [],
           "usedByAliases": [
-            "color.action.primary.text",
-            "color.action.secondary.text",
-            "color.code.caret",
             "color.code.syntax.heading",
-            "color.terminal.cursor",
-            "color.text.bright",
             "color.text.heading",
-            "color.text.highlight",
-            "color.text.on-action"
+            "color.text.highlight"
           ],
           "unmappedPorts": [
             {"port":"chatgpt","reason":"Primitive; ports consume roles, never primitives.","source":{"file":"ports/chatgpt/mapping.json","pointer":"/unmapped/color.primitive.modern.bright","line":395}},
@@ -11580,9 +11586,7 @@
             }
           },
           "aliases": [],
-          "usedByAliases": [
-            "color.text.disabled"
-          ],
+          "usedByAliases": [],
           "unmappedPorts": [
             {"port":"chatgpt","reason":"Primitive; ports consume roles, never primitives.","source":{"file":"ports/chatgpt/mapping.json","pointer":"/unmapped/color.primitive.modern.disabled","line":391}},
             {"port":"claude-code","reason":"Primitive; ports consume roles, never primitives.","source":{"file":"ports/claude-code/mapping.json","pointer":"/unmapped/color.primitive.modern.disabled","line":478}},
@@ -11781,12 +11785,7 @@
           },
           "aliases": [],
           "usedByAliases": [
-            "color.chart.label",
-            "color.code.syntax.punctuation",
-            "color.diagnostic.unused.text",
-            "color.interaction.scrollbar.thumb-hover",
-            "color.status.neutral.text",
-            "color.text.muted"
+            "color.interaction.scrollbar.thumb-hover"
           ],
           "unmappedPorts": [
             {"port":"chatgpt","reason":"Primitive; ports consume roles, never primitives.","source":{"file":"ports/chatgpt/mapping.json","pointer":"/unmapped/color.primitive.modern.muted","line":393}},
@@ -12028,15 +12027,7 @@
             }
           },
           "aliases": [],
-          "usedByAliases": [
-            "color.code.line-number",
-            "color.code.syntax.comment",
-            "color.code.syntax.deprecated",
-            "color.diagnostic.hint.underline",
-            "color.terminal.ansi.8",
-            "color.text.placeholder",
-            "color.text.subtle"
-          ],
+          "usedByAliases": [],
           "unmappedPorts": [
             {"port":"chatgpt","reason":"Primitive; ports consume roles, never primitives.","source":{"file":"ports/chatgpt/mapping.json","pointer":"/unmapped/color.primitive.modern.subtle","line":392}},
             {"port":"claude-code","reason":"Primitive; ports consume roles, never primitives.","source":{"file":"ports/claude-code/mapping.json","pointer":"/unmapped/color.primitive.modern.subtle","line":479}},
@@ -12081,15 +12072,7 @@
             }
           },
           "aliases": [],
-          "usedByAliases": [
-            "color.action.tertiary.text",
-            "color.code.line-number-active",
-            "color.icon.default",
-            "color.interaction.selection.inactive-text",
-            "color.terminal.prompt-text",
-            "color.text.default",
-            "color.text.prose"
-          ],
+          "usedByAliases": [],
           "unmappedPorts": [
             {"port":"chatgpt","reason":"Primitive; ports consume roles, never primitives.","source":{"file":"ports/chatgpt/mapping.json","pointer":"/unmapped/color.primitive.modern.text","line":394}},
             {"port":"claude-code","reason":"Primitive; ports consume roles, never primitives.","source":{"file":"ports/claude-code/mapping.json","pointer":"/unmapped/color.primitive.modern.text","line":481}},
@@ -13286,7 +13269,8 @@
           "aliases": [],
           "usedByAliases": [
             "color.chart.series-4",
-            "color.primitive.ansi.15"
+            "color.primitive.ansi.15",
+            "color.text.disabled"
           ],
           "unmappedPorts": [
             {"port":"chatgpt","reason":"Primitive; ports consume roles, never primitives.","source":{"file":"ports/chatgpt/mapping.json","pointer":"/unmapped/color.primitive.rose.350","line":230}},
@@ -13422,7 +13406,14 @@
           "aliases": [],
           "usedByAliases": [
             "color.chart.series-3",
-            "color.primitive.ansi.2"
+            "color.code.line-number",
+            "color.code.syntax.comment",
+            "color.code.syntax.deprecated",
+            "color.diagnostic.hint.underline",
+            "color.primitive.ansi.2",
+            "color.terminal.ansi.8",
+            "color.text.placeholder",
+            "color.text.subtle"
           ],
           "unmappedPorts": [
             {"port":"chatgpt","reason":"Primitive; ports consume roles, never primitives.","source":{"file":"ports/chatgpt/mapping.json","pointer":"/unmapped/color.primitive.rose.600","line":233}},
@@ -13467,7 +13458,12 @@
           },
           "aliases": [],
           "usedByAliases": [
-            "color.primitive.ansi.3"
+            "color.chart.label",
+            "color.code.syntax.punctuation",
+            "color.diagnostic.unused.text",
+            "color.primitive.ansi.3",
+            "color.status.neutral.text",
+            "color.text.muted"
           ],
           "unmappedPorts": [
             {"port":"chatgpt","reason":"Primitive; ports consume roles, never primitives.","source":{"file":"ports/chatgpt/mapping.json","pointer":"/unmapped/color.primitive.rose.650","line":234}},
@@ -13512,11 +13508,18 @@
           },
           "aliases": [],
           "usedByAliases": [
+            "color.action.tertiary.text",
             "color.code.hued.operator",
+            "color.code.line-number-active",
             "color.code.syntax.operator",
             "color.code.syntax.variable",
+            "color.icon.default",
+            "color.interaction.selection.inactive-text",
             "color.terminal.ansi.7",
-            "color.terminal.fg"
+            "color.terminal.fg",
+            "color.terminal.prompt-text",
+            "color.text.default",
+            "color.text.prose"
           ],
           "unmappedPorts": [
             {"port":"chatgpt","reason":"Primitive; ports consume roles, never primitives.","source":{"file":"ports/chatgpt/mapping.json","pointer":"/unmapped/color.primitive.rose.700","line":235}},
@@ -13561,11 +13564,17 @@
           },
           "aliases": [],
           "usedByAliases": [
+            "color.action.primary.text",
+            "color.action.secondary.text",
             "color.chart.series-1",
+            "color.code.caret",
             "color.code.search-current-bg",
             "color.interaction.focus.ring-container",
             "color.primitive.ansi.7",
-            "color.terminal.ansi.15"
+            "color.terminal.ansi.15",
+            "color.terminal.cursor",
+            "color.text.bright",
+            "color.text.on-action"
           ],
           "unmappedPorts": [
             {"port":"chatgpt","reason":"Primitive; ports consume roles, never primitives.","source":{"file":"ports/chatgpt/mapping.json","pointer":"/unmapped/color.primitive.rose.800","line":236}},
@@ -14465,9 +14474,9 @@
         "color.status.neutral.text": {
           "path": "color.status.neutral.text",
           "group": "status",
-          "css": "#a6afbd",
+          "css": "#d4868b",
           "variable": "--color-status-neutral-text",
-          "description": "D-041 status.neutral.text: color.primitive.modern.muted.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -14487,7 +14496,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.muted"
+            "color.text.muted",
+            "color.primitive.rose.650"
           ],
           "usedByAliases": [],
           "unmappedPorts": [
@@ -18147,9 +18157,9 @@
         "color.terminal.ansi.8": {
           "path": "color.terminal.ansi.8",
           "group": "terminal",
-          "css": "#909aaa",
+          "css": "#bd787d",
           "variable": "--color-terminal-ansi-8",
-          "description": "D-041 terminal.ansi.8: color.primitive.modern.subtle.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -18169,7 +18179,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.subtle"
+            "color.text.subtle",
+            "color.primitive.rose.600"
           ],
           "usedByAliases": [],
           "unmappedPorts": [
@@ -18348,9 +18359,9 @@
         "color.terminal.cursor": {
           "path": "color.terminal.cursor",
           "group": "terminal",
-          "css": "#f1f5f9",
+          "css": "#ffa2a7",
           "variable": "--color-terminal-cursor",
-          "description": "D-041 terminal.cursor: color.primitive.modern.bright.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -18370,7 +18381,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.bright"
+            "color.text.bright",
+            "color.primitive.rose.800"
           ],
           "usedByAliases": [],
           "unmappedPorts": [
@@ -18424,7 +18436,9 @@
           "aliases": [
             "color.primitive.rose.700"
           ],
-          "usedByAliases": [],
+          "usedByAliases": [
+            "color.terminal.prompt-text"
+          ],
           "unmappedPorts": [
             {"port":"chatgpt","reason":"Code colours come from the chosen code theme, not from separate settings.","source":{"file":"ports/chatgpt/mapping.json","pointer":"/unmapped/color.terminal.fg","line":289}},
             {"port":"codex","reason":"The terminal draws this; a tmTheme has no key for it, so it comes from the terminal's own palette (the Orca port sets it).","source":{"file":"ports/codex/mapping.json","pointer":"/unmapped/color.terminal.fg","line":309}},
@@ -18508,9 +18522,9 @@
         "color.terminal.prompt-text": {
           "path": "color.terminal.prompt-text",
           "group": "terminal",
-          "css": "#d8dee9",
+          "css": "#e99499",
           "variable": "--color-terminal-prompt-text",
-          "description": "D-041 terminal.prompt-text: color.primitive.modern.text.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -18530,7 +18544,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.text"
+            "color.terminal.fg",
+            "color.primitive.rose.700"
           ],
           "usedByAliases": [],
           "unmappedPorts": [
@@ -18873,9 +18888,9 @@
         "color.text.bright": {
           "path": "color.text.bright",
           "group": "text",
-          "css": "#f1f5f9",
+          "css": "#ffa2a7",
           "variable": "--color-text-bright",
-          "description": "D-041 text.bright: color.primitive.modern.bright.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -18895,10 +18910,13 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.bright"
+            "color.primitive.rose.800"
           ],
           "usedByAliases": [
             "color.action.primary.text",
+            "color.action.secondary.text",
+            "color.code.caret",
+            "color.terminal.cursor",
             "color.text.on-action"
           ],
           "unmappedPorts": [
@@ -19165,9 +19183,9 @@
         "color.text.default": {
           "path": "color.text.default",
           "group": "text",
-          "css": "#d8dee9",
+          "css": "#e99499",
           "variable": "--color-text-default",
-          "description": "D-041 text.default: color.primitive.modern.text.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -19187,9 +19205,12 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.text"
+            "color.primitive.rose.700"
           ],
           "usedByAliases": [
+            "color.action.tertiary.text",
+            "color.code.line-number-active",
+            "color.icon.default",
             "color.interaction.selection.inactive-text",
             "color.text.prose"
           ],
@@ -20140,9 +20161,9 @@
         "color.text.disabled": {
           "path": "color.text.disabled",
           "group": "text",
-          "css": "#727b89",
+          "css": "#a3676b",
           "variable": "--color-text-disabled",
-          "description": "D-041 text.disabled: color.primitive.modern.disabled.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -20162,7 +20183,7 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.disabled"
+            "color.primitive.rose.350"
           ],
           "usedByAliases": [],
           "unmappedPorts": [
@@ -20737,9 +20758,9 @@
         "color.text.muted": {
           "path": "color.text.muted",
           "group": "text",
-          "css": "#a6afbd",
+          "css": "#d4868b",
           "variable": "--color-text-muted",
-          "description": "D-041 text.muted: color.primitive.modern.muted.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -20759,9 +20780,14 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.muted"
+            "color.primitive.rose.650"
           ],
-          "usedByAliases": [],
+          "usedByAliases": [
+            "color.chart.label",
+            "color.code.syntax.punctuation",
+            "color.diagnostic.unused.text",
+            "color.status.neutral.text"
+          ],
           "unmappedPorts": [
             {"port":"chatgpt","reason":"ChatGPT has one global foreground; the presets use text.bright or text.default and the rest of the text ladder has no setting.","source":{"file":"ports/chatgpt/mapping.json","pointer":"/unmapped/color.text.muted","line":300}},
             {"port":"codex","reason":"Interface colour role; a Codex tmTheme colours code only.","source":{"file":"ports/codex/mapping.json","pointer":"/unmapped/color.text.muted","line":320}},
@@ -21161,7 +21187,7 @@
         "color.text.on-action": {
           "path": "color.text.on-action",
           "group": "text",
-          "css": "#f1f5f9",
+          "css": "#ffa2a7",
           "variable": "--color-text-on-action",
           "description": "Bright rose text on primary-action fills in every state (D-033).",
           "status": "approved",
@@ -21184,7 +21210,7 @@
           },
           "aliases": [
             "color.text.bright",
-            "color.primitive.modern.bright"
+            "color.primitive.rose.800"
           ],
           "usedByAliases": [
             "color.action.primary.text"
@@ -21372,9 +21398,9 @@
         "color.text.placeholder": {
           "path": "color.text.placeholder",
           "group": "text",
-          "css": "#909aaa",
+          "css": "#bd787d",
           "variable": "--color-text-placeholder",
-          "description": "D-041 text.placeholder: color.primitive.modern.subtle.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -21394,7 +21420,7 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.subtle"
+            "color.primitive.rose.600"
           ],
           "usedByAliases": [],
           "unmappedPorts": [
@@ -21443,7 +21469,7 @@
         "color.text.prose": {
           "path": "color.text.prose",
           "group": "text",
-          "css": "#d8dee9",
+          "css": "#e99499",
           "variable": "--color-text-prose",
           "description": "Neutral long-form reading text; aliases text.default (D-041).",
           "status": "approved",
@@ -21466,7 +21492,7 @@
           },
           "aliases": [
             "color.text.default",
-            "color.primitive.modern.text"
+            "color.primitive.rose.700"
           ],
           "usedByAliases": [],
           "unmappedPorts": [
@@ -21498,9 +21524,9 @@
         "color.text.subtle": {
           "path": "color.text.subtle",
           "group": "text",
-          "css": "#909aaa",
+          "css": "#bd787d",
           "variable": "--color-text-subtle",
-          "description": "D-041 text.subtle: color.primitive.modern.subtle.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -21520,9 +21546,15 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.subtle"
+            "color.primitive.rose.600"
           ],
-          "usedByAliases": [],
+          "usedByAliases": [
+            "color.code.line-number",
+            "color.code.syntax.comment",
+            "color.code.syntax.deprecated",
+            "color.diagnostic.hint.underline",
+            "color.terminal.ansi.8"
+          ],
           "unmappedPorts": [
             {"port":"chatgpt","reason":"ChatGPT has one global foreground; the presets use text.bright or text.default and the rest of the text ladder has no setting.","source":{"file":"ports/chatgpt/mapping.json","pointer":"/unmapped/color.text.subtle","line":307}},
             {"port":"codex","reason":"Interface colour role; a Codex tmTheme colours code only.","source":{"file":"ports/codex/mapping.json","pointer":"/unmapped/color.text.subtle","line":327}},
@@ -25160,7 +25192,7 @@
         "color.action.primary.text": {
           "path": "color.action.primary.text",
           "group": "action",
-          "css": "#f1f5f9",
+          "css": "#ffa2a7",
           "variable": "--color-action-primary-text",
           "description": "Primary action labels: bright rose across rest, hover and pressed states (D-033).",
           "status": "approved",
@@ -25184,7 +25216,7 @@
           "aliases": [
             "color.text.on-action",
             "color.text.bright",
-            "color.primitive.modern.bright"
+            "color.primitive.rose.800"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -25500,9 +25532,9 @@
         "color.action.secondary.text": {
           "path": "color.action.secondary.text",
           "group": "action",
-          "css": "#f1f5f9",
+          "css": "#ffa2a7",
           "variable": "--color-action-secondary-text",
-          "description": "D-041 action.secondary.text: color.primitive.modern.bright.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -25522,7 +25554,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.bright"
+            "color.text.bright",
+            "color.primitive.rose.800"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -25664,9 +25697,9 @@
         "color.action.tertiary.text": {
           "path": "color.action.tertiary.text",
           "group": "action",
-          "css": "#d8dee9",
+          "css": "#e99499",
           "variable": "--color-action-tertiary-text",
-          "description": "D-041 action.tertiary.text: color.primitive.modern.text.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -25686,7 +25719,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.text"
+            "color.text.default",
+            "color.primitive.rose.700"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -26660,9 +26694,9 @@
         "color.chart.label": {
           "path": "color.chart.label",
           "group": "chart",
-          "css": "#a6afbd",
+          "css": "#d4868b",
           "variable": "--color-chart-label",
-          "description": "D-041 chart.label: color.primitive.modern.muted.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -26682,7 +26716,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.muted"
+            "color.text.muted",
+            "color.primitive.rose.650"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -26961,9 +26996,9 @@
         "color.code.caret": {
           "path": "color.code.caret",
           "group": "code",
-          "css": "#f1f5f9",
+          "css": "#ffa2a7",
           "variable": "--color-code-caret",
-          "description": "D-041 code.caret: color.primitive.modern.bright.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -26983,7 +27018,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.bright"
+            "color.text.bright",
+            "color.primitive.rose.800"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -27508,9 +27544,9 @@
         "color.code.line-number-active": {
           "path": "color.code.line-number-active",
           "group": "code",
-          "css": "#d8dee9",
+          "css": "#e99499",
           "variable": "--color-code-line-number-active",
-          "description": "D-041 code.line-number-active: color.primitive.modern.text.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -27530,7 +27566,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.text"
+            "color.text.default",
+            "color.primitive.rose.700"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -27803,9 +27840,9 @@
         "color.code.syntax.deprecated": {
           "path": "color.code.syntax.deprecated",
           "group": "code",
-          "css": "#909aaa",
+          "css": "#a3676b",
           "variable": "--color-code-syntax-deprecated",
-          "description": "D-041 code.syntax.deprecated: color.primitive.modern.subtle.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -27825,7 +27862,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.subtle"
+            "color.text.subtle",
+            "color.primitive.rose.350"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -28493,9 +28531,9 @@
         "color.diagnostic.hint.underline": {
           "path": "color.diagnostic.hint.underline",
           "group": "diagnostic",
-          "css": "#909aaa",
+          "css": "#a3676b",
           "variable": "--color-diagnostic-hint-underline",
-          "description": "D-041 diagnostic.hint.underline: color.primitive.modern.subtle.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -28515,7 +28553,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.subtle"
+            "color.text.subtle",
+            "color.primitive.rose.350"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -28608,9 +28647,9 @@
         "color.diagnostic.unused.text": {
           "path": "color.diagnostic.unused.text",
           "group": "diagnostic",
-          "css": "#a6afbd",
+          "css": "#d4868b",
           "variable": "--color-diagnostic-unused-text",
-          "description": "D-041 diagnostic.unused.text: color.primitive.modern.muted.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -28630,7 +28669,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.muted"
+            "color.text.muted",
+            "color.primitive.rose.650"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -29193,9 +29233,9 @@
         "color.icon.default": {
           "path": "color.icon.default",
           "group": "icon",
-          "css": "#d8dee9",
+          "css": "#e99499",
           "variable": "--color-icon-default",
-          "description": "D-041 icon.default: color.primitive.modern.text.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -29215,7 +29255,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.text"
+            "color.text.default",
+            "color.primitive.rose.700"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -30274,9 +30315,9 @@
         "color.interaction.selection.inactive-text": {
           "path": "color.interaction.selection.inactive-text",
           "group": "interaction",
-          "css": "#d8dee9",
+          "css": "#e99499",
           "variable": "--color-interaction-selection-inactive-text",
-          "description": "D-041 interaction.selection.inactive-text: color.text.default.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -30297,7 +30338,7 @@
           },
           "aliases": [
             "color.text.default",
-            "color.primitive.modern.text"
+            "color.primitive.rose.700"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -32347,14 +32388,8 @@
           },
           "aliases": [],
           "usedByAliases": [
-            "color.action.primary.text",
-            "color.action.secondary.text",
-            "color.code.caret",
-            "color.terminal.cursor",
-            "color.text.bright",
             "color.text.heading",
-            "color.text.highlight",
-            "color.text.on-action"
+            "color.text.highlight"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -32680,9 +32715,7 @@
             }
           },
           "aliases": [],
-          "usedByAliases": [
-            "color.text.disabled"
-          ],
+          "usedByAliases": [],
           "unmappedPorts": [],
           "uses": [],
           "contrast": []
@@ -32840,11 +32873,7 @@
           },
           "aliases": [],
           "usedByAliases": [
-            "color.chart.label",
-            "color.diagnostic.unused.text",
-            "color.interaction.scrollbar.thumb-hover",
-            "color.status.neutral.text",
-            "color.text.muted"
+            "color.interaction.scrollbar.thumb-hover"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -33032,11 +33061,7 @@
             }
           },
           "aliases": [],
-          "usedByAliases": [
-            "color.code.syntax.deprecated",
-            "color.diagnostic.hint.underline",
-            "color.text.placeholder"
-          ],
+          "usedByAliases": [],
           "unmappedPorts": [],
           "uses": [],
           "contrast": []
@@ -33071,14 +33096,7 @@
             }
           },
           "aliases": [],
-          "usedByAliases": [
-            "color.action.tertiary.text",
-            "color.code.line-number-active",
-            "color.icon.default",
-            "color.interaction.selection.inactive-text",
-            "color.text.default",
-            "color.text.prose"
-          ],
+          "usedByAliases": [],
           "unmappedPorts": [],
           "uses": [],
           "contrast": []
@@ -34033,9 +34051,12 @@
           "aliases": [],
           "usedByAliases": [
             "color.chart.series-4",
+            "color.code.syntax.deprecated",
+            "color.diagnostic.hint.underline",
             "color.primitive.ansi.15",
             "color.status.neutral.fill",
             "color.terminal.ansi.15",
+            "color.text.disabled",
             "color.text.subtle"
           ],
           "unmappedPorts": [],
@@ -34144,7 +34165,8 @@
           "usedByAliases": [
             "color.chart.series-3",
             "color.primitive.ansi.2",
-            "color.terminal.ansi.2"
+            "color.terminal.ansi.2",
+            "color.text.placeholder"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -34179,9 +34201,13 @@
           },
           "aliases": [],
           "usedByAliases": [
+            "color.chart.label",
             "color.code.syntax.punctuation",
+            "color.diagnostic.unused.text",
             "color.primitive.ansi.3",
-            "color.terminal.ansi.3"
+            "color.status.neutral.text",
+            "color.terminal.ansi.3",
+            "color.text.muted"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -34216,7 +34242,13 @@
           },
           "aliases": [],
           "usedByAliases": [
-            "color.terminal.fg"
+            "color.action.tertiary.text",
+            "color.code.line-number-active",
+            "color.icon.default",
+            "color.interaction.selection.inactive-text",
+            "color.terminal.fg",
+            "color.text.default",
+            "color.text.prose"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -34251,7 +34283,10 @@
           },
           "aliases": [],
           "usedByAliases": [
+            "color.action.primary.text",
+            "color.action.secondary.text",
             "color.chart.series-1",
+            "color.code.caret",
             "color.code.hued.function",
             "color.code.hued.operator",
             "color.code.search-current-bg",
@@ -34260,7 +34295,10 @@
             "color.interaction.focus.ring-container",
             "color.primitive.ansi.7",
             "color.terminal.ansi.7",
-            "color.text.link"
+            "color.terminal.cursor",
+            "color.text.bright",
+            "color.text.link",
+            "color.text.on-action"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -34978,9 +35016,9 @@
         "color.status.neutral.text": {
           "path": "color.status.neutral.text",
           "group": "status",
-          "css": "#a6afbd",
+          "css": "#d4868b",
           "variable": "--color-status-neutral-text",
-          "description": "D-041 status.neutral.text: color.primitive.modern.muted.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -35000,7 +35038,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.muted"
+            "color.text.muted",
+            "color.primitive.rose.650"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -37811,9 +37850,9 @@
         "color.terminal.cursor": {
           "path": "color.terminal.cursor",
           "group": "terminal",
-          "css": "#f1f5f9",
+          "css": "#ffa2a7",
           "variable": "--color-terminal-cursor",
-          "description": "D-041 terminal.cursor: color.primitive.modern.bright.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -37833,7 +37872,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.bright"
+            "color.text.bright",
+            "color.primitive.rose.800"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -38099,9 +38139,9 @@
         "color.text.bright": {
           "path": "color.text.bright",
           "group": "text",
-          "css": "#f1f5f9",
+          "css": "#ffa2a7",
           "variable": "--color-text-bright",
-          "description": "D-041 text.bright: color.primitive.modern.bright.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -38121,10 +38161,13 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.bright"
+            "color.primitive.rose.800"
           ],
           "usedByAliases": [
             "color.action.primary.text",
+            "color.action.secondary.text",
+            "color.code.caret",
+            "color.terminal.cursor",
             "color.text.on-action"
           ],
           "unmappedPorts": [],
@@ -38284,9 +38327,9 @@
         "color.text.default": {
           "path": "color.text.default",
           "group": "text",
-          "css": "#d8dee9",
+          "css": "#e99499",
           "variable": "--color-text-default",
-          "description": "D-041 text.default: color.primitive.modern.text.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -38306,9 +38349,12 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.text"
+            "color.primitive.rose.700"
           ],
           "usedByAliases": [
+            "color.action.tertiary.text",
+            "color.code.line-number-active",
+            "color.icon.default",
             "color.interaction.selection.inactive-text",
             "color.text.prose"
           ],
@@ -38775,9 +38821,9 @@
         "color.text.disabled": {
           "path": "color.text.disabled",
           "group": "text",
-          "css": "#727b89",
+          "css": "#a3676b",
           "variable": "--color-text-disabled",
-          "description": "D-041 text.disabled: color.primitive.modern.disabled.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -38797,7 +38843,7 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.disabled"
+            "color.primitive.rose.350"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -39169,9 +39215,9 @@
         "color.text.muted": {
           "path": "color.text.muted",
           "group": "text",
-          "css": "#a6afbd",
+          "css": "#d4868b",
           "variable": "--color-text-muted",
-          "description": "D-041 text.muted: color.primitive.modern.muted.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -39191,9 +39237,13 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.muted"
+            "color.primitive.rose.650"
           ],
-          "usedByAliases": [],
+          "usedByAliases": [
+            "color.chart.label",
+            "color.diagnostic.unused.text",
+            "color.status.neutral.text"
+          ],
           "unmappedPorts": [],
           "uses": [
             {"kind":"contrast","component":"admin-form","part":null,"state":null,"variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/admin-form.md","pointer":"/contrast/1","line":71}},
@@ -39434,7 +39484,7 @@
         "color.text.on-action": {
           "path": "color.text.on-action",
           "group": "text",
-          "css": "#f1f5f9",
+          "css": "#ffa2a7",
           "variable": "--color-text-on-action",
           "description": "Bright rose text on primary-action fills in every state (D-033).",
           "status": "approved",
@@ -39457,7 +39507,7 @@
           },
           "aliases": [
             "color.text.bright",
-            "color.primitive.modern.bright"
+            "color.primitive.rose.800"
           ],
           "usedByAliases": [
             "color.action.primary.text"
@@ -39560,9 +39610,9 @@
         "color.text.placeholder": {
           "path": "color.text.placeholder",
           "group": "text",
-          "css": "#909aaa",
+          "css": "#bd787d",
           "variable": "--color-text-placeholder",
-          "description": "D-041 text.placeholder: color.primitive.modern.subtle.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -39582,7 +39632,7 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.subtle"
+            "color.primitive.rose.600"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -39607,7 +39657,7 @@
         "color.text.prose": {
           "path": "color.text.prose",
           "group": "text",
-          "css": "#d8dee9",
+          "css": "#e99499",
           "variable": "--color-text-prose",
           "description": "Neutral long-form reading text; aliases text.default (D-041).",
           "status": "approved",
@@ -39630,7 +39680,7 @@
           },
           "aliases": [
             "color.text.default",
-            "color.primitive.modern.text"
+            "color.primitive.rose.700"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -39671,7 +39721,10 @@
           "aliases": [
             "color.primitive.rose.350"
           ],
-          "usedByAliases": [],
+          "usedByAliases": [
+            "color.code.syntax.deprecated",
+            "color.diagnostic.hint.underline"
+          ],
           "unmappedPorts": [],
           "uses": [
             {"kind":"contrast","component":"combobox","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/combobox.md","pointer":"/contrast/0","line":74}},
@@ -42383,7 +42436,7 @@
         "color.action.primary.text": {
           "path": "color.action.primary.text",
           "group": "action",
-          "css": "#f1f5f9",
+          "css": "#ffa2a7",
           "variable": "--color-action-primary-text",
           "description": "Primary action labels: bright rose across rest, hover and pressed states (D-033).",
           "status": "approved",
@@ -42407,7 +42460,7 @@
           "aliases": [
             "color.text.on-action",
             "color.text.bright",
-            "color.primitive.modern.bright"
+            "color.primitive.rose.800"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -42723,9 +42776,9 @@
         "color.action.secondary.text": {
           "path": "color.action.secondary.text",
           "group": "action",
-          "css": "#f1f5f9",
+          "css": "#ffa2a7",
           "variable": "--color-action-secondary-text",
-          "description": "D-041 action.secondary.text: color.primitive.modern.bright.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -42745,7 +42798,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.bright"
+            "color.text.bright",
+            "color.primitive.rose.800"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -42887,9 +42941,9 @@
         "color.action.tertiary.text": {
           "path": "color.action.tertiary.text",
           "group": "action",
-          "css": "#d8dee9",
+          "css": "#e99499",
           "variable": "--color-action-tertiary-text",
-          "description": "D-041 action.tertiary.text: color.primitive.modern.text.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -42909,7 +42963,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.text"
+            "color.text.default",
+            "color.primitive.rose.700"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -43886,9 +43941,9 @@
         "color.chart.label": {
           "path": "color.chart.label",
           "group": "chart",
-          "css": "#a6afbd",
+          "css": "#d4868b",
           "variable": "--color-chart-label",
-          "description": "D-041 chart.label: color.primitive.modern.muted.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -43908,7 +43963,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.muted"
+            "color.text.muted",
+            "color.primitive.rose.650"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -44208,9 +44264,9 @@
         "color.code.caret": {
           "path": "color.code.caret",
           "group": "code",
-          "css": "#f1f5f9",
+          "css": "#ffa2a7",
           "variable": "--color-code-caret",
-          "description": "D-041 code.caret: color.primitive.modern.bright.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -44230,7 +44286,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.bright"
+            "color.text.bright",
+            "color.primitive.rose.800"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -44733,9 +44790,9 @@
         "color.code.line-number": {
           "path": "color.code.line-number",
           "group": "code",
-          "css": "#909aaa",
+          "css": "#bd787d",
           "variable": "--color-code-line-number",
-          "description": "D-041 code.line-number: color.primitive.modern.subtle.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -44755,7 +44812,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.subtle"
+            "color.text.subtle",
+            "color.primitive.rose.600"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -44776,9 +44834,9 @@
         "color.code.line-number-active": {
           "path": "color.code.line-number-active",
           "group": "code",
-          "css": "#d8dee9",
+          "css": "#e99499",
           "variable": "--color-code-line-number-active",
-          "description": "D-041 code.line-number-active: color.primitive.modern.text.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -44798,7 +44856,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.text"
+            "color.text.default",
+            "color.primitive.rose.700"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -44999,9 +45058,9 @@
         "color.code.syntax.comment": {
           "path": "color.code.syntax.comment",
           "group": "code",
-          "css": "#909aaa",
+          "css": "#bd787d",
           "variable": "--color-code-syntax-comment",
-          "description": "D-041 code.syntax.comment: color.primitive.modern.subtle.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -45021,7 +45080,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.subtle"
+            "color.text.subtle",
+            "color.primitive.rose.600"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -45078,9 +45138,9 @@
         "color.code.syntax.deprecated": {
           "path": "color.code.syntax.deprecated",
           "group": "code",
-          "css": "#909aaa",
+          "css": "#bd787d",
           "variable": "--color-code-syntax-deprecated",
-          "description": "D-041 code.syntax.deprecated: color.primitive.modern.subtle.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -45100,7 +45160,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.subtle"
+            "color.text.subtle",
+            "color.primitive.rose.600"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -45811,9 +45872,9 @@
         "color.diagnostic.hint.underline": {
           "path": "color.diagnostic.hint.underline",
           "group": "diagnostic",
-          "css": "#909aaa",
+          "css": "#bd787d",
           "variable": "--color-diagnostic-hint-underline",
-          "description": "D-041 diagnostic.hint.underline: color.primitive.modern.subtle.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -45833,7 +45894,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.subtle"
+            "color.text.subtle",
+            "color.primitive.rose.600"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -45926,9 +45988,9 @@
         "color.diagnostic.unused.text": {
           "path": "color.diagnostic.unused.text",
           "group": "diagnostic",
-          "css": "#a6afbd",
+          "css": "#d4868b",
           "variable": "--color-diagnostic-unused-text",
-          "description": "D-041 diagnostic.unused.text: color.primitive.modern.muted.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -45948,7 +46010,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.muted"
+            "color.text.muted",
+            "color.primitive.rose.650"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -46511,9 +46574,9 @@
         "color.icon.default": {
           "path": "color.icon.default",
           "group": "icon",
-          "css": "#d8dee9",
+          "css": "#e99499",
           "variable": "--color-icon-default",
-          "description": "D-041 icon.default: color.primitive.modern.text.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -46533,7 +46596,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.text"
+            "color.text.default",
+            "color.primitive.rose.700"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -47592,9 +47656,9 @@
         "color.interaction.selection.inactive-text": {
           "path": "color.interaction.selection.inactive-text",
           "group": "interaction",
-          "css": "#d8dee9",
+          "css": "#e99499",
           "variable": "--color-interaction-selection-inactive-text",
-          "description": "D-041 interaction.selection.inactive-text: color.text.default.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -47615,7 +47679,7 @@
           },
           "aliases": [
             "color.text.default",
-            "color.primitive.modern.text"
+            "color.primitive.rose.700"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -49652,15 +49716,9 @@
           },
           "aliases": [],
           "usedByAliases": [
-            "color.action.primary.text",
-            "color.action.secondary.text",
-            "color.code.caret",
             "color.code.syntax.heading",
-            "color.terminal.cursor",
-            "color.text.bright",
             "color.text.heading",
-            "color.text.highlight",
-            "color.text.on-action"
+            "color.text.highlight"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -49985,9 +50043,7 @@
             }
           },
           "aliases": [],
-          "usedByAliases": [
-            "color.text.disabled"
-          ],
+          "usedByAliases": [],
           "unmappedPorts": [],
           "uses": [],
           "contrast": []
@@ -50143,11 +50199,7 @@
           },
           "aliases": [],
           "usedByAliases": [
-            "color.chart.label",
-            "color.diagnostic.unused.text",
-            "color.interaction.scrollbar.thumb-hover",
-            "color.status.neutral.text",
-            "color.text.muted"
+            "color.interaction.scrollbar.thumb-hover"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -50338,14 +50390,7 @@
             }
           },
           "aliases": [],
-          "usedByAliases": [
-            "color.code.line-number",
-            "color.code.syntax.comment",
-            "color.code.syntax.deprecated",
-            "color.diagnostic.hint.underline",
-            "color.text.placeholder",
-            "color.text.subtle"
-          ],
+          "usedByAliases": [],
           "unmappedPorts": [],
           "uses": [],
           "contrast": []
@@ -50380,15 +50425,7 @@
             }
           },
           "aliases": [],
-          "usedByAliases": [
-            "color.action.tertiary.text",
-            "color.code.line-number-active",
-            "color.icon.default",
-            "color.interaction.selection.inactive-text",
-            "color.terminal.prompt-text",
-            "color.text.default",
-            "color.text.prose"
-          ],
+          "usedByAliases": [],
           "unmappedPorts": [],
           "uses": [],
           "contrast": []
@@ -51325,7 +51362,8 @@
           },
           "aliases": [],
           "usedByAliases": [
-            "color.primitive.ansi.15"
+            "color.primitive.ansi.15",
+            "color.text.disabled"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -51434,8 +51472,14 @@
           },
           "aliases": [],
           "usedByAliases": [
+            "color.code.line-number",
+            "color.code.syntax.comment",
+            "color.code.syntax.deprecated",
+            "color.diagnostic.hint.underline",
             "color.primitive.ansi.2",
-            "color.terminal.ansi.6"
+            "color.terminal.ansi.6",
+            "color.text.placeholder",
+            "color.text.subtle"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -51470,8 +51514,12 @@
           },
           "aliases": [],
           "usedByAliases": [
+            "color.chart.label",
+            "color.diagnostic.unused.text",
             "color.primitive.ansi.3",
-            "color.terminal.ansi.13"
+            "color.status.neutral.text",
+            "color.terminal.ansi.13",
+            "color.text.muted"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -51506,9 +51554,16 @@
           },
           "aliases": [],
           "usedByAliases": [
+            "color.action.tertiary.text",
+            "color.code.line-number-active",
             "color.code.syntax.variable",
+            "color.icon.default",
+            "color.interaction.selection.inactive-text",
             "color.terminal.ansi.7",
-            "color.terminal.fg"
+            "color.terminal.fg",
+            "color.terminal.prompt-text",
+            "color.text.default",
+            "color.text.prose"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -51543,13 +51598,19 @@
           },
           "aliases": [],
           "usedByAliases": [
+            "color.action.primary.text",
+            "color.action.secondary.text",
             "color.chart.series-1",
+            "color.code.caret",
             "color.code.hued.operator",
             "color.code.search-current-bg",
             "color.code.syntax.operator",
             "color.interaction.focus.ring-container",
             "color.primitive.ansi.7",
-            "color.terminal.ansi.14"
+            "color.terminal.ansi.14",
+            "color.terminal.cursor",
+            "color.text.bright",
+            "color.text.on-action"
           ],
           "unmappedPorts": [],
           "uses": [],
@@ -52268,9 +52329,9 @@
         "color.status.neutral.text": {
           "path": "color.status.neutral.text",
           "group": "status",
-          "css": "#a6afbd",
+          "css": "#d4868b",
           "variable": "--color-status-neutral-text",
-          "description": "D-041 status.neutral.text: color.primitive.modern.muted.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -52290,7 +52351,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.muted"
+            "color.text.muted",
+            "color.primitive.rose.650"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -55186,9 +55248,9 @@
         "color.terminal.cursor": {
           "path": "color.terminal.cursor",
           "group": "terminal",
-          "css": "#f1f5f9",
+          "css": "#ffa2a7",
           "variable": "--color-terminal-cursor",
-          "description": "D-041 terminal.cursor: color.primitive.modern.bright.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -55208,7 +55270,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.bright"
+            "color.text.bright",
+            "color.primitive.rose.800"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -55251,7 +55314,9 @@
           "aliases": [
             "color.primitive.rose.700"
           ],
-          "usedByAliases": [],
+          "usedByAliases": [
+            "color.terminal.prompt-text"
+          ],
           "unmappedPorts": [],
           "uses": [
             {"kind":"contrast","component":"terminal","part":null,"state":null,"variant":null,"surface":"color.terminal.fg","nativeKey":null,"port":null,"source":{"file":"spec/components/terminal.md","pointer":"/contrast/6","line":79}},
@@ -55314,9 +55379,9 @@
         "color.terminal.prompt-text": {
           "path": "color.terminal.prompt-text",
           "group": "terminal",
-          "css": "#d8dee9",
+          "css": "#e99499",
           "variable": "--color-terminal-prompt-text",
-          "description": "D-041 terminal.prompt-text: color.primitive.modern.text.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -55336,7 +55401,8 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.text"
+            "color.terminal.fg",
+            "color.primitive.rose.700"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -55479,9 +55545,9 @@
         "color.text.bright": {
           "path": "color.text.bright",
           "group": "text",
-          "css": "#f1f5f9",
+          "css": "#ffa2a7",
           "variable": "--color-text-bright",
-          "description": "D-041 text.bright: color.primitive.modern.bright.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -55501,10 +55567,13 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.bright"
+            "color.primitive.rose.800"
           ],
           "usedByAliases": [
             "color.action.primary.text",
+            "color.action.secondary.text",
+            "color.code.caret",
+            "color.terminal.cursor",
             "color.text.on-action"
           ],
           "unmappedPorts": [],
@@ -55664,9 +55733,9 @@
         "color.text.default": {
           "path": "color.text.default",
           "group": "text",
-          "css": "#d8dee9",
+          "css": "#e99499",
           "variable": "--color-text-default",
-          "description": "D-041 text.default: color.primitive.modern.text.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -55686,9 +55755,12 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.text"
+            "color.primitive.rose.700"
           ],
           "usedByAliases": [
+            "color.action.tertiary.text",
+            "color.code.line-number-active",
+            "color.icon.default",
             "color.interaction.selection.inactive-text",
             "color.text.prose"
           ],
@@ -56155,9 +56227,9 @@
         "color.text.disabled": {
           "path": "color.text.disabled",
           "group": "text",
-          "css": "#727b89",
+          "css": "#a3676b",
           "variable": "--color-text-disabled",
-          "description": "D-041 text.disabled: color.primitive.modern.disabled.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -56177,7 +56249,7 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.disabled"
+            "color.primitive.rose.350"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -56552,9 +56624,9 @@
         "color.text.muted": {
           "path": "color.text.muted",
           "group": "text",
-          "css": "#a6afbd",
+          "css": "#d4868b",
           "variable": "--color-text-muted",
-          "description": "D-041 text.muted: color.primitive.modern.muted.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -56574,9 +56646,13 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.muted"
+            "color.primitive.rose.650"
           ],
-          "usedByAliases": [],
+          "usedByAliases": [
+            "color.chart.label",
+            "color.diagnostic.unused.text",
+            "color.status.neutral.text"
+          ],
           "unmappedPorts": [],
           "uses": [
             {"kind":"contrast","component":"admin-form","part":null,"state":null,"variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/admin-form.md","pointer":"/contrast/1","line":71}},
@@ -56817,7 +56893,7 @@
         "color.text.on-action": {
           "path": "color.text.on-action",
           "group": "text",
-          "css": "#f1f5f9",
+          "css": "#ffa2a7",
           "variable": "--color-text-on-action",
           "description": "Bright rose text on primary-action fills in every state (D-033).",
           "status": "approved",
@@ -56840,7 +56916,7 @@
           },
           "aliases": [
             "color.text.bright",
-            "color.primitive.modern.bright"
+            "color.primitive.rose.800"
           ],
           "usedByAliases": [
             "color.action.primary.text"
@@ -56943,9 +57019,9 @@
         "color.text.placeholder": {
           "path": "color.text.placeholder",
           "group": "text",
-          "css": "#909aaa",
+          "css": "#bd787d",
           "variable": "--color-text-placeholder",
-          "description": "D-041 text.placeholder: color.primitive.modern.subtle.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -56965,7 +57041,7 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.subtle"
+            "color.primitive.rose.600"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -56990,7 +57066,7 @@
         "color.text.prose": {
           "path": "color.text.prose",
           "group": "text",
-          "css": "#d8dee9",
+          "css": "#e99499",
           "variable": "--color-text-prose",
           "description": "Neutral long-form reading text; aliases text.default (D-041).",
           "status": "approved",
@@ -57013,7 +57089,7 @@
           },
           "aliases": [
             "color.text.default",
-            "color.primitive.modern.text"
+            "color.primitive.rose.700"
           ],
           "usedByAliases": [],
           "unmappedPorts": [],
@@ -57033,9 +57109,9 @@
         "color.text.subtle": {
           "path": "color.text.subtle",
           "group": "text",
-          "css": "#909aaa",
+          "css": "#bd787d",
           "variable": "--color-text-subtle",
-          "description": "D-041 text.subtle: color.primitive.modern.subtle.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "eligibility": {
@@ -57055,9 +57131,14 @@
             }
           },
           "aliases": [
-            "color.primitive.modern.subtle"
+            "color.primitive.rose.600"
           ],
-          "usedByAliases": [],
+          "usedByAliases": [
+            "color.code.line-number",
+            "color.code.syntax.comment",
+            "color.code.syntax.deprecated",
+            "color.diagnostic.hint.underline"
+          ],
           "unmappedPorts": [],
           "uses": [
             {"kind":"contrast","component":"combobox","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/combobox.md","pointer":"/contrast/0","line":74}},

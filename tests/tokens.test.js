@@ -23,12 +23,12 @@ test("the token validator accepts the committed sources", async () => {
   assert.ok(profiles.get("default").size >= 300);
 });
 
-test("D-041 neutral typography and semantic hues carry the expected values", async () => {
+test("D-041 rose typography and semantic hues carry the expected values", async () => {
   const { profiles } = await validateTokens();
   const d = profiles.get("default");
-  assert.equal(d.get("color.text.subtle").resolved.hex, "#909aaa");
-  assert.equal(d.get("color.text.disabled").resolved.hex, "#727b89");
-  assert.equal(d.get("color.code.line-number").resolved.hex, "#909aaa");
+  assert.equal(d.get("color.text.subtle").resolved.hex, "#bd787d");
+  assert.equal(d.get("color.text.disabled").resolved.hex, "#a3676b");
+  assert.equal(d.get("color.code.line-number").resolved.hex, "#bd787d");
   assert.equal(d.get("color.status.warning.text").resolved.hex, "#e5c07b");
   assert.equal(d.get("color.status.success.text").resolved.hex, "#82d9a0");
   assert.equal(d.get("color.status.info.text").resolved.hex, "#82b4ff");

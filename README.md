@@ -1,6 +1,6 @@
 # j3w1 UI Theme Spec
 
-**True-black canvas. Neutral text and surfaces. Semantic code colours. Red focus. Square components.**
+**True-black canvas. Rose text. Neutral surfaces. Semantic code colours. Red focus. Square components.**
 
 `j3w1/theme` **defines** the j3w1 look: exact tokens, semantic roles,
 interaction states, accessibility limits, component specifications and
@@ -132,11 +132,11 @@ profile. Consume roles, never primitives.
 | `color.surface.canvas` | `#000000` | approved; use | Page and terminal background. |
 | `color.surface.default` | `#0e1014` | approved; use | D-041 surface.default: color.primitive.modern.panel. |
 | `color.surface.raised` | `#15181e` | approved; use | D-041 surface.raised: color.primitive.modern.raised. |
-| `color.text.default` | `#d8dee9` | approved; use | D-041 text.default: color.primitive.modern.text. |
-| `color.text.bright` | `#f1f5f9` | approved; use | D-041 text.bright: color.primitive.modern.bright. |
-| `color.text.prose` | `#d8dee9` | approved; use | Neutral long-form reading text; aliases text.default (D-041). |
-| `color.text.muted` | `#a6afbd` | approved; use | D-041 text.muted: color.primitive.modern.muted. |
-| `color.text.subtle` | `#909aaa` | approved; use | D-041 text.subtle: color.primitive.modern.subtle. |
+| `color.text.default` | `#e99499` | approved; use | D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills. |
+| `color.text.bright` | `#ffa2a7` | approved; use | D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills. |
+| `color.text.prose` | `#e99499` | approved; use | Neutral long-form reading text; aliases text.default (D-041). |
+| `color.text.muted` | `#d4868b` | approved; use | D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills. |
+| `color.text.subtle` | `#bd787d` | approved; use | D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills. |
 | `color.border.control` | `#747e8e` | approved; use | D-041 border.control: color.primitive.modern.control. |
 | `color.border.default` | `#303640` | approved; use | D-041 border.default: color.primitive.modern.divider. |
 | `color.interaction.focus.ring` | `#e53935` | observed; use | 1px dashed focus ring on controls and rows. |

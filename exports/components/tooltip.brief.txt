@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — tooltip
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-uUyex258/cCN40I3QfAc17Y4Big+7Dc2v2FeXtKT5bE=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-0jrAhUhMk1y0cVuA9UcymrJJSN6hyxQFjD82B97Ze6s=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/tooltip.json
 spec: spec/components/tooltip.md  site: https://j3w1.github.io/theme/reference/#c-tooltip
 maturity: stable  priority: R1
@@ -10,10 +10,10 @@ Use the pinned approved default profile. Pending roles in that profile use-and-r
 Tokens (resolved):
   popup.bg          #15181e  ({color.surface.raised})  use
   popup.border      #747e8e  ({color.border.overlay})  use
-  popup.text        #d8dee9  ({color.text.default})  use
-  shortcut.text     #f1f5f9  ({color.text.bright})  use
+  popup.text        #e99499  ({color.text.default})  use
+  shortcut.text     #ffa2a7  ({color.text.bright})  use
   shortcut.border   #747e8e  ({color.border.control})  use
-  trigger.text      #d8dee9  ({color.action.tertiary.text})  use
+  trigger.text      #e99499  ({color.action.tertiary.text})  use
   trigger.bg-hover  #1c0a09  ({color.action.tertiary.hover-bg})  use
   trigger.ring      #e53935  ({color.interaction.focus.ring})  use
   popup.z           10  ({z.popover})  use

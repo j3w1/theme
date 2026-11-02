@@ -4,17 +4,17 @@
   "tokens": {
     "--background": "#000000",
     "--editor-surface": "#000000",
-    "--foreground": "#d8dee9",
+    "--foreground": "#e99499",
     "--card": "#0e1014",
-    "--card-foreground": "#d8dee9",
+    "--card-foreground": "#e99499",
     "--popover": "#15181e",
-    "--popover-foreground": "#d8dee9",
+    "--popover-foreground": "#e99499",
     "--primary": "#f73f35",
     "--primary-foreground": "#000000",
     "--secondary": "#15181e",
-    "--secondary-foreground": "#d8dee9",
+    "--secondary-foreground": "#e99499",
     "--muted": "#0e1014",
-    "--muted-foreground": "#a6afbd",
+    "--muted-foreground": "#d4868b",
     "--accent": "#531310",
     "--accent-foreground": "#f4eeee",
     "--border": "#303640",
@@ -26,7 +26,7 @@
     "--chart-4": "#a3676b",
     "--chart-5": "#82b4ff",
     "--sidebar": "#000000",
-    "--sidebar-foreground": "#d8dee9",
+    "--sidebar-foreground": "#e99499",
     "--sidebar-primary": "#f73f35",
     "--sidebar-primary-foreground": "#000000",
     "--sidebar-accent": "#531310",
@@ -34,7 +34,7 @@
     "--sidebar-border": "#303640",
     "--sidebar-ring": "#e53935",
     "--worktree-sidebar": "#000000",
-    "--worktree-sidebar-foreground": "#d8dee9",
+    "--worktree-sidebar-foreground": "#e99499",
     "--worktree-sidebar-accent": "#531310",
     "--worktree-sidebar-accent-foreground": "#f4eeee",
     "--worktree-sidebar-border": "#303640",
@@ -45,7 +45,7 @@
       "name": "comment",
       "scope": "comment",
       "settings": {
-        "foreground": "#909aaa",
+        "foreground": "#bd787d",
         "fontStyle": "italic"
       }
     },
@@ -143,7 +143,7 @@
       "name": "punctuation",
       "scope": "punctuation",
       "settings": {
-        "foreground": "#a6afbd"
+        "foreground": "#d4868b"
       }
     },
     {

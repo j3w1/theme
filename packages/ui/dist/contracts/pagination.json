@@ -157,17 +157,17 @@
       "color.interaction.text-selection.bg",
       "color.interaction.text-selection.text",
       "color.primitive.ink.0",
-      "color.primitive.modern.bright",
-      "color.primitive.modern.disabled",
       "color.primitive.modern.hover",
-      "color.primitive.modern.muted",
       "color.primitive.modern.panel",
-      "color.primitive.modern.text",
       "color.primitive.paper.90",
       "color.primitive.red.100",
       "color.primitive.red.350",
       "color.primitive.red.50",
       "color.primitive.red.800",
+      "color.primitive.rose.350",
+      "color.primitive.rose.650",
+      "color.primitive.rose.700",
+      "color.primitive.rose.800",
       "color.surface.canvas",
       "color.surface.default",
       "color.text.bright",
@@ -377,6 +377,6 @@
   "copy": {
     "directory": "copy/pagination/",
     "manifest": "copy/pagination/manifest.json",
-    "digest": "sha256-ow0JF7moBaPib3MI8OM0XlTslY9hyGvCAQZsrbR8mg8="
+    "digest": "sha256-9h+XmEtbyxnPKLWkr7G4TIQbvSVqjR/A2/mmSeNO3OM="
   }
 }

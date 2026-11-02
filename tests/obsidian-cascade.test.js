@@ -48,7 +48,7 @@ test("specificity includes :not and variants; same-weight source order remains d
 
 for (const { version } of audit.versions) {
   const native = nativeCss(version), css = native + emitted;
-  test(`${version}: Reading View and CM6 text are neutral while note headings are near-white and bold inherits`, () => {
+  test(`${version}: Reading View and CM6 text are rose while note headings are near-white and bold inherits`, () => {
     const root = body(), preview = element("div", ["markdown-preview-view"], root);
     const view = element("div", ["markdown-source-view", "mod-cm6"], root);
     const content = element("div", ["cm-content"], element("div", ["cm-scroller"], view));
@@ -253,7 +253,7 @@ for (const { version } of audit.versions) {
     assert.equal(cascade(css, preview).value("color"), role("color.text.default"));
     assert.equal(pair(cascade(css, preview).value("color"), cascade(css, preview).value("--text-selection")).pass, true, "D-041 ordinary Reading View text remains readable in native selection");
     const cm = element("div", ["cm-content"], element("div", ["cm-scroller"], element("div", ["markdown-source-view", "mod-cm6"], body())));
-    assert.ok(pair(cascade(css, cm).value("color"), cascade(css, cm).value("--text-selection")).pass, "CM6 scoped fill contrasts with ordinary neutral text; selected syntax behavior remains host-owned");
+    assert.ok(pair(cascade(css, cm).value("color"), cascade(css, cm).value("--text-selection")).pass, "CM6 scoped fill contrasts with ordinary rose text; selected syntax behavior remains host-owned");
     for (const text of ["D-041", "below the 4.5:1", "muted/faint", "`:hover`", "`.mobile-tap`", "not a contrast waiver"]) assert.ok(implementation.includes(text), text);
   });
   test(`${version}: selected tree and main/sidebar tab borders keep label geometry constant`, () => {

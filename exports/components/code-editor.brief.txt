@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — code-editor
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-uUyex258/cCN40I3QfAc17Y4Big+7Dc2v2FeXtKT5bE=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-0jrAhUhMk1y0cVuA9UcymrJJSN6hyxQFjD82B97Ze6s=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/code-editor.json
 spec: spec/components/code-editor.md  site: https://j3w1.github.io/theme/reference/#c-code-editor
 maturity: stable  priority: R1
@@ -14,35 +14,35 @@ Tokens (resolved):
   gutter.bg                #000000  ({color.code.gutter-bg})  use
   gutter.rule              #303640  ({color.code.gutter-rule})  use
   gutter.bg-read-only      #000000  ({color.surface.sunken})  use
-  line-number.text         #909aaa  ({color.code.line-number})  use
-  line-number.text-active  #d8dee9  ({color.code.line-number-active})  use
+  line-number.text         #bd787d  ({color.code.line-number})  use
+  line-number.text-active  #e99499  ({color.code.line-number-active})  use
   line.bg-current          #0e1014  ({color.code.current-line})  use
-  caret.bg                 #f1f5f9  ({color.code.caret})  use
+  caret.bg                 #ffa2a7  ({color.code.caret})  use
   selection.bg             #420f0c  ({color.code.selection-bg})  use
   selection.bg-inactive    #420f0c  ({color.interaction.selection.inactive-bg})  use
-  selection.text-inactive  #d8dee9  ({color.interaction.selection.inactive-text})  use
+  selection.text-inactive  #e99499  ({color.interaction.selection.inactive-text})  use
   bracket.outline          #e53935  ({color.code.bracket-match})  use
   indent.guide             #303640  ({color.code.indent-guide})  use
   whitespace.text          #747e8e  ({color.code.whitespace})  use
-  fold.text                #a6afbd  ({color.text.muted})  use
+  fold.text                #d4868b  ({color.text.muted})  use
   fold.border              #747e8e  ({color.border.control})  use
   syntax.keyword           #c7a0e8  ({color.code.syntax.keyword})  use
   syntax.string            #82d9a0  ({color.code.syntax.string})  use
-  syntax.comment           #909aaa  ({color.code.syntax.comment})  use
+  syntax.comment           #bd787d  ({color.code.syntax.comment})  use
   syntax.number            #e5c07b  ({color.code.syntax.number})  use
   syntax.constant          #e5c07b  ({color.code.syntax.constant})  use
   syntax.function          #82b4ff  ({color.code.syntax.function})  use
   syntax.variable          #e99499  ({color.code.syntax.variable})  use
   syntax.type              #78d4d4  ({color.code.syntax.type})  use
   syntax.operator          #e99499  ({color.code.syntax.operator})  use
-  syntax.punctuation       #a6afbd  ({color.code.syntax.punctuation})  use
+  syntax.punctuation       #d4868b  ({color.code.syntax.punctuation})  use
   syntax.property          #78d4d4  ({color.code.syntax.property})  use
   syntax.heading           #f1f5f9  ({color.code.syntax.heading})  use
   syntax.tag               #f07178  ({color.code.syntax.tag})  use
   syntax.attribute         #e5c07b  ({color.code.syntax.attribute})  use
   syntax.escape            #e5c07b  ({color.code.syntax.escape})  use
   syntax.invalid           #f07178  ({color.code.syntax.invalid})  use
-  syntax.deprecated        #909aaa  ({color.code.syntax.deprecated})  use
+  syntax.deprecated        #bd787d  ({color.code.syntax.deprecated})  use
 
 States: default, focus-visible, selected, selected+container-inactive, current, read-only
   default: code on {color.code.bg}; comments italic; invalid text wavy-underlined in {color.code.syntax.invalid}; deprecated text struck through [italic, wavy underline, line-through]

@@ -154,8 +154,8 @@
     },
     "text": {
       "default": {
-        "$value": "{color.primitive.modern.text}",
-        "$description": "D-041 text.default: color.primitive.modern.text.",
+        "$value": "{color.primitive.rose.700}",
+        "$description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
         "$extensions": {
           "io.github.j3w1.theme": {
             "status": "approved",
@@ -166,8 +166,8 @@
         }
       },
       "bright": {
-        "$value": "{color.primitive.modern.bright}",
-        "$description": "D-041 text.bright: color.primitive.modern.bright.",
+        "$value": "{color.primitive.rose.800}",
+        "$description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
         "$extensions": {
           "io.github.j3w1.theme": {
             "status": "approved",
@@ -190,8 +190,8 @@
         }
       },
       "muted": {
-        "$value": "{color.primitive.modern.muted}",
-        "$description": "D-041 text.muted: color.primitive.modern.muted.",
+        "$value": "{color.primitive.rose.650}",
+        "$description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
         "$extensions": {
           "io.github.j3w1.theme": {
             "status": "approved",
@@ -202,8 +202,8 @@
         }
       },
       "subtle": {
-        "$value": "{color.primitive.modern.subtle}",
-        "$description": "D-041 text.subtle: color.primitive.modern.subtle.",
+        "$value": "{color.primitive.rose.600}",
+        "$description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
         "$extensions": {
           "io.github.j3w1.theme": {
             "status": "approved",
@@ -214,8 +214,8 @@
         }
       },
       "disabled": {
-        "$value": "{color.primitive.modern.disabled}",
-        "$description": "D-041 text.disabled: color.primitive.modern.disabled.",
+        "$value": "{color.primitive.rose.350}",
+        "$description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
         "$extensions": {
           "io.github.j3w1.theme": {
             "status": "approved",
@@ -226,8 +226,8 @@
         }
       },
       "placeholder": {
-        "$value": "{color.primitive.modern.subtle}",
-        "$description": "D-041 text.placeholder: color.primitive.modern.subtle.",
+        "$value": "{color.primitive.rose.600}",
+        "$description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
         "$extensions": {
           "io.github.j3w1.theme": {
             "status": "approved",
@@ -446,7 +446,7 @@
         },
         "inactive-text": {
           "$value": "{color.text.default}",
-          "$description": "D-041 interaction.selection.inactive-text: color.text.default.",
+          "$description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "$extensions": {
             "io.github.j3w1.theme": {
               "status": "approved",
@@ -617,8 +617,8 @@
           "$description": "Secondary button has no fill."
         },
         "text": {
-          "$value": "{color.primitive.modern.bright}",
-          "$description": "D-041 action.secondary.text: color.primitive.modern.bright.",
+          "$value": "{color.text.bright}",
+          "$description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "$extensions": {
             "io.github.j3w1.theme": {
               "status": "approved",
@@ -651,8 +651,8 @@
       },
       "tertiary": {
         "text": {
-          "$value": "{color.primitive.modern.text}",
-          "$description": "D-041 action.tertiary.text: color.primitive.modern.text.",
+          "$value": "{color.text.default}",
+          "$description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "$extensions": {
             "io.github.j3w1.theme": {
               "status": "approved",
@@ -909,8 +909,8 @@
       },
       "neutral": {
         "text": {
-          "$value": "{color.primitive.modern.muted}",
-          "$description": "D-041 status.neutral.text: color.primitive.modern.muted.",
+          "$value": "{color.text.muted}",
+          "$description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "$extensions": {
             "io.github.j3w1.theme": {
               "status": "approved",
@@ -1000,8 +1000,8 @@
         }
       },
       "line-number": {
-        "$value": "{color.primitive.modern.subtle}",
-        "$description": "D-041 code.line-number: color.primitive.modern.subtle.",
+        "$value": "{color.text.subtle}",
+        "$description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
         "$extensions": {
           "io.github.j3w1.theme": {
             "status": "approved",
@@ -1012,8 +1012,8 @@
         }
       },
       "line-number-active": {
-        "$value": "{color.primitive.modern.text}",
-        "$description": "D-041 code.line-number-active: color.primitive.modern.text.",
+        "$value": "{color.text.default}",
+        "$description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
         "$extensions": {
           "io.github.j3w1.theme": {
             "status": "approved",
@@ -1036,8 +1036,8 @@
         }
       },
       "caret": {
-        "$value": "{color.primitive.modern.bright}",
-        "$description": "D-041 code.caret: color.primitive.modern.bright.",
+        "$value": "{color.text.bright}",
+        "$description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
         "$extensions": {
           "io.github.j3w1.theme": {
             "status": "approved",
@@ -1125,8 +1125,8 @@
           }
         },
         "comment": {
-          "$value": "{color.primitive.modern.subtle}",
-          "$description": "D-041 code.syntax.comment: color.primitive.modern.subtle.",
+          "$value": "{color.text.subtle}",
+          "$description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "$extensions": {
             "io.github.j3w1.theme": {
               "status": "approved",
@@ -1209,8 +1209,8 @@
           }
         },
         "punctuation": {
-          "$value": "{color.primitive.modern.muted}",
-          "$description": "D-041 code.syntax.punctuation: color.primitive.modern.muted.",
+          "$value": "{color.text.muted}",
+          "$description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "$extensions": {
             "io.github.j3w1.theme": {
               "status": "approved",
@@ -1293,8 +1293,8 @@
           }
         },
         "deprecated": {
-          "$value": "{color.primitive.modern.subtle}",
-          "$description": "D-041 code.syntax.deprecated: color.primitive.modern.subtle.",
+          "$value": "{color.text.subtle}",
+          "$description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "$extensions": {
             "io.github.j3w1.theme": {
               "status": "approved",
@@ -1502,8 +1502,8 @@
       },
       "hint": {
         "underline": {
-          "$value": "{color.primitive.modern.subtle}",
-          "$description": "D-041 diagnostic.hint.underline: color.primitive.modern.subtle.",
+          "$value": "{color.text.subtle}",
+          "$description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "$extensions": {
             "io.github.j3w1.theme": {
               "status": "approved",
@@ -1516,8 +1516,8 @@
       },
       "unused": {
         "text": {
-          "$value": "{color.primitive.modern.muted}",
-          "$description": "D-041 diagnostic.unused.text: color.primitive.modern.muted.",
+          "$value": "{color.text.muted}",
+          "$description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "$extensions": {
             "io.github.j3w1.theme": {
               "status": "approved",
@@ -1643,8 +1643,8 @@
         }
       },
       "cursor": {
-        "$value": "{color.primitive.modern.bright}",
-        "$description": "D-041 terminal.cursor: color.primitive.modern.bright.",
+        "$value": "{color.text.bright}",
+        "$description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
         "$extensions": {
           "io.github.j3w1.theme": {
             "status": "approved",
@@ -1675,8 +1675,8 @@
         }
       },
       "prompt-text": {
-        "$value": "{color.primitive.modern.text}",
-        "$description": "D-041 terminal.prompt-text: color.primitive.modern.text.",
+        "$value": "{color.terminal.fg}",
+        "$description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
         "$extensions": {
           "io.github.j3w1.theme": {
             "status": "approved",
@@ -1784,8 +1784,8 @@
           }
         },
         "8": {
-          "$value": "{color.primitive.modern.subtle}",
-          "$description": "D-041 terminal.ansi.8: color.primitive.modern.subtle.",
+          "$value": "{color.text.subtle}",
+          "$description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "$extensions": {
             "io.github.j3w1.theme": {
               "status": "approved",
@@ -1908,8 +1908,8 @@
         "$description": "Grid lines."
       },
       "label": {
-        "$value": "{color.primitive.modern.muted}",
-        "$description": "D-041 chart.label: color.primitive.modern.muted.",
+        "$value": "{color.text.muted}",
+        "$description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
         "$extensions": {
           "io.github.j3w1.theme": {
             "status": "approved",
@@ -1922,8 +1922,8 @@
     },
     "icon": {
       "default": {
-        "$value": "{color.primitive.modern.text}",
-        "$description": "D-041 icon.default: color.primitive.modern.text.",
+        "$value": "{color.text.default}",
+        "$description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
         "$extensions": {
           "io.github.j3w1.theme": {
             "status": "approved",

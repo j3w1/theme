@@ -21,7 +21,7 @@ rollback.
 ## What every port must reproduce
 
 1. The surface ladder: canvas, default, raised, overlay, input.
-2. The text ladder: default, bright, prose, heading, highlight, muted, subtle, disabled; bold inherits color.
+2. The text ladder: rose default, bright, prose, muted, subtle and disabled; white document headings and exceptional highlights; bold inherits color. Ordinary UI labels remain rose.
 3. Focus as a ring distinct from selection as a fill, with the ring recoloured
    on fills.
 4. Selection, inactive selection and hover as three distinguishable fills.

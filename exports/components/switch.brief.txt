@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — switch
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-uUyex258/cCN40I3QfAc17Y4Big+7Dc2v2FeXtKT5bE=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-0jrAhUhMk1y0cVuA9UcymrJJSN6hyxQFjD82B97Ze6s=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/switch.json
 spec: spec/components/switch.md  site: https://j3w1.github.io/theme/reference/#c-switch
 maturity: stable  priority: R1
@@ -17,12 +17,12 @@ Tokens (resolved):
   track.ring-checked      #ffa2a7  ({color.interaction.focus.ring-container})  use
   track.bg-disabled       #0e1014  ({color.interaction.disabled.bg})  use
   track.border-disabled   #303640  ({color.border.disabled})  use
-  thumb.bg                #d8dee9  ({color.text.default})  use
-  thumb.bg-checked        #f1f5f9  ({color.action.primary.text})  use
-  thumb.bg-disabled       #727b89  ({color.text.disabled})  use
-  name.text               #d8dee9  ({color.text.default})  use
-  state.text              #a6afbd  ({color.text.muted})  use
-  name.text-disabled      #727b89  ({color.text.disabled})  use
+  thumb.bg                #e99499  ({color.text.default})  use
+  thumb.bg-checked        #ffa2a7  ({color.action.primary.text})  use
+  thumb.bg-disabled       #a3676b  ({color.text.disabled})  use
+  name.text               #e99499  ({color.text.default})  use
+  state.text              #d4868b  ({color.text.muted})  use
+  name.text-disabled      #a3676b  ({color.text.disabled})  use
 
 States: default, hover, focus-visible, checked, checked+focus-visible, disabled, checked+disabled
   default: track 1px {color.border.control} on {color.surface.input}; thumb {color.text.default} at the start [thumb position]

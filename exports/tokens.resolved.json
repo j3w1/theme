@@ -2854,16 +2854,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.8470588235294118,
-              0.8705882352941177,
-              0.9137254901960784
+              0.9137,
+              0.5804,
+              0.6
             ],
             "alpha": 1,
-            "hex": "#d8dee9"
+            "hex": "#e99499"
           },
-          "css": "#d8dee9",
-          "aliasOf": "color.primitive.modern.text",
-          "description": "D-041 text.default: color.primitive.modern.text.",
+          "css": "#e99499",
+          "aliasOf": "color.primitive.rose.700",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -2878,16 +2878,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9450980392156862,
-              0.9607843137254902,
-              0.9764705882352941
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#f1f5f9"
+            "hex": "#ffa2a7"
           },
-          "css": "#f1f5f9",
-          "aliasOf": "color.primitive.modern.bright",
-          "description": "D-041 text.bright: color.primitive.modern.bright.",
+          "css": "#ffa2a7",
+          "aliasOf": "color.primitive.rose.800",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -2902,14 +2902,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.8470588235294118,
-              0.8705882352941177,
-              0.9137254901960784
+              0.9137,
+              0.5804,
+              0.6
             ],
             "alpha": 1,
-            "hex": "#d8dee9"
+            "hex": "#e99499"
           },
-          "css": "#d8dee9",
+          "css": "#e99499",
           "aliasOf": "color.text.default",
           "description": "Neutral long-form reading text; aliases text.default (D-041).",
           "status": "approved",
@@ -2926,16 +2926,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.6509803921568628,
-              0.6862745098039216,
-              0.7411764705882353
+              0.8314,
+              0.5255,
+              0.5451
             ],
             "alpha": 1,
-            "hex": "#a6afbd"
+            "hex": "#d4868b"
           },
-          "css": "#a6afbd",
-          "aliasOf": "color.primitive.modern.muted",
-          "description": "D-041 text.muted: color.primitive.modern.muted.",
+          "css": "#d4868b",
+          "aliasOf": "color.primitive.rose.650",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -2950,16 +2950,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.5647058823529412,
-              0.6039215686274509,
-              0.6666666666666666
+              0.7412,
+              0.4706,
+              0.4902
             ],
             "alpha": 1,
-            "hex": "#909aaa"
+            "hex": "#bd787d"
           },
-          "css": "#909aaa",
-          "aliasOf": "color.primitive.modern.subtle",
-          "description": "D-041 text.subtle: color.primitive.modern.subtle.",
+          "css": "#bd787d",
+          "aliasOf": "color.primitive.rose.600",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -2974,16 +2974,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4470588235294118,
-              0.4823529411764706,
-              0.5372549019607843
+              0.6392,
+              0.4039,
+              0.4196
             ],
             "alpha": 1,
-            "hex": "#727b89"
+            "hex": "#a3676b"
           },
-          "css": "#727b89",
-          "aliasOf": "color.primitive.modern.disabled",
-          "description": "D-041 text.disabled: color.primitive.modern.disabled.",
+          "css": "#a3676b",
+          "aliasOf": "color.primitive.rose.350",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -2998,16 +2998,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.5647058823529412,
-              0.6039215686274509,
-              0.6666666666666666
+              0.7412,
+              0.4706,
+              0.4902
             ],
             "alpha": 1,
-            "hex": "#909aaa"
+            "hex": "#bd787d"
           },
-          "css": "#909aaa",
-          "aliasOf": "color.primitive.modern.subtle",
-          "description": "D-041 text.placeholder: color.primitive.modern.subtle.",
+          "css": "#bd787d",
+          "aliasOf": "color.primitive.rose.600",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -3166,14 +3166,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9450980392156862,
-              0.9607843137254902,
-              0.9764705882352941
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#f1f5f9"
+            "hex": "#ffa2a7"
           },
-          "css": "#f1f5f9",
+          "css": "#ffa2a7",
           "aliasOf": "color.text.bright",
           "description": "Bright rose text on primary-action fills in every state (D-033).",
           "status": "approved",
@@ -3646,16 +3646,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.8470588235294118,
-              0.8705882352941177,
-              0.9137254901960784
+              0.9137,
+              0.5804,
+              0.6
             ],
             "alpha": 1,
-            "hex": "#d8dee9"
+            "hex": "#e99499"
           },
-          "css": "#d8dee9",
+          "css": "#e99499",
           "aliasOf": "color.text.default",
-          "description": "D-041 interaction.selection.inactive-text: color.text.default.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -3982,14 +3982,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9450980392156862,
-              0.9607843137254902,
-              0.9764705882352941
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#f1f5f9"
+            "hex": "#ffa2a7"
           },
-          "css": "#f1f5f9",
+          "css": "#ffa2a7",
           "aliasOf": "color.text.on-action",
           "description": "Primary action labels: bright rose across rest, hover and pressed states (D-033).",
           "status": "approved",
@@ -4102,16 +4102,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9450980392156862,
-              0.9607843137254902,
-              0.9764705882352941
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#f1f5f9"
+            "hex": "#ffa2a7"
           },
-          "css": "#f1f5f9",
-          "aliasOf": "color.primitive.modern.bright",
-          "description": "D-041 action.secondary.text: color.primitive.modern.bright.",
+          "css": "#ffa2a7",
+          "aliasOf": "color.text.bright",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -4198,16 +4198,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.8470588235294118,
-              0.8705882352941177,
-              0.9137254901960784
+              0.9137,
+              0.5804,
+              0.6
             ],
             "alpha": 1,
-            "hex": "#d8dee9"
+            "hex": "#e99499"
           },
-          "css": "#d8dee9",
-          "aliasOf": "color.primitive.modern.text",
-          "description": "D-041 action.tertiary.text: color.primitive.modern.text.",
+          "css": "#e99499",
+          "aliasOf": "color.text.default",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -4894,16 +4894,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.6509803921568628,
-              0.6862745098039216,
-              0.7411764705882353
+              0.8314,
+              0.5255,
+              0.5451
             ],
             "alpha": 1,
-            "hex": "#a6afbd"
+            "hex": "#d4868b"
           },
-          "css": "#a6afbd",
-          "aliasOf": "color.primitive.modern.muted",
-          "description": "D-041 status.neutral.text: color.primitive.modern.muted.",
+          "css": "#d4868b",
+          "aliasOf": "color.text.muted",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -5086,16 +5086,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.5647058823529412,
-              0.6039215686274509,
-              0.6666666666666666
+              0.7412,
+              0.4706,
+              0.4902
             ],
             "alpha": 1,
-            "hex": "#909aaa"
+            "hex": "#bd787d"
           },
-          "css": "#909aaa",
-          "aliasOf": "color.primitive.modern.subtle",
-          "description": "D-041 code.line-number: color.primitive.modern.subtle.",
+          "css": "#bd787d",
+          "aliasOf": "color.text.subtle",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -5110,16 +5110,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.8470588235294118,
-              0.8705882352941177,
-              0.9137254901960784
+              0.9137,
+              0.5804,
+              0.6
             ],
             "alpha": 1,
-            "hex": "#d8dee9"
+            "hex": "#e99499"
           },
-          "css": "#d8dee9",
-          "aliasOf": "color.primitive.modern.text",
-          "description": "D-041 code.line-number-active: color.primitive.modern.text.",
+          "css": "#e99499",
+          "aliasOf": "color.text.default",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -5158,16 +5158,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9450980392156862,
-              0.9607843137254902,
-              0.9764705882352941
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#f1f5f9"
+            "hex": "#ffa2a7"
           },
-          "css": "#f1f5f9",
-          "aliasOf": "color.primitive.modern.bright",
-          "description": "D-041 code.caret: color.primitive.modern.bright.",
+          "css": "#ffa2a7",
+          "aliasOf": "color.text.bright",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -5398,16 +5398,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.5647058823529412,
-              0.6039215686274509,
-              0.6666666666666666
+              0.7412,
+              0.4706,
+              0.4902
             ],
             "alpha": 1,
-            "hex": "#909aaa"
+            "hex": "#bd787d"
           },
-          "css": "#909aaa",
-          "aliasOf": "color.primitive.modern.subtle",
-          "description": "D-041 code.syntax.comment: color.primitive.modern.subtle.",
+          "css": "#bd787d",
+          "aliasOf": "color.text.subtle",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -5566,16 +5566,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.6509803921568628,
-              0.6862745098039216,
-              0.7411764705882353
+              0.8314,
+              0.5255,
+              0.5451
             ],
             "alpha": 1,
-            "hex": "#a6afbd"
+            "hex": "#d4868b"
           },
-          "css": "#a6afbd",
-          "aliasOf": "color.primitive.modern.muted",
-          "description": "D-041 code.syntax.punctuation: color.primitive.modern.muted.",
+          "css": "#d4868b",
+          "aliasOf": "color.text.muted",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -5734,16 +5734,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.5647058823529412,
-              0.6039215686274509,
-              0.6666666666666666
+              0.7412,
+              0.4706,
+              0.4902
             ],
             "alpha": 1,
-            "hex": "#909aaa"
+            "hex": "#bd787d"
           },
-          "css": "#909aaa",
-          "aliasOf": "color.primitive.modern.subtle",
-          "description": "D-041 code.syntax.deprecated: color.primitive.modern.subtle.",
+          "css": "#bd787d",
+          "aliasOf": "color.text.subtle",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -6190,16 +6190,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.5647058823529412,
-              0.6039215686274509,
-              0.6666666666666666
+              0.7412,
+              0.4706,
+              0.4902
             ],
             "alpha": 1,
-            "hex": "#909aaa"
+            "hex": "#bd787d"
           },
-          "css": "#909aaa",
-          "aliasOf": "color.primitive.modern.subtle",
-          "description": "D-041 diagnostic.hint.underline: color.primitive.modern.subtle.",
+          "css": "#bd787d",
+          "aliasOf": "color.text.subtle",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -6214,16 +6214,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.6509803921568628,
-              0.6862745098039216,
-              0.7411764705882353
+              0.8314,
+              0.5255,
+              0.5451
             ],
             "alpha": 1,
-            "hex": "#a6afbd"
+            "hex": "#d4868b"
           },
-          "css": "#a6afbd",
-          "aliasOf": "color.primitive.modern.muted",
-          "description": "D-041 diagnostic.unused.text: color.primitive.modern.muted.",
+          "css": "#d4868b",
+          "aliasOf": "color.text.muted",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -6526,16 +6526,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9450980392156862,
-              0.9607843137254902,
-              0.9764705882352941
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#f1f5f9"
+            "hex": "#ffa2a7"
           },
-          "css": "#f1f5f9",
-          "aliasOf": "color.primitive.modern.bright",
-          "description": "D-041 terminal.cursor: color.primitive.modern.bright.",
+          "css": "#ffa2a7",
+          "aliasOf": "color.text.bright",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -6622,16 +6622,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.8470588235294118,
-              0.8705882352941177,
-              0.9137254901960784
+              0.9137,
+              0.5804,
+              0.6
             ],
             "alpha": 1,
-            "hex": "#d8dee9"
+            "hex": "#e99499"
           },
-          "css": "#d8dee9",
-          "aliasOf": "color.primitive.modern.text",
-          "description": "D-041 terminal.prompt-text: color.primitive.modern.text.",
+          "css": "#e99499",
+          "aliasOf": "color.terminal.fg",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -6838,16 +6838,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.5647058823529412,
-              0.6039215686274509,
-              0.6666666666666666
+              0.7412,
+              0.4706,
+              0.4902
             ],
             "alpha": 1,
-            "hex": "#909aaa"
+            "hex": "#bd787d"
           },
-          "css": "#909aaa",
-          "aliasOf": "color.primitive.modern.subtle",
-          "description": "D-041 terminal.ansi.8: color.primitive.modern.subtle.",
+          "css": "#bd787d",
+          "aliasOf": "color.text.subtle",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -7174,16 +7174,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.6509803921568628,
-              0.6862745098039216,
-              0.7411764705882353
+              0.8314,
+              0.5255,
+              0.5451
             ],
             "alpha": 1,
-            "hex": "#a6afbd"
+            "hex": "#d4868b"
           },
-          "css": "#a6afbd",
-          "aliasOf": "color.primitive.modern.muted",
-          "description": "D-041 chart.label: color.primitive.modern.muted.",
+          "css": "#d4868b",
+          "aliasOf": "color.text.muted",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -7198,16 +7198,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.8470588235294118,
-              0.8705882352941177,
-              0.9137254901960784
+              0.9137,
+              0.5804,
+              0.6
             ],
             "alpha": 1,
-            "hex": "#d8dee9"
+            "hex": "#e99499"
           },
-          "css": "#d8dee9",
-          "aliasOf": "color.primitive.modern.text",
-          "description": "D-041 icon.default: color.primitive.modern.text.",
+          "css": "#e99499",
+          "aliasOf": "color.text.default",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -11547,16 +11547,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.8470588235294118,
-              0.8705882352941177,
-              0.9137254901960784
+              0.9137,
+              0.5804,
+              0.6
             ],
             "alpha": 1,
-            "hex": "#d8dee9"
+            "hex": "#e99499"
           },
-          "css": "#d8dee9",
-          "aliasOf": "color.primitive.modern.text",
-          "description": "D-041 text.default: color.primitive.modern.text.",
+          "css": "#e99499",
+          "aliasOf": "color.primitive.rose.700",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -11571,16 +11571,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9450980392156862,
-              0.9607843137254902,
-              0.9764705882352941
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#f1f5f9"
+            "hex": "#ffa2a7"
           },
-          "css": "#f1f5f9",
-          "aliasOf": "color.primitive.modern.bright",
-          "description": "D-041 text.bright: color.primitive.modern.bright.",
+          "css": "#ffa2a7",
+          "aliasOf": "color.primitive.rose.800",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -11595,14 +11595,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.8470588235294118,
-              0.8705882352941177,
-              0.9137254901960784
+              0.9137,
+              0.5804,
+              0.6
             ],
             "alpha": 1,
-            "hex": "#d8dee9"
+            "hex": "#e99499"
           },
-          "css": "#d8dee9",
+          "css": "#e99499",
           "aliasOf": "color.text.default",
           "description": "Neutral long-form reading text; aliases text.default (D-041).",
           "status": "approved",
@@ -11619,16 +11619,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.6509803921568628,
-              0.6862745098039216,
-              0.7411764705882353
+              0.8314,
+              0.5255,
+              0.5451
             ],
             "alpha": 1,
-            "hex": "#a6afbd"
+            "hex": "#d4868b"
           },
-          "css": "#a6afbd",
-          "aliasOf": "color.primitive.modern.muted",
-          "description": "D-041 text.muted: color.primitive.modern.muted.",
+          "css": "#d4868b",
+          "aliasOf": "color.primitive.rose.650",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -11667,16 +11667,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4470588235294118,
-              0.4823529411764706,
-              0.5372549019607843
+              0.6392,
+              0.4039,
+              0.4196
             ],
             "alpha": 1,
-            "hex": "#727b89"
+            "hex": "#a3676b"
           },
-          "css": "#727b89",
-          "aliasOf": "color.primitive.modern.disabled",
-          "description": "D-041 text.disabled: color.primitive.modern.disabled.",
+          "css": "#a3676b",
+          "aliasOf": "color.primitive.rose.350",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -11691,16 +11691,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.5647058823529412,
-              0.6039215686274509,
-              0.6666666666666666
+              0.7412,
+              0.4706,
+              0.4902
             ],
             "alpha": 1,
-            "hex": "#909aaa"
+            "hex": "#bd787d"
           },
-          "css": "#909aaa",
-          "aliasOf": "color.primitive.modern.subtle",
-          "description": "D-041 text.placeholder: color.primitive.modern.subtle.",
+          "css": "#bd787d",
+          "aliasOf": "color.primitive.rose.600",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -11859,14 +11859,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9450980392156862,
-              0.9607843137254902,
-              0.9764705882352941
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#f1f5f9"
+            "hex": "#ffa2a7"
           },
-          "css": "#f1f5f9",
+          "css": "#ffa2a7",
           "aliasOf": "color.text.bright",
           "description": "Bright rose text on primary-action fills in every state (D-033).",
           "status": "approved",
@@ -12339,16 +12339,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.8470588235294118,
-              0.8705882352941177,
-              0.9137254901960784
+              0.9137,
+              0.5804,
+              0.6
             ],
             "alpha": 1,
-            "hex": "#d8dee9"
+            "hex": "#e99499"
           },
-          "css": "#d8dee9",
+          "css": "#e99499",
           "aliasOf": "color.text.default",
-          "description": "D-041 interaction.selection.inactive-text: color.text.default.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -12675,14 +12675,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9450980392156862,
-              0.9607843137254902,
-              0.9764705882352941
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#f1f5f9"
+            "hex": "#ffa2a7"
           },
-          "css": "#f1f5f9",
+          "css": "#ffa2a7",
           "aliasOf": "color.text.on-action",
           "description": "Primary action labels: bright rose across rest, hover and pressed states (D-033).",
           "status": "approved",
@@ -12795,16 +12795,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9450980392156862,
-              0.9607843137254902,
-              0.9764705882352941
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#f1f5f9"
+            "hex": "#ffa2a7"
           },
-          "css": "#f1f5f9",
-          "aliasOf": "color.primitive.modern.bright",
-          "description": "D-041 action.secondary.text: color.primitive.modern.bright.",
+          "css": "#ffa2a7",
+          "aliasOf": "color.text.bright",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -12891,16 +12891,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.8470588235294118,
-              0.8705882352941177,
-              0.9137254901960784
+              0.9137,
+              0.5804,
+              0.6
             ],
             "alpha": 1,
-            "hex": "#d8dee9"
+            "hex": "#e99499"
           },
-          "css": "#d8dee9",
-          "aliasOf": "color.primitive.modern.text",
-          "description": "D-041 action.tertiary.text: color.primitive.modern.text.",
+          "css": "#e99499",
+          "aliasOf": "color.text.default",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -13587,16 +13587,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.6509803921568628,
-              0.6862745098039216,
-              0.7411764705882353
+              0.8314,
+              0.5255,
+              0.5451
             ],
             "alpha": 1,
-            "hex": "#a6afbd"
+            "hex": "#d4868b"
           },
-          "css": "#a6afbd",
-          "aliasOf": "color.primitive.modern.muted",
-          "description": "D-041 status.neutral.text: color.primitive.modern.muted.",
+          "css": "#d4868b",
+          "aliasOf": "color.text.muted",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -13803,16 +13803,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.8470588235294118,
-              0.8705882352941177,
-              0.9137254901960784
+              0.9137,
+              0.5804,
+              0.6
             ],
             "alpha": 1,
-            "hex": "#d8dee9"
+            "hex": "#e99499"
           },
-          "css": "#d8dee9",
-          "aliasOf": "color.primitive.modern.text",
-          "description": "D-041 code.line-number-active: color.primitive.modern.text.",
+          "css": "#e99499",
+          "aliasOf": "color.text.default",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -13851,16 +13851,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9450980392156862,
-              0.9607843137254902,
-              0.9764705882352941
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#f1f5f9"
+            "hex": "#ffa2a7"
           },
-          "css": "#f1f5f9",
-          "aliasOf": "color.primitive.modern.bright",
-          "description": "D-041 code.caret: color.primitive.modern.bright.",
+          "css": "#ffa2a7",
+          "aliasOf": "color.text.bright",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -14427,16 +14427,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.5647058823529412,
-              0.6039215686274509,
-              0.6666666666666666
+              0.6392,
+              0.4039,
+              0.4196
             ],
             "alpha": 1,
-            "hex": "#909aaa"
+            "hex": "#a3676b"
           },
-          "css": "#909aaa",
-          "aliasOf": "color.primitive.modern.subtle",
-          "description": "D-041 code.syntax.deprecated: color.primitive.modern.subtle.",
+          "css": "#a3676b",
+          "aliasOf": "color.text.subtle",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -14883,16 +14883,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.5647058823529412,
-              0.6039215686274509,
-              0.6666666666666666
+              0.6392,
+              0.4039,
+              0.4196
             ],
             "alpha": 1,
-            "hex": "#909aaa"
+            "hex": "#a3676b"
           },
-          "css": "#909aaa",
-          "aliasOf": "color.primitive.modern.subtle",
-          "description": "D-041 diagnostic.hint.underline: color.primitive.modern.subtle.",
+          "css": "#a3676b",
+          "aliasOf": "color.text.subtle",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -14907,16 +14907,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.6509803921568628,
-              0.6862745098039216,
-              0.7411764705882353
+              0.8314,
+              0.5255,
+              0.5451
             ],
             "alpha": 1,
-            "hex": "#a6afbd"
+            "hex": "#d4868b"
           },
-          "css": "#a6afbd",
-          "aliasOf": "color.primitive.modern.muted",
-          "description": "D-041 diagnostic.unused.text: color.primitive.modern.muted.",
+          "css": "#d4868b",
+          "aliasOf": "color.text.muted",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -15219,16 +15219,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9450980392156862,
-              0.9607843137254902,
-              0.9764705882352941
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#f1f5f9"
+            "hex": "#ffa2a7"
           },
-          "css": "#f1f5f9",
-          "aliasOf": "color.primitive.modern.bright",
-          "description": "D-041 terminal.cursor: color.primitive.modern.bright.",
+          "css": "#ffa2a7",
+          "aliasOf": "color.text.bright",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -15867,16 +15867,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.6509803921568628,
-              0.6862745098039216,
-              0.7411764705882353
+              0.8314,
+              0.5255,
+              0.5451
             ],
             "alpha": 1,
-            "hex": "#a6afbd"
+            "hex": "#d4868b"
           },
-          "css": "#a6afbd",
-          "aliasOf": "color.primitive.modern.muted",
-          "description": "D-041 chart.label: color.primitive.modern.muted.",
+          "css": "#d4868b",
+          "aliasOf": "color.text.muted",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -15891,16 +15891,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.8470588235294118,
-              0.8705882352941177,
-              0.9137254901960784
+              0.9137,
+              0.5804,
+              0.6
             ],
             "alpha": 1,
-            "hex": "#d8dee9"
+            "hex": "#e99499"
           },
-          "css": "#d8dee9",
-          "aliasOf": "color.primitive.modern.text",
-          "description": "D-041 icon.default: color.primitive.modern.text.",
+          "css": "#e99499",
+          "aliasOf": "color.text.default",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -20240,16 +20240,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.8470588235294118,
-              0.8705882352941177,
-              0.9137254901960784
+              0.9137,
+              0.5804,
+              0.6
             ],
             "alpha": 1,
-            "hex": "#d8dee9"
+            "hex": "#e99499"
           },
-          "css": "#d8dee9",
-          "aliasOf": "color.primitive.modern.text",
-          "description": "D-041 text.default: color.primitive.modern.text.",
+          "css": "#e99499",
+          "aliasOf": "color.primitive.rose.700",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -20264,16 +20264,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9450980392156862,
-              0.9607843137254902,
-              0.9764705882352941
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#f1f5f9"
+            "hex": "#ffa2a7"
           },
-          "css": "#f1f5f9",
-          "aliasOf": "color.primitive.modern.bright",
-          "description": "D-041 text.bright: color.primitive.modern.bright.",
+          "css": "#ffa2a7",
+          "aliasOf": "color.primitive.rose.800",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -20288,14 +20288,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.8470588235294118,
-              0.8705882352941177,
-              0.9137254901960784
+              0.9137,
+              0.5804,
+              0.6
             ],
             "alpha": 1,
-            "hex": "#d8dee9"
+            "hex": "#e99499"
           },
-          "css": "#d8dee9",
+          "css": "#e99499",
           "aliasOf": "color.text.default",
           "description": "Neutral long-form reading text; aliases text.default (D-041).",
           "status": "approved",
@@ -20312,16 +20312,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.6509803921568628,
-              0.6862745098039216,
-              0.7411764705882353
+              0.8314,
+              0.5255,
+              0.5451
             ],
             "alpha": 1,
-            "hex": "#a6afbd"
+            "hex": "#d4868b"
           },
-          "css": "#a6afbd",
-          "aliasOf": "color.primitive.modern.muted",
-          "description": "D-041 text.muted: color.primitive.modern.muted.",
+          "css": "#d4868b",
+          "aliasOf": "color.primitive.rose.650",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -20336,16 +20336,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.5647058823529412,
-              0.6039215686274509,
-              0.6666666666666666
+              0.7412,
+              0.4706,
+              0.4902
             ],
             "alpha": 1,
-            "hex": "#909aaa"
+            "hex": "#bd787d"
           },
-          "css": "#909aaa",
-          "aliasOf": "color.primitive.modern.subtle",
-          "description": "D-041 text.subtle: color.primitive.modern.subtle.",
+          "css": "#bd787d",
+          "aliasOf": "color.primitive.rose.600",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -20360,16 +20360,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4470588235294118,
-              0.4823529411764706,
-              0.5372549019607843
+              0.6392,
+              0.4039,
+              0.4196
             ],
             "alpha": 1,
-            "hex": "#727b89"
+            "hex": "#a3676b"
           },
-          "css": "#727b89",
-          "aliasOf": "color.primitive.modern.disabled",
-          "description": "D-041 text.disabled: color.primitive.modern.disabled.",
+          "css": "#a3676b",
+          "aliasOf": "color.primitive.rose.350",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -20384,16 +20384,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.5647058823529412,
-              0.6039215686274509,
-              0.6666666666666666
+              0.7412,
+              0.4706,
+              0.4902
             ],
             "alpha": 1,
-            "hex": "#909aaa"
+            "hex": "#bd787d"
           },
-          "css": "#909aaa",
-          "aliasOf": "color.primitive.modern.subtle",
-          "description": "D-041 text.placeholder: color.primitive.modern.subtle.",
+          "css": "#bd787d",
+          "aliasOf": "color.primitive.rose.600",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -20552,14 +20552,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9450980392156862,
-              0.9607843137254902,
-              0.9764705882352941
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#f1f5f9"
+            "hex": "#ffa2a7"
           },
-          "css": "#f1f5f9",
+          "css": "#ffa2a7",
           "aliasOf": "color.text.bright",
           "description": "Bright rose text on primary-action fills in every state (D-033).",
           "status": "approved",
@@ -21032,16 +21032,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.8470588235294118,
-              0.8705882352941177,
-              0.9137254901960784
+              0.9137,
+              0.5804,
+              0.6
             ],
             "alpha": 1,
-            "hex": "#d8dee9"
+            "hex": "#e99499"
           },
-          "css": "#d8dee9",
+          "css": "#e99499",
           "aliasOf": "color.text.default",
-          "description": "D-041 interaction.selection.inactive-text: color.text.default.",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -21368,14 +21368,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9450980392156862,
-              0.9607843137254902,
-              0.9764705882352941
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#f1f5f9"
+            "hex": "#ffa2a7"
           },
-          "css": "#f1f5f9",
+          "css": "#ffa2a7",
           "aliasOf": "color.text.on-action",
           "description": "Primary action labels: bright rose across rest, hover and pressed states (D-033).",
           "status": "approved",
@@ -21488,16 +21488,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9450980392156862,
-              0.9607843137254902,
-              0.9764705882352941
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#f1f5f9"
+            "hex": "#ffa2a7"
           },
-          "css": "#f1f5f9",
-          "aliasOf": "color.primitive.modern.bright",
-          "description": "D-041 action.secondary.text: color.primitive.modern.bright.",
+          "css": "#ffa2a7",
+          "aliasOf": "color.text.bright",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -21584,16 +21584,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.8470588235294118,
-              0.8705882352941177,
-              0.9137254901960784
+              0.9137,
+              0.5804,
+              0.6
             ],
             "alpha": 1,
-            "hex": "#d8dee9"
+            "hex": "#e99499"
           },
-          "css": "#d8dee9",
-          "aliasOf": "color.primitive.modern.text",
-          "description": "D-041 action.tertiary.text: color.primitive.modern.text.",
+          "css": "#e99499",
+          "aliasOf": "color.text.default",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -22280,16 +22280,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.6509803921568628,
-              0.6862745098039216,
-              0.7411764705882353
+              0.8314,
+              0.5255,
+              0.5451
             ],
             "alpha": 1,
-            "hex": "#a6afbd"
+            "hex": "#d4868b"
           },
-          "css": "#a6afbd",
-          "aliasOf": "color.primitive.modern.muted",
-          "description": "D-041 status.neutral.text: color.primitive.modern.muted.",
+          "css": "#d4868b",
+          "aliasOf": "color.text.muted",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -22472,16 +22472,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.5647058823529412,
-              0.6039215686274509,
-              0.6666666666666666
+              0.7412,
+              0.4706,
+              0.4902
             ],
             "alpha": 1,
-            "hex": "#909aaa"
+            "hex": "#bd787d"
           },
-          "css": "#909aaa",
-          "aliasOf": "color.primitive.modern.subtle",
-          "description": "D-041 code.line-number: color.primitive.modern.subtle.",
+          "css": "#bd787d",
+          "aliasOf": "color.text.subtle",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -22496,16 +22496,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.8470588235294118,
-              0.8705882352941177,
-              0.9137254901960784
+              0.9137,
+              0.5804,
+              0.6
             ],
             "alpha": 1,
-            "hex": "#d8dee9"
+            "hex": "#e99499"
           },
-          "css": "#d8dee9",
-          "aliasOf": "color.primitive.modern.text",
-          "description": "D-041 code.line-number-active: color.primitive.modern.text.",
+          "css": "#e99499",
+          "aliasOf": "color.text.default",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -22544,16 +22544,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9450980392156862,
-              0.9607843137254902,
-              0.9764705882352941
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#f1f5f9"
+            "hex": "#ffa2a7"
           },
-          "css": "#f1f5f9",
-          "aliasOf": "color.primitive.modern.bright",
-          "description": "D-041 code.caret: color.primitive.modern.bright.",
+          "css": "#ffa2a7",
+          "aliasOf": "color.text.bright",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -22786,16 +22786,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.5647058823529412,
-              0.6039215686274509,
-              0.6666666666666666
+              0.7412,
+              0.4706,
+              0.4902
             ],
             "alpha": 1,
-            "hex": "#909aaa"
+            "hex": "#bd787d"
           },
-          "css": "#909aaa",
-          "aliasOf": "color.primitive.modern.subtle",
-          "description": "D-041 code.syntax.comment: color.primitive.modern.subtle.",
+          "css": "#bd787d",
+          "aliasOf": "color.text.subtle",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -23140,16 +23140,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.5647058823529412,
-              0.6039215686274509,
-              0.6666666666666666
+              0.7412,
+              0.4706,
+              0.4902
             ],
             "alpha": 1,
-            "hex": "#909aaa"
+            "hex": "#bd787d"
           },
-          "css": "#909aaa",
-          "aliasOf": "color.primitive.modern.subtle",
-          "description": "D-041 code.syntax.deprecated: color.primitive.modern.subtle.",
+          "css": "#bd787d",
+          "aliasOf": "color.text.subtle",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -23614,16 +23614,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.5647058823529412,
-              0.6039215686274509,
-              0.6666666666666666
+              0.7412,
+              0.4706,
+              0.4902
             ],
             "alpha": 1,
-            "hex": "#909aaa"
+            "hex": "#bd787d"
           },
-          "css": "#909aaa",
-          "aliasOf": "color.primitive.modern.subtle",
-          "description": "D-041 diagnostic.hint.underline: color.primitive.modern.subtle.",
+          "css": "#bd787d",
+          "aliasOf": "color.text.subtle",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -23638,16 +23638,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.6509803921568628,
-              0.6862745098039216,
-              0.7411764705882353
+              0.8314,
+              0.5255,
+              0.5451
             ],
             "alpha": 1,
-            "hex": "#a6afbd"
+            "hex": "#d4868b"
           },
-          "css": "#a6afbd",
-          "aliasOf": "color.primitive.modern.muted",
-          "description": "D-041 diagnostic.unused.text: color.primitive.modern.muted.",
+          "css": "#d4868b",
+          "aliasOf": "color.text.muted",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -23950,16 +23950,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9450980392156862,
-              0.9607843137254902,
-              0.9764705882352941
+              1,
+              0.6353,
+              0.6549
             ],
             "alpha": 1,
-            "hex": "#f1f5f9"
+            "hex": "#ffa2a7"
           },
-          "css": "#f1f5f9",
-          "aliasOf": "color.primitive.modern.bright",
-          "description": "D-041 terminal.cursor: color.primitive.modern.bright.",
+          "css": "#ffa2a7",
+          "aliasOf": "color.text.bright",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -24046,16 +24046,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.8470588235294118,
-              0.8705882352941177,
-              0.9137254901960784
+              0.9137,
+              0.5804,
+              0.6
             ],
             "alpha": 1,
-            "hex": "#d8dee9"
+            "hex": "#e99499"
           },
-          "css": "#d8dee9",
-          "aliasOf": "color.primitive.modern.text",
-          "description": "D-041 terminal.prompt-text: color.primitive.modern.text.",
+          "css": "#e99499",
+          "aliasOf": "color.terminal.fg",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -24636,16 +24636,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.6509803921568628,
-              0.6862745098039216,
-              0.7411764705882353
+              0.8314,
+              0.5255,
+              0.5451
             ],
             "alpha": 1,
-            "hex": "#a6afbd"
+            "hex": "#d4868b"
           },
-          "css": "#a6afbd",
-          "aliasOf": "color.primitive.modern.muted",
-          "description": "D-041 chart.label: color.primitive.modern.muted.",
+          "css": "#d4868b",
+          "aliasOf": "color.text.muted",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -24660,16 +24660,16 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.8470588235294118,
-              0.8705882352941177,
-              0.9137254901960784
+              0.9137,
+              0.5804,
+              0.6
             ],
             "alpha": 1,
-            "hex": "#d8dee9"
+            "hex": "#e99499"
           },
-          "css": "#d8dee9",
-          "aliasOf": "color.primitive.modern.text",
-          "description": "D-041 icon.default: color.primitive.modern.text.",
+          "css": "#e99499",
+          "aliasOf": "color.text.default",
+          "description": "D-041 owner correction: rose is the default UI and reading foreground; near-white is reserved for document headings, highlights and contrast-critical fills.",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",

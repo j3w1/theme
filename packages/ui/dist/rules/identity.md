@@ -6,11 +6,11 @@ summary: What the j3w1 theme is, where it came from, and the five rules that kee
 ---
 
 <!-- @compact:start -->
-True-black canvas, editor and terminal interiors (`#000000`), neutral near-black panels and raised layers, neutral interface text, rose terminal and agent prose, and distinct syntax and status hues (D-041). Red marks identity, focus, selection and danger; ordinary application content remains neutral and terminal prose uses rose. Keep 1px square borders, zero radii and one monospace family for chrome, reading and code. Darkness is the canvas; readable content is the priority.
+True-black canvas, editor and terminal interiors (`#000000`), neutral near-black panels and raised layers, rose interface text and terminal/agent prose, and distinct syntax and status hues (D-041). Red marks identity, focus, selection and danger; ordinary application content and terminal prose use rose; white is reserved for document headings, exceptional highlights and contrast-critical roles. Keep 1px square borders, zero radii and one monospace family for chrome, reading and code. Darkness is the canvas; readable content is the priority.
 
 Five rules keep an implementation recognisable:
 
-1. Preserve the true-black base, neutral application text hierarchy, rose terminal prose and restrained red identity. Use semantic colours to distinguish code, additions, warnings and information.
+1. Preserve the true-black base, rose application and terminal text hierarchy and restrained red identity. Use semantic colours to distinguish code, additions, warnings and information.
 2. Use the role assigned to a token, never the token whose colour happens to look closest.
 3. Keep content, selection, keyboard focus, diagnostics and changed text distinguishable from one another. Selection is a fill; focus is a ring.
 4. Nothing is rounded, blurred, glowing or gradient-filled. Elevation is a 1px border and, for modals, a backdrop.
@@ -58,7 +58,7 @@ copying, keyboard order and no-JS access stay intact.
 ## Profiles
 
 - `default` — the approved everyday composition: true-black interiors, neutral
-  application layers and text, rose terminal/agent prose, red interaction accents, and semantic green,
+  application layers, rose application text and terminal/agent prose, red interaction accents, and semantic green,
   amber, blue, violet and cyan for coding and terminal content (D-041).
   `code.syntax.*` is coloured by default; `code.hued.*` remains the compatible
   semantic alias family for ports that already consume it.

@@ -38,8 +38,8 @@ control.
 ## Text hierarchy
 
 The colour roles are in `spec/foundations.md`, Typography semantics (D-033);
-D-041 uses neutral application text, rose terminal/agent prose and brighter
-headings while bold inherits its
+D-041 uses rose application text and terminal/agent prose; white is limited
+to document headings, exceptional highlights and contrast-critical roles. Bold inherits its
 context. Selection and
 contrast-critical on-fill roles are checked against their actual
 backgrounds. Heading level is conveyed through structure, size and weight,

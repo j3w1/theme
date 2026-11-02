@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-uUyex258/cCN40I3QfAc17Y4Big+7Dc2v2FeXtKT5bE=",
+  "sourceDigest": "sha256-0jrAhUhMk1y0cVuA9UcymrJJSN6hyxQFjD82B97Ze6s=",
   "id": "toolbar",
   "family": "navigation",
   "maturity": "stable",
@@ -86,7 +86,7 @@
     },
     "button.text": {
       "alias": "color.text.default",
-      "value": "#d8dee9",
+      "value": "#e99499",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -134,7 +134,7 @@
     },
     "button.text-disabled": {
       "alias": "color.text.disabled",
-      "value": "#727b89",
+      "value": "#a3676b",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -170,7 +170,7 @@
     },
     "toggled.text": {
       "alias": "color.text.bright",
-      "value": "#f1f5f9",
+      "value": "#ffa2a7",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -213,7 +213,7 @@
       "tokens": {
         "fg": {
           "alias": "color.text.default",
-          "value": "#d8dee9",
+          "value": "#e99499",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -244,7 +244,7 @@
       "tokens": {
         "fg": {
           "alias": "color.text.default",
-          "value": "#d8dee9",
+          "value": "#e99499",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -275,7 +275,7 @@
       "tokens": {
         "fg": {
           "alias": "color.text.default",
-          "value": "#d8dee9",
+          "value": "#e99499",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -324,7 +324,7 @@
       "tokens": {
         "fg": {
           "alias": "color.text.bright",
-          "value": "#f1f5f9",
+          "value": "#ffa2a7",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -422,9 +422,9 @@
       "min": 4.5,
       "fg": "color.text.default",
       "bg": "color.surface.chrome",
-      "fgHex": "#d8dee9",
+      "fgHex": "#e99499",
       "bgHex": "#000000",
-      "ratio": 15.54,
+      "ratio": 9.16,
       "pass": true,
       "waiver": null
     },
@@ -435,9 +435,9 @@
       "min": 4.5,
       "fg": "color.text.default",
       "bg": "color.interaction.hover.bg",
-      "fgHex": "#d8dee9",
+      "fgHex": "#e99499",
       "bgHex": "#191c22",
-      "ratio": 12.63,
+      "ratio": 7.44,
       "pass": true,
       "waiver": null
     },
@@ -448,9 +448,9 @@
       "min": 4.5,
       "fg": "color.text.default",
       "bg": "color.surface.chrome",
-      "fgHex": "#d8dee9",
+      "fgHex": "#e99499",
       "bgHex": "#000000",
-      "ratio": 15.54,
+      "ratio": 9.16,
       "pass": true,
       "waiver": null
     },
@@ -474,9 +474,9 @@
       "min": 4.5,
       "fg": "color.text.bright",
       "bg": "color.interaction.pressed.bg",
-      "fgHex": "#f1f5f9",
+      "fgHex": "#ffa2a7",
       "bgHex": "#420f0c",
-      "ratio": 14.69,
+      "ratio": 8.41,
       "pass": true,
       "waiver": null
     },
@@ -500,9 +500,9 @@
       "min": 3,
       "fg": "color.text.disabled",
       "bg": "color.surface.chrome",
-      "fgHex": "#727b89",
+      "fgHex": "#a3676b",
       "bgHex": "#000000",
-      "ratio": 4.91,
+      "ratio": 4.71,
       "pass": true,
       "waiver": null
     },

@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — data-table
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-uUyex258/cCN40I3QfAc17Y4Big+7Dc2v2FeXtKT5bE=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-0jrAhUhMk1y0cVuA9UcymrJJSN6hyxQFjD82B97Ze6s=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/data-table.json
 spec: spec/components/data-table.md  site: https://j3w1.github.io/theme/reference/#c-data-table
 maturity: stable  priority: R1
@@ -9,10 +9,10 @@ Summary: A native table with controls: a selection column with a mixed select-al
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
   root.bg              #0e1014  ({color.surface.default})  use
-  header.text          #f1f5f9  ({color.text.bright})  use
+  header.text          #ffa2a7  ({color.text.bright})  use
   header.rule          #9e231f  ({color.border.strong})  use
-  sort.glyph           #f1f5f9  ({color.text.bright})  use
-  row.text             #d8dee9  ({color.text.default})  use
+  sort.glyph           #ffa2a7  ({color.text.bright})  use
+  row.text             #e99499  ({color.text.default})  use
   row.divider          #303640  ({color.border.divider})  use
   row.bg-hover         #191c22  ({color.interaction.hover.bg})  use
   row.ring             #e53935  ({color.interaction.focus.ring})  use
@@ -22,11 +22,11 @@ Tokens (resolved):
   checkbox.bg          #000000  ({color.surface.input})  use
   checkbox.border      #747e8e  ({color.border.control})  use
   checkbox.checked-bg  #7d1310  ({color.action.primary.bg})  use
-  checkbox.glyph       #f1f5f9  ({color.action.primary.text})  use
+  checkbox.glyph       #ffa2a7  ({color.action.primary.text})  use
   resize.handle        #303640  ({color.border.default})  use
   resize.handle-hover  #e53935  ({color.border.active})  use
-  empty.text           #a6afbd  ({color.text.muted})  use
-  loading.glyph        #a6afbd  ({color.text.muted})  use
+  empty.text           #d4868b  ({color.text.muted})  use
+  loading.glyph        #d4868b  ({color.text.muted})  use
 
 States: default, hover, focus-visible, selected, selected+focus-visible, sorted, mixed, empty, loading
   default: rows on {color.surface.default}; header rule 1px {color.border.strong} [—]

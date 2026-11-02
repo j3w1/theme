@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — chip
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-uUyex258/cCN40I3QfAc17Y4Big+7Dc2v2FeXtKT5bE=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-0jrAhUhMk1y0cVuA9UcymrJJSN6hyxQFjD82B97Ze6s=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/chip.json
 spec: spec/components/chip.md  site: https://j3w1.github.io/theme/reference/#c-chip
 maturity: stable  priority: R1
@@ -10,18 +10,18 @@ Use the pinned approved default profile. Pending roles in that profile use-and-r
 Tokens (resolved):
   root.bg               #0e1014  ({color.surface.default})  use
   root.border           #747e8e  ({color.border.control})  use
-  root.text             #d8dee9  ({color.text.default})  use
+  root.text             #e99499  ({color.text.default})  use
   root.bg-hover         #191c22  ({color.interaction.hover.bg})  use
   root.bg-pressed       #420f0c  ({color.interaction.pressed.bg})  use
   root.ring             #e53935  ({color.interaction.focus.ring})  use
-  root.text-disabled    #727b89  ({color.text.disabled})  use
+  root.text-disabled    #a3676b  ({color.text.disabled})  use
   root.border-disabled  #303640  ({color.border.disabled})  use
   root.bg-disabled      #0e1014  ({color.interaction.disabled.bg})  use
   selected.bg           #531310  ({color.interaction.selection.bg})  use
   selected.text         #f4eeee  ({color.interaction.selection.text})  use
   selected.ring         #e53935  ({color.interaction.focus.ring})  use
-  remove.text           #a6afbd  ({color.text.muted})  use
-  remove.text-hover     #f1f5f9  ({color.text.bright})  use
+  remove.text           #d4868b  ({color.text.muted})  use
+  remove.text-hover     #ffa2a7  ({color.text.bright})  use
   remove.bg-hover       #191c22  ({color.interaction.hover.bg-strong})  use
 
 States: default, hover, focus-visible, selected, selected+focus-visible, disabled

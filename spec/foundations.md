@@ -31,11 +31,11 @@ Never tint photos, video, document content or user-defined data colours.
 
 | Role | Use |
 | --- | --- |
-| `text.prose` | long-form reading; aliases neutral `text.default` |
-| `text.heading` | bright neutral content titles and H1–H6 |
-| `text.highlight` | deliberate exceptional highlights |
-| `text.bright` | brighter neutral UI labels |
-| `text.default` | neutral interface and body text |
+| `text.prose` | long-form reading; aliases rose `text.default` |
+| `text.heading` | white document/content titles and H1–H6 |
+| `text.highlight` | deliberate exceptional white highlights |
+| `text.bright` | brighter rose UI labels |
+| `text.default` | rose interface and body text |
 | `text.muted` | secondary text; the darkest colour permitted for ordinary chrome text |
 | `text.subtle` | metadata, comments, line numbers |
 | `text.disabled` | disabled controls only (exempt under WCAG 1.4.3; at least 3:1 by policy) |
@@ -43,8 +43,9 @@ Never tint photos, video, document content or user-defined data colours.
 | `text.accent-strong` | red emphasis suitable for raised surfaces |
 | `text.link` | underlined links; hover uses `text.link-hover` on `interaction.hover.bg` |
 
-D-041 uses neutral greys for application text while terminal and agent prose
-uses `terminal.fg` (rose `#e99499`). Exact values
+D-041 uses rose for ordinary application text and terminal/agent prose
+(`text.default` and `terminal.fg`, `#e99499`). White is limited to document
+headings, exceptional highlights and contrast-critical roles. Exact values
 and ratios per surface are in the token and contrast reports. Metadata and
 comments people need to read use `text.subtle`, never a decorative border or
 historical ANSI primitive.
@@ -109,7 +110,7 @@ Rules that apply everywhere:
 Four button tones:
 
 - `primary`, the only filled button at rest: `action.primary.bg` (`#7d1310`)
-  with `action.primary.text` (bright neutral; D-041).
+  with `action.primary.text` (bright rose; D-041).
 - `secondary`, an outline: `border.control`, text `text.bright`.
 - `tertiary`, a ghost or icon button: `text.default`, hover
   `interaction.hover.bg`.
@@ -282,9 +283,9 @@ All content titles and H1–H6 use `text.heading`; size, weight and spacing carr
 the hierarchy. Chrome and window titles use `text.default` or `text.bright`;
 body and long-form prose use `text.default` and `text.prose`. Bold inherits the
 current semantic colour, including inside headings, muted text, links and
-selections, and never requests white by itself. D-041 makes ordinary reading
-application text neutral and brighter labels/headings near-white. Terminal
-and agent prose uses rose `terminal.fg`; the semantic hierarchy
+selections, and never requests white by itself. D-041 keeps ordinary application text and brighter UI labels rose,
+with white reserved for document headings, exceptional highlights and
+contrast-critical roles. Terminal and agent prose uses rose `terminal.fg`; the semantic hierarchy
 and inherited bold rule remain. Selection and on-fill roles are explicit and
 must be measured against their actual backgrounds. The historical D-033
 migration audit is `docs/rose-typography-migration.md`.

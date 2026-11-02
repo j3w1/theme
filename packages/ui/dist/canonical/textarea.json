@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-uUyex258/cCN40I3QfAc17Y4Big+7Dc2v2FeXtKT5bE=",
+  "sourceDigest": "sha256-0jrAhUhMk1y0cVuA9UcymrJJSN6hyxQFjD82B97Ze6s=",
   "id": "textarea",
   "family": "forms-basic",
   "maturity": "stable",
@@ -198,7 +198,7 @@
     },
     "input.text": {
       "alias": "color.text.default",
-      "value": "#d8dee9",
+      "value": "#e99499",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -210,7 +210,7 @@
     },
     "input.text-disabled": {
       "alias": "color.text.disabled",
-      "value": "#727b89",
+      "value": "#a3676b",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -222,7 +222,7 @@
     },
     "input.placeholder": {
       "alias": "color.text.placeholder",
-      "value": "#909aaa",
+      "value": "#bd787d",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -234,7 +234,7 @@
     },
     "input.caret": {
       "alias": "color.code.caret",
-      "value": "#f1f5f9",
+      "value": "#ffa2a7",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -270,7 +270,7 @@
     },
     "label.text": {
       "alias": "color.text.bright",
-      "value": "#f1f5f9",
+      "value": "#ffa2a7",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -294,7 +294,7 @@
     },
     "help.text": {
       "alias": "color.text.muted",
-      "value": "#a6afbd",
+      "value": "#d4868b",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -306,7 +306,7 @@
     },
     "count.text": {
       "alias": "color.text.muted",
-      "value": "#a6afbd",
+      "value": "#d4868b",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -349,7 +349,7 @@
       "tokens": {
         "fg": {
           "alias": "color.text.default",
-          "value": "#d8dee9",
+          "value": "#e99499",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -392,7 +392,7 @@
       "tokens": {
         "fg": {
           "alias": "color.text.default",
-          "value": "#d8dee9",
+          "value": "#e99499",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -435,7 +435,7 @@
       "tokens": {
         "fg": {
           "alias": "color.text.default",
-          "value": "#d8dee9",
+          "value": "#e99499",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -490,7 +490,7 @@
       "tokens": {
         "fg": {
           "alias": "color.text.placeholder",
-          "value": "#909aaa",
+          "value": "#bd787d",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -545,7 +545,7 @@
       "tokens": {
         "fg": {
           "alias": "color.text.default",
-          "value": "#d8dee9",
+          "value": "#e99499",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -588,7 +588,7 @@
       "tokens": {
         "fg": {
           "alias": "color.text.default",
-          "value": "#d8dee9",
+          "value": "#e99499",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -649,7 +649,7 @@
       "tokens": {
         "fg": {
           "alias": "color.text.default",
-          "value": "#d8dee9",
+          "value": "#e99499",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -728,9 +728,9 @@
       "min": 4.5,
       "fg": "color.text.default",
       "bg": "color.surface.input",
-      "fgHex": "#d8dee9",
+      "fgHex": "#e99499",
       "bgHex": "#000000",
-      "ratio": 15.54,
+      "ratio": 9.16,
       "pass": true,
       "waiver": null
     },
@@ -754,9 +754,9 @@
       "min": 4.5,
       "fg": "color.text.default",
       "bg": "color.interaction.hover.bg",
-      "fgHex": "#d8dee9",
+      "fgHex": "#e99499",
       "bgHex": "#191c22",
-      "ratio": 12.63,
+      "ratio": 7.44,
       "pass": true,
       "waiver": null
     },
@@ -780,9 +780,9 @@
       "min": 4.5,
       "fg": "color.text.default",
       "bg": "color.surface.input",
-      "fgHex": "#d8dee9",
+      "fgHex": "#e99499",
       "bgHex": "#000000",
-      "ratio": 15.54,
+      "ratio": 9.16,
       "pass": true,
       "waiver": null
     },
@@ -819,9 +819,9 @@
       "min": 4.5,
       "fg": "color.text.placeholder",
       "bg": "color.surface.input",
-      "fgHex": "#909aaa",
+      "fgHex": "#bd787d",
       "bgHex": "#000000",
-      "ratio": 7.39,
+      "ratio": 6.15,
       "pass": true,
       "waiver": null
     },
@@ -845,9 +845,9 @@
       "min": 4.5,
       "fg": "color.text.default",
       "bg": "color.surface.input",
-      "fgHex": "#d8dee9",
+      "fgHex": "#e99499",
       "bgHex": "#000000",
-      "ratio": 15.54,
+      "ratio": 9.16,
       "pass": true,
       "waiver": null
     },
@@ -871,9 +871,9 @@
       "min": 4.5,
       "fg": "color.text.default",
       "bg": "color.surface.input",
-      "fgHex": "#d8dee9",
+      "fgHex": "#e99499",
       "bgHex": "#000000",
-      "ratio": 15.54,
+      "ratio": 9.16,
       "pass": true,
       "waiver": null
     },
@@ -910,9 +910,9 @@
       "min": 4.5,
       "fg": "color.text.default",
       "bg": "color.surface.canvas",
-      "fgHex": "#d8dee9",
+      "fgHex": "#e99499",
       "bgHex": "#000000",
-      "ratio": 15.54,
+      "ratio": 9.16,
       "pass": true,
       "waiver": null
     },
@@ -936,9 +936,9 @@
       "min": 4.5,
       "fg": "color.text.muted",
       "bg": "color.surface.default",
-      "fgHex": "#a6afbd",
+      "fgHex": "#d4868b",
       "bgHex": "#0e1014",
-      "ratio": 8.6,
+      "ratio": 6.88,
       "pass": true,
       "waiver": null
     },
@@ -949,9 +949,9 @@
       "min": 3,
       "fg": "color.text.disabled",
       "bg": "color.interaction.disabled.bg",
-      "fgHex": "#727b89",
+      "fgHex": "#a3676b",
       "bgHex": "#0e1014",
-      "ratio": 4.45,
+      "ratio": 4.27,
       "pass": true,
       "waiver": null
     },

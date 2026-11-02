@@ -132,16 +132,16 @@
       "color.interaction.text-selection.bg",
       "color.interaction.text-selection.text",
       "color.primitive.ink.0",
-      "color.primitive.modern.bright",
-      "color.primitive.modern.muted",
       "color.primitive.modern.red",
-      "color.primitive.modern.text",
       "color.primitive.paper.90",
       "color.primitive.red.100",
       "color.primitive.red.200",
       "color.primitive.red.350",
       "color.primitive.red.50",
       "color.primitive.red.800",
+      "color.primitive.rose.650",
+      "color.primitive.rose.700",
+      "color.primitive.rose.800",
       "color.status.danger.text",
       "color.surface.canvas",
       "color.text.bright",
@@ -298,6 +298,6 @@
   "copy": {
     "directory": "copy/progress/",
     "manifest": "copy/progress/manifest.json",
-    "digest": "sha256-UPNK8rNna8sv0A8E3ODBkZZo3AtqmRM3SdxQhYLomOw="
+    "digest": "sha256-zdZGzYVquDt9g2lNiMDygDmcgGolB2FBfuXhOBp52Mc="
   }
 }

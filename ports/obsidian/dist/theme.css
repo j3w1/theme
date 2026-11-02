@@ -29,31 +29,31 @@
   --titlebar-background-focused: #15181e;
   --file-header-background-focused: #15181e;
   --background-modifier-cover: rgb(0 0 0 / 65%);
-  --text-normal: #d8dee9;
-  --nav-item-color: #d8dee9;
-  --nav-heading-color: #d8dee9;
-  --titlebar-text-color-focused: #d8dee9;
-  --metadata-input-text-color: #d8dee9;
-  --italic-color: #f1f5f9;
+  --text-normal: #e99499;
+  --nav-item-color: #e99499;
+  --nav-heading-color: #e99499;
+  --titlebar-text-color-focused: #e99499;
+  --metadata-input-text-color: #e99499;
+  --italic-color: #ffa2a7;
   --inline-title-color: #f1f5f9;
-  --setting-group-heading-color: #f1f5f9;
+  --setting-group-heading-color: #ffa2a7;
   --h1-color: #f1f5f9;
   --h2-color: #f1f5f9;
   --h3-color: #f1f5f9;
   --h4-color: #f1f5f9;
   --h5-color: #f1f5f9;
   --h6-color: #f1f5f9;
-  --text-muted: #a6afbd;
-  --titlebar-text-color: #a6afbd;
-  --status-bar-text-color: #a6afbd;
-  --tab-text-color: #a6afbd;
-  --tab-text-color-focused: #a6afbd;
-  --metadata-label-text-color: #a6afbd;
-  --nav-heading-color-collapsed: #a6afbd;
-  --nav-tag-color: #a6afbd;
-  --text-faint: #909aaa;
-  --list-marker-color: #909aaa;
-  --input-placeholder-color: #909aaa;
+  --text-muted: #d4868b;
+  --titlebar-text-color: #d4868b;
+  --status-bar-text-color: #d4868b;
+  --tab-text-color: #d4868b;
+  --tab-text-color-focused: #d4868b;
+  --metadata-label-text-color: #d4868b;
+  --nav-heading-color-collapsed: #d4868b;
+  --nav-tag-color: #d4868b;
+  --text-faint: #bd787d;
+  --list-marker-color: #bd787d;
+  --input-placeholder-color: #bd787d;
   --text-accent: #f73f35;
   --color-accent: #f73f35;
   --nav-item-color-highlighted: #f73f35;
@@ -90,7 +90,7 @@
   --nav-item-color-selected: #f4eeee;
   --tab-text-color-focused-active: #f4eeee;
   --tab-text-color-focused-active-current: #f4eeee;
-  --tab-text-color-active: #d8dee9;
+  --tab-text-color-active: #e99499;
   --text-selection: #911410;
   --background-modifier-hover: #191c22;
   --nav-item-background-hover: #191c22;
@@ -101,16 +101,16 @@
   --scrollbar-active-thumb-bg: #a6afbd;
   --interactive-accent: #7d1310;
   --checkbox-color: #7d1310;
-  --text-on-accent: #f1f5f9;
-  --checkbox-marker-color: #f1f5f9;
-  --toggle-thumb-color: #f1f5f9;
+  --text-on-accent: #ffa2a7;
+  --checkbox-marker-color: #ffa2a7;
+  --toggle-thumb-color: #ffa2a7;
   --interactive-accent-hover: #911410;
   --checkbox-color-hover: #911410;
   --interactive-normal: rgb(0 0 0 / 0%);
   --interactive-hover: #630f0d;
-  --icon-color: #d8dee9;
-  --icon-color-hover: #d8dee9;
-  --icon-color-focused: #d8dee9;
+  --icon-color: #e99499;
+  --icon-color-hover: #e99499;
+  --icon-color-focused: #e99499;
   --icon-color-active: #f73f35;
   --text-error: #f07178;
   --callout-error: #f07178;
@@ -125,18 +125,18 @@
   --background-modifier-success: #0f1a0e;
   --callout-info: #82b4ff;
   --code-background: #000000;
-  --caret-color: #f1f5f9;
+  --caret-color: #ffa2a7;
   --text-highlight-bg: #630f0d;
   --indentation-guide-color: #303640;
   --indentation-guide-color-active: #303640;
   --code-normal: #e99499;
-  --code-comment: #909aaa;
+  --code-comment: #bd787d;
   --code-function: #82b4ff;
   --code-important: #e5c07b;
   --code-keyword: #c7a0e8;
   --code-operator: #e99499;
   --code-property: #78d4d4;
-  --code-punctuation: #a6afbd;
+  --code-punctuation: #d4868b;
   --code-string: #82d9a0;
   --code-tag: #f07178;
   --code-value: #e5c07b;
@@ -261,12 +261,12 @@
 
 /* Reading View root uses --text-normal, also used by UI; set only note content color. */
 .theme-dark .markdown-preview-view {
-  color: #d8dee9;
+  color: #e99499;
 }
 
 /* CM6 content root separates prose from interface widgets. */
 .theme-dark .markdown-source-view.mod-cm6 .cm-content {
-  color: #d8dee9;
+  color: #e99499;
 }
 
 /* CM6 scroller contains both content and the sibling drawn-selection layer; scope editor selection above both. */
@@ -281,7 +281,7 @@
 
 /* Native tooltip hardcodes white text and has no border variables. */
 .theme-dark .tooltip {
-  color: #d8dee9;
+  color: #e99499;
   border-color: #747e8e;
   border-width: 1px;
   border-style: solid;
@@ -377,7 +377,7 @@
 .theme-dark button:not(.clickable-icon) {
   border-width: 1px;
   border-color: #747e8e;
-  --text-color: #f1f5f9;
+  --text-color: #ffa2a7;
   border-style: solid;
 }
 
@@ -385,7 +385,7 @@
 .theme-dark button.mod-cta {
   --background-modifier-border-focus: #ffa2a7;
   border-color: #9e231f;
-  --text-color: #f1f5f9;
+  --text-color: #ffa2a7;
 }
 
 /* Recolor the existing toggle outline on primary fill. */
@@ -462,8 +462,8 @@
 
 /* Native disabled button uses opacity; explicit disabled roles retain contrast accounting. */
 .theme-dark button:not(.clickable-icon)[disabled] {
-  --text-color: #727b89;
-  color: #727b89;
+  --text-color: #a3676b;
+  color: #a3676b;
   background-color: #0e1014;
   border-color: #303640;
   opacity: 1;
@@ -471,8 +471,8 @@
 
 /* Native disabled button uses opacity; explicit disabled roles retain contrast accounting. */
 .theme-dark button:not(.clickable-icon)[aria-disabled="true"] {
-  --text-color: #727b89;
-  color: #727b89;
+  --text-color: #a3676b;
+  color: #a3676b;
   background-color: #0e1014;
   border-color: #303640;
   opacity: 1;

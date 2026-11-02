@@ -139,18 +139,18 @@
       "color.interaction.text-selection.bg",
       "color.interaction.text-selection.text",
       "color.primitive.ink.0",
-      "color.primitive.modern.bright",
       "color.primitive.modern.control",
-      "color.primitive.modern.disabled",
       "color.primitive.modern.divider",
-      "color.primitive.modern.muted",
       "color.primitive.modern.panel",
       "color.primitive.modern.red",
-      "color.primitive.modern.text",
       "color.primitive.paper.90",
       "color.primitive.red.100",
       "color.primitive.red.350",
       "color.primitive.red.800",
+      "color.primitive.rose.350",
+      "color.primitive.rose.650",
+      "color.primitive.rose.700",
+      "color.primitive.rose.800",
       "color.status.danger.text",
       "color.surface.canvas",
       "color.surface.input",
@@ -369,6 +369,6 @@
   "copy": {
     "directory": "copy/fieldset/",
     "manifest": "copy/fieldset/manifest.json",
-    "digest": "sha256-oq8DuV8S5U1ndJIfo+VprNzk8oqNHdy5xQrKSnZ5yZg="
+    "digest": "sha256-RPtzy/vk20hh1UXv8bNCdSj0uplFVXIR7oee058ZT5w="
   }
 }

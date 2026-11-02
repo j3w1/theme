@@ -2,7 +2,7 @@
 # Generated from ports/warp/mapping.json by npm run generate; do not edit.
 name: j3w1 theme
 accent: "#e53935"
-cursor: "#f1f5f9"
+cursor: "#ffa2a7"
 background: "#000000"
 foreground: "#e99499"
 details: darker
@@ -17,7 +17,7 @@ terminal_colors:
     cyan: "#78d4d4"
     white: "#e99499"
   bright:
-    black: "#909aaa"
+    black: "#bd787d"
     red: "#ff9095"
     green: "#a2edb8"
     yellow: "#f2d49b"

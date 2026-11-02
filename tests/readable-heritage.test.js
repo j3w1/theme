@@ -22,7 +22,7 @@ test("heritage-ansi keeps every terminal slot and the lifted syntax reds at thei
 });
 
 test("D-041 terminal slots are exact semantic colours, all readable except background", () => {
-  const expected = ["#000000", "#f07178", "#82d9a0", "#e5c07b", "#82b4ff", "#c7a0e8", "#78d4d4", "#e99499", "#909aaa", "#ff9095", "#a2edb8", "#f2d49b", "#a4caff", "#dec0f4", "#a0e7e7", "#ffa2a7"];
+  const expected = ["#000000", "#f07178", "#82d9a0", "#e5c07b", "#82b4ff", "#c7a0e8", "#78d4d4", "#e99499", "#bd787d", "#ff9095", "#a2edb8", "#f2d49b", "#a4caff", "#dec0f4", "#a0e7e7", "#ffa2a7"];
   const bg = hexOf("default", "color.terminal.bg");
   assert.equal(bg, "#000000");
   for (const [i, hex] of expected.entries()) {
@@ -44,9 +44,9 @@ test("semantic syntax stays readable inside an editor selection", () => {
   }
 });
 
-test("D-041 prompt uses true black and neutral text, while heritage keeps its original pair", () => {
+test("D-041 prompt uses true black and rose text, while heritage keeps its original pair", () => {
   assert.equal(hexOf("default", "color.terminal.prompt-bg"), "#000000");
-  assert.equal(hexOf("default", "color.terminal.prompt-text"), "#d8dee9");
+  assert.equal(hexOf("default", "color.terminal.prompt-text"), "#e99499");
   assert.equal(hexOf("heritage-ansi", "color.terminal.prompt-bg"), "#8c1212");
   assert.equal(hexOf("heritage-ansi", "color.terminal.prompt-text"), "#f4eeee");
   for (const profile of ["default", "heritage-ansi"]) {

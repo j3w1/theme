@@ -301,16 +301,12 @@
       "color.primitive.modern.bright-violet",
       "color.primitive.modern.control",
       "color.primitive.modern.cyan",
-      "color.primitive.modern.disabled",
       "color.primitive.modern.divider",
       "color.primitive.modern.green",
       "color.primitive.modern.hover",
-      "color.primitive.modern.muted",
       "color.primitive.modern.panel",
       "color.primitive.modern.raised",
       "color.primitive.modern.red",
-      "color.primitive.modern.subtle",
-      "color.primitive.modern.text",
       "color.primitive.modern.violet",
       "color.primitive.paper.90",
       "color.primitive.red.100",
@@ -318,6 +314,9 @@
       "color.primitive.red.400",
       "color.primitive.red.50",
       "color.primitive.red.800",
+      "color.primitive.rose.350",
+      "color.primitive.rose.600",
+      "color.primitive.rose.650",
       "color.primitive.rose.700",
       "color.primitive.rose.800",
       "color.surface.canvas",
@@ -352,6 +351,7 @@
       "color.text.default",
       "color.text.disabled",
       "color.text.muted",
+      "color.text.subtle",
       "density.comfortable.control-height",
       "density.comfortable.control-padding-x",
       "density.comfortable.gap",
@@ -945,6 +945,6 @@
   "copy": {
     "directory": "copy/i3-window-frame/",
     "manifest": "copy/i3-window-frame/manifest.json",
-    "digest": "sha256-6XzxBKyBqmtXFU+DKKz8nagRpFKyEz7lvftgumAv7o0="
+    "digest": "sha256-7QLDznqp4pDWis9y7S5nHkxBrT8yaQbPZLp9Q/JFpqs="
   }
 }

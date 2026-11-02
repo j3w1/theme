@@ -151,17 +151,16 @@
       "color.interaction.text-selection.bg",
       "color.interaction.text-selection.text",
       "color.primitive.ink.0",
-      "color.primitive.modern.bright",
       "color.primitive.modern.control",
       "color.primitive.modern.divider",
       "color.primitive.modern.hover",
-      "color.primitive.modern.muted",
       "color.primitive.modern.panel",
-      "color.primitive.modern.text",
       "color.primitive.paper.90",
       "color.primitive.red.100",
       "color.primitive.red.350",
       "color.primitive.red.800",
+      "color.primitive.rose.650",
+      "color.primitive.rose.700",
       "color.primitive.rose.800",
       "color.surface.canvas",
       "color.surface.default",
@@ -377,6 +376,6 @@
   "copy": {
     "directory": "copy/card/",
     "manifest": "copy/card/manifest.json",
-    "digest": "sha256-njbjr8Q1ZAXHhiFi/EKwNNK6XTpkZFPRT1x85oMza/I="
+    "digest": "sha256-DWSFpXsKAxjKiRFNl0t48YGy7bopp8JUfTag3CiOgKc="
   }
 }

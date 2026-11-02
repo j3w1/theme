@@ -1,8 +1,8 @@
 # Rose typography migration — 4.0.0
 
-Historical migration audit. D-041 supersedes its rose colour assignments in
-the default profile with neutral application text. Terminal and agent prose
-retains rose under the owner’s 2026-11-02 follow-up to D-041. The semantic heading and
+Historical migration audit. D-041 retains rose ordinary application text and
+terminal/agent prose under the owner’s 2026-11-02 clarification. White remains
+limited to document headings, exceptional highlights and contrast-critical roles. The semantic heading and
 inherited-bold rules remain; this document is not the current palette guide.
 
 D-033 makes ordinary interface and prose text rose and gives content headings

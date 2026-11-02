@@ -5,7 +5,7 @@ import { loadProfile, resolveTokens } from "../scripts/lib/tokens.mjs";
 
 /* D-041 changes everyday surfaces and text; the explicit heritage surface
    assignments remain historical evidence rather than modern defaults. */
-test("D-041 neutral surfaces and prose preserve the explicitly historical surface assignments", async () => {
+test("D-041 neutral surfaces and rose prose preserve the explicitly historical surface assignments", async () => {
   const manifest = await readJson("theme.json");
   const profile = async id => resolveTokens(await loadProfile(manifest.profiles.find(p => p.id === id).tokens));
   const current = await profile("default"), heritage = await profile("heritage-ansi");
@@ -14,7 +14,7 @@ test("D-041 neutral surfaces and prose preserve the explicitly historical surfac
     assert.equal(current.get(`color.surface.${role}`).resolved.hex, selected, role);
     assert.equal(heritage.get(`color.surface.${role}`).resolved.hex, historical, role);
   }
-  for (const [role, expected] of Object.entries({ "text.default": "#d8dee9", "text.bright": "#f1f5f9", "text.prose": "#d8dee9", "interaction.selection.bg": "#531310", "interaction.focus.ring": "#e53935", "surface.raised": "#15181e" })) {
+  for (const [role, expected] of Object.entries({ "text.default": "#e99499", "text.bright": "#ffa2a7", "text.prose": "#e99499", "interaction.selection.bg": "#531310", "interaction.focus.ring": "#e53935", "surface.raised": "#15181e" })) {
     assert.equal(current.get(`color.${role}`).resolved.hex, expected, role);
   }
 });

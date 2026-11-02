@@ -104,7 +104,7 @@ pinned to revision `c56c7e770ba25dd0ea392aacf4588f9425970d36`.
 - User CSS snippets and font overrides may alter the result. Third-party
   plugins can inherit semantic variables but get no plugin-specific selectors.
   Non-status callouts and data colors are not reassigned as status hues.
-- Global UI selection preserves its foreground. D-041 neutral `--text-normal`
+- Global UI selection preserves its foreground. D-041 rose `--text-normal`
   meets the text floor on `--text-selection`; Search `:hover`, `.mobile-tap`
   and ordinary Reading View selection now retain readable text. The
   muted/faint UI foregrounds remain below the 4.5:1 text floor on that fill,

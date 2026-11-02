@@ -229,14 +229,10 @@
       "color.primitive.alpha.transparent",
       "color.primitive.ink.0",
       "color.primitive.ink.40",
-      "color.primitive.modern.bright",
       "color.primitive.modern.control",
-      "color.primitive.modern.disabled",
       "color.primitive.modern.divider",
-      "color.primitive.modern.muted",
       "color.primitive.modern.panel",
       "color.primitive.modern.red",
-      "color.primitive.modern.text",
       "color.primitive.paper.100",
       "color.primitive.paper.90",
       "color.primitive.red.100",
@@ -248,6 +244,9 @@
       "color.primitive.red.550",
       "color.primitive.red.750",
       "color.primitive.red.800",
+      "color.primitive.rose.350",
+      "color.primitive.rose.650",
+      "color.primitive.rose.700",
       "color.primitive.rose.800",
       "color.status.danger.text",
       "color.surface.canvas",
@@ -578,6 +577,6 @@
   "copy": {
     "directory": "copy/editor-search/",
     "manifest": "copy/editor-search/manifest.json",
-    "digest": "sha256-tstiDlc8skKjghwe0OQQENFXYdvTQiV3W6v9YFXZjv8="
+    "digest": "sha256-pcRe7NI+BaAmVhJaA/XkLoDH/pRQq3PnA3k63p8pmqc="
   }
 }

@@ -5,6 +5,10 @@ uses the shared semantic code roles (D-041): distinct syntax hues with rose
 variables/operators and terminal reading text, plus muted punctuation on a true-black terminal base. The
 Codex accent uses the strong accent role so it remains suitable for diff tints. Status: experimental (no recorded import evidence).
 
+Ordinary agent text follows the shared rose UI/terminal palette; white is
+reserved for document headings, exceptional highlights and contrast-critical
+roles. Semantic code, status and diff colours remain distinct.
+
 Needs Node 24, Git, a clone of this repository (with `npm ci` done) and Codex
 CLI 0.156.1 or later. Codex also uses the terminal's colours (see Limits), so
 install a terminal theme too, for example [`../orca/`](../orca/README.md).

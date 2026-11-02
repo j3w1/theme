@@ -15,7 +15,7 @@ const tokens = await defaultTokens();
 const byId = Object.fromEntries(built.presets.map((p) => [p.id, p]));
 const setting = (id, name) => byId[id].settings.find((r) => r.setting === name);
 
-test("Signature: neutral text.bright on true black, accent focus ring, contrast 46", (t) => {
+test("Signature: rose text.bright on true black, accent focus ring, contrast 46", (t) => {
   assert.equal(setting("signature", "Foreground").source, "color.text.bright");
   assert.equal(setting("signature", "Foreground").value, tokens["color.text.bright"].value.hex);
   assert.equal(setting("signature", "Background").value, tokens["color.surface.canvas"].value.hex);

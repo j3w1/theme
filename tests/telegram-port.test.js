@@ -311,7 +311,7 @@ test("Desktop zip has ordered STORED entries, fixed metadata and a minimal valid
   assert.deepEqual([...inflateSync(chunks[1].data)], [0, ...android.get("chat_wallpaper").slice(0, 3), 0, ...android.get("chat_wallpaper_gradient_to").slice(0, 3)]);
 });
 
-test("wallpaper, solid bubbles, neutral messages, chrome emphasis and avatars keep the requested hierarchy", () => {
+test("wallpaper, solid bubbles, rose messages, chrome emphasis and avatars keep the requested hierarchy", () => {
   assert.equal(roleOf("android", "chat_wallpaper"), "color.surface.canvas");
   assert.equal(roleOf("android", "chat_wallpaper_gradient_to"), "color.surface.chrome");
   const wallpaper = [android.get("chat_wallpaper"), android.get("chat_wallpaper_gradient_to")];
@@ -343,21 +343,22 @@ test("wallpaper, solid bubbles, neutral messages, chrome emphasis and avatars ke
   assert.equal(roleOf("android", "voipgroup_mutedIconUnscrolled"), "color.text.muted");
 });
 
-test("on-fill foregrounds retain contrast, neutral reading is explicit and semantic hues stay scoped", () => {
+test("on-fill foregrounds retain contrast, rose reading is explicit and semantic hues stay scoped", () => {
   const whiteRoles = ["color.text.on-selection", "color.interaction.selection.text", "color.text.on-action", "color.text.on-danger", "color.status.danger.on-fill", "color.text.link-hover", "color.text.highlight"];
   assert.deepEqual(mapping.mappings["color.text.highlight"], ["desktop:historyFileThumbIconFg"], "only the contrast-critical thumbnail control owns a deliberate highlight");
   assert.equal(effective("desktop", "historyFileThumbRadialFg").role, "color.text.highlight", "the thumbnail radial control inherits the same contrast-critical highlight");
-  // D-041 explicitly admits neutral reading and emphasis. This is separate
-  // from the on-fill ledger, whose complete contrast coverage stays intact.
+  // D-041 keeps ordinary interface reading rose; near-white is reserved
+  // for headings and the reviewed on-fill ledger.
   const readingRoles = ["color.text.default", "color.text.prose", "color.text.bright", "color.text.heading", "color.icon.default", "color.code.syntax.operator"];
   const neutralRoles = new Set([
-    ...readingRoles, "color.text.muted", "color.text.subtle", "color.text.disabled", "color.text.placeholder",
     "color.surface.chrome-alt", "color.surface.default", "color.surface.raised", "color.surface.overlay",
     "color.border.divider", "color.border.default", "color.border.control", "color.border.overlay", "color.border.disabled",
     "color.interaction.hover.bg", "color.interaction.hover.bg-strong", "color.interaction.disabled.bg",
-    "color.interaction.scrollbar.thumb", "color.interaction.scrollbar.thumb-hover", "color.interaction.selection.inactive-text",
-    "color.action.secondary.text", "color.action.secondary.border", "color.action.tertiary.text", "color.icon.decorative",
+    "color.interaction.scrollbar.thumb", "color.interaction.scrollbar.thumb-hover",
+    "color.action.secondary.border",
   ]);
+  const roseText = { "color.text.default": "#e99499", "color.text.prose": "#e99499", "color.text.bright": "#ffa2a7", "color.text.muted": "#d4868b", "color.text.subtle": "#bd787d", "color.text.placeholder": "#bd787d", "color.text.disabled": "#a3676b" };
+  for (const [role, expected] of Object.entries(roseText)) assert.equal(resolved.get(role).resolved.hex, expected, `${role} remains rose`);
   // Fills a near-white glyph may sit on, plus the dark media scrim behind
   // loader icons over photos.
   const fills = new Set(["color.action.primary.bg", "color.action.primary.hover-bg", "color.action.primary.pressed-bg", "color.interaction.selection.bg", "color.interaction.selection.inactive-bg", "color.interaction.hover.bg-strong", "color.status.danger.fill", "color.interaction.text-selection.bg", "color.surface.backdrop"]);

@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — text-field
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-uUyex258/cCN40I3QfAc17Y4Big+7Dc2v2FeXtKT5bE=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-0jrAhUhMk1y0cVuA9UcymrJJSN6hyxQFjD82B97Ze6s=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/text-field.json
 spec: spec/components/text-field.md  site: https://j3w1.github.io/theme/reference/#c-text-field
 maturity: stable  priority: R1
@@ -18,21 +18,21 @@ Tokens (resolved):
   root.border-disabled  #303640  ({color.border.disabled})  use
   root.bg-disabled      #0e1014  ({color.interaction.disabled.bg})  use
   root.border-readonly  #303640  ({color.border.divider})  use
-  input.text            #d8dee9  ({color.text.default})  use
-  input.text-disabled   #727b89  ({color.text.disabled})  use
-  input.placeholder     #909aaa  ({color.text.placeholder})  use
-  input.caret           #f1f5f9  ({color.code.caret})  use
+  input.text            #e99499  ({color.text.default})  use
+  input.text-disabled   #a3676b  ({color.text.disabled})  use
+  input.placeholder     #bd787d  ({color.text.placeholder})  use
+  input.caret           #ffa2a7  ({color.code.caret})  use
   input.selection-bg    #911410  ({color.interaction.text-selection.bg})  use
   input.selection-text  #f4eeee  ({color.interaction.text-selection.text})  use
-  label.text            #f1f5f9  ({color.text.bright})  use
+  label.text            #ffa2a7  ({color.text.bright})  use
   label.required-mark   #f07178  ({color.status.danger.text})  use
-  help.text             #a6afbd  ({color.text.muted})  use
+  help.text             #d4868b  ({color.text.muted})  use
   message.text          #f07178  ({color.status.danger.text})  use
-  affix.text            #a6afbd  ({color.text.muted})  use
+  affix.text            #d4868b  ({color.text.muted})  use
   affix.border          #303640  ({color.border.divider})  use
-  action.text           #d8dee9  ({color.action.tertiary.text})  use
+  action.text           #e99499  ({color.action.tertiary.text})  use
   action.bg-hover       #1c0a09  ({color.action.tertiary.hover-bg})  use
-  loading.glyph         #a6afbd  ({color.text.muted})  use
+  loading.glyph         #d4868b  ({color.text.muted})  use
 
 States: default, hover, focus-visible, placeholder-shown, filled, required, invalid, invalid+focus-visible, invalid+hover, disabled, disabled+filled, read-only, read-only+focus-visible, loading
   default: 1px {color.border.control} on {color.surface.input}; text {color.text.default} [—]

@@ -8,7 +8,7 @@
   "source": {
     "algorithm": "sha256 over LF file bytes, base64",
     "files": {
-      "theme.json": "sha256-emQXHWR0S0BYywrGK/UUBzZPYHz7p51zWQFl4nlW+tg=",
+      "theme.json": "sha256-M6YnnhussoaYCa37J0loH4NgosP0GjyVqFSp7QlS4Ow=",
       "site/recipes.json": "sha256-71h0SYIOKbPRh+V/IhtLV7ZGuX90wfmeo84Rx0sm494=",
       "scripts/lib/recipe-generator.mjs": "sha256-Bx+XV4uu1Ha1lvB+SFJ08FwyhsJFXITpvg37hICAdTM=",
       "scripts/lib/recipe-css.mjs": "sha256-pYVBZWuIylisk1RECCR78awarge02KZZwVi9+nyBwlw=",
@@ -21,10 +21,10 @@
       "site/src/styles/components/button.css": "sha256-W1TBmogBv28yqLCIQPZjnbF8SC/owyViHaNEKyOedTk=",
       "LICENSE.md": "sha256-Ih5+DpqcNXGWJX6BbYgpt6psmJi9lGcXGJzuiU7elE0=",
       "tokens/primitives.tokens.json": "sha256-0n3ffB2q/0KfsIUxQsTiiQxkpA5pD3dWS60k83OrvQU=",
-      "tokens/semantic.tokens.json": "sha256-ZDhi5SGIr4+tPfDyy/Lkq8rV5R9vwuBESzoHd0i0juw=",
+      "tokens/semantic.tokens.json": "sha256-3hedQLEiTPxRDS5g/GBVKn+XkCTwjCe2zTQ3HtVQJFU=",
       "tokens/foundations.tokens.json": "sha256-rCrhBaYt63CHz5/v3r/oC5qF83JoqaM8O7kzQyDr8cY="
     },
-    "digest": "sha256-0XfvcFhSNWj73DLz7HDDZ4oAho1fL8PPCRKh/TcBzqM=",
+    "digest": "sha256-FaDe24TKUzEWoKAA11B3z9n0nLcQs4s6uZkIXb+KHEw=",
     "revisionPolicy": "Resolve these paths at the same pinned commit as this manifest. The hosted source viewer identifies its supplying commit; generated source files contain content digests, never a floating revision claim."
   },
   "dependencies": {
@@ -67,13 +67,10 @@
     "color.primitive.alpha.transparent",
     "color.primitive.ink.0",
     "color.primitive.ink.40",
-    "color.primitive.modern.bright",
     "color.primitive.modern.control",
-    "color.primitive.modern.disabled",
     "color.primitive.modern.divider",
     "color.primitive.modern.panel",
     "color.primitive.modern.red",
-    "color.primitive.modern.text",
     "color.primitive.paper.100",
     "color.primitive.paper.90",
     "color.primitive.red.150",
@@ -84,6 +81,8 @@
     "color.primitive.red.550",
     "color.primitive.red.750",
     "color.primitive.red.800",
+    "color.primitive.rose.350",
+    "color.primitive.rose.700",
     "color.primitive.rose.800",
     "color.status.danger.text",
     "color.surface.canvas",
@@ -392,12 +391,12 @@
   "files": {
     "markup.html": "sha256-be2Beb08aKEqIKaDsxTq8IJdSdfNPJyWS2M5aav7R7k=",
     "template.html": "sha256-FfylFZ+qzMUFxQKnIdqJiYmC8p4F+cNxK8BJSTo8XU8=",
-    "tokens.css": "sha256-yBEK+vxOnc7QrQWhrdyhm/7XPniJzzUphnlc7pSZAx8=",
+    "tokens.css": "sha256-18NPOpdSViunUOzVM3gnEZ1JHOKvKKfZWvWOVyLO6cM=",
     "foundation.css": "sha256-jm66ZdmdAhTyMVQIMKhzVZZm/NhB5ZbLq8g3UASzy98=",
     "component.css": "sha256-fO1HSQ+wy0Zku8pqVotCypnOH+iDz8SAX9GxMspxA8U=",
-    "example.html": "sha256-jrPa41eDr6WNeXA6Ku/ynsC9IUkNj0YumSWHIVmimME=",
-    "two-instances.html": "sha256-2AEcBRrrD770Hcom8dAdxy3L53RXtx9/rcUY9X8sGj0=",
+    "example.html": "sha256-jdCXN3OdEhAYgUpTYbLKFw/HNVWSGNtLY1t9haDwApk=",
+    "two-instances.html": "sha256-wAuL+J3LQgXNd8UaKlug3OAtX1qvhGM9aUQUYBufGvo=",
     "LICENSE.md": "sha256-vVf/G6WKJRqbyGZCppbAxMh+UAJdSzaPt5xWUujehyU=",
-    "README.md": "sha256-T1pmY6PcMg56179ircw5zlZA+xGTCM2phk2uSa0hgkI="
+    "README.md": "sha256-Nfise255U5WWhdOyq3h/okOPUAt8XpxYhN+qIX+D+lY="
   }
 }

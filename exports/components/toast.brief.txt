@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — toast
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-uUyex258/cCN40I3QfAc17Y4Big+7Dc2v2FeXtKT5bE=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-0jrAhUhMk1y0cVuA9UcymrJJSN6hyxQFjD82B97Ze6s=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/toast.json
 spec: spec/components/toast.md  site: https://j3w1.github.io/theme/reference/#c-toast
 maturity: stable  priority: R1
@@ -10,7 +10,7 @@ Use the pinned approved default profile. Pending roles in that profile use-and-r
 Tokens (resolved):
   root.bg                 #000000  ({color.surface.canvas})  use
   root.border             #747e8e  ({color.border.overlay})  use
-  root.text               #d8dee9  ({color.text.default})  use
+  root.text               #e99499  ({color.text.default})  use
   glyph.text              #82b4ff  ({color.status.info.text})  use
   warning.bg              #1f1a0c  ({color.status.warning.tint})  use
   warning.border          #e5c07b  ({color.status.warning.border})  use
@@ -23,17 +23,17 @@ Tokens (resolved):
   info.text               #82b4ff  ({color.status.info.text})  use
   neutral.bg              #15181e  ({color.status.neutral.tint})  use
   neutral.border          #747e8e  ({color.status.neutral.border})  use
-  neutral.text            #a6afbd  ({color.status.neutral.text})  use
+  neutral.text            #d4868b  ({color.status.neutral.text})  use
   danger.bg               #dc282e  ({color.status.danger.fill})  use
   danger.text             #f9faf9  ({color.status.danger.on-fill})  use
   danger.button-bg-hover  #ae1914  ({color.action.destructive.pressed-bg})  use
   action.text             #f73f35  ({color.text.link})  use
   action.bg-hover         #191c22  ({color.interaction.hover.bg})  use
   action.text-hover       #f4eeee  ({color.text.link-hover})  use
-  close.text              #d8dee9  ({color.action.tertiary.text})  use
+  close.text              #e99499  ({color.action.tertiary.text})  use
   close.bg-hover          #1c0a09  ({color.action.tertiary.hover-bg})  use
   close.ring              #e53935  ({color.interaction.focus.ring})  use
-  count.text              #a6afbd  ({color.text.muted})  use
+  count.text              #d4868b  ({color.text.muted})  use
   stack.z                 40  ({z.toast})  use
 
 States: default, hover, focus-visible, stacked, reduced-motion

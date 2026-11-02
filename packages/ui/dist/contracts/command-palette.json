@@ -242,14 +242,10 @@
       "color.primitive.ink.40",
       "color.primitive.modern.bright",
       "color.primitive.modern.control",
-      "color.primitive.modern.disabled",
       "color.primitive.modern.divider",
-      "color.primitive.modern.muted",
       "color.primitive.modern.overlay",
       "color.primitive.modern.panel",
       "color.primitive.modern.red",
-      "color.primitive.modern.subtle",
-      "color.primitive.modern.text",
       "color.primitive.paper.100",
       "color.primitive.paper.90",
       "color.primitive.red.100",
@@ -261,6 +257,10 @@
       "color.primitive.red.550",
       "color.primitive.red.750",
       "color.primitive.red.800",
+      "color.primitive.rose.350",
+      "color.primitive.rose.600",
+      "color.primitive.rose.650",
+      "color.primitive.rose.700",
       "color.primitive.rose.800",
       "color.status.danger.text",
       "color.surface.backdrop",
@@ -629,6 +629,6 @@
   "copy": {
     "directory": "copy/command-palette/",
     "manifest": "copy/command-palette/manifest.json",
-    "digest": "sha256-3k/wLRjvoAS1sHDDxisf0n7YsfWzjNmc+Di5G1gAzDA="
+    "digest": "sha256-C9aX1xdjDxlBN4zIMuCS8UtZ+0DIvB6OFHahYwGOOrY="
   }
 }

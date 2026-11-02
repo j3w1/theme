@@ -226,21 +226,20 @@
       "color.interaction.text-selection.text",
       "color.primitive.ink.0",
       "color.primitive.ink.40",
-      "color.primitive.modern.bright",
       "color.primitive.modern.control",
-      "color.primitive.modern.disabled",
       "color.primitive.modern.divider",
       "color.primitive.modern.hover",
-      "color.primitive.modern.muted",
       "color.primitive.modern.panel",
       "color.primitive.modern.raised",
       "color.primitive.modern.red",
-      "color.primitive.modern.subtle",
-      "color.primitive.modern.text",
       "color.primitive.paper.90",
       "color.primitive.red.100",
       "color.primitive.red.350",
       "color.primitive.red.800",
+      "color.primitive.rose.350",
+      "color.primitive.rose.600",
+      "color.primitive.rose.650",
+      "color.primitive.rose.700",
       "color.primitive.rose.800",
       "color.status.danger.border",
       "color.status.danger.text",
@@ -544,6 +543,6 @@
   "copy": {
     "directory": "copy/combobox/",
     "manifest": "copy/combobox/manifest.json",
-    "digest": "sha256-7s9AgEqhTaTojnF9zlbhLJ0/ZRnYPJ4NCQJSM95yYlM="
+    "digest": "sha256-th2zFN3bTcAw+Mqipm4wIJ5IFpSeY2uxAODA2xzOWzg="
   }
 }

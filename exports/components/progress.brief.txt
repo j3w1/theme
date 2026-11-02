@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — progress
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-uUyex258/cCN40I3QfAc17Y4Big+7Dc2v2FeXtKT5bE=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-0jrAhUhMk1y0cVuA9UcymrJJSN6hyxQFjD82B97Ze6s=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/progress.json
 spec: spec/components/progress.md  site: https://j3w1.github.io/theme/reference/#c-progress
 maturity: stable  priority: R1
@@ -14,9 +14,9 @@ Tokens (resolved):
   value.bg-error  #dc282e  ({color.status.danger.fill})  use
   stripe.a        #7d1310  ({color.action.primary.bg})  use
   stripe.b        #420f0c  ({color.interaction.pressed.bg})  use
-  label.text      #f1f5f9  ({color.text.bright})  use
-  value.text      #d8dee9  ({color.text.default})  use
-  detail.text     #a6afbd  ({color.text.muted})  use
+  label.text      #ffa2a7  ({color.text.bright})  use
+  value.text      #e99499  ({color.text.default})  use
+  detail.text     #d4868b  ({color.text.muted})  use
   error.text      #f07178  ({color.status.danger.text})  use
 
 States: default, busy, error, reduced-motion

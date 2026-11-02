@@ -163,15 +163,15 @@
       "color.primitive.alpha.transparent",
       "color.primitive.ink.0",
       "color.primitive.ink.40",
-      "color.primitive.modern.disabled",
       "color.primitive.modern.divider",
       "color.primitive.modern.panel",
-      "color.primitive.modern.text",
       "color.primitive.paper.90",
       "color.primitive.red.100",
       "color.primitive.red.350",
       "color.primitive.red.50",
       "color.primitive.red.800",
+      "color.primitive.rose.350",
+      "color.primitive.rose.700",
       "color.surface.canvas",
       "color.text.default",
       "color.text.disabled",
@@ -357,6 +357,6 @@
   "copy": {
     "directory": "copy/icon-button/",
     "manifest": "copy/icon-button/manifest.json",
-    "digest": "sha256-wLO9IH0Tcecmeybxv/F8Tqbk1ms7q/iHGXUB+JghYbA="
+    "digest": "sha256-GiRAnUd4H12f9J2vDKZFQCZsxFUvMT/aLEJQsEb3Qdk="
   }
 }

@@ -148,17 +148,17 @@
       "color.interaction.text-selection.text",
       "color.primitive.ink.0",
       "color.primitive.ink.60",
-      "color.primitive.modern.bright",
       "color.primitive.modern.control",
-      "color.primitive.modern.muted",
       "color.primitive.modern.panel",
-      "color.primitive.modern.text",
       "color.primitive.paper.90",
       "color.primitive.red.100",
       "color.primitive.red.350",
       "color.primitive.red.400",
       "color.primitive.red.800",
       "color.primitive.red.850",
+      "color.primitive.rose.650",
+      "color.primitive.rose.700",
+      "color.primitive.rose.800",
       "color.surface.canvas",
       "color.surface.default",
       "color.text.bright",
@@ -335,6 +335,6 @@
   "copy": {
     "directory": "copy/chart/",
     "manifest": "copy/chart/manifest.json",
-    "digest": "sha256-6TAPdJFuix+2tzxUcFWJmNDnosSt8+CbxMwycMRSHA8="
+    "digest": "sha256-ZcTOxHIWH+80LZxn6YVN6mHH3dsyayE3LMW3XcQdRvU="
   }
 }

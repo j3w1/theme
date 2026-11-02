@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — sidebar-nav
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-uUyex258/cCN40I3QfAc17Y4Big+7Dc2v2FeXtKT5bE=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-0jrAhUhMk1y0cVuA9UcymrJJSN6hyxQFjD82B97Ze6s=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/sidebar-nav.json
 spec: spec/components/sidebar-nav.md  site: https://j3w1.github.io/theme/reference/#c-sidebar-nav
 maturity: stable  priority: R1
@@ -10,19 +10,19 @@ Use the pinned approved default profile. Pending roles in that profile use-and-r
 Tokens (resolved):
   root.bg                  #0e1014  ({color.surface.default})  use
   root.border              #303640  ({color.border.divider})  use
-  link.text                #d8dee9  ({color.text.default})  use
+  link.text                #e99499  ({color.text.default})  use
   link.bg-hover            #191c22  ({color.interaction.hover.bg})  use
   link.bg-pressed          #420f0c  ({color.interaction.pressed.bg})  use
   link.ring                #e53935  ({color.interaction.focus.ring})  use
   link.indicator           #e53935  ({color.border.selected-indicator})  use
   link.indicator-inactive  #9e231f  ({color.border.selected-indicator-inactive})  use
-  current.text             #f1f5f9  ({color.text.bright})  use
+  current.text             #ffa2a7  ({color.text.bright})  use
   selected.bg              #531310  ({color.interaction.selection.bg})  use
   selected.text            #f4eeee  ({color.interaction.selection.text})  use
   selected.ring            #e53935  ({color.interaction.focus.ring})  use
   selected.inactive-bg     #420f0c  ({color.interaction.selection.inactive-bg})  use
-  selected.inactive-text   #d8dee9  ({color.interaction.selection.inactive-text})  use
-  icon.stroke              #d8dee9  ({color.icon.default})  use
+  selected.inactive-text   #e99499  ({color.interaction.selection.inactive-text})  use
+  icon.stroke              #e99499  ({color.icon.default})  use
   group.chevron            #747e8e  ({color.icon.decorative})  use
 
 States: default, hover, focus-visible, current, selected, selected+container-inactive, expanded, collapsed

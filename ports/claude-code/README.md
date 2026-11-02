@@ -4,6 +4,10 @@ A Claude Code custom theme, `custom:j3w1`, built only from approved roles:
 rose reading text, a restrained red accent, semantic agent hues, and distinct
 status, diff and usage colours (D-041). Status: experimental (no recorded import evidence).
 
+Ordinary agent text follows the shared rose UI/terminal palette; white is
+reserved for document headings, exceptional highlights and contrast-critical
+roles. Semantic code, status and diff colours remain distinct.
+
 Needs Node 24, Git, a clone of this repository and Claude Code 2.1.281 or
 later. Claude Code also uses the terminal's sixteen colours (see Limits), so
 install a terminal theme too, for example [`../orca/`](../orca/README.md).

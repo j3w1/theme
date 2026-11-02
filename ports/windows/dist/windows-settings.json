@@ -6,22 +6,22 @@
     "native.desktop": "#000000",
     "terminal.foreground": "#e99499",
     "terminal.background": "#000000",
-    "terminal.cursor": "#f1f5f9",
+    "terminal.cursor": "#ffa2a7",
     "terminal.selection": "#420f0c",
     "terminal.chrome": "#000000",
-    "native.foreground": "#d8dee9",
-    "native.bright": "#f1f5f9",
+    "native.foreground": "#e99499",
+    "native.bright": "#ffa2a7",
     "native.heading": "#f1f5f9",
     "native.highlight": "#f1f5f9",
-    "native.muted": "#a6afbd",
-    "native.disabled": "#727b89",
+    "native.muted": "#d4868b",
+    "native.disabled": "#a3676b",
     "native.selection": "#531310",
     "cursor.foreground": "#000000",
     "cursor.outline": "#e53935",
     "powertoys.highlight": "#e53935",
     "powertoys.inactive": "#15181e",
     "powertoys.border": "#747e8e",
-    "powertoys.number": "#f1f5f9",
+    "powertoys.number": "#ffa2a7",
     "font.family": "\"SauceCodePro NFM\", \"Source Code Pro\", \"Cascadia Mono\", \"Consolas\", \"Liberation Mono\", \"DejaVu Sans Mono\", monospace",
     "terminal.ansi.0": "#000000",
     "terminal.ansi.1": "#f07178",
@@ -31,7 +31,7 @@
     "terminal.ansi.5": "#c7a0e8",
     "terminal.ansi.6": "#78d4d4",
     "terminal.ansi.7": "#e99499",
-    "terminal.ansi.8": "#909aaa",
+    "terminal.ansi.8": "#bd787d",
     "terminal.ansi.9": "#ff9095",
     "terminal.ansi.10": "#a2edb8",
     "terminal.ansi.11": "#f2d49b",
@@ -127,49 +127,49 @@
       "id": "j3w1-explorer-native",
       "version": "1.8.7",
       "path": "dist/j3w1-explorer-native.wh.cpp",
-      "sha256": "3052ce8470b3463fe4b40f52cefaeda189c89230c722b840b21a31b779f36469"
+      "sha256": "2720550b9b77dfd0b6c66f2cf1ca40a0752e91007acef8becb2ed39f66f17135"
     },
     {
       "id": "j3w1-powertoys-preview",
       "version": "1.1.1",
       "path": "dist/j3w1-powertoys-preview.wh.cpp",
-      "sha256": "e2f54428a2b4dfd16d6ecd4cd39bbb67a9d61e8150c15cbe00382bf07c160f37"
+      "sha256": "29bd87333376a7426119e62f52fec6f45e2bea4e1e4a22508e205945c3e197c0"
     },
     {
       "id": "j3w1-calculator",
       "version": "1.4.13",
       "path": "dist/j3w1-calculator.wh.cpp",
-      "sha256": "a62d81c2b12a30df02d34e1d8f057f9b8590fdaf4a1ba5bc7a533eb30a80dbb1"
+      "sha256": "6b94de6287e35a02250168222cad9f1092e5bcef598a869583a30df4d84c90ab"
     },
     {
       "id": "j3w1-notepad-native",
       "version": "1.1.1",
       "path": "dist/j3w1-notepad-native.wh.cpp",
-      "sha256": "5e12bfc3ef5c569db5a331887289a305c9bdc050dd70a3b5d13b3e73b43aebf0"
+      "sha256": "55f6825db1f71a0f7da4504cc38bac93e99b1f7a71137b0199420bb8797d50aa"
     },
     {
       "id": "j3w1-notepad-chrome",
       "version": "1.2.35",
       "path": "dist/j3w1-notepad-chrome.wh.cpp",
-      "sha256": "99d6264e5fe2a532b11df1c3731931ec5a1083273d3d92ef09aa64e810a0152c"
+      "sha256": "ace2fcb4716da7bc7a7647e0f48a0a5c53c2a75908cc66b6cb7dcaa600473330"
     },
     {
       "id": "j3w1-paint-chrome",
       "version": "1.0.32",
       "path": "dist/j3w1-paint-chrome.wh.cpp",
-      "sha256": "7497529fbd54032d85be4d35a444742bb9d3549070e3df25faf2e6ed1b8a16c8"
+      "sha256": "c806481b59ce7a4c700190d24d85f64bf25ac15c57b1529e60ff1008f61ebb05"
     },
     {
       "id": "j3w1-terminal-chrome",
       "version": "1.0.16",
       "path": "dist/j3w1-terminal-chrome.wh.cpp",
-      "sha256": "4ddf9b4badd32206f647fea5c695ca85295eedda1d29cd06a2b7a07645cc41c8"
+      "sha256": "c3909e59211100621dfbfb7e9a1b5f16a9a13fa56ffcd814cb73c662a62acb0d"
     },
     {
       "id": "j3w1-powertoys-markdown",
       "version": "1.4.3",
       "path": "dist/j3w1-powertoys-markdown.wh.cpp",
-      "sha256": "aff31db2ab79e616c69a0a0c1cc0bcbe4801e6162d7cbf0eb06d6b4e4dfa557d"
+      "sha256": "e3ad561aca1e9a0695ad54f89b1818e1a8ca0ff1624c106fd9dcd53eae677ef6"
     }
   ],
   "settingsStartup": {

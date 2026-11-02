@@ -210,9 +210,7 @@
       "color.primitive.modern.control",
       "color.primitive.modern.green",
       "color.primitive.modern.hover",
-      "color.primitive.modern.muted",
       "color.primitive.modern.raised",
-      "color.primitive.modern.text",
       "color.primitive.paper.100",
       "color.primitive.paper.90",
       "color.primitive.red.100",
@@ -221,6 +219,8 @@
       "color.primitive.red.750",
       "color.primitive.red.800",
       "color.primitive.red.850",
+      "color.primitive.rose.650",
+      "color.primitive.rose.700",
       "color.status.danger.border",
       "color.status.danger.fill",
       "color.status.danger.on-fill",
@@ -522,6 +522,6 @@
   "copy": {
     "directory": "copy/toast/",
     "manifest": "copy/toast/manifest.json",
-    "digest": "sha256-W+6IcuBN7bLcAg6iF2jlPVC3heL8bH58gt1yN7fqpWo="
+    "digest": "sha256-uatABVv9g3mV0hMR9ksYbHulsSXDzMuiIQYiYHcsVIc="
   }
 }

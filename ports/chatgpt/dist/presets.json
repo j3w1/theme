@@ -34,7 +34,7 @@
         },
         {
           "setting": "Foreground",
-          "value": "#f1f5f9",
+          "value": "#ffa2a7",
           "source": "color.text.bright"
         },
         {
@@ -73,7 +73,7 @@
           "source": "calibration"
         }
       ],
-      "importString": "codex-theme-v1:{\"codeThemeId\":\"chatgpt\",\"theme\":{\"accent\":\"#e53935\",\"contrast\":46,\"fonts\":{\"code\":null,\"ui\":null},\"ink\":\"#f1f5f9\",\"opaqueWindows\":true,\"semanticColors\":{\"diffAdded\":\"#82d9a0\",\"diffRemoved\":\"#f07178\",\"skill\":\"#e53935\"},\"surface\":\"#000000\"},\"variant\":\"dark\"}"
+      "importString": "codex-theme-v1:{\"codeThemeId\":\"chatgpt\",\"theme\":{\"accent\":\"#e53935\",\"contrast\":46,\"fonts\":{\"code\":null,\"ui\":null},\"ink\":\"#ffa2a7\",\"opaqueWindows\":true,\"semanticColors\":{\"diffAdded\":\"#82d9a0\",\"diffRemoved\":\"#f07178\",\"skill\":\"#e53935\"},\"surface\":\"#000000\"},\"variant\":\"dark\"}"
     },
     {
       "id": "reading",
@@ -103,7 +103,7 @@
         },
         {
           "setting": "Foreground",
-          "value": "#d8dee9",
+          "value": "#e99499",
           "source": "color.text.default"
         },
         {
@@ -142,7 +142,7 @@
           "source": "calibration"
         }
       ],
-      "importString": "codex-theme-v1:{\"codeThemeId\":\"chatgpt\",\"theme\":{\"accent\":\"#e53935\",\"contrast\":52,\"fonts\":{\"code\":null,\"ui\":null},\"ink\":\"#d8dee9\",\"opaqueWindows\":true,\"semanticColors\":{\"diffAdded\":\"#82d9a0\",\"diffRemoved\":\"#f07178\",\"skill\":\"#e53935\"},\"surface\":\"#000000\"},\"variant\":\"dark\"}"
+      "importString": "codex-theme-v1:{\"codeThemeId\":\"chatgpt\",\"theme\":{\"accent\":\"#e53935\",\"contrast\":52,\"fonts\":{\"code\":null,\"ui\":null},\"ink\":\"#e99499\",\"opaqueWindows\":true,\"semanticColors\":{\"diffAdded\":\"#82d9a0\",\"diffRemoved\":\"#f07178\",\"skill\":\"#e53935\"},\"surface\":\"#000000\"},\"variant\":\"dark\"}"
     }
   ]
 }

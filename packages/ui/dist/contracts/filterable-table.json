@@ -279,17 +279,12 @@
       "color.interaction.text-selection.text",
       "color.primitive.ink.0",
       "color.primitive.ink.40",
-      "color.primitive.modern.bright",
       "color.primitive.modern.control",
-      "color.primitive.modern.disabled",
       "color.primitive.modern.divider",
       "color.primitive.modern.hover",
-      "color.primitive.modern.muted",
       "color.primitive.modern.panel",
       "color.primitive.modern.raised",
       "color.primitive.modern.red",
-      "color.primitive.modern.subtle",
-      "color.primitive.modern.text",
       "color.primitive.paper.90",
       "color.primitive.red.100",
       "color.primitive.red.200",
@@ -297,6 +292,10 @@
       "color.primitive.red.400",
       "color.primitive.red.50",
       "color.primitive.red.800",
+      "color.primitive.rose.350",
+      "color.primitive.rose.600",
+      "color.primitive.rose.650",
+      "color.primitive.rose.700",
       "color.primitive.rose.800",
       "color.status.danger.border",
       "color.status.danger.text",
@@ -746,6 +745,6 @@
   "copy": {
     "directory": "copy/filterable-table/",
     "manifest": "copy/filterable-table/manifest.json",
-    "digest": "sha256-5G56WQloDBOJGekUoeYmNwVxf53JGwrT2C5Gi7zjpzk="
+    "digest": "sha256-xBtGVVLlQEwsLC4eAktR0rEswd/Ftc0R4ZvUvkCfVe0="
   }
 }

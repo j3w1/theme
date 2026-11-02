@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — diff-view
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-uUyex258/cCN40I3QfAc17Y4Big+7Dc2v2FeXtKT5bE=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-0jrAhUhMk1y0cVuA9UcymrJJSN6hyxQFjD82B97Ze6s=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/diff-view.json
 spec: spec/components/diff-view.md  site: https://j3w1.github.io/theme/reference/#c-diff-view
 maturity: stable  priority: R1
@@ -10,8 +10,8 @@ Use the pinned approved default profile. Pending roles in that profile use-and-r
 Tokens (resolved):
   root.bg            #000000  ({color.code.bg})  use
   root.border        #747e8e  ({color.border.control})  use
-  root.text          #d8dee9  ({color.text.default})  use
-  line-number.text   #a6afbd  ({color.text.muted})  use
+  root.text          #e99499  ({color.text.default})  use
+  line-number.text   #d4868b  ({color.text.muted})  use
   line-number.rule   #303640  ({color.code.gutter-rule})  use
   row.divider        #303640  ({color.border.divider})  use
   added.bg           #0f1a0e  ({color.diff.added.bg})  use
@@ -23,10 +23,10 @@ Tokens (resolved):
   modified.bg        #1f1a0c  ({color.diff.modified.bg})  use
   modified.gutter    #e5c07b  ({color.diff.modified.gutter})  use
   hunk.bg            #241010  ({color.diff.header-bg})  use
-  hunk.text          #a6afbd  ({color.text.muted})  use
-  hunk.context       #d8dee9  ({color.text.default})  use
+  hunk.text          #d4868b  ({color.text.muted})  use
+  hunk.context       #e99499  ({color.text.default})  use
   conflict.border    #f73f35  ({color.diff.conflict-border})  use
-  conflict.marker    #f1f5f9  ({color.text.bright})  use
+  conflict.marker    #ffa2a7  ({color.text.bright})  use
   fold.text          #f73f35  ({color.text.link})  use
   fold.bg-hover      #191c22  ({color.interaction.hover.bg-strong})  use
   row.bg-hover       #191c22  ({color.interaction.hover.bg})  use

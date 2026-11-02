@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — filterable-table
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-uUyex258/cCN40I3QfAc17Y4Big+7Dc2v2FeXtKT5bE=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-0jrAhUhMk1y0cVuA9UcymrJJSN6hyxQFjD82B97Ze6s=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/filterable-table.json
 spec: spec/components/filterable-table.md  site: https://j3w1.github.io/theme/reference/#c-filterable-table
 maturity: stable  priority: R1
@@ -15,20 +15,20 @@ Tokens (resolved):
   toolbar.separator        #303640  ({color.border.default})  use
   search.bg                #000000  ({color.surface.input})  use
   search.border            #747e8e  ({color.border.control})  use
-  search.text              #d8dee9  ({color.text.default})  use
-  search.placeholder       #909aaa  ({color.text.placeholder})  use
-  search.icon              #d8dee9  ({color.icon.default})  use
-  filter.text              #d8dee9  ({color.text.default})  use
+  search.text              #e99499  ({color.text.default})  use
+  search.placeholder       #bd787d  ({color.text.placeholder})  use
+  search.icon              #e99499  ({color.icon.default})  use
+  filter.text              #e99499  ({color.text.default})  use
   filter.border            #747e8e  ({color.border.control})  use
   new.bg                   #7d1310  ({color.action.primary.bg})  use
-  new.text                 #f1f5f9  ({color.action.primary.text})  use
+  new.text                 #ffa2a7  ({color.action.primary.text})  use
   chip.bg                  #0e1014  ({color.surface.default})  use
   chip.border              #747e8e  ({color.border.control})  use
-  chip.text                #d8dee9  ({color.text.default})  use
-  chip.remove              #a6afbd  ({color.text.muted})  use
-  header.text              #f1f5f9  ({color.text.bright})  use
+  chip.text                #e99499  ({color.text.default})  use
+  chip.remove              #d4868b  ({color.text.muted})  use
+  header.text              #ffa2a7  ({color.text.bright})  use
   header.rule              #9e231f  ({color.border.strong})  use
-  row.text                 #d8dee9  ({color.text.default})  use
+  row.text                 #e99499  ({color.text.default})  use
   row.rule                 #303640  ({color.border.divider})  use
   row.bg-hover             #191c22  ({color.interaction.hover.bg})  use
   row.ring                 #e53935  ({color.interaction.focus.ring})  use
@@ -38,18 +38,18 @@ Tokens (resolved):
   check.bg                 #000000  ({color.surface.input})  use
   check.border             #747e8e  ({color.border.control})  use
   check.checked-bg         #7d1310  ({color.action.primary.bg})  use
-  check.glyph              #f1f5f9  ({color.action.primary.text})  use
+  check.glyph              #ffa2a7  ({color.action.primary.text})  use
   badge.tested-fill        #82d9a0  ({color.status.success.fill})  use
   badge.tested-text        #000000  ({color.status.success.on-fill})  use
   badge.demonstrated-fill  #82b4ff  ({color.status.info.fill})  use
   badge.demonstrated-text  #000000  ({color.status.info.on-fill})  use
-  empty.text               #a6afbd  ({color.text.muted})  use
-  empty.heading            #f1f5f9  ({color.text.bright})  use
+  empty.text               #d4868b  ({color.text.muted})  use
+  empty.heading            #ffa2a7  ({color.text.bright})  use
   empty.glyph              #747e8e  ({color.icon.decorative})  use
-  count.text               #a6afbd  ({color.text.muted})  use
-  pagination.text          #d8dee9  ({color.text.default})  use
-  pagination.current       #f1f5f9  ({color.text.bright})  use
-  pagination.disabled      #727b89  ({color.text.disabled})  use
+  count.text               #d4868b  ({color.text.muted})  use
+  pagination.text          #e99499  ({color.text.default})  use
+  pagination.current       #ffa2a7  ({color.text.bright})  use
+  pagination.disabled      #a3676b  ({color.text.disabled})  use
 
 States: default, hover, focus-visible, selected, no-results
   default: each component at rest; Name sorted ascending with ▲; Prev disabled [`aria-sort`; the glyph]

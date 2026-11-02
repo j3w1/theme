@@ -241,22 +241,21 @@
       "color.interaction.text-selection.bg",
       "color.interaction.text-selection.text",
       "color.primitive.ink.0",
-      "color.primitive.modern.bright",
       "color.primitive.modern.control",
-      "color.primitive.modern.disabled",
       "color.primitive.modern.divider",
       "color.primitive.modern.hover",
-      "color.primitive.modern.muted",
       "color.primitive.modern.panel",
       "color.primitive.modern.raised",
       "color.primitive.modern.red",
-      "color.primitive.modern.subtle",
-      "color.primitive.modern.text",
       "color.primitive.paper.90",
       "color.primitive.red.100",
       "color.primitive.red.200",
       "color.primitive.red.350",
       "color.primitive.red.800",
+      "color.primitive.rose.350",
+      "color.primitive.rose.600",
+      "color.primitive.rose.650",
+      "color.primitive.rose.700",
       "color.primitive.rose.800",
       "color.status.danger.border",
       "color.status.danger.text",
@@ -567,6 +566,6 @@
   "copy": {
     "directory": "copy/time-picker/",
     "manifest": "copy/time-picker/manifest.json",
-    "digest": "sha256-FySvb79DZx3r9SDqMLW2aUoIQpR+kSz7YGHJw1bJ/sk="
+    "digest": "sha256-2XTXZPpF5qTo0K4+/v82ymgoDRF8w/9hNnldw0AS/aA="
   }
 }

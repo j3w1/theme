@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — terminal
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-uUyex258/cCN40I3QfAc17Y4Big+7Dc2v2FeXtKT5bE=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-0jrAhUhMk1y0cVuA9UcymrJJSN6hyxQFjD82B97Ze6s=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/terminal.json
 spec: spec/components/terminal.md  site: https://j3w1.github.io/theme/reference/#c-terminal
 maturity: stable  priority: R1
@@ -12,19 +12,19 @@ Tokens (resolved):
   root.text           #e99499  ({color.terminal.fg})  use
   root.border         #747e8e  ({color.border.control})  use
   root.ring           #ffa2a7  ({color.interaction.focus.ring-container})  use
-  cursor.bg           #f1f5f9  ({color.terminal.cursor})  use
+  cursor.bg           #ffa2a7  ({color.terminal.cursor})  use
   cursor.text         #000000  ({color.terminal.bg})  use
   selection.bg        #911410  ({color.terminal.selection-bg})  use
   selection.text      #f4eeee  ({color.terminal.selection-text})  use
   current.bg          #0e1014  ({color.code.current-line})  use
   prompt.bg           #000000  ({color.terminal.prompt-bg})  use
-  prompt.text         #d8dee9  ({color.terminal.prompt-text})  use
+  prompt.text         #e99499  ({color.terminal.prompt-text})  use
   prompt.branch-bg    #e5c07b  ({color.terminal.ansi.3})  use
   prompt.branch-text  #000000  ({color.terminal.bg})  use
-  dim.text            #a6afbd  ({color.text.muted})  use
+  dim.text            #d4868b  ({color.text.muted})  use
   inverse.bg          #e99499  ({color.terminal.fg})  use
   inverse.text        #000000  ({color.terminal.bg})  use
-  label.text          #a6afbd  ({color.text.muted})  use
+  label.text          #d4868b  ({color.text.muted})  use
   fail.glyph          #e99499  ({color.terminal.fg})  use
   slot.ansi-0         #000000  ({color.terminal.ansi.0})  use
   slot.ansi-1         #f07178  ({color.terminal.ansi.1})  use
@@ -34,7 +34,7 @@ Tokens (resolved):
   slot.ansi-5         #c7a0e8  ({color.terminal.ansi.5})  use
   slot.ansi-6         #78d4d4  ({color.terminal.ansi.6})  use
   slot.ansi-7         #e99499  ({color.terminal.ansi.7})  use
-  slot.ansi-8         #909aaa  ({color.terminal.ansi.8})  use
+  slot.ansi-8         #bd787d  ({color.terminal.ansi.8})  use
   slot.ansi-9         #ff9095  ({color.terminal.ansi.9})  use
   slot.ansi-10        #a2edb8  ({color.terminal.ansi.10})  use
   slot.ansi-11        #f2d49b  ({color.terminal.ansi.11})  use

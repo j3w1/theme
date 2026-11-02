@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — drawer
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-uUyex258/cCN40I3QfAc17Y4Big+7Dc2v2FeXtKT5bE=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-0jrAhUhMk1y0cVuA9UcymrJJSN6hyxQFjD82B97Ze6s=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/drawer.json
 spec: spec/components/drawer.md  site: https://j3w1.github.io/theme/reference/#c-drawer
 maturity: stable  priority: R1
@@ -13,16 +13,16 @@ Tokens (resolved):
   root.border      #747e8e  ({color.border.overlay})  use
   root.ring        #ffa2a7  ({color.interaction.focus.ring-container})  use
   root.z           20  ({z.drawer})  use
-  title.text       #f1f5f9  ({color.text.bright})  use
-  text.text        #d8dee9  ({color.text.default})  use
+  title.text       #ffa2a7  ({color.text.bright})  use
+  text.text        #e99499  ({color.text.default})  use
   body.divider     #303640  ({color.border.divider})  use
-  item.text        #d8dee9  ({color.text.default})  use
+  item.text        #e99499  ({color.text.default})  use
   item.bg-hover    #191c22  ({color.interaction.hover.bg-strong})  use
   item.text-hover  #f4eeee  ({color.text.link-hover})  use
-  close.text       #d8dee9  ({color.action.tertiary.text})  use
+  close.text       #e99499  ({color.action.tertiary.text})  use
   close.bg-hover   #1c0a09  ({color.action.tertiary.hover-bg})  use
   close.ring       #e53935  ({color.interaction.focus.ring})  use
-  note.text        #a6afbd  ({color.text.muted})  use
+  note.text        #d4868b  ({color.text.muted})  use
 
 States: default, open, closed, focus-trapped, reduced-motion
   default: the panel open at its edge on the backdrop [`open`; the page behind is inert]

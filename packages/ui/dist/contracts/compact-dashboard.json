@@ -230,16 +230,12 @@
       "color.primitive.ink.0",
       "color.primitive.ink.40",
       "color.primitive.ink.60",
-      "color.primitive.modern.bright",
       "color.primitive.modern.control",
-      "color.primitive.modern.disabled",
       "color.primitive.modern.divider",
       "color.primitive.modern.hover",
-      "color.primitive.modern.muted",
       "color.primitive.modern.panel",
       "color.primitive.modern.raised",
       "color.primitive.modern.red",
-      "color.primitive.modern.text",
       "color.primitive.paper.100",
       "color.primitive.paper.90",
       "color.primitive.red.100",
@@ -252,6 +248,9 @@
       "color.primitive.red.750",
       "color.primitive.red.800",
       "color.primitive.red.850",
+      "color.primitive.rose.350",
+      "color.primitive.rose.650",
+      "color.primitive.rose.700",
       "color.primitive.rose.800",
       "color.status.danger.text",
       "color.surface.canvas",
@@ -653,6 +652,6 @@
   "copy": {
     "directory": "copy/compact-dashboard/",
     "manifest": "copy/compact-dashboard/manifest.json",
-    "digest": "sha256-sO1RpirdNFoVhV9KNB4IzQhiepnlmuBlD8N9svwKcgo="
+    "digest": "sha256-6rQLOvGB0ds1dHfk7tC+UVR60MONy+SM56YdYksHb30="
   }
 }

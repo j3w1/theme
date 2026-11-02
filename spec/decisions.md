@@ -93,8 +93,8 @@ ordered by topic.
 ## D-041 True-black developer palette and semantic terminal colours
 
 **Decision.** Use true black for the default editor and terminal interiors and
-ANSI 0, neutral application text and near-black application layers, rose
-terminal and agent prose (`#e99499`), bright rose ANSI 15 (`#ffa2a7`),
+ANSI 0, neutral near-black application layers, rose ordinary application text,
+terminal and agent prose (`#e99499`), bright rose UI labels and ANSI 15 (`#ffa2a7`),
 and distinguishable green, amber, blue, violet and cyan coding colours. Keep red
 for identity, focus, selected indicators and danger. Preserve historical ANSI
 primitives and the explicitly historical profile. App, terminal, syntax and
@@ -112,9 +112,10 @@ changing their historical record or approving the extended profile.
 fully renovate the existing schemes for modern development, use true black
 instead of #0c0909 overall, and test/import the resulting ports. This records
 the authorized design scope, including the owner’s 2026-11-02 follow-up that
-ordinary white terminal text was too intense: use rose for terminal/agent
-prose and variables/operators, retaining white only for limited emphasis and
-neutral application UI. It does not claim visual acceptance, a release,
+ordinary white text was too intense: use rose throughout ordinary application
+UI, terminal/agent prose and variables/operators. Reserve white for document
+headings, exceptional highlights and contrast-critical roles, not ordinary UI
+labels or chrome. It does not claim visual acceptance, a release,
 publication or merge.
 
 ## D-000 Responsibility split

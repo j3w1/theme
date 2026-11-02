@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — time-picker
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-uUyex258/cCN40I3QfAc17Y4Big+7Dc2v2FeXtKT5bE=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-0jrAhUhMk1y0cVuA9UcymrJJSN6hyxQFjD82B97Ze6s=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/time-picker.json
 spec: spec/components/time-picker.md  site: https://j3w1.github.io/theme/reference/#c-time-picker
 maturity: stable  priority: R1
@@ -17,11 +17,11 @@ Tokens (resolved):
   root.border-invalid   #e53935  ({color.status.danger.border})  use
   root.border-disabled  #303640  ({color.border.disabled})  use
   root.bg-disabled      #0e1014  ({color.interaction.disabled.bg})  use
-  input.text            #d8dee9  ({color.text.default})  use
-  input.text-disabled   #727b89  ({color.text.disabled})  use
-  input.caret           #f1f5f9  ({color.code.caret})  use
-  label.text            #f1f5f9  ({color.text.bright})  use
-  help.text             #a6afbd  ({color.text.muted})  use
+  input.text            #e99499  ({color.text.default})  use
+  input.text-disabled   #a3676b  ({color.text.disabled})  use
+  input.caret           #ffa2a7  ({color.code.caret})  use
+  label.text            #ffa2a7  ({color.text.bright})  use
+  help.text             #d4868b  ({color.text.muted})  use
   message.text          #f07178  ({color.status.danger.text})  use
 
 States: default, hover, focus-visible, invalid, invalid+focus-visible, disabled
