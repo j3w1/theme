@@ -11,16 +11,16 @@
     "terminal.chrome": "#000000",
     "native.foreground": "#e99499",
     "native.bright": "#ffa2a7",
-    "native.heading": "#f1f5f9",
-    "native.highlight": "#f1f5f9",
+    "native.heading": "#f4eeee",
+    "native.highlight": "#f4eeee",
     "native.muted": "#d4868b",
     "native.disabled": "#a3676b",
     "native.selection": "#531310",
     "cursor.foreground": "#000000",
     "cursor.outline": "#e53935",
     "powertoys.highlight": "#e53935",
-    "powertoys.inactive": "#15181e",
-    "powertoys.border": "#747e8e",
+    "powertoys.inactive": "#140b0b",
+    "powertoys.border": "#986f72",
     "powertoys.number": "#ffa2a7",
     "font.family": "\"SauceCodePro NFM\", \"Source Code Pro\", \"Cascadia Mono\", \"Consolas\", \"Liberation Mono\", \"DejaVu Sans Mono\", monospace",
     "terminal.ansi.0": "#000000",
@@ -55,7 +55,7 @@
           "target": "StartDocked.SearchBoxToggleButton > Grid > Border#BorderElement",
           "styles": [
             "Background=#000000",
-            "BorderBrush=#747e8e",
+            "BorderBrush=#986f72",
             "BorderThickness=1",
             "CornerRadius=0"
           ]
@@ -66,7 +66,7 @@
           "target": "StartMenu.SearchBoxToggleButton > Grid > Border#BorderElement",
           "styles": [
             "Background=#000000",
-            "BorderBrush=#747e8e",
+            "BorderBrush=#986f72",
             "BorderThickness=1",
             "CornerRadius=0"
           ]
@@ -80,8 +80,8 @@
         {
           "target": "StartMenu.CategoryControl > Grid > Border",
           "styles": [
-            "Background=#0e1014",
-            "BorderBrush=#303640",
+            "Background=#0d0707",
+            "BorderBrush=#482b2b",
             "BorderThickness=1",
             "CornerRadius=0"
           ]
@@ -89,8 +89,8 @@
         {
           "target": "StartMenu.FolderModal > Grid > Border",
           "styles": [
-            "Background=#15181e",
-            "BorderBrush=#747e8e",
+            "Background=#140b0b",
+            "BorderBrush=#986f72",
             "BorderThickness=1",
             "CornerRadius=0"
           ]
@@ -125,21 +125,21 @@
   "bundledMods": [
     {
       "id": "j3w1-explorer-native",
-      "version": "1.8.7",
+      "version": "1.8.8",
       "path": "dist/j3w1-explorer-native.wh.cpp",
-      "sha256": "4d5207481df4ad34349081839c68f7988df4181da5c404bf3fce25262c86e6a2"
+      "sha256": "d8c9438f3366be005ae0b030dfabfaded5051d0b2d77a441589f285b9d0cd450"
     },
     {
       "id": "j3w1-powertoys-preview",
       "version": "1.1.1",
       "path": "dist/j3w1-powertoys-preview.wh.cpp",
-      "sha256": "29bd87333376a7426119e62f52fec6f45e2bea4e1e4a22508e205945c3e197c0"
+      "sha256": "6da392ba0bf95a3de3141035121e0ead7754e43a32ea4de4f5061cf1f6c2b6b2"
     },
     {
       "id": "j3w1-calculator",
       "version": "1.4.13",
       "path": "dist/j3w1-calculator.wh.cpp",
-      "sha256": "6b94de6287e35a02250168222cad9f1092e5bcef598a869583a30df4d84c90ab"
+      "sha256": "dd703738edcf4bd3eb82f13ef7f6e0d2a88419ffae5cc3f409b50414af45dbcd"
     },
     {
       "id": "j3w1-notepad-native",
@@ -151,25 +151,25 @@
       "id": "j3w1-notepad-chrome",
       "version": "1.2.35",
       "path": "dist/j3w1-notepad-chrome.wh.cpp",
-      "sha256": "b5cfcd82294b1d8ccad536a8734e765d349e0e693a82d6e79b0c5259b4e41641"
+      "sha256": "ce36e337c04cf086344a97d5c73820855e2ba991fe38609adfbb47d7a5ecf7fa"
     },
     {
       "id": "j3w1-paint-chrome",
       "version": "1.0.32",
       "path": "dist/j3w1-paint-chrome.wh.cpp",
-      "sha256": "84458d968fdc71785345bf3f9f2377dbcae99023ab93c20d235d94dbdeb63c84"
+      "sha256": "e5fd28e0e0eb47542053b7a5ba2281431c3e9a814048ca02952251360b1218ac"
     },
     {
       "id": "j3w1-terminal-chrome",
       "version": "1.0.16",
       "path": "dist/j3w1-terminal-chrome.wh.cpp",
-      "sha256": "b5aa76d0eacd4eb91812e43dfdb1242153e7fad900281bd950c2d079c1cd9fe7"
+      "sha256": "ba13fe5e477d306992cd9387024fc890517a33a809420177c0ed1429a1890b5c"
     },
     {
       "id": "j3w1-powertoys-markdown",
       "version": "1.4.3",
       "path": "dist/j3w1-powertoys-markdown.wh.cpp",
-      "sha256": "da7e9a68e7d6144e8e6db0fca347ab0d203d06d4f814f3c0bf8766b09c101cd2"
+      "sha256": "db37b1a2070549bd4a377205247448e1b971c997e231482b678a472dc754085e"
     }
   ],
   "settingsStartup": {

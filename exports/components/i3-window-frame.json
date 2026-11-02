@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-3TpAOt6MFRkInKpfNwQFYM/II7WK1keACleSRtw6SrE=",
+  "sourceDigest": "sha256-sCxjZdAqLlE1Q9ukwiB7Cju9jv2KO1vefm66CYFf/yg=",
   "id": "i3-window-frame",
   "family": "composed",
   "maturity": "stable",
@@ -79,7 +79,7 @@
     },
     "root.border": {
       "alias": "color.border.default",
-      "value": "#303640",
+      "value": "#482b2b",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -115,7 +115,7 @@
     },
     "bar.rule": {
       "alias": "color.border.divider",
-      "value": "#303640",
+      "value": "#482b2b",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -163,7 +163,7 @@
     },
     "workspace.bg-hover": {
       "alias": "color.interaction.hover.bg",
-      "value": "#191c22",
+      "value": "#1c1010",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -235,7 +235,7 @@
     },
     "status.glyph": {
       "alias": "color.icon.decorative",
-      "value": "#747e8e",
+      "value": "#986f72",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -283,7 +283,7 @@
     },
     "window.border": {
       "alias": "color.border.default",
-      "value": "#303640",
+      "value": "#482b2b",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -343,7 +343,7 @@
     },
     "title.bg-focused": {
       "alias": "color.surface.chrome-alt",
-      "value": "#15181e",
+      "value": "#140b0b",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -391,7 +391,7 @@
     },
     "floating.border": {
       "alias": "color.border.overlay",
-      "value": "#747e8e",
+      "value": "#986f72",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -501,7 +501,7 @@
         },
         "bg": {
           "alias": "color.surface.chrome-alt",
-          "value": "#15181e",
+          "value": "#140b0b",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -686,8 +686,8 @@
       "fg": "color.text.bright",
       "bg": "color.surface.chrome-alt",
       "fgHex": "#ffa2a7",
-      "bgHex": "#15181e",
-      "ratio": 9.29,
+      "bgHex": "#140b0b",
+      "ratio": 10.14,
       "pass": true,
       "waiver": null
     },
@@ -699,8 +699,8 @@
       "fg": "color.interaction.focus.ring-container",
       "bg": "color.surface.chrome-alt",
       "fgHex": "#ffa2a7",
-      "bgHex": "#15181e",
-      "ratio": 9.29,
+      "bgHex": "#140b0b",
+      "ratio": 10.14,
       "pass": true,
       "waiver": null
     },
@@ -790,8 +790,8 @@
       "fg": "color.text.bright",
       "bg": "color.surface.chrome-alt",
       "fgHex": "#ffa2a7",
-      "bgHex": "#15181e",
-      "ratio": 9.29,
+      "bgHex": "#140b0b",
+      "ratio": 10.14,
       "pass": true,
       "waiver": null
     },
@@ -815,9 +815,9 @@
       "min": 3,
       "fg": "color.border.overlay",
       "bg": "color.surface.desktop",
-      "fgHex": "#747e8e",
+      "fgHex": "#986f72",
       "bgHex": "#000000",
-      "ratio": 5.12,
+      "ratio": 4.85,
       "pass": true,
       "waiver": null
     },
@@ -906,9 +906,9 @@
       "min": 1,
       "fg": "color.border.default",
       "bg": "color.surface.desktop",
-      "fgHex": "#303640",
+      "fgHex": "#482b2b",
       "bgHex": "#000000",
-      "ratio": 1.73,
+      "ratio": 1.66,
       "pass": true,
       "waiver": "an unfocused window is identified by its title bar and its client; the 1px frame only separates it from the desktop, as pixel borders do in i3"
     },
@@ -932,9 +932,9 @@
       "min": 1,
       "fg": "color.icon.decorative",
       "bg": "color.surface.chrome",
-      "fgHex": "#747e8e",
+      "fgHex": "#986f72",
       "bgHex": "#000000",
-      "ratio": 5.12,
+      "ratio": 4.85,
       "pass": true,
       "waiver": "every glyph is followed by its label; the glyphs are aria-hidden"
     }

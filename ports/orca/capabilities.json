@@ -38,6 +38,10 @@
     "code-editor": {
       "state": "supported",
       "reason": "App theme editor-surface and TextMate tokenColors colour the editor and supported code previews."
+    },
+    "shell-prompt": {
+      "state": "supported",
+      "reason": "Generated agnoster variables set prompt surfaces and ordinary text from canonical terminal prompt roles; status icons retain semantic colors."
     }
   },
   "roles": {
@@ -174,7 +178,7 @@
     "color.border.control": {
       "state": "mapped",
       "surface": "app-chrome",
-      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.border.default": {
       "state": "out-of-scope",
@@ -189,7 +193,7 @@
     "color.border.divider": {
       "state": "mapped",
       "surface": "app-chrome",
-      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.border.overlay": {
       "state": "out-of-scope",
@@ -197,9 +201,9 @@
       "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.border.selected-indicator": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.border.selected-indicator-inactive": {
       "state": "out-of-scope",
@@ -207,9 +211,9 @@
       "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.border.strong": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Canonical black shared card surfaces and red boundaries also paint the status-bar fallback."
     },
     "color.chart.axis": {
       "state": "out-of-scope",
@@ -229,27 +233,27 @@
     "color.chart.series-1": {
       "state": "mapped",
       "surface": "app-chrome",
-      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.chart.series-2": {
       "state": "mapped",
       "surface": "app-chrome",
-      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.chart.series-3": {
       "state": "mapped",
       "surface": "app-chrome",
-      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.chart.series-4": {
       "state": "mapped",
       "surface": "app-chrome",
-      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.bg": {
       "state": "mapped",
-      "surface": "code-editor",
-      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.bracket-match": {
       "state": "out-of-scope",
@@ -358,18 +362,18 @@
     },
     "color.code.syntax.attribute": {
       "state": "mapped",
-      "surface": "code-editor",
-      "reason": "Generated canonical syntax role applied through Orca TextMate tokenColors."
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.syntax.comment": {
       "state": "mapped",
-      "surface": "code-editor",
-      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.syntax.constant": {
       "state": "mapped",
-      "surface": "code-editor",
-      "reason": "Generated canonical syntax role applied through Orca TextMate tokenColors."
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.syntax.deprecated": {
       "state": "out-of-scope",
@@ -378,13 +382,13 @@
     },
     "color.code.syntax.escape": {
       "state": "mapped",
-      "surface": "code-editor",
-      "reason": "Generated canonical syntax role applied through Orca TextMate tokenColors."
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.syntax.function": {
       "state": "mapped",
-      "surface": "code-editor",
-      "reason": "Generated canonical syntax role applied through Orca TextMate tokenColors."
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.syntax.heading": {
       "state": "out-of-scope",
@@ -398,48 +402,48 @@
     },
     "color.code.syntax.keyword": {
       "state": "mapped",
-      "surface": "code-editor",
-      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.syntax.number": {
       "state": "mapped",
-      "surface": "code-editor",
-      "reason": "Generated canonical syntax role applied through Orca TextMate tokenColors."
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.syntax.operator": {
       "state": "mapped",
-      "surface": "code-editor",
-      "reason": "Generated canonical syntax role applied through Orca TextMate tokenColors."
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.syntax.property": {
       "state": "mapped",
-      "surface": "code-editor",
-      "reason": "Generated canonical syntax role applied through Orca TextMate tokenColors."
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.syntax.punctuation": {
       "state": "mapped",
-      "surface": "code-editor",
-      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.syntax.string": {
       "state": "mapped",
-      "surface": "code-editor",
-      "reason": "Generated canonical syntax role applied through Orca TextMate tokenColors."
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.syntax.tag": {
       "state": "mapped",
-      "surface": "code-editor",
-      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.syntax.type": {
       "state": "mapped",
-      "surface": "code-editor",
-      "reason": "Generated canonical syntax role applied through Orca TextMate tokenColors."
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.syntax.variable": {
       "state": "mapped",
-      "surface": "code-editor",
-      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.code.whitespace": {
       "state": "out-of-scope",
@@ -458,8 +462,8 @@
     },
     "color.diagnostic.error.text": {
       "state": "mapped",
-      "surface": "code-editor",
-      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.diagnostic.error.underline": {
       "state": "out-of-scope",
@@ -502,9 +506,9 @@
       "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.diff.added.bg": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.diff.added.emphasis": {
       "state": "out-of-scope",
@@ -513,8 +517,8 @@
     },
     "color.diff.added.gutter": {
       "state": "mapped",
-      "surface": "code-editor",
-      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.diff.conflict-border": {
       "state": "out-of-scope",
@@ -533,13 +537,13 @@
     },
     "color.diff.modified.gutter": {
       "state": "mapped",
-      "surface": "code-editor",
-      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.diff.removed.bg": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.diff.removed.emphasis": {
       "state": "out-of-scope",
@@ -548,8 +552,8 @@
     },
     "color.diff.removed.gutter": {
       "state": "mapped",
-      "surface": "code-editor",
-      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.icon.decorative": {
       "state": "out-of-scope",
@@ -574,7 +578,7 @@
     "color.interaction.focus.ring": {
       "state": "mapped",
       "surface": "app-chrome",
-      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.interaction.focus.ring-container": {
       "state": "out-of-scope",
@@ -582,9 +586,9 @@
       "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.interaction.hover.bg": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.interaction.hover.bg-strong": {
       "state": "out-of-scope",
@@ -617,9 +621,9 @@
       "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.interaction.selection.bg": {
-      "state": "mapped",
-      "surface": "app-chrome",
-      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "No independent Orca public token consumes this role; supported controls use canonical surface and rose foreground roles."
     },
     "color.interaction.selection.inactive-bg": {
       "state": "out-of-scope",
@@ -632,14 +636,14 @@
       "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.interaction.selection.text": {
-      "state": "mapped",
-      "surface": "app-chrome",
-      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
-    },
-    "color.interaction.text-selection.bg": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
+      "reason": "No independent Orca public token consumes this role; supported controls use canonical surface and rose foreground roles."
+    },
+    "color.interaction.text-selection.bg": {
+      "state": "mapped",
+      "surface": "app-chrome",
+      "reason": "Orca shared inputs select text with the primary fill; the same dark red also paints primary buttons."
     },
     "color.interaction.text-selection.text": {
       "state": "out-of-scope",
@@ -1062,9 +1066,9 @@
       "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.status.danger.text": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
+      "state": "mapped",
+      "surface": "shell-prompt",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.status.danger.tint": {
       "state": "out-of-scope",
@@ -1089,7 +1093,7 @@
     "color.status.info.text": {
       "state": "mapped",
       "surface": "app-chrome",
-      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.status.info.tint": {
       "state": "out-of-scope",
@@ -1162,9 +1166,9 @@
       "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.status.warning.text": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
+      "state": "mapped",
+      "surface": "shell-prompt",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.status.warning.tint": {
       "state": "out-of-scope",
@@ -1179,12 +1183,12 @@
     "color.surface.canvas": {
       "state": "mapped",
       "surface": "app-chrome",
-      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
+      "reason": "Canonical black shared card surfaces and red boundaries also paint the status-bar fallback."
     },
     "color.surface.chrome": {
       "state": "mapped",
       "surface": "app-chrome",
-      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.surface.chrome-alt": {
       "state": "out-of-scope",
@@ -1199,7 +1203,7 @@
     "color.surface.default": {
       "state": "mapped",
       "surface": "app-chrome",
-      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.surface.desktop": {
       "state": "out-of-scope",
@@ -1219,7 +1223,7 @@
     "color.surface.raised": {
       "state": "mapped",
       "surface": "app-chrome",
-      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.surface.sunken": {
       "state": "out-of-scope",
@@ -1327,14 +1331,14 @@
       "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
     },
     "color.terminal.prompt-bg": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "The prompt chooses its own segment colours; a terminal theme carries the palette only."
+      "state": "mapped",
+      "surface": "shell-prompt",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.terminal.prompt-text": {
-      "state": "out-of-scope",
-      "surface": "outside-terminal",
-      "reason": "The prompt chooses its own segment colours; a terminal theme carries the palette only."
+      "state": "mapped",
+      "surface": "shell-prompt",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.terminal.selection-bg": {
       "state": "mapped",
@@ -1352,19 +1356,19 @@
       "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.text.accent-strong": {
-      "state": "mapped",
-      "surface": "app-chrome",
-      "reason": "Public app-theme token; readable primary accent and inverse on-fill text."
-    },
-    "color.text.bright": {
       "state": "out-of-scope",
       "surface": "outside-terminal",
-      "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
+      "reason": "No independent Orca public token consumes this role; supported controls use canonical surface and rose foreground roles."
+    },
+    "color.text.bright": {
+      "state": "mapped",
+      "surface": "shell-prompt",
+      "reason": "GNU ls directory foreground follows bright rose UI labels; semantic ANSI blue remains unchanged."
     },
     "color.text.default": {
       "state": "mapped",
       "surface": "app-chrome",
-      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.text.disabled": {
       "state": "out-of-scope",
@@ -1372,14 +1376,14 @@
       "reason": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours."
     },
     "color.text.inverse": {
-      "state": "mapped",
-      "surface": "app-chrome",
-      "reason": "Public app-theme token; readable primary accent and inverse on-fill text."
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "No independent Orca public token consumes this role; supported controls use canonical surface and rose foreground roles."
     },
     "color.text.link": {
       "state": "mapped",
-      "surface": "code-editor",
-      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.text.link-hover": {
       "state": "out-of-scope",
@@ -1394,7 +1398,7 @@
     "color.text.muted": {
       "state": "mapped",
       "surface": "app-chrome",
-      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.text.on-action": {
       "state": "out-of-scope",
@@ -1798,8 +1802,8 @@
     },
     "color.text.heading": {
       "state": "mapped",
-      "surface": "code-editor",
-      "reason": "Generated from canonical roles into Orca public theme keys; no private CSS injection."
+      "surface": "app-chrome",
+      "reason": "Generated from canonical roles into supported Orca theme or shell prompt keys."
     },
     "color.text.highlight": {
       "state": "unsupported",
@@ -1940,6 +1944,26 @@
       "state": "out-of-scope",
       "surface": "outside-terminal",
       "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.diff-shared-green": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.diff-shared-red": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.diff.added.shared-word": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Host-specific shared diff foreground/background compromise; this port has no such shared role."
+    },
+    "color.diff.removed.shared-word": {
+      "state": "out-of-scope",
+      "surface": "outside-terminal",
+      "reason": "Host-specific shared diff foreground/background compromise; this port has no such shared role."
     }
   },
   "rollback": "Select the previous app, editor and terminal themes, then orca plugin dev unload the plugin folder. For the legacy Ghostty installer, use its key-scoped Restore script."

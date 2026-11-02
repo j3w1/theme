@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — terminal
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-3TpAOt6MFRkInKpfNwQFYM/II7WK1keACleSRtw6SrE=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-sCxjZdAqLlE1Q9ukwiB7Cju9jv2KO1vefm66CYFf/yg=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/terminal.json
 spec: spec/components/terminal.md  site: https://j3w1.github.io/theme/reference/#c-terminal
 maturity: stable  priority: R1
@@ -10,13 +10,13 @@ Use the pinned approved default profile. Pending roles in that profile use-and-r
 Tokens (resolved):
   root.bg             #000000  ({color.terminal.bg})  use
   root.text           #e99499  ({color.terminal.fg})  use
-  root.border         #747e8e  ({color.border.control})  use
+  root.border         #986f72  ({color.border.control})  use
   root.ring           #ffa2a7  ({color.interaction.focus.ring-container})  use
   cursor.bg           #ffa2a7  ({color.terminal.cursor})  use
   cursor.text         #000000  ({color.terminal.bg})  use
   selection.bg        #420f0c  ({color.terminal.selection-bg})  use
   selection.text      #f4eeee  ({color.terminal.selection-text})  use
-  current.bg          #0e1014  ({color.code.current-line})  use
+  current.bg          #0d0707  ({color.code.current-line})  use
   prompt.bg           #000000  ({color.terminal.prompt-bg})  use
   prompt.text         #e99499  ({color.terminal.prompt-text})  use
   prompt.branch-bg    #e5c07b  ({color.terminal.ansi.3})  use

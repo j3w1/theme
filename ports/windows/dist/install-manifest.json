@@ -4,15 +4,15 @@
   "files": [
     {
       "path": "dist/j3w1-explorer-native.wh.cpp",
-      "sha256": "4d5207481df4ad34349081839c68f7988df4181da5c404bf3fce25262c86e6a2"
+      "sha256": "d8c9438f3366be005ae0b030dfabfaded5051d0b2d77a441589f285b9d0cd450"
     },
     {
       "path": "dist/j3w1-explorer-native.json",
-      "sha256": "115ffa0cf1663c4cc4f7e25ab618d9a415d985fffda586052efdd7aebfcc0468"
+      "sha256": "78325efee7f17ad1388c4be279a75faa364a269e17e4c4651d4cd7b6b2c6d024"
     },
     {
       "path": "dist/j3w1-powertoys-preview.wh.cpp",
-      "sha256": "29bd87333376a7426119e62f52fec6f45e2bea4e1e4a22508e205945c3e197c0"
+      "sha256": "6da392ba0bf95a3de3141035121e0ead7754e43a32ea4de4f5061cf1f6c2b6b2"
     },
     {
       "path": "dist/j3w1-powertoys-preview.json",
@@ -20,7 +20,7 @@
     },
     {
       "path": "dist/j3w1-calculator.wh.cpp",
-      "sha256": "6b94de6287e35a02250168222cad9f1092e5bcef598a869583a30df4d84c90ab"
+      "sha256": "dd703738edcf4bd3eb82f13ef7f6e0d2a88419ffae5cc3f409b50414af45dbcd"
     },
     {
       "path": "dist/j3w1-calculator.json",
@@ -36,7 +36,7 @@
     },
     {
       "path": "dist/j3w1-notepad-chrome.wh.cpp",
-      "sha256": "b5cfcd82294b1d8ccad536a8734e765d349e0e693a82d6e79b0c5259b4e41641"
+      "sha256": "ce36e337c04cf086344a97d5c73820855e2ba991fe38609adfbb47d7a5ecf7fa"
     },
     {
       "path": "dist/j3w1-notepad-chrome.json",
@@ -44,7 +44,7 @@
     },
     {
       "path": "dist/j3w1-paint-chrome.wh.cpp",
-      "sha256": "84458d968fdc71785345bf3f9f2377dbcae99023ab93c20d235d94dbdeb63c84"
+      "sha256": "e5fd28e0e0eb47542053b7a5ba2281431c3e9a814048ca02952251360b1218ac"
     },
     {
       "path": "dist/j3w1-paint-chrome.json",
@@ -52,7 +52,7 @@
     },
     {
       "path": "dist/j3w1-terminal-chrome.wh.cpp",
-      "sha256": "b5aa76d0eacd4eb91812e43dfdb1242153e7fad900281bd950c2d079c1cd9fe7"
+      "sha256": "ba13fe5e477d306992cd9387024fc890517a33a809420177c0ed1429a1890b5c"
     },
     {
       "path": "dist/j3w1-terminal-chrome.json",
@@ -60,11 +60,11 @@
     },
     {
       "path": "dist/j3w1-powertoys-markdown.wh.cpp",
-      "sha256": "da7e9a68e7d6144e8e6db0fca347ab0d203d06d4f814f3c0bf8766b09c101cd2"
+      "sha256": "db37b1a2070549bd4a377205247448e1b971c997e231482b678a472dc754085e"
     },
     {
       "path": "dist/markdown-theme.css",
-      "sha256": "c4161272289faf6d6accde6806a8aea4446027a72cb5b22e3b8117aa566e678f"
+      "sha256": "29f78ed98450c3d702362ba8378a224d315ee8f3da777e7c03b395d6e1540d08"
     },
     {
       "path": "dist/j3w1-powertoys-markdown.json",
@@ -72,7 +72,7 @@
     },
     {
       "path": "dist/windows-settings.json",
-      "sha256": "259045a7a056d2361798ac11efc2f440391b7710667333e09219df0b6ef86083"
+      "sha256": "ca11a47f426bfab050c37ae766baab825281cada752940ebd544afa5a6a56c77"
     },
     {
       "path": "dist/terminal-fragment.json",
@@ -88,23 +88,23 @@
     },
     {
       "path": "dist/windows-11-taskbar-styler.json",
-      "sha256": "093e708640f187f5200481d34aa2be90e38f6af403cc7dd2b7de7c0c7fa7f7b1"
+      "sha256": "5a446337b07c1ab30f3b206ad77c9b7379b5f0a4f4be7cf8e9b095264d27b377"
     },
     {
       "path": "dist/windows-11-start-menu-styler.json",
-      "sha256": "20d527d34026a8e7b4d6301a8dc54350047ae633578756c828f15c5b068991d8"
+      "sha256": "bb46eb18e319e7ce3f6fb1fd7885ec88ccd0d86a8f8a824c413dfd56d4d242ee"
     },
     {
       "path": "dist/windows-11-file-explorer-styler.json",
-      "sha256": "effa5344c0e59f26099cfad28a3bc7dbf2501f5459e1cfb12c09314312ed63d5"
+      "sha256": "1c26631be035f686dda74b09feb7f3f956e5d881012b8add94b200bbb339f4a9"
     },
     {
       "path": "dist/windows-11-notification-center-styler.json",
-      "sha256": "2005a4e4eb7ee38b42d7589b414269f249a67adb229caa8cdd217cb7a640156e"
+      "sha256": "99f29ad895ab0f47460b5ce32480ebeb2ff18f2a99cbb014c69307a17b6f9a6f"
     },
     {
       "path": "dist/windows-11-settings-styler.json",
-      "sha256": "29601962b960eab32258274f48d9795ac8e4ac01143845e78b93faaf3adfef68"
+      "sha256": "53cfd4035c9fad3cb70e1133fc6f79f0effc30c41bc2b690504a4a818db3157d"
     },
     {
       "path": "dist/j3w1-wallpaper.bmp",
@@ -212,7 +212,7 @@
     },
     {
       "path": "host.json",
-      "sha256": "ae8cfb257711f14eb77c57cc542f46d33aec00d0d3277000349598dc3a8a5545"
+      "sha256": "363265930a2e0cac8cee198f0c6d0eaac79f276416fb10735ed1645d8ea32868"
     }
   ]
 }

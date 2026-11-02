@@ -1944,6 +1944,26 @@
       "state": "out-of-scope",
       "surface": "primitives",
       "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.modern.diff-shared-green": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.primitive.modern.diff-shared-red": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Primitives are blocked inspection values; Telegram consumes semantic roles only."
+    },
+    "color.diff.added.shared-word": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Host-specific shared diff foreground/background compromise; this port has no such shared role."
+    },
+    "color.diff.removed.shared-word": {
+      "state": "out-of-scope",
+      "surface": "primitives",
+      "reason": "Host-specific shared diff foreground/background compromise; this port has no such shared role."
     }
   },
   "rollback": "Choose the previous Telegram theme in Settings → Chat Settings/Appearance; restore the previous chat background if it was customised.",

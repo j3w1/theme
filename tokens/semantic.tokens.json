@@ -1566,6 +1566,18 @@
               }
             }
           }
+        },
+        "shared-word": {
+          "$value": "{color.primitive.modern.diff-shared-green}",
+          "$description": "D-041 host-specific shared summary foreground and word background: about 3:1 against black and rose prose; never a generic ordinary-text role.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-041"
+              }
+            }
+          }
         }
       },
       "removed": {
@@ -1580,6 +1592,18 @@
         "emphasis": {
           "$value": "{color.primitive.red.800}",
           "$description": "Word-level removal: underline and line-through."
+        },
+        "shared-word": {
+          "$value": "{color.primitive.modern.diff-shared-red}",
+          "$description": "D-041 host-specific shared summary foreground and word background: about 3:1 against black and rose prose; never a generic ordinary-text role.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "approval": {
+                "decision": "D-041"
+              }
+            }
+          }
         }
       },
       "modified": {

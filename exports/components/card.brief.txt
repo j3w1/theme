@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — card
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-3TpAOt6MFRkInKpfNwQFYM/II7WK1keACleSRtw6SrE=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-sCxjZdAqLlE1Q9ukwiB7Cju9jv2KO1vefm66CYFf/yg=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/card.json
 spec: spec/components/card.md  site: https://j3w1.github.io/theme/reference/#c-card
 maturity: stable  priority: R1
@@ -8,10 +8,10 @@ Summary: A bordered panel that groups a title, body and metadata; a link card ma
 
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg            #0e1014  ({color.surface.default})  use
-  root.border        #303640  ({color.border.default})  use
-  root.bg-hover      #191c22  ({color.interaction.hover.bg})  use
-  root.border-hover  #747e8e  ({color.border.control})  use
+  root.bg            #0d0707  ({color.surface.default})  use
+  root.border        #482b2b  ({color.border.default})  use
+  root.bg-hover      #1c1010  ({color.interaction.hover.bg})  use
+  root.border-hover  #986f72  ({color.border.control})  use
   root.ring          #ffa2a7  ({color.interaction.focus.ring-container})  use
   title.text         #ffa2a7  ({color.text.bright})  use
   body.text          #e99499  ({color.text.default})  use

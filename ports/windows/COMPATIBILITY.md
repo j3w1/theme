@@ -17,6 +17,13 @@ Windows Imaging Component, shellcommon and system XAML have new exact
 identities. Adapter pins use observed versions and hashes, not an assumed
 common revision across all Windows files.
 
+The folder-bitmap caller pin names `windowsudk.shellcommon.dll`, whose exact
+hash is separate from `ShellCommonCommonProxyStub.dll`. Substituting the proxy
+DLL's hash rejects the tab-folder caller even when both modules share a fixed
+version. Native Explorer's loaded-module presence must also be checked during
+appearance review: enabled configuration and an installer Test pass do not
+prove successful in-process initialization.
+
 Terminal's separate package pin remains 1.24.12741.0. Notepad 11.2607.14.0
 and Paint 11.2605.81.0 retain their app identities, but their package dependency
 graphs now select Windows App Runtime 2.6.4.0. The chrome adapters pin that

@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-3TpAOt6MFRkInKpfNwQFYM/II7WK1keACleSRtw6SrE=",
+  "sourceDigest": "sha256-sCxjZdAqLlE1Q9ukwiB7Cju9jv2KO1vefm66CYFf/yg=",
   "id": "toolbar",
   "family": "navigation",
   "maturity": "stable",
@@ -74,7 +74,7 @@
     },
     "root.border": {
       "alias": "color.border.divider",
-      "value": "#303640",
+      "value": "#482b2b",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -98,7 +98,7 @@
     },
     "button.bg-hover": {
       "alias": "color.interaction.hover.bg",
-      "value": "#191c22",
+      "value": "#1c1010",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -182,7 +182,7 @@
     },
     "separator.color": {
       "alias": "color.border.default",
-      "value": "#303640",
+      "value": "#482b2b",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -194,7 +194,7 @@
     },
     "more.chevron": {
       "alias": "color.icon.decorative",
-      "value": "#747e8e",
+      "value": "#986f72",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -256,7 +256,7 @@
         },
         "bg": {
           "alias": "color.interaction.hover.bg",
-          "value": "#191c22",
+          "value": "#1c1010",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -436,8 +436,8 @@
       "fg": "color.text.default",
       "bg": "color.interaction.hover.bg",
       "fgHex": "#e99499",
-      "bgHex": "#191c22",
-      "ratio": 7.44,
+      "bgHex": "#1c1010",
+      "ratio": 8.1,
       "pass": true,
       "waiver": null
     },
@@ -513,9 +513,9 @@
       "min": 1,
       "fg": "color.border.default",
       "bg": "color.surface.chrome",
-      "fgHex": "#303640",
+      "fgHex": "#482b2b",
       "bgHex": "#000000",
-      "ratio": 1.73,
+      "ratio": 1.66,
       "pass": true,
       "waiver": "the separator groups controls that are already distinct targets; it is not a control boundary"
     },
@@ -526,9 +526,9 @@
       "min": 1,
       "fg": "color.border.divider",
       "bg": "color.surface.chrome",
-      "fgHex": "#303640",
+      "fgHex": "#482b2b",
       "bgHex": "#000000",
-      "ratio": 1.73,
+      "ratio": 1.66,
       "pass": true,
       "waiver": "the edge separates chrome from content; the controls are the boundaries"
     }

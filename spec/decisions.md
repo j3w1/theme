@@ -93,12 +93,20 @@ ordered by topic.
 ## D-041 True-black developer palette and semantic terminal colours
 
 **Decision.** Use true black for the default editor and terminal interiors and
-ANSI 0, neutral near-black application layers, rose ordinary application text,
+ANSI 0, warm rose-black application layers and rose-gray borders, rose ordinary application text,
 terminal and agent prose (`#e99499`), bright rose UI labels and ANSI 15 (`#ffa2a7`),
 and distinguishable green, amber, blue, violet and cyan coding colours. Keep red
 for identity, focus, selected indicators and danger. Preserve historical ANSI
 primitives and the explicitly historical profile. App, terminal, syntax and
 native ports consume the same semantic roles. Rule: `spec/foundations.md`.
+
+**Shared Claude diff colours.** The owner’s live review rejected glaring word
+highlights. Dedicated shared-word roles balance the host’s summary foreground
+and word background near 3:1 against black and rose prose. Claude 2.1.303
+exposes no separate summary or word-foreground control; 4.5:1 for both is
+mathematically impossible with ordinary rose. This is a documented host
+limitation, not a generic text waiver. ANSI green and standard diff emphasis
+remain separate; dimmed rows retain semantic line tints.
 
 **Why.** The owner reported pervasive red text, dim Claude edit additions and
 an unwanted tinted base. Rejected: making every surface black and every item
@@ -115,7 +123,11 @@ the authorized design scope, including the owner’s 2026-11-02 follow-up that
 ordinary white text was too intense: use rose throughout ordinary application
 UI, terminal/agent prose and variables/operators. Reserve white for document
 headings, exceptional highlights and contrast-critical roles, not ordinary UI
-labels or chrome. It does not claim visual acceptance, a release,
+labels or chrome. The owner's further visual review rejected the cool blue-gray
+surfaces and borders: use warm rose-black layers and rose-gray control boundaries,
+with semantic green reserved for meaningful code/status rather than shell prompt
+branding. Host-default chrome is a port coverage gap, not approved styling.
+It does not claim visual acceptance, a release,
 publication or merge.
 
 ## D-000 Responsibility split

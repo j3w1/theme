@@ -491,9 +491,9 @@
       "reason": "Written to the theme's diffAdded and diffAddedWord keys."
     },
     "color.diff.added.emphasis": {
-      "state": "mapped",
-      "surface": "theme-roles",
-      "reason": "Mapped to diffAddedWord."
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "No independently mapped Claude key; shared word keys use dedicated compromise roles, dimmed lines use semantic line tints."
     },
     "color.diff.added.gutter": {
       "state": "unsupported",
@@ -526,9 +526,9 @@
       "reason": "Written to the theme's diffRemoved and diffRemovedWord keys."
     },
     "color.diff.removed.emphasis": {
-      "state": "mapped",
-      "surface": "theme-roles",
-      "reason": "Mapped to diffRemovedWord."
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "No independently mapped Claude key; shared word keys use dedicated compromise roles, dimmed lines use semantic line tints."
     },
     "color.diff.removed.gutter": {
       "state": "unsupported",
@@ -546,9 +546,9 @@
       "reason": "Interface colour role that no Claude Code theme key takes."
     },
     "color.interaction.disabled.bg": {
-      "state": "mapped",
-      "surface": "theme-roles",
-      "reason": "Written to the theme's diffAddedDimmed and diffRemovedDimmed keys."
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "No independently mapped Claude key; shared word keys use dedicated compromise roles, dimmed lines use semantic line tints."
     },
     "color.interaction.drop-target": {
       "state": "out-of-scope",
@@ -1924,6 +1924,26 @@
       "state": "out-of-scope",
       "surface": "outside-claude",
       "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.diff-shared-green": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.primitive.modern.diff-shared-red": {
+      "state": "out-of-scope",
+      "surface": "outside-claude",
+      "reason": "Primitive; ports consume roles, never primitives."
+    },
+    "color.diff.added.shared-word": {
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Shared summary foreground and word background, balanced ~3:1 on black and rose; host-specific compromise, not generic text acceptance."
+    },
+    "color.diff.removed.shared-word": {
+      "state": "mapped",
+      "surface": "theme-roles",
+      "reason": "Shared summary foreground and word background, balanced ~3:1 on black and rose; host-specific compromise, not generic text acceptance."
     }
   },
   "rollback": "Run node ports/claude-code/install.mjs restore in the same clone. By hand: set \"theme\" in ~/.claude/settings.json back to your previous theme (or remove the key) and delete ~/.claude/themes/j3w1.json."

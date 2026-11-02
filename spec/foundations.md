@@ -19,9 +19,9 @@ content sits on the canvas or on:
 - `accent` (`#3d0c0a`) for the user's own content set apart from its neighbours, such as outgoing chat messages; secondary text on it uses `text.muted`, never `text.subtle`. Red links cap its brightness: at this hue it stays at or below `#3f0c0a` (D-035);
 - `sunken` (`#000000`) for reading and detail panes;
 - `input` for form-control fills;
-- true-black `chrome` and neutral `chrome-alt` for window frames and bars.
+- true-black `chrome` and warm rose-black `chrome-alt` for window frames and bars.
 
-D-041 keeps ordinary application layers neutral; `surface.accent` remains a
+D-041 keeps ordinary application layers warm rose-black, without a cool blue cast; `surface.accent` remains a
 bounded red message surface, not a tint for every panel.
 
 The layers differ only slightly, so controls also carry `border.control`.
@@ -201,7 +201,11 @@ Programs choose the slots and may emit 256-colour or true-colour values that
 bypass them. A theme cannot repair host dimming or independently recolour
 text that shares a host theme key with a background. Port guides record
 those limits; Claude Code's shared word-highlight and edit-summary keys are
-one example.
+one example. Their dedicated `diff.added.shared-word` and
+`diff.removed.shared-word` roles balance summary-on-black and ordinary
+rose-on-highlight at about 3:1. These roles apply only where a host combines
+those two uses; they do not replace standard diff emphasis or relax the
+ordinary-text contrast floor. Syntax foregrounds require separate host review.
 
 ## Typography
 

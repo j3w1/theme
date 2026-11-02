@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — tabs
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-3TpAOt6MFRkInKpfNwQFYM/II7WK1keACleSRtw6SrE=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-sCxjZdAqLlE1Q9ukwiB7Cju9jv2KO1vefm66CYFf/yg=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/tabs.json
 spec: spec/components/tabs.md  site: https://j3w1.github.io/theme/reference/#c-tabs
 maturity: stable  priority: R1
@@ -8,17 +8,17 @@ Summary: A tablist of buttons that switches between panels in place; the selecte
 
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  list.bg                 #0e1014  ({color.surface.default})  use
-  list.border             #303640  ({color.border.divider})  use
+  list.bg                 #0d0707  ({color.surface.default})  use
+  list.border             #482b2b  ({color.border.divider})  use
   tab.text                #e99499  ({color.text.default})  use
   tab.text-selected       #ffa2a7  ({color.text.bright})  use
   tab.text-disabled       #a3676b  ({color.text.disabled})  use
-  tab.bg-hover            #191c22  ({color.interaction.hover.bg})  use
+  tab.bg-hover            #1c1010  ({color.interaction.hover.bg})  use
   tab.bg-pressed          #420f0c  ({color.interaction.pressed.bg})  use
   tab.indicator           #e53935  ({color.border.selected-indicator})  use
   tab.indicator-inactive  #9e231f  ({color.border.selected-indicator-inactive})  use
   tab.ring                #e53935  ({color.interaction.focus.ring})  use
-  panel.bg                #0e1014  ({color.surface.default})  use
+  panel.bg                #0d0707  ({color.surface.default})  use
   panel.text              #e99499  ({color.text.default})  use
 
 States: default, hover, focus-visible, selected, selected+focus-visible, selected+container-inactive, disabled

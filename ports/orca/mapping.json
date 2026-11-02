@@ -3,7 +3,6 @@
   "mappings": {
     "color.border.divider": [
       "split-divider-color",
-      "app.tokens.--border",
       "app.tokens.--sidebar-border",
       "app.tokens.--worktree-sidebar-border"
     ],
@@ -100,7 +99,8 @@
       "font-size"
     ],
     "color.surface.canvas": [
-      "app.tokens.--background"
+      "app.tokens.--background",
+      "app.tokens.--card"
     ],
     "color.code.bg": [
       "app.tokens.--editor-surface"
@@ -111,36 +111,42 @@
       "app.tokens.--popover-foreground",
       "app.tokens.--secondary-foreground",
       "app.tokens.--sidebar-foreground",
-      "app.tokens.--worktree-sidebar-foreground"
+      "app.tokens.--accent-foreground",
+      "app.tokens.--sidebar-accent-foreground",
+      "app.tokens.--host-badge-foreground",
+      "app.tokens.--tab-inactive-foreground",
+      "shell.LS_COLORS.no",
+      "shell.LS_COLORS.fi"
     ],
     "color.surface.default": [
-      "app.tokens.--card",
-      "app.tokens.--muted"
+      "app.tokens.--muted",
+      "app.tokens.--worktree-sidebar-active"
     ],
     "color.surface.raised": [
       "app.tokens.--popover",
-      "app.tokens.--secondary"
+      "app.tokens.--secondary",
+      "app.tokens.--sidebar-primary",
+      "app.tokens.--host-badge",
+      "app.tokens.--tab-active",
+      "app.tokens.--chat-user-message",
+      "prompt.AGNOSTER_GIT_CLEAN_BG",
+      "prompt.AGNOSTER_GIT_DIRTY_BG"
     ],
     "color.text.muted": [
-      "app.tokens.--muted-foreground"
-    ],
-    "color.interaction.selection.bg": [
-      "app.tokens.--accent",
-      "app.tokens.--sidebar-accent",
-      "app.tokens.--worktree-sidebar-accent"
-    ],
-    "color.interaction.selection.text": [
-      "app.tokens.--accent-foreground",
-      "app.tokens.--sidebar-accent-foreground",
-      "app.tokens.--worktree-sidebar-accent-foreground"
+      "app.tokens.--muted-foreground",
+      "app.tokens.--git-decoration-ignored",
+      "prompt.AGNOSTER_STATUS_JOB_FG",
+      "shell.LS_COLORS.ln"
     ],
     "color.border.control": [
-      "app.tokens.--input"
+      "app.tokens.--input",
+      "app.tokens.--split-divider"
     ],
     "color.interaction.focus.ring": [
       "app.tokens.--ring",
       "app.tokens.--sidebar-ring",
-      "app.tokens.--worktree-sidebar-ring"
+      "app.tokens.--worktree-sidebar-ring",
+      "app.tokens.--split-divider-hover"
     ],
     "color.chart.series-1": [
       "app.tokens.--chart-1"
@@ -159,7 +165,9 @@
     ],
     "color.surface.chrome": [
       "app.tokens.--sidebar",
-      "app.tokens.--worktree-sidebar"
+      "app.tokens.--worktree-sidebar",
+      "app.tokens.--tab-bar",
+      "app.tokens.--tab-inactive"
     ],
     "color.code.syntax.comment": [
       "app.tokenColors.comment.foreground"
@@ -180,16 +188,25 @@
       "app.tokenColors.heading.foreground"
     ],
     "color.text.link": [
-      "app.tokenColors.link.foreground"
+      "app.tokenColors.link.foreground",
+      "app.tokens.--text-link"
     ],
     "color.diff.added.gutter": [
-      "app.tokenColors.inserted.foreground"
+      "app.tokenColors.inserted.foreground",
+      "app.tokens.--diff-added",
+      "app.tokens.--diff-added-gutter",
+      "app.tokens.--git-decoration-added",
+      "app.tokens.--git-decoration-untracked"
     ],
     "color.diff.removed.gutter": [
-      "app.tokenColors.deleted.foreground"
+      "app.tokenColors.deleted.foreground",
+      "app.tokens.--diff-removed",
+      "app.tokens.--diff-removed-gutter",
+      "app.tokens.--git-decoration-deleted"
     ],
     "color.diff.modified.gutter": [
-      "app.tokenColors.changed.foreground"
+      "app.tokenColors.changed.foreground",
+      "app.tokens.--git-decoration-modified"
     ],
     "color.diagnostic.error.text": [
       "app.tokenColors.invalid.foreground"
@@ -221,13 +238,74 @@
     "color.code.syntax.escape": [
       "app.tokenColors.escape.foreground"
     ],
-    "color.text.accent-strong": [
-      "app.tokens.--primary",
-      "app.tokens.--sidebar-primary"
-    ],
-    "color.text.inverse": [
+    "color.text.bright": [
       "app.tokens.--primary-foreground",
-      "app.tokens.--sidebar-primary-foreground"
+      "app.tokens.--sidebar-primary-foreground",
+      "app.tokens.--worktree-sidebar-accent-foreground",
+      "app.tokens.--worktree-sidebar-foreground",
+      "app.tokens.--tab-active-foreground",
+      "app.tokens.--git-decoration-renamed",
+      "app.tokens.--git-decoration-copied",
+      "shell.LS_COLORS.di"
+    ],
+    "color.interaction.hover.bg": [
+      "app.tokens.--accent",
+      "app.tokens.--sidebar-accent",
+      "app.tokens.--worktree-sidebar-accent"
+    ],
+    "color.border.selected-indicator": [
+      "app.tokens.--worktree-sidebar-active-border",
+      "app.tokens.--tab-active-indicator"
+    ],
+    "color.diff.added.bg": [
+      "app.tokens.--diff-added-background",
+      "app.tokens.--diff-added-emphasis"
+    ],
+    "color.diff.removed.bg": [
+      "app.tokens.--diff-removed-background",
+      "app.tokens.--diff-removed-emphasis"
+    ],
+    "color.terminal.prompt-bg": [
+      "prompt.AGNOSTER_CONTEXT_BG",
+      "prompt.AGNOSTER_BZR_CLEAN_BG",
+      "prompt.AGNOSTER_BZR_DIRTY_BG",
+      "prompt.AGNOSTER_HG_NEWFILE_BG",
+      "prompt.AGNOSTER_HG_CHANGED_BG",
+      "prompt.AGNOSTER_HG_CLEAN_BG",
+      "prompt.AGNOSTER_VENV_BG",
+      "prompt.AGNOSTER_AWS_PROD_BG",
+      "prompt.AGNOSTER_AWS_BG",
+      "prompt.AGNOSTER_STATUS_BG"
+    ],
+    "color.terminal.prompt-text": [
+      "prompt.AGNOSTER_DIR_FG",
+      "prompt.AGNOSTER_CONTEXT_FG",
+      "prompt.AGNOSTER_GIT_CLEAN_FG",
+      "prompt.AGNOSTER_GIT_DIRTY_FG",
+      "prompt.AGNOSTER_BZR_CLEAN_FG",
+      "prompt.AGNOSTER_BZR_DIRTY_FG",
+      "prompt.AGNOSTER_HG_NEWFILE_FG",
+      "prompt.AGNOSTER_HG_CHANGED_FG",
+      "prompt.AGNOSTER_HG_CLEAN_FG",
+      "prompt.AGNOSTER_VENV_FG",
+      "prompt.AGNOSTER_AWS_PROD_FG",
+      "prompt.AGNOSTER_AWS_FG",
+      "prompt.AGNOSTER_STATUS_FG"
+    ],
+    "color.status.danger.text": [
+      "prompt.AGNOSTER_STATUS_RETVAL_FG",
+      "shell.LS_COLORS.or",
+      "shell.LS_COLORS.mi"
+    ],
+    "color.status.warning.text": [
+      "prompt.AGNOSTER_STATUS_ROOT_FG"
+    ],
+    "color.interaction.text-selection.bg": [
+      "prompt.AGNOSTER_DIR_BG",
+      "app.tokens.--primary"
+    ],
+    "color.border.strong": [
+      "app.tokens.--border"
     ]
   },
   "unmapped": {
@@ -258,9 +336,7 @@
     "color.border.default": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.border.disabled": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.border.overlay": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
-    "color.border.selected-indicator": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.border.selected-indicator-inactive": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
-    "color.border.strong": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.chart.axis": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.chart.grid": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.chart.label": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
@@ -290,19 +366,16 @@
     "color.diagnostic.warning.stripe": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.diagnostic.warning.text": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.diagnostic.warning.underline": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
-    "color.diff.added.bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.diff.added.emphasis": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.diff.conflict-border": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.diff.header-bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.diff.modified.bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
-    "color.diff.removed.bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.diff.removed.emphasis": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.icon.decorative": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.icon.default": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.interaction.disabled.bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.interaction.drop-target": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.interaction.focus.ring-container": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
-    "color.interaction.hover.bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.interaction.hover.bg-strong": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.interaction.marquee": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.interaction.pressed.bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
@@ -311,7 +384,6 @@
     "color.interaction.scrollbar.track": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.interaction.selection.inactive-bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.interaction.selection.inactive-text": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
-    "color.interaction.text-selection.bg": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.interaction.text-selection.text": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.primitive.alpha.black-55": "Primitive; ports consume roles, never primitives.",
     "color.primitive.alpha.black-65": "Primitive; ports consume roles, never primitives.",
@@ -396,7 +468,6 @@
     "color.status.danger.border": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.status.danger.fill": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.status.danger.on-fill": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
-    "color.status.danger.text": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.status.danger.tint": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.status.info.border": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.status.info.fill": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
@@ -415,7 +486,6 @@
     "color.status.warning.border": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.status.warning.fill": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.status.warning.on-fill": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
-    "color.status.warning.text": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.status.warning.tint": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.surface.backdrop": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.surface.chrome-alt": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
@@ -425,10 +495,7 @@
     "color.surface.overlay": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.surface.sunken": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.surface.terminal": "The config has one background key, which carries color.terminal.bg (equal to ANSI 0); the pane surface has no separate key.",
-    "color.terminal.prompt-bg": "The prompt chooses its own segment colours; a terminal theme carries the palette only.",
-    "color.terminal.prompt-text": "The prompt chooses its own segment colours; a terminal theme carries the palette only.",
     "color.text.accent": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
-    "color.text.bright": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.text.disabled": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.text.link-hover": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
     "color.text.link-underline": "No separately mapped public Orca theme key for this role; the host derives or retains this state. The app plugin maps supported chrome and editor keys independently of terminal colours.",
@@ -548,6 +615,14 @@
     "color.primitive.modern.bright-violet": "Primitive; ports consume roles, never primitives.",
     "color.primitive.modern.bright-cyan": "Primitive; ports consume roles, never primitives.",
     "color.action.primary.bg": "No independent app or terminal key uses this role.",
-    "color.action.primary.text": "No independent app or terminal key uses this role."
+    "color.action.primary.text": "No independent app or terminal key uses this role.",
+    "color.interaction.selection.bg": "No independent Orca public token consumes this role; supported controls use canonical surface and rose foreground roles.",
+    "color.interaction.selection.text": "No independent Orca public token consumes this role; supported controls use canonical surface and rose foreground roles.",
+    "color.text.accent-strong": "No independent Orca public token consumes this role; supported controls use canonical surface and rose foreground roles.",
+    "color.text.inverse": "No independent Orca public token consumes this role; supported controls use canonical surface and rose foreground roles.",
+    "color.primitive.modern.diff-shared-green": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.diff-shared-red": "Primitive; ports consume roles, never primitives.",
+    "color.diff.added.shared-word": "Only for a host sharing diff-summary foreground and word-highlight background; this port uses independent semantic roles.",
+    "color.diff.removed.shared-word": "Only for a host sharing diff-summary foreground and word-highlight background; this port uses independent semantic roles."
   }
 }

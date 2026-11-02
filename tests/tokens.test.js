@@ -26,6 +26,10 @@ test("the token validator accepts the committed sources", async () => {
 test("D-041 rose typography and semantic hues carry the expected values", async () => {
   const { profiles } = await validateTokens();
   const d = profiles.get("default");
+  for (const role of ["color.surface.default", "color.surface.raised", "color.surface.overlay", "color.border.default", "color.border.control"]) {
+    const [r, g, b] = d.get(role).resolved.components;
+    assert.ok(r > b && b >= g, `${role} must remain warm rose-gray, without a blue cast`);
+  }
   assert.equal(d.get("color.text.subtle").resolved.hex, "#bd787d");
   assert.equal(d.get("color.text.disabled").resolved.hex, "#a3676b");
   assert.equal(d.get("color.code.line-number").resolved.hex, "#bd787d");

@@ -18,19 +18,11 @@
       "selectionBg"
     ],
     "color.diff.added.bg": [
-      "diffAdded"
-    ],
-    "color.diff.added.emphasis": [
-      "diffAddedWord"
+      "diffAdded",
+      "diffAddedDimmed"
     ],
     "color.diff.removed.bg": [
-      "diffRemoved"
-    ],
-    "color.diff.removed.emphasis": [
-      "diffRemovedWord"
-    ],
-    "color.interaction.disabled.bg": [
-      "diffAddedDimmed",
+      "diffRemoved",
       "diffRemovedDimmed"
     ],
     "color.interaction.hover.bg-strong": [
@@ -146,6 +138,12 @@
     ],
     "color.terminal.fg": [
       "text"
+    ],
+    "color.diff.added.shared-word": [
+      "diffAddedWord"
+    ],
+    "color.diff.removed.shared-word": [
+      "diffRemovedWord"
     ]
   },
   "unmapped": {
@@ -491,6 +489,11 @@
     "color.primitive.modern.bright-amber": "Primitive; ports consume roles, never primitives.",
     "color.primitive.modern.bright-blue": "Primitive; ports consume roles, never primitives.",
     "color.primitive.modern.bright-violet": "Primitive; ports consume roles, never primitives.",
-    "color.primitive.modern.bright-cyan": "Primitive; ports consume roles, never primitives."
+    "color.primitive.modern.bright-cyan": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.diff-shared-green": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.diff-shared-red": "Primitive; ports consume roles, never primitives.",
+    "color.diff.added.emphasis": "No Claude theme key consumes this role; the shared word keys use their dedicated compromise roles and line tints stay semantic.",
+    "color.diff.removed.emphasis": "No Claude theme key consumes this role; the shared word keys use their dedicated compromise roles and line tints stay semantic.",
+    "color.interaction.disabled.bg": "No Claude theme key consumes this role; the shared word keys use their dedicated compromise roles and line tints stay semantic."
   }
 }

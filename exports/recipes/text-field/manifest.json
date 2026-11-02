@@ -20,11 +20,11 @@
       "site/src/styles/partials/field.css": "sha256-WTZb/N3/3OT12dHJbvImC02NJBaOkGX8rQ+alodB3S0=",
       "site/src/styles/components/text-field.css": "sha256-7+qdAGWDYb/DiCLCXFkZQza4ZD7o1ZpPmdqR69w8TrU=",
       "LICENSE.md": "sha256-Ih5+DpqcNXGWJX6BbYgpt6psmJi9lGcXGJzuiU7elE0=",
-      "tokens/primitives.tokens.json": "sha256-0n3ffB2q/0KfsIUxQsTiiQxkpA5pD3dWS60k83OrvQU=",
-      "tokens/semantic.tokens.json": "sha256-YfTSSKFjjId1WVFuy3qs7m66JsbijxhuSPMlLGUBw0I=",
+      "tokens/primitives.tokens.json": "sha256-+5ALj3StcjIgqCUMubKZz0Egg4Bhc32gY6o2ALxS7ys=",
+      "tokens/semantic.tokens.json": "sha256-wQSGPbprPL7vV96KulTYRnJw8ObBVQoWpMTLvFiSYO8=",
       "tokens/foundations.tokens.json": "sha256-rCrhBaYt63CHz5/v3r/oC5qF83JoqaM8O7kzQyDr8cY="
     },
-    "digest": "sha256-VK14zAkU39Bxil3ViCcp+/ilpHI9itjCdwr4qhYc1nQ=",
+    "digest": "sha256-kOKDz4dsj3amM13pBUjrkLw8ImGk1zDLdweHi/3kA5c=",
     "revisionPolicy": "Resolve these paths at the same pinned commit as this manifest. The hosted source viewer identifies its supplying commit; generated source files contain content digests, never a floating revision claim."
   },
   "dependencies": {
@@ -352,12 +352,12 @@
   "files": {
     "markup.html": "sha256-wARfGY6V60eMUhV8JNGMhY+EnikQvcPlSqkD5WPOULo=",
     "template.html": "sha256-IlSlLS7sPC3MLqIdxMRQUP4sFnn/58lwM3AFALtdY3c=",
-    "tokens.css": "sha256-KpuCy3ucV5Dj0QHUG6ab/N06NgUt1tQZMUKdRSmH7og=",
+    "tokens.css": "sha256-fa1P2dmmaCtCCmZ6YgbxjiR7rUWHXm03i5WrRPJsC2o=",
     "foundation.css": "sha256-jm66ZdmdAhTyMVQIMKhzVZZm/NhB5ZbLq8g3UASzy98=",
     "component.css": "sha256-HLK6PSsbThQsRH4Y6wgRJXw4vWcrki2Vs0MZO6ANnGw=",
-    "example.html": "sha256-vKVSfCuGTMM+t3qgxg2azYW7dHTc/RmSaSLofppy+vk=",
-    "two-instances.html": "sha256-LbDo/vIJlHnTr4x2UurpnQsi7FOpMYnm4pY1ruFBkIo=",
+    "example.html": "sha256-GsAEOh/GpJHMylF5qmQca+Iom+YtNgkTXNO+5VCjBQ0=",
+    "two-instances.html": "sha256-plmpPhVNkuY0kv9tOhhYZJL66+sRnrOZaLzvzCiduf8=",
     "LICENSE.md": "sha256-vVf/G6WKJRqbyGZCppbAxMh+UAJdSzaPt5xWUujehyU=",
-    "README.md": "sha256-AfcP6dLQKgKRl8Xy1g7RMuyCOhOW8KJcUrHqBjSad6w="
+    "README.md": "sha256-kE+5uVRBPz10QZqWL1sAKJhcgGtRmIeINGufG0puWH4="
   }
 }

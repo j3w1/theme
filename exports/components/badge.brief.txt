@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — badge
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-3TpAOt6MFRkInKpfNwQFYM/II7WK1keACleSRtw6SrE=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-sCxjZdAqLlE1Q9ukwiB7Cju9jv2KO1vefm66CYFf/yg=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/badge.json
 spec: spec/components/badge.md  site: https://j3w1.github.io/theme/reference/#c-badge
 maturity: stable  priority: R1
@@ -24,9 +24,9 @@ Tokens (resolved):
   info.text             #000000  ({color.status.info.on-fill})  use
   info.border           #82b4ff  ({color.status.info.border})  use
   info.outline-text     #82b4ff  ({color.status.info.text})  use
-  neutral.bg            #747e8e  ({color.status.neutral.fill})  use
+  neutral.bg            #986f72  ({color.status.neutral.fill})  use
   neutral.text          #000000  ({color.status.neutral.on-fill})  use
-  neutral.border        #747e8e  ({color.status.neutral.border})  use
+  neutral.border        #986f72  ({color.status.neutral.border})  use
   neutral.outline-text  #d4868b  ({color.status.neutral.text})  use
   count.bg              #7d1310  ({color.action.primary.bg})  use
   count.text            #ffa2a7  ({color.action.primary.text})  use

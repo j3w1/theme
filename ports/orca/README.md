@@ -171,6 +171,78 @@ recorded. Before writing anything the installer plans every change and makes a
 backup; a problem found while planning stops the run with nothing written.
 `-WhatIf` prints the plan and writes nothing.
 
+## Agnoster shell prompt
+
+`dist/agnoster.zsh` assigns the canonical prompt roles to Agnoster's configurable
+segments: rose text, a dark-red path, a warm near-black Git branch and black
+context/environment fills. The path and branch remain visually distinct. Dirty
+Git state keeps its existing `±` / `✚` markers; errors and root warnings retain
+semantic foregrounds. This changes prompt branding without changing green ANSI
+diffs or status text. Load it **after** oh-my-zsh/Agnoster; it does not replace
+prompt functions or change other themes. Agnoster's hard-coded Conda and
+Terraform segments are outside these configurable variables.
+
+The same optional Zsh file sets GNU `ls` ordinary files to rose, directories
+to bright rose, links to muted rose and missing/broken links to danger red.
+It preserves existing executable, permission and extension rules, and repeated
+sourcing replaces only these owned type entries. This is independent of ANSI
+blue used by code, links and status in other programs.
+
+Copy `dist/agnoster.zsh` to `~/.config/j3w1-theme/agnoster.zsh`, preserving a
+backup if it already exists, then source it from your final shell configuration:
+
+```zsh
+source "$HOME/.config/j3w1-theme/agnoster.zsh"
+```
+
+On CE Devbox, put that line in `~/.config/ce-devbox/zshrc.local`, the supported
+user override sourced after its generated `.zshrc`. If its older generated
+`/etc/profile.d/ce-theme.sh` resets the terminal palette, use its documented
+opt-out, `export CE_THEME=off` in `~/.zshenv`, to keep Orca's selected terminal
+theme authoritative. Preserve existing file contents; do not edit generated
+system files. This opt-out requires the terminal itself to have the current
+theme installed. It does not migrate CE Devbox's console, Hermes or browser
+theme. Existing shells can load the prompt with the source command above;
+new shells load the final override automatically. Active agents need no restart.
+
+## Public app color coverage
+
+The plugin explicitly maps all 66 public app tokens accepted by Orca 1.4.246,
+including workspace selection, host badges, active/inactive tabs, split dividers,
+chat user messages, links, diff fills and Git decorations. This prevents omitted
+tokens from falling back to Orca's stock colors. Buttons and selected rows use
+rose foregrounds on dark canonical surfaces. Semantic green remains for additions
+and added/untracked files. Character diff emphasis uses the same dark semantic
+fill as the line, preserving readable syntax instead of a saturated opaque fill.
+
+App tokens color Orca-owned browser chrome and notifications where those surfaces
+consume the public app roles. They do not style external web pages such as GitHub;
+those pages own their content CSS. Browser profiles or explicit site theming are a
+separate integration, not an effect claimed by this plugin.
+
+Orca 1.4.246 hardcodes sleeping-workspace text to a 52% OKLab mix with the sidebar
+background. Its sidebar navigation also uses 60% text and 30% icon opacity. These
+factors have no public theme token. Bright rose sidebar text improves the base
+color but cannot remove the host's dimming. The repository does not patch Orca's
+private styles or configuration to override it.
+
+Orca's standard tooltip component also inverts the global foreground/background
+roles (`bg-foreground text-background`). Orca 1.4.246 exposes neither tooltip
+color tokens nor a documented custom-CSS field in its strict app-theme schema.
+A black tooltip with rose text therefore requires an Orca-side theme hook;
+changing the global foreground to black would make the rest of the app unreadable.
+The status bar uses the shared card surface and border tokens, not an independent
+status-bar token. The plugin maps these to black and canonical red respectively;
+other cards and separators share those colors.
+
+Ordinary app-text selection has no public theme token or global selection override.
+Orca leaves it to Chromium/system Highlight colors. Some workspace detail inputs
+explicitly request Highlight/HighlightText; the shared input component instead
+uses the primary/primary-foreground roles for selection. The plugin maps this
+shared pair to a visible dark-red selection fill and bright rose text, which also
+colors primary buttons. Terminal selection is
+independently mapped by the terminal theme.
+
 ## Limits
 
 These are Orca's limits; Apply and Test print them every time.

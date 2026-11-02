@@ -19,12 +19,17 @@ const ctx = {
 };
 const contrast = (fg, bg) => ratio(colorValue(fg), colorValue(bg));
 
-test("Claude edit-summary counts stay readable and green/red instead of using dark line tints", () => {
-  // Claude 2.1.301 uses these same word keys as +N/-N foregrounds.
+test("Claude shared diff keys balance summary and word-fill contrast without dark summary counts", () => {
+  // Claude 2.1.303 shares these as summary foreground and word background.
+  // D-041 records the ~3:1 host compromise; normal line text still needs 4.5.
   const theme = claudeTheme(ctx).overrides;
   const bg = color("color.terminal.bg");
-  assert.ok(contrast(theme.diffAddedWord, bg) >= 4.5, "+N foreground on terminal");
-  assert.ok(contrast(theme.diffRemovedWord, bg) >= 4.5, "-N foreground on terminal");
+  assert.ok(contrast(theme.diffAddedWord, bg) >= 3, "+N foreground on terminal");
+  assert.ok(contrast(theme.diffRemovedWord, bg) >= 3, "-N foreground on terminal");
+  assert.ok(contrast(theme.text, theme.diffAddedWord) >= 3, "rose on shared added-word fill");
+  assert.ok(contrast(theme.text, theme.diffRemovedWord) >= 3, "rose on shared removed-word fill");
+  assert.equal(theme.diffAddedDimmed, theme.diffAdded, "dimmed additions retain their semantic tint");
+  assert.equal(theme.diffRemovedDimmed, theme.diffRemoved, "dimmed removals retain their semantic tint");
   const [r, g, b] = rgb(theme.diffAddedWord);
   assert.ok(g > r && g > b, "additions are green");
   const [rr, rg, rb] = rgb(theme.diffRemovedWord);

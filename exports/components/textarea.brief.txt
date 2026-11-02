@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — textarea
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-3TpAOt6MFRkInKpfNwQFYM/II7WK1keACleSRtw6SrE=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-sCxjZdAqLlE1Q9ukwiB7Cju9jv2KO1vefm66CYFf/yg=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/textarea.json
 spec: spec/components/textarea.md  site: https://j3w1.github.io/theme/reference/#c-textarea
 maturity: stable  priority: R1
@@ -9,15 +9,15 @@ Summary: Multi-line free-text entry in the same box as the text field; resizes v
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
   root.bg               #000000  ({color.surface.input})  use
-  root.border           #747e8e  ({color.border.control})  use
-  root.bg-hover         #191c22  ({color.interaction.hover.bg})  use
+  root.border           #986f72  ({color.border.control})  use
+  root.bg-hover         #1c1010  ({color.interaction.hover.bg})  use
   root.border-focus     #e53935  ({color.border.active})  use
   root.ring             #e53935  ({color.interaction.focus.ring})  use
   root.ring-invalid     #ffa2a7  ({color.interaction.focus.ring-container})  use
   root.border-invalid   #e53935  ({color.status.danger.border})  use
-  root.border-disabled  #303640  ({color.border.disabled})  use
-  root.bg-disabled      #0e1014  ({color.interaction.disabled.bg})  use
-  root.border-readonly  #303640  ({color.border.divider})  use
+  root.border-disabled  #482b2b  ({color.border.disabled})  use
+  root.bg-disabled      #0d0707  ({color.interaction.disabled.bg})  use
+  root.border-readonly  #482b2b  ({color.border.divider})  use
   root.bg-readonly      #000000  ({color.surface.canvas})  use
   input.text            #e99499  ({color.text.default})  use
   input.text-disabled   #a3676b  ({color.text.disabled})  use

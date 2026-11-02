@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — checkbox
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-3TpAOt6MFRkInKpfNwQFYM/II7WK1keACleSRtw6SrE=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-sCxjZdAqLlE1Q9ukwiB7Cju9jv2KO1vefm66CYFf/yg=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/checkbox.json
 spec: spec/components/checkbox.md  site: https://j3w1.github.io/theme/reference/#c-checkbox
 maturity: stable  priority: R1
@@ -9,16 +9,16 @@ Summary: The native checkbox drawn as a 16px square that fills with the primary 
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
   box.bg                #000000  ({color.surface.input})  use
-  box.border            #747e8e  ({color.border.control})  use
-  box.bg-hover          #191c22  ({color.interaction.hover.bg})  use
+  box.border            #986f72  ({color.border.control})  use
+  box.bg-hover          #1c1010  ({color.interaction.hover.bg})  use
   box.ring              #e53935  ({color.interaction.focus.ring})  use
   box.bg-checked        #7d1310  ({color.action.primary.bg})  use
   box.bg-checked-hover  #911410  ({color.action.primary.hover-bg})  use
   box.glyph             #ffa2a7  ({color.action.primary.text})  use
   box.ring-checked      #ffa2a7  ({color.interaction.focus.ring-container})  use
   box.border-invalid    #e53935  ({color.status.danger.border})  use
-  box.bg-disabled       #0e1014  ({color.interaction.disabled.bg})  use
-  box.border-disabled   #303640  ({color.border.disabled})  use
+  box.bg-disabled       #0d0707  ({color.interaction.disabled.bg})  use
+  box.border-disabled   #482b2b  ({color.border.disabled})  use
   box.glyph-disabled    #a3676b  ({color.text.disabled})  use
   text.default          #e99499  ({color.text.default})  use
   text.disabled         #a3676b  ({color.text.disabled})  use

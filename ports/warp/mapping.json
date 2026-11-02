@@ -422,6 +422,10 @@
     "color.primitive.modern.bright-amber": "Primitive; ports consume roles, never primitives.",
     "color.primitive.modern.bright-blue": "Primitive; ports consume roles, never primitives.",
     "color.primitive.modern.bright-violet": "Primitive; ports consume roles, never primitives.",
-    "color.primitive.modern.bright-cyan": "Primitive; ports consume roles, never primitives."
+    "color.primitive.modern.bright-cyan": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.diff-shared-green": "Primitive; ports consume roles, never primitives.",
+    "color.primitive.modern.diff-shared-red": "Primitive; ports consume roles, never primitives.",
+    "color.diff.added.shared-word": "Only for a host sharing diff-summary foreground and word-highlight background; this port uses independent semantic roles.",
+    "color.diff.removed.shared-word": "Only for a host sharing diff-summary foreground and word-highlight background; this port uses independent semantic roles."
   }
 }

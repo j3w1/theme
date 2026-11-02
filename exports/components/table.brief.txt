@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — table
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-3TpAOt6MFRkInKpfNwQFYM/II7WK1keACleSRtw6SrE=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-sCxjZdAqLlE1Q9ukwiB7Cju9jv2KO1vefm66CYFf/yg=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/table.json
 spec: spec/components/table.md  site: https://j3w1.github.io/theme/reference/#c-table
 maturity: stable  priority: R1
@@ -8,16 +8,16 @@ Summary: A native data table with a header rule, row dividers, hover and selecti
 
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  root.bg                 #0e1014  ({color.surface.default})  use
+  root.bg                 #0d0707  ({color.surface.default})  use
   header.text             #ffa2a7  ({color.text.bright})  use
-  header.bg               #0e1014  ({color.surface.default})  use
+  header.bg               #0d0707  ({color.surface.default})  use
   header.rule             #9e231f  ({color.border.strong})  use
-  header.bg-sticky        #15181e  ({color.surface.raised})  use
+  header.bg-sticky        #140b0b  ({color.surface.raised})  use
   sort.glyph              #ffa2a7  ({color.text.bright})  use
   sort.ring               #e53935  ({color.interaction.focus.ring})  use
   row.text                #e99499  ({color.text.default})  use
-  row.divider             #303640  ({color.border.divider})  use
-  row.bg-hover            #191c22  ({color.interaction.hover.bg})  use
+  row.divider             #482b2b  ({color.border.divider})  use
+  row.bg-hover            #1c1010  ({color.interaction.hover.bg})  use
   selected.bg             #531310  ({color.interaction.selection.bg})  use
   selected.text           #f4eeee  ({color.interaction.selection.text})  use
   selected.ring           #e53935  ({color.interaction.focus.ring})  use

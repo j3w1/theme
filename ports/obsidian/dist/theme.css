@@ -4,19 +4,19 @@
  */
 .theme-dark {
   --background-primary: #000000;
-  --background-primary-alt: #0e1014;
-  --background-secondary: #0e1014;
-  --settings-background: #0e1014;
-  --setting-items-background: #0e1014;
-  --modal-sidebar-background: #0e1014;
-  --search-result-background: #0e1014;
-  --background-secondary-alt: #15181e;
-  --menu-background: #15181e;
-  --suggestion-background: #15181e;
-  --prompt-background: #15181e;
-  --background-modifier-message: #15181e;
-  --raised-background: #15181e;
-  --modal-background: #191c22;
+  --background-primary-alt: #0d0707;
+  --background-secondary: #0d0707;
+  --settings-background: #0d0707;
+  --setting-items-background: #0d0707;
+  --modal-sidebar-background: #0d0707;
+  --search-result-background: #0d0707;
+  --background-secondary-alt: #140b0b;
+  --menu-background: #140b0b;
+  --suggestion-background: #140b0b;
+  --prompt-background: #140b0b;
+  --background-modifier-message: #140b0b;
+  --raised-background: #140b0b;
+  --modal-background: #1c1010;
   --background-modifier-form-field: #000000;
   --background-modifier-form-field-hover: #000000;
   --dropdown-background: #000000;
@@ -26,8 +26,8 @@
   --tab-container-background: #000000;
   --status-bar-background: #000000;
   --file-header-background: #000000;
-  --titlebar-background-focused: #15181e;
-  --file-header-background-focused: #15181e;
+  --titlebar-background-focused: #140b0b;
+  --file-header-background-focused: #140b0b;
   --background-modifier-cover: rgb(0 0 0 / 65%);
   --text-normal: #e99499;
   --nav-item-color: #e99499;
@@ -35,14 +35,14 @@
   --titlebar-text-color-focused: #e99499;
   --metadata-input-text-color: #e99499;
   --italic-color: #ffa2a7;
-  --inline-title-color: #f1f5f9;
+  --inline-title-color: #f4eeee;
   --setting-group-heading-color: #ffa2a7;
-  --h1-color: #f1f5f9;
-  --h2-color: #f1f5f9;
-  --h3-color: #f1f5f9;
-  --h4-color: #f1f5f9;
-  --h5-color: #f1f5f9;
-  --h6-color: #f1f5f9;
+  --h1-color: #f4eeee;
+  --h2-color: #f4eeee;
+  --h3-color: #f4eeee;
+  --h4-color: #f4eeee;
+  --h5-color: #f4eeee;
+  --h6-color: #f4eeee;
   --text-muted: #d4868b;
   --titlebar-text-color: #d4868b;
   --status-bar-text-color: #d4868b;
@@ -64,23 +64,23 @@
   --link-color-hover: #f4eeee;
   --link-external-color-hover: #f4eeee;
   --text-accent-hover: #f4eeee;
-  --background-modifier-border: #747e8e;
-  --checkbox-border-color: #747e8e;
-  --slider-thumb-border-color: #747e8e;
+  --background-modifier-border: #986f72;
+  --checkbox-border-color: #986f72;
+  --slider-thumb-border-color: #986f72;
   --background-modifier-border-hover: #e53935;
   --checkbox-border-color-hover: #e53935;
   --divider-color-hover: #e53935;
-  --divider-color: #303640;
-  --tab-divider-color: #303640;
-  --status-bar-border-color: #303640;
-  --hr-color: #303640;
-  --table-border-color: #303640;
-  --metadata-divider-color: #303640;
-  --code-border-color: #303640;
-  --tab-outline-color: #303640;
-  --modal-border-color: #747e8e;
-  --menu-border-color: #747e8e;
-  --prompt-border-color: #747e8e;
+  --divider-color: #482b2b;
+  --tab-divider-color: #482b2b;
+  --status-bar-border-color: #482b2b;
+  --hr-color: #482b2b;
+  --table-border-color: #482b2b;
+  --metadata-divider-color: #482b2b;
+  --code-border-color: #482b2b;
+  --tab-outline-color: #482b2b;
+  --modal-border-color: #986f72;
+  --menu-border-color: #986f72;
+  --prompt-border-color: #986f72;
   --background-modifier-border-focus: #e53935;
   --nav-item-background-active: #531310;
   --nav-item-background-selected: #531310;
@@ -92,13 +92,13 @@
   --tab-text-color-focused-active-current: #f4eeee;
   --tab-text-color-active: #e99499;
   --text-selection: #420f0c;
-  --background-modifier-hover: #191c22;
-  --nav-item-background-hover: #191c22;
-  --dropdown-background-hover: #191c22;
+  --background-modifier-hover: #1c1010;
+  --nav-item-background-hover: #1c1010;
+  --dropdown-background-hover: #1c1010;
   --background-modifier-active-hover: #420f0c;
   --scrollbar-bg: #000000;
-  --scrollbar-thumb-bg: #747e8e;
-  --scrollbar-active-thumb-bg: #a6afbd;
+  --scrollbar-thumb-bg: #986f72;
+  --scrollbar-active-thumb-bg: #d4868b;
   --interactive-accent: #7d1310;
   --checkbox-color: #7d1310;
   --text-on-accent: #ffa2a7;
@@ -127,8 +127,8 @@
   --code-background: #000000;
   --caret-color: #ffa2a7;
   --text-highlight-bg: #630f0d;
-  --indentation-guide-color: #303640;
-  --indentation-guide-color-active: #303640;
+  --indentation-guide-color: #482b2b;
+  --indentation-guide-color-active: #482b2b;
   --code-normal: #e99499;
   --code-comment: #bd787d;
   --code-function: #82b4ff;
@@ -212,30 +212,30 @@
 
 /* Preserve mapped roles where native dark mobile roots redeclare them. */
 .theme-dark.is-mobile {
-  --search-result-background: #0e1014;
+  --search-result-background: #0d0707;
   --background-modifier-form-field: #000000;
   --background-modifier-cover: rgb(0 0 0 / 65%);
-  --background-modifier-hover: #191c22;
-  --background-modifier-message: #15181e;
-  --modal-border-color: #747e8e;
-  --settings-background: #0e1014;
-  --setting-items-background: #0e1014;
-  --modal-background: #191c22;
+  --background-modifier-hover: #1c1010;
+  --background-modifier-message: #140b0b;
+  --modal-border-color: #986f72;
+  --settings-background: #0d0707;
+  --setting-items-background: #0d0707;
+  --modal-background: #1c1010;
   --interactive-normal: rgb(0 0 0 / 0%);
   --interactive-hover: #630f0d;
 }
 
 .theme-dark.is-mobile.is-tablet {
-  --settings-background: #0e1014;
+  --settings-background: #0d0707;
 }
 
 .theme-dark.is-tablet {
   --titlebar-background: #000000;
-  --titlebar-background-focused: #15181e;
+  --titlebar-background-focused: #140b0b;
 }
 
 .theme-dark.is-phone {
-  --modal-sidebar-background: #0e1014;
+  --modal-sidebar-background: #0d0707;
 }
 
 
@@ -276,13 +276,13 @@
 
 /* File preview popovers use the canvas variable locally; raised content requires a scoped value. */
 .theme-dark .popover {
-  --background-primary: #15181e;
+  --background-primary: #140b0b;
 }
 
 /* Native tooltip hardcodes white text and has no border variables. */
 .theme-dark .tooltip {
   color: #e99499;
-  border-color: #747e8e;
+  border-color: #986f72;
   border-width: 1px;
   border-style: solid;
   box-shadow: none;
@@ -296,7 +296,7 @@
 /* Native prompt field needs a fill and border; compact start padding preserves the native clear-button end reservation. */
 .theme-dark .prompt input.prompt-input {
   background-color: #000000;
-  border-color: #747e8e;
+  border-color: #986f72;
   border-width: 1px;
   padding-block: 4px;
   padding-inline-start: 8px;
@@ -334,7 +334,7 @@
 
 /* Menus consume general hover fill; local strong hover keeps other surfaces restrained. */
 .theme-dark .menu {
-  --background-modifier-hover: #191c22;
+  --background-modifier-hover: #1c1010;
 }
 
 /* Reserve the selected tree indicator in every state so labels do not move. */
@@ -376,7 +376,7 @@
 /* Native standard buttons use shadow as their boundary; supply a real outline edge after removing decorative shadows. */
 .theme-dark button:not(.clickable-icon) {
   border-width: 1px;
-  border-color: #747e8e;
+  border-color: #986f72;
   --text-color: #ffa2a7;
   border-style: solid;
 }
@@ -442,21 +442,21 @@
 /* Native select uses decorative input shadow as its edge; replace with a real control border. */
 .theme-dark select {
   border-width: 1px;
-  border-color: #747e8e;
+  border-color: #986f72;
   border-style: solid;
 }
 
 /* Native dropdown uses input shadow as its edge; replace with a real control border. */
 .theme-dark .dropdown {
   border-width: 1px;
-  border-color: #747e8e;
+  border-color: #986f72;
   border-style: solid;
 }
 
 /* Native combobox button uses input shadow as its edge; replace with a real control border. */
 .theme-dark .combobox-button {
   border-width: 1px;
-  border-color: #747e8e;
+  border-color: #986f72;
   border-style: solid;
 }
 
@@ -464,8 +464,8 @@
 .theme-dark button:not(.clickable-icon)[disabled] {
   --text-color: #a3676b;
   color: #a3676b;
-  background-color: #0e1014;
-  border-color: #303640;
+  background-color: #0d0707;
+  border-color: #482b2b;
   opacity: 1;
 }
 
@@ -473,8 +473,8 @@
 .theme-dark button:not(.clickable-icon)[aria-disabled="true"] {
   --text-color: #a3676b;
   color: #a3676b;
-  background-color: #0e1014;
-  border-color: #303640;
+  background-color: #0d0707;
+  border-color: #482b2b;
   opacity: 1;
 }
 

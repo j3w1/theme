@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — wizard
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-3TpAOt6MFRkInKpfNwQFYM/II7WK1keACleSRtw6SrE=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-sCxjZdAqLlE1Q9ukwiB7Cju9jv2KO1vefm66CYFf/yg=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/wizard.json
 spec: spec/components/wizard.md  site: https://j3w1.github.io/theme/reference/#c-wizard
 maturity: stable  priority: R1
@@ -8,9 +8,9 @@ Summary: A multi-step form with a stepper header, the current panel and back/nex
 
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
-  steps.divider           #303640  ({color.border.divider})  use
+  steps.divider           #482b2b  ({color.border.divider})  use
   step.text               #e99499  ({color.text.default})  use
-  step.bg-hover           #191c22  ({color.interaction.hover.bg})  use
+  step.bg-hover           #1c1010  ({color.interaction.hover.bg})  use
   step.ring               #e53935  ({color.interaction.focus.ring})  use
   step.text-current       #ffa2a7  ({color.text.bright})  use
   step.indicator-current  #e53935  ({color.border.selected-indicator})  use
@@ -18,8 +18,8 @@ Tokens (resolved):
   step.marker-complete    #82d9a0  ({color.status.success.text})  use
   step.marker-invalid     #f07178  ({color.status.danger.text})  use
   step.indicator-invalid  #e53935  ({color.status.danger.border})  use
-  panel.bg                #0e1014  ({color.surface.default})  use
-  panel.border            #303640  ({color.border.default})  use
+  panel.bg                #0d0707  ({color.surface.default})  use
+  panel.border            #482b2b  ({color.border.default})  use
   title.text              #ffa2a7  ({color.text.bright})  use
   text.text               #e99499  ({color.text.default})  use
   message.text            #f07178  ({color.status.danger.text})  use
@@ -30,7 +30,7 @@ Tokens (resolved):
   next.border             #9e231f  ({color.action.primary.border})  use
   next.ring               #ffa2a7  ({color.interaction.focus.ring-container})  use
   back.text               #ffa2a7  ({color.action.secondary.text})  use
-  back.border             #747e8e  ({color.action.secondary.border})  use
+  back.border             #986f72  ({color.action.secondary.border})  use
   back.bg-hover           #630f0d  ({color.action.secondary.hover-bg})  use
   busy.glyph              #ffa2a7  ({color.action.primary.text})  use
 

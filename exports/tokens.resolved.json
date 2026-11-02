@@ -1988,14 +1988,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.054901960784313725,
-              0.06274509803921569,
-              0.0784313725490196
+              0.051,
+              0.0275,
+              0.0275
             ],
             "alpha": 1,
-            "hex": "#0e1014"
+            "hex": "#0d0707"
           },
-          "css": "#0e1014",
+          "css": "#0d0707",
           "aliasOf": null,
           "description": "D-041 panel colour.",
           "status": "approved",
@@ -2012,14 +2012,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.08235294117647059,
-              0.09411764705882353,
-              0.11764705882352941
+              0.0784,
+              0.0431,
+              0.0431
             ],
             "alpha": 1,
-            "hex": "#15181e"
+            "hex": "#140b0b"
           },
-          "css": "#15181e",
+          "css": "#140b0b",
           "aliasOf": null,
           "description": "D-041 raised colour.",
           "status": "approved",
@@ -2036,14 +2036,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.09803921568627451,
-              0.10980392156862745,
-              0.13333333333333333
+              0.1098,
+              0.0627,
+              0.0627
             ],
             "alpha": 1,
-            "hex": "#191c22"
+            "hex": "#1c1010"
           },
-          "css": "#191c22",
+          "css": "#1c1010",
           "aliasOf": null,
           "description": "D-041 overlay colour.",
           "status": "approved",
@@ -2060,14 +2060,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.09803921568627451,
-              0.10980392156862745,
-              0.13333333333333333
+              0.1098,
+              0.0627,
+              0.0627
             ],
             "alpha": 1,
-            "hex": "#191c22"
+            "hex": "#1c1010"
           },
-          "css": "#191c22",
+          "css": "#1c1010",
           "aliasOf": null,
           "description": "D-041 hover colour.",
           "status": "approved",
@@ -2084,14 +2084,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.18823529411764706,
-              0.21176470588235294,
-              0.25098039215686274
+              0.2824,
+              0.1686,
+              0.1686
             ],
             "alpha": 1,
-            "hex": "#303640"
+            "hex": "#482b2b"
           },
-          "css": "#303640",
+          "css": "#482b2b",
           "aliasOf": null,
           "description": "D-041 divider colour.",
           "status": "approved",
@@ -2108,14 +2108,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4549019607843137,
-              0.49411764705882355,
-              0.5568627450980392
+              0.5961,
+              0.4353,
+              0.4471
             ],
             "alpha": 1,
-            "hex": "#747e8e"
+            "hex": "#986f72"
           },
-          "css": "#747e8e",
+          "css": "#986f72",
           "aliasOf": null,
           "description": "D-041 control colour.",
           "status": "approved",
@@ -2132,14 +2132,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4470588235294118,
-              0.4823529411764706,
-              0.5372549019607843
+              0.6392,
+              0.4039,
+              0.4196
             ],
             "alpha": 1,
-            "hex": "#727b89"
+            "hex": "#a3676b"
           },
-          "css": "#727b89",
+          "css": "#a3676b",
           "aliasOf": null,
           "description": "D-041 disabled colour.",
           "status": "approved",
@@ -2156,14 +2156,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.5647058823529412,
-              0.6039215686274509,
-              0.6666666666666666
+              0.7412,
+              0.4706,
+              0.4902
             ],
             "alpha": 1,
-            "hex": "#909aaa"
+            "hex": "#bd787d"
           },
-          "css": "#909aaa",
+          "css": "#bd787d",
           "aliasOf": null,
           "description": "D-041 subtle colour.",
           "status": "approved",
@@ -2180,14 +2180,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.6509803921568628,
-              0.6862745098039216,
-              0.7411764705882353
+              0.8314,
+              0.5255,
+              0.5451
             ],
             "alpha": 1,
-            "hex": "#a6afbd"
+            "hex": "#d4868b"
           },
-          "css": "#a6afbd",
+          "css": "#d4868b",
           "aliasOf": null,
           "description": "D-041 muted colour.",
           "status": "approved",
@@ -2204,14 +2204,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.8470588235294118,
-              0.8705882352941177,
-              0.9137254901960784
+              0.9137,
+              0.5804,
+              0.6
             ],
             "alpha": 1,
-            "hex": "#d8dee9"
+            "hex": "#e99499"
           },
-          "css": "#d8dee9",
+          "css": "#e99499",
           "aliasOf": null,
           "description": "D-041 text colour.",
           "status": "approved",
@@ -2228,14 +2228,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9450980392156862,
-              0.9607843137254902,
-              0.9764705882352941
+              0.9569,
+              0.9333,
+              0.9333
             ],
             "alpha": 1,
-            "hex": "#f1f5f9"
+            "hex": "#f4eeee"
           },
-          "css": "#f1f5f9",
+          "css": "#f4eeee",
           "aliasOf": null,
           "description": "D-041 bright colour.",
           "status": "approved",
@@ -2535,6 +2535,54 @@
             "decisionIds": []
           }
         },
+        "color.primitive.modern.diff-shared-green": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.17254901960784313,
+              0.396078431372549,
+              0.25098039215686274
+            ],
+            "alpha": 1,
+            "hex": "#2c6540"
+          },
+          "css": "#2c6540",
+          "aliasOf": null,
+          "description": "D-041 compromise for hosts sharing diff summary foreground and word background; not general text or ANSI.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-041",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.modern.diff-shared-red": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5843137254901961,
+              0.23921568627450981,
+              0.27450980392156865
+            ],
+            "alpha": 1,
+            "hex": "#953d46"
+          },
+          "css": "#953d46",
+          "aliasOf": null,
+          "description": "D-041 compromise for hosts sharing diff summary foreground and word background; not general text or ANSI.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-041",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Inspection only: consume semantic roles, not primitives.",
+            "decisionIds": []
+          }
+        },
         "color.surface.desktop": {
           "type": "color",
           "value": {
@@ -2612,14 +2660,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.08235294117647059,
-              0.09411764705882353,
-              0.11764705882352941
+              0.0784,
+              0.0431,
+              0.0431
             ],
             "alpha": 1,
-            "hex": "#15181e"
+            "hex": "#140b0b"
           },
-          "css": "#15181e",
+          "css": "#140b0b",
           "aliasOf": "color.primitive.modern.raised",
           "description": "D-041 surface.chrome-alt: color.primitive.modern.raised.",
           "status": "approved",
@@ -2660,14 +2708,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.054901960784313725,
-              0.06274509803921569,
-              0.0784313725490196
+              0.051,
+              0.0275,
+              0.0275
             ],
             "alpha": 1,
-            "hex": "#0e1014"
+            "hex": "#0d0707"
           },
-          "css": "#0e1014",
+          "css": "#0d0707",
           "aliasOf": "color.primitive.modern.panel",
           "description": "D-041 surface.default: color.primitive.modern.panel.",
           "status": "approved",
@@ -2684,14 +2732,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.08235294117647059,
-              0.09411764705882353,
-              0.11764705882352941
+              0.0784,
+              0.0431,
+              0.0431
             ],
             "alpha": 1,
-            "hex": "#15181e"
+            "hex": "#140b0b"
           },
-          "css": "#15181e",
+          "css": "#140b0b",
           "aliasOf": "color.primitive.modern.raised",
           "description": "D-041 surface.raised: color.primitive.modern.raised.",
           "status": "approved",
@@ -2708,14 +2756,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.09803921568627451,
-              0.10980392156862745,
-              0.13333333333333333
+              0.1098,
+              0.0627,
+              0.0627
             ],
             "alpha": 1,
-            "hex": "#191c22"
+            "hex": "#1c1010"
           },
-          "css": "#191c22",
+          "css": "#1c1010",
           "aliasOf": "color.primitive.modern.overlay",
           "description": "D-041 surface.overlay: color.primitive.modern.overlay.",
           "status": "approved",
@@ -3262,14 +3310,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9450980392156862,
-              0.9607843137254902,
-              0.9764705882352941
+              0.9569,
+              0.9333,
+              0.9333
             ],
             "alpha": 1,
-            "hex": "#f1f5f9"
+            "hex": "#f4eeee"
           },
-          "css": "#f1f5f9",
+          "css": "#f4eeee",
           "aliasOf": "color.primitive.modern.bright",
           "description": "D-041 text.heading: color.primitive.modern.bright.",
           "status": "approved",
@@ -3286,14 +3334,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9450980392156862,
-              0.9607843137254902,
-              0.9764705882352941
+              0.9569,
+              0.9333,
+              0.9333
             ],
             "alpha": 1,
-            "hex": "#f1f5f9"
+            "hex": "#f4eeee"
           },
-          "css": "#f1f5f9",
+          "css": "#f4eeee",
           "aliasOf": "color.primitive.modern.bright",
           "description": "D-041 text.highlight: color.primitive.modern.bright.",
           "status": "approved",
@@ -3310,14 +3358,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.18823529411764706,
-              0.21176470588235294,
-              0.25098039215686274
+              0.2824,
+              0.1686,
+              0.1686
             ],
             "alpha": 1,
-            "hex": "#303640"
+            "hex": "#482b2b"
           },
-          "css": "#303640",
+          "css": "#482b2b",
           "aliasOf": "color.primitive.modern.divider",
           "description": "D-041 border.divider: color.primitive.modern.divider.",
           "status": "approved",
@@ -3334,14 +3382,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.18823529411764706,
-              0.21176470588235294,
-              0.25098039215686274
+              0.2824,
+              0.1686,
+              0.1686
             ],
             "alpha": 1,
-            "hex": "#303640"
+            "hex": "#482b2b"
           },
-          "css": "#303640",
+          "css": "#482b2b",
           "aliasOf": "color.primitive.modern.divider",
           "description": "D-041 border.default: color.primitive.modern.divider.",
           "status": "approved",
@@ -3382,14 +3430,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4549019607843137,
-              0.49411764705882355,
-              0.5568627450980392
+              0.5961,
+              0.4353,
+              0.4471
             ],
             "alpha": 1,
-            "hex": "#747e8e"
+            "hex": "#986f72"
           },
-          "css": "#747e8e",
+          "css": "#986f72",
           "aliasOf": "color.primitive.modern.control",
           "description": "D-041 border.control: color.primitive.modern.control.",
           "status": "approved",
@@ -3430,14 +3478,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4549019607843137,
-              0.49411764705882355,
-              0.5568627450980392
+              0.5961,
+              0.4353,
+              0.4471
             ],
             "alpha": 1,
-            "hex": "#747e8e"
+            "hex": "#986f72"
           },
-          "css": "#747e8e",
+          "css": "#986f72",
           "aliasOf": "color.primitive.modern.control",
           "description": "D-041 border.overlay: color.primitive.modern.control.",
           "status": "approved",
@@ -3454,14 +3502,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.18823529411764706,
-              0.21176470588235294,
-              0.25098039215686274
+              0.2824,
+              0.1686,
+              0.1686
             ],
             "alpha": 1,
-            "hex": "#303640"
+            "hex": "#482b2b"
           },
-          "css": "#303640",
+          "css": "#482b2b",
           "aliasOf": "color.primitive.modern.divider",
           "description": "D-041 border.disabled: color.primitive.modern.divider.",
           "status": "approved",
@@ -3742,14 +3790,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.09803921568627451,
-              0.10980392156862745,
-              0.13333333333333333
+              0.1098,
+              0.0627,
+              0.0627
             ],
             "alpha": 1,
-            "hex": "#191c22"
+            "hex": "#1c1010"
           },
-          "css": "#191c22",
+          "css": "#1c1010",
           "aliasOf": "color.primitive.modern.hover",
           "description": "D-041 interaction.hover.bg: color.primitive.modern.hover.",
           "status": "approved",
@@ -3766,14 +3814,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.09803921568627451,
-              0.10980392156862745,
-              0.13333333333333333
+              0.1098,
+              0.0627,
+              0.0627
             ],
             "alpha": 1,
-            "hex": "#191c22"
+            "hex": "#1c1010"
           },
-          "css": "#191c22",
+          "css": "#1c1010",
           "aliasOf": "color.primitive.modern.hover",
           "description": "D-041 interaction.hover.bg-strong: color.primitive.modern.hover.",
           "status": "approved",
@@ -3814,14 +3862,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.054901960784313725,
-              0.06274509803921569,
-              0.0784313725490196
+              0.051,
+              0.0275,
+              0.0275
             ],
             "alpha": 1,
-            "hex": "#0e1014"
+            "hex": "#0d0707"
           },
-          "css": "#0e1014",
+          "css": "#0d0707",
           "aliasOf": "color.primitive.modern.panel",
           "description": "D-041 interaction.disabled.bg: color.primitive.modern.panel.",
           "status": "approved",
@@ -3910,14 +3958,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4549019607843137,
-              0.49411764705882355,
-              0.5568627450980392
+              0.5961,
+              0.4353,
+              0.4471
             ],
             "alpha": 1,
-            "hex": "#747e8e"
+            "hex": "#986f72"
           },
-          "css": "#747e8e",
+          "css": "#986f72",
           "aliasOf": "color.primitive.modern.control",
           "description": "D-041 interaction.scrollbar.thumb: color.primitive.modern.control.",
           "status": "approved",
@@ -3934,14 +3982,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.6509803921568628,
-              0.6862745098039216,
-              0.7411764705882353
+              0.8314,
+              0.5255,
+              0.5451
             ],
             "alpha": 1,
-            "hex": "#a6afbd"
+            "hex": "#d4868b"
           },
-          "css": "#a6afbd",
+          "css": "#d4868b",
           "aliasOf": "color.primitive.modern.muted",
           "description": "D-041 interaction.scrollbar.thumb-hover: color.primitive.modern.muted.",
           "status": "approved",
@@ -4126,14 +4174,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4549019607843137,
-              0.49411764705882355,
-              0.5568627450980392
+              0.5961,
+              0.4353,
+              0.4471
             ],
             "alpha": 1,
-            "hex": "#747e8e"
+            "hex": "#986f72"
           },
-          "css": "#747e8e",
+          "css": "#986f72",
           "aliasOf": "color.primitive.modern.control",
           "description": "D-041 action.secondary.border: color.primitive.modern.control.",
           "status": "approved",
@@ -4918,14 +4966,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4549019607843137,
-              0.49411764705882355,
-              0.5568627450980392
+              0.5961,
+              0.4353,
+              0.4471
             ],
             "alpha": 1,
-            "hex": "#747e8e"
+            "hex": "#986f72"
           },
-          "css": "#747e8e",
+          "css": "#986f72",
           "aliasOf": "color.primitive.modern.control",
           "description": "D-041 status.neutral.fill: color.primitive.modern.control.",
           "status": "approved",
@@ -4966,14 +5014,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.08235294117647059,
-              0.09411764705882353,
-              0.11764705882352941
+              0.0784,
+              0.0431,
+              0.0431
             ],
             "alpha": 1,
-            "hex": "#15181e"
+            "hex": "#140b0b"
           },
-          "css": "#15181e",
+          "css": "#140b0b",
           "aliasOf": "color.primitive.modern.raised",
           "description": "D-041 status.neutral.tint: color.primitive.modern.raised.",
           "status": "approved",
@@ -4990,14 +5038,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4549019607843137,
-              0.49411764705882355,
-              0.5568627450980392
+              0.5961,
+              0.4353,
+              0.4471
             ],
             "alpha": 1,
-            "hex": "#747e8e"
+            "hex": "#986f72"
           },
-          "css": "#747e8e",
+          "css": "#986f72",
           "aliasOf": "color.primitive.modern.control",
           "description": "D-041 status.neutral.border: color.primitive.modern.control.",
           "status": "approved",
@@ -5038,14 +5086,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.054901960784313725,
-              0.06274509803921569,
-              0.0784313725490196
+              0.051,
+              0.0275,
+              0.0275
             ],
             "alpha": 1,
-            "hex": "#0e1014"
+            "hex": "#0d0707"
           },
-          "css": "#0e1014",
+          "css": "#0d0707",
           "aliasOf": "color.primitive.modern.panel",
           "description": "D-041 code.current-line: color.primitive.modern.panel.",
           "status": "approved",
@@ -5134,14 +5182,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.18823529411764706,
-              0.21176470588235294,
-              0.25098039215686274
+              0.2824,
+              0.1686,
+              0.1686
             ],
             "alpha": 1,
-            "hex": "#303640"
+            "hex": "#482b2b"
           },
-          "css": "#303640",
+          "css": "#482b2b",
           "aliasOf": "color.primitive.modern.divider",
           "description": "D-041 code.gutter-rule: color.primitive.modern.divider.",
           "status": "approved",
@@ -5302,14 +5350,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.18823529411764706,
-              0.21176470588235294,
-              0.25098039215686274
+              0.2824,
+              0.1686,
+              0.1686
             ],
             "alpha": 1,
-            "hex": "#303640"
+            "hex": "#482b2b"
           },
-          "css": "#303640",
+          "css": "#482b2b",
           "aliasOf": "color.primitive.modern.divider",
           "description": "D-041 code.indent-guide: color.primitive.modern.divider.",
           "status": "approved",
@@ -5326,14 +5374,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4549019607843137,
-              0.49411764705882355,
-              0.5568627450980392
+              0.5961,
+              0.4353,
+              0.4471
             ],
             "alpha": 1,
-            "hex": "#747e8e"
+            "hex": "#986f72"
           },
-          "css": "#747e8e",
+          "css": "#986f72",
           "aliasOf": "color.primitive.modern.control",
           "description": "D-041 code.whitespace: color.primitive.modern.control.",
           "status": "approved",
@@ -5614,14 +5662,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9450980392156862,
-              0.9607843137254902,
-              0.9764705882352941
+              0.9569,
+              0.9333,
+              0.9333
             ],
             "alpha": 1,
-            "hex": "#f1f5f9"
+            "hex": "#f4eeee"
           },
-          "css": "#f1f5f9",
+          "css": "#f4eeee",
           "aliasOf": "color.primitive.modern.bright",
           "description": "D-041 code.syntax.heading: color.primitive.modern.bright.",
           "status": "approved",
@@ -6305,6 +6353,30 @@
             "decisionIds": []
           }
         },
+        "color.diff.added.shared-word": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.17254901960784313,
+              0.396078431372549,
+              0.25098039215686274
+            ],
+            "alpha": 1,
+            "hex": "#2c6540"
+          },
+          "css": "#2c6540",
+          "aliasOf": "color.primitive.modern.diff-shared-green",
+          "description": "D-041 host-specific shared summary foreground and word background: about 3:1 against black and rose prose; never a generic ordinary-text role.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-041",
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
         "color.diff.removed.bg": {
           "type": "color",
           "value": {
@@ -6371,6 +6443,30 @@
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
+          "eligibility": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          }
+        },
+        "color.diff.removed.shared-word": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5843137254901961,
+              0.23921568627450981,
+              0.27450980392156865
+            ],
+            "alpha": 1,
+            "hex": "#953d46"
+          },
+          "css": "#953d46",
+          "aliasOf": "color.primitive.modern.diff-shared-red",
+          "description": "D-041 host-specific shared summary foreground and word background: about 3:1 against black and rose prose; never a generic ordinary-text role.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-041",
           "eligibility": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
@@ -7222,14 +7318,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4549019607843137,
-              0.49411764705882355,
-              0.5568627450980392
+              0.5961,
+              0.4353,
+              0.4471
             ],
             "alpha": 1,
-            "hex": "#747e8e"
+            "hex": "#986f72"
           },
-          "css": "#747e8e",
+          "css": "#986f72",
           "aliasOf": "color.primitive.modern.control",
           "description": "D-041 icon.decorative: color.primitive.modern.control.",
           "status": "approved",
@@ -10681,14 +10777,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.054901960784313725,
-              0.06274509803921569,
-              0.0784313725490196
+              0.051,
+              0.0275,
+              0.0275
             ],
             "alpha": 1,
-            "hex": "#0e1014"
+            "hex": "#0d0707"
           },
-          "css": "#0e1014",
+          "css": "#0d0707",
           "aliasOf": null,
           "description": "D-041 panel colour.",
           "status": "approved",
@@ -10705,14 +10801,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.08235294117647059,
-              0.09411764705882353,
-              0.11764705882352941
+              0.0784,
+              0.0431,
+              0.0431
             ],
             "alpha": 1,
-            "hex": "#15181e"
+            "hex": "#140b0b"
           },
-          "css": "#15181e",
+          "css": "#140b0b",
           "aliasOf": null,
           "description": "D-041 raised colour.",
           "status": "approved",
@@ -10729,14 +10825,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.09803921568627451,
-              0.10980392156862745,
-              0.13333333333333333
+              0.1098,
+              0.0627,
+              0.0627
             ],
             "alpha": 1,
-            "hex": "#191c22"
+            "hex": "#1c1010"
           },
-          "css": "#191c22",
+          "css": "#1c1010",
           "aliasOf": null,
           "description": "D-041 overlay colour.",
           "status": "approved",
@@ -10753,14 +10849,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.09803921568627451,
-              0.10980392156862745,
-              0.13333333333333333
+              0.1098,
+              0.0627,
+              0.0627
             ],
             "alpha": 1,
-            "hex": "#191c22"
+            "hex": "#1c1010"
           },
-          "css": "#191c22",
+          "css": "#1c1010",
           "aliasOf": null,
           "description": "D-041 hover colour.",
           "status": "approved",
@@ -10777,14 +10873,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.18823529411764706,
-              0.21176470588235294,
-              0.25098039215686274
+              0.2824,
+              0.1686,
+              0.1686
             ],
             "alpha": 1,
-            "hex": "#303640"
+            "hex": "#482b2b"
           },
-          "css": "#303640",
+          "css": "#482b2b",
           "aliasOf": null,
           "description": "D-041 divider colour.",
           "status": "approved",
@@ -10801,14 +10897,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4549019607843137,
-              0.49411764705882355,
-              0.5568627450980392
+              0.5961,
+              0.4353,
+              0.4471
             ],
             "alpha": 1,
-            "hex": "#747e8e"
+            "hex": "#986f72"
           },
-          "css": "#747e8e",
+          "css": "#986f72",
           "aliasOf": null,
           "description": "D-041 control colour.",
           "status": "approved",
@@ -10825,14 +10921,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4470588235294118,
-              0.4823529411764706,
-              0.5372549019607843
+              0.6392,
+              0.4039,
+              0.4196
             ],
             "alpha": 1,
-            "hex": "#727b89"
+            "hex": "#a3676b"
           },
-          "css": "#727b89",
+          "css": "#a3676b",
           "aliasOf": null,
           "description": "D-041 disabled colour.",
           "status": "approved",
@@ -10849,14 +10945,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.5647058823529412,
-              0.6039215686274509,
-              0.6666666666666666
+              0.7412,
+              0.4706,
+              0.4902
             ],
             "alpha": 1,
-            "hex": "#909aaa"
+            "hex": "#bd787d"
           },
-          "css": "#909aaa",
+          "css": "#bd787d",
           "aliasOf": null,
           "description": "D-041 subtle colour.",
           "status": "approved",
@@ -10873,14 +10969,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.6509803921568628,
-              0.6862745098039216,
-              0.7411764705882353
+              0.8314,
+              0.5255,
+              0.5451
             ],
             "alpha": 1,
-            "hex": "#a6afbd"
+            "hex": "#d4868b"
           },
-          "css": "#a6afbd",
+          "css": "#d4868b",
           "aliasOf": null,
           "description": "D-041 muted colour.",
           "status": "approved",
@@ -10897,14 +10993,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.8470588235294118,
-              0.8705882352941177,
-              0.9137254901960784
+              0.9137,
+              0.5804,
+              0.6
             ],
             "alpha": 1,
-            "hex": "#d8dee9"
+            "hex": "#e99499"
           },
-          "css": "#d8dee9",
+          "css": "#e99499",
           "aliasOf": null,
           "description": "D-041 text colour.",
           "status": "approved",
@@ -10921,14 +11017,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9450980392156862,
-              0.9607843137254902,
-              0.9764705882352941
+              0.9569,
+              0.9333,
+              0.9333
             ],
             "alpha": 1,
-            "hex": "#f1f5f9"
+            "hex": "#f4eeee"
           },
-          "css": "#f1f5f9",
+          "css": "#f4eeee",
           "aliasOf": null,
           "description": "D-041 bright colour.",
           "status": "approved",
@@ -11228,6 +11324,54 @@
             "decisionIds": []
           }
         },
+        "color.primitive.modern.diff-shared-green": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.17254901960784313,
+              0.396078431372549,
+              0.25098039215686274
+            ],
+            "alpha": 1,
+            "hex": "#2c6540"
+          },
+          "css": "#2c6540",
+          "aliasOf": null,
+          "description": "D-041 compromise for hosts sharing diff summary foreground and word background; not general text or ANSI.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-041",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.modern.diff-shared-red": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5843137254901961,
+              0.23921568627450981,
+              0.27450980392156865
+            ],
+            "alpha": 1,
+            "hex": "#953d46"
+          },
+          "css": "#953d46",
+          "aliasOf": null,
+          "description": "D-041 compromise for hosts sharing diff summary foreground and word background; not general text or ANSI.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-041",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
         "color.surface.desktop": {
           "type": "color",
           "value": {
@@ -11305,14 +11449,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.08235294117647059,
-              0.09411764705882353,
-              0.11764705882352941
+              0.0784,
+              0.0431,
+              0.0431
             ],
             "alpha": 1,
-            "hex": "#15181e"
+            "hex": "#140b0b"
           },
-          "css": "#15181e",
+          "css": "#140b0b",
           "aliasOf": "color.primitive.modern.raised",
           "description": "D-041 surface.chrome-alt: color.primitive.modern.raised.",
           "status": "approved",
@@ -11377,14 +11521,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.08235294117647059,
-              0.09411764705882353,
-              0.11764705882352941
+              0.0784,
+              0.0431,
+              0.0431
             ],
             "alpha": 1,
-            "hex": "#15181e"
+            "hex": "#140b0b"
           },
-          "css": "#15181e",
+          "css": "#140b0b",
           "aliasOf": "color.primitive.modern.raised",
           "description": "D-041 surface.raised: color.primitive.modern.raised.",
           "status": "approved",
@@ -11401,14 +11545,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.09803921568627451,
-              0.10980392156862745,
-              0.13333333333333333
+              0.1098,
+              0.0627,
+              0.0627
             ],
             "alpha": 1,
-            "hex": "#191c22"
+            "hex": "#1c1010"
           },
-          "css": "#191c22",
+          "css": "#1c1010",
           "aliasOf": "color.primitive.modern.overlay",
           "description": "D-041 surface.overlay: color.primitive.modern.overlay.",
           "status": "approved",
@@ -11955,14 +12099,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9450980392156862,
-              0.9607843137254902,
-              0.9764705882352941
+              0.9569,
+              0.9333,
+              0.9333
             ],
             "alpha": 1,
-            "hex": "#f1f5f9"
+            "hex": "#f4eeee"
           },
-          "css": "#f1f5f9",
+          "css": "#f4eeee",
           "aliasOf": "color.primitive.modern.bright",
           "description": "D-041 text.heading: color.primitive.modern.bright.",
           "status": "approved",
@@ -11979,14 +12123,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9450980392156862,
-              0.9607843137254902,
-              0.9764705882352941
+              0.9569,
+              0.9333,
+              0.9333
             ],
             "alpha": 1,
-            "hex": "#f1f5f9"
+            "hex": "#f4eeee"
           },
-          "css": "#f1f5f9",
+          "css": "#f4eeee",
           "aliasOf": "color.primitive.modern.bright",
           "description": "D-041 text.highlight: color.primitive.modern.bright.",
           "status": "approved",
@@ -12003,14 +12147,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.18823529411764706,
-              0.21176470588235294,
-              0.25098039215686274
+              0.2824,
+              0.1686,
+              0.1686
             ],
             "alpha": 1,
-            "hex": "#303640"
+            "hex": "#482b2b"
           },
-          "css": "#303640",
+          "css": "#482b2b",
           "aliasOf": "color.primitive.modern.divider",
           "description": "D-041 border.divider: color.primitive.modern.divider.",
           "status": "approved",
@@ -12027,14 +12171,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.18823529411764706,
-              0.21176470588235294,
-              0.25098039215686274
+              0.2824,
+              0.1686,
+              0.1686
             ],
             "alpha": 1,
-            "hex": "#303640"
+            "hex": "#482b2b"
           },
-          "css": "#303640",
+          "css": "#482b2b",
           "aliasOf": "color.primitive.modern.divider",
           "description": "D-041 border.default: color.primitive.modern.divider.",
           "status": "approved",
@@ -12075,14 +12219,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4549019607843137,
-              0.49411764705882355,
-              0.5568627450980392
+              0.5961,
+              0.4353,
+              0.4471
             ],
             "alpha": 1,
-            "hex": "#747e8e"
+            "hex": "#986f72"
           },
-          "css": "#747e8e",
+          "css": "#986f72",
           "aliasOf": "color.primitive.modern.control",
           "description": "D-041 border.control: color.primitive.modern.control.",
           "status": "approved",
@@ -12147,14 +12291,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.18823529411764706,
-              0.21176470588235294,
-              0.25098039215686274
+              0.2824,
+              0.1686,
+              0.1686
             ],
             "alpha": 1,
-            "hex": "#303640"
+            "hex": "#482b2b"
           },
-          "css": "#303640",
+          "css": "#482b2b",
           "aliasOf": "color.primitive.modern.divider",
           "description": "D-041 border.disabled: color.primitive.modern.divider.",
           "status": "approved",
@@ -12435,14 +12579,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.09803921568627451,
-              0.10980392156862745,
-              0.13333333333333333
+              0.1098,
+              0.0627,
+              0.0627
             ],
             "alpha": 1,
-            "hex": "#191c22"
+            "hex": "#1c1010"
           },
-          "css": "#191c22",
+          "css": "#1c1010",
           "aliasOf": "color.primitive.modern.hover",
           "description": "D-041 interaction.hover.bg: color.primitive.modern.hover.",
           "status": "approved",
@@ -12459,14 +12603,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.09803921568627451,
-              0.10980392156862745,
-              0.13333333333333333
+              0.1098,
+              0.0627,
+              0.0627
             ],
             "alpha": 1,
-            "hex": "#191c22"
+            "hex": "#1c1010"
           },
-          "css": "#191c22",
+          "css": "#1c1010",
           "aliasOf": "color.primitive.modern.hover",
           "description": "D-041 interaction.hover.bg-strong: color.primitive.modern.hover.",
           "status": "approved",
@@ -12507,14 +12651,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.054901960784313725,
-              0.06274509803921569,
-              0.0784313725490196
+              0.051,
+              0.0275,
+              0.0275
             ],
             "alpha": 1,
-            "hex": "#0e1014"
+            "hex": "#0d0707"
           },
-          "css": "#0e1014",
+          "css": "#0d0707",
           "aliasOf": "color.primitive.modern.panel",
           "description": "D-041 interaction.disabled.bg: color.primitive.modern.panel.",
           "status": "approved",
@@ -12603,14 +12747,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4549019607843137,
-              0.49411764705882355,
-              0.5568627450980392
+              0.5961,
+              0.4353,
+              0.4471
             ],
             "alpha": 1,
-            "hex": "#747e8e"
+            "hex": "#986f72"
           },
-          "css": "#747e8e",
+          "css": "#986f72",
           "aliasOf": "color.primitive.modern.control",
           "description": "D-041 interaction.scrollbar.thumb: color.primitive.modern.control.",
           "status": "approved",
@@ -12627,14 +12771,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.6509803921568628,
-              0.6862745098039216,
-              0.7411764705882353
+              0.8314,
+              0.5255,
+              0.5451
             ],
             "alpha": 1,
-            "hex": "#a6afbd"
+            "hex": "#d4868b"
           },
-          "css": "#a6afbd",
+          "css": "#d4868b",
           "aliasOf": "color.primitive.modern.muted",
           "description": "D-041 interaction.scrollbar.thumb-hover: color.primitive.modern.muted.",
           "status": "approved",
@@ -12819,14 +12963,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4549019607843137,
-              0.49411764705882355,
-              0.5568627450980392
+              0.5961,
+              0.4353,
+              0.4471
             ],
             "alpha": 1,
-            "hex": "#747e8e"
+            "hex": "#986f72"
           },
-          "css": "#747e8e",
+          "css": "#986f72",
           "aliasOf": "color.primitive.modern.control",
           "description": "D-041 action.secondary.border: color.primitive.modern.control.",
           "status": "approved",
@@ -13659,14 +13803,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.08235294117647059,
-              0.09411764705882353,
-              0.11764705882352941
+              0.0784,
+              0.0431,
+              0.0431
             ],
             "alpha": 1,
-            "hex": "#15181e"
+            "hex": "#140b0b"
           },
-          "css": "#15181e",
+          "css": "#140b0b",
           "aliasOf": "color.primitive.modern.raised",
           "description": "D-041 status.neutral.tint: color.primitive.modern.raised.",
           "status": "approved",
@@ -13683,14 +13827,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4549019607843137,
-              0.49411764705882355,
-              0.5568627450980392
+              0.5961,
+              0.4353,
+              0.4471
             ],
             "alpha": 1,
-            "hex": "#747e8e"
+            "hex": "#986f72"
           },
-          "css": "#747e8e",
+          "css": "#986f72",
           "aliasOf": "color.primitive.modern.control",
           "description": "D-041 status.neutral.border: color.primitive.modern.control.",
           "status": "approved",
@@ -13731,14 +13875,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.054901960784313725,
-              0.06274509803921569,
-              0.0784313725490196
+              0.051,
+              0.0275,
+              0.0275
             ],
             "alpha": 1,
-            "hex": "#0e1014"
+            "hex": "#0d0707"
           },
-          "css": "#0e1014",
+          "css": "#0d0707",
           "aliasOf": "color.primitive.modern.panel",
           "description": "D-041 code.current-line: color.primitive.modern.panel.",
           "status": "approved",
@@ -13827,14 +13971,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.18823529411764706,
-              0.21176470588235294,
-              0.25098039215686274
+              0.2824,
+              0.1686,
+              0.1686
             ],
             "alpha": 1,
-            "hex": "#303640"
+            "hex": "#482b2b"
           },
-          "css": "#303640",
+          "css": "#482b2b",
           "aliasOf": "color.primitive.modern.divider",
           "description": "D-041 code.gutter-rule: color.primitive.modern.divider.",
           "status": "approved",
@@ -13995,14 +14139,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.18823529411764706,
-              0.21176470588235294,
-              0.25098039215686274
+              0.2824,
+              0.1686,
+              0.1686
             ],
             "alpha": 1,
-            "hex": "#303640"
+            "hex": "#482b2b"
           },
-          "css": "#303640",
+          "css": "#482b2b",
           "aliasOf": "color.primitive.modern.divider",
           "description": "D-041 code.indent-guide: color.primitive.modern.divider.",
           "status": "approved",
@@ -14019,14 +14163,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4549019607843137,
-              0.49411764705882355,
-              0.5568627450980392
+              0.5961,
+              0.4353,
+              0.4471
             ],
             "alpha": 1,
-            "hex": "#747e8e"
+            "hex": "#986f72"
           },
-          "css": "#747e8e",
+          "css": "#986f72",
           "aliasOf": "color.primitive.modern.control",
           "description": "D-041 code.whitespace: color.primitive.modern.control.",
           "status": "approved",
@@ -14998,6 +15142,30 @@
             "decisionIds": []
           }
         },
+        "color.diff.added.shared-word": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.17254901960784313,
+              0.396078431372549,
+              0.25098039215686274
+            ],
+            "alpha": 1,
+            "hex": "#2c6540"
+          },
+          "css": "#2c6540",
+          "aliasOf": "color.primitive.modern.diff-shared-green",
+          "description": "D-041 host-specific shared summary foreground and word background: about 3:1 against black and rose prose; never a generic ordinary-text role.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-041",
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
         "color.diff.removed.bg": {
           "type": "color",
           "value": {
@@ -15064,6 +15232,30 @@
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
+          "eligibility": {
+            "action": "historical-only",
+            "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
+            "decisionIds": []
+          }
+        },
+        "color.diff.removed.shared-word": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5843137254901961,
+              0.23921568627450981,
+              0.27450980392156865
+            ],
+            "alpha": 1,
+            "hex": "#953d46"
+          },
+          "css": "#953d46",
+          "aliasOf": "color.primitive.modern.diff-shared-red",
+          "description": "D-041 host-specific shared summary foreground and word background: about 3:1 against black and rose prose; never a generic ordinary-text role.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-041",
           "eligibility": {
             "action": "historical-only",
             "reason": "Historical fidelity only; preserve all documented limitations and deprecations.",
@@ -15915,14 +16107,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4549019607843137,
-              0.49411764705882355,
-              0.5568627450980392
+              0.5961,
+              0.4353,
+              0.4471
             ],
             "alpha": 1,
-            "hex": "#747e8e"
+            "hex": "#986f72"
           },
-          "css": "#747e8e",
+          "css": "#986f72",
           "aliasOf": "color.primitive.modern.control",
           "description": "D-041 icon.decorative: color.primitive.modern.control.",
           "status": "approved",
@@ -19374,14 +19566,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.054901960784313725,
-              0.06274509803921569,
-              0.0784313725490196
+              0.051,
+              0.0275,
+              0.0275
             ],
             "alpha": 1,
-            "hex": "#0e1014"
+            "hex": "#0d0707"
           },
-          "css": "#0e1014",
+          "css": "#0d0707",
           "aliasOf": null,
           "description": "D-041 panel colour.",
           "status": "approved",
@@ -19398,14 +19590,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.08235294117647059,
-              0.09411764705882353,
-              0.11764705882352941
+              0.0784,
+              0.0431,
+              0.0431
             ],
             "alpha": 1,
-            "hex": "#15181e"
+            "hex": "#140b0b"
           },
-          "css": "#15181e",
+          "css": "#140b0b",
           "aliasOf": null,
           "description": "D-041 raised colour.",
           "status": "approved",
@@ -19422,14 +19614,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.09803921568627451,
-              0.10980392156862745,
-              0.13333333333333333
+              0.1098,
+              0.0627,
+              0.0627
             ],
             "alpha": 1,
-            "hex": "#191c22"
+            "hex": "#1c1010"
           },
-          "css": "#191c22",
+          "css": "#1c1010",
           "aliasOf": null,
           "description": "D-041 overlay colour.",
           "status": "approved",
@@ -19446,14 +19638,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.09803921568627451,
-              0.10980392156862745,
-              0.13333333333333333
+              0.1098,
+              0.0627,
+              0.0627
             ],
             "alpha": 1,
-            "hex": "#191c22"
+            "hex": "#1c1010"
           },
-          "css": "#191c22",
+          "css": "#1c1010",
           "aliasOf": null,
           "description": "D-041 hover colour.",
           "status": "approved",
@@ -19470,14 +19662,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.18823529411764706,
-              0.21176470588235294,
-              0.25098039215686274
+              0.2824,
+              0.1686,
+              0.1686
             ],
             "alpha": 1,
-            "hex": "#303640"
+            "hex": "#482b2b"
           },
-          "css": "#303640",
+          "css": "#482b2b",
           "aliasOf": null,
           "description": "D-041 divider colour.",
           "status": "approved",
@@ -19494,14 +19686,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4549019607843137,
-              0.49411764705882355,
-              0.5568627450980392
+              0.5961,
+              0.4353,
+              0.4471
             ],
             "alpha": 1,
-            "hex": "#747e8e"
+            "hex": "#986f72"
           },
-          "css": "#747e8e",
+          "css": "#986f72",
           "aliasOf": null,
           "description": "D-041 control colour.",
           "status": "approved",
@@ -19518,14 +19710,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4470588235294118,
-              0.4823529411764706,
-              0.5372549019607843
+              0.6392,
+              0.4039,
+              0.4196
             ],
             "alpha": 1,
-            "hex": "#727b89"
+            "hex": "#a3676b"
           },
-          "css": "#727b89",
+          "css": "#a3676b",
           "aliasOf": null,
           "description": "D-041 disabled colour.",
           "status": "approved",
@@ -19542,14 +19734,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.5647058823529412,
-              0.6039215686274509,
-              0.6666666666666666
+              0.7412,
+              0.4706,
+              0.4902
             ],
             "alpha": 1,
-            "hex": "#909aaa"
+            "hex": "#bd787d"
           },
-          "css": "#909aaa",
+          "css": "#bd787d",
           "aliasOf": null,
           "description": "D-041 subtle colour.",
           "status": "approved",
@@ -19566,14 +19758,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.6509803921568628,
-              0.6862745098039216,
-              0.7411764705882353
+              0.8314,
+              0.5255,
+              0.5451
             ],
             "alpha": 1,
-            "hex": "#a6afbd"
+            "hex": "#d4868b"
           },
-          "css": "#a6afbd",
+          "css": "#d4868b",
           "aliasOf": null,
           "description": "D-041 muted colour.",
           "status": "approved",
@@ -19590,14 +19782,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.8470588235294118,
-              0.8705882352941177,
-              0.9137254901960784
+              0.9137,
+              0.5804,
+              0.6
             ],
             "alpha": 1,
-            "hex": "#d8dee9"
+            "hex": "#e99499"
           },
-          "css": "#d8dee9",
+          "css": "#e99499",
           "aliasOf": null,
           "description": "D-041 text colour.",
           "status": "approved",
@@ -19614,14 +19806,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9450980392156862,
-              0.9607843137254902,
-              0.9764705882352941
+              0.9569,
+              0.9333,
+              0.9333
             ],
             "alpha": 1,
-            "hex": "#f1f5f9"
+            "hex": "#f4eeee"
           },
-          "css": "#f1f5f9",
+          "css": "#f4eeee",
           "aliasOf": null,
           "description": "D-041 bright colour.",
           "status": "approved",
@@ -19921,6 +20113,54 @@
             "decisionIds": []
           }
         },
+        "color.primitive.modern.diff-shared-green": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.17254901960784313,
+              0.396078431372549,
+              0.25098039215686274
+            ],
+            "alpha": 1,
+            "hex": "#2c6540"
+          },
+          "css": "#2c6540",
+          "aliasOf": null,
+          "description": "D-041 compromise for hosts sharing diff summary foreground and word background; not general text or ANSI.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-041",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.primitive.modern.diff-shared-red": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5843137254901961,
+              0.23921568627450981,
+              0.27450980392156865
+            ],
+            "alpha": 1,
+            "hex": "#953d46"
+          },
+          "css": "#953d46",
+          "aliasOf": null,
+          "description": "D-041 compromise for hosts sharing diff summary foreground and word background; not general text or ANSI.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-041",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
         "color.surface.desktop": {
           "type": "color",
           "value": {
@@ -19998,14 +20238,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.08235294117647059,
-              0.09411764705882353,
-              0.11764705882352941
+              0.0784,
+              0.0431,
+              0.0431
             ],
             "alpha": 1,
-            "hex": "#15181e"
+            "hex": "#140b0b"
           },
-          "css": "#15181e",
+          "css": "#140b0b",
           "aliasOf": "color.primitive.modern.raised",
           "description": "D-041 surface.chrome-alt: color.primitive.modern.raised.",
           "status": "approved",
@@ -20046,14 +20286,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.054901960784313725,
-              0.06274509803921569,
-              0.0784313725490196
+              0.051,
+              0.0275,
+              0.0275
             ],
             "alpha": 1,
-            "hex": "#0e1014"
+            "hex": "#0d0707"
           },
-          "css": "#0e1014",
+          "css": "#0d0707",
           "aliasOf": "color.primitive.modern.panel",
           "description": "D-041 surface.default: color.primitive.modern.panel.",
           "status": "approved",
@@ -20070,14 +20310,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.08235294117647059,
-              0.09411764705882353,
-              0.11764705882352941
+              0.0784,
+              0.0431,
+              0.0431
             ],
             "alpha": 1,
-            "hex": "#15181e"
+            "hex": "#140b0b"
           },
-          "css": "#15181e",
+          "css": "#140b0b",
           "aliasOf": "color.primitive.modern.raised",
           "description": "D-041 surface.raised: color.primitive.modern.raised.",
           "status": "approved",
@@ -20094,14 +20334,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.09803921568627451,
-              0.10980392156862745,
-              0.13333333333333333
+              0.1098,
+              0.0627,
+              0.0627
             ],
             "alpha": 1,
-            "hex": "#191c22"
+            "hex": "#1c1010"
           },
-          "css": "#191c22",
+          "css": "#1c1010",
           "aliasOf": "color.primitive.modern.overlay",
           "description": "D-041 surface.overlay: color.primitive.modern.overlay.",
           "status": "approved",
@@ -20648,14 +20888,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9450980392156862,
-              0.9607843137254902,
-              0.9764705882352941
+              0.9569,
+              0.9333,
+              0.9333
             ],
             "alpha": 1,
-            "hex": "#f1f5f9"
+            "hex": "#f4eeee"
           },
-          "css": "#f1f5f9",
+          "css": "#f4eeee",
           "aliasOf": "color.primitive.modern.bright",
           "description": "D-041 text.heading: color.primitive.modern.bright.",
           "status": "approved",
@@ -20672,14 +20912,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9450980392156862,
-              0.9607843137254902,
-              0.9764705882352941
+              0.9569,
+              0.9333,
+              0.9333
             ],
             "alpha": 1,
-            "hex": "#f1f5f9"
+            "hex": "#f4eeee"
           },
-          "css": "#f1f5f9",
+          "css": "#f4eeee",
           "aliasOf": "color.primitive.modern.bright",
           "description": "D-041 text.highlight: color.primitive.modern.bright.",
           "status": "approved",
@@ -20696,14 +20936,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.18823529411764706,
-              0.21176470588235294,
-              0.25098039215686274
+              0.2824,
+              0.1686,
+              0.1686
             ],
             "alpha": 1,
-            "hex": "#303640"
+            "hex": "#482b2b"
           },
-          "css": "#303640",
+          "css": "#482b2b",
           "aliasOf": "color.primitive.modern.divider",
           "description": "D-041 border.divider: color.primitive.modern.divider.",
           "status": "approved",
@@ -20720,14 +20960,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.18823529411764706,
-              0.21176470588235294,
-              0.25098039215686274
+              0.2824,
+              0.1686,
+              0.1686
             ],
             "alpha": 1,
-            "hex": "#303640"
+            "hex": "#482b2b"
           },
-          "css": "#303640",
+          "css": "#482b2b",
           "aliasOf": "color.primitive.modern.divider",
           "description": "D-041 border.default: color.primitive.modern.divider.",
           "status": "approved",
@@ -20768,14 +21008,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4549019607843137,
-              0.49411764705882355,
-              0.5568627450980392
+              0.5961,
+              0.4353,
+              0.4471
             ],
             "alpha": 1,
-            "hex": "#747e8e"
+            "hex": "#986f72"
           },
-          "css": "#747e8e",
+          "css": "#986f72",
           "aliasOf": "color.primitive.modern.control",
           "description": "D-041 border.control: color.primitive.modern.control.",
           "status": "approved",
@@ -20816,14 +21056,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4549019607843137,
-              0.49411764705882355,
-              0.5568627450980392
+              0.5961,
+              0.4353,
+              0.4471
             ],
             "alpha": 1,
-            "hex": "#747e8e"
+            "hex": "#986f72"
           },
-          "css": "#747e8e",
+          "css": "#986f72",
           "aliasOf": "color.primitive.modern.control",
           "description": "D-041 border.overlay: color.primitive.modern.control.",
           "status": "approved",
@@ -20840,14 +21080,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.18823529411764706,
-              0.21176470588235294,
-              0.25098039215686274
+              0.2824,
+              0.1686,
+              0.1686
             ],
             "alpha": 1,
-            "hex": "#303640"
+            "hex": "#482b2b"
           },
-          "css": "#303640",
+          "css": "#482b2b",
           "aliasOf": "color.primitive.modern.divider",
           "description": "D-041 border.disabled: color.primitive.modern.divider.",
           "status": "approved",
@@ -21128,14 +21368,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.09803921568627451,
-              0.10980392156862745,
-              0.13333333333333333
+              0.1098,
+              0.0627,
+              0.0627
             ],
             "alpha": 1,
-            "hex": "#191c22"
+            "hex": "#1c1010"
           },
-          "css": "#191c22",
+          "css": "#1c1010",
           "aliasOf": "color.primitive.modern.hover",
           "description": "D-041 interaction.hover.bg: color.primitive.modern.hover.",
           "status": "approved",
@@ -21152,14 +21392,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.09803921568627451,
-              0.10980392156862745,
-              0.13333333333333333
+              0.1098,
+              0.0627,
+              0.0627
             ],
             "alpha": 1,
-            "hex": "#191c22"
+            "hex": "#1c1010"
           },
-          "css": "#191c22",
+          "css": "#1c1010",
           "aliasOf": "color.primitive.modern.hover",
           "description": "D-041 interaction.hover.bg-strong: color.primitive.modern.hover.",
           "status": "approved",
@@ -21200,14 +21440,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.054901960784313725,
-              0.06274509803921569,
-              0.0784313725490196
+              0.051,
+              0.0275,
+              0.0275
             ],
             "alpha": 1,
-            "hex": "#0e1014"
+            "hex": "#0d0707"
           },
-          "css": "#0e1014",
+          "css": "#0d0707",
           "aliasOf": "color.primitive.modern.panel",
           "description": "D-041 interaction.disabled.bg: color.primitive.modern.panel.",
           "status": "approved",
@@ -21296,14 +21536,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4549019607843137,
-              0.49411764705882355,
-              0.5568627450980392
+              0.5961,
+              0.4353,
+              0.4471
             ],
             "alpha": 1,
-            "hex": "#747e8e"
+            "hex": "#986f72"
           },
-          "css": "#747e8e",
+          "css": "#986f72",
           "aliasOf": "color.primitive.modern.control",
           "description": "D-041 interaction.scrollbar.thumb: color.primitive.modern.control.",
           "status": "approved",
@@ -21320,14 +21560,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.6509803921568628,
-              0.6862745098039216,
-              0.7411764705882353
+              0.8314,
+              0.5255,
+              0.5451
             ],
             "alpha": 1,
-            "hex": "#a6afbd"
+            "hex": "#d4868b"
           },
-          "css": "#a6afbd",
+          "css": "#d4868b",
           "aliasOf": "color.primitive.modern.muted",
           "description": "D-041 interaction.scrollbar.thumb-hover: color.primitive.modern.muted.",
           "status": "approved",
@@ -21512,14 +21752,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4549019607843137,
-              0.49411764705882355,
-              0.5568627450980392
+              0.5961,
+              0.4353,
+              0.4471
             ],
             "alpha": 1,
-            "hex": "#747e8e"
+            "hex": "#986f72"
           },
-          "css": "#747e8e",
+          "css": "#986f72",
           "aliasOf": "color.primitive.modern.control",
           "description": "D-041 action.secondary.border: color.primitive.modern.control.",
           "status": "approved",
@@ -22304,14 +22544,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4549019607843137,
-              0.49411764705882355,
-              0.5568627450980392
+              0.5961,
+              0.4353,
+              0.4471
             ],
             "alpha": 1,
-            "hex": "#747e8e"
+            "hex": "#986f72"
           },
-          "css": "#747e8e",
+          "css": "#986f72",
           "aliasOf": "color.primitive.modern.control",
           "description": "D-041 status.neutral.fill: color.primitive.modern.control.",
           "status": "approved",
@@ -22352,14 +22592,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.08235294117647059,
-              0.09411764705882353,
-              0.11764705882352941
+              0.0784,
+              0.0431,
+              0.0431
             ],
             "alpha": 1,
-            "hex": "#15181e"
+            "hex": "#140b0b"
           },
-          "css": "#15181e",
+          "css": "#140b0b",
           "aliasOf": "color.primitive.modern.raised",
           "description": "D-041 status.neutral.tint: color.primitive.modern.raised.",
           "status": "approved",
@@ -22376,14 +22616,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4549019607843137,
-              0.49411764705882355,
-              0.5568627450980392
+              0.5961,
+              0.4353,
+              0.4471
             ],
             "alpha": 1,
-            "hex": "#747e8e"
+            "hex": "#986f72"
           },
-          "css": "#747e8e",
+          "css": "#986f72",
           "aliasOf": "color.primitive.modern.control",
           "description": "D-041 status.neutral.border: color.primitive.modern.control.",
           "status": "approved",
@@ -22424,14 +22664,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.054901960784313725,
-              0.06274509803921569,
-              0.0784313725490196
+              0.051,
+              0.0275,
+              0.0275
             ],
             "alpha": 1,
-            "hex": "#0e1014"
+            "hex": "#0d0707"
           },
-          "css": "#0e1014",
+          "css": "#0d0707",
           "aliasOf": "color.primitive.modern.panel",
           "description": "D-041 code.current-line: color.primitive.modern.panel.",
           "status": "approved",
@@ -22520,14 +22760,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.18823529411764706,
-              0.21176470588235294,
-              0.25098039215686274
+              0.2824,
+              0.1686,
+              0.1686
             ],
             "alpha": 1,
-            "hex": "#303640"
+            "hex": "#482b2b"
           },
-          "css": "#303640",
+          "css": "#482b2b",
           "aliasOf": "color.primitive.modern.divider",
           "description": "D-041 code.gutter-rule: color.primitive.modern.divider.",
           "status": "approved",
@@ -22688,14 +22928,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.18823529411764706,
-              0.21176470588235294,
-              0.25098039215686274
+              0.2824,
+              0.1686,
+              0.1686
             ],
             "alpha": 1,
-            "hex": "#303640"
+            "hex": "#482b2b"
           },
-          "css": "#303640",
+          "css": "#482b2b",
           "aliasOf": "color.primitive.modern.divider",
           "description": "D-041 code.indent-guide: color.primitive.modern.divider.",
           "status": "approved",
@@ -22712,14 +22952,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4549019607843137,
-              0.49411764705882355,
-              0.5568627450980392
+              0.5961,
+              0.4353,
+              0.4471
             ],
             "alpha": 1,
-            "hex": "#747e8e"
+            "hex": "#986f72"
           },
-          "css": "#747e8e",
+          "css": "#986f72",
           "aliasOf": "color.primitive.modern.control",
           "description": "D-041 code.whitespace: color.primitive.modern.control.",
           "status": "approved",
@@ -23016,14 +23256,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.9450980392156862,
-              0.9607843137254902,
-              0.9764705882352941
+              0.9569,
+              0.9333,
+              0.9333
             ],
             "alpha": 1,
-            "hex": "#f1f5f9"
+            "hex": "#f4eeee"
           },
-          "css": "#f1f5f9",
+          "css": "#f4eeee",
           "aliasOf": "color.primitive.modern.bright",
           "description": "D-041 code.syntax.heading: color.primitive.modern.bright.",
           "status": "approved",
@@ -23729,6 +23969,30 @@
             "decisionIds": []
           }
         },
+        "color.diff.added.shared-word": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.17254901960784313,
+              0.396078431372549,
+              0.25098039215686274
+            ],
+            "alpha": 1,
+            "hex": "#2c6540"
+          },
+          "css": "#2c6540",
+          "aliasOf": "color.primitive.modern.diff-shared-green",
+          "description": "D-041 host-specific shared summary foreground and word background: about 3:1 against black and rose prose; never a generic ordinary-text role.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-041",
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
         "color.diff.removed.bg": {
           "type": "color",
           "value": {
@@ -23795,6 +24059,30 @@
           "status": "observed",
           "deprecated": false,
           "decisionId": null,
+          "eligibility": {
+            "action": "blocked",
+            "reason": "Proposed profile: preview only, not downstream delivery.",
+            "decisionIds": []
+          }
+        },
+        "color.diff.removed.shared-word": {
+          "type": "color",
+          "value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5843137254901961,
+              0.23921568627450981,
+              0.27450980392156865
+            ],
+            "alpha": 1,
+            "hex": "#953d46"
+          },
+          "css": "#953d46",
+          "aliasOf": "color.primitive.modern.diff-shared-red",
+          "description": "D-041 host-specific shared summary foreground and word background: about 3:1 against black and rose prose; never a generic ordinary-text role.",
+          "status": "approved",
+          "deprecated": false,
+          "decisionId": "D-041",
           "eligibility": {
             "action": "blocked",
             "reason": "Proposed profile: preview only, not downstream delivery.",
@@ -24684,14 +24972,14 @@
           "value": {
             "colorSpace": "srgb",
             "components": [
-              0.4549019607843137,
-              0.49411764705882355,
-              0.5568627450980392
+              0.5961,
+              0.4353,
+              0.4471
             ],
             "alpha": 1,
-            "hex": "#747e8e"
+            "hex": "#986f72"
           },
-          "css": "#747e8e",
+          "css": "#986f72",
           "aliasOf": "color.primitive.modern.control",
           "description": "D-041 icon.decorative: color.primitive.modern.control.",
           "status": "approved",

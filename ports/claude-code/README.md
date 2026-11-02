@@ -63,8 +63,7 @@ if the installer created it. Claude Code only.
   every other byte, the byte-order mark and the line endings are kept.
 - It follows `CLAUDE_CONFIG_DIR` and `HOME`, so inside an agent session it acts
   on that session's configuration; `--claude-config-dir` picks another one.
-- `color.border.overlay` (dialog borders) is a use-and-report role under D-008;
-  every run says so.
+- Dialog borders follow the approved default overlay role (D-041).
 
 **Restart once.** Sessions already running when the themes folder was first
 created need one restart; after that, changes load live.
@@ -76,12 +75,17 @@ Claude Code's own; `test` prints them.
 - Highlighted code, links (slot 12) and file previews use terminal colours.
   Line-level `+` and `-` markers may inherit ANSI slots or the row foreground,
   depending on Claude's renderer; there is no independent line-marker token.
-- **Edit-summary `+N` / `-N` counts:** Claude Code 2.1.301 uses
-  `diffAddedWord` / `diffRemovedWord` as foregrounds here as well as word-level
-  backgrounds. They now use green/red emphasis, fixing the nearly black `+`
-  caused by assigning a dark line tint to `diffAddedWord`. The host shares
-  these settings: bright word backgrounds can reduce contrast behind syntax
-  text, and no separate summary-color key exists. This limit is not a pass.
+- **Edit-summary `+N` / `-N` counts:** Claude Code 2.1.303 shares
+  `diffAddedWord` / `diffRemovedWord` between summary foreground and word
+  background. Dedicated `diff.*.shared-word` roles use green `#2c6540` and
+  red `#953d46`: respectively 3.04:1 / 3.03:1 on black and 3.01:1 / 3.02:1
+  with ordinary rose text. These reduce the glaring fills without returning
+  the summary to nearly black. Both uses cannot reach 4.5:1 with the same
+  colour; the best balanced ratio is about 3.03:1. This is a documented host
+  compromise, not a generic text waiver or a syntax-wide contrast pass.
+  There is no independent summary or word-text foreground setting.
+- Dimmed/rejected diff rows retain their added/removed line tint; those theme
+  keys are backgrounds, not disabled foreground text.
 - The selected item in a picker changes its text colour only; there is no
   selection fill.
 - Subagent names follow the semantic terminal hues. Normal/bright pairs may

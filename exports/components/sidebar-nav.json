@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-3TpAOt6MFRkInKpfNwQFYM/II7WK1keACleSRtw6SrE=",
+  "sourceDigest": "sha256-sCxjZdAqLlE1Q9ukwiB7Cju9jv2KO1vefm66CYFf/yg=",
   "id": "sidebar-nav",
   "family": "navigation",
   "maturity": "stable",
@@ -70,7 +70,7 @@
   "tokens": {
     "root.bg": {
       "alias": "color.surface.default",
-      "value": "#0e1014",
+      "value": "#0d0707",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -82,7 +82,7 @@
     },
     "root.border": {
       "alias": "color.border.divider",
-      "value": "#303640",
+      "value": "#482b2b",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -106,7 +106,7 @@
     },
     "link.bg-hover": {
       "alias": "color.interaction.hover.bg",
-      "value": "#191c22",
+      "value": "#1c1010",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -250,7 +250,7 @@
     },
     "group.chevron": {
       "alias": "color.icon.decorative",
-      "value": "#747e8e",
+      "value": "#986f72",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -281,7 +281,7 @@
         },
         "bg": {
           "alias": "color.surface.default",
-          "value": "#0e1014",
+          "value": "#0d0707",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -312,7 +312,7 @@
         },
         "bg": {
           "alias": "color.interaction.hover.bg",
-          "value": "#191c22",
+          "value": "#1c1010",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -343,7 +343,7 @@
         },
         "bg": {
           "alias": "color.surface.default",
-          "value": "#0e1014",
+          "value": "#0d0707",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -386,7 +386,7 @@
         },
         "bg": {
           "alias": "color.surface.default",
-          "value": "#0e1014",
+          "value": "#0d0707",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -491,7 +491,7 @@
         },
         "bg": {
           "alias": "color.surface.default",
-          "value": "#0e1014",
+          "value": "#0d0707",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -522,7 +522,7 @@
         },
         "bg": {
           "alias": "color.surface.default",
-          "value": "#0e1014",
+          "value": "#0d0707",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -589,8 +589,8 @@
       "fg": "color.text.default",
       "bg": "color.surface.default",
       "fgHex": "#e99499",
-      "bgHex": "#0e1014",
-      "ratio": 8.31,
+      "bgHex": "#0d0707",
+      "ratio": 8.72,
       "pass": true,
       "waiver": null
     },
@@ -602,8 +602,8 @@
       "fg": "color.text.default",
       "bg": "color.interaction.hover.bg",
       "fgHex": "#e99499",
-      "bgHex": "#191c22",
-      "ratio": 7.44,
+      "bgHex": "#1c1010",
+      "ratio": 8.1,
       "pass": true,
       "waiver": null
     },
@@ -615,8 +615,8 @@
       "fg": "color.text.default",
       "bg": "color.surface.default",
       "fgHex": "#e99499",
-      "bgHex": "#0e1014",
-      "ratio": 8.31,
+      "bgHex": "#0d0707",
+      "ratio": 8.72,
       "pass": true,
       "waiver": null
     },
@@ -628,8 +628,8 @@
       "fg": "color.interaction.focus.ring",
       "bg": "color.surface.default",
       "fgHex": "#e53935",
-      "bgHex": "#0e1014",
-      "ratio": 4.5,
+      "bgHex": "#0d0707",
+      "ratio": 4.73,
       "pass": true,
       "waiver": null
     },
@@ -641,8 +641,8 @@
       "fg": "color.text.bright",
       "bg": "color.surface.default",
       "fgHex": "#ffa2a7",
-      "bgHex": "#0e1014",
-      "ratio": 9.95,
+      "bgHex": "#0d0707",
+      "ratio": 10.45,
       "pass": true,
       "waiver": null
     },
@@ -654,8 +654,8 @@
       "fg": "color.border.selected-indicator",
       "bg": "color.surface.default",
       "fgHex": "#e53935",
-      "bgHex": "#0e1014",
-      "ratio": 4.5,
+      "bgHex": "#0d0707",
+      "ratio": 4.73,
       "pass": true,
       "waiver": null
     },
@@ -693,8 +693,8 @@
       "fg": "color.text.default",
       "bg": "color.surface.default",
       "fgHex": "#e99499",
-      "bgHex": "#0e1014",
-      "ratio": 8.31,
+      "bgHex": "#0d0707",
+      "ratio": 8.72,
       "pass": true,
       "waiver": null
     },
@@ -706,8 +706,8 @@
       "fg": "color.text.default",
       "bg": "color.surface.default",
       "fgHex": "#e99499",
-      "bgHex": "#0e1014",
-      "ratio": 8.31,
+      "bgHex": "#0d0707",
+      "ratio": 8.72,
       "pass": true,
       "waiver": null
     },
@@ -731,9 +731,9 @@
       "min": 1,
       "fg": "color.icon.decorative",
       "bg": "color.surface.default",
-      "fgHex": "#747e8e",
-      "bgHex": "#0e1014",
-      "ratio": 4.64,
+      "fgHex": "#986f72",
+      "bgHex": "#0d0707",
+      "ratio": 4.62,
       "pass": true,
       "waiver": "the chevron duplicates aria-expanded and the visible children; it is not the only channel"
     },
@@ -744,9 +744,9 @@
       "min": 1,
       "fg": "color.border.divider",
       "bg": "color.surface.default",
-      "fgHex": "#303640",
-      "bgHex": "#0e1014",
-      "ratio": 1.57,
+      "fgHex": "#482b2b",
+      "bgHex": "#0d0707",
+      "ratio": 1.58,
       "pass": true,
       "waiver": "the edge separates the rail from the canvas; the links are the targets"
     }

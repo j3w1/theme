@@ -1722,12 +1722,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.054901960784313725,
-              0.06274509803921569,
-              0.0784313725490196
+              0.051,
+              0.0275,
+              0.0275
             ],
             "alpha": 1,
-            "hex": "#0e1014"
+            "hex": "#0d0707"
           },
           "$description": "D-041 panel colour.",
           "$extensions": {
@@ -1748,12 +1748,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.08235294117647059,
-              0.09411764705882353,
-              0.11764705882352941
+              0.0784,
+              0.0431,
+              0.0431
             ],
             "alpha": 1,
-            "hex": "#15181e"
+            "hex": "#140b0b"
           },
           "$description": "D-041 raised colour.",
           "$extensions": {
@@ -1774,12 +1774,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.09803921568627451,
-              0.10980392156862745,
-              0.13333333333333333
+              0.1098,
+              0.0627,
+              0.0627
             ],
             "alpha": 1,
-            "hex": "#191c22"
+            "hex": "#1c1010"
           },
           "$description": "D-041 overlay colour.",
           "$extensions": {
@@ -1800,12 +1800,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.09803921568627451,
-              0.10980392156862745,
-              0.13333333333333333
+              0.1098,
+              0.0627,
+              0.0627
             ],
             "alpha": 1,
-            "hex": "#191c22"
+            "hex": "#1c1010"
           },
           "$description": "D-041 hover colour.",
           "$extensions": {
@@ -1826,12 +1826,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.18823529411764706,
-              0.21176470588235294,
-              0.25098039215686274
+              0.2824,
+              0.1686,
+              0.1686
             ],
             "alpha": 1,
-            "hex": "#303640"
+            "hex": "#482b2b"
           },
           "$description": "D-041 divider colour.",
           "$extensions": {
@@ -1852,12 +1852,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.4549019607843137,
-              0.49411764705882355,
-              0.5568627450980392
+              0.5961,
+              0.4353,
+              0.4471
             ],
             "alpha": 1,
-            "hex": "#747e8e"
+            "hex": "#986f72"
           },
           "$description": "D-041 control colour.",
           "$extensions": {
@@ -1878,12 +1878,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.4470588235294118,
-              0.4823529411764706,
-              0.5372549019607843
+              0.6392,
+              0.4039,
+              0.4196
             ],
             "alpha": 1,
-            "hex": "#727b89"
+            "hex": "#a3676b"
           },
           "$description": "D-041 disabled colour.",
           "$extensions": {
@@ -1904,12 +1904,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.5647058823529412,
-              0.6039215686274509,
-              0.6666666666666666
+              0.7412,
+              0.4706,
+              0.4902
             ],
             "alpha": 1,
-            "hex": "#909aaa"
+            "hex": "#bd787d"
           },
           "$description": "D-041 subtle colour.",
           "$extensions": {
@@ -1930,12 +1930,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.6509803921568628,
-              0.6862745098039216,
-              0.7411764705882353
+              0.8314,
+              0.5255,
+              0.5451
             ],
             "alpha": 1,
-            "hex": "#a6afbd"
+            "hex": "#d4868b"
           },
           "$description": "D-041 muted colour.",
           "$extensions": {
@@ -1956,12 +1956,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.8470588235294118,
-              0.8705882352941177,
-              0.9137254901960784
+              0.9137,
+              0.5804,
+              0.6
             ],
             "alpha": 1,
-            "hex": "#d8dee9"
+            "hex": "#e99499"
           },
           "$description": "D-041 text colour.",
           "$extensions": {
@@ -1982,12 +1982,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.9450980392156862,
-              0.9607843137254902,
-              0.9764705882352941
+              0.9569,
+              0.9333,
+              0.9333
             ],
             "alpha": 1,
-            "hex": "#f1f5f9"
+            "hex": "#f4eeee"
           },
           "$description": "D-041 bright colour.",
           "$extensions": {
@@ -2302,6 +2302,58 @@
             "hex": "#a0e7e7"
           },
           "$description": "D-041 bright-cyan colour.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "origin": {
+                "kind": "derived",
+                "ref": "spec/decisions.md#d-041",
+                "note": "Owner-authorized modern developer palette."
+              },
+              "approval": {
+                "decision": "D-041"
+              }
+            }
+          }
+        },
+        "diff-shared-green": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.17254901960784313,
+              0.396078431372549,
+              0.25098039215686274
+            ],
+            "alpha": 1,
+            "hex": "#2c6540"
+          },
+          "$description": "D-041 compromise for hosts sharing diff summary foreground and word background; not general text or ANSI.",
+          "$extensions": {
+            "io.github.j3w1.theme": {
+              "status": "approved",
+              "origin": {
+                "kind": "derived",
+                "ref": "spec/decisions.md#d-041",
+                "note": "Owner-authorized modern developer palette."
+              },
+              "approval": {
+                "decision": "D-041"
+              }
+            }
+          }
+        },
+        "diff-shared-red": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5843137254901961,
+              0.23921568627450981,
+              0.27450980392156865
+            ],
+            "alpha": 1,
+            "hex": "#953d46"
+          },
+          "$description": "D-041 compromise for hosts sharing diff summary foreground and word background; not general text or ANSI.",
           "$extensions": {
             "io.github.j3w1.theme": {
               "status": "approved",

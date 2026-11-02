@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-3TpAOt6MFRkInKpfNwQFYM/II7WK1keACleSRtw6SrE=",
+  "sourceDigest": "sha256-sCxjZdAqLlE1Q9ukwiB7Cju9jv2KO1vefm66CYFf/yg=",
   "id": "admin-form",
   "family": "composed",
   "maturity": "stable",
@@ -60,7 +60,7 @@
   "tokens": {
     "root.bg": {
       "alias": "color.surface.default",
-      "value": "#0e1014",
+      "value": "#0d0707",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -72,7 +72,7 @@
     },
     "root.border": {
       "alias": "color.border.default",
-      "value": "#303640",
+      "value": "#482b2b",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -264,7 +264,7 @@
     },
     "field.border": {
       "alias": "color.border.control",
-      "value": "#747e8e",
+      "value": "#986f72",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -348,7 +348,7 @@
     },
     "disabled.bg": {
       "alias": "color.interaction.disabled.bg",
-      "value": "#0e1014",
+      "value": "#0d0707",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -372,7 +372,7 @@
     },
     "disabled.border": {
       "alias": "color.border.disabled",
-      "value": "#303640",
+      "value": "#482b2b",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -408,7 +408,7 @@
     },
     "review.row-rule": {
       "alias": "color.border.divider",
-      "value": "#303640",
+      "value": "#482b2b",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -420,7 +420,7 @@
     },
     "footer.border": {
       "alias": "color.border.divider",
-      "value": "#303640",
+      "value": "#482b2b",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -480,7 +480,7 @@
     },
     "back.border": {
       "alias": "color.action.secondary.border",
-      "value": "#747e8e",
+      "value": "#986f72",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -547,7 +547,7 @@
         },
         "border": {
           "alias": "color.border.control",
-          "value": "#747e8e",
+          "value": "#986f72",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -719,9 +719,9 @@
       "min": 3,
       "fg": "color.border.control",
       "bg": "color.surface.input",
-      "fgHex": "#747e8e",
+      "fgHex": "#986f72",
       "bgHex": "#000000",
-      "ratio": 5.12,
+      "ratio": 4.85,
       "pass": true,
       "waiver": null
     },
@@ -772,8 +772,8 @@
       "fg": "color.text.bright",
       "bg": "color.surface.default",
       "fgHex": "#ffa2a7",
-      "bgHex": "#0e1014",
-      "ratio": 9.95,
+      "bgHex": "#0d0707",
+      "ratio": 10.45,
       "pass": true,
       "waiver": null
     },
@@ -785,8 +785,8 @@
       "fg": "color.text.muted",
       "bg": "color.surface.default",
       "fgHex": "#d4868b",
-      "bgHex": "#0e1014",
-      "ratio": 6.88,
+      "bgHex": "#0d0707",
+      "ratio": 7.22,
       "pass": true,
       "waiver": null
     },
@@ -798,8 +798,8 @@
       "fg": "color.text.link",
       "bg": "color.surface.default",
       "fgHex": "#f73f35",
-      "bgHex": "#0e1014",
-      "ratio": 5.18,
+      "bgHex": "#0d0707",
+      "ratio": 5.44,
       "pass": true,
       "waiver": null
     },
@@ -811,8 +811,8 @@
       "fg": "color.status.success.text",
       "bg": "color.surface.default",
       "fgHex": "#82d9a0",
-      "bgHex": "#0e1014",
-      "ratio": 11.23,
+      "bgHex": "#0d0707",
+      "ratio": 11.79,
       "pass": true,
       "waiver": null
     },
@@ -863,8 +863,8 @@
       "fg": "color.status.danger.text",
       "bg": "color.surface.default",
       "fgHex": "#f07178",
-      "bgHex": "#0e1014",
-      "ratio": 6.65,
+      "bgHex": "#0d0707",
+      "ratio": 6.98,
       "pass": true,
       "waiver": null
     },
@@ -889,8 +889,8 @@
       "fg": "color.border.selected-indicator",
       "bg": "color.surface.default",
       "fgHex": "#e53935",
-      "bgHex": "#0e1014",
-      "ratio": 4.5,
+      "bgHex": "#0d0707",
+      "ratio": 4.73,
       "pass": true,
       "waiver": null
     },
@@ -901,9 +901,9 @@
       "min": 3,
       "fg": "color.action.secondary.border",
       "bg": "color.surface.default",
-      "fgHex": "#747e8e",
-      "bgHex": "#0e1014",
-      "ratio": 4.64,
+      "fgHex": "#986f72",
+      "bgHex": "#0d0707",
+      "ratio": 4.62,
       "pass": true,
       "waiver": null
     },
@@ -915,8 +915,8 @@
       "fg": "color.text.disabled",
       "bg": "color.interaction.disabled.bg",
       "fgHex": "#a3676b",
-      "bgHex": "#0e1014",
-      "ratio": 4.27,
+      "bgHex": "#0d0707",
+      "ratio": 4.48,
       "pass": true,
       "waiver": null
     },
@@ -928,8 +928,8 @@
       "fg": "color.text.disabled",
       "bg": "color.surface.default",
       "fgHex": "#a3676b",
-      "bgHex": "#0e1014",
-      "ratio": 4.27,
+      "bgHex": "#0d0707",
+      "ratio": 4.48,
       "pass": true,
       "waiver": null
     },
@@ -940,9 +940,9 @@
       "min": 1,
       "fg": "color.border.disabled",
       "bg": "color.interaction.disabled.bg",
-      "fgHex": "#303640",
-      "bgHex": "#0e1014",
-      "ratio": 1.57,
+      "fgHex": "#482b2b",
+      "bgHex": "#0d0707",
+      "ratio": 1.58,
       "pass": true,
       "waiver": "disabled controls are exempt from 1.4.11"
     },
@@ -954,8 +954,8 @@
       "fg": "color.border.strong",
       "bg": "color.surface.default",
       "fgHex": "#9e231f",
-      "bgHex": "#0e1014",
-      "ratio": 2.46,
+      "bgHex": "#0d0707",
+      "ratio": 2.58,
       "pass": true,
       "waiver": "the header row is identified by th scope=col; the rule only separates it"
     },
@@ -966,9 +966,9 @@
       "min": 1,
       "fg": "color.border.default",
       "bg": "color.surface.default",
-      "fgHex": "#303640",
-      "bgHex": "#0e1014",
-      "ratio": 1.57,
+      "fgHex": "#482b2b",
+      "bgHex": "#0d0707",
+      "ratio": 1.58,
       "pass": true,
       "waiver": "the panel edge separates the screen from the page; every control inside carries its own boundary"
     },
@@ -979,9 +979,9 @@
       "min": 1,
       "fg": "color.border.divider",
       "bg": "color.surface.default",
-      "fgHex": "#303640",
-      "bgHex": "#0e1014",
-      "ratio": 1.57,
+      "fgHex": "#482b2b",
+      "bgHex": "#0d0707",
+      "ratio": 1.58,
       "pass": true,
       "waiver": "the rules group content that is already distinct by landmark, list and table structure"
     }

@@ -105,24 +105,24 @@
       "why": "Added line background."
     },
     "diffAddedDimmed": {
-      "token": "color.interaction.disabled.bg",
-      "why": "A rejected edit is inert: the disabled background."
+      "token": "color.diff.added.bg",
+      "why": "Dimmed/rejected lines retain the corresponding semantic line tint; the host key is a background, not disabled text."
     },
     "diffAddedWord": {
-      "token": "color.diff.added.emphasis",
-      "why": "Shared by the +N edit-summary foreground and word-level background in Claude Code 2.1.301. A dark line tint makes +N unreadable; use semantic green emphasis and disclose the host word-background contrast limit."
+      "token": "color.diff.added.shared-word",
+      "why": "Shared summary foreground and word background: balanced ~3:1 against black and rose text; an explicit host limitation, not an ordinary-text contrast pass."
     },
     "diffRemoved": {
       "token": "color.diff.removed.bg",
       "why": "Removed line background."
     },
     "diffRemovedDimmed": {
-      "token": "color.interaction.disabled.bg",
-      "why": "A rejected edit is inert: the disabled background."
+      "token": "color.diff.removed.bg",
+      "why": "Dimmed/rejected lines retain the corresponding semantic line tint; the host key is a background, not disabled text."
     },
     "diffRemovedWord": {
-      "token": "color.diff.removed.emphasis",
-      "why": "Shared by the -N edit-summary foreground and word-level background; use semantic removal emphasis, with the same host limitation as diffAddedWord."
+      "token": "color.diff.removed.shared-word",
+      "why": "Shared summary foreground and word background: balanced ~3:1 against black and rose text; an explicit host limitation, not an ordinary-text contrast pass."
     },
     "effortUltra": {
       "token": "color.text.accent-strong",
@@ -351,8 +351,8 @@
       "target": "word-level change",
       "kind": "substituted",
       "specValue": "color.diff.*.emphasis underline",
-      "applied": "color.diff.added.emphasis / color.diff.removed.emphasis",
-      "reason": "Claude Code 2.1.301 reuses diffAddedWord/diffRemovedWord for the +N/-N summary foreground and the word-change background. Emphasis makes the summary readable and correctly colored. The same bright fill can reduce contrast behind syntax-colored word changes; no separate summary-color setting exists. This is a host limitation, not a contrast pass."
+      "applied": "color.diff.added.shared-word / color.diff.removed.shared-word",
+      "reason": "Claude Code 2.1.303 reuses diffAddedWord/diffRemovedWord for summary foreground and word background. Dedicated shared-word roles balance both at about 3:1 for black and ordinary rose; neither a 4.5:1 pass nor a guarantee for every syntax foreground. No separate summary or word-foreground setting exists."
     },
     {
       "component": "menu",

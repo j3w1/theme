@@ -2,7 +2,7 @@
 // @id j3w1-explorer-native
 // @name j3w1 Explorer native colors
 // @description Generated native Explorer canvas and text adapter; exact host only
-// @version 1.8.7
+// @version 1.8.8
 // @author j3w1
 // @include explorer.exe
 // @architecture x86-64
@@ -14,20 +14,20 @@
 - folderEdge: "#e53935"
 - background: "#000000"
 - foreground: "#e99499"
-- hover: "#191c22"
+- hover: "#1c1010"
 - selected: "#531310"
 - inactive: "#420f0c"
-- border: "#303640"
+- border: "#482b2b"
 - pin: "#e53935"
-- scrollbar: "#747e8e"
-- scrollbarHover: "#a6afbd"
+- scrollbar: "#986f72"
+- scrollbarHover: "#d4868b"
 - disabled: "#a3676b"
 - textSelection: "#420f0c"
 - textSelectionText: "#f4eeee"
 - focusRing: "#e53935"
-- menuHover: "#191c22"
+- menuHover: "#1c1010"
 - menuHoverText: "#f4eeee"
-- menuBorder: "#747e8e"
+- menuBorder: "#986f72"
 - marquee: "#1f911410"
 - marqueeBorder: "#e53935"
 */
@@ -636,7 +636,7 @@ static bool Caller(void* address) noexcept {
     std::lock_guard guard(moduleLock);
     if(retainedShell)return module==retainedShell;
     if(!FixedModuleVersion(module,MAKELONG(0,10),MAKELONG(9818,26100))
-       ||!Digest(module,"176583a40ed6f0ab9414bebafa66fe443711937468c2b335a7fc96fb0e35a55a"))return false;
+       ||!Digest(module,"d275b4025c9332cbe255a368f0c876c746e1959d7db40156db467fb829059dba"))return false;
     // Retain the admitted module until hook cleanup so a recycled handle cannot
     // inherit an earlier module's admission. Missing/unknown callers pass through.
     return GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS,reinterpret_cast<LPCWSTR>(address),&retainedShell)!=FALSE;

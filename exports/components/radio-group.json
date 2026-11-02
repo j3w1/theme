@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-3TpAOt6MFRkInKpfNwQFYM/II7WK1keACleSRtw6SrE=",
+  "sourceDigest": "sha256-sCxjZdAqLlE1Q9ukwiB7Cju9jv2KO1vefm66CYFf/yg=",
   "id": "radio-group",
   "family": "forms-basic",
   "maturity": "stable",
@@ -76,7 +76,7 @@
     },
     "box.border": {
       "alias": "color.border.control",
-      "value": "#747e8e",
+      "value": "#986f72",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -88,7 +88,7 @@
     },
     "box.bg-hover": {
       "alias": "color.interaction.hover.bg",
-      "value": "#191c22",
+      "value": "#1c1010",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -172,7 +172,7 @@
     },
     "box.bg-disabled": {
       "alias": "color.interaction.disabled.bg",
-      "value": "#0e1014",
+      "value": "#0d0707",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -184,7 +184,7 @@
     },
     "box.border-disabled": {
       "alias": "color.border.disabled",
-      "value": "#303640",
+      "value": "#482b2b",
       "status": "approved",
       "deprecated": false,
       "decisionId": "D-041",
@@ -287,7 +287,7 @@
         },
         "border": {
           "alias": "color.border.control",
-          "value": "#747e8e",
+          "value": "#986f72",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -306,7 +306,7 @@
       "tokens": {
         "bg": {
           "alias": "color.interaction.hover.bg",
-          "value": "#191c22",
+          "value": "#1c1010",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -318,7 +318,7 @@
         },
         "border": {
           "alias": "color.border.control",
-          "value": "#747e8e",
+          "value": "#986f72",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -349,7 +349,7 @@
         },
         "border": {
           "alias": "color.border.control",
-          "value": "#747e8e",
+          "value": "#986f72",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -503,7 +503,7 @@
         },
         "border": {
           "alias": "color.border.control",
-          "value": "#747e8e",
+          "value": "#986f72",
           "status": "approved",
           "deprecated": false,
           "decisionId": "D-041",
@@ -572,9 +572,9 @@
       "min": 3,
       "fg": "color.border.control",
       "bg": "color.surface.input",
-      "fgHex": "#747e8e",
+      "fgHex": "#986f72",
       "bgHex": "#000000",
-      "ratio": 5.12,
+      "ratio": 4.85,
       "pass": true,
       "waiver": null
     },
@@ -585,9 +585,9 @@
       "min": 3,
       "fg": "color.border.control",
       "bg": "color.interaction.hover.bg",
-      "fgHex": "#747e8e",
-      "bgHex": "#191c22",
-      "ratio": 4.16,
+      "fgHex": "#986f72",
+      "bgHex": "#1c1010",
+      "ratio": 4.29,
       "pass": true,
       "waiver": null
     },
@@ -598,9 +598,9 @@
       "min": 3,
       "fg": "color.border.control",
       "bg": "color.surface.input",
-      "fgHex": "#747e8e",
+      "fgHex": "#986f72",
       "bgHex": "#000000",
-      "ratio": 5.12,
+      "ratio": 4.85,
       "pass": true,
       "waiver": null
     },
@@ -676,9 +676,9 @@
       "min": 3,
       "fg": "color.border.control",
       "bg": "color.surface.input",
-      "fgHex": "#747e8e",
+      "fgHex": "#986f72",
       "bgHex": "#000000",
-      "ratio": 5.12,
+      "ratio": 4.85,
       "pass": true,
       "waiver": null
     },
@@ -690,8 +690,8 @@
       "fg": "color.text.default",
       "bg": "color.surface.default",
       "fgHex": "#e99499",
-      "bgHex": "#0e1014",
-      "ratio": 8.31,
+      "bgHex": "#0d0707",
+      "ratio": 8.72,
       "pass": true,
       "waiver": null
     },
@@ -703,8 +703,8 @@
       "fg": "color.text.bright",
       "bg": "color.surface.default",
       "fgHex": "#ffa2a7",
-      "bgHex": "#0e1014",
-      "ratio": 9.95,
+      "bgHex": "#0d0707",
+      "ratio": 10.45,
       "pass": true,
       "waiver": null
     },
@@ -715,9 +715,9 @@
       "min": 3,
       "fg": "color.border.control",
       "bg": "color.surface.default",
-      "fgHex": "#747e8e",
-      "bgHex": "#0e1014",
-      "ratio": 4.64,
+      "fgHex": "#986f72",
+      "bgHex": "#0d0707",
+      "ratio": 4.62,
       "pass": true,
       "waiver": null
     },
@@ -742,8 +742,8 @@
       "fg": "color.status.danger.text",
       "bg": "color.surface.default",
       "fgHex": "#f07178",
-      "bgHex": "#0e1014",
-      "ratio": 6.65,
+      "bgHex": "#0d0707",
+      "ratio": 6.98,
       "pass": true,
       "waiver": null
     },
@@ -755,8 +755,8 @@
       "fg": "color.text.disabled",
       "bg": "color.surface.default",
       "fgHex": "#a3676b",
-      "bgHex": "#0e1014",
-      "ratio": 4.27,
+      "bgHex": "#0d0707",
+      "ratio": 4.48,
       "pass": true,
       "waiver": null
     },
@@ -768,8 +768,8 @@
       "fg": "color.text.disabled",
       "bg": "color.interaction.disabled.bg",
       "fgHex": "#a3676b",
-      "bgHex": "#0e1014",
-      "ratio": 4.27,
+      "bgHex": "#0d0707",
+      "ratio": 4.48,
       "pass": true,
       "waiver": null
     },
@@ -780,9 +780,9 @@
       "min": 1,
       "fg": "color.border.disabled",
       "bg": "color.interaction.disabled.bg",
-      "fgHex": "#303640",
-      "bgHex": "#0e1014",
-      "ratio": 1.57,
+      "fgHex": "#482b2b",
+      "bgHex": "#0d0707",
+      "ratio": 1.58,
       "pass": true,
       "waiver": "disabled controls are exempt from 1.4.11"
     }
