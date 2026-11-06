@@ -58,3 +58,9 @@ test("the wheel scrolls a helper only while it can still scroll that way", () =>
   assert.equal(canScroll(box(0, 100, 100), 40), false);
   assert.equal(canScroll(box(50, 100, 300), 0), false);
 });
+
+test("F10: the size cap comes from the same viewport the placement uses", async () => {
+  const { helperLimits } = await import("../packages/ui/src/internal/hover-helper.js");
+  assert.equal(typeof helperLimits, "function");
+  assert.deepEqual(helperLimits({ width: 305, height: 600 }), { maxInlineSize: "min(24rem, 289px)", maxBlockSize: "min(40vh, 584px)" });
+});

@@ -407,3 +407,193 @@ test("a pinned inspector stays inside a viewport that narrows", verification({ c
   await page.waitForTimeout(400);
   expect(await inGutter()).toBe(true);
 });
+
+/* Review round 1 (F1–F12): each test shows one defect of the first version. */
+
+const longTooltip = async (page, height = 500) => {
+  await page.setViewportSize({ width: 1200, height });
+  await page.goto("components/tooltip/", { waitUntil: "networkidle" });
+  const root = page.locator("j3w1-tooltip#example-tooltip-long");
+  const trigger = root.locator(".tooltip-trigger"), popup = root.locator(".tooltip-popup");
+  await trigger.evaluate((el) => window.scrollBy(0, el.getBoundingClientRect().top - 120));
+  const t = await trigger.boundingBox();
+  return { root, trigger, popup, at: { x: t.x + 6, y: t.y + t.height / 2 } };
+};
+
+test("F1: pinning consumes the first activation before the trigger's own handlers; the second reaches them", verification({ component: "tooltip", category: "enhancements", states: ["open"], variants: ["long"], note: "A click handler on the long tooltip's trigger counts activations: the pinning click must not reach it, the next click on the pinned trigger must. Automated Chromium only." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "pointer on desktop");
+  const { trigger, popup, at } = await longTooltip(page);
+  await trigger.evaluate((el) => { window.__actions = 0; el.addEventListener("click", () => { window.__actions++; }); });
+  await page.mouse.move(at.x, at.y);
+  await expect(popup).toBeVisible();
+  await page.mouse.click(at.x, at.y);
+  await expect(popup).toHaveAttribute("data-pinned", "");
+  expect(await page.evaluate(() => window.__actions)).toBe(0);
+  await page.mouse.click(at.x, at.y);
+  expect(await page.evaluate(() => window.__actions)).toBe(1);
+});
+
+test("F2: keyboard focus anchors an already visible tooltip and keeps it anchored while the pointer moves", verification({ component: "tooltip", category: "keyboard", states: ["hover", "focus-visible"], variants: ["long"], note: "Hover opens the tooltip at the pointer; keyboard focus on the same trigger anchors it below the trigger; further pointer movement over the trigger leaves it anchored. Automated Chromium only." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "pointer and focus on desktop");
+  const { trigger, popup, at } = await longTooltip(page, 800);
+  await page.mouse.move(at.x, at.y);
+  await expect(popup).toBeVisible();
+  await trigger.focus();
+  expect(await trigger.evaluate((el) => el.matches(":focus-visible"))).toBe(true);
+  const t = await trigger.boundingBox();
+  const anchored = async () => { const b = await box(popup); return Math.round(b.x) === Math.round(t.x) && b.y >= t.y + t.height; };
+  await expect.poll(anchored).toBe(true);
+  await page.mouse.move(at.x + 4, at.y + 1);
+  await page.mouse.move(at.x + 8, at.y + 2);
+  await page.waitForTimeout(100);
+  expect(await anchored()).toBe(true);
+});
+
+test("F3: a click on a token while its data loads pins the inspector, even after the pointer leaves", verification({ component: "page", category: "enhancements", states: [], variants: [], note: "Inspector data held; a click on a token is consumed, the pointer leaves, the data arrives: the inspector must be pinned and the page must not navigate. Automated Chromium only." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "pointer on desktop");
+  let release;
+  const held = new Promise((resolve) => { release = resolve; });
+  await page.route("**/tokens/inspector.json", async (route) => { await held; await route.continue(); });
+  await page.goto("components/button/", { waitUntil: "domcontentloaded" });
+  const token = page.locator("main a[data-token]").first();
+  await token.scrollIntoViewIfNeeded();
+  const t = await tokenRect(token);
+  const url = page.url();
+  await page.mouse.move(t.x + 4, t.y + t.height / 2);
+  await page.mouse.click(t.x + 4, t.y + t.height / 2);
+  await page.mouse.move(2, 2, { steps: 4 });
+  release();
+  const inspector = page.locator("#inspector");
+  await expect(inspector).toHaveAttribute("data-pinned", "");
+  await expect(inspector).toBeVisible();
+  expect(page.url()).toBe(url);
+});
+
+test.describe("an asynchronous helper on a touch screen", () => {
+  test.use({ hasTouch: true });
+  test("F4: a cold tap waits for delayed content, pins an overflowing helper and replays the activation of a short one", verification({ component: "tooltip", category: "enhancements", states: ["open"], variants: [], note: "Fixture built from @j3w1/ui/enhance/hover-helper with a 150 ms asynchronous renderer: a tap on a long-content trigger pins it without running the trigger's handler; a tap on a short-content trigger shows no pin and runs the handler once. Chromium touch emulation only." }), async ({ page }, testInfo) => {
+    test.skip(!only(testInfo, "desktop"), "touch emulation on desktop");
+    await page.goto("components/tooltip/", { waitUntil: "networkidle" });
+    await page.evaluate(async () => {
+      const { hoverHelper } = await import(new URL("../../ui/enhance/hover-helper.js", location.href).href);
+      document.body.insertAdjacentHTML("afterbegin", '<div id="fx" style="position:fixed;left:40px;top:40px;z-index:9999"><button type="button" id="fx-long">Long</button> <button type="button" id="fx-short">Short</button><div id="fx-help" class="tooltip-popup"></div></div>');
+      window.__fx = { long: 0, short: 0 };
+      document.querySelector("#fx-long").addEventListener("click", () => window.__fx.long++);
+      document.querySelector("#fx-short").addEventListener("click", () => window.__fx.short++);
+      hoverHelper(document.querySelector("#fx-help"), {
+        trigger: (node) => node.closest("#fx-long, #fx-short"),
+        render: (trigger, box) => new Promise((resolve) => setTimeout(() => {
+          box.textContent = trigger.id === "fx-long" ? "A long description. ".repeat(400) : "Short.";
+          resolve();
+        }, 150)),
+      });
+    });
+    const helper = page.locator("#fx-help");
+    await page.locator("#fx-long").tap();
+    await expect(helper).toHaveAttribute("data-pinned", "");
+    expect(await page.evaluate(() => window.__fx.long)).toBe(0);
+    await page.keyboard.press("Escape");
+    await expect(helper).toBeHidden();
+    await page.locator("#fx-short").tap();
+    await expect.poll(() => page.evaluate(() => window.__fx.short)).toBe(1);
+    await expect(helper).not.toHaveAttribute("data-pinned");
+  });
+});
+
+test("F5: Escape closes the focused pinned inspector before a hover preview", verification({ component: "page", category: "keyboard", states: [], variants: [], note: "Inspector pinned by click with focus inside; the pointer then hovers a colour swatch so its preview opens; Escape must close the inspector and return focus to its token. Automated Chromium only." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "pointer and keyboard on desktop");
+  await page.goto("components/button/", { waitUntil: "networkidle" });
+  const token = page.locator("main a[data-token]").first();
+  await token.scrollIntoViewIfNeeded();
+  await token.evaluate((el) => window.scrollBy(0, el.getBoundingClientRect().top - 60));
+  const t = await tokenRect(token);
+  await page.mouse.move(t.x + 4, t.y + t.height / 2);
+  await page.mouse.click(t.x + 4, t.y + t.height / 2);
+  const inspector = page.locator("#inspector");
+  await expect(inspector).toHaveAttribute("data-pinned", "");
+  await expect(inspector).toBeFocused();
+  const panel = await inspector.boundingBox();
+  const s = await page.locator("main .hex-swatch[data-token-matches]").evaluateAll((els, panel) => {
+    for (const el of els) {
+      const r = el.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2;
+      const inside = x >= panel.x && x <= panel.x + panel.width && y >= panel.y && y <= panel.y + panel.height;
+      if (!inside && y > 0 && y < innerHeight && document.elementFromPoint(x, y) === el) return { x, y };
+    }
+    return null;
+  }, panel);
+  expect(s).not.toBeNull();
+  await page.mouse.move(s.x, s.y);
+  await expect(page.locator("#hex-popup")).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(inspector).toBeHidden();
+  await expect(token).toBeFocused();
+});
+
+test("F6: hiding a pinned tooltip programmatically returns focus to its trigger", verification({ component: "tooltip", category: "keyboard", states: ["open"], variants: ["long"], note: "Long tooltip pinned with focus inside; the element's hide() method closes it; focus must return to the trigger. Automated Chromium only." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "pointer on desktop");
+  const { root, trigger, popup, at } = await longTooltip(page);
+  await page.mouse.move(at.x, at.y);
+  await page.mouse.click(at.x, at.y);
+  await expect(popup).toBeFocused();
+  await root.evaluate((el) => el.hide());
+  await expect(popup).toBeHidden();
+  await expect(trigger).toBeFocused();
+});
+
+test("F9: Ctrl+wheel over a trigger stays a zoom gesture and does not scroll the helper", verification({ component: "tooltip", category: "enhancements", states: ["open"], variants: ["long"], note: "A cancelable Ctrl+wheel event dispatched on the long tooltip's trigger while its overflowing popup is visible: its default must stay available and the popup must not scroll. Automated Chromium only." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "pointer on desktop");
+  const { trigger, popup, at } = await longTooltip(page);
+  await page.mouse.move(at.x, at.y);
+  await expect(popup).toBeVisible();
+  const allowed = await trigger.evaluate((el) => el.dispatchEvent(new WheelEvent("wheel", { deltaY: 80, ctrlKey: true, bubbles: true, cancelable: true })));
+  expect(allowed).toBe(true);
+  expect(await popup.evaluate((el) => el.scrollTop)).toBe(0);
+});
+
+test("F10: the helper's size cap uses the same viewport as its placement", verification({ component: "tooltip", category: "reflow", states: ["open"], variants: ["long"], note: "The long tooltip's inline cap must be computed from documentElement.clientWidth minus both 8px gutters, not 100vw, so a classic scrollbar cannot push it past the gutter. Headless Chromium hides scrollbars, so the test reads the applied cap. Automated Chromium only." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "pointer on desktop");
+  const { popup, at } = await longTooltip(page);
+  await page.mouse.move(at.x, at.y);
+  await expect(popup).toBeVisible();
+  const cap = await popup.evaluate((el) => ({ inline: el.style.maxInlineSize, block: el.style.maxBlockSize, width: document.documentElement.clientWidth, height: document.documentElement.clientHeight }));
+  expect(cap.inline).toContain(`${cap.width - 16}px`);
+  expect(cap.block).toContain(`${cap.height - 16}px`);
+  expect(cap.inline).not.toContain("vw");
+});
+
+test("F11: a pinned helper with keyboard focus draws the container focus ring", verification({ component: "page", category: "keyboard", states: ["focus-visible"], variants: [], note: "Inspector pinned with Enter from a focused token: the focused panel must draw the 2px solid focus.ring-container ring at the container offset. Automated Chromium only." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "keyboard on desktop");
+  await page.goto("components/button/", { waitUntil: "networkidle" });
+  const token = page.locator("main a[data-token]").first();
+  await token.scrollIntoViewIfNeeded();
+  await token.focus();
+  const inspector = page.locator("#inspector");
+  await expect(inspector).toBeVisible();
+  await page.keyboard.press("Enter");
+  await expect(inspector).toBeFocused();
+  const ring = await inspector.evaluate((el) => {
+    const s = getComputedStyle(el), probe = document.createElement("i");
+    probe.style.color = "var(--color-interaction-focus-ring-container)";
+    document.body.append(probe);
+    const color = getComputedStyle(probe).color; probe.remove();
+    return { style: s.outlineStyle, width: s.outlineWidth, offset: s.outlineOffset, color: s.outlineColor, expected: color };
+  });
+  expect(ring).toEqual({ style: "solid", width: "2px", offset: "-3px", color: ring.expected, expected: ring.expected });
+});
+
+test("F12: a pointer-opened tooltip stays hidden until its 300 ms delay has passed", verification({ component: "tooltip", category: "enhancements", states: ["hover"], variants: ["default"], note: "The pointer rests on the first live tooltip's trigger; the popup must still be hidden 150 ms later and visible after 300 ms. Automated Chromium only." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "pointer on desktop");
+  await page.goto("components/tooltip/", { waitUntil: "networkidle" });
+  const root = page.locator("j3w1-tooltip").first();
+  const trigger = root.locator(".tooltip-trigger"), popup = root.locator('[role="tooltip"]');
+  await trigger.scrollIntoViewIfNeeded();
+  const t = await trigger.boundingBox();
+  const opened = await page.evaluate(({ x, y }) => new Promise((resolve) => {
+    const popup = document.querySelector("j3w1-tooltip [role=tooltip]");
+    const start = performance.now();
+    new MutationObserver((_, observer) => { if (!popup.hidden) { observer.disconnect(); resolve(performance.now() - start); } }).observe(popup, { attributes: true, attributeFilter: ["hidden"] });
+    document.elementFromPoint(x, y).dispatchEvent(new PointerEvent("pointermove", { bubbles: true, clientX: x, clientY: y, pointerType: "mouse" }));
+  }), { x: t.x + t.width / 2, y: t.y + t.height / 2 });
+  expect(opened).toBeGreaterThanOrEqual(290);
+  await expect(popup).toBeVisible();
+});

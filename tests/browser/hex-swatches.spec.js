@@ -248,3 +248,40 @@ test("a long colour preview scrolls with the wheel over its circle and pins on c
   await expect(popup.locator("a, button, [tabindex]")).toHaveCount(0);
   clean.assertClean();
 });
+
+test("F7: a pinned preview on an unfocusable circle returns focus to where it was before the press", verification({ component: "page", category: "keyboard", states: [], variants: [], note: "A token link holds focus; a click on a colour circle (no tab stop) pins its preview; Escape must return focus to the link. Desktop mouse only." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "mouse lifecycle on desktop");
+  await openSpec(page);
+  const link = page.locator('a[data-token="color.interaction.focus.ring"]').first();
+  await link.focus();
+  await page.keyboard.press("Escape");
+  const swatch = page.locator('.hex-swatch[data-hex="#000000"][data-token-matches]:not(a *):not(button *)').first();
+  await swatch.scrollIntoViewIfNeeded();
+  const r = await swatch.boundingBox();
+  await page.mouse.move(r.x + r.width / 2, r.y + r.height / 2);
+  await page.mouse.click(r.x + r.width / 2, r.y + r.height / 2);
+  const popup = page.locator("#hex-popup");
+  await expect(popup).toHaveAttribute("data-pinned", "");
+  await page.keyboard.press("Escape");
+  await expect(popup).toBeHidden();
+  await expect(link).toBeFocused();
+});
+
+test("F8: scroll revalidation runs once per frame however many scroll events arrive", verification({ component: "page", category: "enhancements", states: ["hover"], variants: [], note: "With a colour preview open by pointer, five scroll events in one task must schedule one animation frame. Desktop mouse only." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "mouse lifecycle on desktop");
+  await openSpec(page);
+  const swatch = page.locator('.hex-swatch[data-hex="#ae1914"][data-token-matches]').first();
+  await swatch.scrollIntoViewIfNeeded();
+  await swatch.hover();
+  await expect(page.locator("#hex-popup")).toBeVisible();
+  const frames = await page.evaluate(() => {
+    const original = window.requestAnimationFrame;
+    let count = 0;
+    window.requestAnimationFrame = (callback) => { count++; return original.call(window, callback); };
+    for (let i = 0; i < 5; i++) document.dispatchEvent(new Event("scroll"));
+    window.requestAnimationFrame = original;
+    return count;
+  });
+  expect(frames).toBe(1);
+});
+
