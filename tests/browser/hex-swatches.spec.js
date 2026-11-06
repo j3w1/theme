@@ -285,3 +285,23 @@ test("F8: scroll revalidation runs once per frame however many scroll events arr
   expect(frames).toBe(1);
 });
 
+test("N6: pointer movement and scroll revalidation share one frame", verification({ component: "page", category: "enhancements", states: ["hover"], variants: [], note: "With a colour preview open by pointer and no frame pending, a pointer move over its circle followed by a scroll event in the same task must schedule one animation frame. Desktop mouse only." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "mouse lifecycle on desktop");
+  await openSpec(page);
+  const swatch = page.locator('.hex-swatch[data-hex="#ae1914"][data-token-matches]').first();
+  await swatch.scrollIntoViewIfNeeded();
+  await swatch.hover();
+  await expect(page.locator("#hex-popup")).toBeVisible();
+  const r = await swatch.boundingBox();
+  const frames = await page.evaluate(async ({ x, y }) => {
+    await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    const original = window.requestAnimationFrame;
+    let count = 0;
+    window.requestAnimationFrame = (callback) => { count++; return original.call(window, callback); };
+    document.elementFromPoint(x, y).dispatchEvent(new PointerEvent("pointermove", { bubbles: true, clientX: x, clientY: y, pointerType: "mouse" }));
+    document.dispatchEvent(new Event("scroll"));
+    window.requestAnimationFrame = original;
+    return count;
+  }, { x: r.x + r.width / 2 + 1, y: r.y + r.height / 2 });
+  expect(frames).toBe(1);
+});

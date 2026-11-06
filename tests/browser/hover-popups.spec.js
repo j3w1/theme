@@ -597,3 +597,214 @@ test("F12: a pointer-opened tooltip stays hidden until its 300 ms delay has pass
   expect(opened).toBeGreaterThanOrEqual(290);
   await expect(popup).toBeVisible();
 });
+
+/* Review round 2 (N1–N8): each test shows one defect left after round 1. The
+   fixtures are built from the distributed @j3w1/ui/enhance/hover-helper. */
+
+const fixtureHelper = (page, setup) => page.evaluate(async (source) => {
+  const { hoverHelper } = await import(new URL("../../ui/enhance/hover-helper.js", location.href).href);
+  new Function("hoverHelper", source)(hoverHelper);
+}, setup);
+
+test("N1: Escape priority holds across separately loaded copies of the hover helper", verification({ component: "tooltip", category: "keyboard", states: ["open"], variants: ["default", "long"], note: "The portal's deployment: the token inspector runs the Astro-bundled copy and the tooltips the separately loaded /ui/ copy. A pinned helper of either copy with focus inside must take Escape before a visible helper of the other copy; destroying a controller removes it from the shared registry. Automated Chromium only." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "pointer and keyboard on desktop");
+  await page.setViewportSize({ width: 1200, height: 500 });
+  await page.goto("components/tooltip/", { waitUntil: "networkidle" });
+  const token = page.locator("main a[data-token]").first();
+  await token.evaluate((el) => window.scrollBy(0, el.getBoundingClientRect().top - 200));
+  const inspector = page.locator("#inspector");
+  const short = page.locator("j3w1-tooltip#example-tooltip-default"), long = page.locator("j3w1-tooltip#example-tooltip-long");
+  /* Both tooltip triggers are fixed in view beside the token, away from where its panel opens. */
+  await short.locator(".tooltip-trigger").evaluate((el) => Object.assign(el.style, { position: "fixed", left: "40px", bottom: "40px" }));
+  await long.locator(".tooltip-trigger").evaluate((el) => Object.assign(el.style, { position: "fixed", right: "40px", top: "40px" }));
+  const t = await tokenRect(token);
+  const onToken = { x: t.x + 4, y: t.y + t.height / 2 };
+  const centre = async (locator) => { const b = await locator.boundingBox(); return { x: b.x + b.width / 2, y: b.y + b.height / 2 }; };
+
+  /* A pinned inspector (bundled copy) holds focus; a tooltip (/ui/ copy) is visible by hover. */
+  await page.mouse.move(onToken.x, onToken.y);
+  await page.mouse.click(onToken.x, onToken.y);
+  await expect(inspector).toHaveAttribute("data-pinned", "");
+  await expect(inspector).toBeFocused();
+  const s = await centre(short.locator(".tooltip-trigger"));
+  await page.mouse.move(s.x, s.y);
+  await expect(short.locator('[role="tooltip"]')).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(inspector).toBeHidden();
+  await expect(token).toBeFocused();
+
+  /* A pinned tooltip (/ui/ copy) holds focus; the inspector (bundled copy) is visible by hover. */
+  await page.mouse.move(2, 2);
+  await expect(short.locator('[role="tooltip"]')).toBeHidden();
+  const l = await centre(long.locator(".tooltip-trigger"));
+  await page.mouse.move(l.x, l.y);
+  await page.mouse.click(l.x, l.y);
+  const popup = long.locator(".tooltip-popup");
+  await expect(popup).toHaveAttribute("data-pinned", "");
+  await expect(popup).toBeFocused();
+  await page.mouse.move(onToken.x - 1, onToken.y);
+  await page.mouse.move(onToken.x, onToken.y);
+  await expect(inspector).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(popup).toBeHidden();
+  await expect(long.locator(".tooltip-trigger")).toBeFocused();
+
+  /* Destroying a controller removes it from the document-wide registry. */
+  const sizes = await page.evaluate(() => {
+    const registry = document[Symbol.for("j3w1.hover-helper.controllers")];
+    if (!registry) return null;
+    const before = registry.size;
+    document.querySelector("j3w1-tooltip#example-tooltip-with-shortcut").remove();
+    return [before, registry.size];
+  });
+  expect(sizes).not.toBeNull();
+  expect(sizes[1]).toBe(sizes[0] - 1);
+});
+
+test("N2: focus moving away cancels a pending pin, to an unrelated control and to another trigger", verification({ component: "tooltip", category: "keyboard", states: ["focus-visible"], variants: [], note: "Fixture with a held asynchronous renderer: a click on trigger A waits for content; Tab to an unrelated button, or Shift+Tab to trigger B, must cancel A's pending pin. The content arriving later must not pin or take focus back, and B's helper must close once focus leaves B. Automated Chromium only." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "pointer and keyboard on desktop");
+  await page.goto("components/tooltip/", { waitUntil: "networkidle" });
+  await fixtureHelper(page, `
+    document.body.insertAdjacentHTML("afterbegin", '<div id="fx" style="position:fixed;left:40px;top:40px;z-index:9999"><button type="button" id="fx-b">B</button> <button type="button" id="fx-a">A</button> <button type="button" id="fx-c">Unrelated</button><div id="fx-help" class="tooltip-popup"></div></div>');
+    window.__fx = { release: [] };
+    hoverHelper(document.querySelector("#fx-help"), {
+      trigger: (node) => node.closest("#fx-a, #fx-b"),
+      render: (trigger, box) => {
+        if (trigger.id === "fx-b") { box.textContent = "Short."; return; }
+        return new Promise((resolve) => window.__fx.release.push(() => { box.textContent = "A long description. ".repeat(400); resolve(); }));
+      },
+    });`);
+  const helper = page.locator("#fx-help"), a = page.locator("#fx-a"), b = page.locator("#fx-b"), c = page.locator("#fx-c");
+  const releaseAll = async () => { await page.evaluate(() => { for (const release of window.__fx.release.splice(0)) release(); }); await page.waitForTimeout(100); };
+  /* To an unrelated control: the content arriving later neither pins nor takes focus back. */
+  await a.click();
+  await page.keyboard.press("Tab");
+  await expect(c).toBeFocused();
+  await releaseAll();
+  await expect(helper).not.toHaveAttribute("data-pinned");
+  await expect(helper).toBeHidden();
+  await expect(c).toBeFocused();
+  /* To another trigger: B's helper is a plain anchored one, and it closes when focus leaves B. */
+  await a.click();
+  await page.keyboard.press("Shift+Tab");
+  await expect(b).toBeFocused();
+  await releaseAll();
+  await expect(helper).toBeVisible();
+  await expect(helper).toHaveText("Short.");
+  await expect(helper).not.toHaveAttribute("data-pinned");
+  await b.evaluate((el) => el.blur());
+  await expect(helper).toBeHidden();
+});
+
+const n3Fixture = async (page) => {
+  await page.goto("components/tooltip/", { waitUntil: "networkidle" });
+  await fixtureHelper(page, `
+    document.body.insertAdjacentHTML("afterbegin", '<div id="fx" style="position:fixed;left:40px;top:40px;z-index:9999"><button type="button" id="fx-a">A</button><button type="button" id="fx-b">B</button><div id="fx-help" class="tooltip-popup"></div></div>');
+    window.__fx = { calls: [], count: { "fx-a": 0, "fx-b": 0 } };
+    hoverHelper(document.querySelector("#fx-help"), {
+      trigger: (node) => node.closest("#fx-a, #fx-b"),
+      openDelay: 0,
+      render: (trigger, box) => {
+        window.__fx.count[trigger.id]++;
+        return new Promise((resolve) => window.__fx.calls.push(() => { box.textContent = (trigger.id + " content. ").repeat(400); resolve(); }));
+      },
+    });`);
+  /* Release the newest render first, as a fast later render would finish, until none is left. */
+  return async () => {
+    for (let i = 0; i < 6; i++) { await page.evaluate(() => window.__fx.calls.pop()?.()); await page.waitForTimeout(60); }
+  };
+};
+
+test("N3: a trigger's render in flight is reused, and an older render never overwrites a pinned helper", verification({ component: "tooltip", category: "enhancements", states: ["open"], variants: [], note: "Fixture with automatic pinning and held asynchronous renders released newest first: hover then click on one trigger must render it once and stay pinned with its close button; hover on A, then hover and click on B, must leave B pinned with B's content and its close button. Automated Chromium only." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "pointer on desktop");
+  const helper = page.locator("#fx-help");
+  /* The same trigger: hover starts a render, the click reuses it. */
+  let releaseNewestFirst = await n3Fixture(page);
+  let a = await box(page.locator("#fx-a"));
+  await page.mouse.move(a.x + a.width / 2, a.y + a.height / 2);
+  await page.mouse.click(a.x + a.width / 2, a.y + a.height / 2);
+  await releaseNewestFirst();
+  await expect(helper).toHaveAttribute("data-pinned", "");
+  await expect(helper.locator(".tooltip-close")).toHaveCount(1);
+  expect(await page.evaluate(() => window.__fx.count["fx-a"])).toBe(1);
+  /* Another trigger: A's render, still in flight, must not write over B pinned. */
+  releaseNewestFirst = await n3Fixture(page);
+  a = await box(page.locator("#fx-a"));
+  const b = await box(page.locator("#fx-b"));
+  await page.mouse.move(a.x + a.width / 2, a.y + a.height / 2);
+  await page.mouse.move(b.x + b.width / 2, b.y + b.height / 2);
+  await page.mouse.click(b.x + b.width / 2, b.y + b.height / 2);
+  await releaseNewestFirst();
+  await expect(helper).toHaveAttribute("data-pinned", "");
+  await expect(helper).toContainText("fx-b content.");
+  await expect(helper).not.toContainText("fx-a content.");
+  await expect(helper.locator(".tooltip-close")).toHaveCount(1);
+});
+
+test("N4: Enter while the content loads replays the trigger's action when the render cancels or fails", verification({ component: "tooltip", category: "keyboard", states: ["focus-visible"], variants: [], note: "Fixture with pin: true and a held renderer: Enter on a focused button, and on a focusable non-button trigger with its own Enter handler, while the content loads; the render then returns false or rejects. Each trigger's own action must run once. Automated Chromium only." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "keyboard on desktop");
+  await page.goto("components/tooltip/", { waitUntil: "networkidle" });
+  await fixtureHelper(page, `
+    document.body.insertAdjacentHTML("afterbegin", '<div id="fx" style="position:fixed;left:40px;top:40px;z-index:9999"><button type="button" id="fx-button">Button</button> <span id="fx-custom" tabindex="0">Custom</span><div id="fx-help" class="tooltip-popup"></div></div>');
+    window.__fx = { pending: [], button: 0, custom: 0 };
+    document.querySelector("#fx-button").addEventListener("click", () => window.__fx.button++);
+    document.querySelector("#fx-custom").addEventListener("keydown", (event) => { if (event.key === "Enter") window.__fx.custom++; });
+    hoverHelper(document.querySelector("#fx-help"), {
+      trigger: (node) => node.closest("#fx-button, #fx-custom"),
+      pin: true,
+      render: () => new Promise((resolve, reject) => window.__fx.pending.push({ resolve, reject })),
+    });`);
+  const helper = page.locator("#fx-help");
+  const settle = (how) => page.evaluate((how) => { const p = window.__fx.pending.pop(); how === "reject" ? p.reject(new Error("no content")) : p.resolve(false); }, how);
+  const count = (name) => page.evaluate((name) => window.__fx[name], name);
+  for (const [id, name] of [["#fx-button", "button"], ["#fx-custom", "custom"]]) {
+    for (const how of ["false", "reject"]) {
+      const before = await count(name);
+      await page.locator(id).focus();
+      await expect.poll(() => page.evaluate(() => window.__fx.pending.length)).toBe(1);
+      await page.keyboard.press("Enter");
+      await settle(how);
+      await expect.poll(() => count(name), { message: `${id}, render ${how}` }).toBe(before + 1);
+      await expect(helper).toBeHidden();
+      await page.locator(id).evaluate((el) => el.blur());
+    }
+  }
+});
+
+test.describe("a replayed activation on a touch screen", () => {
+  test.use({ hasTouch: true });
+  test("N5: a replayed activation reaches the original target and its own handler; a text field keeps its activation", verification({ component: "tooltip", category: "enhancements", states: ["open"], variants: [], note: "The F4 fixture extended: a tap on a descendant with its own click handler inside a short-content trigger must, once the 150 ms content shows no pin is needed, reach that descendant (as its event target, at the tapped point) and then the trigger. A tap on a text field trigger with long content is not held: its own click runs at once and it never pins. A replayed event is untrusted. Chromium touch emulation only." }), async ({ page }, testInfo) => {
+    test.skip(!only(testInfo, "desktop"), "touch emulation on desktop");
+    await page.goto("components/tooltip/", { waitUntil: "networkidle" });
+    await fixtureHelper(page, `
+      document.body.insertAdjacentHTML("afterbegin", '<div id="fx" style="position:fixed;left:40px;top:40px;z-index:9999"><button type="button" id="fx-short"><span id="fx-inner" style="display:inline-block;padding:8px 16px">Short</span></button> <input id="fx-field" aria-label="Field"><div id="fx-help" class="tooltip-popup"></div></div>');
+      window.__fx = { inner: [], outer: 0, field: 0 };
+      document.querySelector("#fx-inner").addEventListener("click", (event) => window.__fx.inner.push({ target: event.target.id, x: event.clientX, y: event.clientY, trusted: event.isTrusted }));
+      document.querySelector("#fx-short").addEventListener("click", () => window.__fx.outer++);
+      document.querySelector("#fx-field").addEventListener("click", () => window.__fx.field++);
+      hoverHelper(document.querySelector("#fx-help"), {
+        trigger: (node) => node.closest("#fx-short, #fx-field"),
+        render: (trigger, box) => new Promise((resolve) => setTimeout(() => {
+          box.textContent = trigger.id === "fx-field" ? "A long description. ".repeat(400) : "Short.";
+          resolve();
+        }, 150)),
+      });`);
+    const helper = page.locator("#fx-help");
+    const inner = await box(page.locator("#fx-inner"));
+    const at = { x: Math.round(inner.x + inner.width / 2), y: Math.round(inner.y + inner.height / 2) };
+    await page.touchscreen.tap(at.x, at.y);
+    await expect.poll(() => page.evaluate(() => window.__fx.inner.length)).toBe(1);
+    const replayed = await page.evaluate(() => window.__fx.inner[0]);
+    expect(replayed.target).toBe("fx-inner");
+    expect([Math.round(replayed.x), Math.round(replayed.y)]).toEqual([at.x, at.y]);
+    expect(replayed.trusted).toBe(false);
+    expect(await page.evaluate(() => window.__fx.outer)).toBe(1);
+    await expect(helper).not.toHaveAttribute("data-pinned");
+    /* A text field's own activation cannot be replayed, so it is never held. */
+    await page.locator("#fx-field").tap();
+    await expect.poll(() => page.evaluate(() => window.__fx.field)).toBe(1);
+    await page.waitForTimeout(300);
+    await expect(helper).not.toHaveAttribute("data-pinned");
+    await expect(page.locator("#fx-field")).toBeFocused();
+  });
+});
