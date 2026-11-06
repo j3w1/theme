@@ -136,13 +136,17 @@ controller.destroy();
 - With an asynchronous `render`, the activation waits for the content, then
   pins, or replays a copy of the event to its original target (the same
   point, button and keys), so a descendant's own handler and a link's
-  navigation still run. Focus moving elsewhere first abandons it. A replay
-  is untrusted (`isTrusted` is false): a trigger whose action checks that, or
-  needs user activation after the browser's short window for it, should
-  render synchronously or use `pin: false`. Text fields, selects and
-  editable regions are never held. One render runs at a time per helper: a
-  trigger already rendering reuses that render and another trigger's waits
-  for it, so a render that never settles holds the ones after it.
+  navigation still run. Enter on a trigger that is not a link or button is
+  held the same way. Focus moving anywhere before the content arrives, even
+  to the page, abandons the activation. A replay is untrusted (`isTrusted` is
+  false): a trigger whose action checks that, or needs user activation after
+  the browser's short window for it, should render synchronously or use
+  `pin: false`. An activation inside a text field, a select or an editable
+  region, including a trigger placed inside an editor, is never held. One
+  render runs at a time per helper: a trigger already rendering reuses that
+  render, another trigger's waits for it, and a request superseded while it
+  waits never calls `render`. A render that never settles holds the ones
+  after it.
 - `followPoint`, `anchorPoint`, `helperLimits` and `canScroll` are exported
   for hosts that position their own layer.
 

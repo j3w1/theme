@@ -50,7 +50,8 @@ var REGISTRY = Symbol.for("j3w1.hover-helper.controllers");
 var registry = (doc) => doc[REGISTRY] ??= /* @__PURE__ */ new Set();
 var REPLAYED = Symbol.for("j3w1.hover-helper.replayed");
 var ENTER_CLICKS = "a[href],area[href],button,input[type=button],input[type=submit],input[type=reset],input[type=image],summary";
-var UNREPLAYABLE = "select,textarea,[contenteditable]:not([contenteditable=\"false\"]),input:not([type=button],[type=submit],[type=reset],[type=image],[type=checkbox],[type=radio])";
+var FIELDS = "select,textarea,input:not([type=button],[type=submit],[type=reset],[type=image],[type=checkbox],[type=radio])";
+var ownActivation = (node) => node instanceof Element && (!!node.closest(FIELDS) || !!node.closest("[contenteditable]")?.isContentEditable);
 var EVENT_FIELDS = [
 	"bubbles",
 	"cancelable",
@@ -194,9 +195,17 @@ function hoverHelper(helper, options) {
 	};
 	const STALE = {};
 	const draw = (target) => {
-		if (rendering?.target === target) return rendering.promise;
+		if (rendering?.target === target) {
+			rendering.mine = generation;
+			return rendering.promise;
+		}
+		const entry = {
+			target,
+			mine: generation,
+			promise: null
+		};
 		const run = () => {
-			if (current !== target) return STALE;
+			if (entry.mine !== generation) return STALE;
 			try {
 				return render?.(target, helper);
 			} catch {
@@ -205,10 +214,7 @@ function hoverHelper(helper, options) {
 		};
 		const result = rendering ? rendering.promise.then(run) : run();
 		if (!thenable(result)) return result;
-		const entry = {
-			target,
-			promise: Promise.resolve(result).then((value) => value, () => false)
-		};
+		entry.promise = Promise.resolve(result).then((value) => value, () => false);
 		rendering = entry;
 		entry.promise.then(() => {
 			if (rendering === entry) rendering = null;
@@ -230,6 +236,7 @@ function hoverHelper(helper, options) {
 		}
 		if (pinIntent === target) return activation;
 		const mine = ++generation;
+		pinIntent = null;
 		if (pinned) unpin(false);
 		current = target;
 		mode = how;
@@ -379,8 +386,7 @@ function hoverHelper(helper, options) {
 			return;
 		}
 		const origin = event.composedPath?.()[0] ?? event.target;
-		const control = origin instanceof Element ? origin.closest(UNREPLAYABLE) : null;
-		if (control && target.contains(control)) {
+		if (ownActivation(origin)) {
 			dismissed = target;
 			close();
 			return;
@@ -388,8 +394,13 @@ function hoverHelper(helper, options) {
 		const replay = replayer(event, origin, target);
 		consume(event);
 		pinIntent = target;
+		const focused = doc.activeElement;
 		activation = result.then((value) => {
 			if (mine !== generation || pinIntent !== target) return visible() && current === target;
+			if (doc.activeElement !== focused) {
+				close();
+				return false;
+			}
 			pinIntent = null;
 			if (failed(value)) close();
 			else {
@@ -444,11 +455,11 @@ function hoverHelper(helper, options) {
 		if (visible() || pinIntent) close();
 	}, { capture: true });
 	on(doc, "click", (event) => {
-		if (event[REPLAYED]) return;
 		if (closeButton && event.target instanceof Node && closeButton.contains(event.target)) {
 			close(true);
 			return;
 		}
+		if (event[REPLAYED]) return;
 		const target = triggerOf(event.target);
 		if (!target || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
 		const type = event.pointerType || (event.detail === 0 ? "keyboard" : lastPointerType);
@@ -497,15 +508,13 @@ function hoverHelper(helper, options) {
 				}
 				return;
 			}
-			if (pinRule === true && !(event.target instanceof Element && event.target.matches(ENTER_CLICKS))) activate(target, "anchor", event);
+			if (!(event.target instanceof Element && event.target.matches(ENTER_CLICKS))) activate(target, "anchor", event);
 		}
 	}, { capture: true });
 	on(doc, "focusin", (event) => {
 		const target = event.target;
 		if (restoring || helper.contains(target)) return;
-		const owner = triggerOf(target);
-		if (pinIntent && owner !== pinIntent) close();
-		const trigger = byFocus ? owner : null;
+		const trigger = byFocus ? triggerOf(target) : null;
 		if (trigger) {
 			if (trigger === current && visible()) {
 				if (!pinned && target.matches(":focus-visible")) {

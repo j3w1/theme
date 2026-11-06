@@ -1,5 +1,5 @@
 import { d as place, i as all, o as enabled, s as identify } from "./choice-DqwWT5pJ.js";
-import { o as hoverHelper } from "./hover-helper-Cu7AJhvJ.js";
+import { o as hoverHelper } from "./hover-helper-CYYYHTxG.js";
 // packages/ui/src/behaviors/overlays.js
 function modal(root, { on }) {
 	const dialog = root.querySelector("dialog");

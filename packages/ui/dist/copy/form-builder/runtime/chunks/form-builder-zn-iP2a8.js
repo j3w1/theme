@@ -1,5 +1,5 @@
 import { t as J3w1Element } from "./element-DcrNU9Wh.js";
-import { t as mountBuilder } from "./form-builder-y5WQATC2.js";
+import { t as mountBuilder } from "./form-builder-Bm9XSP8o.js";
 // packages/ui/src/behaviors/form-builder.js
 function formBuilder(root, { signal }) {
 	const editor = root.querySelector("[data-builder]");
@@ -21,7 +21,7 @@ function formBuilder(root, { signal }) {
 var J3w1FormBuilder = class extends J3w1Element {
 	static componentId = "form-builder";
 	static version = "4.0.0";
-	static implementationId = "sha256-mn6vIW9o/uYP27OyFZIQEomxq0vRAuZuJgfmlW7bXyQ=";
+	static implementationId = "sha256-JW5YwomljSPZP0l8thQTKy+YTob3zE3u9BOJYPUkiI8=";
 	static connect = formBuilder;
 	static upgradeProperties = [
 		"disabled",
