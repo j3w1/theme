@@ -95,6 +95,41 @@ controls.destroy();
 - Test the visible combobox or listbox: Playwright `selectOption` on the
   hidden native select does not exercise the rendered menu.
 
+### Hover helpers
+
+Every hover helper follows one algorithm (D-042, `spec/foundations.md`,
+Elevation and layering): `j3w1-tooltip` runs it, and so can your own
+previews and inspectors. One controller drives one helper element for any
+number of triggers:
+
+```js
+import '@j3w1/ui/styles/tooltip.css';
+import { hoverHelper } from '@j3w1/ui/enhance/hover-helper';
+
+const helper = document.querySelector('#cell-help'); // e.g. class="tooltip-popup"
+const controller = hoverHelper(helper, {
+  trigger: node => node.closest('[data-help]'),   // the trigger a target belongs to
+  render: (trigger, box) => { box.textContent = trigger.dataset.help; },
+  openDelay: 300,                                  // 0 opens at once
+  label: trigger => `Help: ${trigger.textContent.trim()}`,
+});
+// On unmount:
+controller.destroy();
+```
+
+- It follows the pointer 12px right of and below it, flips inside an 8px
+  viewport gutter, anchors to the trigger for keyboard focus and touch, and
+  closes as soon as the pointer leaves the trigger.
+- It caps the helper at 40vh by 24rem. With the pointer on the trigger, the
+  wheel scrolls an overflowing helper, and the page only once the helper
+  cannot scroll further that way.
+- A click, tap or Enter on a trigger whose helper overflows or holds a link
+  or control pins it as a non-modal popover with a `.tooltip-close` button;
+  Escape and the button return focus to the trigger. `pin: true` pins on
+  every activation (content known to hold links), `pin: false` never.
+- `followPoint`, `anchorPoint` and `canScroll` are exported for hosts that
+  position their own layer.
+
 ## Vue 3 JavaScript SFCs
 
 Declare `j3w1-*` tags as Custom Elements in the Vite config, import

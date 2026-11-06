@@ -79,6 +79,10 @@
     {
       "id": "with-shortcut",
       "name": "With shortcut"
+    },
+    {
+      "id": "long",
+      "name": "Long description"
     }
   ],
   "states": [
@@ -98,6 +102,9 @@
     "trigger.text": "color.action.tertiary.text",
     "trigger.bg-hover": "color.action.tertiary.hover-bg",
     "trigger.ring": "color.interaction.focus.ring",
+    "close.text": "color.action.tertiary.text",
+    "close.border": "color.border.control",
+    "close.bg-hover": "color.action.tertiary.hover-bg",
     "popup.z": "z.popover"
   },
   "status": {
@@ -353,6 +360,6 @@
   "copy": {
     "directory": "copy/tooltip/",
     "manifest": "copy/tooltip/manifest.json",
-    "digest": "sha256-GgYaPJXmIXO4FHNDza+4NmU8dgYZlv7ixDUuG8GsKiU="
+    "digest": "sha256-Szv3V3N5Q9cbI4CbMR99Z+cRKnhcqMpN+p8fjTQocH8="
   }
 }

@@ -1,10 +1,10 @@
 j3w1/theme implementation brief — tooltip
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-70Zio4Hy/D9gW+eB+0+voDzUpG18WrjnAQqIN+GBNU0=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-fDMXx3q0p3aaNVsXKhDz3XOwsSaVym5vD/7elMK4WSQ=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/tooltip.json
 spec: spec/components/tooltip.md  site: https://j3w1.github.io/theme/reference/#c-tooltip
 maturity: stable  priority: R1
 
-Summary: A short description of a control shown on hover and focus; role tooltip linked by aria-describedby, a 1px overlay border on the raised surface, no arrow.
+Summary: A short control description on hover and focus that follows the pointer; role tooltip via aria-describedby, 1px overlay border on raised, no arrow; a long one scrolls and pins.
 
 Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens.
 Tokens (resolved):
@@ -16,23 +16,27 @@ Tokens (resolved):
   trigger.text      #e99499  ({color.action.tertiary.text})  use
   trigger.bg-hover  #1c0a09  ({color.action.tertiary.hover-bg})  use
   trigger.ring      #e53935  ({color.interaction.focus.ring})  use
+  close.text        #e99499  ({color.action.tertiary.text})  use
+  close.border      #c81a1a  ({color.border.control})  use
+  close.bg-hover    #1c0a09  ({color.action.tertiary.hover-bg})  use
   popup.z           10  ({z.popover})  use
 
 States: default, hover, focus-visible, open, closed
   default: trigger at rest; popup shown for the demonstration [`aria-describedby` on the trigger]
-  hover: trigger background → {color.action.tertiary.hover-bg}; popup after 300 ms; it hides 300 ms after the pointer leaves trigger and popup [cursor: pointer; the popup]
-  focus-visible: 1px dashed {color.interaction.focus.ring} at −2px on the trigger; popup at once [the ring; the popup]
-  open: popup visible, 1px {color.border.overlay} on {color.surface.raised} [popup in the accessibility tree]
+  hover: trigger background → {color.action.tertiary.hover-bg}; popup after 300 ms, 12px right of and below the pointer, following it; it hides as soon as the pointer leaves the trigger [cursor: pointer; the popup]
+  focus-visible: 1px dashed {color.interaction.focus.ring} at −2px on the trigger; popup at once, anchored below the trigger [the ring; the popup]
+  open: popup visible, 1px {color.border.overlay} on {color.surface.raised}; past 40vh it scrolls, with the wheel while the pointer is on the trigger [popup in the accessibility tree]
+  pinned (open, as a popover): an overflowing popup after a click, tap or Enter: it stays where it is, takes pointer events and text selection, and shows the close button [role dialog named by the trigger; `aria-expanded=true` on the trigger; focus inside]
   closed: popup absent; trigger unchanged [`hidden`; the description is still read from the DOM]
 
 Keyboard:
-  Tab: Focusing the trigger shows the tooltip; leaving it hides the tooltip.
-  Escape: Hides the tooltip without moving focus; the trigger's own Escape behaviour is not triggered.
-  Enter / Space: Act on the trigger as usual; the tooltip hides on activation.
+  Tab: Focusing the trigger shows the tooltip anchored to it; leaving it hides the tooltip. In a pinned tooltip, Tab moves through its close button and content in ordinary order, without a trap.
+  Escape: Hides the tooltip without moving focus; a pinned tooltip closes and focus returns to the trigger. The trigger's own Escape behaviour is not triggered.
+  Enter / Space: On a trigger whose tooltip overflows, the first Enter or Space pins it as a popover and moves focus into it, in place of the trigger's default action. Otherwise act on the trigger as usual; the tooltip hides on activation.
 
 ARIA: APG tooltip: a trigger with aria-describedby pointing at an element with role=tooltip, shown on hover and focus, hidden on Escape (https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/)
-Responsive: The popup is at most 24rem wide and wraps; it flips to the side with room and is never clipped by the viewport; at 320px it is as wide as the viewport minus the gutter. RTL mirrors the placement and keeps the shortcut at the end.
-Portability: the trigger carries aria-describedby to a <div role=tooltip>; visibility toggles the hidden attribute after a 300 ms open delay, and hides 300 ms after the pointer leaves trigger and popup; positioned with anchor positioning or a popover at z.popover; the tooltip is never the only place a control's name lives.
+Responsive: The popup sits 12px right of and below the pointer and follows it; it flips to the side with room, keeps an 8px gutter and is never clipped by the viewport. It is at most 24rem wide and 40vh tall, wraps, and scrolls beyond that; at 320px it is as wide as the viewport minus the gutter. Without a pointer it anchors below the trigger, or above. RTL mirrors the placement (left of the pointer) and keeps the shortcut at the end.
+Portability: the trigger carries aria-describedby to a <div role=tooltip>; visibility toggles the hidden attribute after a 300 ms open delay and hides as soon as the pointer leaves the trigger; positioned fixed at z.popover by the shared hover-helper algorithm (@j3w1/ui/enhance/hover-helper, D-042): 12px right of and below the pointer, following it each animation frame, flipping at the viewport edges inside an 8px gutter, anchored to the trigger for keyboard focus and touch; capped at 40vh with overflow auto, the wheel over the trigger scrolling it while it can scroll; a click, tap or Enter on a trigger whose tooltip overflows pins it as a non-modal popover (role dialog, a close button, focus inside, Escape returns focus); the tooltip is never the only place a control's name lives.
   native: GTK4 tooltip-text; the host draws it with the overlay border through the tooltip css node.
   native: Qt QToolTip stylesheet; border and background from the tokens; no rounded corners.
   native: Terminal UI: the description in the status line while the control is focused.

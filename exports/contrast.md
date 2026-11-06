@@ -971,7 +971,8 @@ Measured on resolved sRGB values with the WCAG 2.x formula. A pass here is a des
 | tooltip open text | open | text | `color.text.default` #e99499 | `color.surface.raised` #140b0b | 8.46 | 4.5 | pass |
 | tooltip open border | open | ui | `color.border.overlay` #c81a1a | `color.surface.raised` #140b0b | 3.34 | 3 | pass |
 | shortcut on the tooltip | — | text | `color.text.bright` #ffa2a7 | `color.surface.raised` #140b0b | 10.14 | 4.5 | pass |
-| shortcut key border on the tooltip | — | ui | `color.border.control` #c81a1a | `color.surface.raised` #140b0b | 3.34 | 3 | pass |
+| shortcut key and close button borders on the tooltip | — | ui | `color.border.control` #c81a1a | `color.surface.raised` #140b0b | 3.34 | 3 | pass |
+| close button on a pinned tooltip | — | text | `color.action.tertiary.text` #e99499 | `color.surface.raised` #140b0b | 8.46 | 4.5 | pass |
 | trigger text on the canvas | — | text | `color.action.tertiary.text` #e99499 | `color.surface.canvas` #000000 | 9.16 | 4.5 | pass |
 | tree default text | default | text | `color.text.default` #e99499 | `color.surface.default` #0d0707 | 8.72 | 4.5 | pass |
 | tree default border | default | ui | `color.border.control` #c81a1a | `color.surface.default` #0d0707 | 3.44 | 3 | pass |

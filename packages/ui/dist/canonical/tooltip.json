@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-70Zio4Hy/D9gW+eB+0+voDzUpG18WrjnAQqIN+GBNU0=",
+  "sourceDigest": "sha256-fDMXx3q0p3aaNVsXKhDz3XOwsSaVym5vD/7elMK4WSQ=",
   "id": "tooltip",
   "family": "feedback",
   "maturity": "stable",
@@ -25,7 +25,7 @@
     "states": 5
   },
   "title": "Tooltip",
-  "summary": "A short description of a control shown on hover and focus; role tooltip linked by aria-describedby, a 1px overlay border on the raised surface, no arrow.",
+  "summary": "A short control description on hover and focus that follows the pointer; role tooltip via aria-describedby, 1px overlay border on raised, no arrow; a long one scrolls and pins.",
   "anchors": {
     "site": "https://j3w1.github.io/theme/reference/#c-tooltip",
     "spec": "spec/components/tooltip.md",
@@ -45,6 +45,10 @@
     {
       "id": "with-shortcut",
       "name": "With shortcut"
+    },
+    {
+      "id": "long",
+      "name": "Long description"
     }
   ],
   "sizes": [
@@ -155,6 +159,42 @@
         "decisionIds": []
       }
     },
+    "close.text": {
+      "alias": "color.action.tertiary.text",
+      "value": "#e99499",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-041",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "close.border": {
+      "alias": "color.border.control",
+      "value": "#c81a1a",
+      "status": "approved",
+      "deprecated": false,
+      "decisionId": "D-041",
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
+    "close.bg-hover": {
+      "alias": "color.action.tertiary.hover-bg",
+      "value": "#1c0a09",
+      "status": "observed",
+      "deprecated": false,
+      "decisionId": null,
+      "eligibility": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      }
+    },
     "popup.z": {
       "alias": "z.popover",
       "value": "10",
@@ -214,7 +254,7 @@
     },
     {
       "state": "hover",
-      "visual": "trigger background → {color.action.tertiary.hover-bg}; popup after 300 ms; it hides 300 ms after the pointer leaves trigger and popup",
+      "visual": "trigger background → {color.action.tertiary.hover-bg}; popup after 300 ms, 12px right of and below the pointer, following it; it hides as soon as the pointer leaves the trigger",
       "channel": "cursor: pointer; the popup",
       "tokens": {
         "fg": {
@@ -245,7 +285,7 @@
     },
     {
       "state": "focus-visible",
-      "visual": "1px dashed {color.interaction.focus.ring} at −2px on the trigger; popup at once",
+      "visual": "1px dashed {color.interaction.focus.ring} at −2px on the trigger; popup at once, anchored below the trigger",
       "channel": "the ring; the popup",
       "tokens": {
         "fg": {
@@ -288,7 +328,7 @@
     },
     {
       "state": "open",
-      "visual": "popup visible, 1px {color.border.overlay} on {color.surface.raised}",
+      "visual": "popup visible, 1px {color.border.overlay} on {color.surface.raised}; past 40vh it scrolls, with the wheel while the pointer is on the trigger",
       "channel": "popup in the accessibility tree",
       "tokens": {
         "fg": {
@@ -330,6 +370,12 @@
       }
     },
     {
+      "state": "pinned (open, as a popover)",
+      "visual": "an overflowing popup after a click, tap or Enter: it stays where it is, takes pointer events and text selection, and shows the close button",
+      "channel": "role dialog named by the trigger; `aria-expanded=true` on the trigger; focus inside",
+      "tokens": {}
+    },
+    {
       "state": "closed",
       "visual": "popup absent; trigger unchanged",
       "channel": "`hidden`; the description is still read from the DOM",
@@ -339,20 +385,20 @@
   "keyboard": [
     {
       "key": "Tab",
-      "action": "Focusing the trigger shows the tooltip; leaving it hides the tooltip."
+      "action": "Focusing the trigger shows the tooltip anchored to it; leaving it hides the tooltip. In a pinned tooltip, Tab moves through its close button and content in ordinary order, without a trap."
     },
     {
       "key": "Escape",
-      "action": "Hides the tooltip without moving focus; the trigger's own Escape behaviour is not triggered."
+      "action": "Hides the tooltip without moving focus; a pinned tooltip closes and focus returns to the trigger. The trigger's own Escape behaviour is not triggered."
     },
     {
       "key": "Enter / Space",
-      "action": "Act on the trigger as usual; the tooltip hides on activation."
+      "action": "On a trigger whose tooltip overflows, the first Enter or Space pins it as a popover and moves focus into it, in place of the trigger's default action. Otherwise act on the trigger as usual; the tooltip hides on activation."
     }
   ],
-  "responsive": "The popup is at most 24rem wide and wraps; it flips to the side with room and is never clipped by the viewport; at 320px it is as wide as the viewport minus the gutter. RTL mirrors the placement and keeps the shortcut at the end.",
+  "responsive": "The popup sits 12px right of and below the pointer and follows it; it flips to the side with room, keeps an 8px gutter and is never clipped by the viewport. It is at most 24rem wide and 40vh tall, wraps, and scrolls beyond that; at 320px it is as wide as the viewport minus the gutter. Without a pointer it anchors below the trigger, or above. RTL mirrors the placement (left of the pointer) and keeps the shortcut at the end.",
   "portability": {
-    "web": "the trigger carries aria-describedby to a <div role=tooltip>; visibility toggles the hidden attribute after a 300 ms open delay, and hides 300 ms after the pointer leaves trigger and popup; positioned with anchor positioning or a popover at z.popover; the tooltip is never the only place a control's name lives.",
+    "web": "the trigger carries aria-describedby to a <div role=tooltip>; visibility toggles the hidden attribute after a 300 ms open delay and hides as soon as the pointer leaves the trigger; positioned fixed at z.popover by the shared hover-helper algorithm (@j3w1/ui/enhance/hover-helper, D-042): 12px right of and below the pointer, following it each animation frame, flipping at the viewport edges inside an 8px gutter, anchored to the trigger for keyboard focus and touch; capped at 40vh with overflow auto, the wheel over the trigger scrolling it while it can scroll; a click, tap or Enter on a trigger whose tooltip overflows pins it as a non-modal popover (role dialog, a close button, focus inside, Escape returns focus); the tooltip is never the only place a control's name lives.",
     "nativeFallbacks": [
       "GTK4 tooltip-text; the host draws it with the overlay border through the tooltip css node.",
       "Qt QToolTip stylesheet; border and background from the tokens; no rounded corners.",
@@ -381,7 +427,7 @@
     "i3-window-frame",
     "filterable-table"
   ],
-  "nonExamples": "A rounded bubble with an arrow. A shadow, or a fade longer than 150 ms. The\ntooltip as an icon button's only accessible name. A link or button inside.\nOpening on focus but not hover, or on hover with no delay. A `title`\nattribute. Following the pointer.",
+  "nonExamples": "A rounded bubble with an arrow. A shadow, or a fade longer than 150 ms. The\ntooltip as an icon button's only accessible name. A link or button inside\n(that is a popover). Opening on focus but not hover, or on hover with no delay.\nA `title` attribute. A pointer-opened tooltip pinned to its trigger instead of\nfollowing the pointer, or one that eases after it. A close delay. A long\ntooltip cut off, or one that closes before it can be scrolled. Moving focus on\nhover.",
   "contrast": [
     {
       "label": "tooltip default text",
@@ -488,7 +534,7 @@
       "waiver": null
     },
     {
-      "label": "shortcut key border on the tooltip",
+      "label": "shortcut key and close button borders on the tooltip",
       "state": null,
       "kind": "ui",
       "min": 3,
@@ -497,6 +543,19 @@
       "fgHex": "#c81a1a",
       "bgHex": "#140b0b",
       "ratio": 3.34,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "label": "close button on a pinned tooltip",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.tertiary.text",
+      "bg": "color.surface.raised",
+      "fgHex": "#e99499",
+      "bgHex": "#140b0b",
+      "ratio": 8.46,
       "pass": true,
       "waiver": null
     },

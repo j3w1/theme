@@ -47,13 +47,17 @@ copying, keyboard order and no-JS access stay intact.
   value; touch and unknown pointers do not. CSS `:hover` alone drives both,
   never the `hover` or `any-hover` media features, which can report no hover
   despite a mouse.
-- The popup follows the pointer inside the circle at an 8px gap, flips when
-  needed and keeps an 8px viewport gutter. Tracking has no animation.
+- The popup follows the pointer inside the circle 12px right of and below
+  it, flips when needed and keeps an 8px viewport gutter (the hover helper
+  rule in `spec/foundations.md`, D-042). Tracking has no animation.
 - It closes when the pointer leaves the circle, on an outside press, Escape,
   loss of window focus, and on page or nested scrolling unless the circle is
-  still under the last pointer position. It never captures input, holds
-  itself open or adds a keyboard stop; token tables and the token inspector
-  keep the persistent information.
+  still under the last pointer position.
+- A list of matches longer than its 40vh cap scrolls with the wheel while the
+  pointer is on the circle, and a click on the circle pins it (D-042). Only a
+  pinned popup takes input and focus, until Escape, its close button or an
+  outside press. It never adds a keyboard stop; token tables and the token
+  inspector keep the persistent information.
 
 ## Profiles
 
