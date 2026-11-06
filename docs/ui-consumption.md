@@ -124,12 +124,23 @@ controller.destroy();
   cannot scroll further that way.
 - A click, tap or Enter on a trigger whose helper overflows or holds a link
   or control pins it as a non-modal popover with a `.tooltip-close` button;
-  Escape and the button return focus to the trigger. The pinning activation
+  Escape and the button return focus to the trigger, or, for a trigger with
+  no tab stop, to where focus was before the press. The pinning activation
   is consumed in the capture phase, before the trigger's own click handlers;
-  the next activation reaches them. With an asynchronous `render`, the
-  activation waits for the content, then pins or replays the trigger's click.
+  the next activation reaches them. Escape goes first to the pinned helper
+  that holds focus, across every copy of the module on the page.
   `pin: true` pins on every activation (content known to hold links),
   `pin: false` never.
+- With an asynchronous `render`, the activation waits for the content, then
+  pins, or replays a copy of the event to its original target (the same
+  point, button and keys), so a descendant's own handler and a link's
+  navigation still run. Focus moving elsewhere first abandons it. A replay
+  is untrusted (`isTrusted` is false): a trigger whose action checks that, or
+  needs user activation after the browser's short window for it, should
+  render synchronously or use `pin: false`. Text fields, selects and
+  editable regions are never held. One render runs at a time per helper: a
+  trigger already rendering reuses that render and another trigger's waits
+  for it, so a render that never settles holds the ones after it.
 - `followPoint`, `anchorPoint`, `helperLimits` and `canScroll` are exported
   for hosts that position their own layer.
 
