@@ -715,8 +715,8 @@ scrolls an overflowing helper, preventing the page scroll only while the
 helper can still scroll that way. A click, tap or Enter on a trigger whose
 helper overflows or holds a link or control pins it: a non-modal popover
 (`role=dialog`, a close button, focus inside, Escape and the close button
-return focus, an outside press dismisses). The pinning activation replaces
-the trigger's default action once. Following never eases; forced colours keep
+return focus, an outside press dismisses). The pinning activation never
+reaches the trigger's own action; the next activation does. Following never eases; forced colours keep
 the borders. `@j3w1/ui/enhance/hover-helper` is the reference implementation.
 Rule: `spec/foundations.md`, Elevation and layering; `spec/components/tooltip.md`;
 `spec/components/popover.md`, Accessibility.

@@ -272,15 +272,22 @@ reveals) behaves the same way (D-042):
   scrolls inside that cap. While the pointer is on the trigger, the mouse
   wheel scrolls an overflowing helper and the page stays still; once the
   helper cannot scroll further that way, the wheel scrolls the page again.
+  Ctrl+wheel and pinch stay the browser's zoom.
 - **A click pins it.** A click, tap or Enter on a trigger whose helper
   overflows or holds a link or control pins it. A pinned helper is a popover
   (`spec/components/popover.md`): it stops following, takes pointer events and
   text selection, its links work, it shows a close button (×) and focus moves
-  into it. Escape and the close button close it and return focus to the
-  trigger; a press outside closes it and focus goes where the press puts it.
-  The pinning activation replaces the trigger's default action, such as a
-  link's navigation; activating the pinned trigger again performs it. A helper
-  that fits and holds only text never pins: a short tooltip stays a tooltip.
+  into it, drawing the container focus ring for keyboard focus. Escape and
+  the close button close it and return focus to the trigger (or, for a
+  trigger with no tab stop, to where focus was before the press); a press
+  outside closes it and focus goes where the press puts it. The pinning
+  activation never reaches the trigger's own action, such as a link's
+  navigation or a button's handler; activating the pinned trigger again
+  performs it. When the content is still loading, the activation waits for
+  it: it pins a helper that needs pinning, and otherwise the trigger's
+  activation goes ahead. A helper that fits and holds only text never pins: a
+  short tooltip stays a tooltip. When a pinned helper holds focus, Escape
+  closes it before any other open helper.
 - **Hovering never moves focus.**
 
 `@j3w1/ui/enhance/hover-helper` is the reference implementation; the tooltip
