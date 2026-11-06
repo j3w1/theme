@@ -69,7 +69,7 @@ var identity_default = {
 	name: "j3w1-theme",
 	version: "4.0.0",
 	profile: "default",
-	sourceDigest: "sha256-p0UTMFHFWcxRX7YXjeB/iaoy+EOdYiq6/hJgT+3SYiY="
+	sourceDigest: "sha256-tYx+cCLqSKLDQ6yNErKzIzC5AW6yKKtm2A0t7NaPtk4="
 };
 // packages/ui/src/internal/form-builder.js
 var templates = {

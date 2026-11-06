@@ -137,8 +137,9 @@ controller.destroy();
   navigation still run. Enter on a trigger that is not a link or button is
   held the same way. Focus is compared once, when the content arrives: if it
   is then anywhere other than where it was at the activation, even on the
-  page, the activation is abandoned. Focus that leaves and returns before
-  then does not cancel it. A replay is untrusted (`isTrusted` is
+  page, the activation is abandoned. A pointer activation survives focus that
+  leaves and returns before then. A keyboard activation does not: focus
+  leaving the trigger closes the helper that anchors to it. A replay is untrusted (`isTrusted` is
   false): a trigger whose action checks that, or needs user activation after
   the browser's short window for it, should render synchronously or use
   `pin: false`. An activation inside a text field, a select or an editable
