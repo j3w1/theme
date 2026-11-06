@@ -93,6 +93,61 @@ controls.destroy();
 - Test the visible combobox or listbox: Playwright `selectOption` on the
   hidden native select does not exercise the rendered menu.
 
+### Hover helpers
+
+Every hover helper follows one algorithm (D-042, `spec/foundations.md`,
+Elevation and layering): `j3w1-tooltip` runs it, and so can your own
+previews and inspectors. One controller drives one helper element for any
+number of triggers:
+
+```js
+import '@j3w1/ui/styles/tooltip.css';
+import { hoverHelper } from '@j3w1/ui/enhance/hover-helper';
+
+const helper = document.querySelector('#cell-help'); // e.g. class="tooltip-popup"
+const controller = hoverHelper(helper, {
+  trigger: node => node.closest('[data-help]'),   // the trigger a target belongs to
+  render: (trigger, box) => { box.textContent = trigger.dataset.help; },
+  openDelay: 300,                                  // 0 opens at once
+  label: trigger => `Help: ${trigger.textContent.trim()}`,
+});
+// On unmount:
+controller.destroy();
+```
+
+- It follows the pointer 12px right of and below it, flips inside an 8px
+  viewport gutter, anchors to the trigger for keyboard focus and touch, and
+  closes as soon as the pointer leaves the trigger.
+- It caps the helper at 40vh by 24rem, measured from the same viewport as
+  its placement. With the pointer on the trigger, the wheel (never
+  Ctrl+wheel) scrolls an overflowing helper, and the page only once the helper
+  cannot scroll further that way.
+- A click, tap or Enter on a trigger whose helper overflows or holds a link
+  or control pins it as a non-modal popover with a `.tooltip-close` button;
+  Escape and the button return focus to the trigger, or, for a trigger with
+  no tab stop, to where focus was before the press. The pinning activation
+  is consumed in the capture phase, before the trigger's own click handlers;
+  the next activation reaches them. Escape goes first to the pinned helper
+  that holds focus, across every copy of the module on the page.
+  `pin: true` pins on every activation (content known to hold links),
+  `pin: false` never.
+- With an asynchronous `render`, the activation waits for the content, then
+  pins, or replays a copy of the event to its original target (the same
+  point, button and keys), so a descendant's own handler and a link's
+  navigation still run. Enter on a trigger that is not a link or button is
+  held the same way. Focus moving anywhere before the content arrives, even
+  to the page, abandons the activation. A replay is untrusted (`isTrusted` is
+  false): a trigger whose action checks that, or needs user activation after
+  the browser's short window for it, should render synchronously or use
+  `pin: false`. An activation inside a text field, a select or an editable
+  region, including a trigger placed inside an editor, is never held. One
+  render runs at a time per helper: a trigger already rendering reuses that
+  render, another trigger's waits for it, and a request superseded while it
+  waits never calls `render`. A render that never settles holds the ones
+  after it.
+- `followPoint`, `anchorPoint`, `helperLimits` and `canScroll` are exported
+  for hosts that position their own layer.
+
 ## Vue 3 JavaScript SFCs
 
 Declare `j3w1-*` tags as Custom Elements in the Vite config, import

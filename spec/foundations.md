@@ -249,20 +249,55 @@ floating-window specimen. A floating layer is a 1px `border.overlay` on
 Stacking: canvas 0 < raised 1 < popover 10 < drawer 20 < dialog 30 < toast 40 <
 skip link 1000.
 
-A popup opened by hovering follows the pointer:
+Every hover helper (a tooltip, a preview or an inspector that hovering
+reveals) behaves the same way (D-042):
 
-- It sits 8px from the cursor, flips to the cursor's other side instead of
-  crossing a viewport edge, and keeps 8px from every edge.
-- It moves again on pointer move, scroll and resize.
-- A popup with nothing to operate takes no pointer events; one with a control
-  or link stays reachable and open while the pointer is inside it.
-- Either kind closes when the pointer leaves both the trigger and the popup;
-  the reachable kind waits 300 ms first, so the pointer can cross between
-  them, and stays while keyboard focus is on its trigger or inside it.
+- **It follows the pointer.** Opened by a mouse or pen, it sits 12px right of
+  and below the pointer (left of it in right-to-left text) and moves with it,
+  once per animation frame. It flips to the pointer's other side instead of
+  crossing a viewport edge and keeps 8px from every edge, so it is never
+  clipped. Following never eases. While it follows it takes no pointer events.
+- **Without a pointer it anchors.** Opened by keyboard focus, or by touch
+  without hover, it sits 4px below its trigger, or above when there is no
+  room below, aligned with the trigger's start edge, inside the same gutter.
+  It moves again on scroll and resize.
+- **It opens after the component's delay and closes at once.** A tooltip opens
+  300 ms after the pointer arrives; the D-014 colour preview and the token
+  inspector open at once. It closes as soon as the pointer leaves its trigger,
+  with no close delay. Keyboard focus on the trigger, or inside the helper,
+  keeps it open, anchored. Escape closes it without moving focus. Scrolling
+  closes a following helper unless its trigger is still under the last
+  pointer position.
+- **A long helper scrolls.** It is at most 24rem wide and 40vh tall and
+  scrolls inside that cap. While the pointer is on the trigger, the mouse
+  wheel scrolls an overflowing helper and the page stays still; once the
+  helper cannot scroll further that way, the wheel scrolls the page again.
+  Ctrl+wheel and pinch stay the browser's zoom.
+- **A click pins it.** A click, tap or Enter on a trigger whose helper
+  overflows or holds a link or control pins it. A pinned helper is a popover
+  (`spec/components/popover.md`): it stops following, takes pointer events and
+  text selection, its links work, it shows a close button (×) and focus moves
+  into it, drawing the container focus ring for keyboard focus. Escape and
+  the close button close it and return focus to the trigger (or, for a
+  trigger with no tab stop, to where focus was before the press); a press
+  outside closes it and focus goes where the press puts it. The pinning
+  activation never reaches the trigger's own action, such as a link's
+  navigation or a button's handler; activating the pinned trigger again
+  performs it. When the content is still loading, the activation waits for
+  it: it pins a helper that needs pinning, and otherwise the activation goes
+  ahead at the element that received it, as an untrusted copy. Focus moving
+  anywhere before the content arrives, even to the page, abandons the wait.
+  An activation inside a text field, a select or an editable region is never
+  held, even when the trigger sits within it, because a copy cannot perform
+  its own activation. Enter on a trigger that is not a link or button waits
+  the same way. A helper that fits and holds only text never pins: a short
+  tooltip stays a tooltip.
+  When a pinned helper holds focus, Escape closes it before any other open
+  helper, including one run by another copy of the implementation.
+- **Hovering never moves focus.**
 
-Opened from the keyboard, the same popup anchors to its trigger: below it, or
-above when there is no room below. This is a placement rule only; what opens a
-popup and what kind it is belong to the component's contract.
+`@j3w1/ui/enhance/hover-helper` is the reference implementation; the tooltip
+component, the colour-circle preview and the token inspector all run it.
 
 ## Icons
 

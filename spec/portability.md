@@ -68,6 +68,17 @@ onto the framework's theme keys and lists what it cannot express.
 `agents/consume.md` gives the reading order and the deviation report format;
 `theme.lock.json` pins the revision.
 
+Hover helpers (tooltips, previews, inspectors) follow one algorithm
+(`spec/foundations.md`, Elevation and layering; D-042): 12px right of and
+below the pointer and following it, flipping inside an 8px viewport gutter,
+anchored to the trigger without a pointer, closing as soon as the pointer
+leaves the trigger, capped at 40vh by 24rem with the wheel over the trigger
+scrolling an overflowing helper, and pinned as a popover by a click, tap or
+Enter when it overflows or holds a link or control. Use
+`@j3w1/ui/enhance/hover-helper`, or reproduce it exactly and record any
+difference as a deviation. A native toolkit's own tooltip keeps the host's
+placement; record whether it follows the pointer and how a long one is read.
+
 ## Native ports
 
 A port lives at `ports/<slug>/` with a README, `port.json`, `mapping.json` and

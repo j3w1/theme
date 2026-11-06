@@ -71,6 +71,7 @@ ordered by topic.
 | D-024 | Distinguish links from body text and headings | accepted | 2026-09-08 | owner (explicit preview correction) |
 | D-025 | Theme interactive controls throughout the portal and demo | accepted | 2026-09-09 | owner (explicit native-control replacement request) |
 | D-040 | One contrast focus ring for fills and invalid fields | accepted | 2026-10-15 | owner (explicit choice: one role, focus.ring-contrast) |
+| D-042 | Hover helpers follow the pointer; long ones scroll and pin | proposed | 2026-11-06 | — (requested by the owner; to be accepted once delivered and verified) |
 
 ### Site, tools and distribution
 
@@ -620,7 +621,8 @@ against the square and no-gradient rules.
 
 **Status.** proposed · 2026-09-07 (formal log status remains owner-controlled).
 Owner direction, 2026-09-07: the narrow exception explicitly approved,
-implementation authorized.
+implementation authorized. D-042 moves the preview to 12px from the pointer
+and lets a match list longer than 40vh scroll and pin.
 
 ### Follow the pointer hovering effect
 
@@ -698,6 +700,44 @@ names it once for every consumer and port. Rejected: keeping it written out;
 
 **Status.** accepted · 2026-10-15 · owner, choosing a new role and then the
 name `focus.ring-contrast` for all twelve uses. Builds on D-006 (proposed).
+
+## D-042 Hover helpers follow the pointer; long ones scroll and pin
+
+**Decision.** Every hover helper (the tooltip component, the D-014 colour
+preview, the token inspector, and any helper a consumer builds) runs one
+algorithm. It sits 12px right of and below the pointer and follows it once
+per animation frame, flips at the viewport edges inside an 8px gutter, and
+anchors to its trigger when there is no pointer (keyboard focus, touch). It
+opens after the component's delay (300 ms for a tooltip) and closes as soon
+as the pointer leaves the trigger, without a close delay. It is capped at
+40vh by 24rem and scrolls; while the pointer is on the trigger the wheel
+scrolls an overflowing helper, preventing the page scroll only while the
+helper can still scroll that way. A click, tap or Enter on a trigger whose
+helper overflows or holds a link or control pins it: a non-modal popover
+(`role=dialog`, a close button, focus inside, Escape and the close button
+return focus, an outside press dismisses). The pinning activation never
+reaches the trigger's own action; the next activation does. Following never eases; forced colours keep
+the borders. `@j3w1/ui/enhance/hover-helper` is the reference implementation.
+Rule: `spec/foundations.md`, Elevation and layering; `spec/components/tooltip.md`;
+`spec/components/popover.md`, Accessibility.
+
+**Why.** The owner asked for every hover helper to follow the pointer, as the
+colour circles already did, and reported that a helper long enough to scroll
+could not be scrolled, because it disappeared as soon as the pointer left its
+trigger (the colour preview also cut its list off). Rejected: a close delay
+that lets the pointer cross onto the helper (the earlier inspector and tooltip
+behaviour), which fights a helper that follows the pointer and leaves the wheel
+scrolling the page; making every long helper a popover from the start, which
+loses the quick read; and anchoring pointer-opened tooltips to the trigger.
+A following helper cannot be hovered (WCAG 1.4.13); pinning is the path to
+its content, a limitation recorded in `spec/accessibility.md`. This supersedes
+the 8px pointer gap and the reachable-popup grace period in foundations and
+the tooltip's "following the pointer" non-example.
+
+**Status.** proposed · 2026-11-06 · requested by the owner: hover helpers follow
+the mouse pointer as the standard for j3w1/theme, and a long helper becomes
+scrollable. The owner accepts it once it is delivered and verified. The 12px offset, 40vh cap and pinning design
+implement that request; they add no colour, role or token value.
 
 ## D-016 Pinned release comparison report and historical rendering
 

@@ -7,3 +7,8 @@
   <button class="tooltip-trigger" type="button" aria-describedby="tt-split">Split</button>
   <div class="tooltip-popup" role="tooltip" id="tt-split">Split the focused container horizontally <kbd class="tooltip-shortcut">Mod+h</kbd></div>
 </div>
+<!-- @variant long -->
+<div class="tooltip">
+  <button class="tooltip-trigger" type="button" aria-describedby="tt-layout">Layout</button>
+  <div class="tooltip-popup" role="tooltip" id="tt-layout">Cycle the focused container through stacked, tabbed and split layouts. Stacked shows one title bar per window and the focused window's content; tabbed puts every title in one bar; split divides the container in the direction last chosen. The layout belongs to the container, so new windows opened inside it take the same layout, and moving a window out leaves the rest in place. Layouts survive a reload of the window manager but not a restart of the session. To change only the split direction, use Split instead. A description this long scrolls inside its 40vh cap: the wheel over the trigger scrolls it, and a click or Enter pins it as a popover with a close button.</div>
+</div>

@@ -136,6 +136,16 @@ Keep essential instructions outside collapsed panels. Name the panel with a
 visible label or `aria-label`. No `aria-modal` and no focus trap. Native
 automatic dismissal and the fallback both synchronise the expanded state.
 
+A pinned hover helper is a popover (D-042; `spec/foundations.md`,
+Elevation and layering). A click, tap or Enter pins a tooltip, preview or
+inspector that overflows or holds a link or control. Its trigger takes
+`aria-expanded=true` while it is pinned and keeps `aria-describedby`; the
+helper becomes a named, non-modal `role=dialog` with a visible close button
+(×), and Escape, the close button and an outside press dismiss it. Pinning
+is an explicit activation, so focus moves into the helper and, on Escape or
+the close button, back to its trigger; that is not stolen focus. Hovering
+never moves focus.
+
 ## Portability
 
 Follows the shared component defaults in `spec/portability.md` (section
@@ -143,4 +153,4 @@ Follows the shared component defaults in `spec/portability.md` (section
 
 ## Non-examples
 
-Unlabelled controls, color-only status, drag-only operations, hidden required instructions, stolen focus or an invented service success.
+Unlabelled controls, color-only status, drag-only operations, hidden required instructions, stolen focus (including focus moved on hover) or an invented service success.

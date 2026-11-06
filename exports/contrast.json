@@ -13545,7 +13545,7 @@
     },
     {
       "source": "tooltip",
-      "label": "shortcut key border on the tooltip",
+      "label": "shortcut key and close button borders on the tooltip",
       "state": null,
       "kind": "ui",
       "min": 3,
@@ -13554,6 +13554,20 @@
       "fgHex": "#c81a1a",
       "bgHex": "#140b0b",
       "ratio": 3.34,
+      "pass": true,
+      "waiver": null
+    },
+    {
+      "source": "tooltip",
+      "label": "close button on a pinned tooltip",
+      "state": null,
+      "kind": "text",
+      "min": 4.5,
+      "fg": "color.action.tertiary.text",
+      "bg": "color.surface.raised",
+      "fgHex": "#e99499",
+      "bgHex": "#140b0b",
+      "ratio": 8.46,
       "pass": true,
       "waiver": null
     },

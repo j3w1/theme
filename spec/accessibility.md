@@ -66,6 +66,11 @@ WAI-ARIA Authoring Practices pattern in their `aria.apg`:
 - focus trapping and `Escape` in dialogs and drawers;
 - arrow keys in radio groups and menus.
 
+Hover helpers (`spec/foundations.md`, Elevation and layering; D-042) open
+anchored on keyboard focus. Enter on a trigger whose helper overflows or
+holds a link or control pins it and moves focus into it; Escape closes it and
+returns focus to the trigger. Hovering never moves focus.
+
 Positive `tabindex` is banned. Every icon-only control has an accessible name.
 The site's own controls (search, filters, inspector, copy) work with the
 keyboard, and the no-JS build keeps every normative section readable.
@@ -79,13 +84,17 @@ Motion follows `spec/foundations.md`, Interaction states, rule 7. Under
 - indeterminate progress shows static stripes;
 - loading glyphs do not spin;
 - skeletons do not shimmer;
-- tab indicators do not slide.
+- tab indicators do not slide;
+- a hover helper follows the pointer instantly, as it always does: its
+  position never eases (D-042).
 
 ## Forced colours and high contrast
 
 Under `forced-colors: active`, rings use `Highlight` and selections
 `Highlight` / `HighlightText`. Borders survive because they are real borders,
-not box-shadows; pattern fills keep charts and diffs readable.
+not box-shadows; pattern fills keep charts and diffs readable. A hover
+helper keeps its border in `CanvasText`, and a pinned helper's close button
+in `ButtonText`.
 
 ## Reflow, zoom and text
 
@@ -106,6 +115,13 @@ recorded limit.
 
 - The theme specifies colours, states and reference markup. It cannot make a
   host application's own focus management, labels or reading order correct.
+- A hover helper follows the pointer (D-042), so the pointer cannot move onto
+  it: it is not "hoverable" in the sense of WCAG 1.4.13. It never covers what
+  the pointer points at, stays while the pointer or keyboard focus is on its
+  trigger, and Escape dismisses it. Content that does not fit is reached with
+  the wheel over the trigger, and anything that has to be read at length or
+  operated is reached by pinning the helper as a popover. No manual
+  screen-reader or switch-access pass of the pinned state is recorded.
 - The automated scan uses axe-core with the WCAG 2.x A and AA rule sets and
   does not test every success criterion. Manual checks (keyboard walks,
   screen-reader reading, zoom) need their own execution evidence; a missing

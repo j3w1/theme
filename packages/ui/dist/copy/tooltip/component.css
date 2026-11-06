@@ -49,6 +49,8 @@ j3w1-tooltip .tooltip-trigger {
 j3w1-tooltip .tooltip-popup {
   z-index: var(--z-popover);
   max-width: min(calc(var(--font-size-ui-md) * 24), 100%);
+  max-height: 40vh;
+  overflow: auto;
   padding: var(--space-4) var(--space-8);
   background: var(--color-surface-raised);
   border: var(--border-width-default) solid var(--color-border-overlay);
@@ -61,6 +63,41 @@ j3w1-tooltip .tooltip-popup {
 
 j3w1-tooltip .tooltip-popup[hidden] {
   display: none;
+}
+j3w1-tooltip .tooltip-popup[data-pinned] {
+  user-select: text;
+}
+j3w1-tooltip .tooltip-popup[data-pinned]:focus-visible {
+  outline: var(--focus-ring-container);
+  outline-offset: var(--focus-offset-container);
+}
+
+j3w1-tooltip .tooltip-close {
+  position: sticky;
+  top: 0;
+  float: inline-end;
+  display: inline-grid;
+  place-items: center;
+  min-width: 24px;
+  min-height: 24px;
+  margin-inline-start: var(--space-8);
+  padding: 0;
+  background: var(--color-surface-raised);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+  color: var(--color-action-tertiary-text);
+  font: inherit;
+  line-height: 1;
+  cursor: pointer;
+}
+
+j3w1-tooltip .tooltip-close:hover {
+  background: var(--color-action-tertiary-hover-bg);
+}
+
+j3w1-tooltip .tooltip-close:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
 }
 
 j3w1-tooltip .tooltip-shortcut {
@@ -84,10 +121,15 @@ j3w1-tooltip .tooltip-trigger:hover + .tooltip-popup,
 j3w1-tooltip .tooltip-trigger:focus-visible + .tooltip-popup {
   display: block;
 }
-
 @media (prefers-reduced-motion: no-preference) {
   j3w1-tooltip .tooltip-popup {
     transition: opacity var(--motion-duration-fast);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  j3w1-tooltip .tooltip-popup {
+    transition: none;
   }
 }
 
@@ -100,6 +142,16 @@ j3w1-tooltip .tooltip-trigger:focus-visible + .tooltip-popup {
 @media (forced-colors: active) {
   j3w1-tooltip .tooltip-popup {
     border-color: CanvasText;
+  }
+
+  j3w1-tooltip .tooltip-close {
+    border-color: ButtonText;
+    color: ButtonText;
+  }
+
+  j3w1-tooltip .tooltip-close:focus-visible,
+  j3w1-tooltip .tooltip-popup[data-pinned]:focus-visible {
+    outline-color: Highlight;
   }
 
   j3w1-tooltip .tooltip-trigger:focus-visible {

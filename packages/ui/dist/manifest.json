@@ -12917,11 +12917,11 @@
       "copy": {
         "directory": "copy/form-builder/",
         "files": {
-          "runtime/register/form-builder.js": "sha256-oXBX37RV8hqaewR2lwDVwOl2j/msYQin6hRz9lX1Jx4=",
+          "runtime/register/form-builder.js": "sha256-f0z70/4Q9lvzhk288JVbAXoWjpVqJ7ZmMXZmV/Lhbts=",
           "runtime/chunks/element-DcrNU9Wh.js": "sha256-K12Hi4AEpZEosnfTD6MzmDSw+hv7REmmrIycBycQhpY=",
           "runtime/chunks/choice-DqwWT5pJ.js": "sha256-PO0KJ2PRfy2FN9q9+VSvDnxi1skgfEZswjJnJcZIakA=",
-          "runtime/chunks/form-builder-CkeTBQe-.js": "sha256-iRHlKYYOhwufdLevaEyOgE67JBEu4RoXRoac4B2A21I=",
-          "runtime/chunks/form-builder-DbZUZMo1.js": "sha256-pSdb7sCB5w/BFrtZppLI60CobZa9ao5sqyQkvChry2k=",
+          "runtime/chunks/form-builder-zn-iP2a8.js": "sha256-IBdErEYVjIOccCXNQtz+FqjShs/XH1TCfnSbjnCYZ5M=",
+          "runtime/chunks/form-builder-Bm9XSP8o.js": "sha256-aSzStFM0sKRj8jDA7MeTJcES/Lw476HNv81tydNBkLg=",
           "runtime/chunks/form-workflow-B183Y5gc.js": "sha256-wj41Umu7N2n0VIHJWCVtrmjCwuzB8U0k+mah4rAekQ8=",
           "runtime/chunks/markup-AopKpwOF.js": "sha256-/Dn3cWEmlRQzeQAPVf+C0AooVb1pdIQeNeqd1fQVoPc=",
           "tokens.css": "sha256-7HNUwUO0RfX8jPMvp0gqL5lcjjTDPlhJGzs8j7seouU=",
@@ -12930,7 +12930,7 @@
           "element.html": "sha256-WUjDiy4tZKp/CS/g5I/hIUQY0Mci0zrItPW5k4K7As4=",
           "index.html": "sha256-640gpCzARRbVwXUct1TM0s5GcegFiYevcWBsg7VSOqI=",
           "README.md": "sha256-MGlPh4CEW6DLecBSj7Ym9ww3NAGe8r5V9uANRpZLY48=",
-          "manifest.json": "sha256-Nc30zX+hmCj/+Axho81JjVGR9rs0F9WjUl5R9k9GjWk="
+          "manifest.json": "sha256-1+0XteUgBiIu2HNriuZLhuMREdE1F8n2PyUNyCbV5E8="
         }
       }
     },
@@ -19137,15 +19137,16 @@
           "runtime/register/chip.js": "sha256-eF+2aWon9lf3LkH7QaQCkxFOzWUMmNMVKWA7fqgj2+4=",
           "runtime/chunks/element-DcrNU9Wh.js": "sha256-K12Hi4AEpZEosnfTD6MzmDSw+hv7REmmrIycBycQhpY=",
           "runtime/chunks/choice-DqwWT5pJ.js": "sha256-PO0KJ2PRfy2FN9q9+VSvDnxi1skgfEZswjJnJcZIakA=",
-          "runtime/components/chip.js": "sha256-MJ64P3LJsDD8m48qHWKCQnD9uybijjnCWkqC25A3ElI=",
-          "runtime/chunks/overlays-BW66WXLm.js": "sha256-Z9etmUpuDuykKbJkriLMz8iiYnOP9uMUAshKwoHc1I8=",
+          "runtime/components/chip.js": "sha256-pV/EJ7HmWQkB+Gf7/aQRjAUAfWMIpLnkQJPFrZm0KA4=",
+          "runtime/chunks/overlays-ByrS0Cmy.js": "sha256-srJuRzvmtttiMD5VUoiC5FLYEuIhocaI2tLEzeY0u3s=",
+          "runtime/chunks/hover-helper-CYYYHTxG.js": "sha256-gQbDWQOc18EVbr+QUt+ifnJOoGXY4C8qLS4N2CpCZ70=",
           "tokens.css": "sha256-7HNUwUO0RfX8jPMvp0gqL5lcjjTDPlhJGzs8j7seouU=",
           "component.css": "sha256-358eNya4c7h47XJC5dFUZncxpjkl0B9HRfRfxwVS8so=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-yjXdYrZ4DqpcZ/ZDGxD0cgfYY/xqj0qeSkX1dJmVhfY=",
           "index.html": "sha256-k4FZCUqK/d9sBff8dKJJwQW99u70Dw3zXRzcH3da314=",
           "README.md": "sha256-Ay+51qOAHcbN22QHsMfcbrA/66D52crp5OlQCHyMYmg=",
-          "manifest.json": "sha256-CU5wNUKgI2FlTYYXz6aqRGpR7umv1yBDqnIBuABcsFA="
+          "manifest.json": "sha256-pL87aVK6jJ8YFlHTy6P8GbaQGmxlcjWbLeH6nhRT8S8="
         }
       }
     },
@@ -21851,15 +21852,16 @@
           "runtime/register/alert.js": "sha256-7NCDMaMb7R+vWVYpL0Q7UOd/2hi0nNoG7b/xzw1ISwM=",
           "runtime/chunks/element-DcrNU9Wh.js": "sha256-K12Hi4AEpZEosnfTD6MzmDSw+hv7REmmrIycBycQhpY=",
           "runtime/chunks/choice-DqwWT5pJ.js": "sha256-PO0KJ2PRfy2FN9q9+VSvDnxi1skgfEZswjJnJcZIakA=",
-          "runtime/components/alert.js": "sha256-Ww7L88Sc1WN1nt7rRaqX4VZ6N9euzD/gg9otTIqd/24=",
-          "runtime/chunks/overlays-BW66WXLm.js": "sha256-Z9etmUpuDuykKbJkriLMz8iiYnOP9uMUAshKwoHc1I8=",
+          "runtime/components/alert.js": "sha256-FIV0k0b7yEogH5qCm+XV7hQeT3uGU7ktSKW/mg7i2Yk=",
+          "runtime/chunks/overlays-ByrS0Cmy.js": "sha256-srJuRzvmtttiMD5VUoiC5FLYEuIhocaI2tLEzeY0u3s=",
+          "runtime/chunks/hover-helper-CYYYHTxG.js": "sha256-gQbDWQOc18EVbr+QUt+ifnJOoGXY4C8qLS4N2CpCZ70=",
           "tokens.css": "sha256-7HNUwUO0RfX8jPMvp0gqL5lcjjTDPlhJGzs8j7seouU=",
           "component.css": "sha256-5Dd4DFZ5Lg+H5ZcZnWfb8Ommsp9rKKRLJYR0cpgWWpU=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-QUAq9dxIFB1jlxB27CrSrEZKRLa4rC6qRLbWmR2t/ug=",
           "index.html": "sha256-GQ2nYpJKuk1PCqh/falGa06i3ANZHhohF4LRN04wYwk=",
           "README.md": "sha256-tx+34leZRjiZARWtxlnmDc9/6JPBGKFZl1od0IYo4kc=",
-          "manifest.json": "sha256-InLGG3IWFONsGn5KCD24pSHkaUnfTaYX2B6SIBqEZpA="
+          "manifest.json": "sha256-FC3JiasaGW3ZwmWjLO8xc/PbEHqoAmLb6MNH15JK3K8="
         }
       }
     },
@@ -22391,15 +22393,16 @@
           "runtime/register/toast.js": "sha256-T5DYWi24uZw+rG6LBmJOUq8W1SaQkxZXz7JNdRbEUfM=",
           "runtime/chunks/element-DcrNU9Wh.js": "sha256-K12Hi4AEpZEosnfTD6MzmDSw+hv7REmmrIycBycQhpY=",
           "runtime/chunks/choice-DqwWT5pJ.js": "sha256-PO0KJ2PRfy2FN9q9+VSvDnxi1skgfEZswjJnJcZIakA=",
-          "runtime/components/toast.js": "sha256-XsXKDN1g1p/dUFMGbcOZtPxqPsa1wVAqjrBDVX0e0jI=",
-          "runtime/chunks/overlays-BW66WXLm.js": "sha256-Z9etmUpuDuykKbJkriLMz8iiYnOP9uMUAshKwoHc1I8=",
+          "runtime/components/toast.js": "sha256-m4rNx6nvO/BL2q3+4xytLtYN65nCQPNw2r7TNGg+WXE=",
+          "runtime/chunks/overlays-ByrS0Cmy.js": "sha256-srJuRzvmtttiMD5VUoiC5FLYEuIhocaI2tLEzeY0u3s=",
+          "runtime/chunks/hover-helper-CYYYHTxG.js": "sha256-gQbDWQOc18EVbr+QUt+ifnJOoGXY4C8qLS4N2CpCZ70=",
           "tokens.css": "sha256-7HNUwUO0RfX8jPMvp0gqL5lcjjTDPlhJGzs8j7seouU=",
           "component.css": "sha256-uDOVAGMFD+o43PgFLYIr3brOp1t4nrDGrE8jaKF7S2U=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-2DXrOBOlEPzc9p3N5SEbw98qHHSMYTxlOnR6gT91kkU=",
           "index.html": "sha256-pfILKUsTjhG02CF143yBVB1w9s3PoEzh0CXq+YfLKdU=",
           "README.md": "sha256-Gqkqv+2L4+y8mTQfPGpUxoV4B+6QJazzN5XtXWfyj4w=",
-          "manifest.json": "sha256-oRSezqXzG8G2CO7SOE3gB8WFwPsFCgto2clZFaszucA="
+          "manifest.json": "sha256-nFK2l54po0zGcss57vaAEefwUNjGXmuOI5hRdYJXidY="
         }
       }
     },
@@ -23395,6 +23398,10 @@
         {
           "id": "with-shortcut",
           "name": "With shortcut"
+        },
+        {
+          "id": "long",
+          "name": "Long description"
         }
       ],
       "states": [
@@ -23414,6 +23421,9 @@
         "trigger.text": "color.action.tertiary.text",
         "trigger.bg-hover": "color.action.tertiary.hover-bg",
         "trigger.ring": "color.interaction.focus.ring",
+        "close.text": "color.action.tertiary.text",
+        "close.border": "color.border.control",
+        "close.bg-hover": "color.action.tertiary.hover-bg",
         "popup.z": "z.popover"
       },
       "status": {
@@ -23444,7 +23454,9 @@
           "density.compact.control-height",
           "density.compact.control-padding-x",
           "focus.offset",
+          "focus.offset-container",
           "focus.ring",
+          "focus.ring-container",
           "font.family.mono",
           "font.line-height.ui-md",
           "font.line-height.ui-sm",
@@ -23466,6 +23478,7 @@
           "color.border.overlay",
           "color.interaction.drop-target",
           "color.interaction.focus.ring",
+          "color.interaction.focus.ring-container",
           "color.interaction.selection.bg",
           "color.interaction.selection.text",
           "color.interaction.text-selection.bg",
@@ -23489,7 +23502,9 @@
           "density.compact.control-height",
           "density.compact.control-padding-x",
           "focus.offset",
+          "focus.offset-container",
           "focus.ring",
+          "focus.ring-container",
           "font.family.mono",
           "font.line-height.ui-md",
           "font.line-height.ui-sm",
@@ -23603,7 +23618,17 @@
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
           },
+          "focus.offset-container": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
           "focus.ring": {
+            "action": "use",
+            "reason": "Use within the role's documented scope and restrictions.",
+            "decisionIds": []
+          },
+          "focus.ring-container": {
             "action": "use",
             "reason": "Use within the role's documented scope and restrictions.",
             "decisionIds": []
@@ -23672,15 +23697,16 @@
           "runtime/register/tooltip.js": "sha256-F7E8JHr/JV4iZeeVJnARr64yUr2l01418fBM2UvligM=",
           "runtime/chunks/element-DcrNU9Wh.js": "sha256-K12Hi4AEpZEosnfTD6MzmDSw+hv7REmmrIycBycQhpY=",
           "runtime/chunks/choice-DqwWT5pJ.js": "sha256-PO0KJ2PRfy2FN9q9+VSvDnxi1skgfEZswjJnJcZIakA=",
-          "runtime/components/tooltip.js": "sha256-/JSDKAWa/JXNmAoOtDMptCVY8Pu5nChQ/4UK26P8KuU=",
-          "runtime/chunks/overlays-BW66WXLm.js": "sha256-Z9etmUpuDuykKbJkriLMz8iiYnOP9uMUAshKwoHc1I8=",
+          "runtime/components/tooltip.js": "sha256-5QdpTXakycHPQ/BaN/KfAE9wKn4FrL1l+kMzFxOuhWc=",
+          "runtime/chunks/overlays-ByrS0Cmy.js": "sha256-srJuRzvmtttiMD5VUoiC5FLYEuIhocaI2tLEzeY0u3s=",
+          "runtime/chunks/hover-helper-CYYYHTxG.js": "sha256-gQbDWQOc18EVbr+QUt+ifnJOoGXY4C8qLS4N2CpCZ70=",
           "tokens.css": "sha256-7HNUwUO0RfX8jPMvp0gqL5lcjjTDPlhJGzs8j7seouU=",
-          "component.css": "sha256-qYB8NrU6j0LSeluhANQt7hX4GwZJkfsCr7sElkRObAs=",
+          "component.css": "sha256-Ys8YpFZVMpW6prtaP3rjnaOvZ7hooCmSVspygfqc5d4=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-+kSohyFbJg7z8/YUnlkzY1UQAu9ZLX7qE1eFLvk/1hI=",
           "index.html": "sha256-H8VqbExkj5zBn+UMGOUurqozbkho78wvT0O1LxdqEXs=",
           "README.md": "sha256-gCdLT45+37bldGYfH9LhZjTXGX04d3jZOS7ARTD3bCE=",
-          "manifest.json": "sha256-GgYaPJXmIXO4FHNDza+4NmU8dgYZlv7ixDUuG8GsKiU="
+          "manifest.json": "sha256-iJACJ75ZQwsRZGgV7g3kQ/JzGZh5CUfxSJk4/JTaWQw="
         }
       }
     },
@@ -24246,15 +24272,16 @@
           "runtime/register/popover.js": "sha256-xRkCFvW2ZZFE7oiyzjI0LU04ybC1vn0qsZSMwBHa0W4=",
           "runtime/chunks/element-DcrNU9Wh.js": "sha256-K12Hi4AEpZEosnfTD6MzmDSw+hv7REmmrIycBycQhpY=",
           "runtime/chunks/choice-DqwWT5pJ.js": "sha256-PO0KJ2PRfy2FN9q9+VSvDnxi1skgfEZswjJnJcZIakA=",
-          "runtime/components/popover.js": "sha256-AKogsKXEGlZ2TM7DbJBqt95rmp+cUmED/ovBHzwqPBA=",
-          "runtime/chunks/overlays-BW66WXLm.js": "sha256-Z9etmUpuDuykKbJkriLMz8iiYnOP9uMUAshKwoHc1I8=",
+          "runtime/components/popover.js": "sha256-nAvUbHCM0U5uPjB1l0wd9ni5aLtz2qtJMYetonjOmEc=",
+          "runtime/chunks/overlays-ByrS0Cmy.js": "sha256-srJuRzvmtttiMD5VUoiC5FLYEuIhocaI2tLEzeY0u3s=",
+          "runtime/chunks/hover-helper-CYYYHTxG.js": "sha256-gQbDWQOc18EVbr+QUt+ifnJOoGXY4C8qLS4N2CpCZ70=",
           "tokens.css": "sha256-7HNUwUO0RfX8jPMvp0gqL5lcjjTDPlhJGzs8j7seouU=",
           "component.css": "sha256-xmMasEZmjEVePt3EbtGTGv48RqUg6XWxZKYkmzUQlQY=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-tBbkSUEedfklBWmTm/lh13o3rlYHe/9AGgvmXp+p/Lo=",
           "index.html": "sha256-EXPyGAfu1NC/kmTVCftVrEr6TsOglaJBB5amGR0C4K0=",
           "README.md": "sha256-2w2CMw7jTANV0wE6ux5POoe9QeMf/7BVerq3YrpiziI=",
-          "manifest.json": "sha256-qtI7U9MQNcKuBJoWnGbTV5TN2koer6C1EJp9Vk8YHWg="
+          "manifest.json": "sha256-wZwA1yQ7aWg64RcrXBFjy1z9suKmPUwnfcy8lbMA1Nw="
         }
       }
     },
@@ -24963,15 +24990,16 @@
           "runtime/register/dialog.js": "sha256-JEbzrKsC4vP0ZdqSOolILA3NQuVhOa+XZoXfduM+PAI=",
           "runtime/chunks/element-DcrNU9Wh.js": "sha256-K12Hi4AEpZEosnfTD6MzmDSw+hv7REmmrIycBycQhpY=",
           "runtime/chunks/choice-DqwWT5pJ.js": "sha256-PO0KJ2PRfy2FN9q9+VSvDnxi1skgfEZswjJnJcZIakA=",
-          "runtime/components/dialog.js": "sha256-Bwsz1OfbAchVk6TFl8egez6a03B4iopAkl0edtrHcPs=",
-          "runtime/chunks/overlays-BW66WXLm.js": "sha256-Z9etmUpuDuykKbJkriLMz8iiYnOP9uMUAshKwoHc1I8=",
+          "runtime/components/dialog.js": "sha256-MsEnAvukOxVM4l51BAQsuAZ01POY1FrbuPqFPd1NlyM=",
+          "runtime/chunks/overlays-ByrS0Cmy.js": "sha256-srJuRzvmtttiMD5VUoiC5FLYEuIhocaI2tLEzeY0u3s=",
+          "runtime/chunks/hover-helper-CYYYHTxG.js": "sha256-gQbDWQOc18EVbr+QUt+ifnJOoGXY4C8qLS4N2CpCZ70=",
           "tokens.css": "sha256-7HNUwUO0RfX8jPMvp0gqL5lcjjTDPlhJGzs8j7seouU=",
           "component.css": "sha256-PL+Ntvoc1uooINO+TPwR7KzuU7dbER2pJdlz10y0UyY=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-wFFtRxUFWBTzxYOcblp+JjddYxJQF3QKoOb0/hIuSL0=",
           "index.html": "sha256-Q/j50VjcxyfFKNml07quAEQPOpf3g/BvIyvycnVJuzE=",
           "README.md": "sha256-qhTQOsunJthiAQNFRNPTJx74lX2dH6rh6jISELzgD5Q=",
-          "manifest.json": "sha256-TSbiYeFvJMF2U6hGsE8nbaJyAV0b70JabFzXr6ix2rM="
+          "manifest.json": "sha256-kRoG+3Ei8jB/8YsQ2MIPp9EN0Op/KNPVfFFCeoT5HEY="
         }
       }
     },
@@ -25675,15 +25703,16 @@
           "runtime/register/drawer.js": "sha256-AM5iGLPnmhN77hlMQqOhJM8ZDYwV/jpxf4bjQDWLHlE=",
           "runtime/chunks/element-DcrNU9Wh.js": "sha256-K12Hi4AEpZEosnfTD6MzmDSw+hv7REmmrIycBycQhpY=",
           "runtime/chunks/choice-DqwWT5pJ.js": "sha256-PO0KJ2PRfy2FN9q9+VSvDnxi1skgfEZswjJnJcZIakA=",
-          "runtime/components/drawer.js": "sha256-xhVXm6IXbOoRG69KeKgXfir/YRSlIhTVtiygF1/uLwI=",
-          "runtime/chunks/overlays-BW66WXLm.js": "sha256-Z9etmUpuDuykKbJkriLMz8iiYnOP9uMUAshKwoHc1I8=",
+          "runtime/components/drawer.js": "sha256-pzlC82dLU4rIzLrh4d4s+ZnSly9nTMxc2DKkcsXnmBQ=",
+          "runtime/chunks/overlays-ByrS0Cmy.js": "sha256-srJuRzvmtttiMD5VUoiC5FLYEuIhocaI2tLEzeY0u3s=",
+          "runtime/chunks/hover-helper-CYYYHTxG.js": "sha256-gQbDWQOc18EVbr+QUt+ifnJOoGXY4C8qLS4N2CpCZ70=",
           "tokens.css": "sha256-7HNUwUO0RfX8jPMvp0gqL5lcjjTDPlhJGzs8j7seouU=",
           "component.css": "sha256-r9vwT85nLqMxpyVzGQDrQIU3bpOdw5TleRvfLX3IVQs=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-RNAiKQJPioHCtfhMtqcsFaQFfwhKvdH+iIfLXOWo6QQ=",
           "index.html": "sha256-E0Z5esPR0fYfy04CP3TuZwrK6CEw4DIxyD9vXPSkZAI=",
           "README.md": "sha256-fOfwfTYC9vdlgQFOfWiigzqCKfrU93VWnGHVQW9kH8s=",
-          "manifest.json": "sha256-yJbahCQlijj7/ZMLUN+3jSfKlLEZy5cgMCTZznnd7ok="
+          "manifest.json": "sha256-ClyejWgEFq3TGOuiR54EHWwqXN2nl8SoyRSNyQP215U="
         }
       }
     },
@@ -26261,15 +26290,16 @@
           "runtime/register/empty-state.js": "sha256-dB0amDn9V/in58Egc89rJ/1PCddeEm7h/pF3stAKhXo=",
           "runtime/chunks/element-DcrNU9Wh.js": "sha256-K12Hi4AEpZEosnfTD6MzmDSw+hv7REmmrIycBycQhpY=",
           "runtime/chunks/choice-DqwWT5pJ.js": "sha256-PO0KJ2PRfy2FN9q9+VSvDnxi1skgfEZswjJnJcZIakA=",
-          "runtime/components/empty-state.js": "sha256-4YkbuqMtIaxwQuQSzV4W2x18ZCoezW1TwANoDpPK3aQ=",
-          "runtime/chunks/overlays-BW66WXLm.js": "sha256-Z9etmUpuDuykKbJkriLMz8iiYnOP9uMUAshKwoHc1I8=",
+          "runtime/components/empty-state.js": "sha256-fvU+fRn9rM7Dk6MraKGJO3a/yDzplnD03GrYlT9vzwY=",
+          "runtime/chunks/overlays-ByrS0Cmy.js": "sha256-srJuRzvmtttiMD5VUoiC5FLYEuIhocaI2tLEzeY0u3s=",
+          "runtime/chunks/hover-helper-CYYYHTxG.js": "sha256-gQbDWQOc18EVbr+QUt+ifnJOoGXY4C8qLS4N2CpCZ70=",
           "tokens.css": "sha256-7HNUwUO0RfX8jPMvp0gqL5lcjjTDPlhJGzs8j7seouU=",
           "component.css": "sha256-BeQzoBMmZ//SCPym1JhwPfMM51a6wiO3oVtwH7lOOpc=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-j6rKuP4LmxmaKm47ZcfAqQ0LKMqN7l90HZwvUydHutQ=",
           "index.html": "sha256-stJ7LYfCGn32eDmo6PzwFlZwtF8GlPwt4gCAQ4f6EfU=",
           "README.md": "sha256-460PP03z7gtyCcQW1opIbUBVyz/wg3Dv8SyzbynmB2E=",
-          "manifest.json": "sha256-cvIfK+Ds7EzrT7+nTFN0wNCb/+G0YJLKPKgfySV/7CI="
+          "manifest.json": "sha256-2bCBeFUSs1aEOizbvv410aPL+5BuhXpZx1BtcNu1VTA="
         }
       }
     },
@@ -26828,15 +26858,16 @@
           "runtime/register/error-state.js": "sha256-aJDvxh9+vUwd9iM93dBzHIYNHsvxbRWb+PWyrx/cUME=",
           "runtime/chunks/element-DcrNU9Wh.js": "sha256-K12Hi4AEpZEosnfTD6MzmDSw+hv7REmmrIycBycQhpY=",
           "runtime/chunks/choice-DqwWT5pJ.js": "sha256-PO0KJ2PRfy2FN9q9+VSvDnxi1skgfEZswjJnJcZIakA=",
-          "runtime/components/error-state.js": "sha256-oighlDczb4A0AuMh+nzeDiwSkUzdI1QF8Cq/NbkPlcs=",
-          "runtime/chunks/overlays-BW66WXLm.js": "sha256-Z9etmUpuDuykKbJkriLMz8iiYnOP9uMUAshKwoHc1I8=",
+          "runtime/components/error-state.js": "sha256-+2i27eMnOP+FBVxndYDDYIi7owIVlbFkQVJFrQsNiSU=",
+          "runtime/chunks/overlays-ByrS0Cmy.js": "sha256-srJuRzvmtttiMD5VUoiC5FLYEuIhocaI2tLEzeY0u3s=",
+          "runtime/chunks/hover-helper-CYYYHTxG.js": "sha256-gQbDWQOc18EVbr+QUt+ifnJOoGXY4C8qLS4N2CpCZ70=",
           "tokens.css": "sha256-7HNUwUO0RfX8jPMvp0gqL5lcjjTDPlhJGzs8j7seouU=",
           "component.css": "sha256-PkulOjRkq7PLGjfU346e4I1xzJqOFRjr9UgXNeugJLY=",
           "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",
           "element.html": "sha256-ORjrriOpBHk2VlqSsyeUSEs1medDwB5oaTT4RxrXLFs=",
           "index.html": "sha256-oKMXjqXWa3C9B3nx3LWjOjaPYvvFEL4y4yUPyCiyHFI=",
           "README.md": "sha256-Dl3lNTMlz4fye9SN1UJc6WVgA6BbWKgqHMIRpH62yOY=",
-          "manifest.json": "sha256-JVn20IIGWKkLSG9VQVc1nUrIgYpvJMLvi5nFiu2hg50="
+          "manifest.json": "sha256-uXPFQrRstxEiUOlSi+t0RXVQrGlyI72BHZz5WlMD9LE="
         }
       }
     },

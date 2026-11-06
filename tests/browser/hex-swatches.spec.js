@@ -25,9 +25,7 @@ test.describe("actual pointer input without reported hover capability", () => {
     await page.mouse.move(rect.x + rect.width / 2, rect.y + rect.height / 2);
     const before = await popup.boundingBox();
     await page.mouse.move(rect.x + rect.width / 2 + 2, rect.y + rect.height / 2 + 2);
-    const after = await popup.boundingBox();
-    expect(after.x - before.x).toBe(2);
-    expect(after.y - before.y).toBe(2);
+    await expect.poll(async () => { const after = await popup.boundingBox(); return [after.x - before.x, after.y - before.y]; }).toEqual([2, 2]);
     await page.mouse.move(1, 1);
     await expect(popup).toBeHidden();
     await circle.hover();
@@ -181,10 +179,10 @@ test("color popup follows only its circle and revalidates stationary hover on sc
   const rect = await swatch.boundingBox();
   await page.mouse.move(rect.x + rect.width / 2, rect.y + rect.height / 2);
   const before = await popup.boundingBox();
+  /* D-042: 12px right of and below the pointer, following it. */
+  expect([Math.round(before.x - (rect.x + rect.width / 2)), Math.round(before.y - (rect.y + rect.height / 2))]).toEqual([12, 12]);
   await page.mouse.move(rect.x + rect.width / 2 + 2, rect.y + rect.height / 2 + 2);
-  const after = await popup.boundingBox();
-  expect(after.x - before.x).toBe(2);
-  expect(after.y - before.y).toBe(2);
+  await expect.poll(async () => { const after = await popup.boundingBox(); return [after.x - before.x, after.y - before.y]; }).toEqual([2, 2]);
   await page.evaluate(() => window.scrollBy(0, 1));
   await expect(popup).toBeVisible();
   await page.evaluate(() => window.scrollBy(0, 100));
@@ -211,4 +209,99 @@ test("color popup follows only its circle and revalidates stationary hover on sc
   await page.keyboard.press("Escape");
   await expect(page.locator("#inspector")).toBeHidden();
   clean.assertClean();
+});
+
+test("a long colour preview scrolls with the wheel over its circle and pins on click", verification({ component: "page", category: "enhancements", states: ["hover"], variants: [], note: "True black's match list overflows the 40vh cap: the wheel over the circle scrolls the preview and not the page, a click pins it (dialog, close button, focus inside), it stays while the pointer leaves, and Escape restores the passive preview. Desktop mouse only; no manual accessibility claim." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "mouse lifecycle on desktop");
+  const clean = await openSpec(page);
+  const swatch = page.locator('.hex-swatch[data-hex="#000000"][data-token-matches]:not(a *):not(button *)').first();
+  await swatch.scrollIntoViewIfNeeded();
+  const rect = await swatch.boundingBox();
+  const at = { x: rect.x + rect.width / 2, y: rect.y + rect.height / 2 };
+  await page.mouse.move(at.x, at.y);
+  const popup = page.locator("#hex-popup");
+  await expect(popup).toBeVisible();
+  expect(await popup.evaluate((el) => el.scrollHeight > el.clientHeight && el.getBoundingClientRect().height <= innerHeight * 0.4 + 1)).toBe(true);
+  const pageY = await page.evaluate(() => scrollY);
+  await page.mouse.wheel(0, 100);
+  await expect.poll(() => popup.evaluate((el) => el.scrollTop)).toBeGreaterThan(0);
+  expect(await page.evaluate(() => scrollY)).toBe(pageY);
+  await expect(popup).toBeVisible();
+  await page.mouse.click(at.x, at.y);
+  await expect(popup).toHaveAttribute("data-pinned", "");
+  await expect(popup).toHaveAttribute("role", "dialog");
+  await expect(popup).not.toHaveAttribute("aria-hidden");
+  await expect(popup).toHaveCSS("pointer-events", "auto");
+  await expect(popup).toBeFocused();
+  await expect(popup.getByRole("button", { name: "Close" })).toBeVisible();
+  const pinned = await popup.boundingBox();
+  await page.mouse.move(pinned.x + pinned.width / 2, pinned.y + 20, { steps: 8 });
+  await page.mouse.wheel(0, 100);
+  await expect(popup).toBeVisible();
+  await page.mouse.move(1, 1, { steps: 4 });
+  await expect(popup).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(popup).toBeHidden();
+  await expect(popup).toHaveAttribute("aria-hidden", "true");
+  await expect(popup).not.toHaveAttribute("role");
+  await expect(popup).toHaveCSS("pointer-events", "none");
+  await expect(popup.locator("a, button, [tabindex]")).toHaveCount(0);
+  clean.assertClean();
+});
+
+test("F7: a pinned preview on an unfocusable circle returns focus to where it was before the press", verification({ component: "page", category: "keyboard", states: [], variants: [], note: "A token link holds focus; a click on a colour circle (no tab stop) pins its preview; Escape must return focus to the link. Desktop mouse only." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "mouse lifecycle on desktop");
+  await openSpec(page);
+  const link = page.locator('a[data-token="color.interaction.focus.ring"]').first();
+  await link.focus();
+  await page.keyboard.press("Escape");
+  const swatch = page.locator('.hex-swatch[data-hex="#000000"][data-token-matches]:not(a *):not(button *)').first();
+  await swatch.scrollIntoViewIfNeeded();
+  const r = await swatch.boundingBox();
+  await page.mouse.move(r.x + r.width / 2, r.y + r.height / 2);
+  await page.mouse.click(r.x + r.width / 2, r.y + r.height / 2);
+  const popup = page.locator("#hex-popup");
+  await expect(popup).toHaveAttribute("data-pinned", "");
+  await page.keyboard.press("Escape");
+  await expect(popup).toBeHidden();
+  await expect(link).toBeFocused();
+});
+
+test("F8: scroll revalidation runs once per frame however many scroll events arrive", verification({ component: "page", category: "enhancements", states: ["hover"], variants: [], note: "With a colour preview open by pointer, five scroll events in one task must schedule one animation frame. Desktop mouse only." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "mouse lifecycle on desktop");
+  await openSpec(page);
+  const swatch = page.locator('.hex-swatch[data-hex="#ae1914"][data-token-matches]').first();
+  await swatch.scrollIntoViewIfNeeded();
+  await swatch.hover();
+  await expect(page.locator("#hex-popup")).toBeVisible();
+  const frames = await page.evaluate(() => {
+    const original = window.requestAnimationFrame;
+    let count = 0;
+    window.requestAnimationFrame = (callback) => { count++; return original.call(window, callback); };
+    for (let i = 0; i < 5; i++) document.dispatchEvent(new Event("scroll"));
+    window.requestAnimationFrame = original;
+    return count;
+  });
+  expect(frames).toBe(1);
+});
+
+test("N6: pointer movement and scroll revalidation share one frame", verification({ component: "page", category: "enhancements", states: ["hover"], variants: [], note: "With a colour preview open by pointer and no frame pending, a pointer move over its circle followed by a scroll event in the same task must schedule one animation frame. Desktop mouse only." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "mouse lifecycle on desktop");
+  await openSpec(page);
+  const swatch = page.locator('.hex-swatch[data-hex="#ae1914"][data-token-matches]').first();
+  await swatch.scrollIntoViewIfNeeded();
+  await swatch.hover();
+  await expect(page.locator("#hex-popup")).toBeVisible();
+  const r = await swatch.boundingBox();
+  const frames = await page.evaluate(async ({ x, y }) => {
+    await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    const original = window.requestAnimationFrame;
+    let count = 0;
+    window.requestAnimationFrame = (callback) => { count++; return original.call(window, callback); };
+    document.elementFromPoint(x, y).dispatchEvent(new PointerEvent("pointermove", { bubbles: true, clientX: x, clientY: y, pointerType: "mouse" }));
+    document.dispatchEvent(new Event("scroll"));
+    window.requestAnimationFrame = original;
+    return count;
+  }, { x: r.x + r.width / 2 + 1, y: r.y + r.height / 2 });
+  expect(frames).toBe(1);
 });

@@ -88,7 +88,7 @@ async function buildUIExclusive({ check = false } = {}) {
   await put(entries, "index.js", index.join("\n") + "\n");
   await put(entries, "register.js", register.join("\n") + "\n");
   input.index = path.join(entries, "index.js"); input.register = path.join(entries, "register.js");
-  for (const [id, name] of [["form-builder", "mountBuilder"], ["form-workflow", "mountWorkflow"], ["choice", "enhanceControls"]]) {
+  for (const [id, name] of [["form-builder", "mountBuilder"], ["form-workflow", "mountWorkflow"], ["choice", "enhanceControls"], ["hover-helper", "hoverHelper, followPoint, anchorPoint, canScroll, overflows, interactive, helperLimits, HOVER_HELPER"]]) {
     const source = path.relative(path.join(entries, "enhance"), path.join(packageRoot, "internal", `${id}.js`)).split(path.sep).join("/");
     await put(entries, `enhance/${id}.js`, `export { ${name} } from ${JSON.stringify(source)};\n`);
     input[`enhance/${id}`] = path.join(entries, `enhance/${id}.js`);
@@ -102,7 +102,7 @@ async function buildUIExclusive({ check = false } = {}) {
   await put(output, "index.d.ts", index.join("\n") + "\n");
   await put(output, "element.d.ts", await readText("packages/ui/src/internal/element.d.ts"));
   await put(output, "cli.js", await readText("packages/ui/src/cli.js"));
-  for (const id of ["form-builder", "form-workflow", "choice"]) await put(output, `enhance/${id}.d.ts`, await readText(`packages/ui/src/internal/${id}.d.ts`));
+  for (const id of ["form-builder", "form-workflow", "choice", "hover-helper"]) await put(output, `enhance/${id}.d.ts`, await readText(`packages/ui/src/internal/${id}.d.ts`));
   for (const [name, content] of await consumerExamples()) if (!name.startsWith("gallery/")) await put(output, `frameworks/${name}`, content);
   await put(output, "consumption.md", await readText("docs/ui-consumption.md"));
   for (const [name, source] of [["consume.md", "agents/consume.md"], ["accessibility.md", "spec/accessibility.md"], ["identity.md", "spec/identity.md"]]) await put(output, `rules/${name}`, await readText(source));

@@ -10,11 +10,20 @@
   `surface.terminal` describe what a code block or terminal pane sits on;
   `code.bg` and `terminal.bg` the inside of an editor and a terminal grid.
   Values are unchanged.
-- **Hover popups stay reachable.** The token inspector and the tooltip keep
-  their popup open while the pointer crosses to it, so a long inspector can be
-  scrolled; leaving both closes it after 300 ms, never while keyboard focus
-  is on its trigger or inside it (WCAG 1.4.13). The passive hex preview is
-  unchanged.
+- **Hover helpers follow the pointer; long ones scroll and pin** (D-042).
+  Following the pointer is the standard for every hover helper: the tooltip,
+  the colour-circle preview and the token inspector sit 12px right of and
+  below the pointer, follow it, flip at the viewport edges inside an 8px
+  gutter, and anchor to the trigger for keyboard focus and touch. They close
+  as soon as the pointer leaves the trigger. Fixed: a helper long enough to
+  scroll could not be scrolled, and the colour preview cut its list off.
+  Helpers are capped at 40vh and scroll; the wheel over the trigger scrolls
+  an overflowing helper before the page. A click, tap or Enter pins a helper
+  that overflows or holds links as a popover with a close button; Escape
+  returns focus. The shared algorithm ships as
+  `@j3w1/ui/enhance/hover-helper`, and the tooltip gains a long-description
+  variant. This replaces the 300 ms close grace period added earlier in this
+  release.
 - **Specs.** A loading indicator's label is always visible. The progress spec
   no longer suggests a track that fails 3:1. CI selection rules moved from
   D-031 to `docs/ci.md`.

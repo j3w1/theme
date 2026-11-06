@@ -1668,11 +1668,12 @@
             {"kind":"part","component":"search-field","part":"clear.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/search-field.md","pointer":"/tokens/clear.bg-hover","line":45}},
             {"kind":"part","component":"text-field","part":"action.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/text-field.md","pointer":"/tokens/action.bg-hover","line":65}},
             {"kind":"part","component":"toast","part":"close.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/tokens/close.bg-hover","line":52}},
-            {"kind":"part","component":"tooltip","part":"trigger.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/trigger.bg-hover","line":34}},
+            {"kind":"part","component":"tooltip","part":"close.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/close.bg-hover","line":40}},
+            {"kind":"part","component":"tooltip","part":"trigger.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/trigger.bg-hover","line":36}},
             {"kind":"state","component":"alert","part":"bg","state":"hover","variant":null,"surface":"color.action.tertiary.hover-bg","nativeKey":null,"port":null,"source":{"file":"spec/components/alert.md","pointer":"/stateTokens/hover/bg","line":54}},
             {"kind":"state","component":"dialog","part":"bg","state":"hover","variant":null,"surface":"color.action.tertiary.hover-bg","nativeKey":null,"port":null,"source":{"file":"spec/components/dialog.md","pointer":"/stateTokens/hover/bg","line":58}},
             {"kind":"state","component":"icon-button","part":"bg","state":"hover","variant":null,"surface":"color.action.tertiary.hover-bg","nativeKey":null,"port":null,"source":{"file":"spec/components/icon-button.md","pointer":"/stateTokens/hover/bg","line":40}},
-            {"kind":"state","component":"tooltip","part":"bg","state":"hover","variant":null,"surface":"color.action.tertiary.hover-bg","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/hover/bg","line":39}}
+            {"kind":"state","component":"tooltip","part":"bg","state":"hover","variant":null,"surface":"color.action.tertiary.hover-bg","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/hover/bg","line":44}}
           ],
           "contrast": [
             {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"alert hover fg","state":"hover","source":{"file":"spec/components/alert.md","pointer":"/stateTokens/hover","line":54}},
@@ -1681,7 +1682,7 @@
             {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"icon-button hover fg","state":"hover","source":{"file":"spec/components/icon-button.md","pointer":"/stateTokens/hover","line":40}},
             {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"stepper glyphs on their hover fill","state":"hover","source":{"file":"spec/components/number-field.md","pointer":"/contrast/2","line":62}},
             {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"tertiary text on the hover fill","state":"hover","source":{"file":"spec/components/button.md","pointer":"/contrast/8","line":75}},
-            {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"tooltip hover fg","state":"hover","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/hover","line":39}}
+            {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"tooltip hover fg","state":"hover","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/hover","line":44}}
           ]
         },
         "color.action.tertiary.text": {
@@ -1733,7 +1734,8 @@
             {"kind":"contrast","component":"number-field","part":null,"state":null,"variant":null,"surface":"color.surface.input","nativeKey":null,"port":null,"source":{"file":"spec/components/number-field.md","pointer":"/contrast/1","line":61}},
             {"kind":"contrast","component":"search-field","part":null,"state":"hover","variant":null,"surface":"color.action.tertiary.hover-bg","nativeKey":null,"port":null,"source":{"file":"spec/components/search-field.md","pointer":"/contrast/3","line":62}},
             {"kind":"contrast","component":"search-field","part":null,"state":null,"variant":null,"surface":"color.surface.input","nativeKey":null,"port":null,"source":{"file":"spec/components/search-field.md","pointer":"/contrast/2","line":61}},
-            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/2","line":45}},
+            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/3","line":51}},
+            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/2","line":50}},
             {"kind":"part","component":"admin-form","part":"draft.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/admin-form.md","pointer":"/tokens/draft.text","line":63}},
             {"kind":"part","component":"alert","part":"close.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/alert.md","pointer":"/tokens/close.text","line":49}},
             {"kind":"part","component":"button","part":"tertiary.text","state":null,"variant":"tertiary","surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/button.md","pointer":"/tokens/tertiary.text","line":42}},
@@ -1746,7 +1748,8 @@
             {"kind":"part","component":"search-field","part":"clear.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/search-field.md","pointer":"/tokens/clear.text","line":44}},
             {"kind":"part","component":"text-field","part":"action.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/text-field.md","pointer":"/tokens/action.text","line":64}},
             {"kind":"part","component":"toast","part":"close.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/tokens/close.text","line":51}},
-            {"kind":"part","component":"tooltip","part":"trigger.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/trigger.text","line":33}},
+            {"kind":"part","component":"tooltip","part":"close.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/close.text","line":38}},
+            {"kind":"part","component":"tooltip","part":"trigger.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/trigger.text","line":35}},
             {"kind":"port","component":null,"part":null,"state":null,"variant":null,"surface":null,"nativeKey":"windows-11-start-menu-styler | web .iconContainer, .previewContainer .imageContainer, .scope-tile > div, button, .button, .actionButton | color","port":"windows","source":{"file":"ports/windows/mapping.json","pointer":"/mappings/color.action.tertiary.text/0","line":2134}},
             {"kind":"state","component":"alert","part":"fg","state":"focus-visible","variant":null,"surface":"color.status.info.tint","nativeKey":null,"port":null,"source":{"file":"spec/components/alert.md","pointer":"/stateTokens/focus-visible/fg","line":55}},
             {"kind":"state","component":"alert","part":"fg","state":"hover","variant":null,"surface":"color.action.tertiary.hover-bg","nativeKey":null,"port":null,"source":{"file":"spec/components/alert.md","pointer":"/stateTokens/hover/fg","line":54}},
@@ -1757,8 +1760,8 @@
             {"kind":"state","component":"icon-button","part":"fg","state":"focus-visible","variant":null,"surface":"color.action.secondary.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/icon-button.md","pointer":"/stateTokens/focus-visible/fg","line":41}},
             {"kind":"state","component":"icon-button","part":"fg","state":"hover","variant":null,"surface":"color.action.tertiary.hover-bg","nativeKey":null,"port":null,"source":{"file":"spec/components/icon-button.md","pointer":"/stateTokens/hover/fg","line":40}},
             {"kind":"state","component":"toast","part":"fg","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/stateTokens/focus-visible/fg","line":59}},
-            {"kind":"state","component":"tooltip","part":"fg","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible/fg","line":40}},
-            {"kind":"state","component":"tooltip","part":"fg","state":"hover","variant":null,"surface":"color.action.tertiary.hover-bg","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/hover/fg","line":39}}
+            {"kind":"state","component":"tooltip","part":"fg","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible/fg","line":45}},
+            {"kind":"state","component":"tooltip","part":"fg","state":"hover","variant":null,"surface":"color.action.tertiary.hover-bg","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/hover/fg","line":44}}
           ],
           "contrast": [
             {"fg":"color.action.tertiary.text","bg":"color.action.secondary.bg","label":"icon-button default fg","state":"default","source":{"file":"spec/components/icon-button.md","pointer":"/stateTokens/default","line":39}},
@@ -1770,18 +1773,19 @@
             {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"icon-button hover fg","state":"hover","source":{"file":"spec/components/icon-button.md","pointer":"/stateTokens/hover","line":40}},
             {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"stepper glyphs on their hover fill","state":"hover","source":{"file":"spec/components/number-field.md","pointer":"/contrast/2","line":62}},
             {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"tertiary text on the hover fill","state":"hover","source":{"file":"spec/components/button.md","pointer":"/contrast/8","line":75}},
-            {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"tooltip hover fg","state":"hover","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/hover","line":39}},
+            {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"tooltip hover fg","state":"hover","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/hover","line":44}},
             {"fg":"color.action.tertiary.text","bg":"color.interaction.pressed.bg","label":"icon-button active fg","state":"active","source":{"file":"spec/components/icon-button.md","pointer":"/stateTokens/active","line":42}},
             {"fg":"color.action.tertiary.text","bg":"color.interaction.pressed.bg","label":"tertiary text while pressed","state":"active","source":{"file":"spec/components/button.md","pointer":"/contrast/9","line":76}},
             {"fg":"color.action.tertiary.text","bg":"color.status.info.tint","label":"alert focus-visible fg","state":"focus-visible","source":{"file":"spec/components/alert.md","pointer":"/stateTokens/focus-visible","line":55}},
             {"fg":"color.action.tertiary.text","bg":"color.status.info.tint","label":"close button on the info tint","state":null,"source":{"file":"spec/components/alert.md","pointer":"/contrast/13","line":70}},
             {"fg":"color.action.tertiary.text","bg":"color.surface.canvas","label":"toast focus-visible fg","state":"focus-visible","source":{"file":"spec/components/toast.md","pointer":"/stateTokens/focus-visible","line":59}},
-            {"fg":"color.action.tertiary.text","bg":"color.surface.canvas","label":"tooltip focus-visible fg","state":"focus-visible","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible","line":40}},
-            {"fg":"color.action.tertiary.text","bg":"color.surface.canvas","label":"trigger text on the canvas","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/2","line":45}},
+            {"fg":"color.action.tertiary.text","bg":"color.surface.canvas","label":"tooltip focus-visible fg","state":"focus-visible","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible","line":45}},
+            {"fg":"color.action.tertiary.text","bg":"color.surface.canvas","label":"trigger text on the canvas","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/3","line":51}},
             {"fg":"color.action.tertiary.text","bg":"color.surface.input","label":"clear glyph on the input surface","state":null,"source":{"file":"spec/components/search-field.md","pointer":"/contrast/2","line":61}},
             {"fg":"color.action.tertiary.text","bg":"color.surface.input","label":"stepper glyphs on the input surface","state":null,"source":{"file":"spec/components/number-field.md","pointer":"/contrast/1","line":61}},
             {"fg":"color.action.tertiary.text","bg":"color.surface.overlay","label":"close button on the overlay surface","state":null,"source":{"file":"spec/components/drawer.md","pointer":"/contrast/2","line":50}},
-            {"fg":"color.action.tertiary.text","bg":"color.surface.overlay","label":"dialog focus-visible fg","state":"focus-visible","source":{"file":"spec/components/dialog.md","pointer":"/stateTokens/focus-visible","line":59}}
+            {"fg":"color.action.tertiary.text","bg":"color.surface.overlay","label":"dialog focus-visible fg","state":"focus-visible","source":{"file":"spec/components/dialog.md","pointer":"/stateTokens/focus-visible","line":59}},
+            {"fg":"color.action.tertiary.text","bg":"color.surface.raised","label":"close button on a pinned tooltip","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/2","line":50}}
           ]
         },
         "color.border.active": {
@@ -2077,7 +2081,7 @@
             {"kind":"contrast","component":"skeleton","part":null,"state":null,"variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/skeleton.md","pointer":"/contrast/2","line":50}},
             {"kind":"contrast","component":"switch","part":null,"state":"checked","variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/switch.md","pointer":"/contrast/3","line":57}},
             {"kind":"contrast","component":"timeline","part":null,"state":null,"variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/timeline.md","pointer":"/contrast/2","line":50}},
-            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/1","line":44}},
+            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/1","line":49}},
             {"kind":"contrast","component":"tree","part":null,"state":null,"variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/tree.md","pointer":"/contrast/2","line":60}},
             {"kind":"contrast","component":null,"part":null,"state":null,"variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/41","line":45}},
             {"kind":"contrast","component":null,"part":null,"state":null,"variant":null,"surface":"color.surface.input","nativeKey":null,"port":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/40","line":44}},
@@ -2131,7 +2135,8 @@
             {"kind":"part","component":"textarea","part":"root.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/textarea.md","pointer":"/tokens/root.border","line":34}},
             {"kind":"part","component":"time-picker","part":"root.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/time-picker.md","pointer":"/tokens/root.border","line":29}},
             {"kind":"part","component":"timeline","part":"root.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/timeline.md","pointer":"/tokens/root.border","line":25}},
-            {"kind":"part","component":"tooltip","part":"shortcut.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/shortcut.border","line":32}},
+            {"kind":"part","component":"tooltip","part":"close.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/close.border","line":39}},
+            {"kind":"part","component":"tooltip","part":"shortcut.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/shortcut.border","line":34}},
             {"kind":"part","component":"tree","part":"root.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tree.md","pointer":"/tokens/root.border","line":30}},
             {"kind":"port","component":null,"part":null,"state":null,"variant":null,"surface":null,"nativeKey":"--background-modifier-border","port":"obsidian","source":{"file":"ports/obsidian/mapping.json","pointer":"/mappings/color.border.control/0","line":100}},
             {"kind":"port","component":null,"part":null,"state":null,"variant":null,"surface":null,"nativeKey":"--checkbox-border-color","port":"obsidian","source":{"file":"ports/obsidian/mapping.json","pointer":"/mappings/color.border.control/1","line":101}},
@@ -2428,7 +2433,7 @@
             {"fg":"color.border.control","bg":"color.surface.input","label":"textarea placeholder-shown border","state":"placeholder-shown","source":{"file":"spec/components/textarea.md","pointer":"/stateTokens/placeholder-shown","line":60}},
             {"fg":"color.border.control","bg":"color.surface.input","label":"time-picker default border","state":"default","source":{"file":"spec/components/time-picker.md","pointer":"/stateTokens/default","line":45}},
             {"fg":"color.border.control","bg":"color.surface.overlay","label":"form field boundary on the overlay surface","state":null,"source":{"file":"spec/components/dialog.md","pointer":"/contrast/10","line":72}},
-            {"fg":"color.border.control","bg":"color.surface.raised","label":"shortcut key border on the tooltip","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/1","line":44}},
+            {"fg":"color.border.control","bg":"color.surface.raised","label":"shortcut key and close button borders on the tooltip","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/1","line":49}},
             {"fg":"color.border.control","bg":"color.terminal.bg","label":"terminal default border","state":"default","source":{"file":"spec/components/terminal.md","pointer":"/stateTokens/default","line":67}}
           ]
         },
@@ -2961,7 +2966,7 @@
             {"kind":"part","component":"popover","part":"dependency.role-color-border-overlay","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/popover.md","pointer":"/tokens/dependency.role-color-border-overlay","line":38}},
             {"kind":"part","component":"skip-link","part":"root.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/skip-link.md","pointer":"/tokens/root.border","line":23}},
             {"kind":"part","component":"toast","part":"root.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/tokens/root.border","line":30}},
-            {"kind":"part","component":"tooltip","part":"popup.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/popup.border","line":29}},
+            {"kind":"part","component":"tooltip","part":"popup.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/popup.border","line":31}},
             {"kind":"port","component":null,"part":null,"state":null,"variant":null,"surface":null,"nativeKey":"--menu-border-color","port":"obsidian","source":{"file":"ports/obsidian/mapping.json","pointer":"/mappings/color.border.overlay/1","line":128}},
             {"kind":"port","component":null,"part":null,"state":null,"variant":null,"surface":null,"nativeKey":"--modal-border-color","port":"obsidian","source":{"file":"ports/obsidian/mapping.json","pointer":"/mappings/color.border.overlay/0","line":127}},
             {"kind":"port","component":null,"part":null,"state":null,"variant":null,"surface":null,"nativeKey":"--prompt-border-color","port":"obsidian","source":{"file":"ports/obsidian/mapping.json","pointer":"/mappings/color.border.overlay/2","line":129}},
@@ -3031,8 +3036,8 @@
             {"kind":"state","component":"toast","part":"border","state":"default","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/stateTokens/default/border","line":57}},
             {"kind":"state","component":"toast","part":"border","state":"reduced-motion","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/stateTokens/reduced-motion/border","line":61}},
             {"kind":"state","component":"toast","part":"border","state":"stacked","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/stateTokens/stacked/border","line":60}},
-            {"kind":"state","component":"tooltip","part":"border","state":"default","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default/border","line":38}},
-            {"kind":"state","component":"tooltip","part":"border","state":"open","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open/border","line":41}}
+            {"kind":"state","component":"tooltip","part":"border","state":"default","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default/border","line":43}},
+            {"kind":"state","component":"tooltip","part":"border","state":"open","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open/border","line":46}}
           ],
           "contrast": [
             {"fg":"color.border.overlay","bg":"color.surface.canvas","label":"toast default border","state":"default","source":{"file":"spec/components/toast.md","pointer":"/stateTokens/default","line":57}},
@@ -3052,8 +3057,8 @@
             {"fg":"color.border.overlay","bg":"color.surface.raised","label":"menu default border","state":"default","source":{"file":"spec/components/menu.md","pointer":"/stateTokens/default","line":57}},
             {"fg":"color.border.overlay","bg":"color.surface.raised","label":"skip-link default border","state":"default","source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/default","line":26}},
             {"fg":"color.border.overlay","bg":"color.surface.raised","label":"skip-link focus-visible border","state":"focus-visible","source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/focus-visible","line":27}},
-            {"fg":"color.border.overlay","bg":"color.surface.raised","label":"tooltip default border","state":"default","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default","line":38}},
-            {"fg":"color.border.overlay","bg":"color.surface.raised","label":"tooltip open border","state":"open","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open","line":41}}
+            {"fg":"color.border.overlay","bg":"color.surface.raised","label":"tooltip default border","state":"default","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default","line":43}},
+            {"fg":"color.border.overlay","bg":"color.surface.raised","label":"tooltip open border","state":"open","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open","line":46}}
           ]
         },
         "color.border.selected-indicator": {
@@ -7120,7 +7125,7 @@
             {"kind":"part","component":"timeline","part":"control.focus","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/timeline.md","pointer":"/tokens/control.focus","line":29}},
             {"kind":"part","component":"toast","part":"close.ring","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/tokens/close.ring","line":53}},
             {"kind":"part","component":"toolbar","part":"button.ring","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/toolbar.md","pointer":"/tokens/button.ring","line":34}},
-            {"kind":"part","component":"tooltip","part":"trigger.ring","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/trigger.ring","line":35}},
+            {"kind":"part","component":"tooltip","part":"trigger.ring","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/trigger.ring","line":37}},
             {"kind":"part","component":"tree","part":"control.focus","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tree.md","pointer":"/tokens/control.focus","line":34}},
             {"kind":"part","component":"wizard","part":"step.ring","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/tokens/step.ring","line":32}},
             {"kind":"port","component":null,"part":null,"state":null,"variant":null,"surface":null,"nativeKey":"--background-modifier-border-focus","port":"obsidian","source":{"file":"ports/obsidian/mapping.json","pointer":"/mappings/color.interaction.focus.ring/0","line":133}},
@@ -7193,7 +7198,7 @@
             {"kind":"state","component":"time-picker","part":"outline","state":"focus-visible","variant":null,"surface":"color.surface.input","nativeKey":null,"port":null,"source":{"file":"spec/components/time-picker.md","pointer":"/stateTokens/focus-visible/outline","line":56}},
             {"kind":"state","component":"toast","part":"outline","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/stateTokens/focus-visible/outline","line":59}},
             {"kind":"state","component":"toolbar","part":"outline","state":"focus-visible","variant":null,"surface":"color.surface.chrome","nativeKey":null,"port":null,"source":{"file":"spec/components/toolbar.md","pointer":"/stateTokens/focus-visible/outline","line":44}},
-            {"kind":"state","component":"tooltip","part":"outline","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible/outline","line":40}},
+            {"kind":"state","component":"tooltip","part":"outline","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible/outline","line":45}},
             {"kind":"state","component":"wizard","part":"outline","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/stateTokens/focus-visible/outline","line":57}}
           ],
           "contrast": [
@@ -7223,7 +7228,7 @@
             {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"focus ring on canvas","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/37","line":41}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"link focus-visible outline","state":"focus-visible","source":{"file":"spec/components/link.md","pointer":"/stateTokens/focus-visible","line":38}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"toast focus-visible outline","state":"focus-visible","source":{"file":"spec/components/toast.md","pointer":"/stateTokens/focus-visible","line":59}},
-            {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"tooltip focus-visible outline","state":"focus-visible","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible","line":40}},
+            {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"tooltip focus-visible outline","state":"focus-visible","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible","line":45}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"wizard focus-visible outline","state":"focus-visible","source":{"file":"spec/components/wizard.md","pointer":"/stateTokens/focus-visible","line":57}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.chrome","label":"ring on a workspace or tab","state":null,"source":{"file":"spec/components/i3-window-frame.md","pointer":"/contrast/7","line":78}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.chrome","label":"toolbar focus-visible outline","state":"focus-visible","source":{"file":"spec/components/toolbar.md","pointer":"/stateTokens/focus-visible","line":44}},
@@ -15538,7 +15543,7 @@
             {"kind":"contrast","component":"toast","part":null,"state":null,"variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/contrast/0","line":63}},
             {"kind":"contrast","component":"toast","part":null,"state":null,"variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/contrast/1","line":64}},
             {"kind":"contrast","component":"toast","part":null,"state":null,"variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/contrast/15","line":78}},
-            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/2","line":45}},
+            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/3","line":51}},
             {"kind":"contrast","component":"wizard","part":null,"state":"disabled","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/contrast/9","line":71}},
             {"kind":"contrast","component":"wizard","part":null,"state":null,"variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/contrast/0","line":62}},
             {"kind":"contrast","component":"wizard","part":null,"state":null,"variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/contrast/4","line":66}},
@@ -15787,7 +15792,7 @@
             {"kind":"state","component":"toast","part":"bg","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/stateTokens/focus-visible/bg","line":59}},
             {"kind":"state","component":"toast","part":"bg","state":"reduced-motion","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/stateTokens/reduced-motion/bg","line":61}},
             {"kind":"state","component":"toast","part":"bg","state":"stacked","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/stateTokens/stacked/bg","line":60}},
-            {"kind":"state","component":"tooltip","part":"bg","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible/bg","line":40}},
+            {"kind":"state","component":"tooltip","part":"bg","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible/bg","line":45}},
             {"kind":"state","component":"wizard","part":"bg","state":"current","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/stateTokens/current/bg","line":58}},
             {"kind":"state","component":"wizard","part":"bg","state":"default","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/stateTokens/default/bg","line":55}},
             {"kind":"state","component":"wizard","part":"bg","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/stateTokens/focus-visible/bg","line":57}},
@@ -15806,8 +15811,8 @@
             {"fg":"color.action.secondary.text","bg":"color.surface.canvas","label":"file-input invalid fg","state":"invalid","source":{"file":"spec/components/file-input.md","pointer":"/stateTokens/invalid","line":61}},
             {"fg":"color.action.secondary.text","bg":"color.surface.canvas","label":"secondary action text on canvas","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/21","line":25}},
             {"fg":"color.action.tertiary.text","bg":"color.surface.canvas","label":"toast focus-visible fg","state":"focus-visible","source":{"file":"spec/components/toast.md","pointer":"/stateTokens/focus-visible","line":59}},
-            {"fg":"color.action.tertiary.text","bg":"color.surface.canvas","label":"tooltip focus-visible fg","state":"focus-visible","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible","line":40}},
-            {"fg":"color.action.tertiary.text","bg":"color.surface.canvas","label":"trigger text on the canvas","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/2","line":45}},
+            {"fg":"color.action.tertiary.text","bg":"color.surface.canvas","label":"tooltip focus-visible fg","state":"focus-visible","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible","line":45}},
+            {"fg":"color.action.tertiary.text","bg":"color.surface.canvas","label":"trigger text on the canvas","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/3","line":51}},
             {"fg":"color.border.control","bg":"color.surface.canvas","label":"progress default border","state":"default","source":{"file":"spec/components/progress.md","pointer":"/stateTokens/default","line":39}},
             {"fg":"color.border.default","bg":"color.surface.canvas","label":"decorative border on canvas (decorative; not a control edge)","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/43","line":47}},
             {"fg":"color.border.default","bg":"color.surface.canvas","label":"panel edge (decorative)","state":null,"source":{"file":"spec/components/wizard.md","pointer":"/contrast/4","line":66}},
@@ -15835,7 +15840,7 @@
             {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"focus ring on canvas","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/37","line":41}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"link focus-visible outline","state":"focus-visible","source":{"file":"spec/components/link.md","pointer":"/stateTokens/focus-visible","line":38}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"toast focus-visible outline","state":"focus-visible","source":{"file":"spec/components/toast.md","pointer":"/stateTokens/focus-visible","line":59}},
-            {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"tooltip focus-visible outline","state":"focus-visible","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible","line":40}},
+            {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"tooltip focus-visible outline","state":"focus-visible","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible","line":45}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"wizard focus-visible outline","state":"focus-visible","source":{"file":"spec/components/wizard.md","pointer":"/stateTokens/focus-visible","line":57}},
             {"fg":"color.status.danger.border","bg":"color.surface.canvas","label":"file-input invalid border","state":"invalid","source":{"file":"spec/components/file-input.md","pointer":"/stateTokens/invalid","line":61}},
             {"fg":"color.status.danger.border","bg":"color.surface.canvas","label":"progress error border","state":"error","source":{"file":"spec/components/progress.md","pointer":"/stateTokens/error","line":40}},
@@ -17414,8 +17419,9 @@
             {"kind":"contrast","component":"select","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/select.md","pointer":"/contrast/2","line":64}},
             {"kind":"contrast","component":"skip-link","part":null,"state":"focus-visible","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/skip-link.md","pointer":"/contrast/0","line":29}},
             {"kind":"contrast","component":"table","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/table.md","pointer":"/contrast/1","line":66}},
-            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/0","line":43}},
-            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/1","line":44}},
+            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/0","line":48}},
+            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/1","line":49}},
+            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/2","line":50}},
             {"kind":"contrast","component":null,"part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/14","line":18}},
             {"kind":"contrast","component":null,"part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/2","line":6}},
             {"kind":"contrast","component":null,"part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/64","line":68}},
@@ -17430,7 +17436,7 @@
             {"kind":"part","component":"skeleton","part":"dependency.role-color-surface-raised","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/skeleton.md","pointer":"/tokens/dependency.role-color-surface-raised","line":33}},
             {"kind":"part","component":"skip-link","part":"root.bg","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/skip-link.md","pointer":"/tokens/root.bg","line":21}},
             {"kind":"part","component":"table","part":"header.bg-sticky","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/table.md","pointer":"/tokens/header.bg-sticky","line":41}},
-            {"kind":"part","component":"tooltip","part":"popup.bg","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/popup.bg","line":28}},
+            {"kind":"part","component":"tooltip","part":"popup.bg","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/popup.bg","line":30}},
             {"kind":"port","component":null,"part":null,"state":null,"variant":null,"surface":null,"nativeKey":"--background-modifier-message","port":"obsidian","source":{"file":"ports/obsidian/mapping.json","pointer":"/mappings/color.surface.raised/4","line":20}},
             {"kind":"port","component":null,"part":null,"state":null,"variant":null,"surface":null,"nativeKey":"--background-secondary-alt","port":"obsidian","source":{"file":"ports/obsidian/mapping.json","pointer":"/mappings/color.surface.raised/0","line":16}},
             {"kind":"port","component":null,"part":null,"state":null,"variant":null,"surface":null,"nativeKey":"--menu-background","port":"obsidian","source":{"file":"ports/obsidian/mapping.json","pointer":"/mappings/color.surface.raised/1","line":17}},
@@ -17552,11 +17558,12 @@
             {"kind":"state","component":"menu","part":"bg","state":"default","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/menu.md","pointer":"/stateTokens/default/bg","line":57}},
             {"kind":"state","component":"skip-link","part":"bg","state":"default","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/default/bg","line":26}},
             {"kind":"state","component":"skip-link","part":"bg","state":"focus-visible","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/focus-visible/bg","line":27}},
-            {"kind":"state","component":"tooltip","part":"bg","state":"default","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default/bg","line":38}},
-            {"kind":"state","component":"tooltip","part":"bg","state":"open","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open/bg","line":41}}
+            {"kind":"state","component":"tooltip","part":"bg","state":"default","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default/bg","line":43}},
+            {"kind":"state","component":"tooltip","part":"bg","state":"open","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open/bg","line":46}}
           ],
           "contrast": [
-            {"fg":"color.border.control","bg":"color.surface.raised","label":"shortcut key border on the tooltip","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/1","line":44}},
+            {"fg":"color.action.tertiary.text","bg":"color.surface.raised","label":"close button on a pinned tooltip","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/2","line":50}},
+            {"fg":"color.border.control","bg":"color.surface.raised","label":"shortcut key and close button borders on the tooltip","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/1","line":49}},
             {"fg":"color.border.divider","bg":"color.surface.raised","label":"group separator (decorative)","state":null,"source":{"file":"spec/components/combobox.md","pointer":"/contrast/5","line":79}},
             {"fg":"color.border.divider","bg":"color.surface.raised","label":"item separator (decorative; role separator carries the grouping)","state":null,"source":{"file":"spec/components/menu.md","pointer":"/contrast/2","line":67}},
             {"fg":"color.border.overlay","bg":"color.surface.raised","label":"combobox no-results border","state":"no-results","source":{"file":"spec/components/combobox.md","pointer":"/stateTokens/no-results","line":72}},
@@ -17564,14 +17571,14 @@
             {"fg":"color.border.overlay","bg":"color.surface.raised","label":"menu default border","state":"default","source":{"file":"spec/components/menu.md","pointer":"/stateTokens/default","line":57}},
             {"fg":"color.border.overlay","bg":"color.surface.raised","label":"skip-link default border","state":"default","source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/default","line":26}},
             {"fg":"color.border.overlay","bg":"color.surface.raised","label":"skip-link focus-visible border","state":"focus-visible","source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/focus-visible","line":27}},
-            {"fg":"color.border.overlay","bg":"color.surface.raised","label":"tooltip default border","state":"default","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default","line":38}},
-            {"fg":"color.border.overlay","bg":"color.surface.raised","label":"tooltip open border","state":"open","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open","line":41}},
+            {"fg":"color.border.overlay","bg":"color.surface.raised","label":"tooltip default border","state":"default","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default","line":43}},
+            {"fg":"color.border.overlay","bg":"color.surface.raised","label":"tooltip open border","state":"open","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open","line":46}},
             {"fg":"color.icon.decorative","bg":"color.surface.raised","label":"submenu chevron (decorative; aria-haspopup carries the meaning)","state":null,"source":{"file":"spec/components/menu.md","pointer":"/contrast/3","line":68}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.raised","label":"ring on the raised surface","state":"focus-visible","source":{"file":"spec/components/skip-link.md","pointer":"/contrast/0","line":29}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.raised","label":"skip-link focus-visible outline","state":"focus-visible","source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/focus-visible","line":27}},
             {"fg":"color.text.accent-strong","bg":"color.surface.raised","label":"strong accent on raised","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/14","line":18}},
             {"fg":"color.text.bright","bg":"color.surface.raised","label":"menu checked fg","state":"checked","source":{"file":"spec/components/menu.md","pointer":"/stateTokens/checked","line":62}},
-            {"fg":"color.text.bright","bg":"color.surface.raised","label":"shortcut on the tooltip","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/0","line":43}},
+            {"fg":"color.text.bright","bg":"color.surface.raised","label":"shortcut on the tooltip","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/0","line":48}},
             {"fg":"color.text.bright","bg":"color.surface.raised","label":"skip-link default fg","state":"default","source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/default","line":26}},
             {"fg":"color.text.bright","bg":"color.surface.raised","label":"skip-link focus-visible fg","state":"focus-visible","source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/focus-visible","line":27}},
             {"fg":"color.text.bright","bg":"color.surface.raised","label":"sticky header text on the raised surface","state":null,"source":{"file":"spec/components/table.md","pointer":"/contrast/1","line":66}},
@@ -17580,8 +17587,8 @@
             {"fg":"color.text.default","bg":"color.surface.raised","label":"default text on raised","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/2","line":6}},
             {"fg":"color.text.default","bg":"color.surface.raised","label":"menu default fg","state":"default","source":{"file":"spec/components/menu.md","pointer":"/stateTokens/default","line":57}},
             {"fg":"color.text.default","bg":"color.surface.raised","label":"option text in the themed list","state":null,"source":{"file":"spec/components/select.md","pointer":"/contrast/1","line":63}},
-            {"fg":"color.text.default","bg":"color.surface.raised","label":"tooltip default fg","state":"default","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default","line":38}},
-            {"fg":"color.text.default","bg":"color.surface.raised","label":"tooltip open fg","state":"open","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open","line":41}},
+            {"fg":"color.text.default","bg":"color.surface.raised","label":"tooltip default fg","state":"default","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default","line":43}},
+            {"fg":"color.text.default","bg":"color.surface.raised","label":"tooltip open fg","state":"open","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open","line":46}},
             {"fg":"color.text.disabled","bg":"color.surface.raised","label":"disabled item text (exempt; house floor 3:1)","state":"disabled","source":{"file":"spec/components/menu.md","pointer":"/contrast/1","line":66}},
             {"fg":"color.text.heading","bg":"color.surface.raised","label":"heading on raised (D-033)","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/66","line":70}},
             {"fg":"color.text.highlight","bg":"color.surface.raised","label":"highlight on raised (D-033)","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/68","line":72}},
@@ -19174,7 +19181,7 @@
             {"kind":"contrast","component":"settings-panel","part":null,"state":null,"variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/settings-panel.md","pointer":"/contrast/0","line":59}},
             {"kind":"contrast","component":"table","part":null,"state":null,"variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/table.md","pointer":"/contrast/0","line":65}},
             {"kind":"contrast","component":"table","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/table.md","pointer":"/contrast/1","line":66}},
-            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/0","line":43}},
+            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/0","line":48}},
             {"kind":"contrast","component":"wizard","part":null,"state":null,"variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/contrast/1","line":63}},
             {"kind":"contrast","component":null,"part":null,"state":null,"variant":null,"surface":"color.interaction.text-selection.tint","nativeKey":null,"port":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/75","line":79}},
             {"kind":"contrast","component":null,"part":null,"state":null,"variant":null,"surface":"color.surface.accent","nativeKey":null,"port":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/72","line":76}},
@@ -19245,7 +19252,7 @@
             {"kind":"part","component":"time-picker","part":"label.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/time-picker.md","pointer":"/tokens/label.text","line":40}},
             {"kind":"part","component":"timeline","part":"heading.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/timeline.md","pointer":"/tokens/heading.text","line":26}},
             {"kind":"part","component":"toolbar","part":"toggled.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/toolbar.md","pointer":"/tokens/toggled.text","line":38}},
-            {"kind":"part","component":"tooltip","part":"shortcut.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/shortcut.text","line":31}},
+            {"kind":"part","component":"tooltip","part":"shortcut.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/shortcut.text","line":33}},
             {"kind":"part","component":"tree","part":"heading.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tree.md","pointer":"/tokens/heading.text","line":31}},
             {"kind":"part","component":"wizard","part":"step.text-current","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/tokens/step.text-current","line":33}},
             {"kind":"part","component":"wizard","part":"title.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/tokens/title.text","line":41}},
@@ -19413,7 +19420,7 @@
             {"fg":"color.text.bright","bg":"color.surface.overlay","label":"title on the overlay surface","state":null,"source":{"file":"spec/components/dialog.md","pointer":"/contrast/0","line":62}},
             {"fg":"color.text.bright","bg":"color.surface.overlay","label":"title on the overlay surface","state":null,"source":{"file":"spec/components/drawer.md","pointer":"/contrast/0","line":48}},
             {"fg":"color.text.bright","bg":"color.surface.raised","label":"menu checked fg","state":"checked","source":{"file":"spec/components/menu.md","pointer":"/stateTokens/checked","line":62}},
-            {"fg":"color.text.bright","bg":"color.surface.raised","label":"shortcut on the tooltip","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/0","line":43}},
+            {"fg":"color.text.bright","bg":"color.surface.raised","label":"shortcut on the tooltip","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/0","line":48}},
             {"fg":"color.text.bright","bg":"color.surface.raised","label":"skip-link default fg","state":"default","source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/default","line":26}},
             {"fg":"color.text.bright","bg":"color.surface.raised","label":"skip-link focus-visible fg","state":"focus-visible","source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/focus-visible","line":27}},
             {"fg":"color.text.bright","bg":"color.surface.raised","label":"sticky header text on the raised surface","state":null,"source":{"file":"spec/components/table.md","pointer":"/contrast/1","line":66}}
@@ -19592,7 +19599,7 @@
             {"kind":"part","component":"timeline","part":"root.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/timeline.md","pointer":"/tokens/root.text","line":24}},
             {"kind":"part","component":"toast","part":"root.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/tokens/root.text","line":31}},
             {"kind":"part","component":"toolbar","part":"button.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/toolbar.md","pointer":"/tokens/button.text","line":31}},
-            {"kind":"part","component":"tooltip","part":"popup.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/popup.text","line":30}},
+            {"kind":"part","component":"tooltip","part":"popup.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/popup.text","line":32}},
             {"kind":"part","component":"tree","part":"root.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tree.md","pointer":"/tokens/root.text","line":29}},
             {"kind":"part","component":"wizard","part":"step.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/tokens/step.text","line":30}},
             {"kind":"part","component":"wizard","part":"text.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/tokens/text.text","line":42}},
@@ -20204,8 +20211,8 @@
             {"kind":"state","component":"toolbar","part":"fg","state":"default","variant":null,"surface":"color.surface.chrome","nativeKey":null,"port":null,"source":{"file":"spec/components/toolbar.md","pointer":"/stateTokens/default/fg","line":42}},
             {"kind":"state","component":"toolbar","part":"fg","state":"focus-visible","variant":null,"surface":"color.surface.chrome","nativeKey":null,"port":null,"source":{"file":"spec/components/toolbar.md","pointer":"/stateTokens/focus-visible/fg","line":44}},
             {"kind":"state","component":"toolbar","part":"fg","state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/toolbar.md","pointer":"/stateTokens/hover/fg","line":43}},
-            {"kind":"state","component":"tooltip","part":"fg","state":"default","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default/fg","line":38}},
-            {"kind":"state","component":"tooltip","part":"fg","state":"open","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open/fg","line":41}},
+            {"kind":"state","component":"tooltip","part":"fg","state":"default","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default/fg","line":43}},
+            {"kind":"state","component":"tooltip","part":"fg","state":"open","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open/fg","line":46}},
             {"kind":"state","component":"tree","part":"fg","state":"default","variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/tree.md","pointer":"/stateTokens/default/fg","line":50}},
             {"kind":"state","component":"wizard","part":"fg","state":"default","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/stateTokens/default/fg","line":55}},
             {"kind":"state","component":"wizard","part":"fg","state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/stateTokens/hover/fg","line":56}}
@@ -20397,8 +20404,8 @@
             {"fg":"color.text.default","bg":"color.surface.raised","label":"default text on raised","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/2","line":6}},
             {"fg":"color.text.default","bg":"color.surface.raised","label":"menu default fg","state":"default","source":{"file":"spec/components/menu.md","pointer":"/stateTokens/default","line":57}},
             {"fg":"color.text.default","bg":"color.surface.raised","label":"option text in the themed list","state":null,"source":{"file":"spec/components/select.md","pointer":"/contrast/1","line":63}},
-            {"fg":"color.text.default","bg":"color.surface.raised","label":"tooltip default fg","state":"default","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default","line":38}},
-            {"fg":"color.text.default","bg":"color.surface.raised","label":"tooltip open fg","state":"open","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open","line":41}}
+            {"fg":"color.text.default","bg":"color.surface.raised","label":"tooltip default fg","state":"default","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default","line":43}},
+            {"fg":"color.text.default","bg":"color.surface.raised","label":"tooltip open fg","state":"open","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open","line":46}}
           ]
         },
         "color.text.disabled": {
@@ -24659,7 +24666,7 @@
             {"port":"windows","reason":"Outside Windows visual adapter scope; preserve host semantics.","source":{"file":"ports/windows/mapping.json","pointer":"/unmapped/z.popover","line":2517}}
           ],
           "uses": [
-            {"kind":"part","component":"tooltip","part":"popup.z","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/popup.z","line":36}}
+            {"kind":"part","component":"tooltip","part":"popup.z","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/popup.z","line":41}}
           ],
           "contrast": []
         },
@@ -25924,11 +25931,12 @@
             {"kind":"part","component":"search-field","part":"clear.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/search-field.md","pointer":"/tokens/clear.bg-hover","line":45}},
             {"kind":"part","component":"text-field","part":"action.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/text-field.md","pointer":"/tokens/action.bg-hover","line":65}},
             {"kind":"part","component":"toast","part":"close.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/tokens/close.bg-hover","line":52}},
-            {"kind":"part","component":"tooltip","part":"trigger.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/trigger.bg-hover","line":34}},
+            {"kind":"part","component":"tooltip","part":"close.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/close.bg-hover","line":40}},
+            {"kind":"part","component":"tooltip","part":"trigger.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/trigger.bg-hover","line":36}},
             {"kind":"state","component":"alert","part":"bg","state":"hover","variant":null,"surface":"color.action.tertiary.hover-bg","nativeKey":null,"port":null,"source":{"file":"spec/components/alert.md","pointer":"/stateTokens/hover/bg","line":54}},
             {"kind":"state","component":"dialog","part":"bg","state":"hover","variant":null,"surface":"color.action.tertiary.hover-bg","nativeKey":null,"port":null,"source":{"file":"spec/components/dialog.md","pointer":"/stateTokens/hover/bg","line":58}},
             {"kind":"state","component":"icon-button","part":"bg","state":"hover","variant":null,"surface":"color.action.tertiary.hover-bg","nativeKey":null,"port":null,"source":{"file":"spec/components/icon-button.md","pointer":"/stateTokens/hover/bg","line":40}},
-            {"kind":"state","component":"tooltip","part":"bg","state":"hover","variant":null,"surface":"color.action.tertiary.hover-bg","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/hover/bg","line":39}}
+            {"kind":"state","component":"tooltip","part":"bg","state":"hover","variant":null,"surface":"color.action.tertiary.hover-bg","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/hover/bg","line":44}}
           ],
           "contrast": [
             {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"alert hover fg","state":"hover","source":{"file":"spec/components/alert.md","pointer":"/stateTokens/hover","line":54}},
@@ -25937,7 +25945,7 @@
             {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"icon-button hover fg","state":"hover","source":{"file":"spec/components/icon-button.md","pointer":"/stateTokens/hover","line":40}},
             {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"stepper glyphs on their hover fill","state":"hover","source":{"file":"spec/components/number-field.md","pointer":"/contrast/2","line":62}},
             {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"tertiary text on the hover fill","state":"hover","source":{"file":"spec/components/button.md","pointer":"/contrast/8","line":75}},
-            {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"tooltip hover fg","state":"hover","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/hover","line":39}}
+            {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"tooltip hover fg","state":"hover","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/hover","line":44}}
           ]
         },
         "color.action.tertiary.text": {
@@ -25980,7 +25988,8 @@
             {"kind":"contrast","component":"number-field","part":null,"state":null,"variant":null,"surface":"color.surface.input","nativeKey":null,"port":null,"source":{"file":"spec/components/number-field.md","pointer":"/contrast/1","line":61}},
             {"kind":"contrast","component":"search-field","part":null,"state":"hover","variant":null,"surface":"color.action.tertiary.hover-bg","nativeKey":null,"port":null,"source":{"file":"spec/components/search-field.md","pointer":"/contrast/3","line":62}},
             {"kind":"contrast","component":"search-field","part":null,"state":null,"variant":null,"surface":"color.surface.input","nativeKey":null,"port":null,"source":{"file":"spec/components/search-field.md","pointer":"/contrast/2","line":61}},
-            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/2","line":45}},
+            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/3","line":51}},
+            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/2","line":50}},
             {"kind":"part","component":"admin-form","part":"draft.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/admin-form.md","pointer":"/tokens/draft.text","line":63}},
             {"kind":"part","component":"alert","part":"close.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/alert.md","pointer":"/tokens/close.text","line":49}},
             {"kind":"part","component":"button","part":"tertiary.text","state":null,"variant":"tertiary","surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/button.md","pointer":"/tokens/tertiary.text","line":42}},
@@ -25993,7 +26002,8 @@
             {"kind":"part","component":"search-field","part":"clear.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/search-field.md","pointer":"/tokens/clear.text","line":44}},
             {"kind":"part","component":"text-field","part":"action.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/text-field.md","pointer":"/tokens/action.text","line":64}},
             {"kind":"part","component":"toast","part":"close.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/tokens/close.text","line":51}},
-            {"kind":"part","component":"tooltip","part":"trigger.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/trigger.text","line":33}},
+            {"kind":"part","component":"tooltip","part":"close.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/close.text","line":38}},
+            {"kind":"part","component":"tooltip","part":"trigger.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/trigger.text","line":35}},
             {"kind":"state","component":"alert","part":"fg","state":"focus-visible","variant":null,"surface":"color.status.info.tint","nativeKey":null,"port":null,"source":{"file":"spec/components/alert.md","pointer":"/stateTokens/focus-visible/fg","line":55}},
             {"kind":"state","component":"alert","part":"fg","state":"hover","variant":null,"surface":"color.action.tertiary.hover-bg","nativeKey":null,"port":null,"source":{"file":"spec/components/alert.md","pointer":"/stateTokens/hover/fg","line":54}},
             {"kind":"state","component":"dialog","part":"fg","state":"focus-visible","variant":null,"surface":"color.surface.overlay","nativeKey":null,"port":null,"source":{"file":"spec/components/dialog.md","pointer":"/stateTokens/focus-visible/fg","line":59}},
@@ -26003,8 +26013,8 @@
             {"kind":"state","component":"icon-button","part":"fg","state":"focus-visible","variant":null,"surface":"color.action.secondary.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/icon-button.md","pointer":"/stateTokens/focus-visible/fg","line":41}},
             {"kind":"state","component":"icon-button","part":"fg","state":"hover","variant":null,"surface":"color.action.tertiary.hover-bg","nativeKey":null,"port":null,"source":{"file":"spec/components/icon-button.md","pointer":"/stateTokens/hover/fg","line":40}},
             {"kind":"state","component":"toast","part":"fg","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/stateTokens/focus-visible/fg","line":59}},
-            {"kind":"state","component":"tooltip","part":"fg","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible/fg","line":40}},
-            {"kind":"state","component":"tooltip","part":"fg","state":"hover","variant":null,"surface":"color.action.tertiary.hover-bg","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/hover/fg","line":39}}
+            {"kind":"state","component":"tooltip","part":"fg","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible/fg","line":45}},
+            {"kind":"state","component":"tooltip","part":"fg","state":"hover","variant":null,"surface":"color.action.tertiary.hover-bg","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/hover/fg","line":44}}
           ],
           "contrast": [
             {"fg":"color.action.tertiary.text","bg":"color.action.secondary.bg","label":"icon-button default fg","state":"default","source":{"file":"spec/components/icon-button.md","pointer":"/stateTokens/default","line":39}},
@@ -26016,18 +26026,19 @@
             {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"icon-button hover fg","state":"hover","source":{"file":"spec/components/icon-button.md","pointer":"/stateTokens/hover","line":40}},
             {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"stepper glyphs on their hover fill","state":"hover","source":{"file":"spec/components/number-field.md","pointer":"/contrast/2","line":62}},
             {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"tertiary text on the hover fill","state":"hover","source":{"file":"spec/components/button.md","pointer":"/contrast/8","line":75}},
-            {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"tooltip hover fg","state":"hover","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/hover","line":39}},
+            {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"tooltip hover fg","state":"hover","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/hover","line":44}},
             {"fg":"color.action.tertiary.text","bg":"color.interaction.pressed.bg","label":"icon-button active fg","state":"active","source":{"file":"spec/components/icon-button.md","pointer":"/stateTokens/active","line":42}},
             {"fg":"color.action.tertiary.text","bg":"color.interaction.pressed.bg","label":"tertiary text while pressed","state":"active","source":{"file":"spec/components/button.md","pointer":"/contrast/9","line":76}},
             {"fg":"color.action.tertiary.text","bg":"color.status.info.tint","label":"alert focus-visible fg","state":"focus-visible","source":{"file":"spec/components/alert.md","pointer":"/stateTokens/focus-visible","line":55}},
             {"fg":"color.action.tertiary.text","bg":"color.status.info.tint","label":"close button on the info tint","state":null,"source":{"file":"spec/components/alert.md","pointer":"/contrast/13","line":70}},
             {"fg":"color.action.tertiary.text","bg":"color.surface.canvas","label":"toast focus-visible fg","state":"focus-visible","source":{"file":"spec/components/toast.md","pointer":"/stateTokens/focus-visible","line":59}},
-            {"fg":"color.action.tertiary.text","bg":"color.surface.canvas","label":"tooltip focus-visible fg","state":"focus-visible","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible","line":40}},
-            {"fg":"color.action.tertiary.text","bg":"color.surface.canvas","label":"trigger text on the canvas","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/2","line":45}},
+            {"fg":"color.action.tertiary.text","bg":"color.surface.canvas","label":"tooltip focus-visible fg","state":"focus-visible","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible","line":45}},
+            {"fg":"color.action.tertiary.text","bg":"color.surface.canvas","label":"trigger text on the canvas","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/3","line":51}},
             {"fg":"color.action.tertiary.text","bg":"color.surface.input","label":"clear glyph on the input surface","state":null,"source":{"file":"spec/components/search-field.md","pointer":"/contrast/2","line":61}},
             {"fg":"color.action.tertiary.text","bg":"color.surface.input","label":"stepper glyphs on the input surface","state":null,"source":{"file":"spec/components/number-field.md","pointer":"/contrast/1","line":61}},
             {"fg":"color.action.tertiary.text","bg":"color.surface.overlay","label":"close button on the overlay surface","state":null,"source":{"file":"spec/components/drawer.md","pointer":"/contrast/2","line":50}},
-            {"fg":"color.action.tertiary.text","bg":"color.surface.overlay","label":"dialog focus-visible fg","state":"focus-visible","source":{"file":"spec/components/dialog.md","pointer":"/stateTokens/focus-visible","line":59}}
+            {"fg":"color.action.tertiary.text","bg":"color.surface.overlay","label":"dialog focus-visible fg","state":"focus-visible","source":{"file":"spec/components/dialog.md","pointer":"/stateTokens/focus-visible","line":59}},
+            {"fg":"color.action.tertiary.text","bg":"color.surface.raised","label":"close button on a pinned tooltip","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/2","line":50}}
           ]
         },
         "color.border.active": {
@@ -26170,7 +26181,7 @@
             {"kind":"contrast","component":"skeleton","part":null,"state":null,"variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/skeleton.md","pointer":"/contrast/2","line":50}},
             {"kind":"contrast","component":"switch","part":null,"state":"checked","variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/switch.md","pointer":"/contrast/3","line":57}},
             {"kind":"contrast","component":"timeline","part":null,"state":null,"variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/timeline.md","pointer":"/contrast/2","line":50}},
-            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/1","line":44}},
+            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/1","line":49}},
             {"kind":"contrast","component":"tree","part":null,"state":null,"variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/tree.md","pointer":"/contrast/2","line":60}},
             {"kind":"contrast","component":null,"part":null,"state":null,"variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/41","line":45}},
             {"kind":"contrast","component":null,"part":null,"state":null,"variant":null,"surface":"color.surface.input","nativeKey":null,"port":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/40","line":44}},
@@ -26224,7 +26235,8 @@
             {"kind":"part","component":"textarea","part":"root.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/textarea.md","pointer":"/tokens/root.border","line":34}},
             {"kind":"part","component":"time-picker","part":"root.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/time-picker.md","pointer":"/tokens/root.border","line":29}},
             {"kind":"part","component":"timeline","part":"root.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/timeline.md","pointer":"/tokens/root.border","line":25}},
-            {"kind":"part","component":"tooltip","part":"shortcut.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/shortcut.border","line":32}},
+            {"kind":"part","component":"tooltip","part":"close.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/close.border","line":39}},
+            {"kind":"part","component":"tooltip","part":"shortcut.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/shortcut.border","line":34}},
             {"kind":"part","component":"tree","part":"root.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tree.md","pointer":"/tokens/root.border","line":30}},
             {"kind":"state","component":"admin-form","part":"border","state":"default","variant":null,"surface":"color.surface.input","nativeKey":null,"port":null,"source":{"file":"spec/components/admin-form.md","pointer":"/stateTokens/default/border","line":66}},
             {"kind":"state","component":"avatar","part":"border","state":"default","variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/avatar.md","pointer":"/stateTokens/default/border","line":41}},
@@ -26388,7 +26400,7 @@
             {"fg":"color.border.control","bg":"color.surface.input","label":"textarea placeholder-shown border","state":"placeholder-shown","source":{"file":"spec/components/textarea.md","pointer":"/stateTokens/placeholder-shown","line":60}},
             {"fg":"color.border.control","bg":"color.surface.input","label":"time-picker default border","state":"default","source":{"file":"spec/components/time-picker.md","pointer":"/stateTokens/default","line":45}},
             {"fg":"color.border.control","bg":"color.surface.overlay","label":"form field boundary on the overlay surface","state":null,"source":{"file":"spec/components/dialog.md","pointer":"/contrast/10","line":72}},
-            {"fg":"color.border.control","bg":"color.surface.raised","label":"shortcut key border on the tooltip","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/1","line":44}},
+            {"fg":"color.border.control","bg":"color.surface.raised","label":"shortcut key and close button borders on the tooltip","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/1","line":49}},
             {"fg":"color.border.control","bg":"color.terminal.bg","label":"terminal default border","state":"default","source":{"file":"spec/components/terminal.md","pointer":"/stateTokens/default","line":67}}
           ]
         },
@@ -26700,7 +26712,7 @@
             {"kind":"part","component":"popover","part":"dependency.role-color-border-overlay","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/popover.md","pointer":"/tokens/dependency.role-color-border-overlay","line":38}},
             {"kind":"part","component":"skip-link","part":"root.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/skip-link.md","pointer":"/tokens/root.border","line":23}},
             {"kind":"part","component":"toast","part":"root.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/tokens/root.border","line":30}},
-            {"kind":"part","component":"tooltip","part":"popup.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/popup.border","line":29}},
+            {"kind":"part","component":"tooltip","part":"popup.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/popup.border","line":31}},
             {"kind":"state","component":"combobox","part":"border","state":"no-results","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/combobox.md","pointer":"/stateTokens/no-results/border","line":72}},
             {"kind":"state","component":"combobox","part":"border","state":"open","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/combobox.md","pointer":"/stateTokens/open/border","line":68}},
             {"kind":"state","component":"dialog","part":"border","state":"default","variant":null,"surface":"color.surface.overlay","nativeKey":null,"port":null,"source":{"file":"spec/components/dialog.md","pointer":"/stateTokens/default/border","line":55}},
@@ -26717,8 +26729,8 @@
             {"kind":"state","component":"toast","part":"border","state":"default","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/stateTokens/default/border","line":57}},
             {"kind":"state","component":"toast","part":"border","state":"reduced-motion","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/stateTokens/reduced-motion/border","line":61}},
             {"kind":"state","component":"toast","part":"border","state":"stacked","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/stateTokens/stacked/border","line":60}},
-            {"kind":"state","component":"tooltip","part":"border","state":"default","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default/border","line":38}},
-            {"kind":"state","component":"tooltip","part":"border","state":"open","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open/border","line":41}}
+            {"kind":"state","component":"tooltip","part":"border","state":"default","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default/border","line":43}},
+            {"kind":"state","component":"tooltip","part":"border","state":"open","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open/border","line":46}}
           ],
           "contrast": [
             {"fg":"color.border.overlay","bg":"color.surface.canvas","label":"toast default border","state":"default","source":{"file":"spec/components/toast.md","pointer":"/stateTokens/default","line":57}},
@@ -26738,8 +26750,8 @@
             {"fg":"color.border.overlay","bg":"color.surface.raised","label":"menu default border","state":"default","source":{"file":"spec/components/menu.md","pointer":"/stateTokens/default","line":57}},
             {"fg":"color.border.overlay","bg":"color.surface.raised","label":"skip-link default border","state":"default","source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/default","line":26}},
             {"fg":"color.border.overlay","bg":"color.surface.raised","label":"skip-link focus-visible border","state":"focus-visible","source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/focus-visible","line":27}},
-            {"fg":"color.border.overlay","bg":"color.surface.raised","label":"tooltip default border","state":"default","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default","line":38}},
-            {"fg":"color.border.overlay","bg":"color.surface.raised","label":"tooltip open border","state":"open","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open","line":41}}
+            {"fg":"color.border.overlay","bg":"color.surface.raised","label":"tooltip default border","state":"default","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default","line":43}},
+            {"fg":"color.border.overlay","bg":"color.surface.raised","label":"tooltip open border","state":"open","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open","line":46}}
           ]
         },
         "color.border.selected-indicator": {
@@ -29865,7 +29877,7 @@
             {"kind":"part","component":"timeline","part":"control.focus","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/timeline.md","pointer":"/tokens/control.focus","line":29}},
             {"kind":"part","component":"toast","part":"close.ring","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/tokens/close.ring","line":53}},
             {"kind":"part","component":"toolbar","part":"button.ring","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/toolbar.md","pointer":"/tokens/button.ring","line":34}},
-            {"kind":"part","component":"tooltip","part":"trigger.ring","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/trigger.ring","line":35}},
+            {"kind":"part","component":"tooltip","part":"trigger.ring","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/trigger.ring","line":37}},
             {"kind":"part","component":"tree","part":"control.focus","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tree.md","pointer":"/tokens/control.focus","line":34}},
             {"kind":"part","component":"wizard","part":"step.ring","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/tokens/step.ring","line":32}},
             {"kind":"state","component":"alert","part":"outline","state":"focus-visible","variant":null,"surface":"color.status.info.tint","nativeKey":null,"port":null,"source":{"file":"spec/components/alert.md","pointer":"/stateTokens/focus-visible/outline","line":55}},
@@ -29909,7 +29921,7 @@
             {"kind":"state","component":"time-picker","part":"outline","state":"focus-visible","variant":null,"surface":"color.surface.input","nativeKey":null,"port":null,"source":{"file":"spec/components/time-picker.md","pointer":"/stateTokens/focus-visible/outline","line":56}},
             {"kind":"state","component":"toast","part":"outline","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/stateTokens/focus-visible/outline","line":59}},
             {"kind":"state","component":"toolbar","part":"outline","state":"focus-visible","variant":null,"surface":"color.surface.chrome","nativeKey":null,"port":null,"source":{"file":"spec/components/toolbar.md","pointer":"/stateTokens/focus-visible/outline","line":44}},
-            {"kind":"state","component":"tooltip","part":"outline","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible/outline","line":40}},
+            {"kind":"state","component":"tooltip","part":"outline","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible/outline","line":45}},
             {"kind":"state","component":"wizard","part":"outline","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/stateTokens/focus-visible/outline","line":57}}
           ],
           "contrast": [
@@ -29939,7 +29951,7 @@
             {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"focus ring on canvas","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/37","line":41}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"link focus-visible outline","state":"focus-visible","source":{"file":"spec/components/link.md","pointer":"/stateTokens/focus-visible","line":38}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"toast focus-visible outline","state":"focus-visible","source":{"file":"spec/components/toast.md","pointer":"/stateTokens/focus-visible","line":59}},
-            {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"tooltip focus-visible outline","state":"focus-visible","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible","line":40}},
+            {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"tooltip focus-visible outline","state":"focus-visible","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible","line":45}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"wizard focus-visible outline","state":"focus-visible","source":{"file":"spec/components/wizard.md","pointer":"/stateTokens/focus-visible","line":57}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.chrome","label":"ring on a workspace or tab","state":null,"source":{"file":"spec/components/i3-window-frame.md","pointer":"/contrast/7","line":78}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.chrome","label":"toolbar focus-visible outline","state":"focus-visible","source":{"file":"spec/components/toolbar.md","pointer":"/stateTokens/focus-visible","line":44}},
@@ -36079,7 +36091,7 @@
             {"kind":"contrast","component":"toast","part":null,"state":null,"variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/contrast/0","line":63}},
             {"kind":"contrast","component":"toast","part":null,"state":null,"variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/contrast/1","line":64}},
             {"kind":"contrast","component":"toast","part":null,"state":null,"variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/contrast/15","line":78}},
-            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/2","line":45}},
+            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/3","line":51}},
             {"kind":"contrast","component":"wizard","part":null,"state":"disabled","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/contrast/9","line":71}},
             {"kind":"contrast","component":"wizard","part":null,"state":null,"variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/contrast/0","line":62}},
             {"kind":"contrast","component":"wizard","part":null,"state":null,"variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/contrast/4","line":66}},
@@ -36137,7 +36149,7 @@
             {"kind":"state","component":"toast","part":"bg","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/stateTokens/focus-visible/bg","line":59}},
             {"kind":"state","component":"toast","part":"bg","state":"reduced-motion","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/stateTokens/reduced-motion/bg","line":61}},
             {"kind":"state","component":"toast","part":"bg","state":"stacked","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/stateTokens/stacked/bg","line":60}},
-            {"kind":"state","component":"tooltip","part":"bg","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible/bg","line":40}},
+            {"kind":"state","component":"tooltip","part":"bg","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible/bg","line":45}},
             {"kind":"state","component":"wizard","part":"bg","state":"current","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/stateTokens/current/bg","line":58}},
             {"kind":"state","component":"wizard","part":"bg","state":"default","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/stateTokens/default/bg","line":55}},
             {"kind":"state","component":"wizard","part":"bg","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/stateTokens/focus-visible/bg","line":57}},
@@ -36156,8 +36168,8 @@
             {"fg":"color.action.secondary.text","bg":"color.surface.canvas","label":"file-input invalid fg","state":"invalid","source":{"file":"spec/components/file-input.md","pointer":"/stateTokens/invalid","line":61}},
             {"fg":"color.action.secondary.text","bg":"color.surface.canvas","label":"secondary action text on canvas","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/21","line":25}},
             {"fg":"color.action.tertiary.text","bg":"color.surface.canvas","label":"toast focus-visible fg","state":"focus-visible","source":{"file":"spec/components/toast.md","pointer":"/stateTokens/focus-visible","line":59}},
-            {"fg":"color.action.tertiary.text","bg":"color.surface.canvas","label":"tooltip focus-visible fg","state":"focus-visible","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible","line":40}},
-            {"fg":"color.action.tertiary.text","bg":"color.surface.canvas","label":"trigger text on the canvas","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/2","line":45}},
+            {"fg":"color.action.tertiary.text","bg":"color.surface.canvas","label":"tooltip focus-visible fg","state":"focus-visible","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible","line":45}},
+            {"fg":"color.action.tertiary.text","bg":"color.surface.canvas","label":"trigger text on the canvas","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/3","line":51}},
             {"fg":"color.border.control","bg":"color.surface.canvas","label":"progress default border","state":"default","source":{"file":"spec/components/progress.md","pointer":"/stateTokens/default","line":39}},
             {"fg":"color.border.default","bg":"color.surface.canvas","label":"decorative border on canvas (decorative; not a control edge)","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/43","line":47}},
             {"fg":"color.border.default","bg":"color.surface.canvas","label":"panel edge (decorative)","state":null,"source":{"file":"spec/components/wizard.md","pointer":"/contrast/4","line":66}},
@@ -36185,7 +36197,7 @@
             {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"focus ring on canvas","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/37","line":41}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"link focus-visible outline","state":"focus-visible","source":{"file":"spec/components/link.md","pointer":"/stateTokens/focus-visible","line":38}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"toast focus-visible outline","state":"focus-visible","source":{"file":"spec/components/toast.md","pointer":"/stateTokens/focus-visible","line":59}},
-            {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"tooltip focus-visible outline","state":"focus-visible","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible","line":40}},
+            {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"tooltip focus-visible outline","state":"focus-visible","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible","line":45}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"wizard focus-visible outline","state":"focus-visible","source":{"file":"spec/components/wizard.md","pointer":"/stateTokens/focus-visible","line":57}},
             {"fg":"color.status.danger.border","bg":"color.surface.canvas","label":"file-input invalid border","state":"invalid","source":{"file":"spec/components/file-input.md","pointer":"/stateTokens/invalid","line":61}},
             {"fg":"color.status.danger.border","bg":"color.surface.canvas","label":"progress error border","state":"error","source":{"file":"spec/components/progress.md","pointer":"/stateTokens/error","line":40}},
@@ -37447,8 +37459,9 @@
             {"kind":"contrast","component":"select","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/select.md","pointer":"/contrast/2","line":64}},
             {"kind":"contrast","component":"skip-link","part":null,"state":"focus-visible","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/skip-link.md","pointer":"/contrast/0","line":29}},
             {"kind":"contrast","component":"table","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/table.md","pointer":"/contrast/1","line":66}},
-            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/0","line":43}},
-            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/1","line":44}},
+            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/0","line":48}},
+            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/1","line":49}},
+            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/2","line":50}},
             {"kind":"contrast","component":null,"part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/14","line":18}},
             {"kind":"contrast","component":null,"part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/2","line":6}},
             {"kind":"contrast","component":null,"part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/64","line":68}},
@@ -37463,7 +37476,7 @@
             {"kind":"part","component":"skeleton","part":"dependency.role-color-surface-raised","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/skeleton.md","pointer":"/tokens/dependency.role-color-surface-raised","line":33}},
             {"kind":"part","component":"skip-link","part":"root.bg","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/skip-link.md","pointer":"/tokens/root.bg","line":21}},
             {"kind":"part","component":"table","part":"header.bg-sticky","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/table.md","pointer":"/tokens/header.bg-sticky","line":41}},
-            {"kind":"part","component":"tooltip","part":"popup.bg","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/popup.bg","line":28}},
+            {"kind":"part","component":"tooltip","part":"popup.bg","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/popup.bg","line":30}},
             {"kind":"prose","component":"link","part":null,"state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"body","line":71}},
             {"kind":"state","component":"combobox","part":"bg","state":"no-results","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/combobox.md","pointer":"/stateTokens/no-results/bg","line":72}},
             {"kind":"state","component":"combobox","part":"bg","state":"open","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/combobox.md","pointer":"/stateTokens/open/bg","line":68}},
@@ -37471,11 +37484,12 @@
             {"kind":"state","component":"menu","part":"bg","state":"default","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/menu.md","pointer":"/stateTokens/default/bg","line":57}},
             {"kind":"state","component":"skip-link","part":"bg","state":"default","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/default/bg","line":26}},
             {"kind":"state","component":"skip-link","part":"bg","state":"focus-visible","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/focus-visible/bg","line":27}},
-            {"kind":"state","component":"tooltip","part":"bg","state":"default","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default/bg","line":38}},
-            {"kind":"state","component":"tooltip","part":"bg","state":"open","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open/bg","line":41}}
+            {"kind":"state","component":"tooltip","part":"bg","state":"default","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default/bg","line":43}},
+            {"kind":"state","component":"tooltip","part":"bg","state":"open","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open/bg","line":46}}
           ],
           "contrast": [
-            {"fg":"color.border.control","bg":"color.surface.raised","label":"shortcut key border on the tooltip","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/1","line":44}},
+            {"fg":"color.action.tertiary.text","bg":"color.surface.raised","label":"close button on a pinned tooltip","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/2","line":50}},
+            {"fg":"color.border.control","bg":"color.surface.raised","label":"shortcut key and close button borders on the tooltip","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/1","line":49}},
             {"fg":"color.border.divider","bg":"color.surface.raised","label":"group separator (decorative)","state":null,"source":{"file":"spec/components/combobox.md","pointer":"/contrast/5","line":79}},
             {"fg":"color.border.divider","bg":"color.surface.raised","label":"item separator (decorative; role separator carries the grouping)","state":null,"source":{"file":"spec/components/menu.md","pointer":"/contrast/2","line":67}},
             {"fg":"color.border.overlay","bg":"color.surface.raised","label":"combobox no-results border","state":"no-results","source":{"file":"spec/components/combobox.md","pointer":"/stateTokens/no-results","line":72}},
@@ -37483,14 +37497,14 @@
             {"fg":"color.border.overlay","bg":"color.surface.raised","label":"menu default border","state":"default","source":{"file":"spec/components/menu.md","pointer":"/stateTokens/default","line":57}},
             {"fg":"color.border.overlay","bg":"color.surface.raised","label":"skip-link default border","state":"default","source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/default","line":26}},
             {"fg":"color.border.overlay","bg":"color.surface.raised","label":"skip-link focus-visible border","state":"focus-visible","source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/focus-visible","line":27}},
-            {"fg":"color.border.overlay","bg":"color.surface.raised","label":"tooltip default border","state":"default","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default","line":38}},
-            {"fg":"color.border.overlay","bg":"color.surface.raised","label":"tooltip open border","state":"open","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open","line":41}},
+            {"fg":"color.border.overlay","bg":"color.surface.raised","label":"tooltip default border","state":"default","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default","line":43}},
+            {"fg":"color.border.overlay","bg":"color.surface.raised","label":"tooltip open border","state":"open","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open","line":46}},
             {"fg":"color.icon.decorative","bg":"color.surface.raised","label":"submenu chevron (decorative; aria-haspopup carries the meaning)","state":null,"source":{"file":"spec/components/menu.md","pointer":"/contrast/3","line":68}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.raised","label":"ring on the raised surface","state":"focus-visible","source":{"file":"spec/components/skip-link.md","pointer":"/contrast/0","line":29}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.raised","label":"skip-link focus-visible outline","state":"focus-visible","source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/focus-visible","line":27}},
             {"fg":"color.text.accent-strong","bg":"color.surface.raised","label":"strong accent on raised","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/14","line":18}},
             {"fg":"color.text.bright","bg":"color.surface.raised","label":"menu checked fg","state":"checked","source":{"file":"spec/components/menu.md","pointer":"/stateTokens/checked","line":62}},
-            {"fg":"color.text.bright","bg":"color.surface.raised","label":"shortcut on the tooltip","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/0","line":43}},
+            {"fg":"color.text.bright","bg":"color.surface.raised","label":"shortcut on the tooltip","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/0","line":48}},
             {"fg":"color.text.bright","bg":"color.surface.raised","label":"skip-link default fg","state":"default","source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/default","line":26}},
             {"fg":"color.text.bright","bg":"color.surface.raised","label":"skip-link focus-visible fg","state":"focus-visible","source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/focus-visible","line":27}},
             {"fg":"color.text.bright","bg":"color.surface.raised","label":"sticky header text on the raised surface","state":null,"source":{"file":"spec/components/table.md","pointer":"/contrast/1","line":66}},
@@ -37499,8 +37513,8 @@
             {"fg":"color.text.default","bg":"color.surface.raised","label":"default text on raised","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/2","line":6}},
             {"fg":"color.text.default","bg":"color.surface.raised","label":"menu default fg","state":"default","source":{"file":"spec/components/menu.md","pointer":"/stateTokens/default","line":57}},
             {"fg":"color.text.default","bg":"color.surface.raised","label":"option text in the themed list","state":null,"source":{"file":"spec/components/select.md","pointer":"/contrast/1","line":63}},
-            {"fg":"color.text.default","bg":"color.surface.raised","label":"tooltip default fg","state":"default","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default","line":38}},
-            {"fg":"color.text.default","bg":"color.surface.raised","label":"tooltip open fg","state":"open","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open","line":41}},
+            {"fg":"color.text.default","bg":"color.surface.raised","label":"tooltip default fg","state":"default","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default","line":43}},
+            {"fg":"color.text.default","bg":"color.surface.raised","label":"tooltip open fg","state":"open","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open","line":46}},
             {"fg":"color.text.disabled","bg":"color.surface.raised","label":"disabled item text (exempt; house floor 3:1)","state":"disabled","source":{"file":"spec/components/menu.md","pointer":"/contrast/1","line":66}},
             {"fg":"color.text.heading","bg":"color.surface.raised","label":"heading on raised (D-033)","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/66","line":70}},
             {"fg":"color.text.highlight","bg":"color.surface.raised","label":"highlight on raised (D-033)","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/68","line":72}},
@@ -38578,7 +38592,7 @@
             {"kind":"contrast","component":"settings-panel","part":null,"state":null,"variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/settings-panel.md","pointer":"/contrast/0","line":59}},
             {"kind":"contrast","component":"table","part":null,"state":null,"variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/table.md","pointer":"/contrast/0","line":65}},
             {"kind":"contrast","component":"table","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/table.md","pointer":"/contrast/1","line":66}},
-            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/0","line":43}},
+            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/0","line":48}},
             {"kind":"contrast","component":"wizard","part":null,"state":null,"variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/contrast/1","line":63}},
             {"kind":"contrast","component":null,"part":null,"state":null,"variant":null,"surface":"color.interaction.text-selection.tint","nativeKey":null,"port":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/75","line":79}},
             {"kind":"contrast","component":null,"part":null,"state":null,"variant":null,"surface":"color.surface.accent","nativeKey":null,"port":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/72","line":76}},
@@ -38649,7 +38663,7 @@
             {"kind":"part","component":"time-picker","part":"label.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/time-picker.md","pointer":"/tokens/label.text","line":40}},
             {"kind":"part","component":"timeline","part":"heading.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/timeline.md","pointer":"/tokens/heading.text","line":26}},
             {"kind":"part","component":"toolbar","part":"toggled.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/toolbar.md","pointer":"/tokens/toggled.text","line":38}},
-            {"kind":"part","component":"tooltip","part":"shortcut.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/shortcut.text","line":31}},
+            {"kind":"part","component":"tooltip","part":"shortcut.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/shortcut.text","line":33}},
             {"kind":"part","component":"tree","part":"heading.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tree.md","pointer":"/tokens/heading.text","line":31}},
             {"kind":"part","component":"wizard","part":"step.text-current","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/tokens/step.text-current","line":33}},
             {"kind":"part","component":"wizard","part":"title.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/tokens/title.text","line":41}},
@@ -38707,7 +38721,7 @@
             {"fg":"color.text.bright","bg":"color.surface.overlay","label":"title on the overlay surface","state":null,"source":{"file":"spec/components/dialog.md","pointer":"/contrast/0","line":62}},
             {"fg":"color.text.bright","bg":"color.surface.overlay","label":"title on the overlay surface","state":null,"source":{"file":"spec/components/drawer.md","pointer":"/contrast/0","line":48}},
             {"fg":"color.text.bright","bg":"color.surface.raised","label":"menu checked fg","state":"checked","source":{"file":"spec/components/menu.md","pointer":"/stateTokens/checked","line":62}},
-            {"fg":"color.text.bright","bg":"color.surface.raised","label":"shortcut on the tooltip","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/0","line":43}},
+            {"fg":"color.text.bright","bg":"color.surface.raised","label":"shortcut on the tooltip","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/0","line":48}},
             {"fg":"color.text.bright","bg":"color.surface.raised","label":"skip-link default fg","state":"default","source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/default","line":26}},
             {"fg":"color.text.bright","bg":"color.surface.raised","label":"skip-link focus-visible fg","state":"focus-visible","source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/focus-visible","line":27}},
             {"fg":"color.text.bright","bg":"color.surface.raised","label":"sticky header text on the raised surface","state":null,"source":{"file":"spec/components/table.md","pointer":"/contrast/1","line":66}}
@@ -38882,7 +38896,7 @@
             {"kind":"part","component":"timeline","part":"root.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/timeline.md","pointer":"/tokens/root.text","line":24}},
             {"kind":"part","component":"toast","part":"root.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/tokens/root.text","line":31}},
             {"kind":"part","component":"toolbar","part":"button.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/toolbar.md","pointer":"/tokens/button.text","line":31}},
-            {"kind":"part","component":"tooltip","part":"popup.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/popup.text","line":30}},
+            {"kind":"part","component":"tooltip","part":"popup.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/popup.text","line":32}},
             {"kind":"part","component":"tree","part":"root.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tree.md","pointer":"/tokens/root.text","line":29}},
             {"kind":"part","component":"wizard","part":"step.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/tokens/step.text","line":30}},
             {"kind":"part","component":"wizard","part":"text.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/tokens/text.text","line":42}},
@@ -39010,8 +39024,8 @@
             {"kind":"state","component":"toolbar","part":"fg","state":"default","variant":null,"surface":"color.surface.chrome","nativeKey":null,"port":null,"source":{"file":"spec/components/toolbar.md","pointer":"/stateTokens/default/fg","line":42}},
             {"kind":"state","component":"toolbar","part":"fg","state":"focus-visible","variant":null,"surface":"color.surface.chrome","nativeKey":null,"port":null,"source":{"file":"spec/components/toolbar.md","pointer":"/stateTokens/focus-visible/fg","line":44}},
             {"kind":"state","component":"toolbar","part":"fg","state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/toolbar.md","pointer":"/stateTokens/hover/fg","line":43}},
-            {"kind":"state","component":"tooltip","part":"fg","state":"default","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default/fg","line":38}},
-            {"kind":"state","component":"tooltip","part":"fg","state":"open","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open/fg","line":41}},
+            {"kind":"state","component":"tooltip","part":"fg","state":"default","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default/fg","line":43}},
+            {"kind":"state","component":"tooltip","part":"fg","state":"open","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open/fg","line":46}},
             {"kind":"state","component":"tree","part":"fg","state":"default","variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/tree.md","pointer":"/stateTokens/default/fg","line":50}},
             {"kind":"state","component":"wizard","part":"fg","state":"default","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/stateTokens/default/fg","line":55}},
             {"kind":"state","component":"wizard","part":"fg","state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/stateTokens/hover/fg","line":56}}
@@ -39203,8 +39217,8 @@
             {"fg":"color.text.default","bg":"color.surface.raised","label":"default text on raised","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/2","line":6}},
             {"fg":"color.text.default","bg":"color.surface.raised","label":"menu default fg","state":"default","source":{"file":"spec/components/menu.md","pointer":"/stateTokens/default","line":57}},
             {"fg":"color.text.default","bg":"color.surface.raised","label":"option text in the themed list","state":null,"source":{"file":"spec/components/select.md","pointer":"/contrast/1","line":63}},
-            {"fg":"color.text.default","bg":"color.surface.raised","label":"tooltip default fg","state":"default","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default","line":38}},
-            {"fg":"color.text.default","bg":"color.surface.raised","label":"tooltip open fg","state":"open","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open","line":41}}
+            {"fg":"color.text.default","bg":"color.surface.raised","label":"tooltip default fg","state":"default","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default","line":43}},
+            {"fg":"color.text.default","bg":"color.surface.raised","label":"tooltip open fg","state":"open","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open","line":46}}
           ]
         },
         "color.text.disabled": {
@@ -42076,7 +42090,7 @@
           "usedByAliases": [],
           "unmappedPorts": [],
           "uses": [
-            {"kind":"part","component":"tooltip","part":"popup.z","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/popup.z","line":36}}
+            {"kind":"part","component":"tooltip","part":"popup.z","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/popup.z","line":41}}
           ],
           "contrast": []
         },
@@ -43311,11 +43325,12 @@
             {"kind":"part","component":"search-field","part":"clear.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/search-field.md","pointer":"/tokens/clear.bg-hover","line":45}},
             {"kind":"part","component":"text-field","part":"action.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/text-field.md","pointer":"/tokens/action.bg-hover","line":65}},
             {"kind":"part","component":"toast","part":"close.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/tokens/close.bg-hover","line":52}},
-            {"kind":"part","component":"tooltip","part":"trigger.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/trigger.bg-hover","line":34}},
+            {"kind":"part","component":"tooltip","part":"close.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/close.bg-hover","line":40}},
+            {"kind":"part","component":"tooltip","part":"trigger.bg-hover","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/trigger.bg-hover","line":36}},
             {"kind":"state","component":"alert","part":"bg","state":"hover","variant":null,"surface":"color.action.tertiary.hover-bg","nativeKey":null,"port":null,"source":{"file":"spec/components/alert.md","pointer":"/stateTokens/hover/bg","line":54}},
             {"kind":"state","component":"dialog","part":"bg","state":"hover","variant":null,"surface":"color.action.tertiary.hover-bg","nativeKey":null,"port":null,"source":{"file":"spec/components/dialog.md","pointer":"/stateTokens/hover/bg","line":58}},
             {"kind":"state","component":"icon-button","part":"bg","state":"hover","variant":null,"surface":"color.action.tertiary.hover-bg","nativeKey":null,"port":null,"source":{"file":"spec/components/icon-button.md","pointer":"/stateTokens/hover/bg","line":40}},
-            {"kind":"state","component":"tooltip","part":"bg","state":"hover","variant":null,"surface":"color.action.tertiary.hover-bg","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/hover/bg","line":39}}
+            {"kind":"state","component":"tooltip","part":"bg","state":"hover","variant":null,"surface":"color.action.tertiary.hover-bg","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/hover/bg","line":44}}
           ],
           "contrast": [
             {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"alert hover fg","state":"hover","source":{"file":"spec/components/alert.md","pointer":"/stateTokens/hover","line":54}},
@@ -43324,7 +43339,7 @@
             {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"icon-button hover fg","state":"hover","source":{"file":"spec/components/icon-button.md","pointer":"/stateTokens/hover","line":40}},
             {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"stepper glyphs on their hover fill","state":"hover","source":{"file":"spec/components/number-field.md","pointer":"/contrast/2","line":62}},
             {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"tertiary text on the hover fill","state":"hover","source":{"file":"spec/components/button.md","pointer":"/contrast/8","line":75}},
-            {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"tooltip hover fg","state":"hover","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/hover","line":39}}
+            {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"tooltip hover fg","state":"hover","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/hover","line":44}}
           ]
         },
         "color.action.tertiary.text": {
@@ -43367,7 +43382,8 @@
             {"kind":"contrast","component":"number-field","part":null,"state":null,"variant":null,"surface":"color.surface.input","nativeKey":null,"port":null,"source":{"file":"spec/components/number-field.md","pointer":"/contrast/1","line":61}},
             {"kind":"contrast","component":"search-field","part":null,"state":"hover","variant":null,"surface":"color.action.tertiary.hover-bg","nativeKey":null,"port":null,"source":{"file":"spec/components/search-field.md","pointer":"/contrast/3","line":62}},
             {"kind":"contrast","component":"search-field","part":null,"state":null,"variant":null,"surface":"color.surface.input","nativeKey":null,"port":null,"source":{"file":"spec/components/search-field.md","pointer":"/contrast/2","line":61}},
-            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/2","line":45}},
+            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/3","line":51}},
+            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/2","line":50}},
             {"kind":"part","component":"admin-form","part":"draft.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/admin-form.md","pointer":"/tokens/draft.text","line":63}},
             {"kind":"part","component":"alert","part":"close.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/alert.md","pointer":"/tokens/close.text","line":49}},
             {"kind":"part","component":"button","part":"tertiary.text","state":null,"variant":"tertiary","surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/button.md","pointer":"/tokens/tertiary.text","line":42}},
@@ -43380,7 +43396,8 @@
             {"kind":"part","component":"search-field","part":"clear.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/search-field.md","pointer":"/tokens/clear.text","line":44}},
             {"kind":"part","component":"text-field","part":"action.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/text-field.md","pointer":"/tokens/action.text","line":64}},
             {"kind":"part","component":"toast","part":"close.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/tokens/close.text","line":51}},
-            {"kind":"part","component":"tooltip","part":"trigger.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/trigger.text","line":33}},
+            {"kind":"part","component":"tooltip","part":"close.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/close.text","line":38}},
+            {"kind":"part","component":"tooltip","part":"trigger.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/trigger.text","line":35}},
             {"kind":"state","component":"alert","part":"fg","state":"focus-visible","variant":null,"surface":"color.status.info.tint","nativeKey":null,"port":null,"source":{"file":"spec/components/alert.md","pointer":"/stateTokens/focus-visible/fg","line":55}},
             {"kind":"state","component":"alert","part":"fg","state":"hover","variant":null,"surface":"color.action.tertiary.hover-bg","nativeKey":null,"port":null,"source":{"file":"spec/components/alert.md","pointer":"/stateTokens/hover/fg","line":54}},
             {"kind":"state","component":"dialog","part":"fg","state":"focus-visible","variant":null,"surface":"color.surface.overlay","nativeKey":null,"port":null,"source":{"file":"spec/components/dialog.md","pointer":"/stateTokens/focus-visible/fg","line":59}},
@@ -43390,8 +43407,8 @@
             {"kind":"state","component":"icon-button","part":"fg","state":"focus-visible","variant":null,"surface":"color.action.secondary.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/icon-button.md","pointer":"/stateTokens/focus-visible/fg","line":41}},
             {"kind":"state","component":"icon-button","part":"fg","state":"hover","variant":null,"surface":"color.action.tertiary.hover-bg","nativeKey":null,"port":null,"source":{"file":"spec/components/icon-button.md","pointer":"/stateTokens/hover/fg","line":40}},
             {"kind":"state","component":"toast","part":"fg","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/stateTokens/focus-visible/fg","line":59}},
-            {"kind":"state","component":"tooltip","part":"fg","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible/fg","line":40}},
-            {"kind":"state","component":"tooltip","part":"fg","state":"hover","variant":null,"surface":"color.action.tertiary.hover-bg","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/hover/fg","line":39}}
+            {"kind":"state","component":"tooltip","part":"fg","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible/fg","line":45}},
+            {"kind":"state","component":"tooltip","part":"fg","state":"hover","variant":null,"surface":"color.action.tertiary.hover-bg","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/hover/fg","line":44}}
           ],
           "contrast": [
             {"fg":"color.action.tertiary.text","bg":"color.action.secondary.bg","label":"icon-button default fg","state":"default","source":{"file":"spec/components/icon-button.md","pointer":"/stateTokens/default","line":39}},
@@ -43403,18 +43420,19 @@
             {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"icon-button hover fg","state":"hover","source":{"file":"spec/components/icon-button.md","pointer":"/stateTokens/hover","line":40}},
             {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"stepper glyphs on their hover fill","state":"hover","source":{"file":"spec/components/number-field.md","pointer":"/contrast/2","line":62}},
             {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"tertiary text on the hover fill","state":"hover","source":{"file":"spec/components/button.md","pointer":"/contrast/8","line":75}},
-            {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"tooltip hover fg","state":"hover","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/hover","line":39}},
+            {"fg":"color.action.tertiary.text","bg":"color.action.tertiary.hover-bg","label":"tooltip hover fg","state":"hover","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/hover","line":44}},
             {"fg":"color.action.tertiary.text","bg":"color.interaction.pressed.bg","label":"icon-button active fg","state":"active","source":{"file":"spec/components/icon-button.md","pointer":"/stateTokens/active","line":42}},
             {"fg":"color.action.tertiary.text","bg":"color.interaction.pressed.bg","label":"tertiary text while pressed","state":"active","source":{"file":"spec/components/button.md","pointer":"/contrast/9","line":76}},
             {"fg":"color.action.tertiary.text","bg":"color.status.info.tint","label":"alert focus-visible fg","state":"focus-visible","source":{"file":"spec/components/alert.md","pointer":"/stateTokens/focus-visible","line":55}},
             {"fg":"color.action.tertiary.text","bg":"color.status.info.tint","label":"close button on the info tint","state":null,"source":{"file":"spec/components/alert.md","pointer":"/contrast/13","line":70}},
             {"fg":"color.action.tertiary.text","bg":"color.surface.canvas","label":"toast focus-visible fg","state":"focus-visible","source":{"file":"spec/components/toast.md","pointer":"/stateTokens/focus-visible","line":59}},
-            {"fg":"color.action.tertiary.text","bg":"color.surface.canvas","label":"tooltip focus-visible fg","state":"focus-visible","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible","line":40}},
-            {"fg":"color.action.tertiary.text","bg":"color.surface.canvas","label":"trigger text on the canvas","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/2","line":45}},
+            {"fg":"color.action.tertiary.text","bg":"color.surface.canvas","label":"tooltip focus-visible fg","state":"focus-visible","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible","line":45}},
+            {"fg":"color.action.tertiary.text","bg":"color.surface.canvas","label":"trigger text on the canvas","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/3","line":51}},
             {"fg":"color.action.tertiary.text","bg":"color.surface.input","label":"clear glyph on the input surface","state":null,"source":{"file":"spec/components/search-field.md","pointer":"/contrast/2","line":61}},
             {"fg":"color.action.tertiary.text","bg":"color.surface.input","label":"stepper glyphs on the input surface","state":null,"source":{"file":"spec/components/number-field.md","pointer":"/contrast/1","line":61}},
             {"fg":"color.action.tertiary.text","bg":"color.surface.overlay","label":"close button on the overlay surface","state":null,"source":{"file":"spec/components/drawer.md","pointer":"/contrast/2","line":50}},
-            {"fg":"color.action.tertiary.text","bg":"color.surface.overlay","label":"dialog focus-visible fg","state":"focus-visible","source":{"file":"spec/components/dialog.md","pointer":"/stateTokens/focus-visible","line":59}}
+            {"fg":"color.action.tertiary.text","bg":"color.surface.overlay","label":"dialog focus-visible fg","state":"focus-visible","source":{"file":"spec/components/dialog.md","pointer":"/stateTokens/focus-visible","line":59}},
+            {"fg":"color.action.tertiary.text","bg":"color.surface.raised","label":"close button on a pinned tooltip","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/2","line":50}}
           ]
         },
         "color.border.active": {
@@ -43557,7 +43575,7 @@
             {"kind":"contrast","component":"skeleton","part":null,"state":null,"variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/skeleton.md","pointer":"/contrast/2","line":50}},
             {"kind":"contrast","component":"switch","part":null,"state":"checked","variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/switch.md","pointer":"/contrast/3","line":57}},
             {"kind":"contrast","component":"timeline","part":null,"state":null,"variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/timeline.md","pointer":"/contrast/2","line":50}},
-            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/1","line":44}},
+            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/1","line":49}},
             {"kind":"contrast","component":"tree","part":null,"state":null,"variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/tree.md","pointer":"/contrast/2","line":60}},
             {"kind":"contrast","component":null,"part":null,"state":null,"variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/41","line":45}},
             {"kind":"contrast","component":null,"part":null,"state":null,"variant":null,"surface":"color.surface.input","nativeKey":null,"port":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/40","line":44}},
@@ -43611,7 +43629,8 @@
             {"kind":"part","component":"textarea","part":"root.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/textarea.md","pointer":"/tokens/root.border","line":34}},
             {"kind":"part","component":"time-picker","part":"root.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/time-picker.md","pointer":"/tokens/root.border","line":29}},
             {"kind":"part","component":"timeline","part":"root.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/timeline.md","pointer":"/tokens/root.border","line":25}},
-            {"kind":"part","component":"tooltip","part":"shortcut.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/shortcut.border","line":32}},
+            {"kind":"part","component":"tooltip","part":"close.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/close.border","line":39}},
+            {"kind":"part","component":"tooltip","part":"shortcut.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/shortcut.border","line":34}},
             {"kind":"part","component":"tree","part":"root.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tree.md","pointer":"/tokens/root.border","line":30}},
             {"kind":"state","component":"admin-form","part":"border","state":"default","variant":null,"surface":"color.surface.input","nativeKey":null,"port":null,"source":{"file":"spec/components/admin-form.md","pointer":"/stateTokens/default/border","line":66}},
             {"kind":"state","component":"avatar","part":"border","state":"default","variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/avatar.md","pointer":"/stateTokens/default/border","line":41}},
@@ -43775,7 +43794,7 @@
             {"fg":"color.border.control","bg":"color.surface.input","label":"textarea placeholder-shown border","state":"placeholder-shown","source":{"file":"spec/components/textarea.md","pointer":"/stateTokens/placeholder-shown","line":60}},
             {"fg":"color.border.control","bg":"color.surface.input","label":"time-picker default border","state":"default","source":{"file":"spec/components/time-picker.md","pointer":"/stateTokens/default","line":45}},
             {"fg":"color.border.control","bg":"color.surface.overlay","label":"form field boundary on the overlay surface","state":null,"source":{"file":"spec/components/dialog.md","pointer":"/contrast/10","line":72}},
-            {"fg":"color.border.control","bg":"color.surface.raised","label":"shortcut key border on the tooltip","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/1","line":44}},
+            {"fg":"color.border.control","bg":"color.surface.raised","label":"shortcut key and close button borders on the tooltip","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/1","line":49}},
             {"fg":"color.border.control","bg":"color.terminal.bg","label":"terminal default border","state":"default","source":{"file":"spec/components/terminal.md","pointer":"/stateTokens/default","line":67}}
           ]
         },
@@ -44090,7 +44109,7 @@
             {"kind":"part","component":"popover","part":"dependency.role-color-border-overlay","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/popover.md","pointer":"/tokens/dependency.role-color-border-overlay","line":38}},
             {"kind":"part","component":"skip-link","part":"root.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/skip-link.md","pointer":"/tokens/root.border","line":23}},
             {"kind":"part","component":"toast","part":"root.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/tokens/root.border","line":30}},
-            {"kind":"part","component":"tooltip","part":"popup.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/popup.border","line":29}},
+            {"kind":"part","component":"tooltip","part":"popup.border","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/popup.border","line":31}},
             {"kind":"state","component":"combobox","part":"border","state":"no-results","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/combobox.md","pointer":"/stateTokens/no-results/border","line":72}},
             {"kind":"state","component":"combobox","part":"border","state":"open","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/combobox.md","pointer":"/stateTokens/open/border","line":68}},
             {"kind":"state","component":"dialog","part":"border","state":"default","variant":null,"surface":"color.surface.overlay","nativeKey":null,"port":null,"source":{"file":"spec/components/dialog.md","pointer":"/stateTokens/default/border","line":55}},
@@ -44107,8 +44126,8 @@
             {"kind":"state","component":"toast","part":"border","state":"default","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/stateTokens/default/border","line":57}},
             {"kind":"state","component":"toast","part":"border","state":"reduced-motion","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/stateTokens/reduced-motion/border","line":61}},
             {"kind":"state","component":"toast","part":"border","state":"stacked","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/stateTokens/stacked/border","line":60}},
-            {"kind":"state","component":"tooltip","part":"border","state":"default","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default/border","line":38}},
-            {"kind":"state","component":"tooltip","part":"border","state":"open","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open/border","line":41}}
+            {"kind":"state","component":"tooltip","part":"border","state":"default","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default/border","line":43}},
+            {"kind":"state","component":"tooltip","part":"border","state":"open","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open/border","line":46}}
           ],
           "contrast": [
             {"fg":"color.border.overlay","bg":"color.surface.canvas","label":"toast default border","state":"default","source":{"file":"spec/components/toast.md","pointer":"/stateTokens/default","line":57}},
@@ -44128,8 +44147,8 @@
             {"fg":"color.border.overlay","bg":"color.surface.raised","label":"menu default border","state":"default","source":{"file":"spec/components/menu.md","pointer":"/stateTokens/default","line":57}},
             {"fg":"color.border.overlay","bg":"color.surface.raised","label":"skip-link default border","state":"default","source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/default","line":26}},
             {"fg":"color.border.overlay","bg":"color.surface.raised","label":"skip-link focus-visible border","state":"focus-visible","source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/focus-visible","line":27}},
-            {"fg":"color.border.overlay","bg":"color.surface.raised","label":"tooltip default border","state":"default","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default","line":38}},
-            {"fg":"color.border.overlay","bg":"color.surface.raised","label":"tooltip open border","state":"open","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open","line":41}}
+            {"fg":"color.border.overlay","bg":"color.surface.raised","label":"tooltip default border","state":"default","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default","line":43}},
+            {"fg":"color.border.overlay","bg":"color.surface.raised","label":"tooltip open border","state":"open","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open","line":46}}
           ]
         },
         "color.border.selected-indicator": {
@@ -47349,7 +47368,7 @@
             {"kind":"part","component":"timeline","part":"control.focus","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/timeline.md","pointer":"/tokens/control.focus","line":29}},
             {"kind":"part","component":"toast","part":"close.ring","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/tokens/close.ring","line":53}},
             {"kind":"part","component":"toolbar","part":"button.ring","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/toolbar.md","pointer":"/tokens/button.ring","line":34}},
-            {"kind":"part","component":"tooltip","part":"trigger.ring","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/trigger.ring","line":35}},
+            {"kind":"part","component":"tooltip","part":"trigger.ring","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/trigger.ring","line":37}},
             {"kind":"part","component":"tree","part":"control.focus","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tree.md","pointer":"/tokens/control.focus","line":34}},
             {"kind":"part","component":"wizard","part":"step.ring","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/tokens/step.ring","line":32}},
             {"kind":"state","component":"alert","part":"outline","state":"focus-visible","variant":null,"surface":"color.status.info.tint","nativeKey":null,"port":null,"source":{"file":"spec/components/alert.md","pointer":"/stateTokens/focus-visible/outline","line":55}},
@@ -47393,7 +47412,7 @@
             {"kind":"state","component":"time-picker","part":"outline","state":"focus-visible","variant":null,"surface":"color.surface.input","nativeKey":null,"port":null,"source":{"file":"spec/components/time-picker.md","pointer":"/stateTokens/focus-visible/outline","line":56}},
             {"kind":"state","component":"toast","part":"outline","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/stateTokens/focus-visible/outline","line":59}},
             {"kind":"state","component":"toolbar","part":"outline","state":"focus-visible","variant":null,"surface":"color.surface.chrome","nativeKey":null,"port":null,"source":{"file":"spec/components/toolbar.md","pointer":"/stateTokens/focus-visible/outline","line":44}},
-            {"kind":"state","component":"tooltip","part":"outline","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible/outline","line":40}},
+            {"kind":"state","component":"tooltip","part":"outline","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible/outline","line":45}},
             {"kind":"state","component":"wizard","part":"outline","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/stateTokens/focus-visible/outline","line":57}}
           ],
           "contrast": [
@@ -47423,7 +47442,7 @@
             {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"focus ring on canvas","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/37","line":41}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"link focus-visible outline","state":"focus-visible","source":{"file":"spec/components/link.md","pointer":"/stateTokens/focus-visible","line":38}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"toast focus-visible outline","state":"focus-visible","source":{"file":"spec/components/toast.md","pointer":"/stateTokens/focus-visible","line":59}},
-            {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"tooltip focus-visible outline","state":"focus-visible","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible","line":40}},
+            {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"tooltip focus-visible outline","state":"focus-visible","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible","line":45}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"wizard focus-visible outline","state":"focus-visible","source":{"file":"spec/components/wizard.md","pointer":"/stateTokens/focus-visible","line":57}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.chrome","label":"ring on a workspace or tab","state":null,"source":{"file":"spec/components/i3-window-frame.md","pointer":"/contrast/7","line":78}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.chrome","label":"toolbar focus-visible outline","state":"focus-visible","source":{"file":"spec/components/toolbar.md","pointer":"/stateTokens/focus-visible","line":44}},
@@ -53538,7 +53557,7 @@
             {"kind":"contrast","component":"toast","part":null,"state":null,"variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/contrast/0","line":63}},
             {"kind":"contrast","component":"toast","part":null,"state":null,"variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/contrast/1","line":64}},
             {"kind":"contrast","component":"toast","part":null,"state":null,"variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/contrast/15","line":78}},
-            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/2","line":45}},
+            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/3","line":51}},
             {"kind":"contrast","component":"wizard","part":null,"state":"disabled","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/contrast/9","line":71}},
             {"kind":"contrast","component":"wizard","part":null,"state":null,"variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/contrast/0","line":62}},
             {"kind":"contrast","component":"wizard","part":null,"state":null,"variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/contrast/4","line":66}},
@@ -53596,7 +53615,7 @@
             {"kind":"state","component":"toast","part":"bg","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/stateTokens/focus-visible/bg","line":59}},
             {"kind":"state","component":"toast","part":"bg","state":"reduced-motion","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/stateTokens/reduced-motion/bg","line":61}},
             {"kind":"state","component":"toast","part":"bg","state":"stacked","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/stateTokens/stacked/bg","line":60}},
-            {"kind":"state","component":"tooltip","part":"bg","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible/bg","line":40}},
+            {"kind":"state","component":"tooltip","part":"bg","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible/bg","line":45}},
             {"kind":"state","component":"wizard","part":"bg","state":"current","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/stateTokens/current/bg","line":58}},
             {"kind":"state","component":"wizard","part":"bg","state":"default","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/stateTokens/default/bg","line":55}},
             {"kind":"state","component":"wizard","part":"bg","state":"focus-visible","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/stateTokens/focus-visible/bg","line":57}},
@@ -53615,8 +53634,8 @@
             {"fg":"color.action.secondary.text","bg":"color.surface.canvas","label":"file-input invalid fg","state":"invalid","source":{"file":"spec/components/file-input.md","pointer":"/stateTokens/invalid","line":61}},
             {"fg":"color.action.secondary.text","bg":"color.surface.canvas","label":"secondary action text on canvas","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/21","line":25}},
             {"fg":"color.action.tertiary.text","bg":"color.surface.canvas","label":"toast focus-visible fg","state":"focus-visible","source":{"file":"spec/components/toast.md","pointer":"/stateTokens/focus-visible","line":59}},
-            {"fg":"color.action.tertiary.text","bg":"color.surface.canvas","label":"tooltip focus-visible fg","state":"focus-visible","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible","line":40}},
-            {"fg":"color.action.tertiary.text","bg":"color.surface.canvas","label":"trigger text on the canvas","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/2","line":45}},
+            {"fg":"color.action.tertiary.text","bg":"color.surface.canvas","label":"tooltip focus-visible fg","state":"focus-visible","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible","line":45}},
+            {"fg":"color.action.tertiary.text","bg":"color.surface.canvas","label":"trigger text on the canvas","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/3","line":51}},
             {"fg":"color.border.control","bg":"color.surface.canvas","label":"progress default border","state":"default","source":{"file":"spec/components/progress.md","pointer":"/stateTokens/default","line":39}},
             {"fg":"color.border.default","bg":"color.surface.canvas","label":"decorative border on canvas (decorative; not a control edge)","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/43","line":47}},
             {"fg":"color.border.default","bg":"color.surface.canvas","label":"panel edge (decorative)","state":null,"source":{"file":"spec/components/wizard.md","pointer":"/contrast/4","line":66}},
@@ -53644,7 +53663,7 @@
             {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"focus ring on canvas","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/37","line":41}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"link focus-visible outline","state":"focus-visible","source":{"file":"spec/components/link.md","pointer":"/stateTokens/focus-visible","line":38}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"toast focus-visible outline","state":"focus-visible","source":{"file":"spec/components/toast.md","pointer":"/stateTokens/focus-visible","line":59}},
-            {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"tooltip focus-visible outline","state":"focus-visible","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible","line":40}},
+            {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"tooltip focus-visible outline","state":"focus-visible","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/focus-visible","line":45}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.canvas","label":"wizard focus-visible outline","state":"focus-visible","source":{"file":"spec/components/wizard.md","pointer":"/stateTokens/focus-visible","line":57}},
             {"fg":"color.status.danger.border","bg":"color.surface.canvas","label":"file-input invalid border","state":"invalid","source":{"file":"spec/components/file-input.md","pointer":"/stateTokens/invalid","line":61}},
             {"fg":"color.status.danger.border","bg":"color.surface.canvas","label":"progress error border","state":"error","source":{"file":"spec/components/progress.md","pointer":"/stateTokens/error","line":40}},
@@ -54918,8 +54937,9 @@
             {"kind":"contrast","component":"select","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/select.md","pointer":"/contrast/2","line":64}},
             {"kind":"contrast","component":"skip-link","part":null,"state":"focus-visible","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/skip-link.md","pointer":"/contrast/0","line":29}},
             {"kind":"contrast","component":"table","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/table.md","pointer":"/contrast/1","line":66}},
-            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/0","line":43}},
-            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/1","line":44}},
+            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/0","line":48}},
+            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/1","line":49}},
+            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/2","line":50}},
             {"kind":"contrast","component":null,"part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/14","line":18}},
             {"kind":"contrast","component":null,"part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/2","line":6}},
             {"kind":"contrast","component":null,"part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/64","line":68}},
@@ -54934,7 +54954,7 @@
             {"kind":"part","component":"skeleton","part":"dependency.role-color-surface-raised","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/skeleton.md","pointer":"/tokens/dependency.role-color-surface-raised","line":33}},
             {"kind":"part","component":"skip-link","part":"root.bg","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/skip-link.md","pointer":"/tokens/root.bg","line":21}},
             {"kind":"part","component":"table","part":"header.bg-sticky","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/table.md","pointer":"/tokens/header.bg-sticky","line":41}},
-            {"kind":"part","component":"tooltip","part":"popup.bg","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/popup.bg","line":28}},
+            {"kind":"part","component":"tooltip","part":"popup.bg","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/popup.bg","line":30}},
             {"kind":"prose","component":"link","part":null,"state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/link.md","pointer":"body","line":71}},
             {"kind":"state","component":"combobox","part":"bg","state":"no-results","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/combobox.md","pointer":"/stateTokens/no-results/bg","line":72}},
             {"kind":"state","component":"combobox","part":"bg","state":"open","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/combobox.md","pointer":"/stateTokens/open/bg","line":68}},
@@ -54942,11 +54962,12 @@
             {"kind":"state","component":"menu","part":"bg","state":"default","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/menu.md","pointer":"/stateTokens/default/bg","line":57}},
             {"kind":"state","component":"skip-link","part":"bg","state":"default","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/default/bg","line":26}},
             {"kind":"state","component":"skip-link","part":"bg","state":"focus-visible","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/focus-visible/bg","line":27}},
-            {"kind":"state","component":"tooltip","part":"bg","state":"default","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default/bg","line":38}},
-            {"kind":"state","component":"tooltip","part":"bg","state":"open","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open/bg","line":41}}
+            {"kind":"state","component":"tooltip","part":"bg","state":"default","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default/bg","line":43}},
+            {"kind":"state","component":"tooltip","part":"bg","state":"open","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open/bg","line":46}}
           ],
           "contrast": [
-            {"fg":"color.border.control","bg":"color.surface.raised","label":"shortcut key border on the tooltip","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/1","line":44}},
+            {"fg":"color.action.tertiary.text","bg":"color.surface.raised","label":"close button on a pinned tooltip","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/2","line":50}},
+            {"fg":"color.border.control","bg":"color.surface.raised","label":"shortcut key and close button borders on the tooltip","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/1","line":49}},
             {"fg":"color.border.divider","bg":"color.surface.raised","label":"group separator (decorative)","state":null,"source":{"file":"spec/components/combobox.md","pointer":"/contrast/5","line":79}},
             {"fg":"color.border.divider","bg":"color.surface.raised","label":"item separator (decorative; role separator carries the grouping)","state":null,"source":{"file":"spec/components/menu.md","pointer":"/contrast/2","line":67}},
             {"fg":"color.border.overlay","bg":"color.surface.raised","label":"combobox no-results border","state":"no-results","source":{"file":"spec/components/combobox.md","pointer":"/stateTokens/no-results","line":72}},
@@ -54954,14 +54975,14 @@
             {"fg":"color.border.overlay","bg":"color.surface.raised","label":"menu default border","state":"default","source":{"file":"spec/components/menu.md","pointer":"/stateTokens/default","line":57}},
             {"fg":"color.border.overlay","bg":"color.surface.raised","label":"skip-link default border","state":"default","source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/default","line":26}},
             {"fg":"color.border.overlay","bg":"color.surface.raised","label":"skip-link focus-visible border","state":"focus-visible","source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/focus-visible","line":27}},
-            {"fg":"color.border.overlay","bg":"color.surface.raised","label":"tooltip default border","state":"default","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default","line":38}},
-            {"fg":"color.border.overlay","bg":"color.surface.raised","label":"tooltip open border","state":"open","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open","line":41}},
+            {"fg":"color.border.overlay","bg":"color.surface.raised","label":"tooltip default border","state":"default","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default","line":43}},
+            {"fg":"color.border.overlay","bg":"color.surface.raised","label":"tooltip open border","state":"open","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open","line":46}},
             {"fg":"color.icon.decorative","bg":"color.surface.raised","label":"submenu chevron (decorative; aria-haspopup carries the meaning)","state":null,"source":{"file":"spec/components/menu.md","pointer":"/contrast/3","line":68}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.raised","label":"ring on the raised surface","state":"focus-visible","source":{"file":"spec/components/skip-link.md","pointer":"/contrast/0","line":29}},
             {"fg":"color.interaction.focus.ring","bg":"color.surface.raised","label":"skip-link focus-visible outline","state":"focus-visible","source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/focus-visible","line":27}},
             {"fg":"color.text.accent-strong","bg":"color.surface.raised","label":"strong accent on raised","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/14","line":18}},
             {"fg":"color.text.bright","bg":"color.surface.raised","label":"menu checked fg","state":"checked","source":{"file":"spec/components/menu.md","pointer":"/stateTokens/checked","line":62}},
-            {"fg":"color.text.bright","bg":"color.surface.raised","label":"shortcut on the tooltip","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/0","line":43}},
+            {"fg":"color.text.bright","bg":"color.surface.raised","label":"shortcut on the tooltip","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/0","line":48}},
             {"fg":"color.text.bright","bg":"color.surface.raised","label":"skip-link default fg","state":"default","source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/default","line":26}},
             {"fg":"color.text.bright","bg":"color.surface.raised","label":"skip-link focus-visible fg","state":"focus-visible","source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/focus-visible","line":27}},
             {"fg":"color.text.bright","bg":"color.surface.raised","label":"sticky header text on the raised surface","state":null,"source":{"file":"spec/components/table.md","pointer":"/contrast/1","line":66}},
@@ -54970,8 +54991,8 @@
             {"fg":"color.text.default","bg":"color.surface.raised","label":"default text on raised","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/2","line":6}},
             {"fg":"color.text.default","bg":"color.surface.raised","label":"menu default fg","state":"default","source":{"file":"spec/components/menu.md","pointer":"/stateTokens/default","line":57}},
             {"fg":"color.text.default","bg":"color.surface.raised","label":"option text in the themed list","state":null,"source":{"file":"spec/components/select.md","pointer":"/contrast/1","line":63}},
-            {"fg":"color.text.default","bg":"color.surface.raised","label":"tooltip default fg","state":"default","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default","line":38}},
-            {"fg":"color.text.default","bg":"color.surface.raised","label":"tooltip open fg","state":"open","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open","line":41}},
+            {"fg":"color.text.default","bg":"color.surface.raised","label":"tooltip default fg","state":"default","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default","line":43}},
+            {"fg":"color.text.default","bg":"color.surface.raised","label":"tooltip open fg","state":"open","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open","line":46}},
             {"fg":"color.text.disabled","bg":"color.surface.raised","label":"disabled item text (exempt; house floor 3:1)","state":"disabled","source":{"file":"spec/components/menu.md","pointer":"/contrast/1","line":66}},
             {"fg":"color.text.heading","bg":"color.surface.raised","label":"heading on raised (D-033)","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/66","line":70}},
             {"fg":"color.text.highlight","bg":"color.surface.raised","label":"highlight on raised (D-033)","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/68","line":72}},
@@ -56126,7 +56147,7 @@
             {"kind":"contrast","component":"settings-panel","part":null,"state":null,"variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/settings-panel.md","pointer":"/contrast/0","line":59}},
             {"kind":"contrast","component":"table","part":null,"state":null,"variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/table.md","pointer":"/contrast/0","line":65}},
             {"kind":"contrast","component":"table","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/table.md","pointer":"/contrast/1","line":66}},
-            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/0","line":43}},
+            {"kind":"contrast","component":"tooltip","part":null,"state":null,"variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/0","line":48}},
             {"kind":"contrast","component":"wizard","part":null,"state":null,"variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/contrast/1","line":63}},
             {"kind":"contrast","component":null,"part":null,"state":null,"variant":null,"surface":"color.interaction.text-selection.tint","nativeKey":null,"port":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/75","line":79}},
             {"kind":"contrast","component":null,"part":null,"state":null,"variant":null,"surface":"color.surface.accent","nativeKey":null,"port":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/72","line":76}},
@@ -56197,7 +56218,7 @@
             {"kind":"part","component":"time-picker","part":"label.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/time-picker.md","pointer":"/tokens/label.text","line":40}},
             {"kind":"part","component":"timeline","part":"heading.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/timeline.md","pointer":"/tokens/heading.text","line":26}},
             {"kind":"part","component":"toolbar","part":"toggled.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/toolbar.md","pointer":"/tokens/toggled.text","line":38}},
-            {"kind":"part","component":"tooltip","part":"shortcut.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/shortcut.text","line":31}},
+            {"kind":"part","component":"tooltip","part":"shortcut.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/shortcut.text","line":33}},
             {"kind":"part","component":"tree","part":"heading.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tree.md","pointer":"/tokens/heading.text","line":31}},
             {"kind":"part","component":"wizard","part":"step.text-current","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/tokens/step.text-current","line":33}},
             {"kind":"part","component":"wizard","part":"title.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/tokens/title.text","line":41}},
@@ -56255,7 +56276,7 @@
             {"fg":"color.text.bright","bg":"color.surface.overlay","label":"title on the overlay surface","state":null,"source":{"file":"spec/components/dialog.md","pointer":"/contrast/0","line":62}},
             {"fg":"color.text.bright","bg":"color.surface.overlay","label":"title on the overlay surface","state":null,"source":{"file":"spec/components/drawer.md","pointer":"/contrast/0","line":48}},
             {"fg":"color.text.bright","bg":"color.surface.raised","label":"menu checked fg","state":"checked","source":{"file":"spec/components/menu.md","pointer":"/stateTokens/checked","line":62}},
-            {"fg":"color.text.bright","bg":"color.surface.raised","label":"shortcut on the tooltip","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/0","line":43}},
+            {"fg":"color.text.bright","bg":"color.surface.raised","label":"shortcut on the tooltip","state":null,"source":{"file":"spec/components/tooltip.md","pointer":"/contrast/0","line":48}},
             {"fg":"color.text.bright","bg":"color.surface.raised","label":"skip-link default fg","state":"default","source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/default","line":26}},
             {"fg":"color.text.bright","bg":"color.surface.raised","label":"skip-link focus-visible fg","state":"focus-visible","source":{"file":"spec/components/skip-link.md","pointer":"/stateTokens/focus-visible","line":27}},
             {"fg":"color.text.bright","bg":"color.surface.raised","label":"sticky header text on the raised surface","state":null,"source":{"file":"spec/components/table.md","pointer":"/contrast/1","line":66}}
@@ -56430,7 +56451,7 @@
             {"kind":"part","component":"timeline","part":"root.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/timeline.md","pointer":"/tokens/root.text","line":24}},
             {"kind":"part","component":"toast","part":"root.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/toast.md","pointer":"/tokens/root.text","line":31}},
             {"kind":"part","component":"toolbar","part":"button.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/toolbar.md","pointer":"/tokens/button.text","line":31}},
-            {"kind":"part","component":"tooltip","part":"popup.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/popup.text","line":30}},
+            {"kind":"part","component":"tooltip","part":"popup.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/popup.text","line":32}},
             {"kind":"part","component":"tree","part":"root.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tree.md","pointer":"/tokens/root.text","line":29}},
             {"kind":"part","component":"wizard","part":"step.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/tokens/step.text","line":30}},
             {"kind":"part","component":"wizard","part":"text.text","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/tokens/text.text","line":42}},
@@ -56558,8 +56579,8 @@
             {"kind":"state","component":"toolbar","part":"fg","state":"default","variant":null,"surface":"color.surface.chrome","nativeKey":null,"port":null,"source":{"file":"spec/components/toolbar.md","pointer":"/stateTokens/default/fg","line":42}},
             {"kind":"state","component":"toolbar","part":"fg","state":"focus-visible","variant":null,"surface":"color.surface.chrome","nativeKey":null,"port":null,"source":{"file":"spec/components/toolbar.md","pointer":"/stateTokens/focus-visible/fg","line":44}},
             {"kind":"state","component":"toolbar","part":"fg","state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/toolbar.md","pointer":"/stateTokens/hover/fg","line":43}},
-            {"kind":"state","component":"tooltip","part":"fg","state":"default","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default/fg","line":38}},
-            {"kind":"state","component":"tooltip","part":"fg","state":"open","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open/fg","line":41}},
+            {"kind":"state","component":"tooltip","part":"fg","state":"default","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default/fg","line":43}},
+            {"kind":"state","component":"tooltip","part":"fg","state":"open","variant":null,"surface":"color.surface.raised","nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open/fg","line":46}},
             {"kind":"state","component":"tree","part":"fg","state":"default","variant":null,"surface":"color.surface.default","nativeKey":null,"port":null,"source":{"file":"spec/components/tree.md","pointer":"/stateTokens/default/fg","line":50}},
             {"kind":"state","component":"wizard","part":"fg","state":"default","variant":null,"surface":"color.surface.canvas","nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/stateTokens/default/fg","line":55}},
             {"kind":"state","component":"wizard","part":"fg","state":"hover","variant":null,"surface":"color.interaction.hover.bg","nativeKey":null,"port":null,"source":{"file":"spec/components/wizard.md","pointer":"/stateTokens/hover/fg","line":56}}
@@ -56751,8 +56772,8 @@
             {"fg":"color.text.default","bg":"color.surface.raised","label":"default text on raised","state":null,"source":{"file":"spec/contrast.json","pointer":"/pairs/2","line":6}},
             {"fg":"color.text.default","bg":"color.surface.raised","label":"menu default fg","state":"default","source":{"file":"spec/components/menu.md","pointer":"/stateTokens/default","line":57}},
             {"fg":"color.text.default","bg":"color.surface.raised","label":"option text in the themed list","state":null,"source":{"file":"spec/components/select.md","pointer":"/contrast/1","line":63}},
-            {"fg":"color.text.default","bg":"color.surface.raised","label":"tooltip default fg","state":"default","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default","line":38}},
-            {"fg":"color.text.default","bg":"color.surface.raised","label":"tooltip open fg","state":"open","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open","line":41}}
+            {"fg":"color.text.default","bg":"color.surface.raised","label":"tooltip default fg","state":"default","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/default","line":43}},
+            {"fg":"color.text.default","bg":"color.surface.raised","label":"tooltip open fg","state":"open","source":{"file":"spec/components/tooltip.md","pointer":"/stateTokens/open","line":46}}
           ]
         },
         "color.text.disabled": {
@@ -59632,7 +59653,7 @@
           "usedByAliases": [],
           "unmappedPorts": [],
           "uses": [
-            {"kind":"part","component":"tooltip","part":"popup.z","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/popup.z","line":36}}
+            {"kind":"part","component":"tooltip","part":"popup.z","state":null,"variant":null,"surface":null,"nativeKey":null,"port":null,"source":{"file":"spec/components/tooltip.md","pointer":"/tokens/popup.z","line":41}}
           ],
           "contrast": []
         },

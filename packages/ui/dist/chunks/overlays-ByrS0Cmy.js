@@ -1,4 +1,5 @@
 import { d as place, i as all, o as enabled, s as identify } from "./choice-DqwWT5pJ.js";
+import { o as hoverHelper } from "./hover-helper-CYYYHTxG.js";
 // packages/ui/src/behaviors/overlays.js
 function modal(root, { on }) {
 	const dialog = root.querySelector("dialog");
@@ -55,89 +56,37 @@ function tooltip(root, { on }) {
 	if (!trigger || !popup) return {};
 	identify(root, popup, "tooltip");
 	trigger.setAttribute("aria-describedby", popup.id);
-	let timer, hideTimer, dismissed = false, hovering = false;
-	const stop = () => {
-		clearTimeout(timer);
-		clearTimeout(hideTimer);
-	};
-	const hide = () => {
-		stop();
-		popup.hidden = true;
-	};
-	const show = () => {
-		stop();
-		if (!dismissed) {
-			popup.hidden = false;
-			place(trigger, popup);
-		}
-	};
-	const hideSoon = () => {
-		clearTimeout(timer);
-		clearTimeout(hideTimer);
-		hideTimer = setTimeout(() => {
-			if (!hovering && root.ownerDocument.activeElement !== trigger) hide();
-		}, 300);
-	};
-	on(trigger, "pointerenter", (event) => {
-		if (event.pointerType !== "touch") {
-			hovering = true;
-			dismissed = false;
-			clearTimeout(hideTimer);
-			if (popup.hidden) timer = setTimeout(show, 300);
-		}
+	const name = () => (trigger.getAttribute("aria-label") || trigger.textContent).trim();
+	const helper = hoverHelper(popup, {
+		trigger: (node) => trigger.contains(node) ? trigger : null,
+		openDelay: 300,
+		label: name
 	});
-	on(root, "pointerleave", (event) => {
-		if (!root.contains(event.relatedTarget)) {
-			hovering = false;
-			dismissed = false;
-			if (root.ownerDocument.activeElement !== trigger) hideSoon();
-		}
-	});
-	on(popup, "pointerenter", () => {
-		hovering = true;
-		stop();
-	});
-	on(trigger, "focus", () => {
-		dismissed = false;
-		show();
-	});
-	on(trigger, "blur", () => {
-		if (!hovering) hide();
-	});
-	on(trigger, "click", () => {
-		dismissed = true;
-		hide();
-	});
+	let press;
+	const stop = () => clearTimeout(press);
 	on(trigger, "pointerdown", (event) => {
 		if (event.pointerType === "touch") {
-			dismissed = false;
-			timer = setTimeout(show, 500);
+			stop();
+			press = setTimeout(() => helper.show(trigger), 500);
 		}
 	});
 	on(trigger, "pointerup", stop);
 	on(trigger, "pointercancel", stop);
-	on(root.ownerDocument, "keydown", (event) => {
-		if (event.key === "Escape" && !popup.hidden) {
-			event.preventDefault();
-			event.stopImmediatePropagation();
-			dismissed = true;
-			hide();
-		}
-	}, { capture: true });
-	on(root.ownerDocument, "scroll", () => {
-		if (!popup.hidden) place(trigger, popup);
-	}, { capture: true });
-	on(root.ownerDocument.defaultView, "resize", () => {
-		if (!popup.hidden) place(trigger, popup);
-	});
-	hide();
 	return {
-		show,
-		hide,
-		get open() {
-			return !popup.hidden;
+		show: () => {
+			helper.show(trigger);
 		},
-		cleanup: hide
+		hide: () => {
+			stop();
+			helper.close();
+		},
+		get open() {
+			return helper.open;
+		},
+		cleanup: () => {
+			stop();
+			helper.destroy();
+		}
 	};
 }
 function popover(root, { on }) {
