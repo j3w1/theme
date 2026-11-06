@@ -252,10 +252,11 @@ export function hoverHelper(helper, options) {
     else { dismissed = target; close(); }
   });
   on(doc, "keydown", event => {
-    if (event.key === "Escape" && (visible() || pending)) {
+    if (event.key === "Escape" && pending && !visible()) { dismissed = pending; cancelOpen(); return; }
+    if (event.key === "Escape" && visible()) {
       const wasPinned = pinned;
       event.preventDefault(); event.stopImmediatePropagation();
-      dismissed = current ?? pending;
+      dismissed = current;
       close(wasPinned || helper.contains(doc.activeElement));
       return;
     }
