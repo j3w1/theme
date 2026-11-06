@@ -288,9 +288,8 @@ reveals) behaves the same way (D-042):
   ahead at the element that received it, as an untrusted copy. Focus is
   compared once, when the content arrives: if it is then anywhere other than
   where it was at the activation, even on the page, the wait is abandoned.
-  A pointer activation survives focus that leaves and returns before then; a
-  keyboard activation does not, because focus leaving the trigger closes the
-  helper that anchors to it.
+  Focus that leaves and returns before then may preserve it; closing the
+  helper, or opening it for another trigger, cancels a pending activation.
   An activation inside a text field, a select or an editable region is never
   held, even when the trigger sits within it, because a copy cannot perform
   its own activation. Enter on a trigger that is not a link or button waits
