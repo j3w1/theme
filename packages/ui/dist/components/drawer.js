@@ -1,10 +1,10 @@
 import { t as J3w1Element } from "../chunks/element-DcrNU9Wh.js";
-import { n as modal } from "../chunks/overlays-BZgvDaS-.js";
+import { n as modal } from "../chunks/overlays-CKBvKZoj.js";
 // .cache/ui-build/entries/components/drawer.js
 var J3w1Drawer = class extends J3w1Element {
 	static componentId = "drawer";
 	static version = "4.0.0";
-	static implementationId = "sha256-Fq7B4H9Pv0Pz7VUQCTxWODDvD9JoFw8j1MtcBof+gbs=";
+	static implementationId = "sha256-0vCqawvYlhUSlHVqa1WYhp7sWr4z/BTj3DwPzFIcXpg=";
 	static connect = modal;
 	static upgradeProperties = [
 		"disabled",

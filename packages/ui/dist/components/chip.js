@@ -1,10 +1,10 @@
 import { t as J3w1Element } from "../chunks/element-DcrNU9Wh.js";
-import { t as feedback } from "../chunks/overlays-BZgvDaS-.js";
+import { t as feedback } from "../chunks/overlays-CKBvKZoj.js";
 // .cache/ui-build/entries/components/chip.js
 var J3w1Chip = class extends J3w1Element {
 	static componentId = "chip";
 	static version = "4.0.0";
-	static implementationId = "sha256-hb7jsk0fh6qadaz/RFeOPG1gKkxRjmfpxyTk1x/WpPM=";
+	static implementationId = "sha256-4K8x6VD21kkK2GEx5p1y5zCDR9eCJRxxknO//tY2jl8=";
 	static connect = feedback;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];
