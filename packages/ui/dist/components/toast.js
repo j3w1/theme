@@ -1,10 +1,10 @@
 import { t as J3w1Element } from "../chunks/element-DcrNU9Wh.js";
-import { t as feedback } from "../chunks/overlays-DUY6TGBE.js";
+import { t as feedback } from "../chunks/overlays-Ci549xru.js";
 // .cache/ui-build/entries/components/toast.js
 var J3w1Toast = class extends J3w1Element {
 	static componentId = "toast";
 	static version = "4.0.0";
-	static implementationId = "sha256-p3zL2z6QHRptZnkGltj9f3MXgfgZgnJmEitQEM3ybj8=";
+	static implementationId = "sha256-U84OvNnAuGr8rnr9DHT/r7lnqqyD76KPAQyGaWTwruY=";
 	static connect = feedback;
 	static upgradeProperties = ["disabled", "name"];
 	static observedAttributes = [...J3w1Element.observedAttributes, ...["disabled", "loading"]];

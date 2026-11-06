@@ -46,7 +46,44 @@ function helperLimits(viewport, { gutter = HOVER_HELPER.gutter } = {}) {
 		maxBlockSize: `min(${HOVER_HELPER.maxBlock}, ${Math.max(0, viewport.height - 2 * gutter)}px)`
 	};
 }
-var controllers = /* @__PURE__ */ new Set();
+var REGISTRY = Symbol.for("j3w1.hover-helper.controllers");
+var registry = (doc) => doc[REGISTRY] ??= /* @__PURE__ */ new Set();
+var REPLAYED = Symbol.for("j3w1.hover-helper.replayed");
+var ENTER_CLICKS = "a[href],area[href],button,input[type=button],input[type=submit],input[type=reset],input[type=image],summary";
+var UNREPLAYABLE = "select,textarea,[contenteditable]:not([contenteditable=\"false\"]),input:not([type=button],[type=submit],[type=reset],[type=image],[type=checkbox],[type=radio])";
+var EVENT_FIELDS = [
+	"bubbles",
+	"cancelable",
+	"composed",
+	"view",
+	"detail",
+	"screenX",
+	"screenY",
+	"clientX",
+	"clientY",
+	"ctrlKey",
+	"shiftKey",
+	"altKey",
+	"metaKey",
+	"button",
+	"buttons",
+	"pointerId",
+	"pointerType",
+	"width",
+	"height",
+	"pressure",
+	"tangentialPressure",
+	"tiltX",
+	"tiltY",
+	"twist",
+	"isPrimary",
+	"key",
+	"code",
+	"location",
+	"repeat",
+	"isComposing"
+];
+var thenable = (value) => typeof value?.then === "function";
 var wheelPixels = (event, element) => event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? element.clientHeight : 1);
 var focusable = (node) => node instanceof HTMLElement && node.isConnected && (node.tabIndex >= 0 || node.matches("a[href],button,input,select,textarea,summary"));
 var SAVED = [
@@ -81,8 +118,8 @@ function hoverHelper(helper, options) {
 		signal: abort.signal
 	});
 	let current = null, mode = null, pinned = false, ready = false, generation = 0;
-	let pointer = null, frame = 0, revalidateFrame = 0, timer = 0, pending = null, dismissed = null, saved = null, returnTo = null, closeButton = null;
-	let lastPointerType = "mouse", restoring = false, pinIntent = null, pressFocus = null, replaying = null;
+	let pointer = null, frame = 0, recheck = false, timer = 0, pending = null, dismissed = null, saved = null, returnTo = null, closeButton = null;
+	let lastPointerType = "mouse", restoring = false, pinIntent = null, activation = null, pressFocus = null, rendering = null;
 	const viewport = () => ({
 		width: doc.documentElement.clientWidth,
 		height: doc.documentElement.clientHeight
@@ -104,10 +141,7 @@ function hoverHelper(helper, options) {
 		if (!active || active === doc.body) return false;
 		return helper.contains(active) || byFocus && !!current?.contains(active) && active.matches(":focus-visible");
 	};
-	const self = {
-		doc,
-		ownsFocus: () => pinned && helper.contains(doc.activeElement)
-	};
+	const self = { ownsFocus: () => pinned && helper.contains(doc.activeElement) };
 	const measure = () => {
 		Object.assign(helper.style, helperLimits(viewport()));
 		helper.style.left = `${HOVER_HELPER.gutter}px`;
@@ -133,11 +167,23 @@ function hoverHelper(helper, options) {
 		helper.style.left = `${at.left}px`;
 		helper.style.top = `${at.top}px`;
 	};
-	const schedule = () => {
-		if (!frame) frame = win.requestAnimationFrame(() => {
-			frame = 0;
-			place();
-		});
+	const tick = () => {
+		frame = 0;
+		const check = recheck;
+		recheck = false;
+		if (!visible()) return;
+		if (check && !pinned && mode === "pointer" && pointer) {
+			const hit = doc.elementFromPoint(pointer.x, pointer.y);
+			if (!hit || triggerOf(hit) !== current) {
+				leave();
+				return;
+			}
+		}
+		place();
+	};
+	const schedule = (check = false) => {
+		if (check) recheck = true;
+		if (!frame) frame = win.requestAnimationFrame(tick);
 	};
 	const show = () => {
 		ready = true;
@@ -146,6 +192,30 @@ function hoverHelper(helper, options) {
 		place();
 		notify();
 	};
+	const STALE = {};
+	const draw = (target) => {
+		if (rendering?.target === target) return rendering.promise;
+		const run = () => {
+			if (current !== target) return STALE;
+			try {
+				return render?.(target, helper);
+			} catch {
+				return false;
+			}
+		};
+		const result = rendering ? rendering.promise.then(run) : run();
+		if (!thenable(result)) return result;
+		const entry = {
+			target,
+			promise: Promise.resolve(result).then((value) => value, () => false)
+		};
+		rendering = entry;
+		entry.promise.then(() => {
+			if (rendering === entry) rendering = null;
+		});
+		return entry.promise;
+	};
+	const failed = (result) => result === false || result === STALE;
 	const cancelOpen = () => {
 		win.clearTimeout(timer);
 		timer = 0;
@@ -158,28 +228,20 @@ function hoverHelper(helper, options) {
 			place();
 			return true;
 		}
+		if (pinIntent === target) return activation;
 		const mine = ++generation;
 		if (pinned) unpin(false);
 		current = target;
 		mode = how;
 		ready = false;
-		let result;
-		try {
-			result = render?.(target, helper);
-			if (result instanceof Promise) result = await result;
-		} catch {
-			result = false;
-		}
+		let result = draw(target);
+		if (thenable(result)) result = await result;
 		if (mine !== generation) return false;
-		if (result === false) {
+		if (failed(result)) {
 			close();
 			return false;
 		}
 		show();
-		if (pinIntent === target) {
-			pinIntent = null;
-			pin();
-		}
 		return true;
 	};
 	const open = (target, how) => {
@@ -274,13 +336,16 @@ function hoverHelper(helper, options) {
 		event.preventDefault();
 		event.stopImmediatePropagation();
 	};
-	const replay = (target) => {
-		replaying = target;
-		try {
-			target.click();
-		} finally {
-			replaying = null;
-		}
+	const replayer = (event, origin, target) => {
+		const init = Object.fromEntries(EVENT_FIELDS.filter((name) => name in event).map((name) => [name, event[name]]));
+		const Type = event.constructor;
+		return () => {
+			const at = origin instanceof Node && origin.isConnected ? origin : target.isConnected ? target : null;
+			if (!at) return;
+			const copy = new Type(event.type, init);
+			copy[REPLAYED] = true;
+			at.dispatchEvent(copy);
+		};
 	};
 	const decide = (target, event) => {
 		if (pinnable()) {
@@ -303,14 +368,9 @@ function hoverHelper(helper, options) {
 		current = target;
 		mode = how;
 		ready = false;
-		let result;
-		try {
-			result = render?.(target, helper);
-		} catch {
-			result = false;
-		}
-		if (!(result instanceof Promise)) {
-			if (result === false) {
+		const result = draw(target);
+		if (!thenable(result)) {
+			if (failed(result)) {
 				close();
 				return;
 			}
@@ -318,18 +378,26 @@ function hoverHelper(helper, options) {
 			decide(target, event);
 			return;
 		}
+		const origin = event.composedPath?.()[0] ?? event.target;
+		const control = origin instanceof Element ? origin.closest(UNREPLAYABLE) : null;
+		if (control && target.contains(control)) {
+			dismissed = target;
+			close();
+			return;
+		}
+		const replay = replayer(event, origin, target);
 		consume(event);
 		pinIntent = target;
-		result.then((value) => value, () => false).then((value) => {
-			if (mine !== generation || pinIntent !== target) return;
+		activation = result.then((value) => {
+			if (mine !== generation || pinIntent !== target) return visible() && current === target;
 			pinIntent = null;
-			if (value === false) {
-				close();
-				replay(target);
-				return;
+			if (failed(value)) close();
+			else {
+				show();
+				if (decide(target, null)) return true;
 			}
-			show();
-			if (!decide(target, null)) replay(target);
+			replay();
+			return false;
 		});
 	};
 	on(doc, "pointermove", (event) => {
@@ -376,12 +444,13 @@ function hoverHelper(helper, options) {
 		if (visible() || pinIntent) close();
 	}, { capture: true });
 	on(doc, "click", (event) => {
+		if (event[REPLAYED]) return;
 		if (closeButton && event.target instanceof Node && closeButton.contains(event.target)) {
 			close(true);
 			return;
 		}
 		const target = triggerOf(event.target);
-		if (!target || replaying === target || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+		if (!target || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
 		const type = event.pointerType || (event.detail === 0 ? "keyboard" : lastPointerType);
 		if (type === "touch" ? !touch : type !== "keyboard" && !pointerTypes.includes(type)) return;
 		if (pinned && target === current) return;
@@ -396,6 +465,7 @@ function hoverHelper(helper, options) {
 		activate(target, (type === "mouse" || type === "pen") && pointer ? "pointer" : "anchor", event);
 	}, { capture: true });
 	on(doc, "keydown", (event) => {
+		if (event[REPLAYED]) return;
 		if (event.key === "Escape") {
 			if (!visible()) {
 				if (pinIntent) close();
@@ -405,7 +475,7 @@ function hoverHelper(helper, options) {
 				}
 				return;
 			}
-			if (!self.ownsFocus() && [...controllers].some((other) => other !== self && other.doc === doc && other.ownsFocus())) return;
+			if (!self.ownsFocus() && [...registry(doc)].some((other) => other !== self && other.ownsFocus?.())) return;
 			const wasPinned = pinned;
 			event.preventDefault();
 			event.stopImmediatePropagation();
@@ -416,6 +486,10 @@ function hoverHelper(helper, options) {
 		if (event.key === "Enter" && !pinned && pinRule !== false && byFocus) {
 			const target = triggerOf(event.target);
 			if (!target || target !== current) return;
+			if (pinIntent === target) {
+				consume(event);
+				return;
+			}
 			if (visible() && ready) {
 				if (pinnable()) {
 					consume(event);
@@ -423,16 +497,15 @@ function hoverHelper(helper, options) {
 				}
 				return;
 			}
-			if (pinRule === true) {
-				consume(event);
-				pinIntent = target;
-			}
+			if (pinRule === true && !(event.target instanceof Element && event.target.matches(ENTER_CLICKS))) activate(target, "anchor", event);
 		}
 	}, { capture: true });
 	on(doc, "focusin", (event) => {
 		const target = event.target;
 		if (restoring || helper.contains(target)) return;
-		const trigger = byFocus ? triggerOf(target) : null;
+		const owner = triggerOf(target);
+		if (pinIntent && owner !== pinIntent) close();
+		const trigger = byFocus ? owner : null;
 		if (trigger) {
 			if (trigger === current && visible()) {
 				if (!pinned && target.matches(":focus-visible")) {
@@ -466,18 +539,8 @@ function hoverHelper(helper, options) {
 		helper.scrollTop += delta;
 	}, { passive: false });
 	const revalidate = (event) => {
-		if (!visible() || revalidateFrame || event?.target instanceof Node && helper.contains(event.target)) return;
-		revalidateFrame = win.requestAnimationFrame(() => {
-			revalidateFrame = 0;
-			if (!visible()) return;
-			if (pinned || mode !== "pointer" || !pointer) {
-				place();
-				return;
-			}
-			const hit = doc.elementFromPoint(pointer.x, pointer.y);
-			if (hit && triggerOf(hit) === current) place();
-			else leave();
-		});
+		if (!visible() || event?.target instanceof Node && helper.contains(event.target)) return;
+		schedule(true);
 	};
 	on(doc, "scroll", revalidate, {
 		capture: true,
@@ -492,12 +555,12 @@ function hoverHelper(helper, options) {
 	on(doc, "visibilitychange", () => {
 		if (doc.hidden) passiveClose();
 	});
-	controllers.add(self);
+	registry(doc).add(self);
 	helper.hidden = true;
 	return {
 		/** Open for a trigger, anchored (as keyboard focus does). */
 		show: (target) => reveal(target, "anchor"),
-		/** Close; focus inside the helper returns to its trigger. */
+		/** Close; focus inside the helper returns to its trigger, or for a trigger with no tab stop to where focus was before the press. */
 		close: closeKeepingFocus,
 		pin,
 		get open() {
@@ -513,9 +576,9 @@ function hoverHelper(helper, options) {
 			closeKeepingFocus();
 			abort.abort();
 			win.cancelAnimationFrame(frame);
-			win.cancelAnimationFrame(revalidateFrame);
-			frame = revalidateFrame = 0;
-			controllers.delete(self);
+			frame = 0;
+			recheck = false;
+			registry(doc).delete(self);
 		}
 	};
 }

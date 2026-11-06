@@ -18,7 +18,7 @@ export declare function interactive(element: Element, except?: Element | null): 
 export interface HoverHelperOptions {
   /** The trigger an event target belongs to, or null. */
   trigger(node: Element): Element | null;
-  /** Fill the helper for a trigger; return false to cancel. Return synchronously when the content is ready. */
+  /** Fill the helper for a trigger; return false to cancel. Return synchronously when the content is ready: an activation that waits for a promise is replayed, untrusted, if it does not pin. One render runs at a time; a trigger already rendering reuses it. */
   render?(trigger: Element, helper: HTMLElement): boolean | void | Promise<boolean | void>;
   /** Pointer open delay in milliseconds: 300 for tooltips, 0 to open at once. */
   openDelay?: number;
@@ -38,7 +38,7 @@ export interface HoverHelperOptions {
 }
 export interface HoverHelper {
   show(trigger: Element): Promise<boolean>;
-  /** Close; focus inside the helper returns to its trigger. */
+  /** Close; focus inside the helper returns to its trigger, or for a trigger with no tab stop to where focus was before the press. */
   close(): void;
   pin(): void;
   readonly open: boolean;
