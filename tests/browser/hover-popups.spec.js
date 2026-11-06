@@ -2,42 +2,114 @@ import { test, expect } from "./evidence-fixture.mjs";
 import { verification } from "./verification.mjs";
 import { only } from "./helpers.mjs";
 
-/* Hover popups with something to read or operate stay open while the pointer
-   moves onto them (foundations, hover popups; WCAG 1.4.13), so a reader can
-   reach a long one and scroll it. Each test approaches the popup the way a
-   person does, diagonally and in small steps. The passive hex preview is
-   covered by hex-swatches.spec.js. */
+/* Hover helpers follow the pointer and close as soon as it leaves the
+   trigger; a long one scrolls with the wheel over its trigger and pins on a
+   click (D-042; foundations, Elevation and layering). The passive hex preview
+   is covered by hex-swatches.spec.js. */
 
 // Wrapped inline links have a union box that includes gaps between lines.
 // Approach an actual painted fragment, as a pointer user does.
 const tokenRect = (token) => token.evaluate(el => el.getClientRects()[0].toJSON());
 
-const centre = (box) => ({ x: box.x + box.width / 2, y: box.y + Math.min(box.height / 2, 24) });
+/* A point on the page that is no link, control, token or helper, for an outside press. */
+const freePoint = (page) => page.evaluate(() => {
+  for (let y = innerHeight - 20; y > 20; y -= 17) for (let x = innerWidth - 40; x > 20; x -= 23) {
+    const hit = document.elementFromPoint(x, y);
+    if (hit && !hit.closest("a, button, input, select, textarea, summary, label, [data-token], [tabindex], #inspector, #hex-popup, .hex-swatch")) return { x, y };
+  }
+  throw new Error("no free point");
+});
 
-test("the token inspector stays open while the pointer moves onto it and scrolls it", verification({ component: "page", category: "enhancements", states: [], variants: [], note: "Token inspector opened by pointer on a component page, reached diagonally and scrolled with the wheel. Pointer only; keyboard opening is covered elsewhere." }), async ({ page }, testInfo) => {
+const box = (locator) => locator.evaluate((el) => { const r = el.getBoundingClientRect(); return { x: r.left, y: r.top, width: r.width, height: r.height }; });
+
+test("the token inspector follows the pointer, scrolls with the wheel over its token and pins on click", verification({ component: "page", category: "enhancements", states: [], variants: [], note: "Token inspector on a component page: pointer following at 12px, wheel over the token scrolling the panel and not the page, click pinning without navigation, pinned panel staying, scrolling and closing by Escape, outside press and its close button with focus returned. Pointer and keyboard in automated Chromium only." }), async ({ page }, testInfo) => {
   test.skip(!only(testInfo, "desktop"), "pointer hover on desktop");
   await page.setViewportSize({ width: 1200, height: 420 });
   await page.goto("components/button/", { waitUntil: "networkidle" });
-  const token = page.locator("main [data-token]:not(.hex-swatch)").first();
+  const token = page.locator("main a[data-token]").first();
   await token.scrollIntoViewIfNeeded();
-  /* Near the top of the viewport the panel opens below the pointer, so the
-     path to it crosses page content that is not the token. */
   await token.evaluate((el) => window.scrollBy(0, el.getBoundingClientRect().top - 60));
   const start = await tokenRect(token);
-  await page.mouse.move(start.x + 2, start.y + start.height / 2);
-  await page.mouse.move(start.x + 4, start.y + start.height / 2);
+  const at = { x: start.x + 4, y: start.y + start.height / 2 };
+  await page.mouse.move(at.x - 2, at.y);
+  await page.mouse.move(at.x, at.y);
   const inspector = page.locator("#inspector");
   await expect(inspector).toBeVisible();
-  expect(await inspector.evaluate((el) => el.scrollHeight > el.clientHeight)).toBe(true);
-  const target = centre(await inspector.boundingBox());
-  await page.mouse.move(target.x, target.y, { steps: 15 });
-  await expect(inspector).toBeVisible();
-  await page.mouse.wheel(0, 120);
+  /* 12px right of and below the pointer, following it; it takes no pointer events. */
+  await expect.poll(async () => { const b = await box(inspector); return [Math.round(b.x - at.x), Math.round(b.y - at.y)]; }).toEqual([12, 12]);
+  await page.mouse.move(at.x + 2, at.y + 1);
+  await expect.poll(async () => { const b = await box(inspector); return [Math.round(b.x - at.x), Math.round(b.y - at.y)]; }).toEqual([14, 13]);
+  await expect(inspector).toHaveCSS("pointer-events", "none");
+  /* Capped at 40vh: it overflows, and the wheel over the token scrolls it, not the page. */
+  expect(await inspector.evaluate((el) => el.scrollHeight > el.clientHeight && el.getBoundingClientRect().height <= innerHeight * 0.4 + 1)).toBe(true);
+  const pageY = await page.evaluate(() => scrollY);
+  await page.mouse.wheel(0, 60);
   await expect.poll(() => inspector.evaluate((el) => el.scrollTop)).toBeGreaterThan(0);
+  expect(await page.evaluate(() => scrollY)).toBe(pageY);
+  /* A click pins it instead of navigating. */
+  const url = page.url();
+  await page.mouse.click(at.x + 2, at.y + 1);
+  await expect(inspector).toHaveAttribute("data-pinned", "");
+  await expect(inspector).toHaveAttribute("role", "dialog");
+  await expect(token).toHaveAttribute("aria-expanded", "true");
+  await expect(token).toHaveAttribute("aria-describedby", "inspector");
+  expect(page.url()).toBe(url);
+  await expect(inspector).toBeFocused();
+  const close = inspector.getByRole("button", { name: "Close" });
+  await expect(close).toBeVisible();
+  /* Pinned, it stays while the pointer moves onto it, and scrolls under the pointer. */
+  const pinned = await box(inspector);
+  await page.mouse.move(pinned.x + pinned.width / 2, pinned.y + pinned.height / 2, { steps: 10 });
   await expect(inspector).toBeVisible();
-  /* Leaving the popup closes it after the grace period. */
+  expect(await box(inspector)).toEqual(pinned);
+  const before = await inspector.evaluate((el) => el.scrollTop);
+  await page.mouse.wheel(0, 60);
+  await expect.poll(() => inspector.evaluate((el) => el.scrollTop)).toBeGreaterThan(before);
   await page.mouse.move(2, 2, { steps: 4 });
+  await page.waitForTimeout(400);
+  await expect(inspector).toBeVisible();
+  /* Escape closes it and returns focus to the token. */
+  await page.keyboard.press("Escape");
   await expect(inspector).toBeHidden();
+  await expect(token).toBeFocused();
+  await expect(token).not.toHaveAttribute("aria-expanded");
+  /* An outside press closes a pinned panel. */
+  await page.mouse.move(at.x, at.y);
+  await page.mouse.click(at.x, at.y);
+  await expect(inspector).toHaveAttribute("data-pinned", "");
+  const free = await freePoint(page);
+  await page.mouse.click(free.x, free.y);
+  await expect(inspector).toBeHidden();
+  expect(page.url()).toBe(url);
+  /* Its close button closes it and returns focus to the token. */
+  await page.mouse.move(at.x, at.y);
+  await page.mouse.click(at.x, at.y);
+  await expect(inspector).toHaveAttribute("data-pinned", "");
+  await close.click();
+  await expect(inspector).toBeHidden();
+  await expect(token).toBeFocused();
+});
+
+test("Enter on a focused token pins its inspector and moves focus into it", verification({ component: "page", category: "keyboard", states: ["focus-visible"], variants: [], note: "Token focused (anchored inspector), Enter pins it without navigating, Tab reaches the close button, Escape closes and returns focus. Automated Chromium only; no manual keyboard pass." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "keyboard on desktop");
+  await page.goto("components/button/", { waitUntil: "networkidle" });
+  const token = page.locator("main a[data-token]").first();
+  await token.scrollIntoViewIfNeeded();
+  await token.focus();
+  const inspector = page.locator("#inspector");
+  await expect(inspector).toBeVisible();
+  const t = await tokenRect(token), p = await box(inspector);
+  expect(p.y).toBeGreaterThanOrEqual(t.y + t.height);
+  const url = page.url();
+  await page.keyboard.press("Enter");
+  await expect(inspector).toHaveAttribute("data-pinned", "");
+  expect(page.url()).toBe(url);
+  await expect(inspector).toBeFocused();
+  await page.keyboard.press("Tab");
+  await expect(inspector.getByRole("button", { name: "Close" })).toBeFocused();
+  await page.keyboard.press("Escape");
+  await expect(inspector).toBeHidden();
+  await expect(token).toBeFocused();
 });
 
 test("a slow inspector load does not open the panel after the pointer has left", verification({ component: "page", category: "enhancements", states: [], variants: [], note: "The first inspector data request is held while the pointer leaves; releasing it must not open a stale panel. Pointer only." }), async ({ page }, testInfo) => {
@@ -57,7 +129,7 @@ test("a slow inspector load does not open the panel after the pointer has left",
   await expect(page.locator("#inspector")).toBeHidden();
 });
 
-test("returning from a hex swatch to the same token reopens the inspector", verification({ component: "page", category: "enhancements", states: [], variants: [], note: "Token, then the swatch in the same table row (its passive preview takes over), then back to the token within the grace period. Pointer only." }), async ({ page }, testInfo) => {
+test("returning from a hex swatch to the same token reopens the inspector", verification({ component: "page", category: "enhancements", states: [], variants: [], note: "Token, then the swatch in the same table row (its passive preview takes over), then back to the token. Pointer only." }), async ({ page }, testInfo) => {
   test.skip(!only(testInfo, "desktop"), "pointer hover on desktop");
   await page.goto("components/button/", { waitUntil: "networkidle" });
   const token = page.locator("main a[data-token]").first();
@@ -120,22 +192,99 @@ test("a keyboard open survives the pointer leaving while the inspector data load
   await expect(token).toBeFocused();
 });
 
-test("a tooltip stays open while the pointer crosses to its popup", verification({ component: "tooltip", category: "enhancements", states: ["hover"], variants: ["default"], note: "First live tooltip on its component page: hover opens it, a diagonal move onto the wider popup keeps it, leaving both closes it. Pointer only." }), async ({ page }, testInfo) => {
+test("a tooltip follows the pointer after its delay and closes as soon as the pointer leaves", verification({ component: "tooltip", category: "enhancements", states: ["hover", "focus-visible"], variants: ["default"], note: "First live tooltip on its component page: hover opens it at 12px from the pointer and it follows; leaving the trigger closes it with no delay; keyboard focus anchors it below the trigger; a click on a short tooltip does not pin. Automated Chromium only." }), async ({ page }, testInfo) => {
   test.skip(!only(testInfo, "desktop"), "pointer hover on desktop");
   await page.goto("components/tooltip/", { waitUntil: "networkidle" });
   const root = page.locator("j3w1-tooltip").first();
   const trigger = root.locator(".tooltip-trigger"), popup = root.locator('[role="tooltip"]');
   await trigger.scrollIntoViewIfNeeded();
   const start = await trigger.boundingBox();
-  await page.mouse.move(start.x + start.width / 2, start.y + start.height / 2);
+  const at = { x: start.x + start.width / 2, y: start.y + start.height / 2 };
+  await page.mouse.move(at.x, at.y);
   await expect(popup).toBeVisible();
-  const box = await popup.boundingBox();
-  /* The popup is wider than its trigger: aim at its far side, so the path
-     leaves the trigger sideways before it reaches the popup. */
-  await page.mouse.move(box.x + box.width - 8, box.y + box.height / 2, { steps: 12 });
+  await expect.poll(async () => { const b = await box(popup); return [Math.round(b.x - at.x), Math.round(b.y - at.y)]; }).toEqual([12, 12]);
+  await page.mouse.move(at.x + 3, at.y + 2);
+  await expect.poll(async () => { const b = await box(popup); return [Math.round(b.x - at.x), Math.round(b.y - at.y)]; }).toEqual([15, 14]);
+  await expect(popup).toHaveCSS("pointer-events", "none");
+  await page.mouse.move(start.x + start.width + 40, at.y);
+  await expect(popup).toBeHidden({ timeout: 250 });
+  /* A short tooltip never pins: a click hides it. */
+  await page.mouse.move(at.x, at.y);
   await expect(popup).toBeVisible();
-  await page.mouse.move(2, 2, { steps: 4 });
+  await trigger.click();
   await expect(popup).toBeHidden();
+  await expect(popup).not.toHaveAttribute("data-pinned");
+  await page.mouse.move(2, 2);
+  /* Keyboard focus anchors it below the trigger. */
+  await trigger.blur();
+  await trigger.focus();
+  await expect(popup).toBeVisible();
+  const t = await trigger.boundingBox(), p = await box(popup);
+  expect(p.y).toBeGreaterThanOrEqual(t.y + t.height);
+  expect(Math.round(p.x)).toBe(Math.round(t.x));
+});
+
+test("a long tooltip scrolls with the wheel over its trigger and pins as a popover", verification({ component: "tooltip", category: "enhancements", states: ["hover", "open"], variants: ["long"], note: "The long live tooltip in a 500px-high viewport: it overflows its 40vh cap, the wheel over the trigger scrolls it and not the page until it reaches its end, and a click pins it with a close button and focus inside. Escape returns focus. Automated Chromium only." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "pointer hover on desktop");
+  await page.setViewportSize({ width: 1200, height: 500 });
+  await page.goto("components/tooltip/", { waitUntil: "networkidle" });
+  const root = page.locator("j3w1-tooltip#example-tooltip-long");
+  const trigger = root.locator(".tooltip-trigger"), popup = root.locator(".tooltip-popup");
+  await trigger.scrollIntoViewIfNeeded();
+  await trigger.evaluate((el) => window.scrollBy(0, el.getBoundingClientRect().top - 120));
+  const start = await trigger.boundingBox();
+  const at = { x: start.x + 6, y: start.y + start.height / 2 };
+  await page.mouse.move(at.x, at.y);
+  await expect(popup).toBeVisible();
+  const b = await box(popup);
+  expect(b.height).toBeLessThanOrEqual(500 * 0.4 + 1);
+  expect(await popup.evaluate((el) => el.scrollHeight > el.clientHeight)).toBe(true);
+  /* The wheel over the trigger scrolls the popup, never the page, until the popup's end. */
+  const pageY = await page.evaluate(() => scrollY);
+  await page.mouse.wheel(0, 80);
+  await expect.poll(() => popup.evaluate((el) => el.scrollTop)).toBeGreaterThan(0);
+  expect(await page.evaluate(() => scrollY)).toBe(pageY);
+  await popup.evaluate((el) => { el.scrollTop = el.scrollHeight; });
+  await page.mouse.wheel(0, 80);
+  await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(pageY);
+  await trigger.evaluate((el) => window.scrollBy(0, el.getBoundingClientRect().top - 120));
+  const again = await trigger.boundingBox();
+  await page.mouse.move(again.x + 6, again.y + again.height / 2);
+  await expect(popup).toBeVisible();
+  /* A click pins it as a popover. */
+  await page.mouse.click(again.x + 6, again.y + again.height / 2);
+  await expect(popup).toHaveAttribute("data-pinned", "");
+  await expect(popup).toHaveAttribute("role", "dialog");
+  await expect(popup).toHaveAccessibleName("Layout");
+  await expect(trigger).toHaveAttribute("aria-expanded", "true");
+  await expect(trigger).toHaveAttribute("aria-describedby", await popup.getAttribute("id"));
+  await expect(popup).toBeFocused();
+  await expect(popup).toHaveCSS("pointer-events", "auto");
+  await expect(popup.getByRole("button", { name: "Close" })).toBeVisible();
+  await page.mouse.move(2, 2, { steps: 4 });
+  await expect(popup).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(popup).toBeHidden();
+  await expect(popup).toHaveAttribute("role", "tooltip");
+  await expect(trigger).toBeFocused();
+});
+
+test("a following helper flips to the pointer's left and top near the viewport edges", verification({ component: "tooltip", category: "reflow", states: ["hover"], variants: ["long"], note: "The long live tooltip's trigger moved to the bottom-right corner of the viewport: the popup opens left of and above the pointer, inside the 8px gutter. Automated Chromium only." }), async ({ page }, testInfo) => {
+  test.skip(!only(testInfo, "desktop"), "pointer hover on desktop");
+  await page.setViewportSize({ width: 1200, height: 600 });
+  await page.goto("components/tooltip/", { waitUntil: "networkidle" });
+  const root = page.locator("j3w1-tooltip#example-tooltip-long");
+  const trigger = root.locator(".tooltip-trigger"), popup = root.locator(".tooltip-popup");
+  /* Fixed in the corner, so the test does not depend on the page layout. */
+  await trigger.evaluate((el) => Object.assign(el.style, { position: "fixed", right: "4px", bottom: "4px" }));
+  const t = await trigger.boundingBox();
+  const at = { x: t.x + t.width - 4, y: t.y + t.height - 4 };
+  await page.mouse.move(at.x, at.y);
+  await expect(popup).toBeVisible();
+  await expect.poll(async () => { const b = await box(popup); return [Math.round(at.x - (b.x + b.width)), Math.round(at.y - (b.y + b.height))]; }).toEqual([12, 12]);
+  const b = await box(popup);
+  expect(b.x).toBeGreaterThanOrEqual(8);
+  expect(b.y).toBeGreaterThanOrEqual(8);
 });
 
 test("hovering another token does not take over a panel that keyboard focus holds", verification({ component: "page", category: "keyboard", states: ["focus-visible"], variants: [], note: "Inspector opened by focus on token A with focus moved to its details link, and separately A focused while its data loads; the pointer hovers token B. A's panel and focus must stay. A click on the page background then closes it. Automated Chromium only." }), async ({ page }, testInfo) => {
@@ -234,7 +383,7 @@ test("a keyboard-opened inspector follows its token on scroll and stays inside a
   await expect(token).toBeFocused();
 });
 
-test("an inspector under the pointer stays inside a viewport that narrows", verification({ component: "page", category: "reflow", states: [], variants: [], note: "Inspector opened by pointer, pointer resting on the panel, viewport narrowed to 360px: the panel stays inside the 8px gutter. Pointer only." }), async ({ page }, testInfo) => {
+test("a pinned inspector stays inside a viewport that narrows", verification({ component: "page", category: "reflow", states: [], variants: [], note: "Inspector pinned by a click, pointer resting on the panel, viewport narrowed to 360px: the pinned panel stays open inside the 8px gutter. Pointer only." }), async ({ page }, testInfo) => {
   test.skip(!only(testInfo, "desktop"), "pointer hover on desktop");
   await page.goto("components/button/", { waitUntil: "networkidle" });
   const token = page.locator("main a[data-token]").first();
@@ -245,19 +394,16 @@ test("an inspector under the pointer stays inside a viewport that narrows", veri
   await page.mouse.move(start.x + 4, start.y + start.height / 2);
   const inspector = page.locator("#inspector");
   await expect(inspector).toBeVisible();
-  const box = await inspector.boundingBox();
-  await page.mouse.move(box.x + box.width / 2, box.y + Math.min(box.height / 2, 24), { steps: 10 });
+  await page.mouse.click(start.x + 4, start.y + start.height / 2);
+  await expect(inspector).toHaveAttribute("data-pinned", "");
+  const b = await inspector.boundingBox();
+  await page.mouse.move(b.x + b.width / 2, b.y + Math.min(b.height / 2, 24), { steps: 10 });
   await page.setViewportSize({ width: 360, height: 700 });
-  /* Right after the resize the panel is clamped inside the gutter, never
-     clipped. The pointer now lies outside the narrower viewport, so the panel
-     then closes after the grace period, as the hover popup rule says. */
-  const inGutterOrClosed = () => inspector.evaluate((el) => {
+  const inGutter = () => inspector.evaluate((el) => {
     const r = el.getBoundingClientRect();
-    return el.hidden || (r.left >= 8 && r.right <= innerWidth - 8 && r.top >= 8 && r.bottom <= innerHeight - 8);
+    return !el.hidden && r.left >= 8 && r.right <= document.documentElement.clientWidth - 8 && r.top >= 8 && r.bottom <= innerHeight - 8;
   });
-  /* Let the resize event and its repositioning frame run, then sample until
-     the grace period has passed: visible means inside the gutter. */
-  await page.waitForTimeout(100);
-  for (let i = 0; i < 6; i++) { expect(await inGutterOrClosed()).toBe(true); await page.waitForTimeout(60); }
-  await expect(inspector).toBeHidden();
+  await expect.poll(inGutter).toBe(true);
+  await page.waitForTimeout(400);
+  expect(await inGutter()).toBe(true);
 });

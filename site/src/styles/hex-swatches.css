@@ -1,11 +1,14 @@
 /* D-014: literal preview geometry is an explicit spec-UI exception. */
+/* Passive while it follows; pinned (D-042) it takes pointer events and
+   scrolls. Its long match list scrolls instead of being cut off. */
 .hex-popup {
   pointer-events: none;
   max-width: min(24rem, calc(100vw - 16px));
-  max-height: calc(100vh - 16px);
-  overflow: hidden;
+  max-height: min(40vh, calc(100vh - 16px));
+  overflow: auto;
   overflow-wrap: anywhere;
 }
+.hex-popup[data-pinned] { pointer-events: auto; user-select: text; }
 .hex-literal { white-space: nowrap; }
 .hex-swatch {
   display: inline-block;

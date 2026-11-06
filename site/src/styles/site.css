@@ -399,7 +399,9 @@
 
 .eligibility { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); font-size: var(--font-size-caption); line-height: var(--font-line-height-caption); }
 .eligibility > * { white-space: nowrap; }
-.inspector { max-height: 60vh; overflow: auto; }
+/* D-042: every hover helper is capped at 40vh and scrolls. */
+.inspector { max-height: min(40vh, calc(100vh - 16px)); overflow: auto; }
+.inspector[data-pinned] { user-select: text; }
 
 /* Hub contents occupy normal flow; families and components form a compact
    static index. Details remain on their own pages. */

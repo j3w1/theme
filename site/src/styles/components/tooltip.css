@@ -1,8 +1,9 @@
 /* tooltip — reference CSS. The popup is rendered in flow below the trigger
-   in the demonstration; a host positions it with its anchoring primitive at
-   z.popover. Visibility is the hidden attribute; hover and focus on the
-   trigger are the real triggers and are paired with the forced-state
-   attributes the state matrix emits. Token variables only. */
+   in the demonstration; live, the shared hover-helper script positions it
+   fixed at z.popover: beside the pointer, or anchored to the trigger for
+   keyboard and touch (D-042). Visibility is the hidden attribute; hover and
+   focus on the trigger are the real triggers and are paired with the
+   forced-state attributes the state matrix emits. Token variables only. */
 
 .tooltip {
   display: grid;
@@ -28,6 +29,9 @@
 .tooltip-popup {
   z-index: var(--z-popover);
   max-width: min(24rem, 100%);
+  /* D-042: a long description scrolls instead of growing past 40vh. */
+  max-height: 40vh;
+  overflow: auto;
   padding: var(--space-4) var(--space-8);
   background: var(--color-surface-raised);
   border: var(--border-width-default) solid var(--color-border-overlay);
@@ -40,6 +44,41 @@
 
 .tooltip-popup[hidden] {
   display: none;
+}
+
+/* pinned (D-042): a tooltip too long to read in passing becomes a popover.
+   It stops following the pointer, takes pointer events and text selection,
+   and carries a close button that stays in view while it scrolls. */
+.tooltip-popup[data-pinned] {
+  user-select: text;
+}
+
+.tooltip-close {
+  position: sticky;
+  top: 0;
+  float: inline-end;
+  display: inline-grid;
+  place-items: center;
+  min-width: 24px;
+  min-height: 24px;
+  margin-inline-start: var(--space-8);
+  padding: 0;
+  background: var(--color-surface-raised);
+  border: var(--border-width-default) solid var(--color-border-control);
+  border-radius: var(--radius-none);
+  color: var(--color-action-tertiary-text);
+  font: inherit;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.tooltip-close:hover {
+  background: var(--color-action-tertiary-hover-bg);
+}
+
+.tooltip-close:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
 }
 
 .tooltip-shortcut {
@@ -78,9 +117,16 @@
   display: none;
 }
 
+/* Only opacity may ease; following the pointer is always instant. */
 @media (prefers-reduced-motion: no-preference) {
   .tooltip-popup {
     transition: opacity var(--motion-duration-fast);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tooltip-popup {
+    transition: none;
   }
 }
 
@@ -93,6 +139,15 @@
 @media (forced-colors: active) {
   .tooltip-popup {
     border-color: CanvasText;
+  }
+
+  .tooltip-close {
+    border-color: ButtonText;
+    color: ButtonText;
+  }
+
+  .tooltip-close:focus-visible {
+    outline-color: Highlight;
   }
 
   .tooltip-trigger:focus-visible,
