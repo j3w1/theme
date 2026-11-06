@@ -831,14 +831,15 @@ test("R1: a trigger inside an editable region keeps the editor's own activation"
   await expect(page.locator("#fx-editor")).toBeFocused();
 });
 
-test("R2: a replayed click on a pinned helper's close button closes it", verification({ component: "tooltip", category: "enhancements", states: ["open"], variants: [], note: "Fixture: a pinned helper P, and an earlier-registered helper Q whose triggers are close buttons and whose asynchronous content is short. Q holds the click on P's close button, then replays it: P must close and return focus to its trigger. Automated Chromium only." }), async ({ page }, testInfo) => {
+test("R2: a replayed click on a pinned helper's close button closes it", verification({ component: "tooltip", category: "enhancements", states: ["open"], variants: [], note: "Fixture: a pinned helper P, and an earlier-registered helper Q whose triggers are close buttons and whose asynchronous content the test releases after the click. Q must hold the click (it does not reach the close button), then replay it once, untrusted: P must close and return focus to its trigger. Automated Chromium only." }), async ({ page }, testInfo) => {
   test.skip(!only(testInfo, "desktop"), "pointer on desktop");
   await page.goto("components/tooltip/", { waitUntil: "networkidle" });
   await fixtureHelper(page, `
     document.body.insertAdjacentHTML("afterbegin", '<div id="fx" style="position:fixed;left:40px;top:40px;z-index:9999"><button type="button" id="fx-p">P</button><div id="fx-p-help" class="tooltip-popup"></div><div id="fx-q-help" class="tooltip-popup"></div></div>');
+    window.__fx = { release: [], clicks: [] };
     hoverHelper(document.querySelector("#fx-q-help"), {
       trigger: (node) => node.closest(".tooltip-close"),
-      render: (trigger, box) => new Promise((resolve) => setTimeout(() => { box.textContent = "Close this panel."; resolve(); }, 100)),
+      render: (trigger, box) => new Promise((resolve) => window.__fx.release.push(() => { box.textContent = "Close this panel."; resolve(); })),
     });
     hoverHelper(document.querySelector("#fx-p-help"), {
       trigger: (node) => node.closest("#fx-p"),
@@ -847,8 +848,15 @@ test("R2: a replayed click on a pinned helper's close button closes it", verific
   const p = page.locator("#fx-p-help");
   await page.locator("#fx-p").click();
   await expect(p).toHaveAttribute("data-pinned", "");
+  await page.evaluate(() => document.querySelector("#fx-p-help .tooltip-close").addEventListener("click", (event) => window.__fx.clicks.push(event.isTrusted)));
   await p.getByRole("button", { name: "Close" }).click();
+  /* Q is still rendering, so it holds the click: the button has seen none and P is open. */
+  expect(await page.evaluate(() => window.__fx.clicks)).toEqual([]);
+  await expect(p).toHaveAttribute("data-pinned", "");
+  await page.evaluate(() => { for (const release of window.__fx.release.splice(0)) release(); });
   await expect(p).toBeHidden();
+  /* Exactly one click reached the button after the release, and it was Q's replay. */
+  expect(await page.evaluate(() => window.__fx.clicks)).toEqual([false]);
   await expect(page.locator("#fx-p")).toBeFocused();
 });
 

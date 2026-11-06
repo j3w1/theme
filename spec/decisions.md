@@ -71,7 +71,7 @@ ordered by topic.
 | D-024 | Distinguish links from body text and headings | accepted | 2026-09-08 | owner (explicit preview correction) |
 | D-025 | Theme interactive controls throughout the portal and demo | accepted | 2026-09-09 | owner (explicit native-control replacement request) |
 | D-040 | One contrast focus ring for fills and invalid fields | accepted | 2026-10-15 | owner (explicit choice: one role, focus.ring-contrast) |
-| D-042 | Hover helpers follow the pointer; long ones scroll and pin | proposed | 2026-11-06 | — (requested by the owner; to be accepted once delivered and verified) |
+| D-042 | Hover helpers follow the pointer; long ones scroll and pin | accepted | 2026-11-06 | j3w1 (answered Accept D-042 on CE card oq-95b0074a4e1c13c6bd1652ce) |
 
 ### Site, tools and distribution
 
@@ -734,10 +734,12 @@ its content, a limitation recorded in `spec/accessibility.md`. This supersedes
 the 8px pointer gap and the reachable-popup grace period in foundations and
 the tooltip's "following the pointer" non-example.
 
-**Status.** proposed · 2026-11-06 · requested by the owner: hover helpers follow
+**Status.** accepted · 2026-11-06 · j3w1, who requested it (hover helpers follow
 the mouse pointer as the standard for j3w1/theme, and a long helper becomes
-scrollable. The owner accepts it once it is delivered and verified. The 12px offset, 40vh cap and pinning design
-implement that request; they add no colour, role or token value.
+scrollable) and answered Accept D-042 on CE card
+`oq-95b0074a4e1c13c6bd1652ce`, once it was delivered and verified. The 12px
+offset, 40vh cap and pinning design implement that request; they add no
+colour, role or token value.
 
 ## D-016 Pinned release comparison report and historical rendering
 
