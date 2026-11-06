@@ -286,9 +286,12 @@ reveals) behaves the same way (D-042):
   performs it. When the content is still loading, the activation waits for
   it: it pins a helper that needs pinning, and otherwise the activation goes
   ahead at the element that received it, as an untrusted copy. Focus moving
-  elsewhere first abandons the wait. A text field, select or editable region
-  is never held, because a copy cannot perform its own activation. A helper
-  that fits and holds only text never pins: a short tooltip stays a tooltip.
+  anywhere before the content arrives, even to the page, abandons the wait.
+  An activation inside a text field, a select or an editable region is never
+  held, even when the trigger sits within it, because a copy cannot perform
+  its own activation. Enter on a trigger that is not a link or button waits
+  the same way. A helper that fits and holds only text never pins: a short
+  tooltip stays a tooltip.
   When a pinned helper holds focus, Escape closes it before any other open
   helper, including one run by another copy of the implementation.
 - **Hovering never moves focus.**
