@@ -38,6 +38,15 @@ function canScroll(element, delta) {
 var overflows = (element) => element.scrollHeight > element.clientHeight + 1 || element.scrollWidth > element.clientWidth + 1;
 var INTERACTIVE = "a[href],button,input,select,textarea,summary,[contenteditable],[tabindex]:not([tabindex=\"-1\"])";
 var interactive = (element, except) => [...element.querySelectorAll(INTERACTIVE)].some((node) => node !== except && !except?.contains(node));
+/** The size cap for a helper, from the same viewport its placement uses
+(documentElement.clientWidth/Height, which exclude classic scrollbars). */
+function helperLimits(viewport, { gutter = HOVER_HELPER.gutter } = {}) {
+	return {
+		maxInlineSize: `min(${HOVER_HELPER.maxInline}, ${Math.max(0, viewport.width - 2 * gutter)}px)`,
+		maxBlockSize: `min(${HOVER_HELPER.maxBlock}, ${Math.max(0, viewport.height - 2 * gutter)}px)`
+	};
+}
+var controllers = /* @__PURE__ */ new Set();
 var wheelPixels = (event, element) => event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? element.clientHeight : 1);
 var focusable = (node) => node instanceof HTMLElement && node.isConnected && (node.tabIndex >= 0 || node.matches("a[href],button,input,select,textarea,summary"));
 var SAVED = [
@@ -72,14 +81,17 @@ function hoverHelper(helper, options) {
 		signal: abort.signal
 	});
 	let current = null, mode = null, pinned = false, ready = false, generation = 0;
-	let pointer = null, frame = 0, timer = 0, pending = null, dismissed = null, saved = null, returnTo = null, closeButton = null, lastPointerType = "mouse", restoring = false;
+	let pointer = null, frame = 0, revalidateFrame = 0, timer = 0, pending = null, dismissed = null, saved = null, returnTo = null, closeButton = null;
+	let lastPointerType = "mouse", restoring = false, pinIntent = null, pressFocus = null, replaying = null;
+	const viewport = () => ({
+		width: doc.documentElement.clientWidth,
+		height: doc.documentElement.clientHeight
+	});
 	Object.assign(helper.style, {
 		position: "fixed",
-		maxInlineSize: `min(${HOVER_HELPER.maxInline}, calc(100vw - ${2 * HOVER_HELPER.gutter}px))`,
-		maxBlockSize: `min(${HOVER_HELPER.maxBlock}, calc(100vh - ${2 * HOVER_HELPER.gutter}px))`,
 		overflow: "auto",
 		pointerEvents: "none"
-	});
+	}, helperLimits(viewport()));
 	const visible = () => !helper.hidden && !!current;
 	const notify = () => onChange?.({
 		open: visible(),
@@ -92,11 +104,12 @@ function hoverHelper(helper, options) {
 		if (!active || active === doc.body) return false;
 		return helper.contains(active) || byFocus && !!current?.contains(active) && active.matches(":focus-visible");
 	};
-	const viewport = () => ({
-		width: doc.documentElement.clientWidth,
-		height: doc.documentElement.clientHeight
-	});
+	const self = {
+		doc,
+		ownsFocus: () => pinned && helper.contains(doc.activeElement)
+	};
 	const measure = () => {
+		Object.assign(helper.style, helperLimits(viewport()));
 		helper.style.left = `${HOVER_HELPER.gutter}px`;
 		helper.style.top = `${HOVER_HELPER.gutter}px`;
 		const { width, height } = helper.getBoundingClientRect();
@@ -125,6 +138,13 @@ function hoverHelper(helper, options) {
 			frame = 0;
 			place();
 		});
+	};
+	const show = () => {
+		ready = true;
+		helper.hidden = false;
+		helper.scrollTop = 0;
+		place();
+		notify();
 	};
 	const cancelOpen = () => {
 		win.clearTimeout(timer);
@@ -155,11 +175,11 @@ function hoverHelper(helper, options) {
 			close();
 			return false;
 		}
-		ready = true;
-		helper.hidden = false;
-		helper.scrollTop = 0;
-		place();
-		notify();
+		show();
+		if (pinIntent === target) {
+			pinIntent = null;
+			pin();
+		}
 		return true;
 	};
 	const open = (target, how) => {
@@ -180,6 +200,7 @@ function hoverHelper(helper, options) {
 	function close(restore = false) {
 		cancelOpen();
 		generation++;
+		pinIntent = null;
 		const target = current, back = returnTo;
 		if (pinned) unpin(false);
 		const was = visible();
@@ -190,16 +211,19 @@ function hoverHelper(helper, options) {
 		if (restore) {
 			dismissed = target;
 			restoring = true;
+			const destination = focusable(target) ? target : back?.isConnected ? back : null;
 			try {
-				(focusable(target) ? target : back)?.focus({ preventScroll: true });
+				if (destination) destination.focus({ preventScroll: true });
+				else if (helper.contains(doc.activeElement)) doc.activeElement.blur();
 			} finally {
 				restoring = false;
 			}
 		}
 		if (was) notify();
 	}
+	const closeKeepingFocus = () => close(helper.contains(doc.activeElement));
 	const leave = () => {
-		if (pinned) return;
+		if (pinned || pinIntent) return;
 		if (holdsFocus()) {
 			mode = "anchor";
 			schedule();
@@ -211,8 +235,9 @@ function hoverHelper(helper, options) {
 	function pin() {
 		if (pinned || !visible()) return;
 		pinned = true;
+		pinIntent = null;
 		const active = doc.activeElement;
-		returnTo = active && active !== doc.body && !helper.contains(active) ? active : null;
+		returnTo = active && active !== doc.body && !helper.contains(active) ? active : pressFocus;
 		saved = Object.fromEntries(SAVED.map((name) => [name, helper.getAttribute(name)]));
 		helper.setAttribute("role", "dialog");
 		helper.removeAttribute("aria-hidden");
@@ -245,11 +270,73 @@ function hoverHelper(helper, options) {
 		saved = null;
 		if (notifyChange) notify();
 	}
+	const consume = (event) => {
+		event.preventDefault();
+		event.stopImmediatePropagation();
+	};
+	const replay = (target) => {
+		replaying = target;
+		try {
+			target.click();
+		} finally {
+			replaying = null;
+		}
+	};
+	const decide = (target, event) => {
+		if (pinnable()) {
+			if (event) consume(event);
+			pin();
+			return true;
+		}
+		dismissed = target;
+		close();
+		return false;
+	};
+	const activate = (target, how, event) => {
+		if (current === target && visible() && ready) {
+			decide(target, event);
+			return;
+		}
+		cancelOpen();
+		const mine = ++generation;
+		if (pinned) unpin(false);
+		current = target;
+		mode = how;
+		ready = false;
+		let result;
+		try {
+			result = render?.(target, helper);
+		} catch {
+			result = false;
+		}
+		if (!(result instanceof Promise)) {
+			if (result === false) {
+				close();
+				return;
+			}
+			show();
+			decide(target, event);
+			return;
+		}
+		consume(event);
+		pinIntent = target;
+		result.then((value) => value, () => false).then((value) => {
+			if (mine !== generation || pinIntent !== target) return;
+			pinIntent = null;
+			if (value === false) {
+				close();
+				replay(target);
+				return;
+			}
+			show();
+			if (!decide(target, null)) replay(target);
+		});
+	};
 	on(doc, "pointermove", (event) => {
 		lastPointerType = event.pointerType;
 		if (pinned) return;
 		if (!pointerTypes.includes(event.pointerType)) {
-			if (mode === "pointer" || pending) close();
+			if (!pinIntent && (mode === "pointer" || pending)) close();
 			return;
 		}
 		pointer = {
@@ -263,8 +350,9 @@ function hoverHelper(helper, options) {
 			if (mode === "pointer") leave();
 			return;
 		}
-		if (current && target !== current && holdsFocus()) return;
-		if (target === current && visible()) {
+		if (current && target !== current && (holdsFocus() || pinIntent)) return;
+		if (target === current && (visible() || pinIntent)) {
+			if (mode === "anchor" && holdsFocus() || pinIntent) return;
 			mode = "pointer";
 			schedule();
 			return;
@@ -280,61 +368,44 @@ function hoverHelper(helper, options) {
 	});
 	on(doc, "pointerdown", (event) => {
 		lastPointerType = event.pointerType;
+		const active = doc.activeElement;
+		if (!(active && helper.contains(active))) pressFocus = active && active !== doc.body ? active : null;
 		const target = event.target instanceof Node ? event.target : null;
-		if (!visible() || target && (helper.contains(target) || current.contains(target))) return;
-		close();
+		const owner = current ?? pinIntent;
+		if (!owner || target && (helper.contains(target) || owner.contains(target))) return;
+		if (visible() || pinIntent) close();
 	}, { capture: true });
 	on(doc, "click", (event) => {
+		if (closeButton && event.target instanceof Node && closeButton.contains(event.target)) {
+			close(true);
+			return;
+		}
 		const target = triggerOf(event.target);
-		if (!target || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+		if (!target || replaying === target || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
 		const type = event.pointerType || (event.detail === 0 ? "keyboard" : lastPointerType);
 		if (type === "touch" ? !touch : type !== "keyboard" && !pointerTypes.includes(type)) return;
 		if (pinned && target === current) return;
+		if (pinIntent === target) {
+			consume(event);
+			return;
+		}
 		if (pinRule === false) {
 			if (visible()) close();
 			return;
 		}
-		if (pinRule === true) {
-			event.preventDefault();
-			if (current === target && visible() && ready) {
-				pin();
-				return;
-			}
-			reveal(target, type === "mouse" || type === "pen" ? "pointer" : "anchor").then((shown) => {
-				if (shown && current === target) pin();
-			});
-			return;
-		}
-		if (!(current === target && visible())) {
-			const how = (type === "mouse" || type === "pen") && pointer ? "pointer" : "anchor";
-			cancelOpen();
-			generation++;
-			current = target;
-			mode = how;
-			const result = render?.(target, helper);
-			if (result instanceof Promise || result === false) {
-				close();
-				return;
-			}
-			ready = true;
-			helper.hidden = false;
-			place();
-		}
-		if (pinnable()) {
-			event.preventDefault();
-			pin();
-		} else {
-			dismissed = target;
-			close();
-		}
-	});
+		activate(target, (type === "mouse" || type === "pen") && pointer ? "pointer" : "anchor", event);
+	}, { capture: true });
 	on(doc, "keydown", (event) => {
-		if (event.key === "Escape" && pending && !visible()) {
-			dismissed = pending;
-			cancelOpen();
-			return;
-		}
-		if (event.key === "Escape" && visible()) {
+		if (event.key === "Escape") {
+			if (!visible()) {
+				if (pinIntent) close();
+				else if (pending) {
+					dismissed = pending;
+					cancelOpen();
+				}
+				return;
+			}
+			if (!self.ownsFocus() && [...controllers].some((other) => other !== self && other.doc === doc && other.ownsFocus())) return;
 			const wasPinned = pinned;
 			event.preventDefault();
 			event.stopImmediatePropagation();
@@ -344,10 +415,17 @@ function hoverHelper(helper, options) {
 		}
 		if (event.key === "Enter" && !pinned && pinRule !== false && byFocus) {
 			const target = triggerOf(event.target);
-			if (!target || target !== current || !visible() || !ready) return;
-			if (pinRule === true || pinnable()) {
-				event.preventDefault();
-				pin();
+			if (!target || target !== current) return;
+			if (visible() && ready) {
+				if (pinnable()) {
+					consume(event);
+					pin();
+				}
+				return;
+			}
+			if (pinRule === true) {
+				consume(event);
+				pinIntent = target;
 			}
 		}
 	}, { capture: true });
@@ -356,7 +434,14 @@ function hoverHelper(helper, options) {
 		if (restoring || helper.contains(target)) return;
 		const trigger = byFocus ? triggerOf(target) : null;
 		if (trigger) {
-			if (trigger === current && visible()) return;
+			if (trigger === current && visible()) {
+				if (!pinned && target.matches(":focus-visible")) {
+					mode = "anchor";
+					schedule();
+				}
+				return;
+			}
+			if (trigger === pinIntent) return;
 			dismissed = null;
 			if (pinned) close();
 			reveal(trigger, "anchor");
@@ -367,15 +452,12 @@ function hoverHelper(helper, options) {
 	on(doc, "focusout", (event) => {
 		if (event.relatedTarget || pinned) return;
 		queueMicrotask(() => {
-			if (pinned || holdsFocus() || current?.matches(":hover")) return;
+			if (pinned || pinIntent || holdsFocus() || current?.matches(":hover")) return;
 			if (current) close();
 		});
 	});
-	on(doc, "click", (event) => {
-		if (closeButton && event.target instanceof Node && closeButton.contains(event.target)) close(true);
-	});
 	on(doc, "wheel", (event) => {
-		if (!visible() || pinned && helper.contains(event.target)) return;
+		if (event.ctrlKey || !visible() || pinned && helper.contains(event.target)) return;
 		const target = event.target instanceof Node ? event.target : null;
 		if (!target || !current.contains(target)) return;
 		const delta = wheelPixels(event, helper);
@@ -384,13 +466,14 @@ function hoverHelper(helper, options) {
 		helper.scrollTop += delta;
 	}, { passive: false });
 	const revalidate = (event) => {
-		if (!visible() || event?.target instanceof Node && helper.contains(event.target)) return;
-		if (pinned || mode !== "pointer" || !pointer) {
-			schedule();
-			return;
-		}
-		win.requestAnimationFrame(() => {
-			if (!visible() || pinned || mode !== "pointer") return;
+		if (!visible() || revalidateFrame || event?.target instanceof Node && helper.contains(event.target)) return;
+		revalidateFrame = win.requestAnimationFrame(() => {
+			revalidateFrame = 0;
+			if (!visible()) return;
+			if (pinned || mode !== "pointer" || !pointer) {
+				place();
+				return;
+			}
 			const hit = doc.elementFromPoint(pointer.x, pointer.y);
 			if (hit && triggerOf(hit) === current) place();
 			else leave();
@@ -402,18 +485,20 @@ function hoverHelper(helper, options) {
 	});
 	on(win, "resize", revalidate);
 	const passiveClose = () => {
-		if (!pinned) close();
+		if (!pinned && !pinIntent) close();
 	};
 	on(win, "blur", passiveClose);
 	on(doc, "pointercancel", passiveClose);
 	on(doc, "visibilitychange", () => {
 		if (doc.hidden) passiveClose();
 	});
+	controllers.add(self);
 	helper.hidden = true;
 	return {
 		/** Open for a trigger, anchored (as keyboard focus does). */
 		show: (target) => reveal(target, "anchor"),
-		close: () => close(),
+		/** Close; focus inside the helper returns to its trigger. */
+		close: closeKeepingFocus,
 		pin,
 		get open() {
 			return visible();
@@ -425,10 +510,13 @@ function hoverHelper(helper, options) {
 			return current;
 		},
 		destroy() {
-			close();
+			closeKeepingFocus();
 			abort.abort();
 			win.cancelAnimationFrame(frame);
+			win.cancelAnimationFrame(revalidateFrame);
+			frame = revalidateFrame = 0;
+			controllers.delete(self);
 		}
 	};
 }
-export { hoverHelper as a, followPoint as i, anchorPoint as n, interactive as o, canScroll as r, overflows as s, HOVER_HELPER as t };
+export { helperLimits as a, overflows as c, followPoint as i, anchorPoint as n, hoverHelper as o, canScroll as r, interactive as s, HOVER_HELPER as t };

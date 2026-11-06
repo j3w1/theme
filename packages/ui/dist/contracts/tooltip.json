@@ -135,7 +135,9 @@
       "density.compact.control-height",
       "density.compact.control-padding-x",
       "focus.offset",
+      "focus.offset-container",
       "focus.ring",
+      "focus.ring-container",
       "font.family.mono",
       "font.line-height.ui-md",
       "font.line-height.ui-sm",
@@ -157,6 +159,7 @@
       "color.border.overlay",
       "color.interaction.drop-target",
       "color.interaction.focus.ring",
+      "color.interaction.focus.ring-container",
       "color.interaction.selection.bg",
       "color.interaction.selection.text",
       "color.interaction.text-selection.bg",
@@ -180,7 +183,9 @@
       "density.compact.control-height",
       "density.compact.control-padding-x",
       "focus.offset",
+      "focus.offset-container",
       "focus.ring",
+      "focus.ring-container",
       "font.family.mono",
       "font.line-height.ui-md",
       "font.line-height.ui-sm",
@@ -294,7 +299,17 @@
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
       },
+      "focus.offset-container": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
       "focus.ring": {
+        "action": "use",
+        "reason": "Use within the role's documented scope and restrictions.",
+        "decisionIds": []
+      },
+      "focus.ring-container": {
         "action": "use",
         "reason": "Use within the role's documented scope and restrictions.",
         "decisionIds": []
@@ -360,6 +375,6 @@
   "copy": {
     "directory": "copy/tooltip/",
     "manifest": "copy/tooltip/manifest.json",
-    "digest": "sha256-2GC7lIwuLtfGAvgkZSH4NluF5GKqutWHqjac2E0VtpA="
+    "digest": "sha256-kWbcbeD99vGeRugzp+qqDgOtE8SlJo/kIXknPJdzaz0="
   }
 }

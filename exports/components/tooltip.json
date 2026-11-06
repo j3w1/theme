@@ -9,7 +9,7 @@
     "stability": "release",
     "policy": "Use the pinned approved default profile. Pending roles in that profile use-and-report their decision IDs; this does not approve them. Proposed profiles are preview-only and blocked for delivery. Heritage profiles are historical-only. Deprecated or heritage roles are blocked for new approved-profile mappings. Consume roles within their documented scope, never primitives. Release numbering does not approve profiles or tokens."
   },
-  "sourceDigest": "sha256-724YTYeqlPBimswyzsMtxLTDjr0us+44as/rLRaV0lY=",
+  "sourceDigest": "sha256-jdoS6idnUVMHTcDoTRLJO8Jwhb6oAZpMpD7YivSIRQg=",
   "id": "tooltip",
   "family": "feedback",
   "maturity": "stable",
@@ -393,7 +393,7 @@
     },
     {
       "key": "Enter / Space",
-      "action": "On a trigger whose tooltip overflows, the first Enter or Space pins it as a popover and moves focus into it, in place of the trigger's default action. Otherwise act on the trigger as usual; the tooltip hides on activation."
+      "action": "On a trigger whose tooltip overflows, the first Enter or Space pins it as a popover and moves focus into it, in place of the trigger's own action. Otherwise act on the trigger as usual; the tooltip hides on activation."
     }
   ],
   "responsive": "The popup sits 12px right of and below the pointer and follows it; it flips to the side with room, keeps an 8px gutter and is never clipped by the viewport. It is at most 24rem wide and 40vh tall, wraps, and scrolls beyond that; at 320px it is as wide as the viewport minus the gutter. Without a pointer it anchors below the trigger, or above. RTL mirrors the placement (left of the pointer) and keeps the shortcut at the end.",

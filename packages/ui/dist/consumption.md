@@ -118,15 +118,20 @@ controller.destroy();
 - It follows the pointer 12px right of and below it, flips inside an 8px
   viewport gutter, anchors to the trigger for keyboard focus and touch, and
   closes as soon as the pointer leaves the trigger.
-- It caps the helper at 40vh by 24rem. With the pointer on the trigger, the
-  wheel scrolls an overflowing helper, and the page only once the helper
+- It caps the helper at 40vh by 24rem, measured from the same viewport as
+  its placement. With the pointer on the trigger, the wheel (never
+  Ctrl+wheel) scrolls an overflowing helper, and the page only once the helper
   cannot scroll further that way.
 - A click, tap or Enter on a trigger whose helper overflows or holds a link
   or control pins it as a non-modal popover with a `.tooltip-close` button;
-  Escape and the button return focus to the trigger. `pin: true` pins on
-  every activation (content known to hold links), `pin: false` never.
-- `followPoint`, `anchorPoint` and `canScroll` are exported for hosts that
-  position their own layer.
+  Escape and the button return focus to the trigger. The pinning activation
+  is consumed in the capture phase, before the trigger's own click handlers;
+  the next activation reaches them. With an asynchronous `render`, the
+  activation waits for the content, then pins or replays the trigger's click.
+  `pin: true` pins on every activation (content known to hold links),
+  `pin: false` never.
+- `followPoint`, `anchorPoint`, `helperLimits` and `canScroll` are exported
+  for hosts that position their own layer.
 
 ## Vue 3 JavaScript SFCs
 

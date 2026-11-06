@@ -10,6 +10,8 @@ type Box = { left: number; top: number };
 type Placement = { offset?: number; gap?: number; gutter?: number; rtl?: boolean };
 export declare function followPoint(point: Point, size: Size, viewport: Size, options?: Placement): Box;
 export declare function anchorPoint(rect: DOMRectReadOnly | { top: number; right: number; bottom: number; left: number }, size: Size, viewport: Size, options?: Placement): Box;
+/** The size cap, from the same viewport (documentElement client size) the placement uses. */
+export declare function helperLimits(viewport: Size, options?: { gutter?: number }): { maxInlineSize: string; maxBlockSize: string };
 export declare function canScroll(element: Element, delta: number): boolean;
 export declare function overflows(element: Element): boolean;
 export declare function interactive(element: Element, except?: Element | null): boolean;
@@ -36,6 +38,7 @@ export interface HoverHelperOptions {
 }
 export interface HoverHelper {
   show(trigger: Element): Promise<boolean>;
+  /** Close; focus inside the helper returns to its trigger. */
   close(): void;
   pin(): void;
   readonly open: boolean;

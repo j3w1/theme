@@ -1,5 +1,5 @@
 j3w1/theme implementation brief — tooltip
-theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-724YTYeqlPBimswyzsMtxLTDjr0us+44as/rLRaV0lY=
+theme: j3w1-theme 4.0.0  profile: default  sourceDigest: sha256-jdoS6idnUVMHTcDoTRLJO8Jwhb6oAZpMpD7YivSIRQg=
 pin: https://raw.githubusercontent.com/j3w1/theme/v4.0.0/exports/components/tooltip.json
 spec: spec/components/tooltip.md  site: https://j3w1.github.io/theme/reference/#c-tooltip
 maturity: stable  priority: R1
@@ -32,7 +32,7 @@ States: default, hover, focus-visible, open, closed
 Keyboard:
   Tab: Focusing the trigger shows the tooltip anchored to it; leaving it hides the tooltip. In a pinned tooltip, Tab moves through its close button and content in ordinary order, without a trap.
   Escape: Hides the tooltip without moving focus; a pinned tooltip closes and focus returns to the trigger. The trigger's own Escape behaviour is not triggered.
-  Enter / Space: On a trigger whose tooltip overflows, the first Enter or Space pins it as a popover and moves focus into it, in place of the trigger's default action. Otherwise act on the trigger as usual; the tooltip hides on activation.
+  Enter / Space: On a trigger whose tooltip overflows, the first Enter or Space pins it as a popover and moves focus into it, in place of the trigger's own action. Otherwise act on the trigger as usual; the tooltip hides on activation.
 
 ARIA: APG tooltip: a trigger with aria-describedby pointing at an element with role=tooltip, shown on hover and focus, hidden on Escape (https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/)
 Responsive: The popup sits 12px right of and below the pointer and follows it; it flips to the side with room, keeps an 8px gutter and is never clipped by the viewport. It is at most 24rem wide and 40vh tall, wraps, and scrolls beyond that; at 320px it is as wide as the viewport minus the gutter. Without a pointer it anchors below the trigger, or above. RTL mirrors the placement (left of the pointer) and keeps the shortcut at the end.

@@ -1,10 +1,10 @@
 import { t as J3w1Element } from "../chunks/element-DcrNU9Wh.js";
-import { n as modal } from "../chunks/overlays-CKBvKZoj.js";
+import { n as modal } from "../chunks/overlays-DUY6TGBE.js";
 // .cache/ui-build/entries/components/dialog.js
 var J3w1Dialog = class extends J3w1Element {
 	static componentId = "dialog";
 	static version = "4.0.0";
-	static implementationId = "sha256-f9WMuA9bXnyBjCpHZZW/pKLpTcnU8JSgTDMUOBMX7ps=";
+	static implementationId = "sha256-GUvx/FJIp23Td7xUv/ZQhEqF1aCWHVrQDsmof6MSdP8=";
 	static connect = modal;
 	static upgradeProperties = [
 		"disabled",

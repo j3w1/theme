@@ -67,6 +67,10 @@ j3w1-tooltip .tooltip-popup[hidden] {
 j3w1-tooltip .tooltip-popup[data-pinned] {
   user-select: text;
 }
+j3w1-tooltip .tooltip-popup[data-pinned]:focus-visible {
+  outline: var(--focus-ring-container);
+  outline-offset: var(--focus-offset-container);
+}
 
 j3w1-tooltip .tooltip-close {
   position: sticky;
@@ -145,7 +149,8 @@ j3w1-tooltip .tooltip-trigger:focus-visible + .tooltip-popup {
     color: ButtonText;
   }
 
-  j3w1-tooltip .tooltip-close:focus-visible {
+  j3w1-tooltip .tooltip-close:focus-visible,
+  j3w1-tooltip .tooltip-popup[data-pinned]:focus-visible {
     outline-color: Highlight;
   }
 
