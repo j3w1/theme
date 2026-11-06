@@ -402,6 +402,9 @@
 /* D-042: every hover helper is capped at 40vh and scrolls. */
 .inspector { max-height: min(40vh, calc(100vh - 16px)); overflow: auto; }
 .inspector[data-pinned] { user-select: text; }
+/* A pinned inspector or preview is a focusable container (foundations, rule 2). */
+.inspector[data-pinned]:focus-visible { outline: var(--focus-ring-container); outline-offset: var(--focus-offset-container); }
+@media (forced-colors: active) { .inspector[data-pinned]:focus-visible { outline-color: Highlight; } }
 
 /* Hub contents occupy normal flow; families and components form a compact
    static index. Details remain on their own pages. */

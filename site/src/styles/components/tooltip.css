@@ -53,6 +53,13 @@
   user-select: text;
 }
 
+/* A pinned popup is a focusable container: the container ring (foundations,
+   rule 2), drawn only for keyboard focus. */
+.tooltip-popup[data-pinned]:focus-visible {
+  outline: var(--focus-ring-container);
+  outline-offset: var(--focus-offset-container);
+}
+
 .tooltip-close {
   position: sticky;
   top: 0;
@@ -146,7 +153,8 @@
     color: ButtonText;
   }
 
-  .tooltip-close:focus-visible {
+  .tooltip-close:focus-visible,
+  .tooltip-popup[data-pinned]:focus-visible {
     outline-color: Highlight;
   }
 

@@ -88,7 +88,7 @@ async function buildUIExclusive({ check = false } = {}) {
   await put(entries, "index.js", index.join("\n") + "\n");
   await put(entries, "register.js", register.join("\n") + "\n");
   input.index = path.join(entries, "index.js"); input.register = path.join(entries, "register.js");
-  for (const [id, name] of [["form-builder", "mountBuilder"], ["form-workflow", "mountWorkflow"], ["choice", "enhanceControls"], ["hover-helper", "hoverHelper, followPoint, anchorPoint, canScroll, overflows, interactive, HOVER_HELPER"]]) {
+  for (const [id, name] of [["form-builder", "mountBuilder"], ["form-workflow", "mountWorkflow"], ["choice", "enhanceControls"], ["hover-helper", "hoverHelper, followPoint, anchorPoint, canScroll, overflows, interactive, helperLimits, HOVER_HELPER"]]) {
     const source = path.relative(path.join(entries, "enhance"), path.join(packageRoot, "internal", `${id}.js`)).split(path.sep).join("/");
     await put(entries, `enhance/${id}.js`, `export { ${name} } from ${JSON.stringify(source)};\n`);
     input[`enhance/${id}`] = path.join(entries, `enhance/${id}.js`);
