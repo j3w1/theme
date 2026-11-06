@@ -284,10 +284,13 @@ reveals) behaves the same way (D-042):
   activation never reaches the trigger's own action, such as a link's
   navigation or a button's handler; activating the pinned trigger again
   performs it. When the content is still loading, the activation waits for
-  it: it pins a helper that needs pinning, and otherwise the trigger's
-  activation goes ahead. A helper that fits and holds only text never pins: a
-  short tooltip stays a tooltip. When a pinned helper holds focus, Escape
-  closes it before any other open helper.
+  it: it pins a helper that needs pinning, and otherwise the activation goes
+  ahead at the element that received it, as an untrusted copy. Focus moving
+  elsewhere first abandons the wait. A text field, select or editable region
+  is never held, because a copy cannot perform its own activation. A helper
+  that fits and holds only text never pins: a short tooltip stays a tooltip.
+  When a pinned helper holds focus, Escape closes it before any other open
+  helper, including one run by another copy of the implementation.
 - **Hovering never moves focus.**
 
 `@j3w1/ui/enhance/hover-helper` is the reference implementation; the tooltip
