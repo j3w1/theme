@@ -24,8 +24,9 @@
      (a link navigates, a button acts). When the content is still loading, the
      activation waits for it: it pins if the helper turns out to need it, and
      otherwise a copy of it is replayed to its original target. Focus moving
-     elsewhere first abandons it. A text field, select or editable region is
-     never held, because a replay cannot perform its own activation.
+     anywhere first, even to the page, abandons it. A target in a text field,
+     select or editable region is never held, because a replay cannot perform
+     its own activation.
    - Nothing moves focus on hover. Positioning never animates. */
 
 export const HOVER_HELPER = Object.freeze({ offset: 12, gutter: 8, gap: 4, openDelay: 300, maxBlock: "40vh", maxInline: "24rem" });
@@ -83,8 +84,12 @@ const registry = doc => (doc[REGISTRY] ??= new Set());
 const REPLAYED = Symbol.for("j3w1.hover-helper.replayed");
 /* Enter on these becomes a click, which the click path holds. */
 const ENTER_CLICKS = "a[href],area[href],button,input[type=button],input[type=submit],input[type=reset],input[type=image],summary";
-/* Controls whose own activation (a caret, a picker, a file chooser) an untrusted replay cannot perform: never held. */
-const UNREPLAYABLE = 'select,textarea,[contenteditable]:not([contenteditable="false"]),input:not([type=button],[type=submit],[type=reset],[type=image],[type=checkbox],[type=radio])';
+/* A target whose own activation (a caret, a picker, a file chooser) an
+   untrusted replay cannot perform: inside a text field or select, or
+   anywhere editable, whether or not that context lies within the trigger.
+   Its activation is never held. */
+const FIELDS = "select,textarea,input:not([type=button],[type=submit],[type=reset],[type=image],[type=checkbox],[type=radio])";
+const ownActivation = node => node instanceof Element && (!!node.closest(FIELDS) || !!node.closest("[contenteditable]")?.isContentEditable);
 /* What a replay copies from the held event. */
 const EVENT_FIELDS = ["bubbles", "cancelable", "composed", "view", "detail", "screenX", "screenY", "clientX", "clientY", "ctrlKey", "shiftKey", "altKey", "metaKey", "button", "buttons", "pointerId", "pointerType", "width", "height", "pressure", "tangentialPressure", "tiltX", "tiltY", "twist", "isPrimary", "key", "code", "location", "repeat", "isComposing"];
 const thenable = value => typeof value?.then === "function";
@@ -168,18 +173,21 @@ export function hoverHelper(helper, options) {
 
   /* One render at a time. A trigger already rendering reuses that render;
      another trigger's render waits until it settles, so an older render never
-     writes over newer content. A queued render whose trigger is no longer
-     current draws nothing. A render that never settles holds the ones after it. */
+     writes over newer content. A queued request belongs to the generation
+     that made it (a reuse brings it forward), and one that a later request
+     has superseded never calls the renderer. A render that never settles
+     holds the ones after it. */
   const STALE = {};
   const draw = target => {
-    if (rendering?.target === target) return rendering.promise;
+    if (rendering?.target === target) { rendering.mine = generation; return rendering.promise; }
+    const entry = { target, mine: generation, promise: null };
     const run = () => {
-      if (current !== target) return STALE;
+      if (entry.mine !== generation) return STALE;
       try { return render?.(target, helper); } catch { return false; }
     };
     const result = rendering ? rendering.promise.then(run) : run();
     if (!thenable(result)) return result;
-    const entry = { target, promise: Promise.resolve(result).then(value => value, () => false) };
+    entry.promise = Promise.resolve(result).then(value => value, () => false);
     rendering = entry;
     void entry.promise.then(() => { if (rendering === entry) rendering = null; });
     return entry.promise;
@@ -193,6 +201,7 @@ export function hoverHelper(helper, options) {
     /* An activation waiting for this trigger's content settles it. */
     if (pinIntent === target) return activation;
     const mine = ++generation;
+    pinIntent = null;
     if (pinned) unpin(false);
     current = target; mode = how; ready = false;
     let result = draw(target);
@@ -312,13 +321,16 @@ export function hoverHelper(helper, options) {
       show(); decide(target, event); return;
     }
     const origin = event.composedPath?.()[0] ?? event.target;
-    const control = origin instanceof Element ? origin.closest(UNREPLAYABLE) : null;
-    if (control && target.contains(control)) { dismissed = target; close(); return; }
+    if (ownActivation(origin)) { dismissed = target; close(); return; }
     const replay = replayer(event, origin, target);
     consume(event);
     pinIntent = target;
+    /* Focus moving anywhere while the content loads, even to the page,
+       abandons the activation: it neither pins nor replays. */
+    const focused = doc.activeElement;
     activation = result.then(value => {
       if (mine !== generation || pinIntent !== target) return visible() && current === target;
+      if (doc.activeElement !== focused) { close(); return false; }
       pinIntent = null;
       if (failed(value)) close();
       else { show(); if (decide(target, null)) return true; }
@@ -363,8 +375,9 @@ export function hoverHelper(helper, options) {
     if (visible() || pinIntent) close();
   }, { capture: true });
   on(doc, "click", event => {
-    if (event[REPLAYED]) return;
+    /* The close button acts on any click, a replayed one included. */
     if (closeButton && event.target instanceof Node && closeButton.contains(event.target)) { close(true); return; }
+    if (event[REPLAYED]) return;
     const target = triggerOf(event.target);
     if (!target || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
     const type = event.pointerType || (event.detail === 0 ? "keyboard" : lastPointerType);
@@ -397,20 +410,16 @@ export function hoverHelper(helper, options) {
       if (!target || target !== current) return;
       if (pinIntent === target) { consume(event); return; }
       if (visible() && ready) { if (pinnable()) { consume(event); pin(); } return; }
-      /* Still loading, for a helper known to pin. Enter on a link or button
-         becomes a click, which the click path holds; any other trigger's
-         Enter is held here, through the same settlement. */
-      if (pinRule === true && !(event.target instanceof Element && event.target.matches(ENTER_CLICKS))) activate(target, "anchor", event);
+      /* Still loading. Enter on a link or button becomes a click, which the
+         click path holds; any other trigger's Enter is held here, through the
+         same settlement. */
+      if (!(event.target instanceof Element && event.target.matches(ENTER_CLICKS))) activate(target, "anchor", event);
     }
   }, { capture: true });
   on(doc, "focusin", event => {
     const target = event.target;
     if (restoring || helper.contains(target)) return;
-    const owner = triggerOf(target);
-    /* Focus moving anywhere but the trigger it waits for abandons a pending
-       activation: it neither pins later nor holds another helper open. */
-    if (pinIntent && owner !== pinIntent) close();
-    const trigger = byFocus ? owner : null;
+    const trigger = byFocus ? triggerOf(target) : null;
     if (trigger) {
       if (trigger === current && visible()) {
         /* Keyboard focus takes precedence over the pointer for its own trigger. */
