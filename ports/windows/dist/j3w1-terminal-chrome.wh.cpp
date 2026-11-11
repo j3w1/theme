@@ -2,7 +2,7 @@
 // @id j3w1-terminal-chrome
 // @name j3w1 Terminal chrome
 // @description Exact-package Terminal chrome resources; document and artwork colors remain native
-// @version 1.0.18
+// @version 1.0.19
 // @author j3w1
 // @include WindowsTerminal.exe
 // @architecture x86-64
@@ -419,6 +419,11 @@ static constexpr Rule rules[]={
  {L"ScrollBarButtonArrowForegroundDisabled",{255,163,103,107},L"color.text.disabled"},
  {L"ToolTipBackground",{255,0,0,0},L"color.surface.canvas"},
  {L"ToolTipForeground",{255,233,148,153},L"color.text.default"},
+ {L"ContentDialogBackground",{255,0,0,0},L"color.surface.canvas"},
+ {L"ContentDialogTopOverlay",{255,0,0,0},L"color.surface.canvas"},
+ {L"ContentDialogForeground",{255,233,148,153},L"color.text.default"},
+ {L"ContentDialogBorderBrush",{255,200,26,26},L"color.border.overlay"},
+ {L"ContentDialogSeparatorBorderBrush",{255,72,43,43},L"color.border.divider"},
  {L"TabViewItemHeaderForeground",{255,233,148,153},L"color.text.default"},
  {L"TabViewItemHeaderForegroundPointerOver",{255,233,148,153},L"color.text.default"},
  {L"TabViewItemHeaderForegroundPressed",{255,233,148,153},L"color.text.default"},
@@ -1617,12 +1622,20 @@ static const wchar_t* SplitButtonTemplateBindingKey(std::wstring_view type,Kind 
  if(type!=L"Windows.UI.Xaml.Controls.SplitButton"&&type!=L"Windows.UI.Xaml.Controls.SplitButton")return nullptr;
  return kind==Kind::Background?L"SplitButtonBackground":kind==Kind::Foreground?L"SplitButtonForeground":kind==Kind::Border?L"SplitButtonBorderBrush":nullptr;
 }
+// ContentDialog lives in a popup outside AppChrome's visual subtree. Its
+// already-resolved parent brushes feed native template bindings. Own only
+// these stable framework properties; never its content, commands or scrim.
+static const wchar_t* ContentDialogTemplateBindingKey(std::wstring_view type,Kind kind) noexcept {
+ if(type!=L"Windows.UI.Xaml.Controls.ContentDialog")return nullptr;
+ return kind==Kind::Background?L"ContentDialogBackground":kind==Kind::Foreground?L"ContentDialogForeground":kind==Kind::Border?L"ContentDialogBorderBrush":nullptr;
+}
 // This is only an early rejection filter for the existing template matcher.
 // Keep the matcher below as the final class, ancestry and brush admission.
 // Resource/state-controlled button paint is not owned by this property bridge.
 static bool ChromePaintTypeAdmission(std::wstring_view type,Kind kind) noexcept {
  if(kind==Kind::FocusPrimary||kind==Kind::FocusSecondary)return true;
  if(SplitButtonTemplateBindingKey(type,kind))return true;
+ if(ContentDialogTemplateBindingKey(type,kind))return true;
  if(kind!=Kind::Background&&kind!=Kind::Border)return false;
  return type==L"PaintUI.Ribbon"||type==L"PaintUI.RibbonControl"
   ||type==L"PaintUI.RibbonGroup"||type==L"PaintUI.RibbonCollapsibleGroup"
@@ -1633,6 +1646,10 @@ static bool ChromePaintTypeAdmission(std::wstring_view type,Kind kind) noexcept 
 }
 static Palette const* TemplateSurface(Root const& root,DependencyObject const& object,Kind kind,Brush const& brush) {
 
+ if(auto key=ContentDialogTemplateBindingKey(std::wstring_view{get_class_name(object)},kind)) {
+  for(auto const& item:root.palette)if(wcscmp(item.rule->key,key)==0)return &item;
+  return nullptr;
+ }
  if(auto key=SplitButtonTemplateBindingKey(std::wstring_view{get_class_name(object)},kind)) {
   for(auto const& item:root.palette)if(wcscmp(item.rule->key,key)==0)return &item;
   return nullptr;
@@ -1750,7 +1767,7 @@ static bool StandardChrome(DependencyObject const& object) {
   ||CompositeButtonChrome(std::wstring_view{get_class_name(object)})
   ||object.try_as<Windows::UI::Xaml::Controls::Primitives::ButtonBase>()
   ||object.try_as<MenuBarItem>()||object.try_as<MenuFlyoutItem>()||object.try_as<MenuFlyoutSubItem>()
-  ||object.try_as<MenuFlyoutPresenter>()||object.try_as<FlyoutPresenter>()||object.try_as<ToolTip>()||object.try_as<ToggleSwitch>()||object.try_as<ComboBox>()
+  ||object.try_as<MenuFlyoutPresenter>()||object.try_as<FlyoutPresenter>()||object.try_as<ToolTip>()||object.try_as<ContentDialog>()||object.try_as<ToggleSwitch>()||object.try_as<ComboBox>()
   ||object.try_as<ListViewItem>()
 #if !J3W1_LEGACY_XAML
   ||object.try_as<Expander>()
@@ -2054,6 +2071,7 @@ static bool PopupChromeClass(std::wstring_view type) noexcept {
  return type==L"Windows.UI.Xaml.Controls.MenuFlyoutPresenter"
   ||type==L"Windows.UI.Xaml.Controls.FlyoutPresenter"
   ||type==L"Windows.UI.Xaml.Controls.ToolTip"
+  ||type==L"Windows.UI.Xaml.Controls.ContentDialog"
   ||type==L"Windows.UI.Xaml.Controls.MenuFlyoutItem"
   ||type==L"Windows.UI.Xaml.Controls.MenuFlyoutSubItem";
 }

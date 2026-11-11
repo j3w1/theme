@@ -152,6 +152,40 @@ int main(int argc, char** argv) {
  if(argc>1&&strcmp(argv[1],"paint-split-edge-ownership")==0){CheckPaintSplitEdges();return 0;}
  if(argc>1&&strcmp(argv[1],"background-transition-ownership")==0){CheckChromeTransitions();return 0;}
  if(argc>1&&strcmp(argv[1],"hover-state-palette")==0){CheckChromeHoverStates();return 0;}
+ if(argc>1&&strcmp(argv[1],"content-dialog-bindings")==0) {
+  const auto type=L"Microsoft.UI.Xaml.Controls.ContentDialog";
+  for(auto [kind,expected]:{std::pair{Kind::Background,L"ContentDialogBackground"},
+    std::pair{Kind::Foreground,L"ContentDialogForeground"},std::pair{Kind::Border,L"ContentDialogBorderBrush"}}) {
+   auto key=ContentDialogTemplateBindingKey(type,kind);assert(key&&wcscmp(key,expected)==0);
+   assert(ChromePaintTypeAdmission(type,kind));
+   bool mapped=false;for(auto const& rule:rules)if(wcscmp(rule.key,key)==0)mapped=true;assert(mapped);
+  }
+  for(auto kind:{Kind::FocusPrimary,Kind::FocusSecondary,Kind::Separator,Kind::ToggleOnFill,Kind::ToggleOnStroke})
+   assert(!ContentDialogTemplateBindingKey(type,kind));
+  for(auto rejected:{L"Microsoft.UI.Xaml.Controls.ContentDialogExtra",L"Microsoft.UI.Xaml.Controls.Grid",L"Other.ContentDialog",L"PaintUI.D2DSwapChainPanel",L"PaintUI.ColorRadioButton",L"NotepadXamlUI.Document",L""})
+   for(auto kind:{Kind::Background,Kind::Foreground,Kind::Border})assert(!ContentDialogTemplateBindingKey(rejected,kind));
+  assert(PopupObservationAdmission(type,true,true)&&PopupDiscoveryAdmission(type,true,true,true,true));
+  assert(!PopupDiscoveryAdmission(type,true,true,false,true)&&!PopupDiscoveryAdmission(type,true,true,true,false));
+  winrt::init_apartment(winrt::apartment_type::multi_threaded);
+  {
+   auto native=box_value(1),theme=box_value(2),app=box_value(3);ProjectedObject current=native;
+   ControlKey entry{L"ContentDialogBackground",nullptr,theme};bool exists=true;
+   auto read=[&]{return LocalResourceValue{exists,current};};
+   auto write=[&](auto const& value){exists=true;current=value;};auto remove=[&]{exists=false;current=nullptr;};
+   assert(ApplyControlKey(entry,read,write)&&entry.owned&&Identity(current,theme));
+   assert(RestoreControlKey(entry,read,write,remove)&&Identity(current,native));
+   assert(ApplyControlKey(entry,read,write));current=app;
+   assert(RestoreControlKey(entry,read,write,remove)&&Identity(current,app));
+   exists=false;current=nullptr;assert(ApplyControlKey(entry,read,write));
+   assert(RestoreControlKey(entry,read,write,remove)&&!exists&&!current);
+   exists=true;current=native;
+   auto failWrite=[&](auto const& value){write(value);throw hresult_error(E_FAIL);};
+   assert(!ApplyControlKey(entry,read,failWrite)&&entry.owned);
+   assert(RestoreControlKey(entry,read,write,remove)&&Identity(current,native));
+  }
+  winrt::uninit_apartment();
+  puts("PASS: exact ContentDialog properties, loaded same-root popup admission and reversible resource ownership");return 0;
+ }
  if(argc>1&&strcmp(argv[1],"split-parent-bindings")==0) {
   for(auto type:{L"Microsoft.UI.Xaml.Controls.SplitButton",L"Windows.UI.Xaml.Controls.SplitButton"}) {
    for(auto kind:{Kind::Background,Kind::Foreground,Kind::Border}) {

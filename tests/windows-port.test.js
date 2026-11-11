@@ -8,6 +8,7 @@ import {parse} from 'jsonc-parser';
 import fs from 'node:fs';
 import path from 'node:path';
 import {spawnSync} from 'node:child_process';
+import {PNG} from 'pngjs';
 import {repoRoot,readJson} from '../scripts/lib/fs.mjs';
 import {assertPortArtifacts} from '../scripts/lib/port-artifacts.mjs';
 import {CURSOR_NAMES,windowsStyleValue,windowsWebContentStyles,validateWindowsStylerTarget} from '../scripts/lib/windows-port.mjs';
@@ -20,6 +21,26 @@ const sha=b=>sha256Hex(b);
 
 const readConfig=p=>{const errors=[];const value=parse(fs.readFileSync(p,'utf8').replace(/^\uFEFF/,''),errors,{allowTrailingComma:true});assert.deepEqual(errors,[],`Invalid settings: ${p}`);return value;};
 const write=(p,x)=>{fs.mkdirSync(path.dirname(p),{recursive:true});fs.writeFileSync(p,typeof x==='string'?x:JSON.stringify(x,null,2)+'\n');};
+
+test('Windows wallpaper centers the supplied logo on black within the asset budget',()=>{
+ const b=fs.readFileSync(path.join(source,'dist/j3w1-wallpaper.bmp'));
+ const logo=PNG.sync.read(fs.readFileSync(path.join(source,'src/j3w1-logo.png')));
+ assert.equal(b.toString('ascii',0,2),'BM');assert.equal(b.readUInt32LE(2),b.length);
+ const width=b.readInt32LE(18),height=b.readInt32LE(22),stride=Math.ceil(width*3/4)*4;
+ assert.equal(width,1024);assert.equal(height,640);assert.equal(b.readUInt16LE(28),24);assert.ok(b.length<=2097152);
+ const pixel=(x,y)=>[...b.subarray(54+(height-1-y)*stride+x*3,57+(height-1-y)*stride+x*3)].reverse();
+ const markWidth=Math.ceil(logo.width/2),markHeight=Math.ceil(logo.height/2);
+ const left=Math.floor((width-markWidth)/2),top=Math.floor((height-markHeight)/2);
+ assert.ok(Math.abs(left-(width-left-markWidth))<=1&&Math.abs(top-(height-top-markHeight))<=1);
+ for(const [x,y]of [[0,0],[width-1,0],[0,height-1],[width-1,height-1],[left-1,height/2],[left+markWidth,height/2]])assert.deepEqual(pixel(x,y),[0,0,0]);
+ let visible=0;
+ for(let y=0;y<logo.height-1;y+=2)for(let x=0;x<logo.width-1;x+=2){
+  const offsets=[(y*logo.width+x)*4,(y*logo.width+x+1)*4,((y+1)*logo.width+x)*4,((y+1)*logo.width+x+1)*4];
+  const first=offsets[0],rgb=[...logo.data.subarray(first,first+3)];
+  if(offsets.every(i=>logo.data[i+3]===255&&rgb.every((value,c)=>logo.data[i+c]===value))){assert.deepEqual(pixel(left+x/2,top+y/2),rgb);visible++;}
+ }
+ assert.ok(visible>2000,'The centered logo must be visible, not a blank wallpaper');
+});
 
 test('folder ICO retains transparent multiscale silhouettes and only the requested palette',()=>{
  const colors=['#bc1111','#e53131'];
@@ -966,6 +987,27 @@ test('standard tooltip palettes use shared resources and loaded same-root popup 
    assert.match(text,/object.try_as<ToolTip>\(\)/);
    assert.match(text,/PopupDiscoveryAdmission[\s\S]*active&&uiThread&&loaded&&sameRoot&&PopupChromeClass/);
   }
+ }
+});
+
+test('native confirmation dialogs use their own same-root popup and resource contract',async()=>{
+ const host=await readJson('ports/windows/host.json'),mapping=await readJson('ports/windows/mapping.json');
+ const roles={ContentDialogBackground:'color.surface.canvas',ContentDialogTopOverlay:'color.surface.canvas',ContentDialogForeground:'color.text.default',ContentDialogBorderBrush:'color.border.overlay',ContentDialogSeparatorBorderBrush:'color.border.divider'};
+ for(const [key,role]of Object.entries(roles)){
+  assert.equal(host.winuiChromeResources[key],role);
+  for(const app of ['notepad','paint','terminal'])assert.ok(mapping.mappings[role].includes(app+'-chrome.resource.'+key));
+ }
+ // The dimming scrim and all behavioral/template resources remain native.
+ for(const key of Object.keys(host.winuiChromeResources))if(key.startsWith('ContentDialog'))assert.ok(Object.hasOwn(roles,key),key);
+ for(const app of ['notepad','paint','terminal']){
+  const emitted=fs.readFileSync(path.join(source,'dist/j3w1-'+app+'-chrome.wh.cpp'),'utf8');
+  const prefix=app==='terminal'?'Windows':'Microsoft';
+  const admission=emitted.slice(emitted.indexOf('static bool PopupChromeClass(std::wstring_view type) noexcept {'),emitted.indexOf('static bool RemovePopupLoadedEvent'));
+  assert.ok(admission.includes('L"'+prefix+'.UI.Xaml.Controls.ContentDialog"'));
+  assert.match(emitted,/object.try_as<ContentDialog>\(\)/);
+  assert.match(emitted,/ContentDialogTemplateBindingKey\(type,kind\)/);
+  assert.match(emitted,/if\(!element.IsLoaded\(\)\)\{WatchPopupLoad\(element\);return;\}/);
+  assert.match(emitted,/PopupDiscoveryAdmission[\s\S]*active&&uiThread&&loaded&&sameRoot&&PopupChromeClass/);
  }
 });
 

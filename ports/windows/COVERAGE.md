@@ -1335,6 +1335,26 @@ remain unchanged. This direct frame mapping still needs an installed rendered
 check. The [upstream OLED recipe](https://github.com/ramensoftware/windows-11-settings-styling-guide/blob/main/Themes/OLED/README.md)
 documents this custom template boundary; its colors and layout changes are
 not imported.
+
+### Native app confirmation dialogs
+
+The app chrome adapters now recognize the framework `ContentDialog` through
+their existing diagnostics and Loaded-event popup path. Admission still
+requires the exact package/runtime, the element's UI thread, enabled theme,
+loaded element and the admitted owner's XamlRoot. ContentDialog receives its
+own reversible resource overlay; its stable Background, Foreground and
+BorderBrush template bindings also use the existing local-property ownership
+path so an already-created dialog can refresh. No new polling or tree walk is
+introduced. Background and top overlay use black canvas, ordinary dialog text
+uses rose, the frame uses the red overlay border and separators use the divider
+role. The native dimming scrim, dialog content, button commands, focus, sizing
+and show/dismiss states remain unchanged. This covers native in-app dialogs,
+not the separate Windows file-picker surface.
+
+Native regressions exercise class/root/Loaded admission, exact binding keys,
+resource restoration, app replacement and partial-write recovery. These checks
+do not establish installed rendering or activation of any save/discard action.
+Reference: Microsoft's [ContentDialog template](https://github.com/microsoft/microsoft-ui-xaml/blob/8463f45162149de0ec3ad7df752596893fe3e13e/controls/dev/CommonStyles/ContentDialog_themeresources.xaml).
 The upstream [taskbar tooltip recipe](https://github.com/ramensoftware/windows-11-taskbar-styling-guide#tooltips)
 uses the same `ToolTip > ContentPresenter#LayoutRoot` frame target.
 

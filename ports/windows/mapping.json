@@ -122,6 +122,12 @@
       "terminal.foreground"
     ],
     "color.surface.canvas": [
+      "notepad-chrome.resource.ContentDialogBackground",
+      "paint-chrome.resource.ContentDialogBackground",
+      "terminal-chrome.resource.ContentDialogBackground",
+      "notepad-chrome.resource.ContentDialogTopOverlay",
+      "paint-chrome.resource.ContentDialogTopOverlay",
+      "terminal-chrome.resource.ContentDialogTopOverlay",
       "terminal.background",
       "cursor.foreground",
       "windhawk.resource.SolidBackgroundFillColorBase",
@@ -328,6 +334,9 @@
       "terminal-chrome.resource.TabViewItemHeaderBackground"
     ],
     "color.text.default": [
+      "notepad-chrome.resource.ContentDialogForeground",
+      "paint-chrome.resource.ContentDialogForeground",
+      "terminal-chrome.resource.ContentDialogForeground",
       "native.foreground",
       "windhawk.resource.TextFillColorPrimary",
       "windhawk.resource.SystemControlForegroundBaseHighBrush",
@@ -1489,6 +1498,9 @@
       "windows-11-notification-center-styler | CalendarView | TodayForeground"
     ],
     "color.border.overlay": [
+      "notepad-chrome.resource.ContentDialogBorderBrush",
+      "paint-chrome.resource.ContentDialogBorderBrush",
+      "terminal-chrome.resource.ContentDialogBorderBrush",
       "windows-11-start-menu-styler | Border#AcrylicBorder | BorderBrush",
       "windows-11-start-menu-styler | Grid#CompanionRoot > Border#AcrylicBorder | BorderBrush",
       "windows-11-start-menu-styler | StartMenu.FolderModal > Grid > Border | BorderBrush",
@@ -1917,6 +1929,9 @@
       "terminal-chrome.resource.ComboBoxItemBackgroundSelectedUnfocused"
     ],
     "color.border.divider": [
+      "notepad-chrome.resource.ContentDialogSeparatorBorderBrush",
+      "paint-chrome.resource.ContentDialogSeparatorBorderBrush",
+      "terminal-chrome.resource.ContentDialogSeparatorBorderBrush",
       "nativeExplorer.border",
       "powertoys.markdown.DIVIDER",
       "windows-11-file-explorer-styler | Border#BottomBorderLine, Border#LeftBottomBorderLine, Border#RightBottomBorderLine | Background",

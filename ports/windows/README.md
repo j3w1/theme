@@ -7,6 +7,12 @@ application. [Coverage](COVERAGE.md) lists implemented surfaces, owner
 acceptances and open checks; [Compatibility](COMPATIBILITY.md) holds exact host
 boundaries, technical details, developer/offline instructions and history.
 
+The included wallpaper centers the owner-supplied j3w1 logo on true black.
+The original transparent logo lives in `src/j3w1-logo.png`; generation creates
+the compact 16:10 BMP installed for the desktop and, when the current image is
+recoverable, the lock screen. The installer retains its existing wallpaper
+layout, verification and rollback workflow. No OneDrive path is needed.
+
 ## One-click setup from this checkout
 
 For a reviewed Git checkout with Node 24 and Git available, double-click the
