@@ -2,7 +2,7 @@
 // @id j3w1-terminal-chrome
 // @name j3w1 Terminal chrome
 // @description Exact-package Terminal chrome resources; document and artwork colors remain native
-// @version 1.0.19
+// @version 1.0.20
 // @author j3w1
 // @include WindowsTerminal.exe
 // @architecture x86-64
@@ -640,6 +640,18 @@ struct Root { weak_ref<FrameworkElement> element; weak_ref<FrameworkElement> bac
  SystemBackdrop backdropBefore{nullptr}; bool backdropTracked=false;
 #endif
  DependencyProperty backgroundProperty{nullptr}; ProjectedObject backgroundBefore{nullptr}; SolidColorBrush backgroundApplied{nullptr}; std::vector<Palette> palette; std::vector<Visual> changes; std::deque<OwnedThemeRefresh> refreshes; std::deque<ControlResources> controls; };
+// A popup can be reached from several admitted roots in one XamlRoot. Retain
+// one local-property baseline across those roots, even after an app replacement
+// or a write that mutates and then throws. Cleanup must never restore another
+// root's applied brush as though it were the original application value.
+template<class Roots,class Match> static bool HasChromeVisualOwner(Roots const& roots,Match matches) {
+ for(auto const& owner:roots)for(auto const& prior:owner.changes)if(matches(prior))return true;
+ return false;
+}
+template<class Entry,class Read,class Restore> static bool RestoreChromeVisualValue(Entry const& entry,Read read,Restore restore) noexcept {
+ try {if(Identity(read(),entry.applied))restore(entry.before);return true;}
+ catch(...){return false;}
+}
 struct PendingRoot { weak_ref<FrameworkElement> element; unsigned attempts=0; };
 struct PopupLoadReceipt { weak_ref<FrameworkElement> element; event_token loaded{}; bool registered=false; };
 // Retain a failed event removal so shutdown can retry before unloading code.
@@ -1412,10 +1424,11 @@ static bool Restore(Root& root) {
 
  }catch(...){restored=false;}
  for(auto it=root.changes.rbegin();it!=root.changes.rend();++it)try {
-  if(auto object=it->object.get();object&&Identity(object.GetValue(it->property),it->applied)) {
-   if(!it->before||Identity(it->before,DependencyProperty::UnsetValue()))object.ClearValue(it->property);
-   else object.SetValue(it->property,it->before);
-  }
+  if(auto object=it->object.get())restored=RestoreChromeVisualValue(*it,
+   [&]{return object.GetValue(it->property);},[&](auto const& before){
+    if(!before||Identity(before,DependencyProperty::UnsetValue()))object.ClearValue(it->property);
+    else object.SetValue(it->property,before);
+   })&&restored;
  }catch(...){restored=false;}
  if(backgroundOwned)try {
   if(!root.backgroundBefore||Identity(root.backgroundBefore,DependencyProperty::UnsetValue()))element.ClearValue(root.backgroundProperty);
@@ -1644,13 +1657,13 @@ static bool ChromePaintTypeAdmission(std::wstring_view type,Kind kind) noexcept 
   ||type==L"Windows.UI.Xaml.Controls.ScrollViewer"||type==L"Windows.UI.Xaml.Controls.Primitives.RepeatButton"
   ||type==L"Windows.UI.Xaml.Shapes.Path"||type==L"Windows.UI.Xaml.Shapes.Rectangle";
 }
-static Palette const* TemplateSurface(Root const& root,DependencyObject const& object,Kind kind,Brush const& brush) {
+static Palette const* TemplateSurface(Root const& root,DependencyObject const& object,Kind kind,Brush const& brush,std::wstring_view type) {
 
- if(auto key=ContentDialogTemplateBindingKey(std::wstring_view{get_class_name(object)},kind)) {
+ if(auto key=ContentDialogTemplateBindingKey(type,kind)) {
   for(auto const& item:root.palette)if(wcscmp(item.rule->key,key)==0)return &item;
   return nullptr;
  }
- if(auto key=SplitButtonTemplateBindingKey(std::wstring_view{get_class_name(object)},kind)) {
+ if(auto key=SplitButtonTemplateBindingKey(type,kind)) {
   for(auto const& item:root.palette)if(wcscmp(item.rule->key,key)==0)return &item;
   return nullptr;
  }
@@ -1661,7 +1674,7 @@ static Palette const* TemplateSurface(Root const& root,DependencyObject const& o
  }
  if(kind!=Kind::Background&&kind!=Kind::Border)return nullptr;
  auto parent=VisualTreeHelper::GetParent(object);if(!parent)return nullptr;
- auto type=get_class_name(object),owner=get_class_name(parent);
+ auto owner=get_class_name(parent);
  if(auto acrylic=brush.try_as<AcrylicBrush>()) {
   auto key=PaintSliderBackingKey(std::wstring_view{type},std::wstring_view{owner},kind,acrylic.TintColor());
   if(key)for(auto const& item:root.palette)if(wcscmp(item.rule->key,key)==0)return &item;
@@ -1826,17 +1839,15 @@ static void Bridge(Root& root,FrameworkElement const& popup=nullptr) {
 
   if(!uiState)return;
   if(ApplyPaintSplitEdge(uiState->paintSplitEdges,object,property,brush,protectedBrushes))return;
-  Palette const* match=TemplateSurface(root,object,kind,brush);
+  Palette const* match=TemplateSurface(root,object,kind,brush,type);
   // Every other property was already excluded from local paint ownership.
   // Do not scan hundreds of palette aliases for an object we cannot change.
   if(!match)return;
+  if(HasChromeVisualOwner(uiState->roots,[&](auto const& prior){
+    return Identity(prior.object.get(),object)&&Identity(prior.property,property);
+   }))return;
   auto local=object.ReadLocalValue(property);
   if(local&&!Identity(local,DependencyProperty::UnsetValue())&&!local.try_as<Brush>())return;
-  for(auto& prior:root.changes)if(Identity(prior.object.get(),object)&&Identity(prior.property,property)) {
-   if(Identity(object.GetValue(property),prior.applied))return;
-   // An app update owns the property after the adapter's initial write.
-   return;
-  }
   root.changes.push_back({make_weak(object),property,local,match->applied});
   object.SetValue(property,match->applied);
 

@@ -1011,6 +1011,17 @@ test('native confirmation dialogs use their own same-root popup and resource con
  }
 });
 
+test('shared popup properties have one baseline across every admitted chrome root',()=>{
+ for(const app of ['notepad','paint','terminal']){
+  const emitted=fs.readFileSync(path.join(source,'dist/j3w1-'+app+'-chrome.wh.cpp'),'utf8');
+  const bridge=emitted.slice(emitted.indexOf('static void Bridge(Root& root,'),emitted.indexOf('static bool RootCandidateClass',emitted.indexOf('static void Bridge(Root& root,')));
+  assert.match(bridge,/HasChromeVisualOwner\(uiState->roots[\s\S]*Identity\(prior.object.get\(\),object\)&&Identity\(prior.property,property\)[\s\S]*ReadLocalValue\(property\)/);
+  assert.match(bridge,/root.changes.push_back[\s\S]*object.SetValue\(property,match->applied\)/);
+  assert.doesNotMatch(bridge,/for\(auto& prior:root.changes\)/);
+  assert.match(emitted,/RestoreChromeVisualValue\(\*it,[\s\S]*object.GetValue\(it->property\)/);
+ }
+});
+
 test('chrome factory workers initialize COM only after exact runtime admission',()=>{
  for(const app of ['notepad','paint','terminal']){
   const text=fs.readFileSync(path.join(source,'dist/j3w1-'+app+'-chrome.wh.cpp'),'utf8');

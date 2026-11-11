@@ -1331,8 +1331,10 @@ documented `NavigationViewItemPresenter#NavigationViewItemPresenter` direct
 `Grid#LayoutRoot@PointerStates` frame. Normal, pointer-over, pressed and the
 three selected combinations use the existing canvas, hover, pressed and
 selection roles; its radius is square. Layout, native icons, labels and input
-remain unchanged. This direct frame mapping still needs an installed rendered
-check. The [upstream OLED recipe](https://github.com/ramensoftware/windows-11-settings-styling-guide/blob/main/Themes/OLED/README.md)
+remain unchanged. The owner accepted the corrected installed Settings hovers,
+Notepad chrome and Paint controls on the recorded exact host. This is bounded
+appearance acceptance, not exhaustive state or accessibility verification.
+The [upstream OLED recipe](https://github.com/ramensoftware/windows-11-settings-styling-guide/blob/main/Themes/OLED/README.md)
 documents this custom template boundary; its colors and layout changes are
 not imported.
 
@@ -1354,6 +1356,12 @@ not the separate Windows file-picker surface.
 Native regressions exercise class/root/Loaded admission, exact binding keys,
 resource restoration, app replacement and partial-write recovery. These checks
 do not establish installed rendering or activation of any save/discard action.
+On the recorded exact host, a separate installed observation showed Paint's
+unsaved-work confirmation with a black body, rose title/body text and a red
+outline. Cancel dismissed it and left the unsaved artwork open. The owner
+accepted that appearance and authorized the subsequent refactor and cleanup.
+Save and discard were not activated; other dialogs, DPI variants and live
+accessibility transitions remain untested.
 Reference: Microsoft's [ContentDialog template](https://github.com/microsoft/microsoft-ui-xaml/blob/8463f45162149de0ec3ad7df752596893fe3e13e/controls/dev/CommonStyles/ContentDialog_themeresources.xaml).
 The upstream [taskbar tooltip recipe](https://github.com/ramensoftware/windows-11-taskbar-styling-guide#tooltips)
 uses the same `ToolTip > ContentPresenter#LayoutRoot` frame target.

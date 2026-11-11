@@ -168,6 +168,11 @@ Full installation is claimed. Paint's gray drawing surround is host-owned and
 excluded from recoloring by the owner; an opaque viewport background would cover
 the artwork.
 
+The owner accepted the updated Settings hovers, Notepad chrome, Paint controls
+and Paint's black/rose/red unsaved-work confirmation on the recorded exact host.
+The dialog was dismissed with Cancel, preserving the artwork; Save and discard
+were not exercised. This bounded approval does not cover every dialog or state.
+
 Recent corrections and their own open checks are recorded in Coverage:
 [Quick Settings and taskbar popup surfaces](COVERAGE.md#quick-settings-and-taskbar-popup-surfaces),
 [deferred chrome island discovery](COVERAGE.md#deferred-chrome-island-discovery),
