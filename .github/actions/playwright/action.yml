@@ -1,5 +1,5 @@
 name: playwright browsers
-description: Restore the Playwright browser cache for the locked version, then install the browsers and their system packages.
+description: Install the locked Playwright browsers and system packages for the current runner.
 inputs:
   browsers:
     description: Space-separated browser names
@@ -7,12 +7,7 @@ inputs:
 runs:
   using: composite
   steps:
-    - id: version
-      shell: bash
-      run: echo "version=$(node -p "require('@playwright/test/package.json').version")" >> "$GITHUB_OUTPUT"
-    - uses: actions/cache@v6
-      with:
-        path: ~/.cache/ms-playwright
-        key: playwright-${{ runner.os }}-${{ steps.version.outputs.version }}-${{ inputs.browsers }}
+    # Browser revisions can have different binaries for different Linux releases.
+    # A cache keyed only by runner.os can restore an incompatible WebKit build.
     - shell: bash
       run: npx playwright install --with-deps ${{ inputs.browsers }}

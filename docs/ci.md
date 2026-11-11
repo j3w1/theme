@@ -9,6 +9,11 @@ node scripts/ci/select.mjs --event pull_request --base origin/main --head HEAD
 
 CI is `select` → checks → `release-gate`.
 
+The shared Playwright action installs the locked browsers and their system
+packages on each runner. Browser binaries are not restored from a cross-run
+cache: different Ubuntu releases can share a browser revision while requiring
+different native libraries. This follows [Playwright's CI guidance](https://playwright.dev/docs/ci#caching-browsers).
+
 - `select` reads the changed paths and `scripts/ci/proofs.json`; a path gets
   cheaper only when a rule claims it. Unclaimed paths and control files
   (workflows, the selector and registry, `package.json`, the lockfile, the
