@@ -216,7 +216,20 @@
     "FlyoutPresenterForeground": "color.text.default",
     "FlyoutPresenterBorderBrush": "color.border.overlay",
     "AutoSuggestBoxSuggestionsListBackground": "color.surface.raised",
-    "AutoSuggestBoxSuggestionsListBorderBrush": "color.border.overlay"
+    "AutoSuggestBoxSuggestionsListBorderBrush": "color.border.overlay",
+    "ToolTipBackground": "color.surface.canvas",
+    "ToolTipForeground": "color.text.default",
+    "ToolTipBorderBrush": "color.border.overlay",
+    "ToolTipBackgroundBrush": "color.surface.canvas",
+    "ToolTipForegroundBrush": "color.text.default",
+    "ControlFillColorDefaultBrush": "color.surface.input",
+    "ControlFillColorSecondaryBrush": "color.interaction.hover.bg",
+    "ControlFillColorTertiaryBrush": "color.interaction.pressed.bg",
+    "ControlFillColorDisabledBrush": "color.interaction.disabled.bg",
+    "SubtleFillColorTransparentBrush": "color.action.secondary.bg",
+    "SubtleFillColorSecondaryBrush": "color.interaction.hover.bg",
+    "SubtleFillColorTertiaryBrush": "color.interaction.pressed.bg",
+    "SubtleFillColorDisabledBrush": "color.interaction.disabled.bg"
   },
   "menuTargets": [
     {
@@ -384,6 +397,26 @@
       "target": "Grid#SuggestionsContainer",
       "styles": {
         "Background": "color.surface.raised",
+        "BorderBrush": "color.border.overlay",
+        "BorderThickness": "border.width.default",
+        "CornerRadius": "radius.none"
+      }
+    },
+    {
+      "target": "ToolTip",
+      "styles": {
+        "Background": "color.surface.canvas",
+        "Foreground": "color.text.default",
+        "BorderBrush": "color.border.overlay",
+        "BorderThickness": "border.width.default",
+        "CornerRadius": "radius.none"
+      }
+    },
+    {
+      "target": "ToolTip > ContentPresenter#LayoutRoot",
+      "styles": {
+        "Background": "color.surface.canvas",
+        "Foreground": "color.text.default",
         "BorderBrush": "color.border.overlay",
         "BorderThickness": "border.width.default",
         "CornerRadius": "radius.none"
@@ -1844,15 +1877,6 @@
           }
         },
         {
-          "target": "ToolTip",
-          "styles": {
-            "Background": "color.surface.raised",
-            "Foreground": "color.text.default",
-            "BorderBrush": "color.border.overlay",
-            "CornerRadius": "radius.none"
-          }
-        },
-        {
           "target": "Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter",
           "styles": {
             "Background": "color.surface.raised",
@@ -1913,6 +1937,18 @@
             "Foreground@Focused": "color.text.placeholder",
             "Foreground@Disabled": "color.text.disabled"
           }
+        },
+        {
+          "target": "SystemSettings.View.SettingsNavigationViewItem > Grid#NVIRootGrid > Microsoft.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter#NavigationViewItemPresenter > Grid#LayoutRoot@PointerStates",
+          "styles": {
+            "Background@Normal": "color.surface.canvas",
+            "Background@PointerOver": "color.interaction.hover.bg",
+            "Background@Pressed": "color.interaction.pressed.bg",
+            "Background@Selected": "color.interaction.selection.bg",
+            "Background@PointerOverSelected": "color.interaction.selection.bg",
+            "Background@PressedSelected": "color.interaction.selection.bg",
+            "CornerRadius": "radius.none"
+          }
         }
       ],
       "resources": {
@@ -1920,10 +1956,10 @@
         "SystemControlFocusVisualSecondaryBrush": "color.surface.canvas",
         "FocusStrokeColorOuterBrush": "color.interaction.focus.ring",
         "FocusStrokeColorInnerBrush": "color.surface.canvas",
-        "ToolTipBackground": "color.surface.raised",
+        "ToolTipBackground": "color.surface.canvas",
         "ToolTipForeground": "color.text.default",
         "ToolTipBorderBrush": "color.border.overlay",
-        "ToolTipBackgroundBrush": "color.surface.raised",
+        "ToolTipBackgroundBrush": "color.surface.canvas",
         "ToolTipForegroundBrush": "color.text.default",
         "ProgressBarBackground": "color.interaction.pressed.bg",
         "ProgressBarForeground": "color.action.primary.bg",
@@ -1972,7 +2008,37 @@
         "ListViewItemForegroundSelectedPointerOver": "color.interaction.selection.text",
         "ListViewItemForegroundSelectedPressed": "color.interaction.selection.text",
         "ListViewItemForegroundDisabled": "color.text.disabled",
-        "ListViewItemForegroundSelectedDisabled": "color.text.disabled"
+        "ListViewItemForegroundSelectedDisabled": "color.text.disabled",
+        "NavigationViewDefaultPaneBackground": "color.surface.canvas",
+        "NavigationViewExpandedPaneBackground": "color.surface.canvas",
+        "NavigationViewTopPaneBackground": "color.surface.canvas",
+        "NavigationViewSelectionIndicatorForeground": "color.border.selected-indicator",
+        "NavigationViewItemSeparatorForeground": "color.border.divider",
+        "NavigationViewItemHeaderForeground": "color.text.muted",
+        "NavigationViewItemBackground": "color.surface.canvas",
+        "NavigationViewItemForeground": "color.text.default",
+        "NavigationViewItemBackgroundPointerOver": "color.interaction.hover.bg",
+        "NavigationViewItemForegroundPointerOver": "color.text.default",
+        "NavigationViewItemBackgroundPressed": "color.interaction.pressed.bg",
+        "NavigationViewItemForegroundPressed": "color.text.muted",
+        "NavigationViewItemBackgroundDisabled": "color.interaction.disabled.bg",
+        "NavigationViewItemForegroundDisabled": "color.text.disabled",
+        "NavigationViewItemBackgroundChecked": "color.interaction.selection.bg",
+        "NavigationViewItemForegroundChecked": "color.interaction.selection.text",
+        "NavigationViewItemBackgroundCheckedPointerOver": "color.interaction.selection.bg",
+        "NavigationViewItemForegroundCheckedPointerOver": "color.interaction.selection.text",
+        "NavigationViewItemBackgroundCheckedPressed": "color.interaction.selection.bg",
+        "NavigationViewItemForegroundCheckedPressed": "color.interaction.selection.text",
+        "NavigationViewItemBackgroundCheckedDisabled": "color.interaction.disabled.bg",
+        "NavigationViewItemForegroundCheckedDisabled": "color.text.disabled",
+        "NavigationViewItemBackgroundSelected": "color.interaction.selection.bg",
+        "NavigationViewItemForegroundSelected": "color.interaction.selection.text",
+        "NavigationViewItemBackgroundSelectedPointerOver": "color.interaction.selection.bg",
+        "NavigationViewItemForegroundSelectedPointerOver": "color.interaction.selection.text",
+        "NavigationViewItemBackgroundSelectedPressed": "color.interaction.selection.bg",
+        "NavigationViewItemForegroundSelectedPressed": "color.interaction.selection.text",
+        "NavigationViewItemBackgroundSelectedDisabled": "color.interaction.disabled.bg",
+        "NavigationViewItemForegroundSelectedDisabled": "color.text.disabled"
       }
     }
   ],
@@ -2094,7 +2160,7 @@
     }
   },
   "calculator": {
-    "version": "1.4.13",
+    "version": "1.4.14",
     "packageFullName": "Microsoft.WindowsCalculator_11.2607.0.0_x64__8wekyb3d8bbwe",
     "resources": {
       "AppChromeAcrylicHostBackdropMediumLowBrush": "color.surface.canvas",
@@ -2153,7 +2219,7 @@
       "NavigationViewTopPaneBackground": "color.surface.canvas",
       "ControlStrokeColorSecondaryBrush": "color.border.control",
       "ControlElevationBorderBrush": "color.border.control",
-      "ToolTipBorderBrush": "color.border.control",
+      "ToolTipBorderBrush": "color.border.overlay",
       "NavigationViewItemBackground": "color.surface.canvas",
       "NavigationViewItemForeground": "color.text.default",
       "NavigationViewItemBackgroundPointerOver": "color.interaction.hover.bg",
@@ -2183,7 +2249,7 @@
       "NavigationViewItemHeaderForeground": "color.text.muted",
       "NavigationViewContentGridBorderBrush": "color.border.divider",
       "NavigationViewSelectionIndicatorForeground": "color.border.active",
-      "ToolTipBackgroundBrush": "color.surface.overlay",
+      "ToolTipBackgroundBrush": "color.surface.canvas",
       "ToolTipForegroundBrush": "color.text.default",
       "AcrylicInAppFillColorDefaultBrush": "color.surface.raised",
       "SystemControlTransientBorderBrush": "color.border.overlay",
@@ -2274,7 +2340,9 @@
       "ButtonForeground": "color.text.default",
       "ButtonForegroundPointerOver": "color.text.default",
       "ButtonForegroundPressed": "color.text.default",
-      "ButtonForegroundDisabled": "color.text.disabled"
+      "ButtonForegroundDisabled": "color.text.disabled",
+      "ToolTipBackground": "color.surface.canvas",
+      "ToolTipForeground": "color.text.default"
     },
     "buttonStyleTarget": "CalculatorApp.Controls.CalculatorButton, CalculatorApp, Version=11.2607.0.0, Culture=neutral, PublicKeyToken=null"
   },
@@ -2424,11 +2492,11 @@
     }
   },
   "notepadChrome": {
-    "version": "1.2.35",
+    "version": "1.2.39",
     "packageFullName": "Microsoft.WindowsNotepad_11.2607.14.0_x64__8wekyb3d8bbwe",
-    "runtimePackage": "Microsoft.WindowsAppRuntime.2_2.6.4.0_x64__8wekyb3d8bbwe",
-    "runtimeSha256": "3feb212dd3255f8b977f71197e692e4a4ef5d515eafc9c8b3cac49936783aa4b",
-    "diagnosticsBridgeSha256": "ca1a3c68c2474beb2521d46a13f3c4a8bad90aaea394b43c67bbb6b31a23053d",
+    "runtimePackage": "Microsoft.WindowsAppRuntime.2_2.6.5.0_x64__8wekyb3d8bbwe",
+    "runtimeSha256": "ba728ec8e18e86577581ac611b7379ad08f69d47898f0ada0f1536f4313a9758",
+    "diagnosticsBridgeSha256": "a9eb6c0de80645c3f3b0570636f37966f5cf8c9583c91ce1b8760a937a243e44",
     "captionColors": {},
     "existingCaptionRollback": "windows-default"
   },
@@ -2749,7 +2817,7 @@
     "SliderInlineTickBarFill": "color.surface.input",
     "FlyoutPresenterBackground": "color.surface.raised",
     "FlyoutBorderThemeBrush": "color.border.overlay",
-    "ToolTipBackgroundBrush": "color.surface.overlay",
+    "ToolTipBackgroundBrush": "color.surface.canvas",
     "ToolTipForegroundBrush": "color.text.default",
     "ToolTipBorderBrush": "color.border.overlay",
     "ScrollBarBackground": "color.interaction.scrollbar.track",
@@ -2783,14 +2851,29 @@
     "ScrollBarButtonArrowForeground": "color.text.default",
     "ScrollBarButtonArrowForegroundPointerOver": "color.text.bright",
     "ScrollBarButtonArrowForegroundPressed": "color.text.bright",
-    "ScrollBarButtonArrowForegroundDisabled": "color.text.disabled"
+    "ScrollBarButtonArrowForegroundDisabled": "color.text.disabled",
+    "ToolTipBackground": "color.surface.canvas",
+    "ToolTipForeground": "color.text.default",
+    "ContentDialogBackground": "color.surface.canvas",
+    "ContentDialogTopOverlay": "color.surface.canvas",
+    "ContentDialogForeground": "color.text.default",
+    "ContentDialogBorderBrush": "color.border.overlay",
+    "ContentDialogSeparatorBorderBrush": "color.border.divider",
+    "TabViewItemHeaderForeground": "color.text.default",
+    "TabViewItemHeaderForegroundPointerOver": "color.text.default",
+    "TabViewItemHeaderForegroundPressed": "color.text.default",
+    "TabViewItemHeaderForegroundSelected": "color.interaction.selection.text",
+    "TabViewItemHeaderForegroundDisabled": "color.text.disabled",
+    "TabViewItemHeaderBackgroundPointerOver": "color.interaction.hover.bg",
+    "TabViewItemHeaderBackgroundPressed": "color.interaction.pressed.bg",
+    "TabViewItemHeaderBackgroundDisabled": "color.interaction.disabled.bg"
   },
   "paintChrome": {
-    "version": "1.0.32",
-    "packageFullName": "Microsoft.Paint_11.2605.81.0_x64__8wekyb3d8bbwe",
-    "runtimePackage": "Microsoft.WindowsAppRuntime.2_2.6.4.0_x64__8wekyb3d8bbwe",
-    "runtimeSha256": "3feb212dd3255f8b977f71197e692e4a4ef5d515eafc9c8b3cac49936783aa4b",
-    "diagnosticsBridgeSha256": "ca1a3c68c2474beb2521d46a13f3c4a8bad90aaea394b43c67bbb6b31a23053d",
+    "version": "1.0.36",
+    "packageFullName": "Microsoft.Paint_11.2609.401.0_x64__8wekyb3d8bbwe",
+    "runtimePackage": "Microsoft.WindowsAppRuntime.2_2.6.5.0_x64__8wekyb3d8bbwe",
+    "runtimeSha256": "ba728ec8e18e86577581ac611b7379ad08f69d47898f0ada0f1536f4313a9758",
+    "diagnosticsBridgeSha256": "a9eb6c0de80645c3f3b0570636f37966f5cf8c9583c91ce1b8760a937a243e44",
     "captionColors": {
       "BackgroundColor": "color.surface.canvas",
       "ForegroundColor": "color.text.default",
@@ -2811,7 +2894,7 @@
     "SHELLCOMMON": "d275b4025c9332cbe255a368f0c876c746e1959d7db40156db467fb829059dba"
   },
   "terminalChrome": {
-    "version": "1.0.16",
+    "version": "1.0.20",
     "packageFullName": "Microsoft.WindowsTerminal_1.24.12741.0_x64__8wekyb3d8bbwe",
     "runtimeSha256": "da3ae828c807b56eab79981e68dd605daec066b088ff8836afbb8bd04de18c01",
     "diagnosticsBridgeSha256": "da3ae828c807b56eab79981e68dd605daec066b088ff8836afbb8bd04de18c01",

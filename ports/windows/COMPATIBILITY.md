@@ -24,12 +24,14 @@ version. Native Explorer's loaded-module presence must also be checked during
 appearance review: enabled configuration and an installer Test pass do not
 prove successful in-process initialization.
 
-Terminal's separate package pin remains 1.24.12741.0. Notepad 11.2607.14.0
-and Paint 11.2605.81.0 retain their app identities, but their package dependency
-graphs now select Windows App Runtime 2.6.4.0. The chrome adapters pin that
-runtime and its diagnostics bridge by full hash. The old 2.5.1.0 runtime pin
-refused these updated applications; updating Windows alone would leave their
-chrome unstyled. Notepad's native editor binary is unchanged. Its status bar
+Terminal's separate package pin remains 1.24.12741.0. Notepad remains
+11.2607.14.0; Paint is now 11.2609.401.0. Both running applications load
+Windows App Runtime 2.6.5.0. Their chrome adapters pin the measured XAML
+module and diagnostics bridge by full hash. The earlier Paint package and
+2.6.4.0 runtime pins refused these updated applications, leaving native gray
+chrome even while Notepad's separate editor adapter remained active. A Store
+runtime update can therefore require a chrome update without changing the
+Windows build or Notepad package. No version range is admitted. Its status bar
 uses the neutral text roles and canvas background, including the existing
 scoped override for its local translucent template backing. The frame accent
 is independent of the status bar. These identity checks do not establish
@@ -809,7 +811,7 @@ of that production discovery path remains a separate gate.
 ### Shared Notepad and Paint chrome candidate
 
 The shared WinUI chrome template generates separate adapters for the recorded
-Notepad 11.2607.14.0 and Paint 11.2605.81.0 packages. Each admits its own named
+Notepad 11.2607.14.0 and Paint 11.2609.401.0 packages. Each admits its own named
 chrome classes and the exact loaded runtime and diagnostics bridge digests.
 Paint drawing controls, palettes and artwork are excluded. Both adapters are
 included in the single public install.ps1 lifecycle and its restore journal.

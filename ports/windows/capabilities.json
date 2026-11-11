@@ -465,9 +465,9 @@
       "reason": "Token-derived CSS in the exact-admitted PowerToys Markdown rendering boundary; import and visual acceptance are separate."
     },
     "color.surface.overlay": {
-      "state": "mapped",
+      "state": "out-of-scope",
       "surface": "shell",
-      "reason": "Mapped by the exact-package Calculator UI resource adapter; real import evidence is tracked separately."
+      "reason": "Native tooltip interiors use the black canvas; this adapter does not use a separate overlay fill."
     },
     "color.surface.input": {
       "state": "mapped",

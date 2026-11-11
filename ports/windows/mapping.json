@@ -122,6 +122,12 @@
       "terminal.foreground"
     ],
     "color.surface.canvas": [
+      "notepad-chrome.resource.ContentDialogBackground",
+      "paint-chrome.resource.ContentDialogBackground",
+      "terminal-chrome.resource.ContentDialogBackground",
+      "notepad-chrome.resource.ContentDialogTopOverlay",
+      "paint-chrome.resource.ContentDialogTopOverlay",
+      "terminal-chrome.resource.ContentDialogTopOverlay",
       "terminal.background",
       "cursor.foreground",
       "windhawk.resource.SolidBackgroundFillColorBase",
@@ -286,7 +292,26 @@
       "windows-11-notification-center-styler | Button#VolumeL2Button > ContentPresenter#ContentPresenter@CommonStates | Background@Normal",
       "windows-11-notification-center-styler.resource.SliderContainerBackground",
       "windows-11-notification-center-styler.resource.SliderContainerBackgroundPointerOver",
-      "windows-11-notification-center-styler.resource.SliderContainerBackgroundPressed"
+      "windows-11-notification-center-styler.resource.SliderContainerBackgroundPressed",
+      "windhawk.resource.ToolTipBackground",
+      "windhawk.resource.ToolTipBackgroundBrush",
+      "windhawk.menu | ToolTip | Background",
+      "windhawk.menu | ToolTip > ContentPresenter#LayoutRoot | Background",
+      "windows-11-settings-styler.resource.ToolTipBackground",
+      "windows-11-settings-styler.resource.ToolTipBackgroundBrush",
+      "windows-11-settings-styler.resource.NavigationViewDefaultPaneBackground",
+      "windows-11-settings-styler.resource.NavigationViewExpandedPaneBackground",
+      "windows-11-settings-styler.resource.NavigationViewTopPaneBackground",
+      "windows-11-settings-styler.resource.NavigationViewItemBackground",
+      "calculator.resource.ToolTipBackgroundBrush",
+      "calculator.resource.ToolTipBackground",
+      "notepad-chrome.resource.ToolTipBackgroundBrush",
+      "notepad-chrome.resource.ToolTipBackground",
+      "paint-chrome.resource.ToolTipBackgroundBrush",
+      "paint-chrome.resource.ToolTipBackground",
+      "terminal-chrome.resource.ToolTipBackgroundBrush",
+      "terminal-chrome.resource.ToolTipBackground",
+      "windows-11-settings-styler | SystemSettings.View.SettingsNavigationViewItem > Grid#NVIRootGrid > Microsoft.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter#NavigationViewItemPresenter > Grid#LayoutRoot@PointerStates | Background@Normal"
     ],
     "color.terminal.cursor": [
       "terminal.cursor"
@@ -309,6 +334,9 @@
       "terminal-chrome.resource.TabViewItemHeaderBackground"
     ],
     "color.text.default": [
+      "notepad-chrome.resource.ContentDialogForeground",
+      "paint-chrome.resource.ContentDialogForeground",
+      "terminal-chrome.resource.ContentDialogForeground",
       "native.foreground",
       "windhawk.resource.TextFillColorPrimary",
       "windhawk.resource.SystemControlForegroundBaseHighBrush",
@@ -537,9 +565,6 @@
       "notepad-chrome.resource.ScrollBarButtonArrowForeground",
       "paint-chrome.resource.ScrollBarButtonArrowForeground",
       "terminal-chrome.resource.ScrollBarButtonArrowForeground",
-      "windows-11-settings-styler.resource.ToolTipForeground",
-      "windows-11-settings-styler.resource.ToolTipForegroundBrush",
-      "windows-11-settings-styler | ToolTip | Foreground",
       "windows-11-settings-styler.resource.ToggleSwitchContentForeground",
       "windows-11-settings-styler.resource.ToggleSwitchHeaderForeground",
       "windows-11-settings-styler.resource.ToggleSwitchKnobFillOff",
@@ -589,7 +614,28 @@
       "windows-11-settings-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | PointerOverForeground",
       "windows-11-settings-styler | TextBox#CommandSearchTextBox | Foreground",
       "windows-11-notification-center-styler | JumpViewUI.SystemItemListViewItem | Foreground",
-      "windows-11-notification-center-styler | JumpViewUI.JumpListListViewItem | Foreground"
+      "windows-11-notification-center-styler | JumpViewUI.JumpListListViewItem | Foreground",
+      "windhawk.resource.ToolTipForeground",
+      "windhawk.resource.ToolTipForegroundBrush",
+      "windhawk.menu | ToolTip | Foreground",
+      "windhawk.menu | ToolTip > ContentPresenter#LayoutRoot | Foreground",
+      "windows-11-settings-styler.resource.ToolTipForeground",
+      "windows-11-settings-styler.resource.ToolTipForegroundBrush",
+      "windows-11-settings-styler.resource.NavigationViewItemForeground",
+      "windows-11-settings-styler.resource.NavigationViewItemForegroundPointerOver",
+      "calculator.resource.ToolTipForeground",
+      "notepad-chrome.resource.ToolTipForeground",
+      "paint-chrome.resource.ToolTipForeground",
+      "terminal-chrome.resource.ToolTipForeground",
+      "notepad-chrome.resource.TabViewItemHeaderForeground",
+      "paint-chrome.resource.TabViewItemHeaderForeground",
+      "terminal-chrome.resource.TabViewItemHeaderForeground",
+      "notepad-chrome.resource.TabViewItemHeaderForegroundPointerOver",
+      "paint-chrome.resource.TabViewItemHeaderForegroundPointerOver",
+      "terminal-chrome.resource.TabViewItemHeaderForegroundPointerOver",
+      "notepad-chrome.resource.TabViewItemHeaderForegroundPressed",
+      "paint-chrome.resource.TabViewItemHeaderForegroundPressed",
+      "terminal-chrome.resource.TabViewItemHeaderForegroundPressed"
     ],
     "color.text.bright": [
       "native.bright",
@@ -700,7 +746,9 @@
       "windhawk.resource.CommandBarFlyoutAppBarButtonSubItemChevronPointerOverForeground",
       "windhawk.resource.CommandBarFlyoutAppBarButtonSubItemChevronPressedForeground",
       "windhawk.resource.CommandBarFlyoutAppBarButtonSubItemChevronSubMenuOpenedForeground",
-      "windows-11-notification-center-styler | JumpViewUI.JumpListCategoryHeaderControl > Grid > TextBlock#HeadingTextBlock | Foreground"
+      "windows-11-notification-center-styler | JumpViewUI.JumpListCategoryHeaderControl > Grid > TextBlock#HeadingTextBlock | Foreground",
+      "windows-11-settings-styler.resource.NavigationViewItemHeaderForeground",
+      "windows-11-settings-styler.resource.NavigationViewItemForegroundPressed"
     ],
     "color.text.disabled": [
       "native.disabled",
@@ -796,7 +844,13 @@
       "windhawk.resource.CommandBarFlyoutAppBarButtonForegroundCheckedDisabled",
       "windows-11-settings-styler.resource.ListViewItemForegroundDisabled",
       "windows-11-settings-styler.resource.ListViewItemForegroundSelectedDisabled",
-      "windows-11-settings-styler | TextBox#CommandSearchTextBox > Grid@CommonStates > TextBlock#PlaceholderTextContentPresenter | Foreground@Disabled"
+      "windows-11-settings-styler | TextBox#CommandSearchTextBox > Grid@CommonStates > TextBlock#PlaceholderTextContentPresenter | Foreground@Disabled",
+      "windows-11-settings-styler.resource.NavigationViewItemForegroundDisabled",
+      "windows-11-settings-styler.resource.NavigationViewItemForegroundCheckedDisabled",
+      "windows-11-settings-styler.resource.NavigationViewItemForegroundSelectedDisabled",
+      "notepad-chrome.resource.TabViewItemHeaderForegroundDisabled",
+      "paint-chrome.resource.TabViewItemHeaderForegroundDisabled",
+      "terminal-chrome.resource.TabViewItemHeaderForegroundDisabled"
     ],
     "color.interaction.selection.bg": [
       "native.selection",
@@ -866,7 +920,16 @@
       "windows-11-notification-center-styler | JumpViewUI.SystemItemListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder | Background@Selected",
       "windows-11-notification-center-styler | JumpViewUI.SystemItemListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder | Background@PointerOverSelected",
       "windows-11-notification-center-styler | JumpViewUI.JumpListListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder | Background@Selected",
-      "windows-11-notification-center-styler | JumpViewUI.JumpListListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder | Background@PointerOverSelected"
+      "windows-11-notification-center-styler | JumpViewUI.JumpListListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder | Background@PointerOverSelected",
+      "windows-11-settings-styler.resource.NavigationViewItemBackgroundChecked",
+      "windows-11-settings-styler.resource.NavigationViewItemBackgroundCheckedPointerOver",
+      "windows-11-settings-styler.resource.NavigationViewItemBackgroundCheckedPressed",
+      "windows-11-settings-styler.resource.NavigationViewItemBackgroundSelected",
+      "windows-11-settings-styler.resource.NavigationViewItemBackgroundSelectedPointerOver",
+      "windows-11-settings-styler.resource.NavigationViewItemBackgroundSelectedPressed",
+      "windows-11-settings-styler | SystemSettings.View.SettingsNavigationViewItem > Grid#NVIRootGrid > Microsoft.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter#NavigationViewItemPresenter > Grid#LayoutRoot@PointerStates | Background@Selected",
+      "windows-11-settings-styler | SystemSettings.View.SettingsNavigationViewItem > Grid#NVIRootGrid > Microsoft.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter#NavigationViewItemPresenter > Grid#LayoutRoot@PointerStates | Background@PointerOverSelected",
+      "windows-11-settings-styler | SystemSettings.View.SettingsNavigationViewItem > Grid#NVIRootGrid > Microsoft.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter#NavigationViewItemPresenter > Grid#LayoutRoot@PointerStates | Background@PressedSelected"
     ],
     "color.surface.raised": [
       "powertoys.inactive",
@@ -906,9 +969,6 @@
       "notepad-chrome.resource.FlyoutPresenterBackground",
       "paint-chrome.resource.FlyoutPresenterBackground",
       "terminal-chrome.resource.FlyoutPresenterBackground",
-      "windows-11-settings-styler.resource.ToolTipBackground",
-      "windows-11-settings-styler.resource.ToolTipBackgroundBrush",
-      "windows-11-settings-styler | ToolTip | Background",
       "windows-11-taskbar-styler | Grid#OverflowRootGrid | Background",
       "windows-11-taskbar-styler | Grid#OverflowRootGrid > Border#OverflowFlyoutBackgroundBorder | Background",
       "windhawk.resource.MenuFlyoutItemBackgroundBrush",
@@ -970,7 +1030,6 @@
       "calculator.resource.ControlStrokeColorDefaultBrush",
       "calculator.resource.ControlStrokeColorSecondaryBrush",
       "calculator.resource.ControlElevationBorderBrush",
-      "calculator.resource.ToolTipBorderBrush",
       "notepad-chrome.resource.OverlayButtonBorderBrush",
       "notepad-chrome.resource.ControlStrokeColorDefaultBrush",
       "notepad-chrome.resource.ControlStrokeColorSecondaryBrush",
@@ -1206,7 +1265,8 @@
       "windows-11-notification-center-styler | Slider > Grid@CommonStates > * > Windows.UI.Xaml.Controls.Primitives.Thumb#HorizontalThumb > Border | Background@Pressed",
       "windows-11-settings-styler | TextBox#CommandSearchTextBox | Background",
       "windows-11-settings-styler | TextBox#CommandSearchTextBox > Grid@CommonStates > Border#BorderElement | Background@Normal",
-      "windows-11-settings-styler | TextBox#CommandSearchTextBox > Grid@CommonStates > Border#BorderElement | Background@Focused"
+      "windows-11-settings-styler | TextBox#CommandSearchTextBox > Grid@CommonStates > Border#BorderElement | Background@Focused",
+      "windhawk.resource.ControlFillColorDefaultBrush"
     ],
     "color.interaction.hover.bg": [
       "windhawk.resource.ControlFillColorSecondary",
@@ -1274,7 +1334,14 @@
       "windows-11-notification-center-styler | Windows.UI.Xaml.Controls.Primitives.RepeatButton#NextButton > ContentPresenter#ContentPresenter@CommonStates | Background@PointerOver",
       "windows-11-notification-center-styler | Button#FooterButton > ContentPresenter#ContentPresenter@CommonStates | Background@PointerOver",
       "windows-11-notification-center-styler | Button#VolumeL2Button > ContentPresenter#ContentPresenter@CommonStates | Background@PointerOver",
-      "windows-11-settings-styler | TextBox#CommandSearchTextBox > Grid@CommonStates > Border#BorderElement | Background@PointerOver"
+      "windows-11-settings-styler | TextBox#CommandSearchTextBox > Grid@CommonStates > Border#BorderElement | Background@PointerOver",
+      "windhawk.resource.ControlFillColorSecondaryBrush",
+      "windhawk.resource.SubtleFillColorSecondaryBrush",
+      "windows-11-settings-styler.resource.NavigationViewItemBackgroundPointerOver",
+      "windows-11-settings-styler | SystemSettings.View.SettingsNavigationViewItem > Grid#NVIRootGrid > Microsoft.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter#NavigationViewItemPresenter > Grid#LayoutRoot@PointerStates | Background@PointerOver",
+      "notepad-chrome.resource.TabViewItemHeaderBackgroundPointerOver",
+      "paint-chrome.resource.TabViewItemHeaderBackgroundPointerOver",
+      "terminal-chrome.resource.TabViewItemHeaderBackgroundPointerOver"
     ],
     "color.interaction.pressed.bg": [
       "windhawk.resource.ControlFillColorTertiary",
@@ -1381,7 +1448,14 @@
       "windows-11-notification-center-styler | JumpViewUI.SystemItemListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder | Background@Pressed",
       "windows-11-notification-center-styler | JumpViewUI.SystemItemListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder | Background@PressedSelected",
       "windows-11-notification-center-styler | JumpViewUI.JumpListListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder | Background@Pressed",
-      "windows-11-notification-center-styler | JumpViewUI.JumpListListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder | Background@PressedSelected"
+      "windows-11-notification-center-styler | JumpViewUI.JumpListListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder | Background@PressedSelected",
+      "windhawk.resource.ControlFillColorTertiaryBrush",
+      "windhawk.resource.SubtleFillColorTertiaryBrush",
+      "windows-11-settings-styler.resource.NavigationViewItemBackgroundPressed",
+      "windows-11-settings-styler | SystemSettings.View.SettingsNavigationViewItem > Grid#NVIRootGrid > Microsoft.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter#NavigationViewItemPresenter > Grid#LayoutRoot@PointerStates | Background@Pressed",
+      "notepad-chrome.resource.TabViewItemHeaderBackgroundPressed",
+      "paint-chrome.resource.TabViewItemHeaderBackgroundPressed",
+      "terminal-chrome.resource.TabViewItemHeaderBackgroundPressed"
     ],
     "color.action.primary.bg": [
       "windhawk.resource.AccentFillColorDefault",
@@ -1424,6 +1498,9 @@
       "windows-11-notification-center-styler | CalendarView | TodayForeground"
     ],
     "color.border.overlay": [
+      "notepad-chrome.resource.ContentDialogBorderBrush",
+      "paint-chrome.resource.ContentDialogBorderBrush",
+      "terminal-chrome.resource.ContentDialogBorderBrush",
       "windows-11-start-menu-styler | Border#AcrylicBorder | BorderBrush",
       "windows-11-start-menu-styler | Grid#CompanionRoot > Border#AcrylicBorder | BorderBrush",
       "windows-11-start-menu-styler | StartMenu.FolderModal > Grid > Border | BorderBrush",
@@ -1449,8 +1526,6 @@
       "notepad-chrome.resource.ToolTipBorderBrush",
       "paint-chrome.resource.ToolTipBorderBrush",
       "terminal-chrome.resource.ToolTipBorderBrush",
-      "windows-11-settings-styler.resource.ToolTipBorderBrush",
-      "windows-11-settings-styler | ToolTip | BorderBrush",
       "windows-11-taskbar-styler | Grid#ConfirmatorMainGrid | BorderBrush",
       "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid | BorderBrush",
       "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher | BorderBrush",
@@ -1472,7 +1547,12 @@
       "windhawk.menu | Border#SuggestionsContainer | BorderBrush",
       "windhawk.menu | Grid#SuggestionsContainer | BorderBrush",
       "windows-11-settings-styler | Border#StatusTextPopupBorder | BorderBrush",
-      "windows-11-notification-center-styler | Border#JumpListRestyledAcrylic | BorderBrush"
+      "windows-11-notification-center-styler | Border#JumpListRestyledAcrylic | BorderBrush",
+      "windhawk.resource.ToolTipBorderBrush",
+      "windhawk.menu | ToolTip | BorderBrush",
+      "windhawk.menu | ToolTip > ContentPresenter#LayoutRoot | BorderBrush",
+      "windows-11-settings-styler.resource.ToolTipBorderBrush",
+      "calculator.resource.ToolTipBorderBrush"
     ],
     "border.width.default": [
       "windows-11-start-menu-styler | Border#AcrylicBorder | BorderThickness",
@@ -1504,7 +1584,9 @@
       "windhawk.menu | Border#SuggestionsContainer | BorderThickness",
       "windhawk.menu | Grid#SuggestionsContainer | BorderThickness",
       "windows-11-settings-styler | Border#StatusTextPopupBorder | BorderThickness",
-      "windows-11-notification-center-styler | Border#JumpListRestyledAcrylic | BorderThickness"
+      "windows-11-notification-center-styler | Border#JumpListRestyledAcrylic | BorderThickness",
+      "windhawk.menu | ToolTip | BorderThickness",
+      "windhawk.menu | ToolTip > ContentPresenter#LayoutRoot | BorderThickness"
     ],
     "radius.none": [
       "windows-11-start-menu-styler | Border#AcrylicBorder | CornerRadius",
@@ -1556,7 +1638,6 @@
       "windows-11-settings-styler | Button | CornerRadius",
       "windows-11-settings-styler | Microsoft.UI.Xaml.Controls.SplitButton | CornerRadius",
       "windows-11-settings-styler | CalendarView | CornerRadius",
-      "windows-11-settings-styler | ToolTip | CornerRadius",
       "windows-11-taskbar-styler | Grid#ConfirmatorMainGrid | CornerRadius",
       "windows-11-taskbar-styler | Grid#VolumeConfirmator, Grid#BrightnessConfirmator | CornerRadius",
       "windows-11-taskbar-styler | WindowsInternal.ComposableShell.Experiences.TextInput.Common.InputSwitcher > ContentControl > ContentPresenter > Grid | CornerRadius",
@@ -1612,7 +1693,10 @@
       "windows-11-notification-center-styler | JumpViewUI.SystemItemListViewItem | CornerRadius",
       "windows-11-notification-center-styler | JumpViewUI.SystemItemListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder | CornerRadius",
       "windows-11-notification-center-styler | JumpViewUI.JumpListListViewItem | CornerRadius",
-      "windows-11-notification-center-styler | JumpViewUI.JumpListListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder | CornerRadius"
+      "windows-11-notification-center-styler | JumpViewUI.JumpListListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder | CornerRadius",
+      "windhawk.menu | ToolTip | CornerRadius",
+      "windhawk.menu | ToolTip > ContentPresenter#LayoutRoot | CornerRadius",
+      "windows-11-settings-styler | SystemSettings.View.SettingsNavigationViewItem > Grid#NVIRootGrid > Microsoft.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter#NavigationViewItemPresenter > Grid#LayoutRoot@PointerStates | CornerRadius"
     ],
     "color.interaction.disabled.bg": [
       "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | Background@Disabled",
@@ -1708,7 +1792,15 @@
       "windhawk.resource.CommandBarFlyoutAppBarButtonBackgroundCheckedDisabled",
       "windows-11-settings-styler.resource.ListViewItemBackgroundSelectedDisabled",
       "windows-11-settings-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | SelectedDisabledBackground",
-      "windows-11-settings-styler | TextBox#CommandSearchTextBox > Grid@CommonStates > Border#BorderElement | Background@Disabled"
+      "windows-11-settings-styler | TextBox#CommandSearchTextBox > Grid@CommonStates > Border#BorderElement | Background@Disabled",
+      "windhawk.resource.ControlFillColorDisabledBrush",
+      "windhawk.resource.SubtleFillColorDisabledBrush",
+      "windows-11-settings-styler.resource.NavigationViewItemBackgroundDisabled",
+      "windows-11-settings-styler.resource.NavigationViewItemBackgroundCheckedDisabled",
+      "windows-11-settings-styler.resource.NavigationViewItemBackgroundSelectedDisabled",
+      "notepad-chrome.resource.TabViewItemHeaderBackgroundDisabled",
+      "paint-chrome.resource.TabViewItemHeaderBackgroundDisabled",
+      "terminal-chrome.resource.TabViewItemHeaderBackgroundDisabled"
     ],
     "color.border.disabled": [
       "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@Disabled",
@@ -1837,6 +1929,9 @@
       "terminal-chrome.resource.ComboBoxItemBackgroundSelectedUnfocused"
     ],
     "color.border.divider": [
+      "notepad-chrome.resource.ContentDialogSeparatorBorderBrush",
+      "paint-chrome.resource.ContentDialogSeparatorBorderBrush",
+      "terminal-chrome.resource.ContentDialogSeparatorBorderBrush",
       "nativeExplorer.border",
       "powertoys.markdown.DIVIDER",
       "windows-11-file-explorer-styler | Border#BottomBorderLine, Border#LeftBottomBorderLine, Border#RightBottomBorderLine | Background",
@@ -1915,7 +2010,8 @@
       "windhawk.menu | AppBarSeparator | Foreground",
       "windhawk.menu | AppBarSeparator > Grid#RootGrid > Rectangle#SeparatorRectangle | Fill",
       "windows-11-notification-center-styler | Grid#SystemItemsContainer > Rectangle | Fill",
-      "windows-11-notification-center-styler | JumpViewUI.JumpListListViewItem > Grid#LayoutRoot > ContentPresenter#ContentPresenter > Grid#LayoutRoot > Rectangle | Fill"
+      "windows-11-notification-center-styler | JumpViewUI.JumpListListViewItem > Grid#LayoutRoot > ContentPresenter#ContentPresenter > Grid#LayoutRoot > Rectangle | Fill",
+      "windows-11-settings-styler.resource.NavigationViewItemSeparatorForeground"
     ],
     "color.interaction.scrollbar.thumb": [
       "nativeExplorer.scrollbar",
@@ -2021,7 +2117,8 @@
       "windows-11-notification-center-styler | Button#VerbButton | Background",
       "windows-11-notification-center-styler | Button#VerbButton > ContentPresenter@CommonStates | Background@Normal",
       "windows-11-settings-styler | Button | Background",
-      "windows-11-settings-styler | Button > ContentPresenter@CommonStates | Background@Normal"
+      "windows-11-settings-styler | Button > ContentPresenter@CommonStates | Background@Normal",
+      "windhawk.resource.SubtleFillColorTransparentBrush"
     ],
     "color.action.secondary.text": [
       "windows-11-notification-center-styler | Button#VerbButton | Foreground",
@@ -2161,7 +2258,16 @@
       "windows-11-settings-styler.resource.ListViewItemForegroundSelected",
       "windows-11-settings-styler.resource.ListViewItemForegroundSelectedPointerOver",
       "windows-11-settings-styler | Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter | SelectedForeground",
-      "windows-11-settings-styler.resource.ListViewItemForegroundSelectedPressed"
+      "windows-11-settings-styler.resource.ListViewItemForegroundSelectedPressed",
+      "windows-11-settings-styler.resource.NavigationViewItemForegroundChecked",
+      "windows-11-settings-styler.resource.NavigationViewItemForegroundCheckedPointerOver",
+      "windows-11-settings-styler.resource.NavigationViewItemForegroundCheckedPressed",
+      "windows-11-settings-styler.resource.NavigationViewItemForegroundSelected",
+      "windows-11-settings-styler.resource.NavigationViewItemForegroundSelectedPointerOver",
+      "windows-11-settings-styler.resource.NavigationViewItemForegroundSelectedPressed",
+      "notepad-chrome.resource.TabViewItemHeaderForegroundSelected",
+      "paint-chrome.resource.TabViewItemHeaderForegroundSelected",
+      "terminal-chrome.resource.TabViewItemHeaderForegroundSelected"
     ],
     "focus.offset": [
       "windows-11-start-menu-styler | web :focus-visible | outline-offset"
@@ -2180,18 +2286,13 @@
     "color.border.selected-indicator": [
       "windows-11-start-menu-styler | web .suggestion[aria-selected=\"true\"], .suggestion.leftPill:not([aria-selected=\"false\"]), .suggContainer[aria-selected=\"true\"], .suggContainer.leftPill:not([aria-selected=\"false\"]), .suggContainer:has(.suggestion[aria-selected=\"true\"]), .suggContainer:has(.suggestion.leftPill:not([aria-selected=\"false\"])) | border-inline-start-color",
       "windows-11-start-menu-styler | web .scope-tile--selected > div | border-bottom-color",
-      "terminal-chrome.resource.ComboBoxItemPillFillBrush"
+      "terminal-chrome.resource.ComboBoxItemPillFillBrush",
+      "windows-11-settings-styler.resource.NavigationViewSelectionIndicatorForeground"
     ],
     "border.width.emphasis": [
       "windows-11-start-menu-styler | web .suggestion, .suggContainer | border-inline-start-width",
       "windows-11-start-menu-styler | web .scope-tile--selected > div | border-bottom-width",
       "windows-11-start-menu-styler | web .previewContainer:focus-visible | outline-width"
-    ],
-    "color.surface.overlay": [
-      "calculator.resource.ToolTipBackgroundBrush",
-      "notepad-chrome.resource.ToolTipBackgroundBrush",
-      "paint-chrome.resource.ToolTipBackgroundBrush",
-      "terminal-chrome.resource.ToolTipBackgroundBrush"
     ],
     "focus.offset-container": [
       "windows-11-start-menu-styler | web .previewContainer:focus-visible | outline-offset"
@@ -2549,6 +2650,7 @@
     "color.primitive.modern.diff-shared-green": "Primitive; ports consume roles, never primitives.",
     "color.primitive.modern.diff-shared-red": "Primitive; ports consume roles, never primitives.",
     "color.diff.added.shared-word": "Only for a host sharing diff-summary foreground and word-highlight background; this port uses independent semantic roles.",
-    "color.diff.removed.shared-word": "Only for a host sharing diff-summary foreground and word-highlight background; this port uses independent semantic roles."
+    "color.diff.removed.shared-word": "Only for a host sharing diff-summary foreground and word-highlight background; this port uses independent semantic roles.",
+    "color.surface.overlay": "Native tooltip interiors use the black canvas; this adapter does not use a separate overlay fill."
   }
 }

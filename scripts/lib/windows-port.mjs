@@ -2,7 +2,7 @@ import { rgb as hexRgb } from "./color.mjs";
 import {renderWindowsTemplate} from "./windows-template.mjs";
 import {folderIconFile,folderGeometry} from './windows-folder-icon.mjs';
 /* Windows native artifacts. Host definitions own selectors; tokens own colors.
-   Raster assets are deterministic original geometry, not downloaded artwork. */
+   Geometry is deterministic; the wallpaper embeds the owner's supplied logo. */
 import { toCss } from './tokens.mjs';
 import {windowsMarkdownArtifacts} from './windows-markdown.mjs';
 import { stableJson, repoRoot } from './fs.mjs';
@@ -10,6 +10,7 @@ import { readFileSync } from 'node:fs';
 import { sha256Hex } from './host-install/files.mjs';
 import { buildSync } from 'esbuild';
 import path from 'node:path';
+import {PNG} from 'pngjs';
 
 export const CURSOR_NAMES = ['Arrow','Help','AppStarting','Wait','Crosshair','IBeam','NWPen','No','SizeNS','SizeWE','SizeNWSE','SizeNESW','SizeAll','UpArrow','Hand','Pin','Person'];
 // Search permits only these non-token presentation choices. Colors and
@@ -47,9 +48,32 @@ export function windowsWebContentStyles(items,val) {
 }
 const rgb=hexRgb;
 const wallpaperBmp = hex => {
-  const b=Buffer.alloc(58); b.write('BM'); b.writeUInt32LE(58,2); b.writeUInt32LE(54,10);
-  b.writeUInt32LE(40,14); b.writeInt32LE(1,18); b.writeInt32LE(1,22); b.writeUInt16LE(1,26); b.writeUInt16LE(24,28); b.writeUInt32LE(4,34);
-  const [r,g,blue]=rgb(hex); b[54]=blue;b[55]=g;b[56]=r;return b;
+  // A full-color BMP within the repository's asset budget. Average 2x2 source
+  // pixels for the small centered mark; retain the original PNG as its source.
+  // Windows' centered Fill layout preserves its proportions on other displays.
+  const logo=PNG.sync.read(readFileSync(path.join(repoRoot,'ports/windows/src/j3w1-logo.png')));
+  const width=1024,height=640,stride=Math.ceil(width*3/4)*4;
+  const logoWidth=Math.ceil(logo.width/2),logoHeight=Math.ceil(logo.height/2);
+  if(logoWidth>width||logoHeight>height)throw Error('Windows wallpaper logo exceeds its canvas');
+  const b=Buffer.alloc(54+stride*height);b.write('BM');b.writeUInt32LE(b.length,2);b.writeUInt32LE(54,10);
+  b.writeUInt32LE(40,14);b.writeInt32LE(width,18);b.writeInt32LE(height,22);b.writeUInt16LE(1,26);b.writeUInt16LE(24,28);b.writeUInt32LE(stride*height,34);
+  const background=rgb(hex);
+  for(let y=0;y<height;y++)for(let x=0;x<width;x++){
+    const offset=54+y*stride+x*3;
+    b[offset]=background[2];b[offset+1]=background[1];b[offset+2]=background[0];
+  }
+  const left=Math.floor((width-logoWidth)/2),top=Math.floor((height-logoHeight)/2);
+  for(let y=0;y<logoHeight;y++)for(let x=0;x<logoWidth;x++){
+    const target=54+(height-1-top-y)*stride+(left+x)*3;
+    const color=[0,0,0];let samples=0;
+    for(let dy=0;dy<2;dy++)for(let dx=0;dx<2;dx++){
+      const sx=x*2+dx,sy=y*2+dy;if(sx>=logo.width||sy>=logo.height)continue;
+      const source=(sy*logo.width+sx)*4,alpha=logo.data[source+3]/255;samples++;
+      for(let channel=0;channel<3;channel++)color[channel]+=logo.data[source+channel]*alpha+background[channel]*(1-alpha);
+    }
+    for(let channel=0;channel<3;channel++)b[target+2-channel]=Math.round(color[channel]/samples);
+  }
+  return b;
 };
 function cursorImage(name,size,foreground,outline) {
   const scale=size/32, rgba=Buffer.alloc(size*size*4), mask=Buffer.alloc(Math.ceil(size/32)*4*size);

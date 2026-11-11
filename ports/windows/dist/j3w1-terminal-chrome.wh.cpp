@@ -2,7 +2,7 @@
 // @id j3w1-terminal-chrome
 // @name j3w1 Terminal chrome
 // @description Exact-package Terminal chrome resources; document and artwork colors remain native
-// @version 1.0.16
+// @version 1.0.20
 // @author j3w1
 // @include WindowsTerminal.exe
 // @architecture x86-64
@@ -382,7 +382,7 @@ static constexpr Rule rules[]={
  {L"SliderInlineTickBarFill",{255,0,0,0},L"color.surface.input"},
  {L"FlyoutPresenterBackground",{255,20,11,11},L"color.surface.raised"},
  {L"FlyoutBorderThemeBrush",{255,200,26,26},L"color.border.overlay"},
- {L"ToolTipBackgroundBrush",{255,28,16,16},L"color.surface.overlay"},
+ {L"ToolTipBackgroundBrush",{255,0,0,0},L"color.surface.canvas"},
  {L"ToolTipForegroundBrush",{255,233,148,153},L"color.text.default"},
  {L"ToolTipBorderBrush",{255,200,26,26},L"color.border.overlay"},
  {L"ScrollBarBackground",{255,0,0,0},L"color.interaction.scrollbar.track"},
@@ -417,6 +417,21 @@ static constexpr Rule rules[]={
  {L"ScrollBarButtonArrowForegroundPointerOver",{255,255,162,167},L"color.text.bright"},
  {L"ScrollBarButtonArrowForegroundPressed",{255,255,162,167},L"color.text.bright"},
  {L"ScrollBarButtonArrowForegroundDisabled",{255,163,103,107},L"color.text.disabled"},
+ {L"ToolTipBackground",{255,0,0,0},L"color.surface.canvas"},
+ {L"ToolTipForeground",{255,233,148,153},L"color.text.default"},
+ {L"ContentDialogBackground",{255,0,0,0},L"color.surface.canvas"},
+ {L"ContentDialogTopOverlay",{255,0,0,0},L"color.surface.canvas"},
+ {L"ContentDialogForeground",{255,233,148,153},L"color.text.default"},
+ {L"ContentDialogBorderBrush",{255,200,26,26},L"color.border.overlay"},
+ {L"ContentDialogSeparatorBorderBrush",{255,72,43,43},L"color.border.divider"},
+ {L"TabViewItemHeaderForeground",{255,233,148,153},L"color.text.default"},
+ {L"TabViewItemHeaderForegroundPointerOver",{255,233,148,153},L"color.text.default"},
+ {L"TabViewItemHeaderForegroundPressed",{255,233,148,153},L"color.text.default"},
+ {L"TabViewItemHeaderForegroundSelected",{255,244,238,238},L"color.interaction.selection.text"},
+ {L"TabViewItemHeaderForegroundDisabled",{255,163,103,107},L"color.text.disabled"},
+ {L"TabViewItemHeaderBackgroundPointerOver",{255,28,16,16},L"color.interaction.hover.bg"},
+ {L"TabViewItemHeaderBackgroundPressed",{255,66,15,12},L"color.interaction.pressed.bg"},
+ {L"TabViewItemHeaderBackgroundDisabled",{255,13,7,7},L"color.interaction.disabled.bg"},
 };
 static bool Same(Color a,Color b){return a.A==b.A&&a.R==b.R&&a.G==b.G&&a.B==b.B;}
 static bool Identity(ProjectedObject const& a,ProjectedObject const& b){
@@ -625,6 +640,18 @@ struct Root { weak_ref<FrameworkElement> element; weak_ref<FrameworkElement> bac
  SystemBackdrop backdropBefore{nullptr}; bool backdropTracked=false;
 #endif
  DependencyProperty backgroundProperty{nullptr}; ProjectedObject backgroundBefore{nullptr}; SolidColorBrush backgroundApplied{nullptr}; std::vector<Palette> palette; std::vector<Visual> changes; std::deque<OwnedThemeRefresh> refreshes; std::deque<ControlResources> controls; };
+// A popup can be reached from several admitted roots in one XamlRoot. Retain
+// one local-property baseline across those roots, even after an app replacement
+// or a write that mutates and then throws. Cleanup must never restore another
+// root's applied brush as though it were the original application value.
+template<class Roots,class Match> static bool HasChromeVisualOwner(Roots const& roots,Match matches) {
+ for(auto const& owner:roots)for(auto const& prior:owner.changes)if(matches(prior))return true;
+ return false;
+}
+template<class Entry,class Read,class Restore> static bool RestoreChromeVisualValue(Entry const& entry,Read read,Restore restore) noexcept {
+ try {if(Identity(read(),entry.applied))restore(entry.before);return true;}
+ catch(...){return false;}
+}
 struct PendingRoot { weak_ref<FrameworkElement> element; unsigned attempts=0; };
 struct PopupLoadReceipt { weak_ref<FrameworkElement> element; event_token loaded{}; bool registered=false; };
 // Retain a failed event removal so shutdown can retry before unloading code.
@@ -1397,10 +1424,11 @@ static bool Restore(Root& root) {
 
  }catch(...){restored=false;}
  for(auto it=root.changes.rbegin();it!=root.changes.rend();++it)try {
-  if(auto object=it->object.get();object&&Identity(object.GetValue(it->property),it->applied)) {
-   if(!it->before||Identity(it->before,DependencyProperty::UnsetValue()))object.ClearValue(it->property);
-   else object.SetValue(it->property,it->before);
-  }
+  if(auto object=it->object.get())restored=RestoreChromeVisualValue(*it,
+   [&]{return object.GetValue(it->property);},[&](auto const& before){
+    if(!before||Identity(before,DependencyProperty::UnsetValue()))object.ClearValue(it->property);
+    else object.SetValue(it->property,before);
+   })&&restored;
  }catch(...){restored=false;}
  if(backgroundOwned)try {
   if(!root.backgroundBefore||Identity(root.backgroundBefore,DependencyProperty::UnsetValue()))element.ClearValue(root.backgroundProperty);
@@ -1607,12 +1635,20 @@ static const wchar_t* SplitButtonTemplateBindingKey(std::wstring_view type,Kind 
  if(type!=L"Windows.UI.Xaml.Controls.SplitButton"&&type!=L"Windows.UI.Xaml.Controls.SplitButton")return nullptr;
  return kind==Kind::Background?L"SplitButtonBackground":kind==Kind::Foreground?L"SplitButtonForeground":kind==Kind::Border?L"SplitButtonBorderBrush":nullptr;
 }
+// ContentDialog lives in a popup outside AppChrome's visual subtree. Its
+// already-resolved parent brushes feed native template bindings. Own only
+// these stable framework properties; never its content, commands or scrim.
+static const wchar_t* ContentDialogTemplateBindingKey(std::wstring_view type,Kind kind) noexcept {
+ if(type!=L"Windows.UI.Xaml.Controls.ContentDialog")return nullptr;
+ return kind==Kind::Background?L"ContentDialogBackground":kind==Kind::Foreground?L"ContentDialogForeground":kind==Kind::Border?L"ContentDialogBorderBrush":nullptr;
+}
 // This is only an early rejection filter for the existing template matcher.
 // Keep the matcher below as the final class, ancestry and brush admission.
 // Resource/state-controlled button paint is not owned by this property bridge.
 static bool ChromePaintTypeAdmission(std::wstring_view type,Kind kind) noexcept {
  if(kind==Kind::FocusPrimary||kind==Kind::FocusSecondary)return true;
  if(SplitButtonTemplateBindingKey(type,kind))return true;
+ if(ContentDialogTemplateBindingKey(type,kind))return true;
  if(kind!=Kind::Background&&kind!=Kind::Border)return false;
  return type==L"PaintUI.Ribbon"||type==L"PaintUI.RibbonControl"
   ||type==L"PaintUI.RibbonGroup"||type==L"PaintUI.RibbonCollapsibleGroup"
@@ -1621,9 +1657,13 @@ static bool ChromePaintTypeAdmission(std::wstring_view type,Kind kind) noexcept 
   ||type==L"Windows.UI.Xaml.Controls.ScrollViewer"||type==L"Windows.UI.Xaml.Controls.Primitives.RepeatButton"
   ||type==L"Windows.UI.Xaml.Shapes.Path"||type==L"Windows.UI.Xaml.Shapes.Rectangle";
 }
-static Palette const* TemplateSurface(Root const& root,DependencyObject const& object,Kind kind,Brush const& brush) {
+static Palette const* TemplateSurface(Root const& root,DependencyObject const& object,Kind kind,Brush const& brush,std::wstring_view type) {
 
- if(auto key=SplitButtonTemplateBindingKey(std::wstring_view{get_class_name(object)},kind)) {
+ if(auto key=ContentDialogTemplateBindingKey(type,kind)) {
+  for(auto const& item:root.palette)if(wcscmp(item.rule->key,key)==0)return &item;
+  return nullptr;
+ }
+ if(auto key=SplitButtonTemplateBindingKey(type,kind)) {
   for(auto const& item:root.palette)if(wcscmp(item.rule->key,key)==0)return &item;
   return nullptr;
  }
@@ -1634,7 +1674,7 @@ static Palette const* TemplateSurface(Root const& root,DependencyObject const& o
  }
  if(kind!=Kind::Background&&kind!=Kind::Border)return nullptr;
  auto parent=VisualTreeHelper::GetParent(object);if(!parent)return nullptr;
- auto type=get_class_name(object),owner=get_class_name(parent);
+ auto owner=get_class_name(parent);
  if(auto acrylic=brush.try_as<AcrylicBrush>()) {
   auto key=PaintSliderBackingKey(std::wstring_view{type},std::wstring_view{owner},kind,acrylic.TintColor());
   if(key)for(auto const& item:root.palette)if(wcscmp(item.rule->key,key)==0)return &item;
@@ -1740,7 +1780,7 @@ static bool StandardChrome(DependencyObject const& object) {
   ||CompositeButtonChrome(std::wstring_view{get_class_name(object)})
   ||object.try_as<Windows::UI::Xaml::Controls::Primitives::ButtonBase>()
   ||object.try_as<MenuBarItem>()||object.try_as<MenuFlyoutItem>()||object.try_as<MenuFlyoutSubItem>()
-  ||object.try_as<MenuFlyoutPresenter>()||object.try_as<FlyoutPresenter>()||object.try_as<ToolTip>()||object.try_as<ToggleSwitch>()||object.try_as<ComboBox>()
+  ||object.try_as<MenuFlyoutPresenter>()||object.try_as<FlyoutPresenter>()||object.try_as<ToolTip>()||object.try_as<ContentDialog>()||object.try_as<ToggleSwitch>()||object.try_as<ComboBox>()
   ||object.try_as<ListViewItem>()
 #if !J3W1_LEGACY_XAML
   ||object.try_as<Expander>()
@@ -1799,17 +1839,15 @@ static void Bridge(Root& root,FrameworkElement const& popup=nullptr) {
 
   if(!uiState)return;
   if(ApplyPaintSplitEdge(uiState->paintSplitEdges,object,property,brush,protectedBrushes))return;
-  Palette const* match=TemplateSurface(root,object,kind,brush);
+  Palette const* match=TemplateSurface(root,object,kind,brush,type);
   // Every other property was already excluded from local paint ownership.
   // Do not scan hundreds of palette aliases for an object we cannot change.
   if(!match)return;
+  if(HasChromeVisualOwner(uiState->roots,[&](auto const& prior){
+    return Identity(prior.object.get(),object)&&Identity(prior.property,property);
+   }))return;
   auto local=object.ReadLocalValue(property);
   if(local&&!Identity(local,DependencyProperty::UnsetValue())&&!local.try_as<Brush>())return;
-  for(auto& prior:root.changes)if(Identity(prior.object.get(),object)&&Identity(prior.property,property)) {
-   if(Identity(object.GetValue(property),prior.applied))return;
-   // An app update owns the property after the adapter's initial write.
-   return;
-  }
   root.changes.push_back({make_weak(object),property,local,match->applied});
   object.SetValue(property,match->applied);
 
@@ -2044,6 +2082,7 @@ static bool PopupChromeClass(std::wstring_view type) noexcept {
  return type==L"Windows.UI.Xaml.Controls.MenuFlyoutPresenter"
   ||type==L"Windows.UI.Xaml.Controls.FlyoutPresenter"
   ||type==L"Windows.UI.Xaml.Controls.ToolTip"
+  ||type==L"Windows.UI.Xaml.Controls.ContentDialog"
   ||type==L"Windows.UI.Xaml.Controls.MenuFlyoutItem"
   ||type==L"Windows.UI.Xaml.Controls.MenuFlyoutSubItem";
 }

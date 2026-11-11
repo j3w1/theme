@@ -8,6 +8,7 @@ import {parse} from 'jsonc-parser';
 import fs from 'node:fs';
 import path from 'node:path';
 import {spawnSync} from 'node:child_process';
+import {PNG} from 'pngjs';
 import {repoRoot,readJson} from '../scripts/lib/fs.mjs';
 import {assertPortArtifacts} from '../scripts/lib/port-artifacts.mjs';
 import {CURSOR_NAMES,windowsStyleValue,windowsWebContentStyles,validateWindowsStylerTarget} from '../scripts/lib/windows-port.mjs';
@@ -20,6 +21,26 @@ const sha=b=>sha256Hex(b);
 
 const readConfig=p=>{const errors=[];const value=parse(fs.readFileSync(p,'utf8').replace(/^\uFEFF/,''),errors,{allowTrailingComma:true});assert.deepEqual(errors,[],`Invalid settings: ${p}`);return value;};
 const write=(p,x)=>{fs.mkdirSync(path.dirname(p),{recursive:true});fs.writeFileSync(p,typeof x==='string'?x:JSON.stringify(x,null,2)+'\n');};
+
+test('Windows wallpaper centers the supplied logo on black within the asset budget',()=>{
+ const b=fs.readFileSync(path.join(source,'dist/j3w1-wallpaper.bmp'));
+ const logo=PNG.sync.read(fs.readFileSync(path.join(source,'src/j3w1-logo.png')));
+ assert.equal(b.toString('ascii',0,2),'BM');assert.equal(b.readUInt32LE(2),b.length);
+ const width=b.readInt32LE(18),height=b.readInt32LE(22),stride=Math.ceil(width*3/4)*4;
+ assert.equal(width,1024);assert.equal(height,640);assert.equal(b.readUInt16LE(28),24);assert.ok(b.length<=2097152);
+ const pixel=(x,y)=>[...b.subarray(54+(height-1-y)*stride+x*3,57+(height-1-y)*stride+x*3)].reverse();
+ const markWidth=Math.ceil(logo.width/2),markHeight=Math.ceil(logo.height/2);
+ const left=Math.floor((width-markWidth)/2),top=Math.floor((height-markHeight)/2);
+ assert.ok(Math.abs(left-(width-left-markWidth))<=1&&Math.abs(top-(height-top-markHeight))<=1);
+ for(const [x,y]of [[0,0],[width-1,0],[0,height-1],[width-1,height-1],[left-1,height/2],[left+markWidth,height/2]])assert.deepEqual(pixel(x,y),[0,0,0]);
+ let visible=0;
+ for(let y=0;y<logo.height-1;y+=2)for(let x=0;x<logo.width-1;x+=2){
+  const offsets=[(y*logo.width+x)*4,(y*logo.width+x+1)*4,((y+1)*logo.width+x)*4,((y+1)*logo.width+x+1)*4];
+  const first=offsets[0],rgb=[...logo.data.subarray(first,first+3)];
+  if(offsets.every(i=>logo.data[i+3]===255&&rgb.every((value,c)=>logo.data[i+c]===value))){assert.deepEqual(pixel(left+x/2,top+y/2),rgb);visible++;}
+ }
+ assert.ok(visible>2000,'The centered logo must be visible, not a blank wallpaper');
+});
 
 test('folder ICO retains transparent multiscale silhouettes and only the requested palette',()=>{
  const colors=['#bc1111','#e53131'];
@@ -118,7 +139,7 @@ test('Settings resource overrides retain shared brushes and stay isolated from o
  const host=await readJson('ports/windows/host.json');
  const tokens=await defaultTokens();
  const settings=host.stylers.find(m=>m.id==='windows-11-settings-styler');
- const expected={SystemControlFocusVisualPrimaryBrush:'color.interaction.focus.ring',SystemControlFocusVisualSecondaryBrush:'color.surface.canvas',FocusStrokeColorOuterBrush:'color.interaction.focus.ring',FocusStrokeColorInnerBrush:'color.surface.canvas',ToolTipBackground:'color.surface.raised',ToolTipForeground:'color.text.default',ToolTipBorderBrush:'color.border.overlay',ToolTipBackgroundBrush:'color.surface.raised',ToolTipForegroundBrush:'color.text.default'};
+ const expected={SystemControlFocusVisualPrimaryBrush:'color.interaction.focus.ring',SystemControlFocusVisualSecondaryBrush:'color.surface.canvas',FocusStrokeColorOuterBrush:'color.interaction.focus.ring',FocusStrokeColorInnerBrush:'color.surface.canvas',ToolTipBackground:'color.surface.canvas',ToolTipForeground:'color.text.default',ToolTipBorderBrush:'color.border.overlay',ToolTipBackgroundBrush:'color.surface.canvas',ToolTipForegroundBrush:'color.text.default'};
  Object.assign(expected,{ProgressBarBackground:'color.interaction.pressed.bg',ProgressBarForeground:'color.action.primary.bg',ProgressBarBorderBrush:'color.border.control',ToggleSwitchContentForeground:'color.text.default',ToggleSwitchContentForegroundDisabled:'color.text.disabled',ToggleSwitchHeaderForeground:'color.text.default',ToggleSwitchHeaderForegroundDisabled:'color.text.disabled',ToggleSwitchKnobStrokeOn:'color.border.control'});
  for(const [suffix,off,on] of [['','color.surface.input','color.action.primary.bg'],['PointerOver','color.interaction.hover.bg','color.action.primary.hover-bg'],['Pressed','color.interaction.pressed.bg','color.action.primary.pressed-bg'],['Disabled','color.interaction.disabled.bg','color.interaction.disabled.bg']]){
   expected['ToggleSwitchFillOff'+suffix]=off;expected['ToggleSwitchFillOn'+suffix]=on;
@@ -140,6 +161,22 @@ test('Settings resource overrides retain shared brushes and stay isolated from o
   expected['ListViewItemBackground'+suffix]=bg;
   expected['ListViewItemForeground'+suffix]=fg;
  }
+ Object.assign(expected,{NavigationViewDefaultPaneBackground:'color.surface.canvas',NavigationViewExpandedPaneBackground:'color.surface.canvas',NavigationViewTopPaneBackground:'color.surface.canvas',NavigationViewSelectionIndicatorForeground:'color.border.selected-indicator',NavigationViewItemSeparatorForeground:'color.border.divider',NavigationViewItemHeaderForeground:'color.text.muted'});
+ for(const [suffix,bg,fg]of [
+  ['','color.surface.canvas','color.text.default'],
+  ['PointerOver','color.interaction.hover.bg','color.text.default'],
+  ['Pressed','color.interaction.pressed.bg','color.text.muted'],
+  ['Disabled','color.interaction.disabled.bg','color.text.disabled'],
+  ...['Checked','Selected'].flatMap(selected=>[
+   [selected,'color.interaction.selection.bg','color.interaction.selection.text'],
+   [selected+'PointerOver','color.interaction.selection.bg','color.interaction.selection.text'],
+   [selected+'Pressed','color.interaction.selection.bg','color.interaction.selection.text'],
+   [selected+'Disabled','color.interaction.disabled.bg','color.text.disabled'],
+  ]),
+ ]){
+  expected['NavigationViewItemBackground'+suffix]=bg;
+  expected['NavigationViewItemForeground'+suffix]=fg;
+ }
  assert.deepEqual(settings.resources,expected);
  const mapping=await readJson('ports/windows/mapping.json');
  for(const [key,role]of Object.entries(expected))assert.ok(mapping.mappings[role].includes(settings.id+'.resource.'+key));
@@ -151,11 +188,58 @@ test('Settings resource overrides retain shared brushes and stay isolated from o
    assert.equal(actual[key],windowsStyleValue(key,{type:tokens[role].type,resolved:tokens[role].value}));
   if(mod.id!==settings.id){
    if(!['windows-11-notification-center-styler','windows-11-taskbar-styler'].includes(mod.id))assert.equal(mod.resources,undefined);
-   for(const key of Object.keys(expected))assert.equal(actual[key],undefined,'Settings resource leaked into '+mod.id);
+   for(const key of Object.keys(expected))
+    assert.equal(actual[key],Object.hasOwn(host.resources,key)?windowsStyleValue(key,{type:tokens[host.resources[key]].type,resolved:tokens[host.resources[key]].value}):undefined,'Settings resource leaked into '+mod.id);
   }
  }
  for(const target of settings.targets)for(const key of Object.keys(target.styles))
   assert.doesNotMatch(key,/^(?:UseSystemFocusVisuals|FocusVisualPrimaryThickness|FocusVisualSecondaryThickness|FocusVisualMargin|IsTabStop|TabIndex|Width|Height|Padding|Margin|Command|Content|Text)$/);
+});
+
+test('shell tooltips override the standard template frame without changing content or input',async()=>{
+ const host=await readJson('ports/windows/host.json'),tokens=await defaultTokens();
+ for(const resources of [host.calculator.resources,host.winuiChromeResources]){
+  for(const key of ['ToolTipBackground','ToolTipBackgroundBrush'])assert.equal(resources[key],'color.surface.canvas');
+  for(const key of ['ToolTipForeground','ToolTipForegroundBrush'])assert.equal(resources[key],'color.text.default');
+  assert.equal(resources.ToolTipBorderBrush,'color.border.overlay');
+ }
+ for(const mod of host.stylers){
+  const payload=await readJson('ports/windows/dist/'+mod.id+'.json');
+  for(const target of ['ToolTip','ToolTip > ContentPresenter#LayoutRoot']){
+   const frame=payload.controlStyles.find(rule=>rule.target===target);
+   assert.ok(frame,target+' in '+mod.id);
+   assert.ok(frame.styles.includes('Background='+tokens['color.surface.canvas'].css));
+   assert.ok(frame.styles.includes('Foreground='+tokens['color.text.default'].css));
+   assert.ok(frame.styles.includes('BorderBrush='+tokens['color.border.overlay'].css));
+   assert.ok(frame.styles.includes('BorderThickness=1'));
+   assert.ok(frame.styles.includes('CornerRadius=0'));
+   for(const value of frame.styles)assert.doesNotMatch(value,/^(?:Content|ContentTemplate|ContentTransitions|IsOpen|Placement|OpenDelay|CloseDelay|Visibility|Width|Height|Padding|Margin|IsHitTestVisible|IsTabStop|UseSystemFocusVisuals)=/);
+  }
+ }
+ for(const prefix of ['ControlFillColor','SubtleFillColor']){
+  assert.equal(host.resources[prefix+'SecondaryBrush'],'color.interaction.hover.bg');
+  assert.equal(host.resources[prefix+'TertiaryBrush'],'color.interaction.pressed.bg');
+  assert.equal(host.resources[prefix+'DisabledBrush'],'color.interaction.disabled.bg');
+ }
+});
+
+test('Settings custom navigation frame overrides its native pointer states while preserving layout and icons',async()=>{
+ const host=await readJson('ports/windows/host.json'),mapping=await readJson('ports/windows/mapping.json');
+ const tokens=await defaultTokens(),id='windows-11-settings-styler';
+ const target='SystemSettings.View.SettingsNavigationViewItem > Grid#NVIRootGrid > Microsoft.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter#NavigationViewItemPresenter > Grid#LayoutRoot@PointerStates';
+ const payload=await readJson('ports/windows/dist/'+id+'.json');
+ const frame=payload.controlStyles.find(rule=>rule.target===target);
+ assert.ok(frame,'Settings owns a custom navigation template, independent of global resource aliases');
+ for(const [state,role]of [
+  ['Normal','color.surface.canvas'],['PointerOver','color.interaction.hover.bg'],['Pressed','color.interaction.pressed.bg'],
+  ['Selected','color.interaction.selection.bg'],['PointerOverSelected','color.interaction.selection.bg'],['PressedSelected','color.interaction.selection.bg'],
+ ]){
+  assert.ok(frame.styles.includes('Background@'+state+'='+tokens[role].css),state);
+  assert.ok(mapping.mappings[role].includes(id+' | '+target+' | Background@'+state));
+ }
+ assert.ok(frame.styles.includes('CornerRadius=0'));
+ for(const value of frame.styles)assert.match(value,/^(?:Background@(?:Normal|PointerOver|Pressed|Selected|PointerOverSelected|PressedSelected)|CornerRadius)=/);
+ for(const mod of host.stylers.filter(mod=>mod.id!==id))assert.ok(!mod.targets.some(rule=>rule.target===target));
 });
 
 test('XAML color values preserve RGB and encode transparency in native ARGB order',async()=>{
@@ -882,9 +966,18 @@ test('standard flyout frames wire canonical resources into generated chrome adap
  }
 });
 
+test('native tab headers keep rose text and distinct hover, selected and disabled states',async()=>{
+ const host=await readJson('ports/windows/host.json'),mapping=await readJson('ports/windows/mapping.json');
+ const roles={TabViewItemHeaderForeground:'color.text.default',TabViewItemHeaderForegroundPointerOver:'color.text.default',TabViewItemHeaderForegroundPressed:'color.text.default',TabViewItemHeaderForegroundSelected:'color.interaction.selection.text',TabViewItemHeaderForegroundDisabled:'color.text.disabled',TabViewItemHeaderBackgroundPointerOver:'color.interaction.hover.bg',TabViewItemHeaderBackgroundPressed:'color.interaction.pressed.bg',TabViewItemHeaderBackgroundDisabled:'color.interaction.disabled.bg'};
+ for(const [key,role]of Object.entries(roles)){
+  assert.equal(host.winuiChromeResources[key],role);
+  for(const app of ['notepad','paint','terminal'])assert.ok(mapping.mappings[role].includes(app+'-chrome.resource.'+key));
+ }
+});
+
 test('standard tooltip palettes use shared resources and loaded same-root popup admission',async()=>{
  const host=await readJson('ports/windows/host.json'),mapping=await readJson('ports/windows/mapping.json');
- const roles={ToolTipBackgroundBrush:'color.surface.overlay',ToolTipForegroundBrush:'color.text.default',ToolTipBorderBrush:'color.border.overlay'};
+ const roles={ToolTipBackgroundBrush:'color.surface.canvas',ToolTipForegroundBrush:'color.text.default',ToolTipBorderBrush:'color.border.overlay',ToolTipBackground:'color.surface.canvas',ToolTipForeground:'color.text.default'};
  for(const [key,role] of Object.entries(roles)){
   assert.equal(host.winuiChromeResources[key],role);
   for(const app of ['notepad','paint','terminal']){
@@ -894,6 +987,38 @@ test('standard tooltip palettes use shared resources and loaded same-root popup 
    assert.match(text,/object.try_as<ToolTip>\(\)/);
    assert.match(text,/PopupDiscoveryAdmission[\s\S]*active&&uiThread&&loaded&&sameRoot&&PopupChromeClass/);
   }
+ }
+});
+
+test('native confirmation dialogs use their own same-root popup and resource contract',async()=>{
+ const host=await readJson('ports/windows/host.json'),mapping=await readJson('ports/windows/mapping.json');
+ const roles={ContentDialogBackground:'color.surface.canvas',ContentDialogTopOverlay:'color.surface.canvas',ContentDialogForeground:'color.text.default',ContentDialogBorderBrush:'color.border.overlay',ContentDialogSeparatorBorderBrush:'color.border.divider'};
+ for(const [key,role]of Object.entries(roles)){
+  assert.equal(host.winuiChromeResources[key],role);
+  for(const app of ['notepad','paint','terminal'])assert.ok(mapping.mappings[role].includes(app+'-chrome.resource.'+key));
+ }
+ // The dimming scrim and all behavioral/template resources remain native.
+ for(const key of Object.keys(host.winuiChromeResources))if(key.startsWith('ContentDialog'))assert.ok(Object.hasOwn(roles,key),key);
+ for(const app of ['notepad','paint','terminal']){
+  const emitted=fs.readFileSync(path.join(source,'dist/j3w1-'+app+'-chrome.wh.cpp'),'utf8');
+  const prefix=app==='terminal'?'Windows':'Microsoft';
+  const admission=emitted.slice(emitted.indexOf('static bool PopupChromeClass(std::wstring_view type) noexcept {'),emitted.indexOf('static bool RemovePopupLoadedEvent'));
+  assert.ok(admission.includes('L"'+prefix+'.UI.Xaml.Controls.ContentDialog"'));
+  assert.match(emitted,/object.try_as<ContentDialog>\(\)/);
+  assert.match(emitted,/ContentDialogTemplateBindingKey\(type,kind\)/);
+  assert.match(emitted,/if\(!element.IsLoaded\(\)\)\{WatchPopupLoad\(element\);return;\}/);
+  assert.match(emitted,/PopupDiscoveryAdmission[\s\S]*active&&uiThread&&loaded&&sameRoot&&PopupChromeClass/);
+ }
+});
+
+test('shared popup properties have one baseline across every admitted chrome root',()=>{
+ for(const app of ['notepad','paint','terminal']){
+  const emitted=fs.readFileSync(path.join(source,'dist/j3w1-'+app+'-chrome.wh.cpp'),'utf8');
+  const bridge=emitted.slice(emitted.indexOf('static void Bridge(Root& root,'),emitted.indexOf('static bool RootCandidateClass',emitted.indexOf('static void Bridge(Root& root,')));
+  assert.match(bridge,/HasChromeVisualOwner\(uiState->roots[\s\S]*Identity\(prior.object.get\(\),object\)&&Identity\(prior.property,property\)[\s\S]*ReadLocalValue\(property\)/);
+  assert.match(bridge,/root.changes.push_back[\s\S]*object.SetValue\(property,match->applied\)/);
+  assert.doesNotMatch(bridge,/for\(auto& prior:root.changes\)/);
+  assert.match(emitted,/RestoreChromeVisualValue\(\*it,[\s\S]*object.GetValue\(it->property\)/);
  }
 });
 

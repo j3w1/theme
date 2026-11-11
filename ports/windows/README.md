@@ -7,6 +7,12 @@ application. [Coverage](COVERAGE.md) lists implemented surfaces, owner
 acceptances and open checks; [Compatibility](COMPATIBILITY.md) holds exact host
 boundaries, technical details, developer/offline instructions and history.
 
+The included wallpaper centers the owner-supplied j3w1 logo on true black.
+The original transparent logo lives in `src/j3w1-logo.png`; generation creates
+the compact 16:10 BMP installed for the desktop and, when the current image is
+recoverable, the lock screen. The installer retains its existing wallpaper
+layout, verification and rollback workflow. No OneDrive path is needed.
+
 ## One-click setup from this checkout
 
 For a reviewed Git checkout with Node 24 and Git available, double-click the
@@ -161,6 +167,11 @@ DPI/accessibility variants still need acceptance, and no sign-in or clean-PC
 Full installation is claimed. Paint's gray drawing surround is host-owned and
 excluded from recoloring by the owner; an opaque viewport background would cover
 the artwork.
+
+The owner accepted the updated Settings hovers, Notepad chrome, Paint controls
+and Paint's black/rose/red unsaved-work confirmation on the recorded exact host.
+The dialog was dismissed with Cancel, preserving the artwork; Save and discard
+were not exercised. This bounded approval does not cover every dialog or state.
 
 Recent corrections and their own open checks are recorded in Coverage:
 [Quick Settings and taskbar popup surfaces](COVERAGE.md#quick-settings-and-taskbar-popup-surfaces),

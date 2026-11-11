@@ -1,7 +1,7 @@
 // Shared native regression for deferred popup event ownership. No app input.
 static void CheckPopupLoadLifecycle() {
  const std::wstring prefix=J3W1_LEGACY_XAML?L"Windows.UI.Xaml.Controls.":L"Microsoft.UI.Xaml.Controls.";
- for(auto suffix:{L"MenuFlyoutPresenter",L"FlyoutPresenter",L"ToolTip",L"MenuFlyoutItem",L"MenuFlyoutSubItem"}) {
+ for(auto suffix:{L"MenuFlyoutPresenter",L"FlyoutPresenter",L"ToolTip",L"ContentDialog",L"MenuFlyoutItem",L"MenuFlyoutSubItem"}) {
   auto type=prefix+suffix;
   assert(PopupObservationAdmission(type,true,true));
   assert(!PopupObservationAdmission(type,false,true));
@@ -10,7 +10,7 @@ static void CheckPopupLoadLifecycle() {
   assert(PopupDiscoveryAdmission(type,true,true,true,true));
   assert(!PopupDiscoveryAdmission(type,true,true,true,false)); // A moved popup must be re-admitted.
  }
- for(auto type:{L"PaintUI.D2DSwapChainPanel",L"PaintUI.ColorRadioButton",L"TerminalApp.TerminalPage",L"NotepadXamlUI.Document",L"Other.MenuFlyoutPresenter"})
+ for(auto type:{L"PaintUI.D2DSwapChainPanel",L"PaintUI.ColorRadioButton",L"TerminalApp.TerminalPage",L"NotepadXamlUI.Document",L"Other.MenuFlyoutPresenter",L"Other.ContentDialog",L"Microsoft.UI.Xaml.Controls.ContentDialogExtra"})
   assert(!PopupObservationAdmission(type,true,true));
  struct Receipt {int element;event_token loaded;bool registered;};
  std::deque<Receipt> receipts{{1,{11},true},{0,{12},true},{2,{13},true}};

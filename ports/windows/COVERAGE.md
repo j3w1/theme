@@ -1302,3 +1302,72 @@ their brush or template. The existing final matcher admits focus paint only
 on Controls, so this removes work without changing an eligible focus scope.
 Native focus admission regressions retain both control focus brushes and
 refuse backgrounds and non-control focus scopes.
+
+### Shell tooltip and Settings hover resources
+
+The shared shell recipe now maps the standard XAML ToolTip and its direct
+`ContentPresenter#LayoutRoot` frame to black canvas, rose text and the red
+overlay border. Template contents, open/close states, timing, placement and
+input behavior remain native. Settings consumes this shared recipe instead of
+a duplicate control rule. ControlFill and SubtleFill brush aliases now carry
+the same existing hover/pressed roles as their color keys, and Settings maps
+the NavigationView state resources, including selected and disabled states.
+Calculator and the separate WinUI app adapters also map both tooltip background
+aliases to black. These are resource and generation changes, not installed
+visual acceptance.
+
+The reported taskbar hover label has not yet been classified as a native
+tooltip or a XAML ToolTip. The shared recipe covers the latter only; the
+Explorer native tooltip hook still requires a same-process CabinetWClass
+owner/tool and does not admit taskbar-owned tooltip windows.
+
+References: Microsoft [ToolTip frame and brush aliases](https://github.com/microsoft/microsoft-ui-xaml/blob/v2.8.7/dev/CommonStyles/ToolTip_rs5_themeresources.xaml)
+and [NavigationView state resources](https://github.com/microsoft/microsoft-ui-xaml/blob/v2.8.7/dev/NavigationView/NavigationView_rs2_themeresources.xaml).
+
+An installed follow-up still showed a gray Settings navigation hover after
+the resource-only update and restart. Settings owns a custom
+`SettingsNavigationViewItem` template, so the recipe now also overrides the
+documented `NavigationViewItemPresenter#NavigationViewItemPresenter` direct
+`Grid#LayoutRoot@PointerStates` frame. Normal, pointer-over, pressed and the
+three selected combinations use the existing canvas, hover, pressed and
+selection roles; its radius is square. Layout, native icons, labels and input
+remain unchanged. The owner accepted the corrected installed Settings hovers,
+Notepad chrome and Paint controls on the recorded exact host. This is bounded
+appearance acceptance, not exhaustive state or accessibility verification.
+The [upstream OLED recipe](https://github.com/ramensoftware/windows-11-settings-styling-guide/blob/main/Themes/OLED/README.md)
+documents this custom template boundary; its colors and layout changes are
+not imported.
+
+### Native app confirmation dialogs
+
+The app chrome adapters now recognize the framework `ContentDialog` through
+their existing diagnostics and Loaded-event popup path. Admission still
+requires the exact package/runtime, the element's UI thread, enabled theme,
+loaded element and the admitted owner's XamlRoot. ContentDialog receives its
+own reversible resource overlay; its stable Background, Foreground and
+BorderBrush template bindings also use the existing local-property ownership
+path so an already-created dialog can refresh. No new polling or tree walk is
+introduced. Background and top overlay use black canvas, ordinary dialog text
+uses rose, the frame uses the red overlay border and separators use the divider
+role. The native dimming scrim, dialog content, button commands, focus, sizing
+and show/dismiss states remain unchanged. This covers native in-app dialogs,
+not the separate Windows file-picker surface.
+
+Native regressions exercise class/root/Loaded admission, exact binding keys,
+resource restoration, app replacement and partial-write recovery. These checks
+do not establish installed rendering or activation of any save/discard action.
+On the recorded exact host, a separate installed observation showed Paint's
+unsaved-work confirmation with a black body, rose title/body text and a red
+outline. Cancel dismissed it and left the unsaved artwork open. The owner
+accepted that appearance and authorized the subsequent refactor and cleanup.
+Save and discard were not activated; other dialogs, DPI variants and live
+accessibility transitions remain untested.
+Reference: Microsoft's [ContentDialog template](https://github.com/microsoft/microsoft-ui-xaml/blob/8463f45162149de0ec3ad7df752596893fe3e13e/controls/dev/CommonStyles/ContentDialog_themeresources.xaml).
+The upstream [taskbar tooltip recipe](https://github.com/ramensoftware/windows-11-taskbar-styling-guide#tooltips)
+uses the same `ToolTip > ContentPresenter#LayoutRoot` frame target.
+
+The app adapters also map the native tab-header foreground resources to rose,
+with separate selected and disabled text. Native tab hover, pressed and disabled
+fills use their existing interaction roles. These keys come from Microsoft's
+[TabView template](https://github.com/microsoft/microsoft-ui-xaml/blob/v2.8.7/dev/TabView/TabView.xaml);
+they do not replace tab labels, selection, navigation or document content.

@@ -172,6 +172,26 @@
       ]
     },
     {
+      "target": "ToolTip",
+      "styles": [
+        "Background=#000000",
+        "Foreground=#e99499",
+        "BorderBrush=#c81a1a",
+        "BorderThickness=1",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "ToolTip > ContentPresenter#LayoutRoot",
+      "styles": [
+        "Background=#000000",
+        "Foreground=#e99499",
+        "BorderBrush=#c81a1a",
+        "BorderThickness=1",
+        "CornerRadius=0"
+      ]
+    },
+    {
       "target": "TextBlock",
       "styles": [
         "Foreground=#e99499"
@@ -517,6 +537,19 @@
     "FlyoutPresenterForeground=#e99499",
     "FlyoutPresenterBorderBrush=#c81a1a",
     "AutoSuggestBoxSuggestionsListBackground=#140b0b",
-    "AutoSuggestBoxSuggestionsListBorderBrush=#c81a1a"
+    "AutoSuggestBoxSuggestionsListBorderBrush=#c81a1a",
+    "ToolTipBackground=#000000",
+    "ToolTipForeground=#e99499",
+    "ToolTipBorderBrush=#c81a1a",
+    "ToolTipBackgroundBrush=#000000",
+    "ToolTipForegroundBrush=#e99499",
+    "ControlFillColorDefaultBrush=#000000",
+    "ControlFillColorSecondaryBrush=#1c1010",
+    "ControlFillColorTertiaryBrush=#420f0c",
+    "ControlFillColorDisabledBrush=#0d0707",
+    "SubtleFillColorTransparentBrush=#00000000",
+    "SubtleFillColorSecondaryBrush=#1c1010",
+    "SubtleFillColorTertiaryBrush=#420f0c",
+    "SubtleFillColorDisabledBrush=#0d0707"
   ]
 }

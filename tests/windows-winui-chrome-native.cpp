@@ -152,6 +152,81 @@ int main(int argc, char** argv) {
  if(argc>1&&strcmp(argv[1],"paint-split-edge-ownership")==0){CheckPaintSplitEdges();return 0;}
  if(argc>1&&strcmp(argv[1],"background-transition-ownership")==0){CheckChromeTransitions();return 0;}
  if(argc>1&&strcmp(argv[1],"hover-state-palette")==0){CheckChromeHoverStates();return 0;}
+ if(argc>1&&strcmp(argv[1],"shared-popup-property-ownership")==0) {
+  winrt::init_apartment(winrt::apartment_type::multi_threaded);
+  {
+   struct Receipt {int object,property;ProjectedObject before,applied;};
+   struct Owner {std::vector<Receipt> changes;};
+   auto native=box_value(1),first=box_value(2),second=box_value(3),app=box_value(4);
+   for(unsigned scenario=0;scenario<4;++scenario) {
+    std::array<Owner,2> roots;ProjectedObject current=native;unsigned captures=0;
+    auto matches=[](Receipt const& prior){return prior.object==7&&prior.property==3;};
+    auto apply=[&](unsigned owner,bool fail=false) {
+     if(HasChromeVisualOwner(roots,matches))return false;
+     ++captures;auto applied=owner==0?first:second;
+     roots[owner].changes.push_back({7,3,current,applied});current=applied;
+     if(fail)throw hresult_error(E_FAIL);return true;
+    };
+    auto restore=[&](Owner& owner,bool fail=false) {
+     bool complete=true;
+     for(auto it=owner.changes.rbegin();it!=owner.changes.rend();++it)
+      complete=RestoreChromeVisualValue(*it,[&]{return current;},[&](auto const& before){
+       if(fail)throw hresult_error(E_FAIL);current=before;
+      })&&complete;
+     if(complete)owner.changes.clear();return complete;
+    };
+    if(scenario==2) {bool failed=false;try{apply(0,true);}catch(hresult_error const&){failed=true;}assert(failed);}
+    else assert(apply(0));
+    if(scenario==1)current=app;
+    assert(!apply(1)&&captures==1&&roots[0].changes.size()==1&&roots[1].changes.empty());
+    assert(!HasChromeVisualOwner(roots,[](auto const& entry){return entry.object==8&&entry.property==3;}));
+    assert(!HasChromeVisualOwner(roots,[](auto const& entry){return entry.object==7&&entry.property==4;}));
+    if(scenario==3) {
+     assert(!restore(roots[0],true)&&roots[0].changes.size()==1&&Identity(current,first));
+     assert(!apply(1)&&captures==1);
+    }
+    for(auto& root:roots)assert(restore(root));
+    assert(Identity(current,scenario==1?app:native));
+    assert(roots[0].changes.empty()&&roots[1].changes.empty()&&!HasChromeVisualOwner(roots,matches));
+   }
+  }
+  winrt::uninit_apartment();
+  puts("PASS: one property owner across two roots, original restore, later app replacement, failed write and cleanup retry");return 0;
+ }
+ if(argc>1&&strcmp(argv[1],"content-dialog-bindings")==0) {
+  const auto type=L"Microsoft.UI.Xaml.Controls.ContentDialog";
+  for(auto [kind,expected]:{std::pair{Kind::Background,L"ContentDialogBackground"},
+    std::pair{Kind::Foreground,L"ContentDialogForeground"},std::pair{Kind::Border,L"ContentDialogBorderBrush"}}) {
+   auto key=ContentDialogTemplateBindingKey(type,kind);assert(key&&wcscmp(key,expected)==0);
+   assert(ChromePaintTypeAdmission(type,kind));
+   bool mapped=false;for(auto const& rule:rules)if(wcscmp(rule.key,key)==0)mapped=true;assert(mapped);
+  }
+  for(auto kind:{Kind::FocusPrimary,Kind::FocusSecondary,Kind::Separator,Kind::ToggleOnFill,Kind::ToggleOnStroke})
+   assert(!ContentDialogTemplateBindingKey(type,kind));
+  for(auto rejected:{L"Microsoft.UI.Xaml.Controls.ContentDialogExtra",L"Microsoft.UI.Xaml.Controls.Grid",L"Other.ContentDialog",L"PaintUI.D2DSwapChainPanel",L"PaintUI.ColorRadioButton",L"NotepadXamlUI.Document",L""})
+   for(auto kind:{Kind::Background,Kind::Foreground,Kind::Border})assert(!ContentDialogTemplateBindingKey(rejected,kind));
+  assert(PopupObservationAdmission(type,true,true)&&PopupDiscoveryAdmission(type,true,true,true,true));
+  assert(!PopupDiscoveryAdmission(type,true,true,false,true)&&!PopupDiscoveryAdmission(type,true,true,true,false));
+  winrt::init_apartment(winrt::apartment_type::multi_threaded);
+  {
+   auto native=box_value(1),theme=box_value(2),app=box_value(3);ProjectedObject current=native;
+   ControlKey entry{L"ContentDialogBackground",nullptr,theme};bool exists=true;
+   auto read=[&]{return LocalResourceValue{exists,current};};
+   auto write=[&](auto const& value){exists=true;current=value;};auto remove=[&]{exists=false;current=nullptr;};
+   assert(ApplyControlKey(entry,read,write)&&entry.owned&&Identity(current,theme));
+   assert(RestoreControlKey(entry,read,write,remove)&&Identity(current,native));
+   assert(ApplyControlKey(entry,read,write));current=app;
+   assert(RestoreControlKey(entry,read,write,remove)&&Identity(current,app));
+   exists=false;current=nullptr;assert(ApplyControlKey(entry,read,write));
+   assert(RestoreControlKey(entry,read,write,remove)&&!exists&&!current);
+   exists=true;current=native;
+   auto failWrite=[&](auto const& value){write(value);throw hresult_error(E_FAIL);};
+   assert(!ApplyControlKey(entry,read,failWrite)&&entry.owned);
+   assert(RestoreControlKey(entry,read,write,remove)&&Identity(current,native));
+  }
+  winrt::uninit_apartment();
+  puts("PASS: exact ContentDialog properties, loaded same-root popup admission and reversible resource ownership");return 0;
+ }
  if(argc>1&&strcmp(argv[1],"split-parent-bindings")==0) {
   for(auto type:{L"Microsoft.UI.Xaml.Controls.SplitButton",L"Windows.UI.Xaml.Controls.SplitButton"}) {
    for(auto kind:{Kind::Background,Kind::Foreground,Kind::Border}) {
