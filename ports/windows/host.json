@@ -1937,6 +1937,18 @@
             "Foreground@Focused": "color.text.placeholder",
             "Foreground@Disabled": "color.text.disabled"
           }
+        },
+        {
+          "target": "SystemSettings.View.SettingsNavigationViewItem > Grid#NVIRootGrid > Microsoft.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter#NavigationViewItemPresenter > Grid#LayoutRoot@PointerStates",
+          "styles": {
+            "Background@Normal": "color.surface.canvas",
+            "Background@PointerOver": "color.interaction.hover.bg",
+            "Background@Pressed": "color.interaction.pressed.bg",
+            "Background@Selected": "color.interaction.selection.bg",
+            "Background@PointerOverSelected": "color.interaction.selection.bg",
+            "Background@PressedSelected": "color.interaction.selection.bg",
+            "CornerRadius": "radius.none"
+          }
         }
       ],
       "resources": {
@@ -2480,7 +2492,7 @@
     }
   },
   "notepadChrome": {
-    "version": "1.2.36",
+    "version": "1.2.37",
     "packageFullName": "Microsoft.WindowsNotepad_11.2607.14.0_x64__8wekyb3d8bbwe",
     "runtimePackage": "Microsoft.WindowsAppRuntime.2_2.6.5.0_x64__8wekyb3d8bbwe",
     "runtimeSha256": "ba728ec8e18e86577581ac611b7379ad08f69d47898f0ada0f1536f4313a9758",
@@ -2841,10 +2853,18 @@
     "ScrollBarButtonArrowForegroundPressed": "color.text.bright",
     "ScrollBarButtonArrowForegroundDisabled": "color.text.disabled",
     "ToolTipBackground": "color.surface.canvas",
-    "ToolTipForeground": "color.text.default"
+    "ToolTipForeground": "color.text.default",
+    "TabViewItemHeaderForeground": "color.text.default",
+    "TabViewItemHeaderForegroundPointerOver": "color.text.default",
+    "TabViewItemHeaderForegroundPressed": "color.text.default",
+    "TabViewItemHeaderForegroundSelected": "color.interaction.selection.text",
+    "TabViewItemHeaderForegroundDisabled": "color.text.disabled",
+    "TabViewItemHeaderBackgroundPointerOver": "color.interaction.hover.bg",
+    "TabViewItemHeaderBackgroundPressed": "color.interaction.pressed.bg",
+    "TabViewItemHeaderBackgroundDisabled": "color.interaction.disabled.bg"
   },
   "paintChrome": {
-    "version": "1.0.33",
+    "version": "1.0.34",
     "packageFullName": "Microsoft.Paint_11.2609.401.0_x64__8wekyb3d8bbwe",
     "runtimePackage": "Microsoft.WindowsAppRuntime.2_2.6.5.0_x64__8wekyb3d8bbwe",
     "runtimeSha256": "ba728ec8e18e86577581ac611b7379ad08f69d47898f0ada0f1536f4313a9758",
@@ -2869,7 +2889,7 @@
     "SHELLCOMMON": "d275b4025c9332cbe255a368f0c876c746e1959d7db40156db467fb829059dba"
   },
   "terminalChrome": {
-    "version": "1.0.17",
+    "version": "1.0.18",
     "packageFullName": "Microsoft.WindowsTerminal_1.24.12741.0_x64__8wekyb3d8bbwe",
     "runtimeSha256": "da3ae828c807b56eab79981e68dd605daec066b088ff8836afbb8bd04de18c01",
     "diagnosticsBridgeSha256": "da3ae828c807b56eab79981e68dd605daec066b088ff8836afbb8bd04de18c01",

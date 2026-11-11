@@ -1323,5 +1323,23 @@ owner/tool and does not admit taskbar-owned tooltip windows.
 
 References: Microsoft [ToolTip frame and brush aliases](https://github.com/microsoft/microsoft-ui-xaml/blob/v2.8.7/dev/CommonStyles/ToolTip_rs5_themeresources.xaml)
 and [NavigationView state resources](https://github.com/microsoft/microsoft-ui-xaml/blob/v2.8.7/dev/NavigationView/NavigationView_rs2_themeresources.xaml).
+
+An installed follow-up still showed a gray Settings navigation hover after
+the resource-only update and restart. Settings owns a custom
+`SettingsNavigationViewItem` template, so the recipe now also overrides the
+documented `NavigationViewItemPresenter#NavigationViewItemPresenter` direct
+`Grid#LayoutRoot@PointerStates` frame. Normal, pointer-over, pressed and the
+three selected combinations use the existing canvas, hover, pressed and
+selection roles; its radius is square. Layout, native icons, labels and input
+remain unchanged. This direct frame mapping still needs an installed rendered
+check. The [upstream OLED recipe](https://github.com/ramensoftware/windows-11-settings-styling-guide/blob/main/Themes/OLED/README.md)
+documents this custom template boundary; its colors and layout changes are
+not imported.
 The upstream [taskbar tooltip recipe](https://github.com/ramensoftware/windows-11-taskbar-styling-guide#tooltips)
 uses the same `ToolTip > ContentPresenter#LayoutRoot` frame target.
+
+The app adapters also map the native tab-header foreground resources to rose,
+with separate selected and disabled text. Native tab hover, pressed and disabled
+fills use their existing interaction roles. These keys come from Microsoft's
+[TabView template](https://github.com/microsoft/microsoft-ui-xaml/blob/v2.8.7/dev/TabView/TabView.xaml);
+they do not replace tab labels, selection, navigation or document content.

@@ -202,6 +202,25 @@ test('shell tooltips override the standard template frame without changing conte
  }
 });
 
+test('Settings custom navigation frame overrides its native pointer states while preserving layout and icons',async()=>{
+ const host=await readJson('ports/windows/host.json'),mapping=await readJson('ports/windows/mapping.json');
+ const tokens=await defaultTokens(),id='windows-11-settings-styler';
+ const target='SystemSettings.View.SettingsNavigationViewItem > Grid#NVIRootGrid > Microsoft.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter#NavigationViewItemPresenter > Grid#LayoutRoot@PointerStates';
+ const payload=await readJson('ports/windows/dist/'+id+'.json');
+ const frame=payload.controlStyles.find(rule=>rule.target===target);
+ assert.ok(frame,'Settings owns a custom navigation template, independent of global resource aliases');
+ for(const [state,role]of [
+  ['Normal','color.surface.canvas'],['PointerOver','color.interaction.hover.bg'],['Pressed','color.interaction.pressed.bg'],
+  ['Selected','color.interaction.selection.bg'],['PointerOverSelected','color.interaction.selection.bg'],['PressedSelected','color.interaction.selection.bg'],
+ ]){
+  assert.ok(frame.styles.includes('Background@'+state+'='+tokens[role].css),state);
+  assert.ok(mapping.mappings[role].includes(id+' | '+target+' | Background@'+state));
+ }
+ assert.ok(frame.styles.includes('CornerRadius=0'));
+ for(const value of frame.styles)assert.match(value,/^(?:Background@(?:Normal|PointerOver|Pressed|Selected|PointerOverSelected|PressedSelected)|CornerRadius)=/);
+ for(const mod of host.stylers.filter(mod=>mod.id!==id))assert.ok(!mod.targets.some(rule=>rule.target===target));
+});
+
 test('XAML color values preserve RGB and encode transparency in native ARGB order',async()=>{
  const value=alpha=>({type:'color',resolved:{colorSpace:'srgb',hex:'#112233',alpha}});
  for(const [alpha,expected]of [[0,'#00112233'],[.12,'#1f112233'],[.5,'#80112233'],[1,'#112233']])
@@ -923,6 +942,15 @@ test('standard flyout frames wire canonical resources into generated chrome adap
    assert.match(text,new RegExp('L"'+key+'"'));
    assert.match(text,/object.try_as<FlyoutPresenter>\(\)/);
   }
+ }
+});
+
+test('native tab headers keep rose text and distinct hover, selected and disabled states',async()=>{
+ const host=await readJson('ports/windows/host.json'),mapping=await readJson('ports/windows/mapping.json');
+ const roles={TabViewItemHeaderForeground:'color.text.default',TabViewItemHeaderForegroundPointerOver:'color.text.default',TabViewItemHeaderForegroundPressed:'color.text.default',TabViewItemHeaderForegroundSelected:'color.interaction.selection.text',TabViewItemHeaderForegroundDisabled:'color.text.disabled',TabViewItemHeaderBackgroundPointerOver:'color.interaction.hover.bg',TabViewItemHeaderBackgroundPressed:'color.interaction.pressed.bg',TabViewItemHeaderBackgroundDisabled:'color.interaction.disabled.bg'};
+ for(const [key,role]of Object.entries(roles)){
+  assert.equal(host.winuiChromeResources[key],role);
+  for(const app of ['notepad','paint','terminal'])assert.ok(mapping.mappings[role].includes(app+'-chrome.resource.'+key));
  }
 });
 

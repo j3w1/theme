@@ -2,7 +2,7 @@
 // @id j3w1-terminal-chrome
 // @name j3w1 Terminal chrome
 // @description Exact-package Terminal chrome resources; document and artwork colors remain native
-// @version 1.0.17
+// @version 1.0.18
 // @author j3w1
 // @include WindowsTerminal.exe
 // @architecture x86-64
@@ -419,6 +419,14 @@ static constexpr Rule rules[]={
  {L"ScrollBarButtonArrowForegroundDisabled",{255,163,103,107},L"color.text.disabled"},
  {L"ToolTipBackground",{255,0,0,0},L"color.surface.canvas"},
  {L"ToolTipForeground",{255,233,148,153},L"color.text.default"},
+ {L"TabViewItemHeaderForeground",{255,233,148,153},L"color.text.default"},
+ {L"TabViewItemHeaderForegroundPointerOver",{255,233,148,153},L"color.text.default"},
+ {L"TabViewItemHeaderForegroundPressed",{255,233,148,153},L"color.text.default"},
+ {L"TabViewItemHeaderForegroundSelected",{255,244,238,238},L"color.interaction.selection.text"},
+ {L"TabViewItemHeaderForegroundDisabled",{255,163,103,107},L"color.text.disabled"},
+ {L"TabViewItemHeaderBackgroundPointerOver",{255,28,16,16},L"color.interaction.hover.bg"},
+ {L"TabViewItemHeaderBackgroundPressed",{255,66,15,12},L"color.interaction.pressed.bg"},
+ {L"TabViewItemHeaderBackgroundDisabled",{255,13,7,7},L"color.interaction.disabled.bg"},
 };
 static bool Same(Color a,Color b){return a.A==b.A&&a.R==b.R&&a.G==b.G&&a.B==b.B;}
 static bool Identity(ProjectedObject const& a,ProjectedObject const& b){

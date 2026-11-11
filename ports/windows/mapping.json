@@ -304,7 +304,8 @@
       "paint-chrome.resource.ToolTipBackgroundBrush",
       "paint-chrome.resource.ToolTipBackground",
       "terminal-chrome.resource.ToolTipBackgroundBrush",
-      "terminal-chrome.resource.ToolTipBackground"
+      "terminal-chrome.resource.ToolTipBackground",
+      "windows-11-settings-styler | SystemSettings.View.SettingsNavigationViewItem > Grid#NVIRootGrid > Microsoft.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter#NavigationViewItemPresenter > Grid#LayoutRoot@PointerStates | Background@Normal"
     ],
     "color.terminal.cursor": [
       "terminal.cursor"
@@ -616,7 +617,16 @@
       "calculator.resource.ToolTipForeground",
       "notepad-chrome.resource.ToolTipForeground",
       "paint-chrome.resource.ToolTipForeground",
-      "terminal-chrome.resource.ToolTipForeground"
+      "terminal-chrome.resource.ToolTipForeground",
+      "notepad-chrome.resource.TabViewItemHeaderForeground",
+      "paint-chrome.resource.TabViewItemHeaderForeground",
+      "terminal-chrome.resource.TabViewItemHeaderForeground",
+      "notepad-chrome.resource.TabViewItemHeaderForegroundPointerOver",
+      "paint-chrome.resource.TabViewItemHeaderForegroundPointerOver",
+      "terminal-chrome.resource.TabViewItemHeaderForegroundPointerOver",
+      "notepad-chrome.resource.TabViewItemHeaderForegroundPressed",
+      "paint-chrome.resource.TabViewItemHeaderForegroundPressed",
+      "terminal-chrome.resource.TabViewItemHeaderForegroundPressed"
     ],
     "color.text.bright": [
       "native.bright",
@@ -828,7 +838,10 @@
       "windows-11-settings-styler | TextBox#CommandSearchTextBox > Grid@CommonStates > TextBlock#PlaceholderTextContentPresenter | Foreground@Disabled",
       "windows-11-settings-styler.resource.NavigationViewItemForegroundDisabled",
       "windows-11-settings-styler.resource.NavigationViewItemForegroundCheckedDisabled",
-      "windows-11-settings-styler.resource.NavigationViewItemForegroundSelectedDisabled"
+      "windows-11-settings-styler.resource.NavigationViewItemForegroundSelectedDisabled",
+      "notepad-chrome.resource.TabViewItemHeaderForegroundDisabled",
+      "paint-chrome.resource.TabViewItemHeaderForegroundDisabled",
+      "terminal-chrome.resource.TabViewItemHeaderForegroundDisabled"
     ],
     "color.interaction.selection.bg": [
       "native.selection",
@@ -904,7 +917,10 @@
       "windows-11-settings-styler.resource.NavigationViewItemBackgroundCheckedPressed",
       "windows-11-settings-styler.resource.NavigationViewItemBackgroundSelected",
       "windows-11-settings-styler.resource.NavigationViewItemBackgroundSelectedPointerOver",
-      "windows-11-settings-styler.resource.NavigationViewItemBackgroundSelectedPressed"
+      "windows-11-settings-styler.resource.NavigationViewItemBackgroundSelectedPressed",
+      "windows-11-settings-styler | SystemSettings.View.SettingsNavigationViewItem > Grid#NVIRootGrid > Microsoft.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter#NavigationViewItemPresenter > Grid#LayoutRoot@PointerStates | Background@Selected",
+      "windows-11-settings-styler | SystemSettings.View.SettingsNavigationViewItem > Grid#NVIRootGrid > Microsoft.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter#NavigationViewItemPresenter > Grid#LayoutRoot@PointerStates | Background@PointerOverSelected",
+      "windows-11-settings-styler | SystemSettings.View.SettingsNavigationViewItem > Grid#NVIRootGrid > Microsoft.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter#NavigationViewItemPresenter > Grid#LayoutRoot@PointerStates | Background@PressedSelected"
     ],
     "color.surface.raised": [
       "powertoys.inactive",
@@ -1312,7 +1328,11 @@
       "windows-11-settings-styler | TextBox#CommandSearchTextBox > Grid@CommonStates > Border#BorderElement | Background@PointerOver",
       "windhawk.resource.ControlFillColorSecondaryBrush",
       "windhawk.resource.SubtleFillColorSecondaryBrush",
-      "windows-11-settings-styler.resource.NavigationViewItemBackgroundPointerOver"
+      "windows-11-settings-styler.resource.NavigationViewItemBackgroundPointerOver",
+      "windows-11-settings-styler | SystemSettings.View.SettingsNavigationViewItem > Grid#NVIRootGrid > Microsoft.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter#NavigationViewItemPresenter > Grid#LayoutRoot@PointerStates | Background@PointerOver",
+      "notepad-chrome.resource.TabViewItemHeaderBackgroundPointerOver",
+      "paint-chrome.resource.TabViewItemHeaderBackgroundPointerOver",
+      "terminal-chrome.resource.TabViewItemHeaderBackgroundPointerOver"
     ],
     "color.interaction.pressed.bg": [
       "windhawk.resource.ControlFillColorTertiary",
@@ -1422,7 +1442,11 @@
       "windows-11-notification-center-styler | JumpViewUI.JumpListListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder | Background@PressedSelected",
       "windhawk.resource.ControlFillColorTertiaryBrush",
       "windhawk.resource.SubtleFillColorTertiaryBrush",
-      "windows-11-settings-styler.resource.NavigationViewItemBackgroundPressed"
+      "windows-11-settings-styler.resource.NavigationViewItemBackgroundPressed",
+      "windows-11-settings-styler | SystemSettings.View.SettingsNavigationViewItem > Grid#NVIRootGrid > Microsoft.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter#NavigationViewItemPresenter > Grid#LayoutRoot@PointerStates | Background@Pressed",
+      "notepad-chrome.resource.TabViewItemHeaderBackgroundPressed",
+      "paint-chrome.resource.TabViewItemHeaderBackgroundPressed",
+      "terminal-chrome.resource.TabViewItemHeaderBackgroundPressed"
     ],
     "color.action.primary.bg": [
       "windhawk.resource.AccentFillColorDefault",
@@ -1659,7 +1683,8 @@
       "windows-11-notification-center-styler | JumpViewUI.JumpListListViewItem | CornerRadius",
       "windows-11-notification-center-styler | JumpViewUI.JumpListListViewItem > Grid#LayoutRoot@CommonStates > Border#BackgroundBorder | CornerRadius",
       "windhawk.menu | ToolTip | CornerRadius",
-      "windhawk.menu | ToolTip > ContentPresenter#LayoutRoot | CornerRadius"
+      "windhawk.menu | ToolTip > ContentPresenter#LayoutRoot | CornerRadius",
+      "windows-11-settings-styler | SystemSettings.View.SettingsNavigationViewItem > Grid#NVIRootGrid > Microsoft.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter#NavigationViewItemPresenter > Grid#LayoutRoot@PointerStates | CornerRadius"
     ],
     "color.interaction.disabled.bg": [
       "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | Background@Disabled",
@@ -1760,7 +1785,10 @@
       "windhawk.resource.SubtleFillColorDisabledBrush",
       "windows-11-settings-styler.resource.NavigationViewItemBackgroundDisabled",
       "windows-11-settings-styler.resource.NavigationViewItemBackgroundCheckedDisabled",
-      "windows-11-settings-styler.resource.NavigationViewItemBackgroundSelectedDisabled"
+      "windows-11-settings-styler.resource.NavigationViewItemBackgroundSelectedDisabled",
+      "notepad-chrome.resource.TabViewItemHeaderBackgroundDisabled",
+      "paint-chrome.resource.TabViewItemHeaderBackgroundDisabled",
+      "terminal-chrome.resource.TabViewItemHeaderBackgroundDisabled"
     ],
     "color.border.disabled": [
       "windows-11-start-menu-styler | Microsoft.UI.Xaml.Controls.DropDownButton > Grid@CommonStates | BorderBrush@Disabled",
@@ -2221,7 +2249,10 @@
       "windows-11-settings-styler.resource.NavigationViewItemForegroundCheckedPressed",
       "windows-11-settings-styler.resource.NavigationViewItemForegroundSelected",
       "windows-11-settings-styler.resource.NavigationViewItemForegroundSelectedPointerOver",
-      "windows-11-settings-styler.resource.NavigationViewItemForegroundSelectedPressed"
+      "windows-11-settings-styler.resource.NavigationViewItemForegroundSelectedPressed",
+      "notepad-chrome.resource.TabViewItemHeaderForegroundSelected",
+      "paint-chrome.resource.TabViewItemHeaderForegroundSelected",
+      "terminal-chrome.resource.TabViewItemHeaderForegroundSelected"
     ],
     "focus.offset": [
       "windows-11-start-menu-styler | web :focus-visible | outline-offset"

@@ -320,6 +320,18 @@
         "Foreground@Focused=#bd787d",
         "Foreground@Disabled=#a3676b"
       ]
+    },
+    {
+      "target": "SystemSettings.View.SettingsNavigationViewItem > Grid#NVIRootGrid > Microsoft.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter#NavigationViewItemPresenter > Grid#LayoutRoot@PointerStates",
+      "styles": [
+        "Background@Normal=#000000",
+        "Background@PointerOver=#1c1010",
+        "Background@Pressed=#420f0c",
+        "Background@Selected=#531310",
+        "Background@PointerOverSelected=#531310",
+        "Background@PressedSelected=#531310",
+        "CornerRadius=0"
+      ]
     }
   ],
   "themeResourceVariables": [
