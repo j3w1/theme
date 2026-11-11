@@ -172,6 +172,26 @@
       ]
     },
     {
+      "target": "ToolTip",
+      "styles": [
+        "Background=#000000",
+        "Foreground=#e99499",
+        "BorderBrush=#c81a1a",
+        "BorderThickness=1",
+        "CornerRadius=0"
+      ]
+    },
+    {
+      "target": "ToolTip > ContentPresenter#LayoutRoot",
+      "styles": [
+        "Background=#000000",
+        "Foreground=#e99499",
+        "BorderBrush=#c81a1a",
+        "BorderThickness=1",
+        "CornerRadius=0"
+      ]
+    },
+    {
       "target": "TextBlock",
       "styles": [
         "Foreground=#e99499"
@@ -232,15 +252,6 @@
     },
     {
       "target": "CalendarView",
-      "styles": [
-        "Background=#140b0b",
-        "Foreground=#e99499",
-        "BorderBrush=#c81a1a",
-        "CornerRadius=0"
-      ]
-    },
-    {
-      "target": "ToolTip",
       "styles": [
         "Background=#140b0b",
         "Foreground=#e99499",
@@ -487,15 +498,23 @@
     "FlyoutPresenterBorderBrush=#c81a1a",
     "AutoSuggestBoxSuggestionsListBackground=#140b0b",
     "AutoSuggestBoxSuggestionsListBorderBrush=#c81a1a",
+    "ToolTipBackground=#000000",
+    "ToolTipForeground=#e99499",
+    "ToolTipBorderBrush=#c81a1a",
+    "ToolTipBackgroundBrush=#000000",
+    "ToolTipForegroundBrush=#e99499",
+    "ControlFillColorDefaultBrush=#000000",
+    "ControlFillColorSecondaryBrush=#1c1010",
+    "ControlFillColorTertiaryBrush=#420f0c",
+    "ControlFillColorDisabledBrush=#0d0707",
+    "SubtleFillColorTransparentBrush=#00000000",
+    "SubtleFillColorSecondaryBrush=#1c1010",
+    "SubtleFillColorTertiaryBrush=#420f0c",
+    "SubtleFillColorDisabledBrush=#0d0707",
     "SystemControlFocusVisualPrimaryBrush=#e53935",
     "SystemControlFocusVisualSecondaryBrush=#000000",
     "FocusStrokeColorOuterBrush=#e53935",
     "FocusStrokeColorInnerBrush=#000000",
-    "ToolTipBackground=#140b0b",
-    "ToolTipForeground=#e99499",
-    "ToolTipBorderBrush=#c81a1a",
-    "ToolTipBackgroundBrush=#140b0b",
-    "ToolTipForegroundBrush=#e99499",
     "ProgressBarBackground=#420f0c",
     "ProgressBarForeground=#7d1310",
     "ProgressBarBorderBrush=#c81a1a",
@@ -543,6 +562,36 @@
     "ListViewItemForegroundSelectedPointerOver=#f4eeee",
     "ListViewItemForegroundSelectedPressed=#f4eeee",
     "ListViewItemForegroundDisabled=#a3676b",
-    "ListViewItemForegroundSelectedDisabled=#a3676b"
+    "ListViewItemForegroundSelectedDisabled=#a3676b",
+    "NavigationViewDefaultPaneBackground=#000000",
+    "NavigationViewExpandedPaneBackground=#000000",
+    "NavigationViewTopPaneBackground=#000000",
+    "NavigationViewSelectionIndicatorForeground=#e53935",
+    "NavigationViewItemSeparatorForeground=#482b2b",
+    "NavigationViewItemHeaderForeground=#d4868b",
+    "NavigationViewItemBackground=#000000",
+    "NavigationViewItemForeground=#e99499",
+    "NavigationViewItemBackgroundPointerOver=#1c1010",
+    "NavigationViewItemForegroundPointerOver=#e99499",
+    "NavigationViewItemBackgroundPressed=#420f0c",
+    "NavigationViewItemForegroundPressed=#d4868b",
+    "NavigationViewItemBackgroundDisabled=#0d0707",
+    "NavigationViewItemForegroundDisabled=#a3676b",
+    "NavigationViewItemBackgroundChecked=#531310",
+    "NavigationViewItemForegroundChecked=#f4eeee",
+    "NavigationViewItemBackgroundCheckedPointerOver=#531310",
+    "NavigationViewItemForegroundCheckedPointerOver=#f4eeee",
+    "NavigationViewItemBackgroundCheckedPressed=#531310",
+    "NavigationViewItemForegroundCheckedPressed=#f4eeee",
+    "NavigationViewItemBackgroundCheckedDisabled=#0d0707",
+    "NavigationViewItemForegroundCheckedDisabled=#a3676b",
+    "NavigationViewItemBackgroundSelected=#531310",
+    "NavigationViewItemForegroundSelected=#f4eeee",
+    "NavigationViewItemBackgroundSelectedPointerOver=#531310",
+    "NavigationViewItemForegroundSelectedPointerOver=#f4eeee",
+    "NavigationViewItemBackgroundSelectedPressed=#531310",
+    "NavigationViewItemForegroundSelectedPressed=#f4eeee",
+    "NavigationViewItemBackgroundSelectedDisabled=#0d0707",
+    "NavigationViewItemForegroundSelectedDisabled=#a3676b"
   ]
 }

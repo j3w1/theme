@@ -2,7 +2,7 @@
 // @id j3w1-calculator
 // @name j3w1 Calculator resources
 // @description Version-checked Calculator UI resources; equation colors remain native
-// @version 1.4.13
+// @version 1.4.14
 // @author j3w1
 // @include CalculatorApp.exe
 // @architecture x86-64
@@ -98,7 +98,7 @@ static constexpr Rule rules[] = {
     {L"NavigationViewTopPaneBackground",{255,0,0,0},L"color.surface.canvas"},
     {L"ControlStrokeColorSecondaryBrush",{255,200,26,26},L"color.border.control"},
     {L"ControlElevationBorderBrush",{255,200,26,26},L"color.border.control"},
-    {L"ToolTipBorderBrush",{255,200,26,26},L"color.border.control"},
+    {L"ToolTipBorderBrush",{255,200,26,26},L"color.border.overlay"},
     {L"NavigationViewItemBackground",{255,0,0,0},L"color.surface.canvas"},
     {L"NavigationViewItemForeground",{255,233,148,153},L"color.text.default"},
     {L"NavigationViewItemBackgroundPointerOver",{255,28,16,16},L"color.interaction.hover.bg"},
@@ -128,7 +128,7 @@ static constexpr Rule rules[] = {
     {L"NavigationViewItemHeaderForeground",{255,212,134,139},L"color.text.muted"},
     {L"NavigationViewContentGridBorderBrush",{255,72,43,43},L"color.border.divider"},
     {L"NavigationViewSelectionIndicatorForeground",{255,229,57,53},L"color.border.active"},
-    {L"ToolTipBackgroundBrush",{255,28,16,16},L"color.surface.overlay"},
+    {L"ToolTipBackgroundBrush",{255,0,0,0},L"color.surface.canvas"},
     {L"ToolTipForegroundBrush",{255,233,148,153},L"color.text.default"},
     {L"AcrylicInAppFillColorDefaultBrush",{255,20,11,11},L"color.surface.raised"},
     {L"SystemControlTransientBorderBrush",{255,200,26,26},L"color.border.overlay"},
@@ -220,6 +220,8 @@ static constexpr Rule rules[] = {
     {L"ButtonForegroundPointerOver",{255,233,148,153},L"color.text.default"},
     {L"ButtonForegroundPressed",{255,233,148,153},L"color.text.default"},
     {L"ButtonForegroundDisabled",{255,163,103,107},L"color.text.disabled"},
+    {L"ToolTipBackground",{255,0,0,0},L"color.surface.canvas"},
+    {L"ToolTipForeground",{255,233,148,153},L"color.text.default"},
 };
 static std::atomic<bool> enabled{false}, admitted{false};
 static std::atomic<HWND> coreWindow{nullptr};

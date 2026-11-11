@@ -118,7 +118,7 @@ test('Settings resource overrides retain shared brushes and stay isolated from o
  const host=await readJson('ports/windows/host.json');
  const tokens=await defaultTokens();
  const settings=host.stylers.find(m=>m.id==='windows-11-settings-styler');
- const expected={SystemControlFocusVisualPrimaryBrush:'color.interaction.focus.ring',SystemControlFocusVisualSecondaryBrush:'color.surface.canvas',FocusStrokeColorOuterBrush:'color.interaction.focus.ring',FocusStrokeColorInnerBrush:'color.surface.canvas',ToolTipBackground:'color.surface.raised',ToolTipForeground:'color.text.default',ToolTipBorderBrush:'color.border.overlay',ToolTipBackgroundBrush:'color.surface.raised',ToolTipForegroundBrush:'color.text.default'};
+ const expected={SystemControlFocusVisualPrimaryBrush:'color.interaction.focus.ring',SystemControlFocusVisualSecondaryBrush:'color.surface.canvas',FocusStrokeColorOuterBrush:'color.interaction.focus.ring',FocusStrokeColorInnerBrush:'color.surface.canvas',ToolTipBackground:'color.surface.canvas',ToolTipForeground:'color.text.default',ToolTipBorderBrush:'color.border.overlay',ToolTipBackgroundBrush:'color.surface.canvas',ToolTipForegroundBrush:'color.text.default'};
  Object.assign(expected,{ProgressBarBackground:'color.interaction.pressed.bg',ProgressBarForeground:'color.action.primary.bg',ProgressBarBorderBrush:'color.border.control',ToggleSwitchContentForeground:'color.text.default',ToggleSwitchContentForegroundDisabled:'color.text.disabled',ToggleSwitchHeaderForeground:'color.text.default',ToggleSwitchHeaderForegroundDisabled:'color.text.disabled',ToggleSwitchKnobStrokeOn:'color.border.control'});
  for(const [suffix,off,on] of [['','color.surface.input','color.action.primary.bg'],['PointerOver','color.interaction.hover.bg','color.action.primary.hover-bg'],['Pressed','color.interaction.pressed.bg','color.action.primary.pressed-bg'],['Disabled','color.interaction.disabled.bg','color.interaction.disabled.bg']]){
   expected['ToggleSwitchFillOff'+suffix]=off;expected['ToggleSwitchFillOn'+suffix]=on;
@@ -140,6 +140,22 @@ test('Settings resource overrides retain shared brushes and stay isolated from o
   expected['ListViewItemBackground'+suffix]=bg;
   expected['ListViewItemForeground'+suffix]=fg;
  }
+ Object.assign(expected,{NavigationViewDefaultPaneBackground:'color.surface.canvas',NavigationViewExpandedPaneBackground:'color.surface.canvas',NavigationViewTopPaneBackground:'color.surface.canvas',NavigationViewSelectionIndicatorForeground:'color.border.selected-indicator',NavigationViewItemSeparatorForeground:'color.border.divider',NavigationViewItemHeaderForeground:'color.text.muted'});
+ for(const [suffix,bg,fg]of [
+  ['','color.surface.canvas','color.text.default'],
+  ['PointerOver','color.interaction.hover.bg','color.text.default'],
+  ['Pressed','color.interaction.pressed.bg','color.text.muted'],
+  ['Disabled','color.interaction.disabled.bg','color.text.disabled'],
+  ...['Checked','Selected'].flatMap(selected=>[
+   [selected,'color.interaction.selection.bg','color.interaction.selection.text'],
+   [selected+'PointerOver','color.interaction.selection.bg','color.interaction.selection.text'],
+   [selected+'Pressed','color.interaction.selection.bg','color.interaction.selection.text'],
+   [selected+'Disabled','color.interaction.disabled.bg','color.text.disabled'],
+  ]),
+ ]){
+  expected['NavigationViewItemBackground'+suffix]=bg;
+  expected['NavigationViewItemForeground'+suffix]=fg;
+ }
  assert.deepEqual(settings.resources,expected);
  const mapping=await readJson('ports/windows/mapping.json');
  for(const [key,role]of Object.entries(expected))assert.ok(mapping.mappings[role].includes(settings.id+'.resource.'+key));
@@ -151,11 +167,39 @@ test('Settings resource overrides retain shared brushes and stay isolated from o
    assert.equal(actual[key],windowsStyleValue(key,{type:tokens[role].type,resolved:tokens[role].value}));
   if(mod.id!==settings.id){
    if(!['windows-11-notification-center-styler','windows-11-taskbar-styler'].includes(mod.id))assert.equal(mod.resources,undefined);
-   for(const key of Object.keys(expected))assert.equal(actual[key],undefined,'Settings resource leaked into '+mod.id);
+   for(const key of Object.keys(expected))
+    assert.equal(actual[key],Object.hasOwn(host.resources,key)?windowsStyleValue(key,{type:tokens[host.resources[key]].type,resolved:tokens[host.resources[key]].value}):undefined,'Settings resource leaked into '+mod.id);
   }
  }
  for(const target of settings.targets)for(const key of Object.keys(target.styles))
   assert.doesNotMatch(key,/^(?:UseSystemFocusVisuals|FocusVisualPrimaryThickness|FocusVisualSecondaryThickness|FocusVisualMargin|IsTabStop|TabIndex|Width|Height|Padding|Margin|Command|Content|Text)$/);
+});
+
+test('shell tooltips override the standard template frame without changing content or input',async()=>{
+ const host=await readJson('ports/windows/host.json'),tokens=await defaultTokens();
+ for(const resources of [host.calculator.resources,host.winuiChromeResources]){
+  for(const key of ['ToolTipBackground','ToolTipBackgroundBrush'])assert.equal(resources[key],'color.surface.canvas');
+  for(const key of ['ToolTipForeground','ToolTipForegroundBrush'])assert.equal(resources[key],'color.text.default');
+  assert.equal(resources.ToolTipBorderBrush,'color.border.overlay');
+ }
+ for(const mod of host.stylers){
+  const payload=await readJson('ports/windows/dist/'+mod.id+'.json');
+  for(const target of ['ToolTip','ToolTip > ContentPresenter#LayoutRoot']){
+   const frame=payload.controlStyles.find(rule=>rule.target===target);
+   assert.ok(frame,target+' in '+mod.id);
+   assert.ok(frame.styles.includes('Background='+tokens['color.surface.canvas'].css));
+   assert.ok(frame.styles.includes('Foreground='+tokens['color.text.default'].css));
+   assert.ok(frame.styles.includes('BorderBrush='+tokens['color.border.overlay'].css));
+   assert.ok(frame.styles.includes('BorderThickness=1'));
+   assert.ok(frame.styles.includes('CornerRadius=0'));
+   for(const value of frame.styles)assert.doesNotMatch(value,/^(?:Content|ContentTemplate|ContentTransitions|IsOpen|Placement|OpenDelay|CloseDelay|Visibility|Width|Height|Padding|Margin|IsHitTestVisible|IsTabStop|UseSystemFocusVisuals)=/);
+  }
+ }
+ for(const prefix of ['ControlFillColor','SubtleFillColor']){
+  assert.equal(host.resources[prefix+'SecondaryBrush'],'color.interaction.hover.bg');
+  assert.equal(host.resources[prefix+'TertiaryBrush'],'color.interaction.pressed.bg');
+  assert.equal(host.resources[prefix+'DisabledBrush'],'color.interaction.disabled.bg');
+ }
 });
 
 test('XAML color values preserve RGB and encode transparency in native ARGB order',async()=>{
@@ -884,7 +928,7 @@ test('standard flyout frames wire canonical resources into generated chrome adap
 
 test('standard tooltip palettes use shared resources and loaded same-root popup admission',async()=>{
  const host=await readJson('ports/windows/host.json'),mapping=await readJson('ports/windows/mapping.json');
- const roles={ToolTipBackgroundBrush:'color.surface.overlay',ToolTipForegroundBrush:'color.text.default',ToolTipBorderBrush:'color.border.overlay'};
+ const roles={ToolTipBackgroundBrush:'color.surface.canvas',ToolTipForegroundBrush:'color.text.default',ToolTipBorderBrush:'color.border.overlay',ToolTipBackground:'color.surface.canvas',ToolTipForeground:'color.text.default'};
  for(const [key,role] of Object.entries(roles)){
   assert.equal(host.winuiChromeResources[key],role);
   for(const app of ['notepad','paint','terminal']){

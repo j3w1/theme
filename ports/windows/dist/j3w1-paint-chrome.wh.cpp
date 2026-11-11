@@ -2,7 +2,7 @@
 // @id j3w1-paint-chrome
 // @name j3w1 Paint chrome
 // @description Exact-package Paint chrome resources; document and artwork colors remain native
-// @version 1.0.32
+// @version 1.0.33
 // @author j3w1
 // @include mspaint.exe
 // @architecture x86-64
@@ -383,7 +383,7 @@ static constexpr Rule rules[]={
  {L"SliderInlineTickBarFill",{255,0,0,0},L"color.surface.input"},
  {L"FlyoutPresenterBackground",{255,20,11,11},L"color.surface.raised"},
  {L"FlyoutBorderThemeBrush",{255,200,26,26},L"color.border.overlay"},
- {L"ToolTipBackgroundBrush",{255,28,16,16},L"color.surface.overlay"},
+ {L"ToolTipBackgroundBrush",{255,0,0,0},L"color.surface.canvas"},
  {L"ToolTipForegroundBrush",{255,233,148,153},L"color.text.default"},
  {L"ToolTipBorderBrush",{255,200,26,26},L"color.border.overlay"},
  {L"ScrollBarBackground",{255,0,0,0},L"color.interaction.scrollbar.track"},
@@ -418,6 +418,8 @@ static constexpr Rule rules[]={
  {L"ScrollBarButtonArrowForegroundPointerOver",{255,255,162,167},L"color.text.bright"},
  {L"ScrollBarButtonArrowForegroundPressed",{255,255,162,167},L"color.text.bright"},
  {L"ScrollBarButtonArrowForegroundDisabled",{255,163,103,107},L"color.text.disabled"},
+ {L"ToolTipBackground",{255,0,0,0},L"color.surface.canvas"},
+ {L"ToolTipForeground",{255,233,148,153},L"color.text.default"},
 };
 static bool Same(Color a,Color b){return a.A==b.A&&a.R==b.R&&a.G==b.G&&a.B==b.B;}
 static bool Identity(ProjectedObject const& a,ProjectedObject const& b){
@@ -440,7 +442,7 @@ static bool ReviewedPackage(){
     if(GetCurrentPackageFullName(&length,nullptr)!=ERROR_INSUFFICIENT_BUFFER||length>512)return false;
     std::vector<wchar_t> name(length);
     if(GetCurrentPackageFullName(&length,name.data())!=ERROR_SUCCESS)return false;
-    for(auto allowed:{L"Microsoft.Paint_11.2605.81.0_x64__8wekyb3d8bbwe"})if(wcscmp(name.data(),allowed)==0)return true;
+    for(auto allowed:{L"Microsoft.Paint_11.2609.401.0_x64__8wekyb3d8bbwe"})if(wcscmp(name.data(),allowed)==0)return true;
     return false;
 }
 static bool RuntimeFileDigest(std::wstring const& path,const char* expected) {
@@ -475,9 +477,9 @@ static bool ReviewedRuntime(){
     wchar_t system[32768]{};auto systemLength=GetSystemDirectoryW(system,std::size(system));
     if(!systemLength||systemLength>=std::size(system)||_wcsicmp(name.c_str(),(std::wstring(system)+L"\\Microsoft.UI.Xaml.dll").c_str())){runtimeStatus=-1;return false;}
 #else
-    if(name.find(L"\\Microsoft.WindowsAppRuntime.2_2.6.4.0_x64__8wekyb3d8bbwe\\")==std::wstring::npos){runtimeStatus=-1;return false;}
+    if(name.find(L"\\Microsoft.WindowsAppRuntime.2_2.6.5.0_x64__8wekyb3d8bbwe\\")==std::wstring::npos){runtimeStatus=-1;return false;}
 #endif
-    bool valid=RuntimeFileDigest(path,"3feb212dd3255f8b977f71197e692e4a4ef5d515eafc9c8b3cac49936783aa4b");
+    bool valid=RuntimeFileDigest(path,"ba728ec8e18e86577581ac611b7379ad08f69d47898f0ada0f1536f4313a9758");
 #if J3W1_LEGACY_XAML
     auto controls=GetModuleHandleW(L"Microsoft.UI." L"Xaml.dll");if(!controls)return false;
     wchar_t controlsPath[32768]{};auto controlsLength=GetModuleFileNameW(controls,controlsPath,std::size(controlsPath));
@@ -2460,7 +2462,7 @@ static bool ReviewedDiagnosticsBridge(std::wstring const& path) {
    if(complete&&BCryptFinishHash(hash,digest,sizeof(digest),0)>=0) {
     constexpr char hex[]="0123456789abcdef";std::string actual;
     for(BYTE byte:digest){actual+=hex[byte>>4];actual+=hex[byte&15];}
-    valid=actual=="ca1a3c68c2474beb2521d46a13f3c4a8bad90aaea394b43c67bbb6b31a23053d";
+    valid=actual=="a9eb6c0de80645c3f3b0570636f37966f5cf8c9583c91ce1b8760a937a243e44";
    }
   }
  }

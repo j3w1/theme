@@ -1302,3 +1302,26 @@ their brush or template. The existing final matcher admits focus paint only
 on Controls, so this removes work without changing an eligible focus scope.
 Native focus admission regressions retain both control focus brushes and
 refuse backgrounds and non-control focus scopes.
+
+### Shell tooltip and Settings hover resources
+
+The shared shell recipe now maps the standard XAML ToolTip and its direct
+`ContentPresenter#LayoutRoot` frame to black canvas, rose text and the red
+overlay border. Template contents, open/close states, timing, placement and
+input behavior remain native. Settings consumes this shared recipe instead of
+a duplicate control rule. ControlFill and SubtleFill brush aliases now carry
+the same existing hover/pressed roles as their color keys, and Settings maps
+the NavigationView state resources, including selected and disabled states.
+Calculator and the separate WinUI app adapters also map both tooltip background
+aliases to black. These are resource and generation changes, not installed
+visual acceptance.
+
+The reported taskbar hover label has not yet been classified as a native
+tooltip or a XAML ToolTip. The shared recipe covers the latter only; the
+Explorer native tooltip hook still requires a same-process CabinetWClass
+owner/tool and does not admit taskbar-owned tooltip windows.
+
+References: Microsoft [ToolTip frame and brush aliases](https://github.com/microsoft/microsoft-ui-xaml/blob/v2.8.7/dev/CommonStyles/ToolTip_rs5_themeresources.xaml)
+and [NavigationView state resources](https://github.com/microsoft/microsoft-ui-xaml/blob/v2.8.7/dev/NavigationView/NavigationView_rs2_themeresources.xaml).
+The upstream [taskbar tooltip recipe](https://github.com/ramensoftware/windows-11-taskbar-styling-guide#tooltips)
+uses the same `ToolTip > ContentPresenter#LayoutRoot` frame target.

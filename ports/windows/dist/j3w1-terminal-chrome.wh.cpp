@@ -2,7 +2,7 @@
 // @id j3w1-terminal-chrome
 // @name j3w1 Terminal chrome
 // @description Exact-package Terminal chrome resources; document and artwork colors remain native
-// @version 1.0.16
+// @version 1.0.17
 // @author j3w1
 // @include WindowsTerminal.exe
 // @architecture x86-64
@@ -382,7 +382,7 @@ static constexpr Rule rules[]={
  {L"SliderInlineTickBarFill",{255,0,0,0},L"color.surface.input"},
  {L"FlyoutPresenterBackground",{255,20,11,11},L"color.surface.raised"},
  {L"FlyoutBorderThemeBrush",{255,200,26,26},L"color.border.overlay"},
- {L"ToolTipBackgroundBrush",{255,28,16,16},L"color.surface.overlay"},
+ {L"ToolTipBackgroundBrush",{255,0,0,0},L"color.surface.canvas"},
  {L"ToolTipForegroundBrush",{255,233,148,153},L"color.text.default"},
  {L"ToolTipBorderBrush",{255,200,26,26},L"color.border.overlay"},
  {L"ScrollBarBackground",{255,0,0,0},L"color.interaction.scrollbar.track"},
@@ -417,6 +417,8 @@ static constexpr Rule rules[]={
  {L"ScrollBarButtonArrowForegroundPointerOver",{255,255,162,167},L"color.text.bright"},
  {L"ScrollBarButtonArrowForegroundPressed",{255,255,162,167},L"color.text.bright"},
  {L"ScrollBarButtonArrowForegroundDisabled",{255,163,103,107},L"color.text.disabled"},
+ {L"ToolTipBackground",{255,0,0,0},L"color.surface.canvas"},
+ {L"ToolTipForeground",{255,233,148,153},L"color.text.default"},
 };
 static bool Same(Color a,Color b){return a.A==b.A&&a.R==b.R&&a.G==b.G&&a.B==b.B;}
 static bool Identity(ProjectedObject const& a,ProjectedObject const& b){
