@@ -172,8 +172,9 @@ them to public issues or commit them. Only redacted outcomes belong in evidence.
    This validates the fixed release from immutable Git objects, retains the old
    cache and journal history, and applies only the recorded restoration.
 
-   For a legacy `DWM/ColorizationColor` conflict caused by the old opaque-intensity
-   mapping, inspect the original, installed and current DWORDs first. The fixed
+   For an observed legacy `DWM/ColorizationColor` mismatch after an opaque-intensity
+   write, inspect the original, installed and current DWORDs first. The native
+   cause of the observed intensity change remains unverified. The fixed
    runtime preserves Windows' existing intensity byte while mapping the exact
    canonical accent RGB. It checks the entire DWORD after personalization refresh
    and in Test; no alpha mask or color tolerance is used. An absent original value
@@ -188,6 +189,13 @@ them to public issues or commit them. Only redacted outcomes belong in evidence.
    type or absence remains a conflict. Ordinary Restore and Test retain their
    strict checks. After recovery, install the reviewed fixed revision in Native
    mode and run its Test. This recovery does not admit an unsupported Full host.
+
+   Restoration retains pending original-value expectations through personalization
+   refresh and checks them before releasing ownership or marking the transaction
+   restored. A refresh failure or exact readback mismatch retains conflict state
+   and the original receipts for retry. Each restored update is checked before
+   recovery traverses an older baseline; an unresolved newer update stops that
+   traversal. Exception rollback uses the same refresh/readback path.
 
 Font receipts record pending ownership before files are installed. An interrupted
 installation resumes only when already written files still match its receipt.

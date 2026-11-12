@@ -1596,14 +1596,11 @@ function atomic(p, b) {
 function persist() {
   atomic(journal, JSON.stringify(history, null, 2) + "\n");
 }
-var fixtureRefreshed = false;
+var fixtureRefreshCount = 0;
 function ps(request) {
   if (fixture) {
     const p = import_node_path2.default.join(root, "registry.json"), reg = import_node_fs2.default.existsSync(p) ? json(p) : {};
-    if (request.operation === "get") {
-      const key = request.key + "|" + request.name;
-      return reg[key] ?? { exists: false };
-    }
+    if (request.operation === "get") return reg[request.key + "|" + request.name] ?? { exists: false };
     if (request.operation === "set") {
       const key = request.key + "|" + request.name;
       if (request.value.exists) reg[key] = request.value;
@@ -1611,11 +1608,17 @@ function ps(request) {
       atomic(p, JSON.stringify(reg));
       return { ok: true };
     }
-    if (request.operation === "refresh" && !fixtureRefreshed) {
-      fixtureRefreshed = true;
-      if (args.fixtureRefreshValues) {
-        Object.assign(reg, args.fixtureRefreshValues);
+    if (request.operation === "refresh") {
+      const index = fixtureRefreshCount++, step = args.fixtureRefreshSteps?.[index] ?? (index === 0 ? { values: args.fixtureRefreshValues } : null);
+      if (step?.error) throw Error("Injected personalization refresh failure");
+      if (step?.values) {
+        Object.assign(reg, step.values);
         atomic(p, JSON.stringify(reg));
+      }
+      for (const file of step?.files ?? []) {
+        const dest = safe(import_node_path2.default.resolve(root, file.path));
+        if (!dest.startsWith(import_node_path2.default.resolve(root) + import_node_path2.default.sep) || typeof file.value !== "string") throw Error("Invalid fixture refresh file");
+        atomic(dest, file.value);
       }
     }
     return { ok: true };
@@ -1748,6 +1751,7 @@ if (["Plan", "Apply", "Update"].includes(action)) {
   const argb = intensity * 16777216 + parseInt(accent, 16);
   reg("Software\\Microsoft\\Windows\\DWM", "AccentColor", abgr);
   reg("Software\\Microsoft\\Windows\\DWM", "ColorizationColor", argb);
+  ops.at(-1).planningSnapshot = colorization;
   reg("Software\\Microsoft\\Windows\\DWM", "ColorPrevalence", 1);
   reg("Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Accent", "AccentColorMenu", abgr);
   const assets = import_node_path2.default.join(state, "assets");
@@ -1991,6 +1995,13 @@ function updatePointer() {
 }
 function restore(tx) {
   const conflicts = [];
+  tx.status = "restore-conflict";
+  persist();
+  const restoredModMatches = (mod) => {
+    const expected = mod.restorePending, shown = wh(["mod", "show", mod.id], true);
+    if (!expected.exists) return !shown;
+    return shown?.metadata?.version === expected.version && eq(shown.config, expected.config) && eq(wh(["mod", "settings", "get", mod.id]), expected.settings) && (!expected.artifact || sameModArtifact(shown, expected.artifact));
+  };
   for (const mod of [...tx.mods ?? []].reverse()) {
     if (mod.restored) continue;
     if (mod.unchanged) {
@@ -2000,8 +2011,12 @@ function restore(tx) {
     }
     console.error(`Restoring theme adapter ${mod.sourceId ?? mod.id}. Saved source may need compilation.`);
     try {
+      if (mod.restorePending) {
+        if (!restoredModMatches(mod)) conflicts.push(mod.id);
+        continue;
+      }
       if (!wh(["mod", "show", mod.id], true) && !mod.before) {
-        mod.restored = true;
+        mod.restorePending = { exists: false };
         persist();
         continue;
       }
@@ -2022,9 +2037,9 @@ function restore(tx) {
       } else if (mod.backup) {
         wh(["--yes", "data", "import", mod.backup, "--mods", mod.id, "--no-app-settings", "--offline"]);
         if (mod.beforeSourceSha256) {
-          const prior = previousManagedMod(tx, mod.id), restored = wh(["mod", "show", mod.id]);
-          if (!prior || prior.sourceSha256 !== mod.beforeSourceSha256 || exportedSourceDigest(mod.backup, mod.id) !== prior.sourceSha256 || restored.metadata?.version !== prior.version || !eq(wh(["mod", "settings", "get", mod.id]), mod.beforeSettings) || !sameRestoredConfig(restored.config, mod.before.config)) throw Error("Restored adapter identity or settings mismatch");
-          const artifact = modArtifact(restored);
+          const prior = previousManagedMod(tx, mod.id), restored2 = wh(["mod", "show", mod.id]);
+          if (!prior || prior.sourceSha256 !== mod.beforeSourceSha256 || exportedSourceDigest(mod.backup, mod.id) !== prior.sourceSha256 || restored2.metadata?.version !== prior.version || !eq(wh(["mod", "settings", "get", mod.id]), mod.beforeSettings) || !sameRestoredConfig(restored2.config, mod.before.config)) throw Error("Restored adapter identity or settings mismatch");
+          const artifact = modArtifact(restored2);
           if (!artifact) throw Error("Restored adapter has no compiled artifact");
           prior.compilationHistory ??= [];
           prior.compilationHistory.push({ sourceSha256: prior.sourceSha256, artifact: prior.artifact });
@@ -2033,7 +2048,8 @@ function restore(tx) {
           prior.artifact = artifact;
         }
       } else wh(["--yes", "mod", "remove", mod.id]);
-      mod.restored = true;
+      const restored = wh(["mod", "show", mod.id], true);
+      mod.restorePending = restored ? { exists: true, version: restored.metadata?.version, config: restored.config, settings: wh(["mod", "settings", "get", mod.id]), artifact: modArtifact(restored) } : { exists: false };
       persist();
     } catch (error) {
       conflicts.push(`${mod.id}: ${error.message}`);
@@ -2042,13 +2058,19 @@ function restore(tx) {
   console.error("Restoring saved personalization and application settings.");
   const exact = /* @__PURE__ */ new Set();
   for (const snapshot of tx.documents ?? []) {
-    if (!snapshot.after) continue;
+    if (!snapshot.after || !tx.operations.some((op) => op.applied && op.kind === "json" && op.path === snapshot.path)) continue;
     try {
       const op = { kind: "file", path: snapshot.path };
-      if (eq(get(op), snapshot.after)) {
-        put(op, snapshot.before);
+      const now = get(op);
+      if (eq(now, snapshot.after) || snapshot.restorePending && eq(now, snapshot.before)) {
+        if (!eq(now, snapshot.before)) put(op, snapshot.before);
+        if (!eq(get(op), snapshot.before)) throw Error("Document restoration readback failed");
+        snapshot.restorePending = true;
         exact.add(snapshot.path);
-        for (const item of tx.operations) if (item.kind === "json" && item.path === snapshot.path) item.applied = false;
+        for (const item of tx.operations) if (item.applied && item.kind === "json" && item.path === snapshot.path) item.restorePending = true;
+        persist();
+      } else if (snapshot.restorePending) {
+        delete snapshot.restorePending;
         persist();
       }
     } catch (error) {
@@ -2060,7 +2082,7 @@ function restore(tx) {
     try {
       const now = get(op);
       if (eq(now, op.before)) {
-        op.applied = false;
+        op.restorePending = true;
         persist();
         continue;
       }
@@ -2074,10 +2096,55 @@ function restore(tx) {
       }
       put(op, op.before);
       if (!eq(get(op), op.before)) throw Error("Restoration readback failed");
-      op.applied = false;
+      op.restorePending = true;
       persist();
     } catch (error) {
       conflicts.push(`${label(op)}: ${error.message}`);
+    }
+  }
+  const pending = tx.operations.filter((op) => op.applied && op.restorePending);
+  const pendingMods = (tx.mods ?? []).filter((mod) => mod.restorePending && !mod.restored);
+  let refreshed = true;
+  if (pending.length || pendingMods.length) try {
+    ps({ operation: "refresh" });
+  } catch (error) {
+    refreshed = false;
+    conflicts.push(`Personalization refresh: ${error.message}`);
+  }
+  if (refreshed) {
+    const verifiedDocuments = /* @__PURE__ */ new Set();
+    for (const snapshot of tx.documents ?? []) if (snapshot.restorePending) try {
+      if (!eq(get({ kind: "file", path: snapshot.path }), snapshot.before)) {
+        conflicts.push(snapshot.path);
+        continue;
+      }
+      verifiedDocuments.add(snapshot.path);
+      delete snapshot.restorePending;
+      persist();
+    } catch (error) {
+      conflicts.push(`${snapshot.path}: ${error.message}`);
+    }
+    for (const op of pending) try {
+      if (exact.has(op.path) ? !verifiedDocuments.has(op.path) : !eq(get(op), op.before)) {
+        conflicts.push(label(op));
+        continue;
+      }
+      op.applied = false;
+      delete op.restorePending;
+      persist();
+    } catch (error) {
+      conflicts.push(`${label(op)}: ${error.message}`);
+    }
+    for (const mod of pendingMods) try {
+      if (!restoredModMatches(mod)) {
+        conflicts.push(mod.id);
+        continue;
+      }
+      mod.restored = true;
+      delete mod.restorePending;
+      persist();
+    } catch (error) {
+      conflicts.push(`${mod.id}: ${error.message}`);
     }
   }
   tx.status = conflicts.length ? "restore-conflict" : "restored";
@@ -2126,9 +2193,9 @@ if (action === "Plan") {
     console.error(`Restoring saved update ${index + 1} of ${selected.length}.`);
     conflicts.push(...restore(tx));
     if (conflicts.length) break;
+    updatePointer();
   }
-  ps({ operation: "refresh" });
-  if (!conflicts.length) updatePointer();
+  if (!selected.length) updatePointer();
   console.log(JSON.stringify({ result: conflicts.length ? "conflicts" : "restored", conflicts, recovery: conflicts.length ? "Resolve the listed values using journal.json, then rerun Restore. Backups are retained." : null }));
   if (conflicts.length) process.exitCode = 2;
 } else if (action === "Guard") {
@@ -2168,13 +2235,21 @@ if (action === "Plan") {
   if (currentMode && currentMode !== args.mode) throw Error("Restore the installed mode before changing Full/Native mode");
   const pending = history.transactions.find((x) => ["applying", "restore-conflict"].includes(x.status));
   if (pending) throw Error("Incomplete transaction: run Restore before another Apply");
+  if (fixture && args.fixtureBeforePlanningValues) for (const [target, value] of Object.entries(args.fixtureBeforePlanningValues)) {
+    const [key, name] = target.split("|");
+    ps({ operation: "set", key, name, value });
+  }
   const effective = /* @__PURE__ */ new Map();
   for (const tx of history.transactions.filter((t) => t.status === "applied")) for (const op of tx.operations) if (op.applied) effective.set(opId(op), op);
   for (const op of ops) {
     const managed = effective.get(opId(op));
     if (managed && !eq(get(op), managed.after)) throw Error(`Managed setting conflict: ${label(op)}. Restore and resolve it before applying.`);
   }
-  const planned = ops.map((op) => ({ ...op, before: get(op) })).filter((op) => !eq(op.before, op.after));
+  const planned = ops.map(({ planningSnapshot, ...op }) => {
+    const before = get(op);
+    if (planningSnapshot && !eq(before, planningSnapshot)) throw Error("Concurrent edit during dependent colorization planning; no settings changed");
+    return { ...op, before };
+  }).filter((op) => !eq(op.before, op.after));
   const previous = history.transactions.filter((t) => t.status === "applied").at(-1);
   if (!planned.length && previous?.revision === args.revision && previous?.mode === args.mode) {
     const checked = verify({ checkEngine: false });
@@ -2221,13 +2296,6 @@ if (action === "Plan") {
       } catch {
       }
       const conflicts = restore(tx);
-      try {
-        ps({ operation: "refresh" });
-      } catch (refreshError) {
-        conflicts.push(`Personalization refresh: ${refreshError.message}`);
-        tx.status = "restore-conflict";
-        persist();
-      }
       if (!conflicts.length) updatePointer();
       throw Error(`${error.message}; rollback ${conflicts.length ? "needs conflict recovery; run Restore" : "completed"}`);
     }

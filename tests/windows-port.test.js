@@ -443,6 +443,79 @@ test('explicit legacy recovery preserves different RGB, intensity, type and miss
  }
  const f=fixture(t);assert.match(f.run('Apply',{restoreColorizationIntensity:true}).stderr,/only available with Restore/);
 });
+
+function nativeColorizationFixture(t){
+ const f=fixture(t),registry=path.join(f.state,'fixture/registry.json'),original=dword(0xc4d0000c);
+ write(registry,{[colorizationKey]:original});return {...f,registry,original};
+}
+test('dependent colorization planning refuses an intensity edit between its two reads without writes',t=>{
+ const f=nativeColorizationFixture(t),newer=dword(0xc5d0000c);
+ const r=f.run('Apply',{fixtureBeforePlanningValues:{[colorizationKey]:newer}});
+ assert.notEqual(r.status,0);assert.match(r.stderr,/Concurrent edit during dependent colorization planning/);
+ assert.deepEqual(read(f.registry),{[colorizationKey]:newer});assert.equal(fs.readFileSync(f.terminal,'utf8'),f.before);
+ assert.ok(!fs.existsSync(path.join(f.state,'journal.json')));
+});
+test('normal, Latest and explicit legacy restoration retain exact ownership after refresh drift',t=>{
+ for(const route of ['normal','latest','legacy']){
+  const f=route==='legacy'?legacyColorizationFixture(t):nativeColorizationFixture(t);
+  if(route!=='legacy')f.ok('Apply');
+  const flags={latest:route==='latest',restoreColorizationIntensity:route==='legacy'};
+  const r=f.run('Restore',{...flags,fixtureRefreshSteps:[{values:{[colorizationKey]:dword(0xc4d0000d)}}]});
+  assert.equal(r.status,2);assert.equal(JSON.parse(r.stdout).result,'conflicts');
+  const tx=f.journal().transactions[0],op=tx.operations.find(x=>x.name==='ColorizationColor');
+  assert.equal(tx.status,'restore-conflict');assert.equal(op.applied,true);assert.equal(op.restorePending,true);
+  assert.deepEqual(op.before,f.original);assert.deepEqual(op.after,dword(route==='legacy'?0xffe53935:0xc4e53935));
+  assert.ok(fs.existsSync(path.join(f.state,'current.json')));
+  assert.equal(f.run('Restore',flags).status,2);assert.deepEqual(read(f.registry)[colorizationKey],dword(0xc4d0000d));
+  const values=read(f.registry);values[colorizationKey]=f.original;write(f.registry,values);f.ok('Restore',flags);
+  assert.equal(f.journal().transactions[0].status,'restored');assert.ok(!fs.existsSync(path.join(f.state,'current.json')));
+ }
+});
+test('refresh drift in a newer restored document stops recovery before the older baseline',t=>{
+ const f=nativeColorizationFixture(t);f.ok('Apply');
+ const updated=readConfig(f.terminal);updated.profiles.list.push({guid:'third',commandline:'keep-third'});write(f.terminal,updated);
+ f.ok('Update',{revision:'2'.repeat(40)});
+ const drift=structuredClone(updated);drift.profiles.list[2].colorScheme='later-owner-choice';
+ const r=f.run('Restore',{fixtureRefreshSteps:[{files:[{path:'terminal/settings.json',value:JSON.stringify(drift)}]}]});
+ assert.equal(r.status,2);
+ const history=f.journal();assert.equal(history.transactions[0].status,'applied');assert.equal(history.transactions[1].status,'restore-conflict');
+ assert.equal(read(path.join(f.state,'current.json')).revision,'2'.repeat(40));
+ assert.ok(history.transactions[1].operations.filter(x=>x.kind==='json').every(x=>x.applied&&x.restorePending));
+ assert.equal(history.transactions[1].documents[0].restorePending,true);
+ assert.equal(f.run('Restore',{latest:true}).status,2);assert.equal(readConfig(f.terminal).profiles.list[2].colorScheme,'later-owner-choice');
+ const repaired=readConfig(f.terminal);delete repaired.profiles.list[2].colorScheme;write(f.terminal,repaired);
+ f.ok('Restore',{latest:true});assert.equal(read(path.join(f.state,'current.json')).revision,'1'.repeat(40));f.ok('Test');
+ f.ok('Restore');assert.equal(readConfig(f.terminal).profiles.list[2].commandline,'keep-third');
+});
+test('a checked revision-only restore advances to the older pending recovery without losing its pointer',t=>{
+ const f=nativeColorizationFixture(t);f.ok('Apply');f.ok('Update',{revision:'2'.repeat(40)});
+ const r=f.run('Restore',{fixtureRefreshSteps:[{values:{[colorizationKey]:dword(0xc4d0000d)}}]});assert.equal(r.status,2);
+ const tx=f.journal().transactions;assert.equal(tx[1].status,'restored');assert.equal(tx[0].status,'restore-conflict');
+ assert.equal(read(path.join(f.state,'current.json')).revision,'1'.repeat(40));
+ const values=read(f.registry);values[colorizationKey]=f.original;write(f.registry,values);f.ok('Restore');
+ assert.ok(f.journal().transactions.every(x=>x.status==='restored'));
+ // Model interruption between the final durable receipt and pointer update.
+ write(path.join(f.state,'current.json'),{revision:'1'.repeat(40),mode:'Native'});
+ f.ok('Restore');assert.ok(!fs.existsSync(path.join(f.state,'current.json')));
+});
+test('restoration refresh errors retain durable expectations and resume exact JSON bytes',t=>{
+ const f=nativeColorizationFixture(t);f.ok('Apply');
+ const r=f.run('Restore',{fixtureRefreshSteps:[{error:true}]});assert.equal(r.status,2);assert.match(r.stdout,/Injected personalization refresh failure/);
+ const tx=f.journal().transactions[0];assert.equal(tx.status,'restore-conflict');assert.ok(tx.operations.every(x=>x.applied&&x.restorePending));
+ assert.ok(fs.existsSync(path.join(f.state,'current.json')));f.ok('Restore');
+ assert.equal(fs.readFileSync(f.terminal,'utf8'),f.before);assert.deepEqual(read(f.registry),{[colorizationKey]:f.original});
+});
+test('exception rollback shares the post-refresh verification and retained recovery expectations',t=>{
+ for(const step of [{values:{[colorizationKey]:dword(0xc4d0000d)}},{error:true}]){
+  const f=nativeColorizationFixture(t);
+  const r=f.run('Apply',{failAfter:50,fixtureRefreshSteps:[step]});assert.notEqual(r.status,0);assert.match(r.stderr,/rollback needs conflict recovery/);
+  const tx=f.journal().transactions[0],op=tx.operations.find(x=>x.name==='ColorizationColor');
+  assert.equal(tx.status,'restore-conflict');assert.equal(op.applied,true);assert.equal(op.restorePending,true);assert.deepEqual(op.before,f.original);
+  assert.ok(!fs.existsSync(path.join(f.state,'current.json')));
+  if(step.values){assert.equal(f.run('Restore').status,2);const values=read(f.registry);values[colorizationKey]=f.original;write(f.registry,values);}
+  f.ok('Restore');assert.equal(f.journal().transactions[0].status,'restored');assert.equal(fs.readFileSync(f.terminal,'utf8'),f.before);
+ }
+});
 test('later unrelated edits survive restore, and profile reordering follows GUID rather than index',t=>{
  const f=fixture(t);f.ok('Apply');const x=readConfig(f.terminal);x.profiles.list.reverse();x.newUserPreference=true;write(f.terminal,x);f.ok('Test');f.ok('Restore');const got=readConfig(f.terminal);assert.equal(got.newUserPreference,true);assert.equal(got.profiles.list[0].guid,'two');assert.equal(got.profiles.list[0].commandline,'keep-two');assert.equal(got.profiles.list[1].colorScheme,'j3w1zsh');assert.equal(got.profiles.list[1].font.size,17);
 });

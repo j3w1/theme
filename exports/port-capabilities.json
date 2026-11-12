@@ -3641,7 +3641,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-2hfYTcOo3r2Sh8muWFR16SqHSnGjML0rVq6yLz+uUvk=",
+      "subjectDigest": "sha256-3+4ym1aP5Rt/dWWQfPjemp0TLfv95xL+H7ItGstR2rk=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -3698,8 +3698,8 @@
         {"path":"dist/j3w1-hand.cur","install":"Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.","source":"ports/windows/dist/j3w1-hand.cur","digest":"sha256-y1UYRrR5SR+ptEFKysMKgpZp6zlz+oJuZFnH84RLTyM="},
         {"path":"dist/j3w1-pin.cur","install":"Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.","source":"ports/windows/dist/j3w1-pin.cur","digest":"sha256-YMoFMCRCo6hoBhSOJlEsciiYnvmGICxtErmdS0SrJeg="},
         {"path":"dist/j3w1-person.cur","install":"Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.","source":"ports/windows/dist/j3w1-person.cur","digest":"sha256-be/7eNvDKI8kadus9JedWvDVjQMqn8h+6hKTq6Q2Sas="},
-        {"path":"dist/runtime.cjs","install":"Use the pinned Windows lifecycle installer.","source":"ports/windows/dist/runtime.cjs","digest":"sha256-CHxAIEuH1Wj5epW2l1+1QWjxsnnTflJBDoG9QyGKDZ8="},
-        {"path":"dist/install-manifest.json","install":"Use the pinned Windows lifecycle installer.","source":"ports/windows/dist/install-manifest.json","digest":"sha256-R9q0uyAgGeEgohacqaF3ywKJv7eEVsKdpcyXRfnczaA="},
+        {"path":"dist/runtime.cjs","install":"Use the pinned Windows lifecycle installer.","source":"ports/windows/dist/runtime.cjs","digest":"sha256-fZNkCENPnrKZB3OZX2nwr5SgV85BrOt9+89bAmiDiFM="},
+        {"path":"dist/install-manifest.json","install":"Use the pinned Windows lifecycle installer.","source":"ports/windows/dist/install-manifest.json","digest":"sha256-qI2bNjvspwOsLtpAfIaGg/g8GZfhG77fSVFEJpumWwM="},
         {"path":"dist/j3w1-explorer-native.wh.cpp","install":"Use the pinned Windows lifecycle installer.","source":"ports/windows/dist/j3w1-explorer-native.wh.cpp","digest":"sha256-n3i1nsLPh3ZrwdqWeRq4zI3Q5qZYXQuWL1yNFVNeZbo="},
         {"path":"dist/j3w1-explorer-native.json","install":"Use the pinned Windows lifecycle installer.","source":"ports/windows/dist/j3w1-explorer-native.json","digest":"sha256-LepbaM+39csZyYFFNx2MXgRGsi7fmuDN94C9P/WE6Zo="},
         {"path":"dist/j3w1-powertoys-preview.wh.cpp","install":"Use the pinned Windows lifecycle installer.","source":"ports/windows/dist/j3w1-powertoys-preview.wh.cpp","digest":"sha256-ehRK2mYAJVbd3ht5MWhrIe/aZJhYsghtgiHFGEC02bc="},
