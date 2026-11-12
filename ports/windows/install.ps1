@@ -10,6 +10,7 @@ param(
  [string]$Revision,[string]$Version,[string]$SourceRoot,
  [string]$StateRoot=(Join-Path $env:LOCALAPPDATA 'j3w1-theme\windows'),
  [switch]$NonInteractive,[switch]$Latest,
+ [switch]$RestoreColorizationIntensity,
  [switch]$Fixture,[int]$FixtureFailAfter=0,
  [switch]$Lifecycle
 )
@@ -316,6 +317,7 @@ param(
  [string]$Revision,[string]$Version,[string]$SourceRoot,
  [string]$StateRoot=(Join-Path $env:LOCALAPPDATA 'j3w1-theme\windows'),
  [switch]$Latest,
+ [switch]$RestoreColorizationIntensity,
  [switch]$Fixture,
  [int]$FixtureFailAfter=0
 )
@@ -542,7 +544,7 @@ try{
  $guardPowerShell=(Get-Process -Id $PID).Path
  # Keep Guard on the same unpackaged runtime as installation and recovery.
  if($FixtureFailAfter -and -not $Fixture){throw 'Failure injection is available only in isolated fixtures'}
- $request=@{guardPwsh=$guardPowerShell;failAfter=$FixtureFailAfter;source=$release;state=$StateRoot;action=$Action;mode=$Mode;revision=$Revision;latest=[bool]$Latest;pwsh=(Get-Process -Id $PID).Path;fixture=[bool]$Fixture}
+ $request=@{guardPwsh=$guardPowerShell;failAfter=$FixtureFailAfter;source=$release;state=$StateRoot;action=$Action;mode=$Mode;revision=$Revision;latest=[bool]$Latest;restoreColorizationIntensity=[bool]$RestoreColorizationIntensity;pwsh=(Get-Process -Id $PID).Path;fixture=[bool]$Fixture}
  if($Action -in 'Apply','Update'){
   $preflight=$request.Clone();$preflight.action='Plan'
   $report=$preflight|ConvertTo-Json -Compress|& $node.Source (Join-Path $release 'dist/runtime.cjs')
@@ -594,10 +596,11 @@ if($MyInvocation.InvocationName -ne '.'){
  Set-StrictMode -Version Latest;$ErrorActionPreference='Stop'
  if(-not $Fixture){Assert-J3w1NativeProcess}
  if($Latest -and $Action -ne 'Restore'){throw '-Latest is only valid with -Action Restore'}
+ if($RestoreColorizationIntensity -and ($Action -ne 'Restore' -or -not $SourceRoot -or -not ($Revision -or $Version))){throw '-RestoreColorizationIntensity requires Restore with an explicit reviewed -SourceRoot and -Revision or -Version.'}
  if($Action -eq 'Update' -and -not $Revision -and -not $Version){throw 'Update requires an explicit -Version or -Revision.'}
  if($Lifecycle -or $SourceRoot -or $Fixture -or $Action -in 'Plan','Prepare','Guard'){
   $lifecycleMode=if($Mode -eq 'Auto'){'Full'}else{$Mode}
-  Invoke-J3w1WindowsLifecycle -Action $Action -Mode $lifecycleMode -Revision $Revision -Version $Version -SourceRoot $SourceRoot -StateRoot $StateRoot -Latest:$Latest -Fixture:$Fixture -FixtureFailAfter $FixtureFailAfter
+  Invoke-J3w1WindowsLifecycle -Action $Action -Mode $lifecycleMode -Revision $Revision -Version $Version -SourceRoot $SourceRoot -StateRoot $StateRoot -Latest:$Latest -RestoreColorizationIntensity:$RestoreColorizationIntensity -Fixture:$Fixture -FixtureFailAfter $FixtureFailAfter
   if(-not $Lifecycle -and -not $Fixture -and $Action -in 'Apply','Update'){
    Invoke-J3w1WindowsLifecycle -Action Test -StateRoot $StateRoot
   }

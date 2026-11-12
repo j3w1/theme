@@ -11,6 +11,7 @@ import {sha256Hex as hash,writeDurableTemp,replaceDurableTemp} from '../../../sc
 const args=JSON.parse(fs.readFileSync(0,'utf8'));
 const source=path.resolve(args.source), state=path.resolve(args.state), action=args.action;
 const fixture=args.fixture===true;
+if(args.restoreColorizationIntensity&&action!=='Restore')throw Error('Colorization intensity recovery is only available with Restore');
 if(process.platform!=='win32'&&!fixture)throw Error('Run on native Windows.');
 const read=p=>fs.readFileSync(safe(p),'utf8'),json=p=>JSON.parse(read(p).replace(/^\uFEFF/,''));
 
@@ -43,8 +44,9 @@ function safe(p) {
 }
 function atomic(p,b){safe(p);fs.mkdirSync(path.dirname(p),{recursive:true});const temp=writeDurableTemp(p,b);try{replaceDurableTemp(temp,p,{beforeAttempt:()=>safe(p)});}finally{if(fs.existsSync(temp))fs.unlinkSync(temp);}}
 function persist(){atomic(journal,JSON.stringify(history,null,2)+'\n');}
+let fixtureRefreshed=false;
 function ps(request){
- if(fixture){const p=path.join(root,'registry.json'),reg=fs.existsSync(p)?json(p):{};if(request.operation==='get'){const key=request.key+'|'+request.name;return reg[key]??{exists:false};}if(request.operation==='set'){const key=request.key+'|'+request.name;if(request.value.exists)reg[key]=request.value;else delete reg[key];atomic(p,JSON.stringify(reg));return {ok:true};}return {ok:true};}
+ if(fixture){const p=path.join(root,'registry.json'),reg=fs.existsSync(p)?json(p):{};if(request.operation==='get'){const key=request.key+'|'+request.name;return reg[key]??{exists:false};}if(request.operation==='set'){const key=request.key+'|'+request.name;if(request.value.exists)reg[key]=request.value;else delete reg[key];atomic(p,JSON.stringify(reg));return {ok:true};}if(request.operation==='refresh'&&!fixtureRefreshed){fixtureRefreshed=true;if(args.fixtureRefreshValues){Object.assign(reg,args.fixtureRefreshValues);atomic(p,JSON.stringify(reg));}}return {ok:true};}
  const r=spawnSync(args.pwsh,['-NoLogo','-NoProfile','-NonInteractive','-File',path.join(source,'adapter.ps1')],{input:JSON.stringify(request),encoding:'utf8',windowsHide:true});if(r.status!==0)throw Error(`Windows adapter failed: ${r.stderr.trim()}`);return JSON.parse(r.stdout.trim());
 }
 function lockscreen(request){
@@ -128,7 +130,15 @@ if(args.mode==='Full'&&(!fixture||args.fixtureWindhawk)){
 }
 const personalization='Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize';
 reg(personalization,'AppsUseLightTheme',0);reg(personalization,'SystemUsesLightTheme',0);reg(personalization,'EnableTransparency',0);reg(personalization,'ColorPrevalence',0);
-const accent=v['native.accent'].slice(1),rgb=accent.match(/../g),abgr=parseInt('ff'+rgb.toReversed().join(''),16),argb=parseInt('ff'+accent,16);
+const accent=v['native.accent'].slice(1),rgb=accent.match(/../g),abgr=parseInt('ff'+rgb.toReversed().join(''),16);
+// DWM colorization intensity is native Windows state, not theme opacity.
+// Preserve that byte while replacing the RGB with the canonical accent. Windows
+// can normalize a forced opaque intensity during ImmersiveColorSet refresh.
+// The complete resulting DWORD is journaled and checked, including intensity.
+const colorization=ps({operation:'get',key:'Software\\Microsoft\\Windows\\DWM',name:'ColorizationColor'});
+if(colorization.exists&&(colorization.type!=='DWord'||!Number.isInteger(colorization.value)||colorization.value<0||colorization.value>0xffffffff))throw Error('Invalid native DWM colorization DWORD; no settings changed');
+const intensity=colorization.exists?Math.floor(colorization.value/0x1000000):0xff;
+const argb=intensity*0x1000000+parseInt(accent,16);
 reg('Software\\Microsoft\\Windows\\DWM','AccentColor',abgr);reg('Software\\Microsoft\\Windows\\DWM','ColorizationColor',argb);reg('Software\\Microsoft\\Windows\\DWM','ColorPrevalence',1);
 reg('Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Accent','AccentColorMenu',abgr);
 const assets=path.join(state,'assets');file(path.join(assets,'j3w1-wallpaper.bmp'),'j3w1-wallpaper.bmp');
@@ -308,6 +318,17 @@ function stageMods(tx){
 
 const label=op=>op.kind==='lockscreen'?'Windows lock-screen image':op.kind==='windhawk-setting'?`Windhawk/${op.name}`:op.kind==='registry'?`${op.key}/${op.name}`:op.path;
 const opId=op=>JSON.stringify([op.kind,op.key,op.name,op.path,op.profile,op.member,op.keys]);
+function colorizationIntensityRecovery(op,now) {
+ if(!args.restoreColorizationIntensity||op.kind!=='registry'||op.key!=='Software\\Microsoft\\Windows\\DWM'||op.name!=='ColorizationColor')return false;
+ const valid=value=>value?.exists===true&&value.type==='DWord'&&Number.isInteger(value.value)&&value.value>=0&&value.value<=0xffffffff;
+ if(![op.before,op.after,now].every(valid))return false;
+ // Explicit recovery of the former opaque mapping only. Accept exactly the
+ // original intensity plus the recorded installed RGB, never a different RGB,
+ // type, missing value, or arbitrary intensity. Preserve both original receipts.
+ const intensity=Math.floor(op.before.value/0x1000000);
+ return intensity!==0xff&&Math.floor(op.after.value/0x1000000)===0xff
+  &&now.value===intensity*0x1000000+op.after.value%0x1000000;
+}
 const currentPath=path.join(state,'current.json');
 function updatePointer() {
  const active=history.transactions.filter(t=>t.status==='applied').at(-1);
@@ -380,15 +401,21 @@ function restore(tx) {
   try {
    const now=get(op);
    if(eq(now,op.before)){op.applied=false;persist();continue;}
-   if(!eq(now,op.after)){conflicts.push(label(op));continue;}
-   put(op,op.before);op.applied=false;persist();
+   if(!eq(now,op.after)){
+    if(!colorizationIntensityRecovery(op,now)){conflicts.push(label(op));continue;}
+    op.intensityRecovery={observed:now,recordedAfter:op.after};persist();
+   }
+   put(op,op.before);
+   if(!eq(get(op),op.before))throw Error('Restoration readback failed');
+   op.applied=false;persist();
   }catch(error){conflicts.push(`${label(op)}: ${error.message}`);}
  }
  tx.status=conflicts.length?'restore-conflict':'restored';persist();
  return [...new Set(conflicts)];
 }
-function verify({checkEngine=true}={}) {
+function verify({checkEngine=true,pending}={}) {
  const active=history.transactions.filter(t=>t.status==='applied');
+ if(pending)active.push(pending);
  const tx=active.at(-1);
  if(!tx)throw Error('No installed transaction');
  const effective=new Map();
@@ -480,6 +507,8 @@ if(action==='Plan') {
    if(args.mode==='Full'&&!compat())throw Error('Compatibility changed during apply');
    for(const mod of tx.mods)if(!mod.unchanged)wh(['mod','enable',mod.id]);
    if(args.mode==='Full')startWindhawk();
+   const activated=verify({pending:tx});
+   if(activated.failed.length)throw Error('Post-refresh verification failed: '+activated.failed.join(', '));
    tx.status='applied';persist();updatePointer();
    console.log(JSON.stringify({result:'applied',revision:args.revision,changes:planned.length,limitations:settings.limitations}));
   }catch(error) {

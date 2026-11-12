@@ -172,6 +172,23 @@ them to public issues or commit them. Only redacted outcomes belong in evidence.
    This validates the fixed release from immutable Git objects, retains the old
    cache and journal history, and applies only the recorded restoration.
 
+   For a legacy `DWM/ColorizationColor` conflict caused by the old opaque-intensity
+   mapping, inspect the original, installed and current DWORDs first. The fixed
+   runtime preserves Windows' existing intensity byte while mapping the exact
+   canonical accent RGB. It checks the entire DWORD after personalization refresh
+   and in Test; no alpha mask or color tolerance is used. An absent original value
+   uses opaque intensity and still requires exact post-refresh verification.
+
+   Explicit recovery is available with the same reviewed offline source command
+   plus `-RestoreColorizationIntensity`. It accepts only this exact case: the
+   original value was a nonopaque DWORD, the recorded installed DWORD was opaque,
+   and the current DWORD equals the original intensity combined with the recorded
+   installed RGB. It records that observation without replacing either original
+   receipt, then restores the complete original DWORD. Different RGB, intensity,
+   type or absence remains a conflict. Ordinary Restore and Test retain their
+   strict checks. After recovery, install the reviewed fixed revision in Native
+   mode and run its Test. This recovery does not admit an unsupported Full host.
+
 Font receipts record pending ownership before files are installed. An interrupted
 installation resumes only when already written files still match its receipt.
 Unowned or changed destination fonts are conflicts. A compatible Node installation on the ordinary user/machine PATH is reused.

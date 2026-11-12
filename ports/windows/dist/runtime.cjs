@@ -1542,6 +1542,7 @@ var source = import_node_path2.default.resolve(args.source);
 var state = import_node_path2.default.resolve(args.state);
 var action = args.action;
 var fixture = args.fixture === true;
+if (args.restoreColorizationIntensity && action !== "Restore") throw Error("Colorization intensity recovery is only available with Restore");
 if (process.platform !== "win32" && !fixture) throw Error("Run on native Windows.");
 var read = (p) => import_node_fs2.default.readFileSync(safe(p), "utf8");
 var json = (p) => JSON.parse(read(p).replace(/^\uFEFF/, ""));
@@ -1595,6 +1596,7 @@ function atomic(p, b) {
 function persist() {
   atomic(journal, JSON.stringify(history, null, 2) + "\n");
 }
+var fixtureRefreshed = false;
 function ps(request) {
   if (fixture) {
     const p = import_node_path2.default.join(root, "registry.json"), reg = import_node_fs2.default.existsSync(p) ? json(p) : {};
@@ -1608,6 +1610,13 @@ function ps(request) {
       else delete reg[key];
       atomic(p, JSON.stringify(reg));
       return { ok: true };
+    }
+    if (request.operation === "refresh" && !fixtureRefreshed) {
+      fixtureRefreshed = true;
+      if (args.fixtureRefreshValues) {
+        Object.assign(reg, args.fixtureRefreshValues);
+        atomic(p, JSON.stringify(reg));
+      }
     }
     return { ok: true };
   }
@@ -1732,7 +1741,11 @@ if (["Plan", "Apply", "Update"].includes(action)) {
   reg(personalization, "SystemUsesLightTheme", 0);
   reg(personalization, "EnableTransparency", 0);
   reg(personalization, "ColorPrevalence", 0);
-  const accent = v["native.accent"].slice(1), rgb = accent.match(/../g), abgr = parseInt("ff" + rgb.toReversed().join(""), 16), argb = parseInt("ff" + accent, 16);
+  const accent = v["native.accent"].slice(1), rgb = accent.match(/../g), abgr = parseInt("ff" + rgb.toReversed().join(""), 16);
+  const colorization = ps({ operation: "get", key: "Software\\Microsoft\\Windows\\DWM", name: "ColorizationColor" });
+  if (colorization.exists && (colorization.type !== "DWord" || !Number.isInteger(colorization.value) || colorization.value < 0 || colorization.value > 4294967295)) throw Error("Invalid native DWM colorization DWORD; no settings changed");
+  const intensity = colorization.exists ? Math.floor(colorization.value / 16777216) : 255;
+  const argb = intensity * 16777216 + parseInt(accent, 16);
   reg("Software\\Microsoft\\Windows\\DWM", "AccentColor", abgr);
   reg("Software\\Microsoft\\Windows\\DWM", "ColorizationColor", argb);
   reg("Software\\Microsoft\\Windows\\DWM", "ColorPrevalence", 1);
@@ -1963,6 +1976,13 @@ function stageMods(tx) {
 }
 var label = (op) => op.kind === "lockscreen" ? "Windows lock-screen image" : op.kind === "windhawk-setting" ? `Windhawk/${op.name}` : op.kind === "registry" ? `${op.key}/${op.name}` : op.path;
 var opId = (op) => JSON.stringify([op.kind, op.key, op.name, op.path, op.profile, op.member, op.keys]);
+function colorizationIntensityRecovery(op, now) {
+  if (!args.restoreColorizationIntensity || op.kind !== "registry" || op.key !== "Software\\Microsoft\\Windows\\DWM" || op.name !== "ColorizationColor") return false;
+  const valid = (value) => value?.exists === true && value.type === "DWord" && Number.isInteger(value.value) && value.value >= 0 && value.value <= 4294967295;
+  if (![op.before, op.after, now].every(valid)) return false;
+  const intensity = Math.floor(op.before.value / 16777216);
+  return intensity !== 255 && Math.floor(op.after.value / 16777216) === 255 && now.value === intensity * 16777216 + op.after.value % 16777216;
+}
 var currentPath = import_node_path2.default.join(state, "current.json");
 function updatePointer() {
   const active = history.transactions.filter((t) => t.status === "applied").at(-1);
@@ -2045,10 +2065,15 @@ function restore(tx) {
         continue;
       }
       if (!eq(now, op.after)) {
-        conflicts.push(label(op));
-        continue;
+        if (!colorizationIntensityRecovery(op, now)) {
+          conflicts.push(label(op));
+          continue;
+        }
+        op.intensityRecovery = { observed: now, recordedAfter: op.after };
+        persist();
       }
       put(op, op.before);
+      if (!eq(get(op), op.before)) throw Error("Restoration readback failed");
       op.applied = false;
       persist();
     } catch (error) {
@@ -2059,8 +2084,9 @@ function restore(tx) {
   persist();
   return [...new Set(conflicts)];
 }
-function verify({ checkEngine = true } = {}) {
+function verify({ checkEngine = true, pending } = {}) {
   const active = history.transactions.filter((t) => t.status === "applied");
+  if (pending) active.push(pending);
   const tx = active.at(-1);
   if (!tx) throw Error("No installed transaction");
   const effective = /* @__PURE__ */ new Map();
@@ -2182,6 +2208,8 @@ if (action === "Plan") {
       if (args.mode === "Full" && !compat()) throw Error("Compatibility changed during apply");
       for (const mod of tx.mods) if (!mod.unchanged) wh(["mod", "enable", mod.id]);
       if (args.mode === "Full") startWindhawk();
+      const activated = verify({ pending: tx });
+      if (activated.failed.length) throw Error("Post-refresh verification failed: " + activated.failed.join(", "));
       tx.status = "applied";
       persist();
       updatePointer();

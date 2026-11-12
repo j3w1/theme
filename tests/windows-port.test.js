@@ -386,6 +386,63 @@ test('update with unchanged visual values still pins new revision; Latest return
 test('Test verifies effective settings from earlier transactions after an update',t=>{
  const f=fixture(t);f.ok('Apply');f.ok('Update',{revision:'2'.repeat(40)});const x=readConfig(f.terminal);x.profiles.defaults.opacity=45;write(f.terminal,x);assert.notEqual(f.run('Test').status,0);assert.notEqual(f.run('Apply').status,0);
 });
+
+const colorizationKey='Software\\Microsoft\\Windows\\DWM|ColorizationColor';
+const dword=value=>({exists:true,value,type:'DWord'});
+test('native colorization preserves existing Windows intensity and verifies the entire DWORD',t=>{
+ const f=fixture(t),registry=path.join(f.state,'fixture/registry.json');
+ const original=dword(0xc4d0000c);write(registry,{[colorizationKey]:original});
+ f.ok('Apply',{fixtureRefreshValues:{[colorizationKey]:dword(0xc4e53935)}});
+ const op=f.journal().transactions[0].operations.find(x=>x.name==='ColorizationColor');
+ assert.deepEqual(op.before,original);assert.deepEqual(op.after,dword(0xc4e53935));
+ f.ok('Test');assert.equal(JSON.parse(f.ok('Apply').stdout).result,'unchanged');
+ f.ok('Restore');assert.deepEqual(read(registry),{[colorizationKey]:original});
+ f.ok('Apply');const values=read(registry);values[colorizationKey]=dword(0xc5e53935);write(registry,values);
+ assert.equal(f.run('Test').status,1);assert.match(f.run('Update',{revision:'2'.repeat(40)}).stderr,/Managed setting conflict/);
+});
+
+test('activation rejects refresh drift before committing success, including previous transactions',t=>{
+ for(const previous of [false,true]){
+  const f=fixture(t);if(previous)f.ok('Apply');
+  const r=f.run(previous?'Update':'Apply',{revision:'2'.repeat(40),fixtureRefreshValues:{[colorizationKey]:dword(0xc4e53935)}});
+  assert.notEqual(r.status,0);assert.match(r.stderr,/Post-refresh verification failed: .*ColorizationColor/);
+  assert.doesNotMatch(r.stdout,/"result":"applied"/);
+  assert.notEqual(f.journal().transactions.at(-1).status,'applied');
+  if(previous)assert.equal(read(path.join(f.state,'current.json')).revision,'1'.repeat(40));
+  else assert.ok(!fs.existsSync(path.join(f.state,'current.json')));
+ }
+});
+
+function legacyColorizationFixture(t){
+ const f=fixture(t),registry=path.join(f.state,'fixture/registry.json');
+ const original=dword(0xc4d0000c);write(registry,{[colorizationKey]:original});f.ok('Apply');
+ // Reproduce the retained legacy installer receipt: it wrote opaque intensity,
+ // reported success, and Windows then restored its original intensity.
+ const history=f.journal(),op=history.transactions[0].operations.find(x=>x.name==='ColorizationColor');
+ op.after=dword(0xffe53935);write(path.join(f.state,'journal.json'),history);
+ return {...f,registry,original};
+}
+test('legacy intensity recovery is explicit, exact and restores the original receipt without changing Test',t=>{
+ const f=legacyColorizationFixture(t);
+ assert.equal(f.run('Test').status,1);assert.equal(f.run('Restore').status,2);
+ f.ok('Restore',{restoreColorizationIntensity:true});
+ const op=f.journal().transactions[0].operations.find(x=>x.name==='ColorizationColor');
+ assert.deepEqual(op.before,f.original);assert.deepEqual(op.after,dword(0xffe53935));
+ assert.deepEqual(op.intensityRecovery,{observed:dword(0xc4e53935),recordedAfter:dword(0xffe53935)});
+ assert.deepEqual(read(f.registry),{[colorizationKey]:f.original});
+ f.ok('Apply',{revision:'2'.repeat(40)});f.ok('Test');f.ok('Restore');
+ assert.deepEqual(read(f.registry),{[colorizationKey]:f.original});
+});
+test('explicit legacy recovery preserves different RGB, intensity, type and missing-value conflicts',t=>{
+ for(const value of [dword(0xc4e53936),dword(0xc5e53935),{exists:true,value:0xc4e53935,type:'QWord'},null]){
+  const f=legacyColorizationFixture(t),values=read(f.registry);
+  if(value)values[colorizationKey]=value;else delete values[colorizationKey];write(f.registry,values);
+  const r=f.run('Restore',{restoreColorizationIntensity:true});assert.equal(r.status,2);
+  assert.deepEqual(read(f.registry)[colorizationKey],value??undefined);
+  assert.equal(f.journal().transactions[0].operations.find(x=>x.name==='ColorizationColor').intensityRecovery,undefined);
+ }
+ const f=fixture(t);assert.match(f.run('Apply',{restoreColorizationIntensity:true}).stderr,/only available with Restore/);
+});
 test('later unrelated edits survive restore, and profile reordering follows GUID rather than index',t=>{
  const f=fixture(t);f.ok('Apply');const x=readConfig(f.terminal);x.profiles.list.reverse();x.newUserPreference=true;write(f.terminal,x);f.ok('Test');f.ok('Restore');const got=readConfig(f.terminal);assert.equal(got.newUserPreference,true);assert.equal(got.profiles.list[0].guid,'two');assert.equal(got.profiles.list[0].commandline,'keep-two');assert.equal(got.profiles.list[1].colorScheme,'j3w1zsh');assert.equal(got.profiles.list[1].font.size,17);
 });
