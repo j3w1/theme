@@ -147,7 +147,7 @@ test('Full Prepare retains release but leaves theme, font, engine and ownership 
 test('tools-only bootstrap reuses canonical paths and refuses changed archives, publishers, versions and failed installation',options,t=>{
  const root=scratchDirSync(t,'j3w1-prepare-tools-');
  const script=String.raw`
- $ErrorActionPreference='Stop';$StateRoot=$env:J3W1_PREP_TEST_ROOT
+ $ErrorActionPreference='Stop';$StateRoot=[IO.Path]::GetFullPath($env:J3W1_PREP_TEST_ROOT)
  $ast=[Management.Automation.Language.Parser]::ParseFile($env:J3W1_PREP_TEST_INSTALLER,[ref]$null,[ref]$null)
  foreach($name in @('Get-VerifiedDownload','Initialize-ThemeFullDependencies')){
   $node=$ast.Find({param($n) $n -is [Management.Automation.Language.FunctionDefinitionAst] -and $n.Name -eq $name},$true)
@@ -166,6 +166,7 @@ test('tools-only bootstrap reuses canonical paths and refuses changed archives, 
   [IO.File]::WriteAllText($script:cli,'not executable: fixture only');@{ExitCode=$script:exitCode}
  }
  function Expect-Refusal([scriptblock]$Body,[string]$Pattern){try{& $Body}catch{if($_.Exception.Message -match $Pattern){return};throw};throw "Expected refusal: $Pattern"}
+ Expect-Refusal {Assert-SafePath (Join-Path ([IO.Path]::GetDirectoryName($StateRoot)) 'fixture-outside')} 'Fixture path escaped'
  $downloads=Join-Path $StateRoot 'downloads';[IO.Directory]::CreateDirectory($downloads)|Out-Null
  $archive=Join-Path $downloads 'windhawk_setup_offline.exe';[IO.File]::WriteAllText($archive,'fixture archive')
  $hash=(Get-FileHash -LiteralPath $archive).Hash.ToLowerInvariant()
@@ -194,7 +195,8 @@ test('tools-only bootstrap reuses canonical paths and refuses changed archives, 
  if((Get-FileHash -LiteralPath $archive).Hash.ToLowerInvariant() -cne $hash){throw 'Archive changed'}
  foreach($name in @('journal.json','current.json','font-dependency.json','recovery-commands.txt')){if(Test-Path -LiteralPath (Join-Path $StateRoot $name)){throw 'Theme state created'}}
  @{cachedReused=$true;refusals=7;themeStateCreated=$false;starts=$script:starts}|ConvertTo-Json -Compress`;
- const r=spawnSync(pwsh,['-NoLogo','-NoProfile','-NonInteractive','-Command',script],{env:{...process.env,J3W1_PREP_TEST_ROOT:root,J3W1_PREP_TEST_INSTALLER:installer},encoding:'utf8',timeout:30000});
+ // Exercise a dot-segment root alias on every runner, preserving strict confinement.
+ const r=spawnSync(pwsh,['-NoLogo','-NoProfile','-NonInteractive','-Command',script],{env:{...process.env,J3W1_PREP_TEST_ROOT:root+path.sep+'.',J3W1_PREP_TEST_INSTALLER:installer},encoding:'utf8',timeout:30000});
  assert.equal(r.status,0,r.stdout+'\n'+r.stderr);
  assert.deepEqual(JSON.parse(r.stdout),{cachedReused:true,refusals:7,themeStateCreated:false,starts:2});
 });
