@@ -250,6 +250,8 @@ The record contains only `protocol`, `adapterVersion`, `pid`, exact decimal-stri
 `bitmapCom` (unsigned HRESULT or null when not reached). A boolean guard does
 not supply a stale last-error value. Later stages were not reached; earlier
 admission passed. A missing record supplies no stage or initialization result.
+A record whose PID or exact creation FILETIME differs from the independently
+bound target is unavailable for that target.
 
 The writer resolves the current user's LocalAppData through the known-folder
 API, never an environment override. It requires the existing, non-reparse
@@ -261,8 +263,11 @@ ambiguous or replaced identities fail closed without a fallback. No directory
 is created by the adapter. The sole name is
 `j3w1-explorer-native-1.8.10-init-failure.json`; no overwrite, append, alternate
 name, retry, repair or pruning occurs. Diagnostic errors preserve initialization
-outcomes and the caller's last error. Partial, unflushed or malformed output is
-unavailable evidence, never silently repaired.
+outcomes and the caller's last error. Partial or malformed output is unavailable
+evidence and is never silently repaired. The flush outcome is not recorded and
+cannot be inferred from the file. A complete, well-formed record evidences only
+the bytes attributed to the independently identified process; it does not prove
+successful flushing or durability, and no conclusion may depend on flush success.
 
 This file is outside the recovery journal and survives failed initialization,
 unload and Restore. A separately reviewed use task must prepare and own the
