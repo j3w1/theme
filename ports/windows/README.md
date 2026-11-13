@@ -121,6 +121,13 @@ for missing-cache, lock or conflict handling.
 
 ## What changes
 
+The current 26300.9974 core Full candidate excludes Notepad editor/chrome and
+PowerToys preview/Markdown adapters because the installed component versions are
+outside their reviewed pins. Their sources and earlier evidence remain intact;
+the table is an implementation inventory, not a claim that those excluded surfaces
+are installed or supported. See Compatibility for the exact exclusions and the
+canonical tools-only Prepare action. Native PowerToys settings remain separate.
+
 | Area | Treatment |
 | --- | --- |
 | Windows personalization | Dark mode, transparency off, red accents/borders, black wallpaper, recoverable lock-screen image and 17 compact cursor roles |

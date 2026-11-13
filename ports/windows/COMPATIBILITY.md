@@ -2,13 +2,33 @@
 
 ## Compatibility boundary
 
-The recorded candidate is Windows 11 x64 build 26300.9818 with the
-redesigned Start layout. It replaces the retired 26300.9711, 26200.9550 and 26300.9550
+The current source candidate is Windows 11 x64 build 26300.9974 with the
+redesigned Start layout. It replaces the retired 26300.9818, 26300.9711, 26200.9550 and 26300.9550
 candidates; those builds no longer qualify for Full mode. `host.json` records exact Explorer, StartDocked, SystemSettings,
 ShellExperienceHost and SearchHost versions, plus Start, shell and Client.CBS
 package versions. A changed, absent or unreadable input refuses Full mode.
+This rollover is one exact current host, not dual-host support. Explorer's display
+version remains 10.0.26100.9818 while its fixed version is 10.0.26100.9974.
+The measured loaded module set is ExplorerFrame, WindowsCodecs and
+windowsudk.shellcommon at fixed 9974, DUI and system XAML at fixed 9818,
+and Common Controls at 6.10.26100.9818. WIC and shellcommon retain complete
+file-hash guards. The unchanged Settings executable/system XAML hashes remain
+pinned. These measured identities and source changes do not establish native
+compiler, hook-initialization or rendered acceptance for this successor.
 
-The 26300.9818 readout changed the shell executable versions, Explorer's fixed
+The core Full candidate explicitly excludes `j3w1-notepad-native`,
+`j3w1-notepad-chrome`, `j3w1-powertoys-preview` and
+`j3w1-powertoys-markdown`. Installed Notepad 11.2609.11.0,
+PowerToys 0.102.3101.0 and WebView 157.0.4341.46 are outside their reviewed
+component boundaries. Their existing source, artifacts and exact guards remain;
+no package/hash/RVA has been guessed or widened. The generated source-owned
+exclusion list is reported by Plan and consumed before staging/activation.
+An existing owned excluded adapter requires official Restore first; any other
+installed copy requires explicit ownership resolution. No unrelated mod is disabled.
+Native PowerToys settings are separate from its excluded preview hooks. Paint,
+Calculator and Terminal still require their exact unchanged package/runtime pins.
+
+The preceding 26300.9818 readout changed the shell executable versions, Explorer's fixed
 version, and the shell package to 10.0.26100.9818. Search is 2609.12000.100.0
 and Client.CBS is 1000.26100.385.0; the Start package remains
 10.0.26100.4768. ExplorerFrame and DirectUI retain older display-version
@@ -373,11 +393,23 @@ only after checking its recorded process has ended, like the lifecycle locks.
 
 ## Developer and offline installation
 
+The existing `Prepare` action is the supported local tools-only path for a reviewed
+immutable candidate. With `-Mode Full`, it first returns a compatibility Plan and,
+only for an exact compatible host, retains the same pinned portable Windhawk
+2.0.0-alpha.6 compiler and verified source downloads used by Apply. It uses the
+canonical state/download/tool folders, locks, native-process, digest and publisher
+checks. It does not register fonts, change personalization, create ownership/recovery
+transactions, install/enable adapters or start the engine. Existing engine and user
+state are preserved. An incompatible Plan is not admission and acquires no Full
+toolchain. Explicit Native preparation does not acquire Full tools.
+The CI-only compiler script remains limited to real CI; do not fake RUNNER_TEMP.
+
 From an immutable checkout, with unpackaged PowerShell 7.4+ and Node 24+ available:
 
 ```powershell
 $revision = git rev-parse HEAD
 & ./ports/windows/install.ps1 -Action Plan -SourceRoot . -Revision $revision -Mode Full
+& ./ports/windows/install.ps1 -Action Prepare -SourceRoot . -Revision $revision -Mode Full
 & ./ports/windows/install.ps1 -Action Apply -SourceRoot . -Revision $revision -Mode Full
 & ./ports/windows/install.ps1 -Action Test
 ```

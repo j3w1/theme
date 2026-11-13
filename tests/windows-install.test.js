@@ -14,7 +14,7 @@ if(unavailable&&process.env.CI)test('Windows lifecycle tests require PowerShell'
 const installer=path.join(repoRoot,'ports/windows/install.ps1');
 
 const write=(p,x)=>{fs.mkdirSync(path.dirname(p),{recursive:true});fs.writeFileSync(p,typeof x==='string'?x:JSON.stringify(x));};
-function fixture(t){
+function fixture(t,mode='Native'){
  const root=scratchDirSync(t, 'j3w1-windows-wrapper-');
  const source=path.join(root,'source'),state=path.join(root,'state');
  fs.mkdirSync(source);fs.cpSync(path.join(repoRoot,'ports/windows'),path.join(source,'ports/windows'),{recursive:true});
@@ -24,7 +24,7 @@ function fixture(t){
  git('init');git('config','user.email','fixture@example.invalid');git('config','user.name','Fixture');git('config','core.autocrlf','false');
  const commit=()=>{git('add','.');git('commit','--allow-empty','-m','fixture');return git('rev-parse','HEAD');};
  const first=commit();git('tag','v4.0.0');
- const run=(action,args=[])=>spawnSync(pwsh,['-NoLogo','-NoProfile','-NonInteractive','-File',installer,'-Fixture','-Mode','Native','-StateRoot',state,'-SourceRoot',source,'-Action',action,...args],{env,encoding:'utf8',timeout:90000});
+ const run=(action,args=[])=>spawnSync(pwsh,['-NoLogo','-NoProfile','-NonInteractive','-File',installer,'-Fixture','-Mode',mode,'-StateRoot',state,'-SourceRoot',source,'-Action',action,...args],{env,encoding:'utf8',timeout:90000});
  const ok=(action,args=[])=>{const r=run(action,args);assert.equal(r.status,0,`${action}: ${r.stdout}\n${r.stderr}`);return r;};
  const terminal=path.join(state,'fixture/terminal/settings.json');write(terminal,'{\n// original\n"profiles":{"list":[]}}');
  return {root,source,state,first,terminal,git,commit,run,ok};
@@ -134,6 +134,70 @@ test('native registry adapter preserves the unsigned high bit of ARGB DWORD colo
  assert.deepEqual(JSON.parse(result.stdout),[0,2147483647,2147483648,4294967295,4278976720]);
 });
 
+test('Full Prepare retains release but leaves theme, font, engine and ownership state untouched',options,t=>{
+ const f=fixture(t,'Full'),before=fs.readFileSync(f.terminal);
+ const result=JSON.parse(f.ok('Prepare',['-Revision',f.first]).stdout);
+ assert.equal(result.action,'Plan');assert.equal(result.mode,'Full');assert.equal(result.compatible,true);
+ assert.equal(result.excludedAdapters.length,4);
+ assert.deepEqual(fs.readFileSync(f.terminal),before);
+ for(const name of ['journal.json','current.json','font-dependency.json','recovery-commands.txt','fixture-windhawk.json','fixture/font-registered.json'])
+  assert.ok(!fs.existsSync(path.join(f.state,name)),name);
+ assert.ok(fs.existsSync(path.join(f.state,'releases',f.first,'verified.json')));
+});
+test('tools-only bootstrap reuses canonical paths and refuses changed archives, publishers, versions and failed installation',options,t=>{
+ const root=scratchDirSync(t,'j3w1-prepare-tools-');
+ const script=String.raw`
+ $ErrorActionPreference='Stop';$StateRoot=$env:J3W1_PREP_TEST_ROOT
+ $ast=[Management.Automation.Language.Parser]::ParseFile($env:J3W1_PREP_TEST_INSTALLER,[ref]$null,[ref]$null)
+ foreach($name in @('Get-VerifiedDownload','Initialize-ThemeFullDependencies')){
+  $node=$ast.Find({param($n) $n -is [Management.Automation.Language.FunctionDefinitionAst] -and $n.Name -eq $name},$true)
+  if(-not $node){throw "Missing actual bootstrap function: $name"};. ([scriptblock]::Create($node.Extent.Text))
+ }
+ function Assert-SafePath([string]$Path){if(-not [IO.Path]::GetFullPath($Path).StartsWith($StateRoot+[IO.Path]::DirectorySeparatorChar)){throw 'Fixture path escaped'}}
+ $script:starts=0;$script:status='Valid';$script:publisher='CN=Fixture Publisher';$script:version='windhawk-cli 2.0.0-alpha.6';$script:exitCode=0
+ function Get-AuthenticodeSignature {param($LiteralPath) @{Status=$script:status;SignerCertificate=@{Subject=$script:publisher}}}
+ function Get-ThemeWindhawkVersion {param($Cli) $script:version}
+ function Start-Process {param($FilePath,$ArgumentList,$WindowStyle,[switch]$Wait,[switch]$PassThru)
+  if([IO.Path]::GetFileName($FilePath) -ne 'windhawk_setup_offline.exe' -or ($ArgumentList[0..2] -join ',') -ne '/S,/PORTABLE,/DEVTOOLS' -or $WindowStyle -ne 'Hidden'){throw 'Unexpected process launch'}
+  $script:starts++;[IO.Directory]::CreateDirectory([IO.Path]::GetDirectoryName($script:cli))|Out-Null
+  foreach($relative in @('Compiler/bin/clang++.exe','Engine/2.0.0/64/windhawk.lib')){
+   $path=Join-Path ([IO.Path]::GetDirectoryName($script:cli)) $relative;[IO.Directory]::CreateDirectory([IO.Path]::GetDirectoryName($path))|Out-Null;[IO.File]::WriteAllText($path,'fixture only')
+  }
+  [IO.File]::WriteAllText($script:cli,'not executable: fixture only');@{ExitCode=$script:exitCode}
+ }
+ function Expect-Refusal([scriptblock]$Body,[string]$Pattern){try{& $Body}catch{if($_.Exception.Message -match $Pattern){return};throw};throw "Expected refusal: $Pattern"}
+ $downloads=Join-Path $StateRoot 'downloads';[IO.Directory]::CreateDirectory($downloads)|Out-Null
+ $archive=Join-Path $downloads 'windhawk_setup_offline.exe';[IO.File]::WriteAllText($archive,'fixture archive')
+ $hash=(Get-FileHash -LiteralPath $archive).Hash.ToLowerInvariant()
+ $deps=@{windhawk=@{sha256=$hash;publisher='Fixture Publisher'};mods=@()}
+ $script:cli=Join-Path $StateRoot 'tools/windhawk/2.0.0-alpha.6/windhawk-cli.exe'
+ $owner=Join-Path $StateRoot 'owner-state.txt';[IO.File]::WriteAllText($owner,'running engine and owner settings remain unchanged')
+ Initialize-ThemeFullDependencies $deps $downloads
+ Initialize-ThemeFullDependencies $deps $downloads
+ if($script:starts -ne 1){throw 'Cached compiler was reinstalled'}
+ $deps.windhawk.sha256='0'*64;Expect-Refusal {Initialize-ThemeFullDependencies $deps $downloads} 'Dependency digest mismatch';$deps.windhawk.sha256=$hash
+ $script:status='Invalid';Expect-Refusal {Initialize-ThemeFullDependencies $deps $downloads} 'publisher signature';$script:status='Valid'
+ $script:publisher='CN=Wrong Publisher';Expect-Refusal {Initialize-ThemeFullDependencies $deps $downloads} 'publisher signature';$script:publisher='CN=Fixture Publisher'
+ $script:version='wrong version';Expect-Refusal {Initialize-ThemeFullDependencies $deps $downloads} 'version differs';$script:version='windhawk-cli 2.0.0-alpha.6'
+ $compiler=Join-Path ([IO.Path]::GetDirectoryName($script:cli)) 'Compiler/bin/clang++.exe'
+ Remove-Item -LiteralPath $compiler;Expect-Refusal {Initialize-ThemeFullDependencies $deps $downloads} 'compiler is incomplete';[IO.File]::WriteAllText($compiler,'fixture only')
+ if($script:starts -ne 1){throw 'A rejected dependency launched'}
+ Remove-Item -LiteralPath $script:cli;Expect-Refusal {Initialize-ThemeFullDependencies $deps $downloads} 'directory is incomplete'
+ [IO.File]::WriteAllText($script:cli,'fixture only')
+ $script:exitCode=7
+ # Exercise the failed fresh-install result in a separate empty canonical root.
+ $StateRoot=Join-Path $StateRoot 'fresh';$script:cli=Join-Path $StateRoot 'tools/windhawk/2.0.0-alpha.6/windhawk-cli.exe'
+ $freshDownloads=Join-Path $StateRoot 'downloads';[IO.Directory]::CreateDirectory($freshDownloads)|Out-Null
+ [IO.File]::WriteAllText((Join-Path $freshDownloads 'windhawk_setup_offline.exe'),'fixture archive')
+ Expect-Refusal {Initialize-ThemeFullDependencies $deps $freshDownloads} 'installation failed: 7'
+ if([IO.File]::ReadAllText($owner) -cne 'running engine and owner settings remain unchanged'){throw 'Owner state changed'}
+ if((Get-FileHash -LiteralPath $archive).Hash.ToLowerInvariant() -cne $hash){throw 'Archive changed'}
+ foreach($name in @('journal.json','current.json','font-dependency.json','recovery-commands.txt')){if(Test-Path -LiteralPath (Join-Path $StateRoot $name)){throw 'Theme state created'}}
+ @{cachedReused=$true;refusals=7;themeStateCreated=$false;starts=$script:starts}|ConvertTo-Json -Compress`;
+ const r=spawnSync(pwsh,['-NoLogo','-NoProfile','-NonInteractive','-Command',script],{env:{...process.env,J3W1_PREP_TEST_ROOT:root,J3W1_PREP_TEST_INSTALLER:installer},encoding:'utf8',timeout:30000});
+ assert.equal(r.status,0,r.stdout+'\n'+r.stderr);
+ assert.deepEqual(JSON.parse(r.stdout),{cachedReused:true,refusals:7,themeStateCreated:false,starts:2});
+});
 test('Prepare retains verified release and returns a plan without mutating theme settings',options,t=>{
  const f=fixture(t),before=fs.readFileSync(f.terminal,'utf8');
  const result=f.ok('Prepare',['-Revision',f.first]);

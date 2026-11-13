@@ -306,7 +306,7 @@ test('Explorer marquee settings encode canonical alpha and module compatibility'
  assert.equal(settings.marquee,'#1f911410');
  assert.equal(settings.marqueeBorder,'#e53935');
  const source=fs.readFileSync(path.join(repoRoot,'ports/windows/dist/j3w1-explorer-native.wh.cpp'),'utf8');
- assert.match(source,/FixedModuleVersion\(frame,MAKELONG\(0,10\),MAKELONG\(9818,26100\)\)/);
+ assert.match(source,/FixedModuleVersion\(frame,MAKELONG\(0,10\),MAKELONG\(9974,26100\)\)/);
  assert.match(source,/FixedModuleVersion\(dui,MAKELONG\(0,10\),MAKELONG\(9818,26100\)\)/);
  assert.doesNotMatch(source,/@[A-Z0-9_]+@/);
 });
@@ -559,7 +559,13 @@ function windhawkFixture(t,scope='all'){
  // product adapter. Keep the complete stack for admission/integration cases.
  // Windows process startup across eight adapters can exhaust the unchanged
  // 30-second child deadline before a journal-only assertion is reached.
- assert.ok(['all','protocol'].includes(scope));
+ assert.ok(['all','protocol','candidate'].includes(scope));
+ // Retain every earlier component/recovery test state. The current candidate's
+ // narrower activation policy is exercised separately with scope=candidate.
+ if(scope!=='candidate'){
+  const settingsFile=path.join(copy,'dist/windows-settings.json'),settings=read(settingsFile);
+  settings.adapterExclusions=[];write(settingsFile,settings);
+ }
  if(scope==='protocol'){
   const settingsFile=path.join(copy,'dist/windows-settings.json'),settings=read(settingsFile);
   settings.bundledMods=settings.bundledMods.filter(mod=>mod.id==='j3w1-explorer-native');
@@ -569,6 +575,50 @@ function windhawkFixture(t,scope='all'){
  const args={source:copy,mode:'Full',fixtureWindhawk:path.join(repoRoot,'tests/fixtures/windows-windhawk.cjs')};
  return {...f,args,db:()=>read(path.join(f.state,'fixture-windhawk.json'))};
 }
+test('9974 candidate excludes unreviewed optional adapters without losing their artifacts',t=>{
+ const f=windhawkFixture(t,'candidate'),settings=read(path.join(f.args.source,'dist/windows-settings.json'));
+ const environment=read(path.join(source,'host.json')).compatibility[0];
+ const args={...f.args,environment};
+ assert.deepEqual(settings.adapterExclusions,['j3w1-notepad-native','j3w1-notepad-chrome','j3w1-powertoys-preview','j3w1-powertoys-markdown']);
+ const plan=JSON.parse(f.ok('Plan',args).stdout);assert.equal(plan.compatible,true);
+ assert.deepEqual(plan.excludedAdapters,settings.adapterExclusions);
+ for(const changed of [{...environment,ubr:9818},{...environment,ubr:9975},{...environment,startLayout:'unknown'},{...environment,explorerFixedVersion:'10.0.26100.9818'}]){
+  assert.notEqual(f.run('Apply',{...args,environment:changed}).status,0);
+  assert.ok(!fs.existsSync(path.join(f.state,'journal.json')));
+ }
+ f.ok('Apply',args);f.ok('Test',args);
+ const installed=f.journal().transactions[0].mods.map(mod=>mod.sourceId);
+ assert.deepEqual(installed,['fixture-styler',...settings.bundledMods.filter(mod=>!settings.adapterExclusions.includes(mod.id)).map(mod=>mod.id)]);
+ for(const id of settings.adapterExclusions){
+  assert.ok(settings.bundledMods.some(mod=>mod.id===id));assert.ok(fs.existsSync(path.join(f.args.source,'dist',id+'.wh.cpp')));
+  assert.equal(f.db()['local@'+id],undefined);
+ }
+ f.ok('Restore',args);
+});
+test('excluded managed adapters require recovery without changing live owned state',t=>{
+ const f=windhawkFixture(t);f.ok('Apply',f.args);
+ const settingsFile=path.join(f.args.source,'dist/windows-settings.json'),settings=read(settingsFile);
+ settings.adapterExclusions=['j3w1-notepad-native'];write(settingsFile,settings);
+ const before=fs.readFileSync(path.join(f.state,'fixture-windhawk.json'));
+ const refused=f.run('Update',{...f.args,revision:'2'.repeat(40)});
+ assert.notEqual(refused.status,0);assert.match(refused.stderr,/Excluded managed adapter remains owned/);
+ assert.deepEqual(fs.readFileSync(path.join(f.state,'fixture-windhawk.json')),before);
+ assert.equal(f.journal().transactions.length,1);
+ f.ok('Restore',f.args);
+});
+test('excluded unowned adapters and invalid exclusion identities refuse before staging',t=>{
+ const f=windhawkFixture(t,'candidate');
+ const file=path.join(f.state,'fixture-windhawk.json');
+ // The protocol fixture serializes its database on reads; seed that same
+ // representation so this still checks byte-exact preservation on refusal.
+ write(file,JSON.stringify({'local@j3w1-notepad-native':{id:'local@j3w1-notepad-native',metadata:{version:'owner'},config:{disabled:false},settings:{owner:'keep'}}}));
+ const before=fs.readFileSync(file),failed=f.run('Apply',f.args);
+ assert.notEqual(failed.status,0);assert.match(failed.stderr,/Excluded adapter is already installed/);
+ assert.deepEqual(fs.readFileSync(file),before);assert.ok(!fs.existsSync(path.join(f.state,'journal.json')));
+ const settingsFile=path.join(f.args.source,'dist/windows-settings.json'),settings=read(settingsFile);
+ settings.adapterExclusions=['not-a-reviewed-adapter'];write(settingsFile,settings);
+ assert.match(f.run('Apply',f.args).stderr,/Invalid source-owned adapter exclusions/);
+});
 test('Windhawk uses local installed IDs, verifies staged version and nested enabled state, and removes owned mods',t=>{
  const f=windhawkFixture(t);f.ok('Apply',f.args);f.ok('Test',f.args);
  assert.equal(f.journal().transactions[0].mods[0].id,'local@fixture-styler');

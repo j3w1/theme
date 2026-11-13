@@ -5,9 +5,9 @@ import {FINGERPRINT_KEYS,shellCompatibility,stylerSettings} from '../ports/windo
 
 const host=JSON.parse(readFileSync(new URL('../ports/windows/host.json',import.meta.url)));
 const known=host.compatibility[0];
-test('26300.9818 replaces retired hosts without admitting adjacent updates or mixed identities',()=>{
- const actual={build:26300,ubr:9818,architecture:'X64',explorerVersion:'10.0.26100.9818',
-  explorerFixedVersion:'10.0.26100.9818',startDockedVersion:'10.0.26100.9818',
+test('26300.9974 replaces retired hosts without admitting adjacent updates or mixed identities',()=>{
+ const actual={build:26300,ubr:9974,architecture:'X64',explorerVersion:'10.0.26100.9818',
+  explorerFixedVersion:'10.0.26100.9974',startDockedVersion:'10.0.26100.9818',
   settingsVersion:'10.0.26100.9818',shellExperienceVersion:'10.0.26100.9818',
   searchVersion:'2609.12000.100.0',startPackageVersion:'10.0.26100.4768',
   shellPackageVersion:'10.0.26100.9818',clientPackageVersion:'1000.26100.385.0',startLayout:'redesigned'};
@@ -16,7 +16,8 @@ test('26300.9818 replaces retired hosts without admitting adjacent updates or mi
   const retired={...actual,build,ubr:9550,explorerFixedVersion:'10.0.26100.9549',startDockedVersion:'10.0.26100.9549'};
   assert.equal(shellCompatibility(retired,host.compatibility).compatible,false);
  }
- for(const ubr of [9711,9817,9819])assert.equal(shellCompatibility({...actual,ubr},host.compatibility).compatible,false);
+ for(const ubr of [9711,9817,9818,9819,9973,9975])assert.equal(shellCompatibility({...actual,ubr},host.compatibility).compatible,false);
+ assert.equal(shellCompatibility({...actual,ubr:9818,explorerFixedVersion:'10.0.26100.9818'},host.compatibility).compatible,false);
  // A current display version cannot admit an older fixed binary identity.
  assert.equal(shellCompatibility({...actual,explorerFixedVersion:'10.0.26100.9711'},host.compatibility).compatible,false);
 });

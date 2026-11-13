@@ -1828,6 +1828,19 @@ function compatibility() {
 function compat() {
   return compatibility().compatible;
 }
+function adapterExclusions() {
+  const ids = settings.adapterExclusions ?? [], known = new Set((settings.bundledMods ?? []).map((mod) => mod.id));
+  if (!Array.isArray(ids) || new Set(ids).size !== ids.length || ids.some((id) => !known.has(id))) throw Error("Invalid source-owned adapter exclusions");
+  return new Set(ids);
+}
+function assertExcludedAdaptersAbsent() {
+  const excluded = adapterExclusions();
+  for (const tx of history.transactions.filter((tx2) => tx2.status !== "restored")) for (const mod of tx.mods ?? [])
+    if (!mod.restored && excluded.has(mod.sourceId ?? mod.id.replace(/^local@/, ""))) throw Error("Excluded managed adapter remains owned; run official Restore before this candidate: " + mod.id);
+  if (fixture && !args.fixtureWindhawk || !fixture && !import_node_fs2.default.existsSync(windhawk)) return;
+  for (const id of excluded) for (const installedId of [id, "local@" + id])
+    if (wh(["mod", "show", installedId], true)) throw Error("Excluded adapter is already installed; resolve its ownership explicitly before this candidate: " + installedId);
+}
 var windhawk = import_node_path2.default.join(state, "tools/windhawk/2.0.0-alpha.6/windhawk-cli.exe");
 function whLaunch() {
   return { command: fixture && args.fixtureWindhawk ? process.execPath : windhawk, prefix: fixture && args.fixtureWindhawk ? [args.fixtureWindhawk, state] : [] };
@@ -1908,8 +1921,10 @@ function stageMods(tx) {
   if (!compat()) throw Error("Unsupported Windows/shell fingerprint. Full mode refused; Native remains available.");
   if (!fixture && !import_node_fs2.default.existsSync(windhawk)) throw Error("Pinned Windhawk CLI missing. Run the dependency bootstrap first.");
   const deps = json(import_node_path2.default.join(source, "dependencies.json"));
-  const bundled = settings.bundledMods ?? [];
-  for (const mod of bundled) if (!/^[a-z0-9-]+$/.test(mod.id) || mod.path !== `dist/${mod.id}.wh.cpp` || !/^[a-f0-9]{64}$/.test(mod.sha256)) throw Error("Invalid bundled Windhawk source");
+  const allBundled = settings.bundledMods ?? [], excluded = adapterExclusions();
+  for (const mod of allBundled) if (!/^[a-z0-9-]+$/.test(mod.id) || mod.path !== `dist/${mod.id}.wh.cpp` || !/^[a-f0-9]{64}$/.test(mod.sha256)) throw Error("Invalid bundled Windhawk source");
+  assertExcludedAdaptersAbsent();
+  const bundled = allBundled.filter((mod) => !excluded.has(mod.id));
   const upstream = deps.mods.map((mod) => {
     const sourcePath = safe(import_node_path2.default.join(state, "downloads", mod.id + ".wh.cpp"));
     if (mod.id !== "windows-11-settings-styler") return { ...mod, sourcePath };
@@ -2165,6 +2180,11 @@ function verify({ checkEngine = true, pending } = {}) {
     failed.push(label(op));
   }
   if (tx.mode === "Full") {
+    try {
+      assertExcludedAdaptersAbsent();
+    } catch (error) {
+      failed.push(error.message);
+    }
     if (checkEngine && !engineRunning()) failed.push("theme engine is not running");
     if (!compat()) failed.push("shell compatibility");
     for (const mod of tx.mods ?? []) try {
@@ -2180,7 +2200,9 @@ function verify({ checkEngine = true, pending } = {}) {
   return { result: failed.length ? "failed" : "passed", revision: tx.revision, failed, limitations: settings.limitations };
 }
 if (action === "Plan") {
-  console.log(JSON.stringify({ action, mode: args.mode, compatible: compat(), compatibility: compatibility(), operations: ops.map((op) => ({ kind: op.kind, target: label(op), keys: op.keys ?? op.name, changes: !eq(get(op), op.after) })), limitations: settings.limitations }, null, 2));
+  const report = compatibility();
+  if (args.mode === "Full" && report.compatible) assertExcludedAdaptersAbsent();
+  console.log(JSON.stringify({ action, mode: args.mode, compatible: report.compatible, compatibility: report, excludedAdapters: [...adapterExclusions()], operations: ops.map((op) => ({ kind: op.kind, target: label(op), keys: op.keys ?? op.name, changes: !eq(get(op), op.after) })), limitations: settings.limitations }, null, 2));
 } else if (action === "Test") {
   const result = verify();
   console.log(JSON.stringify(result, null, 2));
@@ -2208,6 +2230,11 @@ if (action === "Plan") {
       failures.push(`${mod.id}: ${error.message}`);
     }
     if (!compat()) failures.push("unknown shell compatibility");
+    try {
+      assertExcludedAdaptersAbsent();
+    } catch (error) {
+      failures.push(error.message);
+    }
     for (const mod of tx.mods ?? []) try {
       const shown = wh(["mod", "show", mod.id]);
       if (shown.metadata?.version !== mod.version || !eq(wh(["mod", "settings", "get", mod.id]), mod.settings)) failures.push(`${mod.id}: version or settings drift`);
@@ -2231,6 +2258,7 @@ if (action === "Plan") {
   }
 } else if (["Apply", "Update"].includes(action)) {
   if (args.mode === "Full" && !compat()) throw Error("Full preflight failed: unsupported Windows/shell fingerprint");
+  if (args.mode === "Full") assertExcludedAdaptersAbsent();
   const currentMode = history.transactions.filter((t) => t.status === "applied").at(-1)?.mode;
   if (currentMode && currentMode !== args.mode) throw Error("Restore the installed mode before changing Full/Native mode");
   const pending = history.transactions.find((x) => ["applying", "restore-conflict"].includes(x.status));

@@ -4,7 +4,7 @@
   "files": [
     {
       "path": "dist/j3w1-explorer-native.wh.cpp",
-      "sha256": "9f78b59ec2cf87766bc1da96791ab8cc8dd0e6a6585d0b962f5c8d15535e65ba"
+      "sha256": "36ca8ad0c69d511c0d372c48df33bfb1962f63de1bfbf6d06d0299c1ab44ba0c"
     },
     {
       "path": "dist/j3w1-explorer-native.json",
@@ -72,7 +72,7 @@
     },
     {
       "path": "dist/windows-settings.json",
-      "sha256": "df48dc999a7d76d118f27b2d9ac08d7a4fa96c446f18406da83409b5cc3ea100"
+      "sha256": "07176d890a14996454df88f1683a595caa73ddaf0be5a8dabb27a090387fe926"
     },
     {
       "path": "dist/terminal-fragment.json",
@@ -192,11 +192,11 @@
     },
     {
       "path": "dist/runtime.cjs",
-      "sha256": "7d936408434f9eb2990773995f69f0af94a057ce41aceb7dfbcf5b0268838853"
+      "sha256": "83af6fb5710d03f6d54893e581ceb6984ae583e6dd51a6c2da28a65bf393fc08"
     },
     {
       "path": "install.ps1",
-      "sha256": "64f3d5b0d3e4a68dc58ddda24196d463a8b29b2b3934e6408f3bde4c6355b7d2"
+      "sha256": "8e8d0f48a48b594a647cbf0be2dc636944610e9daa5f980f8b3baa8963b580c0"
     },
     {
       "path": "adapter.ps1",
@@ -212,7 +212,7 @@
     },
     {
       "path": "host.json",
-      "sha256": "bb35b167119001c6faad6d8939df4c9abea79e7b53c9cf73b13f1f354d0d05cf"
+      "sha256": "04c82d8907fce5bd5c00c1250820397a2b0bd49057655f929c873e6ad68a3ca1"
     }
   ]
 }

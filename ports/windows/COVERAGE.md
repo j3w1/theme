@@ -1,5 +1,15 @@
 # Windows and application coverage
 
+The current 26300.9974 source candidate targets the core Full Windows shell.
+It is not yet native/visually qualified merely because its measured pins match.
+Notepad editor/chrome and PowerToys preview/Markdown hooks are explicitly excluded
+from this revision's lifecycle activation: installed Notepad11.2609.11.0,
+PowerToys0.102.3101.0 and WebView157.0.4341.46 remain unreviewed. Their older
+component observations below are historical, not acceptance of these versions.
+Native PowerToys utility settings remain available. Paint, Calculator and Terminal
+retain their own exact unchanged guards. The 9818 host is retired for this successor;
+its immutable source/cache and earlier evidence are preserved.
+
 The Windows installer applies the adapters listed below. It does not make every
 application inherit a global j3w1 palette. Windows personalization, Win32 theme
 parts, Windows.UI.Xaml, WinUI 3 and embedded web renderers have different color

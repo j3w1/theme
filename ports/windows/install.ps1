@@ -296,7 +296,8 @@ function Invoke-J3w1WindowsSetup([string]$Revision,[string]$Version,[string]$Mod
   $powerShell=Find-J3w1SetupPowerShell
   if(-not $powerShell){Write-Host 'Checking the pinned private PowerShell runtime...';$powerShell=Install-J3w1SetupPowerShell $deps.powershell $StateRoot}
   Write-Host 'Preparing verified files and Node if needed; checking shell compatibility...'
-  $plan=(Invoke-J3w1SetupLifecycle $powerShell $installer 'Prepare' 'Full' $Revision $StateRoot)|ConvertFrom-Json
+  $preparationMode=if($Mode -eq 'Native'){'Native'}else{'Full'}
+  $plan=(Invoke-J3w1SetupLifecycle $powerShell $installer 'Prepare' $preparationMode $Revision $StateRoot)|ConvertFrom-Json
   $chosen=Select-J3w1SetupMode $plan $Mode $NonInteractive
   $retained=Join-Path $StateRoot "releases\$Revision\install.ps1"
   Save-J3w1SetupRecovery $powerShell $retained $StateRoot
@@ -367,6 +368,26 @@ function Get-VerifiedDownload($Item,[string]$Destination){
   Assert-SafePath $Destination
   [IO.File]::Move($pending,$Destination)
  }finally{if(Test-Path -LiteralPath $pending){Remove-Item -LiteralPath $pending}}
+}
+function Get-ThemeWindhawkVersion([string]$Cli){& $Cli --version}
+function Initialize-ThemeFullDependencies($Dependencies,[string]$Downloads){
+ Assert-SafePath $Downloads;[IO.Directory]::CreateDirectory($Downloads)|Out-Null
+ $tool=Join-Path $StateRoot 'tools\windhawk\2.0.0-alpha.6';$cli=Join-Path $tool 'windhawk-cli.exe'
+ Assert-SafePath $tool;Assert-SafePath $cli
+ if((Test-Path -LiteralPath $tool) -and -not(Test-Path -LiteralPath $cli)){throw 'Retained Windhawk directory is incomplete; preserve it for explicit recovery'}
+ $setup=Join-Path $Downloads 'windhawk_setup_offline.exe';Get-VerifiedDownload $Dependencies.windhawk $setup
+ $sig=Get-AuthenticodeSignature -LiteralPath $setup
+ if($sig.Status -ne 'Valid' -or $sig.SignerCertificate.Subject -notlike "*$($Dependencies.windhawk.publisher)*"){throw 'Windhawk publisher signature verification failed'}
+ if(-not(Test-Path -LiteralPath $cli)){
+  $proc=Start-Process -FilePath $setup -ArgumentList @('/S','/PORTABLE','/DEVTOOLS',"/D=$tool") -WindowStyle Hidden -Wait -PassThru
+  if($proc.ExitCode -ne 0){throw "Windhawk dependency installation failed: $($proc.ExitCode)"}
+ }
+ if((Get-ThemeWindhawkVersion $cli) -ne 'windhawk-cli 2.0.0-alpha.6'){throw 'Windhawk version differs from the reviewed pin'}
+ foreach($relative in @('Compiler\bin\clang++.exe','Engine\2.0.0\64\windhawk.lib')){
+  $required=Join-Path $tool $relative;Assert-SafePath $required
+  if(-not(Test-Path -LiteralPath $required -PathType Leaf)){throw "Retained Windhawk compiler is incomplete: $relative"}
+ }
+ foreach($mod in $Dependencies.mods){Get-VerifiedDownload $mod (Join-Path $Downloads "$($mod.id).wh.cpp")}
 }
 function Write-PrivateJson($Path,$Value){
  Assert-SafePath $Path
@@ -545,29 +566,22 @@ try{
  # Keep Guard on the same unpackaged runtime as installation and recovery.
  if($FixtureFailAfter -and -not $Fixture){throw 'Failure injection is available only in isolated fixtures'}
  $request=@{guardPwsh=$guardPowerShell;failAfter=$FixtureFailAfter;source=$release;state=$StateRoot;action=$Action;mode=$Mode;revision=$Revision;latest=[bool]$Latest;restoreColorizationIntensity=[bool]$RestoreColorizationIntensity;pwsh=(Get-Process -Id $PID).Path;fixture=[bool]$Fixture}
- if($Action -in 'Apply','Update'){
+ if($Action -in 'Prepare','Apply','Update'){
   $preflight=$request.Clone();$preflight.action='Plan'
   $report=$preflight|ConvertTo-Json -Compress|& $node.Source (Join-Path $release 'dist/runtime.cjs')
   if($LASTEXITCODE){throw 'Preflight failed; no dependencies or settings were changed'}
   $plan=$report|ConvertFrom-Json
-  if($Mode -eq 'Full' -and -not $plan.compatible){throw 'Full preflight failed: unsupported Windows/shell fingerprint'}
+  if($Action -ne 'Prepare' -and $Mode -eq 'Full' -and -not $plan.compatible){throw 'Full preflight failed: unsupported Windows/shell fingerprint'}
+ }
+ # Prepare may retain verified tools, but never registers fonts, writes
+ # personalization/recovery ownership, stages adapters or starts the engine.
+ if($Action -in 'Prepare','Apply','Update' -and $Mode -eq 'Full' -and $plan.compatible -and -not $Fixture){
+  Initialize-ThemeFullDependencies $deps (Join-Path $StateRoot 'downloads')
  }
  if($Action -in 'Apply','Update' -and -not $Fixture){
   $deps=Get-Content -LiteralPath (Join-Path $release 'dependencies.json') -Raw|ConvertFrom-Json
   $downloads=Join-Path $StateRoot 'downloads';Assert-SafePath $downloads;[IO.Directory]::CreateDirectory($downloads)|Out-Null
   Install-ThemeFont $deps.font $downloads
- }
- if($Action -in 'Apply','Update' -and $Mode -eq 'Full' -and -not $Fixture){
-  $tool=Join-Path $StateRoot 'tools\windhawk\2.0.0-alpha.6';$cli=Join-Path $tool 'windhawk-cli.exe'
-  if(-not(Test-Path -LiteralPath $cli)){
-   $setup=Join-Path $downloads 'windhawk_setup_offline.exe';Get-VerifiedDownload $deps.windhawk $setup
-   $sig=Get-AuthenticodeSignature -LiteralPath $setup
-   if($sig.Status -ne 'Valid' -or $sig.SignerCertificate.Subject -notlike "*$($deps.windhawk.publisher)*"){throw 'Windhawk publisher signature verification failed'}
-   $proc=Start-Process -FilePath $setup -ArgumentList @('/S','/PORTABLE','/DEVTOOLS',"/D=$tool") -WindowStyle Hidden -Wait -PassThru
-   if($proc.ExitCode -ne 0){throw "Windhawk dependency installation failed: $($proc.ExitCode)"}
-  }
-  if((& $cli --version) -ne 'windhawk-cli 2.0.0-alpha.6'){throw 'Windhawk version differs from the reviewed pin'}
-  foreach($mod in $deps.mods){Get-VerifiedDownload $mod (Join-Path $downloads "$($mod.id).wh.cpp")}
  }
   if($Action -eq 'Prepare'){$request.action='Plan'}
   # Every apply path retains recovery before settings change, including a
