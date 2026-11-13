@@ -3641,7 +3641,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-JMy7aTtVJbh++FT1UE+hTHHHgSXCTcSa2f5WOcTmKQI=",
+      "subjectDigest": "sha256-qYkuO+H85Ld1u5E4lzFhFzNz4j3RyADL9dCNTrrpz8M=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -3670,7 +3670,7 @@
         }
       },
       "files": [
-        {"path":"dist/windows-settings.json","install":"Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.","source":"ports/windows/dist/windows-settings.json","digest":"sha256-BxdtiQoUmWRU34jxaDpZXKpz3a8L5ajauyegkDh/6SY="},
+        {"path":"dist/windows-settings.json","install":"Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.","source":"ports/windows/dist/windows-settings.json","digest":"sha256-z4X9fhngZtFQV+N5VnLGXh8qYa2+6FnBDSR7IzaMQd8="},
         {"path":"dist/terminal-fragment.json","install":"Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.","source":"ports/windows/dist/terminal-fragment.json","digest":"sha256-ueGK1sonkqOooVn2IH2JWSEcFExz4jrgEfJKha6kshI="},
         {"path":"dist/terminal-theme.json","install":"Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.","source":"ports/windows/dist/terminal-theme.json","digest":"sha256-duddM2Lojjtf96yUFMRVePSIGODdFKL0YpGxXkLhw3g="},
         {"path":"dist/fancyzones-layouts.json","install":"Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.","source":"ports/windows/dist/fancyzones-layouts.json","digest":"sha256-tBt1KjS7Azw5TOrDrDOkysIFDNwU5rnHUtMZHr9CwRI="},
@@ -3699,8 +3699,8 @@
         {"path":"dist/j3w1-pin.cur","install":"Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.","source":"ports/windows/dist/j3w1-pin.cur","digest":"sha256-YMoFMCRCo6hoBhSOJlEsciiYnvmGICxtErmdS0SrJeg="},
         {"path":"dist/j3w1-person.cur","install":"Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.","source":"ports/windows/dist/j3w1-person.cur","digest":"sha256-be/7eNvDKI8kadus9JedWvDVjQMqn8h+6hKTq6Q2Sas="},
         {"path":"dist/runtime.cjs","install":"Use the pinned Windows lifecycle installer.","source":"ports/windows/dist/runtime.cjs","digest":"sha256-g69vtXENA/bVSJPlgc62mErlg+bdUabC2iimW/OT/Ag="},
-        {"path":"dist/install-manifest.json","install":"Use the pinned Windows lifecycle installer.","source":"ports/windows/dist/install-manifest.json","digest":"sha256-xrpBEb0v8bb/l9xoiEjylam1Gk82Aibgm++kjOIhk0A="},
-        {"path":"dist/j3w1-explorer-native.wh.cpp","install":"Use the pinned Windows lifecycle installer.","source":"ports/windows/dist/j3w1-explorer-native.wh.cpp","digest":"sha256-NsqK0MadURwNNyxI3zO/sZYvY94b+/bQbQKZwatEugw="},
+        {"path":"dist/install-manifest.json","install":"Use the pinned Windows lifecycle installer.","source":"ports/windows/dist/install-manifest.json","digest":"sha256-vg0Q+TY9BtoV++UHFdnd9rfqVJnubJ4IKPxAXvYIOwU="},
+        {"path":"dist/j3w1-explorer-native.wh.cpp","install":"Use the pinned Windows lifecycle installer.","source":"ports/windows/dist/j3w1-explorer-native.wh.cpp","digest":"sha256-FGAZvYV4I/5no8SfuD4ew0jpybsf9P5K0dTo21YpHn0="},
         {"path":"dist/j3w1-explorer-native.json","install":"Use the pinned Windows lifecycle installer.","source":"ports/windows/dist/j3w1-explorer-native.json","digest":"sha256-LepbaM+39csZyYFFNx2MXgRGsi7fmuDN94C9P/WE6Zo="},
         {"path":"dist/j3w1-powertoys-preview.wh.cpp","install":"Use the pinned Windows lifecycle installer.","source":"ports/windows/dist/j3w1-powertoys-preview.wh.cpp","digest":"sha256-ehRK2mYAJVbd3ht5MWhrIe/aZJhYsghtgiHFGEC02bc="},
         {"path":"dist/j3w1-powertoys-preview.json","install":"Use the pinned Windows lifecycle installer.","source":"ports/windows/dist/j3w1-powertoys-preview.json","digest":"sha256-+lwIdlLbogmrj/YARkIQargB+Gxd4ZfFpIhE2gZtznM="},

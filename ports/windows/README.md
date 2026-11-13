@@ -225,3 +225,48 @@ Calculator and the WinUI chrome adapters share the owned theme-refresh and
 control-resource templates, substituted by one checked renderer; each generated
 Windhawk source stays standalone for its pinned compiler. Refactors must
 preserve the emitted adapter bytes when behavior is unchanged.
+
+### Explorer initialization failure record
+
+Explorer adapter 1.8.10 can emit one protocol-1 numeric failure record. This is
+diagnostic evidence, not admission, a successful initialization or visual
+acceptance. It preserves all existing fail-closed checks and COM policy.
+The closed stages, in original initialization order, are:
+
+| Number | Failed stage | Native code |
+| --- | --- | --- |
+| 1–2 | Accessibility admission; application colors | unavailable |
+| 3–5 | Executable path; version size; version data | Win32 |
+| 6–7 | Version query; exact fixed version | unavailable |
+| 8 | Theme-class procedure | Win32 |
+| 9–14 | Pin color; marquee settings; renderer load; marquee hooks; navigation hooks; folder colors | unavailable |
+| 15–16 | Folder-glyph COM initialization; glyph build | HRESULT; unavailable |
+| 17–18 | Bitmap COM initialization; factory/bitmap admission | HRESULT; factory HRESULT only when that call failed, otherwise unavailable |
+| 19–20 | Background brush; remaining hooks | unavailable |
+
+The record contains only `protocol`, `adapterVersion`, `pid`, exact decimal-string
+`creationFiletime`, numeric `stage`, `nativeKind` (0 unavailable, 1 Win32,
+2 HRESULT), `nativeAvailable`, unsigned 32-bit `nativeValue`, and `glyphCom` /
+`bitmapCom` (unsigned HRESULT or null when not reached). A boolean guard does
+not supply a stale last-error value. Later stages were not reached; earlier
+admission passed. A missing record supplies no stage or initialization result.
+
+The writer resolves the current user's LocalAppData through the known-folder
+API, never an environment override. It requires the existing, non-reparse
+`j3w1-theme/windows/diagnostics` directory. It holds the local drive root and
+every validated ancestor without write/delete sharing through exclusive
+`CREATE_NEW`, opened-file identity/containment validation, a bounded write
+(less than 1024 bytes) and flush. Unavailable, aliased, non-directory, reparse,
+ambiguous or replaced identities fail closed without a fallback. No directory
+is created by the adapter. The sole name is
+`j3w1-explorer-native-1.8.10-init-failure.json`; no overwrite, append, alternate
+name, retry, repair or pruning occurs. Diagnostic errors preserve initialization
+outcomes and the caller's last error. Partial, unflushed or malformed output is
+unavailable evidence, never silently repaired.
+
+This file is outside the recovery journal and survives failed initialization,
+unload and Restore. A separately reviewed use task must prepare and own the
+directory, bind source/DLL/transaction/process identities and collect the exact
+file/hash. That producer retains cleanup ownership; the adapter never deletes
+it or reads lifecycle journals. Source/harness checks alone authorize no desktop
+activation, directory preparation or lifecycle operation.

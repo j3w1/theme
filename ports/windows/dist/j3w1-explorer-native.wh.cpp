@@ -2,7 +2,7 @@
 // @id j3w1-explorer-native
 // @name j3w1 Explorer native colors
 // @description Generated native Explorer canvas and text adapter; exact host only
-// @version 1.8.9
+// @version 1.8.10
 // @author j3w1
 // @include explorer.exe
 // @architecture x86-64
@@ -52,6 +52,8 @@
 #include <commoncontrols.h>
 #include <mutex>
 #include <span>
+#include <string>
+#include <cstdio>
 
 static COLORREF background, foreground, hover, selected, inactive, border, scrollbar, scrollbarHover, disabled;
 static COLORREF textSelection, textSelectionText, focusRing, menuHover, menuHoverText, menuBorder;
@@ -578,8 +580,9 @@ static bool Draw(void* self,IMAGELISTDRAWPARAMS* request,HRESULT* result) {
     if(drawn)*result=S_OK;
     return drawn; // Native fallback happens after releasing the cache mutex.
 }
-static bool Init(COLORREF fill,COLORREF edge) {
+static bool Init(COLORREF fill,COLORREF edge,HRESULT* observed=nullptr) {
     HRESULT apartment=CoInitializeEx(nullptr,COINIT_APARTMENTTHREADED);
+    if(observed)*observed=apartment;
     if(FAILED(apartment))return false;
     bool built=false;
     try {built=Build(fill,edge);}catch(...) {}
@@ -654,8 +657,9 @@ static HRESULT STDMETHODCALLTYPE Hook(IWICImagingFactory* factory,HICON icon,IWI
     DWORD before=GetLastError();bool reviewed=Caller(__builtin_return_address(0));SetLastError(before);
     return Convert(factory,icon,result,reviewed);
 }
-static bool Init() noexcept {
+static bool Init(HRESULT* observed=nullptr,HRESULT* creation=nullptr) noexcept {
     HRESULT apartment=CoInitializeEx(nullptr,COINIT_APARTMENTTHREADED);
+    if(observed)*observed=apartment;
     if(FAILED(apartment)&&apartment!=RPC_E_CHANGED_MODE)return false;
     struct Apartment {
         IWICImagingFactory* factory=nullptr;
@@ -664,7 +668,9 @@ static bool Init() noexcept {
     } apartmentScope{nullptr,SUCCEEDED(apartment)};
     auto& factory=apartmentScope.factory;bool ready=false;
     try {
-    if(SUCCEEDED(CoCreateInstance(CLSID_WICImagingFactory,nullptr,CLSCTX_INPROC_SERVER,IID_PPV_ARGS(&factory)))) {
+    HRESULT created=CoCreateInstance(CLSID_WICImagingFactory,nullptr,CLSCTX_INPROC_SERVER,IID_PPV_ARGS(&factory));
+    if(creation)*creation=created;
+    if(SUCCEEDED(created)) {
         // IWICImagingFactory inherits IUnknown; CreateBitmapFromHICON is the
         // documented method at slot 22 of the public interface ABI.
         auto function=(*reinterpret_cast<void***>(factory))[22];HMODULE module=nullptr;
@@ -1195,28 +1201,136 @@ static bool ReadMarquee() {
     Wh_FreeStringSetting(input);
     return valid && ReadColor(L"marqueeBorder",&marqueeBorder);
 }
+// Closed protocol v1. A record is failure evidence only, never admission.
+namespace InitFailure {
+enum Stage:unsigned {Contrast=1,Colors,Executable,VersionSize,VersionInfo,VersionValue,VersionMatch,
+    ThemeClass,Pin,Marquee,Renderers,MarqueeHooks,NavigationHooks,FolderColors,GlyphCom,GlyphBuild,
+    BitmapCom,BitmapBuild,Brush,Hooks};
+enum Kind:unsigned {Unavailable=0,Win32=1,HResult=2};
+struct LastError {DWORD value=GetLastError();~LastError(){SetLastError(value);}};
+struct Handle {
+    HANDLE value=INVALID_HANDLE_VALUE;
+    explicit Handle(HANDLE v=INVALID_HANDLE_VALUE):value(v){}
+    Handle(const Handle&)=delete;Handle& operator=(const Handle&)=delete;
+    Handle(Handle&& other) noexcept:value(other.value){other.value=INVALID_HANDLE_VALUE;}
+    ~Handle(){if(value!=INVALID_HANDLE_VALUE)CloseHandle(value);}
+};
+static bool Identity(HANDLE handle,const std::wstring& path,bool directory,DWORD volume=0) {
+    BY_HANDLE_FILE_INFORMATION info{};wchar_t final[1024]{};
+    DWORD length=GetFinalPathNameByHandleW(handle,final,std::size(final),FILE_NAME_NORMALIZED|VOLUME_NAME_DOS);
+    return length && length<std::size(final) && _wcsicmp(final,path.c_str())==0
+        && GetFileInformationByHandle(handle,&info) && info.dwVolumeSerialNumber
+        && (!volume || info.dwVolumeSerialNumber==volume) && (info.nFileIndexHigh||info.nFileIndexLow)
+        && !(info.dwFileAttributes&FILE_ATTRIBUTE_REPARSE_POINT)
+        && !!(info.dwFileAttributes&FILE_ATTRIBUTE_DIRECTORY)==directory
+        && (directory || info.nNumberOfLinks==1);
+}
+static bool Write(unsigned stage,Kind kind,DWORD code,bool glyphReached,HRESULT glyph,
+                  bool bitmapReached,HRESULT bitmap) noexcept {
+    LastError saved; // Restored after every handle, shell allocation and catch.
+    try {
+        PWSTR known=nullptr;
+        HRESULT found=SHGetKnownFolderPath(FOLDERID_LocalAppData,0,nullptr,&known);
+        struct Folder {PWSTR value;~Folder(){CoTaskMemFree(value);}} folder{known};
+        if(FAILED(found)||!known)return false;
+        std::wstring path=known;
+        // Admit only a normalized local drive path. No UNC, device, ADS, dot,
+        // short-name alias, mount/reparse or trailing-space/dot fallback.
+        if(path.size()<4||path.size()>700||path[1]!=L':'||path[2]!=L'\\'
+           ||!((path[0]>=L'A'&&path[0]<=L'Z')||(path[0]>=L'a'&&path[0]<=L'z')))return false;
+        path+=L"\\j3w1-theme\\windows\\diagnostics";
+        size_t begin=3;
+        for(size_t at=3;at<=path.size();++at) {
+            if(at<path.size()&&path[at]!=L'\\') {
+                if(path[at]<32||wcschr(L"/:*?\"<>|",path[at]))return false;
+                continue;
+            }
+            if(at==begin||path[begin]==L'.'||path[at-1]==L'.'||path[at-1]==L' ')return false;
+            begin=at+1;
+        }
+        path=L"\\\\?\\"+path;
+        std::vector<Handle> parents;DWORD volume=0;
+        // Hold the root and EVERY ancestor, denying write and delete sharing.
+        // This also refuses pre-existing handles capable of parent replacement.
+        for(size_t at=6;at<=path.size();++at)if(at==6||at==path.size()||path[at]==L'\\') {
+            std::wstring parent=path.substr(0,at==6?7:at);
+            Handle opened(CreateFileW(parent.c_str(),FILE_LIST_DIRECTORY|FILE_READ_ATTRIBUTES,FILE_SHARE_READ,nullptr,
+                OPEN_EXISTING,FILE_FLAG_BACKUP_SEMANTICS|FILE_FLAG_OPEN_REPARSE_POINT,nullptr));
+            if(!Identity(opened.value,parent,true,volume))return false;
+            BY_HANDLE_FILE_INFORMATION identity{};
+            if(!GetFileInformationByHandle(opened.value,&identity))return false;
+            volume=identity.dwVolumeSerialNumber;
+            parents.push_back(std::move(opened));
+        }
+        BY_HANDLE_FILE_INFORMATION parent{};
+        if(!GetFileInformationByHandle(parents.back().value,&parent))return false;
+        FILETIME created{},exited{},kernel{},user{};
+        if(!GetProcessTimes(GetCurrentProcess(),&created,&exited,&kernel,&user))return false;
+        ULARGE_INTEGER stamp{};stamp.LowPart=created.dwLowDateTime;stamp.HighPart=created.dwHighDateTime;
+        char glyphValue[16]="null",bitmapValue[16]="null",record[1024]{};
+        if(glyphReached)snprintf(glyphValue,sizeof(glyphValue),"%lu",static_cast<DWORD>(glyph));
+        if(bitmapReached)snprintf(bitmapValue,sizeof(bitmapValue),"%lu",static_cast<DWORD>(bitmap));
+        int size=snprintf(record,sizeof(record),
+            "{\"protocol\":1,\"adapterVersion\":\"1.8.10\",\"pid\":%lu,\"creationFiletime\":\"%llu\","
+            "\"stage\":%u,\"nativeKind\":%u,\"nativeAvailable\":%s,\"nativeValue\":%lu,"
+            "\"glyphCom\":%s,\"bitmapCom\":%s}\n",GetCurrentProcessId(),stamp.QuadPart,stage,
+            static_cast<unsigned>(kind),kind==Unavailable?"false":"true",code,glyphValue,bitmapValue);
+        if(size<=0||size>=static_cast<int>(sizeof(record)))return false;
+        path+=L"\\j3w1-explorer-native-1.8.10-init-failure.json";
+        Handle file(CreateFileW(path.c_str(),GENERIC_WRITE|FILE_READ_ATTRIBUTES,0,nullptr,CREATE_NEW,
+            FILE_ATTRIBUTE_NORMAL|FILE_FLAG_OPEN_REPARSE_POINT,nullptr));
+        if(!Identity(file.value,path,false,parent.dwVolumeSerialNumber))return false;
+        DWORD written=0;
+        if(!WriteFile(file.value,record,static_cast<DWORD>(size),&written,nullptr)||written!=static_cast<DWORD>(size))return false;
+        if(!FlushFileBuffers(file.value))return false;
+        return true;
+    }catch(...){return false;} // Diagnostic failure never changes admission or recovery.
+}
+struct Record {
+    unsigned stage=0;Kind kind=Unavailable;DWORD code=0;
+    bool glyphReached=false,bitmapReached=false;HRESULT glyph=S_OK,bitmap=S_OK;
+    bool Check(Stage next,bool passed,Kind native=Unavailable) noexcept {
+        if(!passed){stage=next;kind=native;code=native==Win32?GetLastError():0;}return passed;
+    }
+    void Failed(Stage next,HRESULT result,bool available) noexcept {
+        stage=next;kind=available?HResult:Unavailable;code=available?static_cast<DWORD>(result):0;
+    }
+    ~Record(){if(stage)Write(stage,kind,code,glyphReached,glyph,bitmapReached,bitmap);}
+};
+}
 // Refuse unknown fixed executable versions even if descriptive metadata matches.
 BOOL Wh_ModInit() {
-
-    if(HighContrast()) {return FALSE;}
-    if(!ReadColor(L"background",&background) || !ReadColor(L"foreground",&foreground) || !ReadColor(L"hover",&hover) || !ReadColor(L"selected",&selected) || !ReadColor(L"inactive",&inactive) || !ReadColor(L"border",&border) || !ReadColor(L"scrollbar",&scrollbar) || !ReadColor(L"scrollbarHover",&scrollbarHover) || !ReadColor(L"disabled",&disabled) || !ReadColor(L"textSelection",&textSelection) || !ReadColor(L"textSelectionText",&textSelectionText) || !ReadColor(L"focusRing",&focusRing) || !ReadColor(L"menuHover",&menuHover) || !ReadColor(L"menuHoverText",&menuHoverText) || !ReadColor(L"menuBorder",&menuBorder)) {return FALSE;}
+    using namespace InitFailure;Record failure;
+    if(!failure.Check(Contrast,!HighContrast())) {return FALSE;}
+    if(!failure.Check(Colors,ReadColor(L"background",&background) && ReadColor(L"foreground",&foreground) && ReadColor(L"hover",&hover) && ReadColor(L"selected",&selected) && ReadColor(L"inactive",&inactive) && ReadColor(L"border",&border) && ReadColor(L"scrollbar",&scrollbar) && ReadColor(L"scrollbarHover",&scrollbarHover) && ReadColor(L"disabled",&disabled) && ReadColor(L"textSelection",&textSelection) && ReadColor(L"textSelectionText",&textSelectionText) && ReadColor(L"focusRing",&focusRing) && ReadColor(L"menuHover",&menuHover) && ReadColor(L"menuHoverText",&menuHoverText) && ReadColor(L"menuBorder",&menuBorder))) {return FALSE;}
     wchar_t executable[MAX_PATH]{};
-    if(!GetModuleFileNameW(nullptr,executable,MAX_PATH)) return FALSE;
+    if(!failure.Check(Executable,GetModuleFileNameW(nullptr,executable,MAX_PATH)!=0,Win32)) return FALSE;
     DWORD ignored=0,size=GetFileVersionInfoSizeW(executable,&ignored);
+    failure.Check(VersionSize,size!=0,Win32);
     std::vector<BYTE> bytes(size);
     VS_FIXEDFILEINFO* version=nullptr;UINT length=0;
-    if(!size || !GetFileVersionInfoW(executable,0,size,bytes.data()) || !VerQueryValueW(bytes.data(),L"\\",(void**)&version,&length)
-        || length<sizeof(*version) || version->dwFileVersionMS!=MAKELONG(0,10) || version->dwFileVersionLS!=MAKELONG(9974,26100)) {return FALSE;}
+    if(!size || !failure.Check(VersionInfo,GetFileVersionInfoW(executable,0,size,bytes.data())!=FALSE,Win32)
+        || !failure.Check(VersionValue,VerQueryValueW(bytes.data(),L"\\",(void**)&version,&length)!=FALSE)
+        || !failure.Check(VersionMatch,length>=sizeof(*version) && version->dwFileVersionMS==MAKELONG(0,10) && version->dwFileVersionLS==MAKELONG(9974,26100))) {return FALSE;}
     themeClass=(ThemeClassFn)GetProcAddress(GetModuleHandleW(L"uxtheme.dll"),MAKEINTRESOURCEA(74));
-    if(!themeClass) {return FALSE;}
+    if(!failure.Check(ThemeClass,themeClass!=nullptr,Win32)) {return FALSE;}
     ExplorerRenderingModules renderers;
-    if(!ReadColor(L"pin",&pin) || !ReadMarquee() || !renderers.Load()
-       || !InitMarquee(renderers.frame,renderers.dui) || !InitNavigationPin())return FALSE;
+    if(!failure.Check(Pin,ReadColor(L"pin",&pin)) || !failure.Check(Marquee,ReadMarquee()) || !failure.Check(Renderers,renderers.Load())
+       || !failure.Check(MarqueeHooks,InitMarquee(renderers.frame,renderers.dui)) || !failure.Check(NavigationHooks,InitNavigationPin()))return FALSE;
     COLORREF folderFill,folderEdge;
-    if(!ReadColor(L"folderFill",&folderFill)||!ReadColor(L"folderEdge",&folderEdge)||!FolderGlyph::Init(folderFill,folderEdge))return FALSE;
-    if(!FolderBitmap::Init()){FolderGlyph::Uninit();return FALSE;}
+    if(!failure.Check(FolderColors,ReadColor(L"folderFill",&folderFill)&&ReadColor(L"folderEdge",&folderEdge)))return FALSE;
+    failure.glyphReached=true;
+    if(!FolderGlyph::Init(folderFill,folderEdge,&failure.glyph)) {
+        failure.Failed(FAILED(failure.glyph)?GlyphCom:GlyphBuild,failure.glyph,FAILED(failure.glyph));return FALSE;
+    }
+    failure.bitmapReached=true;HRESULT factory=S_OK;
+    if(!FolderBitmap::Init(&failure.bitmap,&factory)) {
+        bool com=FAILED(failure.bitmap)&&failure.bitmap!=RPC_E_CHANGED_MODE;
+        failure.Failed(com?BitmapCom:BitmapBuild,com?failure.bitmap:factory,com||FAILED(factory));
+        FolderGlyph::Uninit();return FALSE;
+    }
     backgroundBrush=CreateSolidBrush(background);
-    if(!backgroundBrush){FolderBitmap::Uninit();FolderGlyph::Uninit();return FALSE;}
+    if(!failure.Check(Brush,backgroundBrush!=nullptr)){FolderBitmap::Uninit();FolderGlyph::Uninit();return FALSE;}
     bool hooked=Wh_SetFunctionHook((void*)DwmSetWindowAttribute,(void*)DwmAttributeHook,(void**)&originalDwmSetWindowAttribute)
         && Wh_SetFunctionHook((void*)CreateWindowExW,(void*)CreateWindowHook,(void**)&originalCreateWindowEx)
         && Wh_SetFunctionHook((void*)DestroyWindow,(void*)DestroyWindowHook,(void**)&originalDestroyWindow)
@@ -1238,7 +1352,7 @@ BOOL Wh_ModInit() {
         && Wh_SetFunctionHook((void*)DrawThemeBackground,(void*)BackgroundHook,(void**)&originalDrawThemeBackground)
         && Wh_SetFunctionHook((void*)DrawThemeBackgroundEx,(void*)BackgroundExHook,(void**)&originalDrawThemeBackgroundEx);
 
-    if(!hooked) {DeleteObject(backgroundBrush);backgroundBrush=nullptr;FolderBitmap::Uninit();FolderGlyph::Uninit();}
+    if(!failure.Check(Hooks,hooked)) {DeleteObject(backgroundBrush);backgroundBrush=nullptr;FolderBitmap::Uninit();FolderGlyph::Uninit();}
     if(hooked){ownedExplorerFrame=renderers.frame;ownedExplorerDui=renderers.dui;renderers.frame=nullptr;renderers.dui=nullptr;}
     enabled.store(hooked);
     return hooked;

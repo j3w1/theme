@@ -311,6 +311,27 @@ test('Explorer marquee settings encode canonical alpha and module compatibility'
  assert.doesNotMatch(source,/@[A-Z0-9_]+@/);
 });
 
+test('Explorer failure record retains closed data, admission and exclusive path ownership',()=>{
+ const source=fs.readFileSync(path.join(repoRoot,'ports/windows/dist/j3w1-explorer-native.wh.cpp'),'utf8');
+ const helper=source.slice(source.indexOf('namespace InitFailure {'),source.indexOf('// Refuse unknown fixed executable'));
+ assert.match(helper,/FOLDERID_LocalAppData,0,nullptr/);
+ assert.match(helper,/FILE_LIST_DIRECTORY\|FILE_READ_ATTRIBUTES,FILE_SHARE_READ,nullptr/);
+ assert.match(helper,/CREATE_NEW/);assert.match(helper,/FILE_FLAG_OPEN_REPARSE_POINT/);
+ assert.match(helper,/GetFinalPathNameByHandleW/);assert.match(helper,/GetFileInformationByHandle/);
+ assert.match(helper,/GetProcessTimes/);assert.match(helper,/record\[1024\]/);
+ assert.match(helper,/FlushFileBuffers/);assert.match(helper,/~LastError\(\)\{SetLastError\(value\);\}/);
+ assert.doesNotMatch(helper,/GetEnvironmentVariable|CreateDirectory|CREATE_ALWAYS|OPEN_ALWAYS|DeleteFile|MoveFile|journal\.json|current\.json|Wh_Log/);
+ assert.match(source,/if\(FAILED\(apartment\)\)return false;/,'glyph COM still refuses RPC_E_CHANGED_MODE');
+ assert.match(source,/if\(FAILED\(apartment\)&&apartment!=RPC_E_CHANGED_MODE\)return false;/,'bitmap existing COM policy preserved');
+ const chain=source.slice(source.indexOf('BOOL Wh_ModInit()'),source.indexOf('void Wh_ModAfterInit()'));
+ for(const name of ['Contrast','Colors','Executable','VersionSize','VersionInfo','VersionValue','VersionMatch','ThemeClass','Pin','Marquee','Renderers','MarqueeHooks','NavigationHooks','FolderColors','Brush','Hooks'])
+  assert.match(chain,new RegExp(`failure\\.Check\\(${name},`),name);
+ assert.match(chain,/FAILED\(failure\.glyph\)\?GlyphCom:GlyphBuild/);
+ assert.match(chain,/com\?BitmapCom:BitmapBuild/);
+ const keys=[...helper.matchAll(/\\"([A-Za-z]+)\\":/g)].map(m=>m[1]);
+ assert.deepEqual(keys,['protocol','adapterVersion','pid','creationFiletime','stage','nativeKind','nativeAvailable','nativeValue','glyphCom','bitmapCom']);
+});
+
 test('Explorer submenu stays on the hover palette while its child flyout is open',async()=>{
  const config=await readJson('ports/windows/dist/windows-11-file-explorer-styler.json');
  const tokens=await defaultTokens();

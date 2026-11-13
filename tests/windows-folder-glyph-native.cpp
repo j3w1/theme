@@ -84,6 +84,10 @@ int main(int argc,char** argv){
  // Exercise both preexisting COM apartments. Initialization must not unbalance
  // an MTA when CoInitializeEx reports RPC_E_CHANGED_MODE.
  assert(SUCCEEDED(CoInitializeEx(nullptr,COINIT_MULTITHREADED)));
+ HRESULT observed=S_OK;
+ assert(!FolderGlyph::Init(RGB(125,19,16),RGB(229,57,53),&observed)&&observed==RPC_E_CHANGED_MODE);
+ // Failed glyph STA admission must not consume the existing MTA reference.
+ assert(CoInitializeEx(nullptr,COINIT_MULTITHREADED)==S_FALSE);CoUninitialize();
  assert(FolderBitmap::Init());FolderBitmap::Uninit();CoUninitialize();
  assert(SUCCEEDED(CoInitializeEx(nullptr,COINIT_APARTMENTTHREADED)));
  // Warm the STA's native COM/WIC caches before measuring adapter cleanup.
