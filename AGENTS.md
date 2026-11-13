@@ -129,6 +129,22 @@ text and machine exports stay unchanged. The three gates are
 - Do not claim a manual keyboard or screen-reader pass without a recorded
   protocol and environment.
 
+## How this repository delivers
+
+This summarises the rules above and in `README.md`; it adds none.
+
+- Work happens on a task branch and reaches `main` through one pull request,
+  delivered as a Pod objective with `pod deliver`.
+- The checks are the ones the selector picks (D-031, `docs/ci.md`). Run them
+  before you push, and the whole suite when the check loop above asks for it.
+  `release-gate` on the exact head is the only required check. Only the whole
+  suite writes execution evidence.
+- A merge takes the exact reviewed candidate, a green `release-gate` on that
+  head, and any live acceptance the objective's criteria name.
+- Releases are tags. `theme.json` records the release and its commit, and
+  consumers and exports pin the tag, never `main`. A push to `main` that
+  changes the site runs the whole matrix and deploys the Pages portal.
+
 ## CE Meta integration
 
 This repository joined the CE Meta portfolio on 2026-09-22. Nothing is installed here and
