@@ -48,8 +48,12 @@ for(const [name,mod] of [
 ])test(`native offscreen regression: ${name}`,options,t=>{
  const tools=toolchain(),folder=scratchDirSync(t, 'j3w1-native-regression-');
  const file=path.join(repoRoot,`tests/windows-${name}-native.cpp`),output=path.join(folder,name+'.exe');
- const fixture=[];
+ const fixture=[];let startupRoot;
  if(name==='explorer-startup') {
+  // The KnownFolder stub must describe the actual opened scratch directory,
+  // including long-name expansion on hosts whose TEMP uses an 8.3 alias.
+  // Keep scratchDirSync's original path and registered cleanup unchanged.
+  startupRoot=fs.realpathSync.native(folder);
   const generated=fs.readFileSync(path.join(source,'dist/j3w1-explorer-native.wh.cpp'),'utf8');
   const start=generated.indexOf('BOOL Wh_ModInit() {'),end=generated.indexOf('void Wh_ModAfterInit()');
   assert.ok(start>=0&&end>start,'Extract only the actual complete initialization body');
@@ -59,7 +63,7 @@ for(const [name,mod] of [
  // Synthetic test executables run outside Windhawk's ModsRuntime. Link their
  // C++ runtime statically so they do not depend on Windhawk's DLL search path.
  compile(tools.compiler,['-static',...fixture,file,...libraries(path.join(source,`dist/${mod}.wh.cpp`)),'-o',output]);
- const result=spawnSync(output,name==='explorer-startup'?[folder]:[],{encoding:'utf8',windowsHide:true,timeout:30000});
+ const result=spawnSync(output,name==='explorer-startup'?[startupRoot]:[],{encoding:'utf8',windowsHide:true,timeout:30000});
  assert.equal(result.status,0,result.stdout+'\n'+result.stderr);
 });
 
