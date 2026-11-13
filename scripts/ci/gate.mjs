@@ -21,6 +21,7 @@ const has = (p) => plan.proofs.includes(p);
 const cheap = ["sources", "unit", "unit-install", "unit-install-windows"].some(has);
 const expected = {
   checks: cheap,
+  "windows-port": cheap,
   "windows-install": cheap,
   "windows-native": cheap,
   build: has("build"),

@@ -121,7 +121,7 @@ test("the plan hash is stable and covers the decision", () => {
 test("release-gate refuses a skipped selected job and a plan that does not recompute", () => {
   const head = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
   const planJson = execFileSync("node", ["scripts/ci/select.mjs", "--event", "workflow_dispatch", "--head", head], { encoding: "utf8", env: { ...process.env, GITHUB_OUTPUT: "", GITHUB_STEP_SUMMARY: "" } });
-  const good = { select: { result: "success" }, checks: { result: "success" }, "windows-install": { result: "success" }, "windows-native": { result: "success" }, build: { result: "success" }, browser: { result: "success" }, consumers: { result: "success" }, evidence: { result: "success" } };
+  const good = { select: { result: "success" }, checks: { result: "success" }, "windows-port": { result: "success" }, "windows-install": { result: "success" }, "windows-native": { result: "success" }, build: { result: "success" }, browser: { result: "success" }, consumers: { result: "success" }, evidence: { result: "success" } };
   const gate = (needs, planText = planJson) => {
     try {
       execFileSync("node", ["scripts/ci/gate.mjs"], { encoding: "utf8", stdio: "pipe", env: { ...process.env, NEEDS: JSON.stringify(needs), PLAN: planText } });
@@ -131,7 +131,7 @@ test("release-gate refuses a skipped selected job and a plan that does not recom
   assert.equal(gate(good), true);
   assert.equal(gate({ ...good, browser: { result: "skipped" } }), false);
   assert.equal(gate({ ...good, "windows-install": { result: "failure" } }), false);
-  for (const job of ["windows-install", "windows-native"]) {
+  for (const job of ["windows-port", "windows-install", "windows-native"]) {
     const { [job]: _, ...absent } = good;
     assert.equal(gate(absent), false, `${job} missing`);
     for (const result of ["skipped", "failure", "cancelled"]) assert.equal(gate({ ...good, [job]: { result } }), false, `${job} ${result}`);
@@ -140,10 +140,10 @@ test("release-gate refuses a skipped selected job and a plan that does not recom
   assert.equal(gate(good, tampered), false);
 });
 
-test("the two Windows workloads run as separate jobs, each with its own limit, and release-gate needs both", () => {
+test("the three Windows workloads run as separate jobs, each with its own limit, and release-gate needs all three", () => {
   const { jobs } = parseYaml(readFileSync(".github/workflows/ci.yml", "utf8"));
-  const install = jobs["windows-install"], native = jobs["windows-native"];
-  for (const job of [install, native]) {
+  const port = jobs["windows-port"], install = jobs["windows-install"], native = jobs["windows-native"];
+  for (const job of [port, install, native]) {
     assert.equal(job.needs, "select");
     assert.equal(job.if, "needs.select.outputs.checks == 'true'");
     assert.equal(job["runs-on"], "windows-latest");
@@ -151,12 +151,14 @@ test("the two Windows workloads run as separate jobs, each with its own limit, a
     assert.ok(job.steps.every((step) => step["continue-on-error"] === undefined));
   }
   const runs = (job) => job.steps.map((step) => step.run).filter(Boolean);
-  assert.ok(runs(install).some((r) => r.includes("tests/windows-install.test.js")));
-  assert.ok(!runs(install).some((r) => r.includes("prepare-windows-compiler") || r.includes("windows-native.test.js")));
+  assert.ok(runs(port).includes("node --test --test-concurrency=1 tests/windows-port.test.js"));
+  assert.ok(runs(install).includes("node --test --test-concurrency=1 tests/windows-install.test.js tests/windows-font.test.js tests/windows-compatibility.test.js tests/windows-setup.test.js"));
+  for (const job of [port, install]) assert.ok(!runs(job).some((r) => r.includes("prepare-windows-compiler") || r.includes("windows-native.test.js")));
+  assert.ok(!runs(install).some((r) => r.includes("windows-port.test.js")) && !runs(native).some((r) => r.includes("windows-port.test.js")));
   assert.ok(runs(native).some((r) => r.includes("prepare-windows-compiler.ps1")));
   const test = native.steps.find((step) => step.run === "node --test tests/windows-native.test.js");
   assert.equal(test.env.J3W1_WINDHAWK_ROOT, "${{ runner.temp }}/j3w1-native-toolchain");
-  for (const job of ["windows-install", "windows-native"]) assert.ok(jobs["release-gate"].needs.includes(job), job);
+  for (const job of ["windows-port", "windows-install", "windows-native"]) assert.ok(jobs["release-gate"].needs.includes(job), job);
 });
 
 test("the whole matrix covers every configured Playwright project", async () => {
