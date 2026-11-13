@@ -311,9 +311,24 @@ test('Explorer marquee settings encode canonical alpha and module compatibility'
  assert.doesNotMatch(source,/@[A-Z0-9_]+@/);
 });
 
-test('Explorer failure record retains closed data, admission and exclusive path ownership',()=>{
- const source=fs.readFileSync(path.join(repoRoot,'ports/windows/dist/j3w1-explorer-native.wh.cpp'),'utf8');
- const helper=source.slice(source.indexOf('namespace InitFailure {'),source.indexOf('// Refuse unknown fixed executable'));
+function explorerFailureRecordContract(source){
+ const begin='namespace InitFailure {\n',end='\n}\n// Refuse unknown fixed executable versions even if descriptive metadata matches.\n';
+ assert.equal((source.match(/\bnamespace\s+InitFailure\s*\{/g)||[]).length,1,'Exactly one actual writer namespace');
+ assert.equal(source.split(begin).length,2);assert.equal(source.split(end).length,2);
+ const first=source.indexOf(begin),last=source.indexOf(end);assert.ok(last>first);
+ const helper=source.slice(first,last+2),outside=source.slice(0,first)+source.slice(last+2);
+ assert.doesNotMatch(source,/@[A-Z0-9_]+@|native-probe|SetSysColors|FILE_APPEND_DATA|CREATE_ALWAYS|DeleteFile/);
+ assert.doesNotMatch(outside,/GENERIC_WRITE|CREATE_NEW|WriteFile/,'All non-writer code retains the original no-write rule');
+ assert.equal((outside.match(/CreateFileW\(/g)||[]).length,1,'Only the module digest reader opens files outside the writer');
+ assert.match(outside,/CreateFileW\(path,GENERIC_READ,FILE_SHARE_READ,nullptr,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,nullptr\)/);
+ assert.equal((helper.match(/CreateFileW\(/g)||[]).length,2);
+ assert.match(helper,/CreateFileW\(parent\.c_str\(\),FILE_LIST_DIRECTORY\|FILE_READ_ATTRIBUTES,FILE_SHARE_READ,nullptr,\s*OPEN_EXISTING,FILE_FLAG_BACKUP_SEMANTICS\|FILE_FLAG_OPEN_REPARSE_POINT,nullptr\)/);
+ assert.match(helper,/CreateFileW\(path\.c_str\(\),GENERIC_WRITE\|FILE_READ_ATTRIBUTES,0,nullptr,CREATE_NEW,\s*FILE_ATTRIBUTE_NORMAL\|FILE_FLAG_OPEN_REPARSE_POINT,nullptr\)/);
+ assert.ok(helper.includes(String.raw`path+=L"\\j3w1-theme\\windows\\diagnostics";`));
+ assert.ok(helper.includes(String.raw`path+=L"\\j3w1-explorer-native-1.8.10-init-failure.json";`));
+ assert.equal((helper.match(/WriteFile\(/g)||[]).length,1);assert.equal((helper.match(/FlushFileBuffers\(/g)||[]).length,1);
+ assert.match(helper,/WriteFile\(file\.value,record,static_cast<DWORD>\(size\),&written,nullptr\)/);
+ assert.match(helper,/size<=0\|\|size>=static_cast<int>\(sizeof\(record\)\)/);
  assert.match(helper,/FOLDERID_LocalAppData,0,nullptr/);
  assert.match(helper,/FILE_LIST_DIRECTORY\|FILE_READ_ATTRIBUTES,FILE_SHARE_READ,nullptr/);
  assert.match(helper,/CREATE_NEW/);assert.match(helper,/FILE_FLAG_OPEN_REPARSE_POINT/);
@@ -330,6 +345,24 @@ test('Explorer failure record retains closed data, admission and exclusive path 
  assert.match(chain,/com\?BitmapCom:BitmapBuild/);
  const keys=[...helper.matchAll(/\\"([A-Za-z]+)\\":/g)].map(m=>m[1]);
  assert.deepEqual(keys,['protocol','adapterVersion','pid','creationFiletime','stage','nativeKind','nativeAvailable','nativeValue','glyphCom','bitmapCom']);
+ // The exception admits only the exact reviewed writer, not arbitrary code in a named namespace.
+ assert.equal(sha(Buffer.from(helper)),'26ed1580566e249a868b524707575c6511965012a986cfe7f62c9940252629e5');
+ return outside;
+}
+
+test('Explorer failure record retains closed data, admission and exclusive path ownership',()=>{
+ const source=fs.readFileSync(path.join(repoRoot,'ports/windows/dist/j3w1-explorer-native.wh.cpp'),'utf8');
+ explorerFailureRecordContract(source);
+ const mutations=[
+  source+'\nvoid ForeignWrite(){WriteFile(nullptr,nullptr,0,nullptr,nullptr);}\n',
+  source+'\nvoid ForeignOpen(){CreateFileW(L"unreviewed",GENERIC_READ,FILE_SHARE_READ,nullptr,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,nullptr);}\n',
+  source.replace('namespace InitFailure {','namespace InitFailure {\nvoid ForeignWrite(){WriteFile(nullptr,nullptr,0,nullptr,nullptr);}'),
+  source.replace('j3w1-explorer-native-1.8.10-init-failure.json','other-init-failure.json'),
+  source.replace('CREATE_NEW','OPEN_ALWAYS'),
+  source.replace('GENERIC_WRITE|FILE_READ_ATTRIBUTES,0,nullptr,CREATE_NEW','GENERIC_WRITE|FILE_READ_ATTRIBUTES,FILE_SHARE_WRITE,nullptr,CREATE_NEW'),
+  source+'\nnamespace InitFailure {}\n',
+ ];
+ for(const changed of mutations){assert.notEqual(changed,source);assert.throws(()=>explorerFailureRecordContract(changed));}
 });
 
 test('Explorer submenu stays on the hover palette while its child flyout is open',async()=>{
@@ -867,9 +900,9 @@ test('standalone toast variants use black surfaces with one outer frame',async()
 test('bundled native source is generated, pinned and rejected on tampering',t=>{
  const f=windhawkFixture(t),file=path.join(f.args.source,'dist/j3w1-explorer-native.wh.cpp');
  const text=fs.readFileSync(file,'utf8');
- assert.match(text,/@include explorer.exe/);assert.doesNotMatch(text,/@[A-Z_]+@|native-probe|SetSysColors|GENERIC_WRITE|FILE_APPEND_DATA|CREATE_ALWAYS|CREATE_NEW|WriteFile|DeleteFile/);
- assert.equal((text.match(/CreateFileW\(/g)||[]).length,1,'Only the module digest reader opens files');
- assert.match(text,/CreateFileW\(path,GENERIC_READ,FILE_SHARE_READ,nullptr,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,nullptr\)/);
+ assert.match(text,/@include explorer.exe/);const outside=explorerFailureRecordContract(text);
+ assert.equal((outside.match(/CreateFileW\(/g)||[]).length,1,'Only the module digest reader opens files outside the reviewed writer');
+ assert.match(outside,/CreateFileW\(path,GENERIC_READ,FILE_SHARE_READ,nullptr,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,nullptr\)/);
  assert.match(text,/GetModuleFileNameW\(module,path/);
  assert.match(text,/MAKELONG\(9818,26100\)/);
  fs.appendFileSync(file,'\n// changed');
