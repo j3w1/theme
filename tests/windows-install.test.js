@@ -60,6 +60,14 @@ Invoke-J3w1WindowsLifecycle -Action Update -Mode Native -SourceRoot $env:J3W1_FI
  const r=spawnSync(pwsh,['-NoLogo','-NoProfile','-NonInteractive','-Command',script],{env:{...f.env,J3W1_FIX_INSTALLER:installer,J3W1_FIX_SOURCE:f.source,J3W1_FIX_REVISION:second,J3W1_FIX_STATE:f.state,J3W1_FIX_VALUE:lockImageDigest(chosen),J3W1_FIX_JOURNAL:fileDigest(journal)},encoding:'utf8',timeout:90000});
  assert.notEqual(r.status,0);assert.match(r.stderr,/Synthetic recovery-save failure/);assert.deepEqual(fs.readFileSync(journal),before);assert.deepEqual(read(file),chosen);assert.equal(read(journal).schemaVersion,1);
 });
+test('explicit recovery revisions must match the schema2 capable cache',options,t=>{
+ const f=fixture(t),file=path.join(f.state,'fixture/lockscreen.json'),journal=path.join(f.state,'journal.json');write(file,{exists:true,extension:'.jpg',value:Buffer.from('synthetic original').toString('base64')});f.ok('Apply',['-Revision',f.first]);
+ const chosen={exists:true,extension:'.jpg',value:Buffer.from('synthetic accepted choice').toString('base64')};write(file,chosen);const second=f.commit();f.git('tag','v4.0.1',second);
+ f.ok('Update',['-Revision',second,'-KeepLockScreenValueSha256',lockImageDigest(chosen),'-ExpectedJournalSha256',fileDigest(journal)]);f.ok('Test');f.ok('Test',['-Revision',second]);f.ok('Test',['-Version','v4.0.1']);
+ const before=fs.readFileSync(journal);for(const action of ['Test','Restore','Uninstall','Guard']){const r=f.run(action,['-Revision',f.first]);assert.notEqual(r.status,0);assert.match(r.stderr,/Explicit recovery revision conflicts/);assert.deepEqual(fs.readFileSync(journal),before);assert.deepEqual(read(file),chosen);}
+ const tag=f.run('Test',['-Version','v4.0.0']);assert.notEqual(tag.status,0);assert.match(tag.stderr,/Explicit recovery revision conflicts/);assert.deepEqual(fs.readFileSync(journal),before);f.ok('Uninstall',['-Revision',second]);assert.deepEqual(read(file),chosen);
+});
+
 test('pinned PowerShell lifecycle plans without state, applies offline tags, updates, restores and uninstalls',options,t=>{
  const f=fixture(t),before=fs.readFileSync(f.terminal,'utf8');
  f.ok('Plan',['-Version','v4.0.0']);assert.ok(!fs.existsSync(path.join(f.state,'releases')));assert.ok(!fs.existsSync(path.join(f.state,'journal.json')));

@@ -173,7 +173,12 @@ Restore/Uninstall leave that chosen image in place while retaining original
 before/after and acceptance history. Later image drift is still a conflict.
 
 Schema2 keeps a verified capable `lifecycleRevision` separate from appearance
-history, including after Restore-Latest. Missing or changed capable cache fails
+history, including after supported Native Restore-Latest. Full Restore-Latest
+refuses before effects across an older guard boundary. A Full appearance/capable
+revision mismatch after interruption or rollback stays unstyled/unaccepted:
+Guard disables mods without enabling them; Test fails. Use matching Update or
+complete capable recovery. Explicit conflicting recovery revisions refuse.
+Missing or changed capable cache fails
 offline; use saved recovery commands. Legacy schema1 code rejects this journal.
 An explicit old installer may perform its normal lock/tool/cache preparation
 before its runtime refuses; it is not a zero-filesystem-write operation. It

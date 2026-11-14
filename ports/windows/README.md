@@ -134,11 +134,20 @@ setting-adoption or first-install option.
 
 Acceptance keeps the selected bytes without setting the image. Test, later
 installs and recovery still reject unapproved image changes. Restore/Uninstall
-preserve the accepted picture and release its theme ownership; original
+preserve the accepted picture; only restoring its original owning installation
+releases that image ownership. Undoing a supported Native acceptance Update
+with Restore-Latest keeps the choice attached to the older active owner. Original
 before/after images and acceptance history remain private in the journal.
 The schema2 journal retains a capable verified installer for offline recovery.
 Use saved recovery commands even after Restore-Latest selects older appearance
-history; never edit old cached releases.
+history; never edit old cached releases. A conflicting explicit recovery revision
+is refused; omit it to select the verified capable cache.
+
+Full Restore-Latest refuses before mutation if it would leave an older Full
+guard across that capable boundary. Use a matching Update or complete capable
+Restore/Uninstall. Failed or interrupted acceptance can retain a legacy guard;
+this state is unstyled/unaccepted. Guard disables it and Test fails a Full
+appearance/capable revision mismatch until supported recovery or Update.
 
 ## What changes
 

@@ -1572,6 +1572,7 @@ if (mutating) {
 var journalInput = import_node_fs2.default.existsSync(journal) ? import_node_fs2.default.readFileSync(safe(journal)) : null;
 var history = journalInput ? JSON.parse(journalInput.toString("utf8").replace(/^\uFEFF/, "")) : { schemaVersion: 1, transactions: [] };
 if (![1, 2].includes(history.schemaVersion) || !Array.isArray(history.transactions)) throw Error("Unsupported recovery journal");
+if (history.schemaVersion === 1 && ["lockscreenAcceptances", "lifecycleRevision", "lifecycleRuntimeSha256", "lifecycleManifestSha256"].some((key) => Object.hasOwn(history, key))) throw Error("Schema1 journal carries unvalidated capable recovery fields");
 var journalInputSha = journalInput ? sha256Hex(journalInput) : null;
 var opId = (op) => JSON.stringify([op.kind, op.key, op.name, op.path, op.profile, op.member, op.keys]);
 var canonical = (value) => Array.isArray(value) ? value.map(canonical) : value && typeof value === "object" ? Object.fromEntries(Object.keys(value).sort().map((k) => [k, canonical(value[k])])) : value;
@@ -1621,7 +1622,7 @@ var lockscreenCandidate = null;
 function lockscreenTarget(now) {
   let owner;
   for (const tx of history.transactions.filter((t) => t.status === "applied")) for (const [index, op] of tx.operations.entries()) if (op.applied && op.kind === "lockscreen") {
-    if (owner) throw Error("Ambiguous managed lock screen");
+    if (owner && keeping) throw Error("Ambiguous managed lock screen");
     owner = { tx, index, op };
   }
   if (owner && validImage(now) && !eq(now, expectedValue(owner.op))) lockscreenCandidate = { valueSha256: valueSha(now), journalSha256: journalInputSha, newAcceptance: true };
@@ -2238,11 +2239,13 @@ function restore(tx) {
   persist();
   return [...new Set(conflicts)];
 }
+var fullMismatch = (tx) => history.schemaVersion === 2 && tx?.mode === "Full" && tx.revision !== history.lifecycleRevision;
 function verify({ checkEngine = true, pending } = {}) {
   const active = history.transactions.filter((t) => t.status === "applied");
   if (pending) active.push(pending);
   const tx = active.at(-1);
   if (!tx) throw Error("No installed transaction");
+  if (!pending && fullMismatch(tx)) return { result: "failed", revision: tx.revision, failed: ["Full appearance differs from capable lifecycle; matching Update or complete recovery required"], limitations: settings.limitations };
   const effective = /* @__PURE__ */ new Map();
   for (const t of active) for (const op of t.operations) if (op.applied) effective.set(opId(op), op);
   const failed = [];
@@ -2282,6 +2285,8 @@ if (action === "Plan") {
 } else if (["Restore", "Uninstall"].includes(action)) {
   const candidates = history.transactions.filter((t) => t.status !== "restored");
   const selected = args.latest ? candidates.slice(-1) : candidates;
+  const remaining = history.transactions.filter((t) => t.status === "applied" && !selected.includes(t)).at(-1);
+  if (action === "Restore" && args.latest && fullMismatch(remaining)) throw Error("Restore-Latest would leave an older Full guard; use matching Update or complete capable Restore/Uninstall");
   const conflicts = [];
   for (const [index, tx] of selected.toReversed().entries()) {
     console.error(`Restoring saved update ${index + 1} of ${selected.length}.`);
@@ -2301,20 +2306,23 @@ if (action === "Plan") {
     } catch (error) {
       failures.push(`${mod.id}: ${error.message}`);
     }
-    if (!compat()) failures.push("unknown shell compatibility");
-    try {
-      assertExcludedAdaptersAbsent();
-    } catch (error) {
-      failures.push(error.message);
+    if (fullMismatch(tx)) failures.push("Full appearance differs from capable lifecycle; matching Update or complete recovery required");
+    else {
+      if (!compat()) failures.push("unknown shell compatibility");
+      try {
+        assertExcludedAdaptersAbsent();
+      } catch (error) {
+        failures.push(error.message);
+      }
+      for (const mod of tx.mods ?? []) try {
+        const shown = wh(["mod", "show", mod.id]);
+        if (shown.metadata?.version !== mod.version || !eq(wh(["mod", "settings", "get", mod.id]), mod.settings)) failures.push(`${mod.id}: version or settings drift`);
+        if (compiledReceipt(mod) && !sameModArtifact(shown, compiledReceipt(mod))) failures.push(`${mod.id}: compiled artifact drift`);
+      } catch (error) {
+        failures.push(`${mod.id}: ${error.message}`);
+      }
+      if (wh(["app", "settings", "get"]).settings.disableUpdateCheck !== true) failures.push("dependency update policy changed");
     }
-    for (const mod of tx.mods ?? []) try {
-      const shown = wh(["mod", "show", mod.id]);
-      if (shown.metadata?.version !== mod.version || !eq(wh(["mod", "settings", "get", mod.id]), mod.settings)) failures.push(`${mod.id}: version or settings drift`);
-      if (compiledReceipt(mod) && !sameModArtifact(shown, compiledReceipt(mod))) failures.push(`${mod.id}: compiled artifact drift`);
-    } catch (error) {
-      failures.push(`${mod.id}: ${error.message}`);
-    }
-    if (wh(["app", "settings", "get"]).settings.disableUpdateCheck !== true) failures.push("dependency update policy changed");
     if (!failures.length) try {
       for (const mod of tx.mods ?? []) wh(["mod", "enable", mod.id]);
       startWindhawk();

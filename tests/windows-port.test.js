@@ -774,18 +774,20 @@ test('recoverable lock-screen image is journaled and restored; later image edits
 
 // All image values and cache identities in these cases are synthetic fixtures.
 const lockValueSha=value=>sha(Buffer.from(JSON.stringify({exists:value.exists,extension:value.extension,value:value.value})));
-function lockChoiceFixture(t){
- const f=fixture(t),file=path.join(f.state,'fixture/lockscreen.json'),journalPath=path.join(f.state,'journal.json');
+function lockChoiceFixture(t,full=false){
+ const f=full?windhawkFixture(t,'protocol'):fixture(t),file=path.join(f.state,'fixture/lockscreen.json'),journalPath=path.join(f.state,'journal.json');
  const original={exists:true,value:Buffer.from('synthetic original').toString('base64'),extension:'.jpg'},chosen={...original,value:Buffer.from('synthetic owner choice').toString('base64')};
- write(file,original);f.ok('Apply');const originalHistory=f.journal();write(file,chosen);
+ write(file,original);f.ok('Apply',full?f.args:{});const originalHistory=f.journal();write(file,chosen);
  const prepare=(revision='2'.repeat(40))=>{
   const release=path.join(f.state,'releases',revision);fs.mkdirSync(path.join(release,'dist'),{recursive:true});
-  for(const name of ['install.ps1','dependencies.json','dist/runtime.cjs'])fs.copyFileSync(path.join(source,name),path.join(release,name));
-  fs.copyFileSync(path.join(source,'dist/install-manifest.json'),path.join(release,'install-manifest.json'));
+  const template=full?f.args.source:source;if(full)fs.cpSync(template,release,{recursive:true});
+  for(const name of ['install.ps1','dependencies.json','dist/runtime.cjs'])fs.copyFileSync(path.join(template,name),path.join(release,name));
+  fs.copyFileSync(path.join(template,'dist/install-manifest.json'),path.join(release,'install-manifest.json'));
+  if(full){const manifest=read(path.join(release,'install-manifest.json'));for(const entry of manifest.files)entry.sha256=sha(fs.readFileSync(path.join(release,entry.path)));write(path.join(release,'install-manifest.json'),manifest);}
   const manifestSha256=sha(fs.readFileSync(path.join(release,'install-manifest.json')));write(path.join(release,'verified.json'),{revision,manifestSha256});
   const quote=p=>p.replaceAll("'","''"),prefix=`& '${quote(process.execPath)}' -NoProfile -File '${quote(path.join(release,'install.ps1'))}' -StateRoot '${quote(f.state)}' -Action `;
   fs.writeFileSync(path.join(f.state,'recovery-commands.txt'),['Test','Restore -Latest','Restore','Uninstall'].map(a=>prefix+a).join('\n')+'\n');
-  return {revision,explicitSource:true,pwsh:process.execPath,guardPwsh:process.execPath,cacheManifestSha256:manifestSha256};
+  return {...(full?{...f.args,source:release}:{}),revision,explicitSource:true,pwsh:process.execPath,guardPwsh:process.execPath,cacheManifestSha256:manifestSha256};
  };
  const consent=()=>({keepLockScreenValueSha256:lockValueSha(chosen),expectedJournalSha256:sha(fs.readFileSync(journalPath))});
  return {...f,file,journalPath,original,chosen,originalHistory,prepare,consent};
@@ -855,6 +857,51 @@ for(const invalid of ['unrecoverable','oversized','base64','extension'])test(`lo
  if(invalid==='extension')image.extension='.gif';
  write(f.file,image);args.keepLockScreenValueSha256=lockValueSha(image);const before=fs.readFileSync(f.journalPath),r=f.run('Update',args);
  assert.notEqual(r.status,0);assert.match(r.stderr,/Lock-screen consent binding differs/);assert.deepEqual(fs.readFileSync(f.journalPath),before);assert.deepEqual(read(f.file),image);
+});
+
+test('ordinary stacked lock-screen ownership follows the latest value and still rejects drift',t=>{
+ const f=lockChoiceFixture(t),history=f.journal(),first=history.transactions[0],prior=first.operations.find(op=>op.kind==='lockscreen'),current=prior.after;prior.after={exists:true,extension:'.bmp',value:Buffer.from('synthetic earlier theme wallpaper').toString('base64')};const latest={...prior,after:current,before:prior.after};
+ history.transactions.push({id:'synthetic-later-owner',revision:'1'.repeat(40),mode:'Native',status:'applied',operations:[latest],documents:[],mods:[]});write(f.journalPath,history);write(f.file,current);
+ f.ok('Plan');assert.equal(JSON.parse(f.ok('Apply').stdout).result,'unchanged');f.ok('Update',{revision:'2'.repeat(40)});
+ write(f.file,{...f.chosen,value:Buffer.from('synthetic subsequent drift').toString('base64')});const before=fs.readFileSync(f.journalPath),image=fs.readFileSync(f.file);
+ assert.equal(f.run('Test').status,1);assert.match(f.run('Apply').stderr,/Managed setting conflict: Windows lock-screen image/);assert.match(f.run('Update',{revision:'3'.repeat(40)}).stderr,/Managed setting conflict: Windows lock-screen image/);assert.deepEqual(fs.readFileSync(f.journalPath),before);assert.deepEqual(fs.readFileSync(f.file),image);
+});
+
+test('lock-screen schema refuses unknown versions and schema1 capable fields before ownership changes',t=>{
+ const f=lockChoiceFixture(t),base=fs.readFileSync(f.journalPath),image=fs.readFileSync(f.file);
+ const variants=[...[0,3].map(schemaVersion=>({...JSON.parse(base),schemaVersion})),...['lockscreenAcceptances','lifecycleRevision','lifecycleRuntimeSha256','lifecycleManifestSha256'].flatMap(key=>[null,[]].map(value=>({...JSON.parse(base),[key]:value})))];
+ for(const history of variants){write(f.journalPath,history);const before=fs.readFileSync(f.journalPath);for(const action of ['Test','Apply']){const r=f.run(action);assert.notEqual(r.status,0);assert.match(r.stderr,/Unsupported recovery journal|Schema1 journal carries/);assert.deepEqual(fs.readFileSync(f.journalPath),before);assert.deepEqual(fs.readFileSync(f.file),image);}}
+});
+
+test('lock-screen schema2 refuses missing or malformed receipts and capable digests',t=>{
+ const f=lockChoiceFixture(t),args=f.prepare();f.ok('Update',{...args,...f.consent()});const base=fs.readFileSync(f.journalPath),image=fs.readFileSync(f.file);
+ for(const fault of ['missing-receipts','object-receipts','missing-runtime','bad-manifest','bad-receipt']){
+  const history=JSON.parse(base);if(fault==='missing-receipts')delete history.lockscreenAcceptances;if(fault==='object-receipts')history.lockscreenAcceptances={};if(fault==='missing-runtime')delete history.lifecycleRuntimeSha256;if(fault==='bad-manifest')history.lifecycleManifestSha256='invalid';if(fault==='bad-receipt')history.lockscreenAcceptances[0].valueSha256='0'.repeat(64);
+  write(f.journalPath,history);const before=fs.readFileSync(f.journalPath),r=f.run('Test',args);assert.notEqual(r.status,0);assert.match(r.stderr,/Invalid capable recovery binding|Invalid lock-screen acceptance/);assert.deepEqual(fs.readFileSync(f.journalPath),before);assert.deepEqual(fs.readFileSync(f.file),image);
+ }
+});
+
+test('lock-screen consent Plan and Update never print synthetic image bytes on either stream',t=>{
+ const f=lockChoiceFixture(t),args={...f.prepare(),...f.consent()};
+ for(const action of ['Plan','Update']){const r=f.ok(action,args);assert.ok(!r.stdout.includes(f.chosen.value));assert.ok(!r.stderr.includes(f.chosen.value));}
+});
+
+test('Full lock-screen recovery refuses an older guard boundary before any mutation',t=>{
+ const f=lockChoiceFixture(t,true),args=f.prepare();f.ok('Update',{...args,...f.consent()});f.ok('Test',args);
+ // A same-revision profile update can be undone without crossing the guard boundary.
+ const config=readConfig(f.terminal);config.profiles.list.push({guid:'same-revision',commandline:'keep-profile'});write(f.terminal,config);f.ok('Update',args);f.ok('Restore',{...args,latest:true});f.ok('Test',args);
+ const shortcut=path.join(f.state,'fixture/startup/j3w1-theme-guard.lnk'),db=path.join(f.state,'fixture-windhawk.json'),activity=path.join(f.state,'fixture-windhawk-activity.json');
+ const files=[f.journalPath,shortcut,f.file,db,activity],before=files.map(p=>fs.readFileSync(p)),r=f.run('Restore',{...args,latest:true});assert.notEqual(r.status,0);assert.match(r.stderr,/Restore-Latest would leave an older Full guard/);files.forEach((p,i)=>assert.deepEqual(fs.readFileSync(p),before[i]));
+ f.ok('Uninstall',args);assert.deepEqual(read(f.file),f.chosen);assert.ok(f.journal().transactions.every(tx=>tx.status==='restored'));assert.ok(!fs.existsSync(shortcut));assert.deepEqual(f.journal().transactions[0].operations.map(op=>[op.before,op.after]),f.originalHistory.transactions[0].operations.map(op=>[op.before,op.after]));
+});
+
+test('failed Full lock-screen acceptance remains unaccepted and mismatch Guard only disables',t=>{
+ const f=lockChoiceFixture(t,true),args=f.prepare(),r=f.run('Update',{...args,...f.consent(),failAfter:1});assert.notEqual(r.status,0);assert.equal(f.journal().lockscreenAcceptances[0].status,'rolledback');assert.equal(f.journal().transactions.at(-1).status,'restored');assert.deepEqual(read(f.file),f.chosen);
+ const shortcut=path.join(f.state,'fixture/startup/j3w1-theme-guard.lnk'),legacyLink=JSON.parse(Buffer.from(read(f.journalPath).transactions[0].operations.find(op=>op.path===shortcut).after.value,'base64').toString());assert.ok(legacyLink.arguments.includes(f.args.source));
+ const checked=f.run('Test',args);assert.equal(checked.status,1);assert.match(checked.stdout,/Full appearance differs from capable lifecycle/);
+ const activity=path.join(f.state,'fixture-windhawk-activity.json'),prior=read(activity).mutations.length,journal=fs.readFileSync(f.journalPath),link=fs.readFileSync(shortcut);
+ const guard=f.run('Guard',{...args,fixtureEngineStopped:true,fixtureEngineStartupFails:true});assert.equal(guard.status,2);assert.equal(JSON.parse(guard.stdout).shell,'disabled-incompatible');assert.match(guard.stdout,/Full appearance differs from capable lifecycle/);assert.doesNotMatch(guard.stderr,/Theme engine failed to start/);assert.ok(read(activity).mutations.slice(prior).length>0);assert.ok(read(activity).mutations.slice(prior).every(call=>call[0]==='mod'&&call[1]==='disable'));assert.ok(Object.entries(f.db()).filter(([id])=>id.startsWith('local@')).every(([,mod])=>mod.config.disabled));assert.deepEqual(fs.readFileSync(f.journalPath),journal);assert.deepEqual(fs.readFileSync(shortcut),link);assert.deepEqual(read(f.file),f.chosen);
+ f.ok('Update',{...args,...f.consent()});f.ok('Test',args);f.ok('Uninstall',args);assert.deepEqual(read(f.file),f.chosen);
 });
 
 test('compact cursors use a black body and canonical red edge with visible bounded hotspots',async()=>{

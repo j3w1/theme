@@ -210,7 +210,10 @@ function Get-J3w1LifecycleRevision([string]$StateRoot,[string]$AppearanceRevisio
  $journal=Join-Path $StateRoot 'journal.json';Assert-J3w1SetupPath $journal
  if(-not(Test-Path -LiteralPath $journal)){return $AppearanceRevision}
  $history=Get-Content -LiteralPath $journal -Raw|ConvertFrom-Json
- if($history.schemaVersion -eq 1){return $AppearanceRevision}
+ if($history.schemaVersion -eq 1){
+  if(@('lockscreenAcceptances','lifecycleRevision','lifecycleRuntimeSha256','lifecycleManifestSha256'|Where-Object {$history.PSObject.Properties.Name -contains $_}).Count){throw 'Schema1 journal carries unvalidated capable recovery fields'}
+  return $AppearanceRevision
+ }
  if($history.schemaVersion -ne 2 -or $history.lifecycleRevision -cnotmatch '^[0-9a-f]{40}$' -or $history.lifecycleRuntimeSha256 -cnotmatch '^[0-9a-f]{64}$' -or $history.lifecycleManifestSha256 -cnotmatch '^[0-9a-f]{64}$'){throw 'Unsupported or malformed capable recovery journal'}
  $verified=Get-J3w1VerifiedRecoveryRelease $StateRoot $history.lifecycleRevision
  $manifest=Get-Content -LiteralPath (Join-Path $verified.path 'install-manifest.json') -Raw|ConvertFrom-Json
@@ -487,6 +490,7 @@ if($Version){
  if($ref.object.type -eq 'tag'){$tag=Invoke-RestMethod $ref.object.url -TimeoutSec 60 -OperationTimeoutSeconds 60;$Revision=$tag.object.sha}else{$Revision=$ref.object.sha}
  }
 }
+$requestedRecoveryRevision=$Revision
 $current=Join-Path $StateRoot 'current.json'
 if(-not $Revision -and $Action -in 'Test','Restore','Uninstall','Guard'){
  $installed=$null
@@ -506,7 +510,11 @@ if(-not $Revision -and $Action -in 'Test','Restore','Uninstall','Guard'){
  }
  $Revision=$installed.revision;$Mode=$installed.mode
 }
-if($Action -in 'Test','Restore','Uninstall','Guard'){$Revision=Get-J3w1LifecycleRevision $StateRoot $Revision}
+if($Action -in 'Test','Restore','Uninstall','Guard'){
+ $capableRevision=Get-J3w1LifecycleRevision $StateRoot $Revision
+ if($requestedRecoveryRevision -and $requestedRecoveryRevision -cne $capableRevision){throw 'Explicit recovery revision conflicts with the required capable lifecycle revision'}
+ $Revision=$capableRevision
+}
 if(-not $Revision -and $SourceRoot){$Revision=(& git -C $SourceRoot rev-parse HEAD).Trim();if($LASTEXITCODE){throw 'Cannot resolve source HEAD'}}
 if($Revision -notmatch '^[0-9a-f]{40}$'){throw 'Supply -Revision with a full immutable commit SHA, or -Version with a published release tag.'}
 $release=Join-Path $StateRoot "releases\$Revision"
