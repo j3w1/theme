@@ -235,8 +235,9 @@ static bool Draw(void* self,IMAGELISTDRAWPARAMS* request,HRESULT* result) {
     if(drawn)*result=S_OK;
     return drawn; // Native fallback happens after releasing the cache mutex.
 }
-static bool Init(COLORREF fill,COLORREF edge) {
+static bool Init(COLORREF fill,COLORREF edge,HRESULT* observed=nullptr) {
     HRESULT apartment=CoInitializeEx(nullptr,COINIT_APARTMENTTHREADED);
+    if(observed)*observed=apartment;
     if(FAILED(apartment))return false;
     bool built=false;
     try {built=Build(fill,edge);}catch(...) {}

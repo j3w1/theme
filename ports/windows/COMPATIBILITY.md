@@ -2,13 +2,33 @@
 
 ## Compatibility boundary
 
-The recorded candidate is Windows 11 x64 build 26300.9818 with the
-redesigned Start layout. It replaces the retired 26300.9711, 26200.9550 and 26300.9550
+The current source candidate is Windows 11 x64 build 26300.9974 with the
+redesigned Start layout. It replaces the retired 26300.9818, 26300.9711, 26200.9550 and 26300.9550
 candidates; those builds no longer qualify for Full mode. `host.json` records exact Explorer, StartDocked, SystemSettings,
 ShellExperienceHost and SearchHost versions, plus Start, shell and Client.CBS
 package versions. A changed, absent or unreadable input refuses Full mode.
+This rollover is one exact current host, not dual-host support. Explorer's display
+version remains 10.0.26100.9818 while its fixed version is 10.0.26100.9974.
+The measured loaded module set is ExplorerFrame, WindowsCodecs and
+windowsudk.shellcommon at fixed 9974, DUI and system XAML at fixed 9818,
+and Common Controls at 6.10.26100.9818. WIC and shellcommon retain complete
+file-hash guards. The unchanged Settings executable/system XAML hashes remain
+pinned. These measured identities and source changes do not establish native
+compiler, hook-initialization or rendered acceptance for this successor.
 
-The 26300.9818 readout changed the shell executable versions, Explorer's fixed
+The core Full candidate explicitly excludes `j3w1-notepad-native`,
+`j3w1-notepad-chrome`, `j3w1-powertoys-preview` and
+`j3w1-powertoys-markdown`. Installed Notepad 11.2609.11.0,
+PowerToys 0.102.3101.0 and WebView 157.0.4341.46 are outside their reviewed
+component boundaries. Their existing source, artifacts and exact guards remain;
+no package/hash/RVA has been guessed or widened. The generated source-owned
+exclusion list is reported by Plan and consumed before staging/activation.
+An existing owned excluded adapter requires official Restore first; any other
+installed copy requires explicit ownership resolution. No unrelated mod is disabled.
+Native PowerToys settings are separate from its excluded preview hooks. Paint,
+Calculator and Terminal still require their exact unchanged package/runtime pins.
+
+The preceding 26300.9818 readout changed the shell executable versions, Explorer's fixed
 version, and the shell package to 10.0.26100.9818. Search is 2609.12000.100.0
 and Client.CBS is 1000.26100.385.0; the Start package remains
 10.0.26100.4768. ExplorerFrame and DirectUI retain older display-version
@@ -143,6 +163,35 @@ That does not certify the remaining native visual states.
 
 ## Recovery
 
+Explicit lock-screen preservation uses a schema2 journal. The paired
+`-KeepLockScreenValueSha256` / `-ExpectedJournalSha256` arguments bind an
+intentional choice to exact current bytes and journal state; they require an
+existing managed lock screen and reviewed immutable source. Pending receipts
+are not ordinary Test authority, and failed acceptance never writes the image.
+Committed choices remain exact expectations until their ownership is released;
+Restore/Uninstall leave that chosen image in place while retaining original
+before/after and acceptance history. Later image drift is still a conflict.
+
+Schema2 keeps a verified capable `lifecycleRevision` separate from appearance
+history, including after supported Native Restore-Latest. Full Restore-Latest
+refuses before effects if the remaining Full appearance revision differs from
+`lifecycleRevision`, even when both revisions are capable; it works only within
+the same revision. A completed transaction can use a supported matching Update
+or complete capable recovery. An incomplete Full transaction also blocks Update:
+use complete capable Restore/Uninstall, preserving the chosen image while
+removing the theme.
+
+After a failed or interrupted acceptance, a retained legacy sign-in guard
+rejects schema2 before running: it neither disables mods nor starts the engine.
+An engine already running in the current session can continue. A capable Guard
+disables mods on a Full appearance/capable revision mismatch, and Test fails;
+this is not successful installation or restored-styling evidence. Explicit
+conflicting recovery revisions refuse. Missing or changed capable cache fails
+offline; use saved recovery commands. Legacy schema1 code rejects this journal.
+An explicit old installer may perform its normal lock/tool/cache preparation
+before its runtime refuses; it is not a zero-filesystem-write operation. It
+must not be used for schema2 recovery or have its cached bytes patched.
+
 State is under `%LOCALAPPDATA%/j3w1-theme/windows`: immutable `releases`,
 `journal.json`, `current.json`, `backups`, `recovery`, `downloads`, and `tools`.
 Journals and backups may contain private settings or image bytes. Never attach
@@ -171,6 +220,31 @@ them to public issues or commit them. Only redacted outcomes belong in evidence.
 
    This validates the fixed release from immutable Git objects, retains the old
    cache and journal history, and applies only the recorded restoration.
+
+   For an observed legacy `DWM/ColorizationColor` mismatch after an opaque-intensity
+   write, inspect the original, installed and current DWORDs first. The native
+   cause of the observed intensity change remains unverified. The fixed
+   runtime preserves Windows' existing intensity byte while mapping the exact
+   canonical accent RGB. It checks the entire DWORD after personalization refresh
+   and in Test; no alpha mask or color tolerance is used. An absent original value
+   uses opaque intensity and still requires exact post-refresh verification.
+
+   Explicit recovery is available with the same reviewed offline source command
+   plus `-RestoreColorizationIntensity`. It accepts only this exact case: the
+   original value was a nonopaque DWORD, the recorded installed DWORD was opaque,
+   and the current DWORD equals the original intensity combined with the recorded
+   installed RGB. It records that observation without replacing either original
+   receipt, then restores the complete original DWORD. Different RGB, intensity,
+   type or absence remains a conflict. Ordinary Restore and Test retain their
+   strict checks. After recovery, install the reviewed fixed revision in Native
+   mode and run its Test. This recovery does not admit an unsupported Full host.
+
+   Restoration retains pending original-value expectations through personalization
+   refresh and checks them before releasing ownership or marking the transaction
+   restored. A refresh failure or exact readback mismatch retains conflict state
+   and the original receipts for retry. Each restored update is checked before
+   recovery traverses an older baseline; an unresolved newer update stops that
+   traversal. Exception rollback uses the same refresh/readback path.
 
 Font receipts record pending ownership before files are installed. An interrupted
 installation resumes only when already written files still match its receipt.
@@ -348,11 +422,23 @@ only after checking its recorded process has ended, like the lifecycle locks.
 
 ## Developer and offline installation
 
+The existing `Prepare` action is the supported local tools-only path for a reviewed
+immutable candidate. With `-Mode Full`, it first returns a compatibility Plan and,
+only for an exact compatible host, retains the same pinned portable Windhawk
+2.0.0-alpha.6 compiler and verified source downloads used by Apply. It uses the
+canonical state/download/tool folders, locks, native-process, digest and publisher
+checks. It does not register fonts, change personalization, create ownership/recovery
+transactions, install/enable adapters or start the engine. Existing engine and user
+state are preserved. An incompatible Plan is not admission and acquires no Full
+toolchain. Explicit Native preparation does not acquire Full tools.
+The CI-only compiler script remains limited to real CI; do not fake RUNNER_TEMP.
+
 From an immutable checkout, with unpackaged PowerShell 7.4+ and Node 24+ available:
 
 ```powershell
 $revision = git rev-parse HEAD
 & ./ports/windows/install.ps1 -Action Plan -SourceRoot . -Revision $revision -Mode Full
+& ./ports/windows/install.ps1 -Action Prepare -SourceRoot . -Revision $revision -Mode Full
 & ./ports/windows/install.ps1 -Action Apply -SourceRoot . -Revision $revision -Mode Full
 & ./ports/windows/install.ps1 -Action Test
 ```

@@ -306,9 +306,63 @@ test('Explorer marquee settings encode canonical alpha and module compatibility'
  assert.equal(settings.marquee,'#1f911410');
  assert.equal(settings.marqueeBorder,'#e53935');
  const source=fs.readFileSync(path.join(repoRoot,'ports/windows/dist/j3w1-explorer-native.wh.cpp'),'utf8');
- assert.match(source,/FixedModuleVersion\(frame,MAKELONG\(0,10\),MAKELONG\(9818,26100\)\)/);
+ assert.match(source,/FixedModuleVersion\(frame,MAKELONG\(0,10\),MAKELONG\(9974,26100\)\)/);
  assert.match(source,/FixedModuleVersion\(dui,MAKELONG\(0,10\),MAKELONG\(9818,26100\)\)/);
  assert.doesNotMatch(source,/@[A-Z0-9_]+@/);
+});
+
+function explorerFailureRecordContract(source){
+ const begin='namespace InitFailure {\n',end='\n}\n// Refuse unknown fixed executable versions even if descriptive metadata matches.\n';
+ assert.equal((source.match(/\bnamespace\s+InitFailure\s*\{/g)||[]).length,1,'Exactly one actual writer namespace');
+ assert.equal(source.split(begin).length,2);assert.equal(source.split(end).length,2);
+ const first=source.indexOf(begin),last=source.indexOf(end);assert.ok(last>first);
+ const helper=source.slice(first,last+2),outside=source.slice(0,first)+source.slice(last+2);
+ assert.doesNotMatch(source,/@[A-Z0-9_]+@|native-probe|SetSysColors|FILE_APPEND_DATA|CREATE_ALWAYS|DeleteFile/);
+ assert.doesNotMatch(outside,/GENERIC_WRITE|CREATE_NEW|WriteFile/,'All non-writer code retains the original no-write rule');
+ assert.equal((outside.match(/CreateFileW\(/g)||[]).length,1,'Only the module digest reader opens files outside the writer');
+ assert.match(outside,/CreateFileW\(path,GENERIC_READ,FILE_SHARE_READ,nullptr,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,nullptr\)/);
+ assert.equal((helper.match(/CreateFileW\(/g)||[]).length,2);
+ assert.match(helper,/CreateFileW\(parent\.c_str\(\),FILE_LIST_DIRECTORY\|FILE_READ_ATTRIBUTES,FILE_SHARE_READ,nullptr,\s*OPEN_EXISTING,FILE_FLAG_BACKUP_SEMANTICS\|FILE_FLAG_OPEN_REPARSE_POINT,nullptr\)/);
+ assert.match(helper,/CreateFileW\(path\.c_str\(\),GENERIC_WRITE\|FILE_READ_ATTRIBUTES,0,nullptr,CREATE_NEW,\s*FILE_ATTRIBUTE_NORMAL\|FILE_FLAG_OPEN_REPARSE_POINT,nullptr\)/);
+ assert.ok(helper.includes(String.raw`path+=L"\\j3w1-theme\\windows\\diagnostics";`));
+ assert.ok(helper.includes(String.raw`path+=L"\\j3w1-explorer-native-1.8.10-init-failure.json";`));
+ assert.equal((helper.match(/WriteFile\(/g)||[]).length,1);assert.equal((helper.match(/FlushFileBuffers\(/g)||[]).length,1);
+ assert.match(helper,/WriteFile\(file\.value,record,static_cast<DWORD>\(size\),&written,nullptr\)/);
+ assert.match(helper,/size<=0\|\|size>=static_cast<int>\(sizeof\(record\)\)/);
+ assert.match(helper,/FOLDERID_LocalAppData,0,nullptr/);
+ assert.match(helper,/FILE_LIST_DIRECTORY\|FILE_READ_ATTRIBUTES,FILE_SHARE_READ,nullptr/);
+ assert.match(helper,/CREATE_NEW/);assert.match(helper,/FILE_FLAG_OPEN_REPARSE_POINT/);
+ assert.match(helper,/GetFinalPathNameByHandleW/);assert.match(helper,/GetFileInformationByHandle/);
+ assert.match(helper,/GetProcessTimes/);assert.match(helper,/record\[1024\]/);
+ assert.match(helper,/FlushFileBuffers/);assert.match(helper,/~LastError\(\)\{SetLastError\(value\);\}/);
+ assert.doesNotMatch(helper,/GetEnvironmentVariable|CreateDirectory|CREATE_ALWAYS|OPEN_ALWAYS|DeleteFile|MoveFile|journal\.json|current\.json|Wh_Log/);
+ assert.match(source,/if\(FAILED\(apartment\)\)return false;/,'glyph COM still refuses RPC_E_CHANGED_MODE');
+ assert.match(source,/if\(FAILED\(apartment\)&&apartment!=RPC_E_CHANGED_MODE\)return false;/,'bitmap existing COM policy preserved');
+ const chain=source.slice(source.indexOf('BOOL Wh_ModInit()'),source.indexOf('void Wh_ModAfterInit()'));
+ for(const name of ['Contrast','Colors','Executable','VersionSize','VersionInfo','VersionValue','VersionMatch','ThemeClass','Pin','Marquee','Renderers','MarqueeHooks','NavigationHooks','FolderColors','Brush','Hooks'])
+  assert.match(chain,new RegExp(`failure\\.Check\\(${name},`),name);
+ assert.match(chain,/FAILED\(failure\.glyph\)\?GlyphCom:GlyphBuild/);
+ assert.match(chain,/com\?BitmapCom:BitmapBuild/);
+ const keys=[...helper.matchAll(/\\"([A-Za-z]+)\\":/g)].map(m=>m[1]);
+ assert.deepEqual(keys,['protocol','adapterVersion','pid','creationFiletime','stage','nativeKind','nativeAvailable','nativeValue','glyphCom','bitmapCom']);
+ // The exception admits only the exact reviewed writer, not arbitrary code in a named namespace.
+ assert.equal(sha(Buffer.from(helper)),'26ed1580566e249a868b524707575c6511965012a986cfe7f62c9940252629e5');
+ return outside;
+}
+
+test('Explorer failure record retains closed data, admission and exclusive path ownership',()=>{
+ const source=fs.readFileSync(path.join(repoRoot,'ports/windows/dist/j3w1-explorer-native.wh.cpp'),'utf8');
+ explorerFailureRecordContract(source);
+ const mutations=[
+  source+'\nvoid ForeignWrite(){WriteFile(nullptr,nullptr,0,nullptr,nullptr);}\n',
+  source+'\nvoid ForeignOpen(){CreateFileW(L"unreviewed",GENERIC_READ,FILE_SHARE_READ,nullptr,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,nullptr);}\n',
+  source.replace('namespace InitFailure {','namespace InitFailure {\nvoid ForeignWrite(){WriteFile(nullptr,nullptr,0,nullptr,nullptr);}'),
+  source.replace('j3w1-explorer-native-1.8.10-init-failure.json','other-init-failure.json'),
+  source.replace('CREATE_NEW','OPEN_ALWAYS'),
+  source.replace('GENERIC_WRITE|FILE_READ_ATTRIBUTES,0,nullptr,CREATE_NEW','GENERIC_WRITE|FILE_READ_ATTRIBUTES,FILE_SHARE_WRITE,nullptr,CREATE_NEW'),
+  source+'\nnamespace InitFailure {}\n',
+ ];
+ for(const changed of mutations){assert.notEqual(changed,source);assert.throws(()=>explorerFailureRecordContract(changed));}
 });
 
 test('Explorer submenu stays on the hover palette while its child flyout is open',async()=>{
@@ -386,6 +440,136 @@ test('update with unchanged visual values still pins new revision; Latest return
 test('Test verifies effective settings from earlier transactions after an update',t=>{
  const f=fixture(t);f.ok('Apply');f.ok('Update',{revision:'2'.repeat(40)});const x=readConfig(f.terminal);x.profiles.defaults.opacity=45;write(f.terminal,x);assert.notEqual(f.run('Test').status,0);assert.notEqual(f.run('Apply').status,0);
 });
+
+const colorizationKey='Software\\Microsoft\\Windows\\DWM|ColorizationColor';
+const dword=value=>({exists:true,value,type:'DWord'});
+test('native colorization preserves existing Windows intensity and verifies the entire DWORD',t=>{
+ const f=fixture(t),registry=path.join(f.state,'fixture/registry.json');
+ const original=dword(0xc4d0000c);write(registry,{[colorizationKey]:original});
+ f.ok('Apply',{fixtureRefreshValues:{[colorizationKey]:dword(0xc4e53935)}});
+ const op=f.journal().transactions[0].operations.find(x=>x.name==='ColorizationColor');
+ assert.deepEqual(op.before,original);assert.deepEqual(op.after,dword(0xc4e53935));
+ f.ok('Test');assert.equal(JSON.parse(f.ok('Apply').stdout).result,'unchanged');
+ f.ok('Restore');assert.deepEqual(read(registry),{[colorizationKey]:original});
+ f.ok('Apply');const values=read(registry);values[colorizationKey]=dword(0xc5e53935);write(registry,values);
+ assert.equal(f.run('Test').status,1);assert.match(f.run('Update',{revision:'2'.repeat(40)}).stderr,/Managed setting conflict/);
+});
+
+test('activation rejects refresh drift before committing success, including previous transactions',t=>{
+ for(const previous of [false,true]){
+  const f=fixture(t);if(previous)f.ok('Apply');
+  const r=f.run(previous?'Update':'Apply',{revision:'2'.repeat(40),fixtureRefreshValues:{[colorizationKey]:dword(0xc4e53935)}});
+  assert.notEqual(r.status,0);assert.match(r.stderr,/Post-refresh verification failed: .*ColorizationColor/);
+  assert.doesNotMatch(r.stdout,/"result":"applied"/);
+  assert.notEqual(f.journal().transactions.at(-1).status,'applied');
+  if(previous)assert.equal(read(path.join(f.state,'current.json')).revision,'1'.repeat(40));
+  else assert.ok(!fs.existsSync(path.join(f.state,'current.json')));
+ }
+});
+
+function legacyColorizationFixture(t){
+ const f=fixture(t),registry=path.join(f.state,'fixture/registry.json');
+ const original=dword(0xc4d0000c);write(registry,{[colorizationKey]:original});f.ok('Apply');
+ // Reproduce the retained legacy installer receipt: it wrote opaque intensity,
+ // reported success, and Windows then restored its original intensity.
+ const history=f.journal(),op=history.transactions[0].operations.find(x=>x.name==='ColorizationColor');
+ op.after=dword(0xffe53935);write(path.join(f.state,'journal.json'),history);
+ return {...f,registry,original};
+}
+test('legacy intensity recovery is explicit, exact and restores the original receipt without changing Test',t=>{
+ const f=legacyColorizationFixture(t);
+ assert.equal(f.run('Test').status,1);assert.equal(f.run('Restore').status,2);
+ f.ok('Restore',{restoreColorizationIntensity:true});
+ const op=f.journal().transactions[0].operations.find(x=>x.name==='ColorizationColor');
+ assert.deepEqual(op.before,f.original);assert.deepEqual(op.after,dword(0xffe53935));
+ assert.deepEqual(op.intensityRecovery,{observed:dword(0xc4e53935),recordedAfter:dword(0xffe53935)});
+ assert.deepEqual(read(f.registry),{[colorizationKey]:f.original});
+ f.ok('Apply',{revision:'2'.repeat(40)});f.ok('Test');f.ok('Restore');
+ assert.deepEqual(read(f.registry),{[colorizationKey]:f.original});
+});
+test('explicit legacy recovery preserves different RGB, intensity, type and missing-value conflicts',t=>{
+ for(const value of [dword(0xc4e53936),dword(0xc5e53935),{exists:true,value:0xc4e53935,type:'QWord'},null]){
+  const f=legacyColorizationFixture(t),values=read(f.registry);
+  if(value)values[colorizationKey]=value;else delete values[colorizationKey];write(f.registry,values);
+  const r=f.run('Restore',{restoreColorizationIntensity:true});assert.equal(r.status,2);
+  assert.deepEqual(read(f.registry)[colorizationKey],value??undefined);
+  assert.equal(f.journal().transactions[0].operations.find(x=>x.name==='ColorizationColor').intensityRecovery,undefined);
+ }
+ const f=fixture(t);assert.match(f.run('Apply',{restoreColorizationIntensity:true}).stderr,/only available with Restore/);
+});
+
+function nativeColorizationFixture(t){
+ const f=fixture(t),registry=path.join(f.state,'fixture/registry.json'),original=dword(0xc4d0000c);
+ write(registry,{[colorizationKey]:original});return {...f,registry,original};
+}
+test('dependent colorization planning refuses an intensity edit between its two reads without writes',t=>{
+ const f=nativeColorizationFixture(t),newer=dword(0xc5d0000c);
+ const r=f.run('Apply',{fixtureBeforePlanningValues:{[colorizationKey]:newer}});
+ assert.notEqual(r.status,0);assert.match(r.stderr,/Concurrent edit during dependent colorization planning/);
+ assert.deepEqual(read(f.registry),{[colorizationKey]:newer});assert.equal(fs.readFileSync(f.terminal,'utf8'),f.before);
+ assert.ok(!fs.existsSync(path.join(f.state,'journal.json')));
+});
+test('normal, Latest and explicit legacy restoration retain exact ownership after refresh drift',t=>{
+ for(const route of ['normal','latest','legacy']){
+  const f=route==='legacy'?legacyColorizationFixture(t):nativeColorizationFixture(t);
+  if(route!=='legacy')f.ok('Apply');
+  const flags={latest:route==='latest',restoreColorizationIntensity:route==='legacy'};
+  const r=f.run('Restore',{...flags,fixtureRefreshSteps:[{values:{[colorizationKey]:dword(0xc4d0000d)}}]});
+  assert.equal(r.status,2);assert.equal(JSON.parse(r.stdout).result,'conflicts');
+  const tx=f.journal().transactions[0],op=tx.operations.find(x=>x.name==='ColorizationColor');
+  assert.equal(tx.status,'restore-conflict');assert.equal(op.applied,true);assert.equal(op.restorePending,true);
+  assert.deepEqual(op.before,f.original);assert.deepEqual(op.after,dword(route==='legacy'?0xffe53935:0xc4e53935));
+  assert.ok(fs.existsSync(path.join(f.state,'current.json')));
+  assert.equal(f.run('Restore',flags).status,2);assert.deepEqual(read(f.registry)[colorizationKey],dword(0xc4d0000d));
+  const values=read(f.registry);values[colorizationKey]=f.original;write(f.registry,values);f.ok('Restore',flags);
+  assert.equal(f.journal().transactions[0].status,'restored');assert.ok(!fs.existsSync(path.join(f.state,'current.json')));
+ }
+});
+test('refresh drift in a newer restored document stops recovery before the older baseline',t=>{
+ const f=nativeColorizationFixture(t);f.ok('Apply');
+ const updated=readConfig(f.terminal);updated.profiles.list.push({guid:'third',commandline:'keep-third'});write(f.terminal,updated);
+ f.ok('Update',{revision:'2'.repeat(40)});
+ const drift=structuredClone(updated);drift.profiles.list[2].colorScheme='later-owner-choice';
+ const r=f.run('Restore',{fixtureRefreshSteps:[{files:[{path:'terminal/settings.json',value:JSON.stringify(drift)}]}]});
+ assert.equal(r.status,2);
+ const history=f.journal();assert.equal(history.transactions[0].status,'applied');assert.equal(history.transactions[1].status,'restore-conflict');
+ assert.equal(read(path.join(f.state,'current.json')).revision,'2'.repeat(40));
+ assert.ok(history.transactions[1].operations.filter(x=>x.kind==='json').every(x=>x.applied&&x.restorePending));
+ assert.equal(history.transactions[1].documents[0].restorePending,true);
+ assert.equal(f.run('Restore',{latest:true}).status,2);assert.equal(readConfig(f.terminal).profiles.list[2].colorScheme,'later-owner-choice');
+ const repaired=readConfig(f.terminal);delete repaired.profiles.list[2].colorScheme;write(f.terminal,repaired);
+ f.ok('Restore',{latest:true});assert.equal(read(path.join(f.state,'current.json')).revision,'1'.repeat(40));f.ok('Test');
+ f.ok('Restore');assert.equal(readConfig(f.terminal).profiles.list[2].commandline,'keep-third');
+});
+test('a checked revision-only restore advances to the older pending recovery without losing its pointer',t=>{
+ const f=nativeColorizationFixture(t);f.ok('Apply');f.ok('Update',{revision:'2'.repeat(40)});
+ const r=f.run('Restore',{fixtureRefreshSteps:[{values:{[colorizationKey]:dword(0xc4d0000d)}}]});assert.equal(r.status,2);
+ const tx=f.journal().transactions;assert.equal(tx[1].status,'restored');assert.equal(tx[0].status,'restore-conflict');
+ assert.equal(read(path.join(f.state,'current.json')).revision,'1'.repeat(40));
+ const values=read(f.registry);values[colorizationKey]=f.original;write(f.registry,values);f.ok('Restore');
+ assert.ok(f.journal().transactions.every(x=>x.status==='restored'));
+ // Model interruption between the final durable receipt and pointer update.
+ write(path.join(f.state,'current.json'),{revision:'1'.repeat(40),mode:'Native'});
+ f.ok('Restore');assert.ok(!fs.existsSync(path.join(f.state,'current.json')));
+});
+test('restoration refresh errors retain durable expectations and resume exact JSON bytes',t=>{
+ const f=nativeColorizationFixture(t);f.ok('Apply');
+ const r=f.run('Restore',{fixtureRefreshSteps:[{error:true}]});assert.equal(r.status,2);assert.match(r.stdout,/Injected personalization refresh failure/);
+ const tx=f.journal().transactions[0];assert.equal(tx.status,'restore-conflict');assert.ok(tx.operations.every(x=>x.applied&&x.restorePending));
+ assert.ok(fs.existsSync(path.join(f.state,'current.json')));f.ok('Restore');
+ assert.equal(fs.readFileSync(f.terminal,'utf8'),f.before);assert.deepEqual(read(f.registry),{[colorizationKey]:f.original});
+});
+test('exception rollback shares the post-refresh verification and retained recovery expectations',t=>{
+ for(const step of [{values:{[colorizationKey]:dword(0xc4d0000d)}},{error:true}]){
+  const f=nativeColorizationFixture(t);
+  const r=f.run('Apply',{failAfter:50,fixtureRefreshSteps:[step]});assert.notEqual(r.status,0);assert.match(r.stderr,/rollback needs conflict recovery/);
+  const tx=f.journal().transactions[0],op=tx.operations.find(x=>x.name==='ColorizationColor');
+  assert.equal(tx.status,'restore-conflict');assert.equal(op.applied,true);assert.equal(op.restorePending,true);assert.deepEqual(op.before,f.original);
+  assert.ok(!fs.existsSync(path.join(f.state,'current.json')));
+  if(step.values){assert.equal(f.run('Restore').status,2);const values=read(f.registry);values[colorizationKey]=f.original;write(f.registry,values);}
+  f.ok('Restore');assert.equal(f.journal().transactions[0].status,'restored');assert.equal(fs.readFileSync(f.terminal,'utf8'),f.before);
+ }
+});
 test('later unrelated edits survive restore, and profile reordering follows GUID rather than index',t=>{
  const f=fixture(t);f.ok('Apply');const x=readConfig(f.terminal);x.profiles.list.reverse();x.newUserPreference=true;write(f.terminal,x);f.ok('Test');f.ok('Restore');const got=readConfig(f.terminal);assert.equal(got.newUserPreference,true);assert.equal(got.profiles.list[0].guid,'two');assert.equal(got.profiles.list[0].commandline,'keep-two');assert.equal(got.profiles.list[1].colorScheme,'j3w1zsh');assert.equal(got.profiles.list[1].font.size,17);
 });
@@ -429,7 +613,13 @@ function windhawkFixture(t,scope='all'){
  // product adapter. Keep the complete stack for admission/integration cases.
  // Windows process startup across eight adapters can exhaust the unchanged
  // 30-second child deadline before a journal-only assertion is reached.
- assert.ok(['all','protocol'].includes(scope));
+ assert.ok(['all','protocol','candidate'].includes(scope));
+ // Retain every earlier component/recovery test state. The current candidate's
+ // narrower activation policy is exercised separately with scope=candidate.
+ if(scope!=='candidate'){
+  const settingsFile=path.join(copy,'dist/windows-settings.json'),settings=read(settingsFile);
+  settings.adapterExclusions=[];write(settingsFile,settings);
+ }
  if(scope==='protocol'){
   const settingsFile=path.join(copy,'dist/windows-settings.json'),settings=read(settingsFile);
   settings.bundledMods=settings.bundledMods.filter(mod=>mod.id==='j3w1-explorer-native');
@@ -439,6 +629,50 @@ function windhawkFixture(t,scope='all'){
  const args={source:copy,mode:'Full',fixtureWindhawk:path.join(repoRoot,'tests/fixtures/windows-windhawk.cjs')};
  return {...f,args,db:()=>read(path.join(f.state,'fixture-windhawk.json'))};
 }
+test('9974 candidate excludes unreviewed optional adapters without losing their artifacts',t=>{
+ const f=windhawkFixture(t,'candidate'),settings=read(path.join(f.args.source,'dist/windows-settings.json'));
+ const environment=read(path.join(source,'host.json')).compatibility[0];
+ const args={...f.args,environment};
+ assert.deepEqual(settings.adapterExclusions,['j3w1-notepad-native','j3w1-notepad-chrome','j3w1-powertoys-preview','j3w1-powertoys-markdown']);
+ const plan=JSON.parse(f.ok('Plan',args).stdout);assert.equal(plan.compatible,true);
+ assert.deepEqual(plan.excludedAdapters,settings.adapterExclusions);
+ for(const changed of [{...environment,ubr:9818},{...environment,ubr:9975},{...environment,startLayout:'unknown'},{...environment,explorerFixedVersion:'10.0.26100.9818'}]){
+  assert.notEqual(f.run('Apply',{...args,environment:changed}).status,0);
+  assert.ok(!fs.existsSync(path.join(f.state,'journal.json')));
+ }
+ f.ok('Apply',args);f.ok('Test',args);
+ const installed=f.journal().transactions[0].mods.map(mod=>mod.sourceId);
+ assert.deepEqual(installed,['fixture-styler',...settings.bundledMods.filter(mod=>!settings.adapterExclusions.includes(mod.id)).map(mod=>mod.id)]);
+ for(const id of settings.adapterExclusions){
+  assert.ok(settings.bundledMods.some(mod=>mod.id===id));assert.ok(fs.existsSync(path.join(f.args.source,'dist',id+'.wh.cpp')));
+  assert.equal(f.db()['local@'+id],undefined);
+ }
+ f.ok('Restore',args);
+});
+test('excluded managed adapters require recovery without changing live owned state',t=>{
+ const f=windhawkFixture(t);f.ok('Apply',f.args);
+ const settingsFile=path.join(f.args.source,'dist/windows-settings.json'),settings=read(settingsFile);
+ settings.adapterExclusions=['j3w1-notepad-native'];write(settingsFile,settings);
+ const before=fs.readFileSync(path.join(f.state,'fixture-windhawk.json'));
+ const refused=f.run('Update',{...f.args,revision:'2'.repeat(40)});
+ assert.notEqual(refused.status,0);assert.match(refused.stderr,/Excluded managed adapter remains owned/);
+ assert.deepEqual(fs.readFileSync(path.join(f.state,'fixture-windhawk.json')),before);
+ assert.equal(f.journal().transactions.length,1);
+ f.ok('Restore',f.args);
+});
+test('excluded unowned adapters and invalid exclusion identities refuse before staging',t=>{
+ const f=windhawkFixture(t,'candidate');
+ const file=path.join(f.state,'fixture-windhawk.json');
+ // The protocol fixture serializes its database on reads; seed that same
+ // representation so this still checks byte-exact preservation on refusal.
+ write(file,JSON.stringify({'local@j3w1-notepad-native':{id:'local@j3w1-notepad-native',metadata:{version:'owner'},config:{disabled:false},settings:{owner:'keep'}}}));
+ const before=fs.readFileSync(file),failed=f.run('Apply',f.args);
+ assert.notEqual(failed.status,0);assert.match(failed.stderr,/Excluded adapter is already installed/);
+ assert.deepEqual(fs.readFileSync(file),before);assert.ok(!fs.existsSync(path.join(f.state,'journal.json')));
+ const settingsFile=path.join(f.args.source,'dist/windows-settings.json'),settings=read(settingsFile);
+ settings.adapterExclusions=['not-a-reviewed-adapter'];write(settingsFile,settings);
+ assert.match(f.run('Apply',f.args).stderr,/Invalid source-owned adapter exclusions/);
+});
 test('Windhawk uses local installed IDs, verifies staged version and nested enabled state, and removes owned mods',t=>{
  const f=windhawkFixture(t);f.ok('Apply',f.args);f.ok('Test',f.args);
  assert.equal(f.journal().transactions[0].mods[0].id,'local@fixture-styler');
@@ -531,7 +765,143 @@ test('Windhawk backup restores original disabled mod settings; incompatible guar
 test('recoverable lock-screen image is journaled and restored; later image edits are conflicts',t=>{
  const f=fixture(t),file=path.join(f.state,'fixture/lockscreen.json'),before={exists:true,value:Buffer.from('original image').toString('base64'),extension:'.jpg'};
  write(file,before);f.ok('Apply');assert.equal(read(file).extension,'.bmp');f.ok('Test');f.ok('Restore');assert.deepEqual(read(file),before);
- f.ok('Apply');const managed=read(file);write(file,{...before,value:Buffer.from('later image').toString('base64')});assert.equal(f.run('Restore').status,2);write(file,managed);f.ok('Restore');assert.deepEqual(read(file),before);
+ f.ok('Apply');const managed=read(file),later={...before,value:Buffer.from('later image').toString('base64')};write(file,later);
+ assert.equal(f.run('Test').status,1);
+ const refused=f.run('Apply');assert.notEqual(refused.status,0);assert.match(refused.stderr,/Managed setting conflict: Windows lock-screen image/);
+ assert.deepEqual(read(file),later);
+ assert.equal(f.run('Restore').status,2);write(file,managed);f.ok('Restore');assert.deepEqual(read(file),before);
+});
+
+// All image values and cache identities in these cases are synthetic fixtures.
+const lockValueSha=value=>sha(Buffer.from(JSON.stringify({exists:value.exists,extension:value.extension,value:value.value})));
+function lockChoiceFixture(t,full=false){
+ const f=full?windhawkFixture(t,'protocol'):fixture(t),file=path.join(f.state,'fixture/lockscreen.json'),journalPath=path.join(f.state,'journal.json');
+ const original={exists:true,value:Buffer.from('synthetic original').toString('base64'),extension:'.jpg'},chosen={...original,value:Buffer.from('synthetic owner choice').toString('base64')};
+ write(file,original);f.ok('Apply',full?f.args:{});const originalHistory=f.journal();write(file,chosen);
+ const prepare=(revision='2'.repeat(40))=>{
+  const release=path.join(f.state,'releases',revision);fs.mkdirSync(path.join(release,'dist'),{recursive:true});
+  const template=full?f.args.source:source;if(full)fs.cpSync(template,release,{recursive:true});
+  for(const name of ['install.ps1','dependencies.json','dist/runtime.cjs'])fs.copyFileSync(path.join(template,name),path.join(release,name));
+  fs.copyFileSync(path.join(template,'dist/install-manifest.json'),path.join(release,'install-manifest.json'));
+  if(full){const manifest=read(path.join(release,'install-manifest.json'));for(const entry of manifest.files)entry.sha256=sha(fs.readFileSync(path.join(release,entry.path)));write(path.join(release,'install-manifest.json'),manifest);}
+  const manifestSha256=sha(fs.readFileSync(path.join(release,'install-manifest.json')));write(path.join(release,'verified.json'),{revision,manifestSha256});
+  const quote=p=>p.replaceAll("'","''"),prefix=`& '${quote(process.execPath)}' -NoProfile -File '${quote(path.join(release,'install.ps1'))}' -StateRoot '${quote(f.state)}' -Action `;
+  fs.writeFileSync(path.join(f.state,'recovery-commands.txt'),['Test','Restore -Latest','Restore','Uninstall'].map(a=>prefix+a).join('\n')+'\n');
+  return {...(full?{...f.args,source:release}:{}),revision,explicitSource:true,pwsh:process.execPath,guardPwsh:process.execPath,cacheManifestSha256:manifestSha256};
+ };
+ const consent=()=>({keepLockScreenValueSha256:lockValueSha(chosen),expectedJournalSha256:sha(fs.readFileSync(journalPath))});
+ return {...f,file,journalPath,original,chosen,originalHistory,prepare,consent};
+}
+test('lock-screen acceptance binds exact current value and journal without writing the chosen picture',t=>{
+ const f=lockChoiceFixture(t),args={...f.prepare(),...f.consent()},beforeImage=fs.readFileSync(f.file),beforeJournal=fs.readFileSync(f.journalPath);
+ const discovered=JSON.parse(f.ok('Plan').stdout);assert.equal(discovered.lockScreenPreservation.valueSha256,args.keepLockScreenValueSha256);assert.equal(discovered.lockScreenPreservation.requested,false);
+ const plan=JSON.parse(f.ok('Plan',args).stdout);assert.equal(plan.lockScreenPreservation.newAcceptance,true);assert.deepEqual(fs.readFileSync(f.journalPath),beforeJournal);
+ const accepted=f.ok('Update',args);assert.ok(!accepted.stdout.includes(f.chosen.value));assert.deepEqual(fs.readFileSync(f.file),beforeImage);
+ const history=f.journal();assert.equal(history.schemaVersion,2);assert.deepEqual(history.transactions[0],f.originalHistory.transactions[0]);assert.equal(history.lockscreenAcceptances[0].status,'committed');f.ok('Test');
+ f.ok('Apply',{...args,...f.consent()});assert.equal(f.journal().transactions.length,2);assert.equal(f.journal().lockscreenAcceptances.length,1);
+});
+for(const bad of ['value','journal','scope','unrelated'])test(`lock-screen acceptance refuses ${bad} consent or drift before changing ownership`,t=>{
+ const f=lockChoiceFixture(t),args={...f.prepare(),...f.consent()};
+ if(bad==='value')args.keepLockScreenValueSha256='0'.repeat(64);
+ if(bad==='journal')fs.appendFileSync(f.journalPath,' ');
+ if(bad==='scope')args.explicitSource=false;
+ if(bad==='unrelated'){const config=readConfig(f.terminal);config.profiles.defaults.opacity=45;write(f.terminal,config);}
+ const journal=fs.readFileSync(f.journalPath),image=fs.readFileSync(f.file),r=f.run('Update',args);assert.notEqual(r.status,0);assert.deepEqual(fs.readFileSync(f.journalPath),journal);assert.deepEqual(fs.readFileSync(f.file),image);assert.equal(f.journal().schemaVersion,1);
+});
+test('lock-screen acceptance requires verified capable cache and already-saved recovery commands',t=>{
+ for(const fault of ['cache','commands']){
+  const f=lockChoiceFixture(t),args={...f.prepare(),...f.consent()},journal=fs.readFileSync(f.journalPath),image=fs.readFileSync(f.file);
+  if(fault==='cache')fs.appendFileSync(path.join(f.state,'releases',args.revision,'dist/runtime.cjs'),'\n// changed');else fs.writeFileSync(path.join(f.state,'recovery-commands.txt'),'wrong entry');
+  assert.notEqual(f.run('Update',args).status,0);assert.deepEqual(fs.readFileSync(f.journalPath),journal);assert.deepEqual(fs.readFileSync(f.file),image);
+ }
+});
+test('committed lock-screen choice survives revision restore and uninstall but later unapproved pictures conflict',t=>{
+ const f=lockChoiceFixture(t),args={...f.prepare(),...f.consent()};f.ok('Update',args);
+ const next=f.prepare('3'.repeat(40));f.ok('Update',next);f.ok('Restore',{latest:true});assert.equal(f.journal().lifecycleRevision,next.revision);f.ok('Test');assert.deepEqual(read(f.file),f.chosen);
+ const unexpected={...f.chosen,value:Buffer.from('unapproved synthetic later picture').toString('base64')};write(f.file,unexpected);assert.equal(f.run('Test').status,1);assert.notEqual(f.run('Apply').status,0);assert.notEqual(f.run('Update',next).status,0);assert.equal(f.run('Restore').status,2);assert.deepEqual(read(f.file),unexpected);
+ write(f.file,f.chosen);f.ok('Uninstall');assert.deepEqual(read(f.file),f.chosen);assert.ok(f.journal().transactions.every(x=>x.status==='restored'));assert.deepEqual(f.journal().transactions[0].operations.map(x=>[x.before,x.after]),f.originalHistory.transactions[0].operations.map(x=>[x.before,x.after]));
+});
+test('pending lock-screen acceptance rolls back without becoming ordinary Test authority',t=>{
+ const f=lockChoiceFixture(t),config=readConfig(f.terminal);config.profiles.list.push({guid:'third',commandline:'keep-third'});write(f.terminal,config);
+ const args={...f.prepare(),...f.consent()},r=f.run('Update',{...args,failAfter:1});assert.notEqual(r.status,0);assert.deepEqual(read(f.file),f.chosen);
+ const history=f.journal();assert.equal(history.schemaVersion,2);assert.equal(history.lockscreenAcceptances[0].status,'rolledback');assert.equal(history.transactions.at(-1).status,'restored');assert.equal(f.run('Test').status,1);
+ assert.deepEqual(history.transactions[0],f.originalHistory.transactions[0]);assert.equal(readConfig(f.terminal).profiles.list[2].colorScheme,undefined);
+});
+test('lock-screen acceptance cannot survive a failed final installation pointer write',t=>{
+ const f=lockChoiceFixture(t),args={...f.prepare(),...f.consent()},pointer=path.join(f.state,'current.json');fs.unlinkSync(pointer);fs.mkdirSync(pointer);
+ const r=f.run('Update',args);assert.notEqual(r.status,0);assert.deepEqual(read(f.file),f.chosen);assert.equal(f.journal().lockscreenAcceptances[0].status,'rolledback');assert.equal(f.journal().transactions.at(-1).status,'restored');assert.equal(f.run('Test').status,1);
+});
+test('lock-screen acceptance refuses ambiguous active ownership without changing history',t=>{
+ const f=lockChoiceFixture(t),args=f.prepare(),history=f.journal(),first=history.transactions[0];history.transactions.push({...first,id:'synthetic-duplicate-owner',operations:first.operations.filter(op=>op.kind==='lockscreen')});write(f.journalPath,history);
+ const before=fs.readFileSync(f.journalPath),r=f.run('Update',{...args,...f.consent()});assert.notEqual(r.status,0);assert.match(r.stderr,/Ambiguous managed lock screen/);assert.deepEqual(fs.readFileSync(f.journalPath),before);assert.deepEqual(read(f.file),f.chosen);
+});
+test('image change during activation rejects pending lock-screen acceptance without overwriting it',t=>{
+ const f=lockChoiceFixture(t),args={...f.prepare(),...f.consent()},later={...f.chosen,value:Buffer.from('synthetic concurrent picture').toString('base64')};
+ const r=f.run('Update',{...args,fixtureRefreshSteps:[{files:[{path:'lockscreen.json',value:JSON.stringify(later)}]}]});assert.notEqual(r.status,0);assert.deepEqual(read(f.file),later);assert.equal(f.journal().lockscreenAcceptances[0].status,'rolledback');assert.equal(f.run('Test').status,1);
+});
+test('pending lock-screen acceptance is not authority for standalone Test or interrupted recovery',t=>{
+ const f=lockChoiceFixture(t),args={...f.prepare(),...f.consent()};f.ok('Update',args);
+ const history=f.journal();history.transactions.at(-1).status='applying';history.lockscreenAcceptances[0].status='pending';write(f.journalPath,history);
+ assert.equal(f.run('Test').status,1);assert.deepEqual(read(f.file),f.chosen);f.ok('Restore',{latest:true});assert.equal(f.journal().lockscreenAcceptances[0].status,'rolledback');assert.deepEqual(read(f.file),f.chosen);assert.equal(f.run('Test').status,1);
+});
+test('lock-screen acceptance refuses an image without existing theme ownership',t=>{
+ const f=fixture(t);f.ok('Apply');const file=path.join(f.state,'fixture/lockscreen.json'),image={exists:true,extension:'.jpg',value:Buffer.from('synthetic unowned').toString('base64')};write(file,image);
+ const journal=path.join(f.state,'journal.json'),before=fs.readFileSync(journal),r=f.run('Update',{revision:'2'.repeat(40),explicitSource:true,keepLockScreenValueSha256:lockValueSha(image),expectedJournalSha256:sha(before)});
+ assert.notEqual(r.status,0);assert.match(r.stderr,/Lock-screen consent binding differs/);assert.deepEqual(fs.readFileSync(journal),before);assert.deepEqual(read(file),image);
+});
+for(const invalid of ['unrecoverable','oversized','base64','extension'])test(`lock-screen acceptance refuses ${invalid} current image data`,t=>{
+ const f=lockChoiceFixture(t),args={...f.prepare(),...f.consent()};let image={...f.chosen};
+ if(invalid==='unrecoverable')image={exists:false};
+ if(invalid==='oversized')image.value=Buffer.alloc(20*1024*1024+1,65).toString('base64');
+ if(invalid==='base64')image.value='YWJj=';
+ if(invalid==='extension')image.extension='.gif';
+ write(f.file,image);args.keepLockScreenValueSha256=lockValueSha(image);const before=fs.readFileSync(f.journalPath),r=f.run('Update',args);
+ assert.notEqual(r.status,0);assert.match(r.stderr,/Lock-screen consent binding differs/);assert.deepEqual(fs.readFileSync(f.journalPath),before);assert.deepEqual(read(f.file),image);
+});
+
+test('ordinary stacked lock-screen ownership follows the latest value and still rejects drift',t=>{
+ const f=lockChoiceFixture(t),history=f.journal(),first=history.transactions[0],prior=first.operations.find(op=>op.kind==='lockscreen'),current=prior.after;prior.after={exists:true,extension:'.bmp',value:Buffer.from('synthetic earlier theme wallpaper').toString('base64')};const latest={...prior,after:current,before:prior.after};
+ history.transactions.push({id:'synthetic-later-owner',revision:'1'.repeat(40),mode:'Native',status:'applied',operations:[latest],documents:[],mods:[]});write(f.journalPath,history);write(f.file,current);
+ f.ok('Plan');assert.equal(JSON.parse(f.ok('Apply').stdout).result,'unchanged');f.ok('Update',{revision:'2'.repeat(40)});
+ write(f.file,{...f.chosen,value:Buffer.from('synthetic subsequent drift').toString('base64')});const before=fs.readFileSync(f.journalPath),image=fs.readFileSync(f.file);
+ assert.equal(f.run('Test').status,1);assert.match(f.run('Apply').stderr,/Managed setting conflict: Windows lock-screen image/);assert.match(f.run('Update',{revision:'3'.repeat(40)}).stderr,/Managed setting conflict: Windows lock-screen image/);assert.deepEqual(fs.readFileSync(f.journalPath),before);assert.deepEqual(fs.readFileSync(f.file),image);
+});
+
+test('lock-screen schema refuses unknown versions and schema1 capable fields before ownership changes',t=>{
+ const f=lockChoiceFixture(t),base=fs.readFileSync(f.journalPath),image=fs.readFileSync(f.file);
+ const variants=[...[0,3].map(schemaVersion=>({...JSON.parse(base),schemaVersion})),...['lockscreenAcceptances','lifecycleRevision','lifecycleRuntimeSha256','lifecycleManifestSha256'].flatMap(key=>[null,[]].map(value=>({...JSON.parse(base),[key]:value})))];
+ for(const history of variants){write(f.journalPath,history);const before=fs.readFileSync(f.journalPath);for(const action of ['Test','Apply']){const r=f.run(action);assert.notEqual(r.status,0);assert.match(r.stderr,/Unsupported recovery journal|Schema1 journal carries/);assert.deepEqual(fs.readFileSync(f.journalPath),before);assert.deepEqual(fs.readFileSync(f.file),image);}}
+});
+
+test('lock-screen schema2 refuses missing or malformed receipts and capable digests',t=>{
+ const f=lockChoiceFixture(t),args=f.prepare();f.ok('Update',{...args,...f.consent()});const base=fs.readFileSync(f.journalPath),image=fs.readFileSync(f.file);
+ for(const fault of ['missing-receipts','object-receipts','missing-runtime','bad-manifest','bad-receipt']){
+  const history=JSON.parse(base);if(fault==='missing-receipts')delete history.lockscreenAcceptances;if(fault==='object-receipts')history.lockscreenAcceptances={};if(fault==='missing-runtime')delete history.lifecycleRuntimeSha256;if(fault==='bad-manifest')history.lifecycleManifestSha256='invalid';if(fault==='bad-receipt')history.lockscreenAcceptances[0].valueSha256='0'.repeat(64);
+  write(f.journalPath,history);const before=fs.readFileSync(f.journalPath),r=f.run('Test',args);assert.notEqual(r.status,0);assert.match(r.stderr,/Invalid capable recovery binding|Invalid lock-screen acceptance/);assert.deepEqual(fs.readFileSync(f.journalPath),before);assert.deepEqual(fs.readFileSync(f.file),image);
+ }
+});
+
+test('lock-screen consent Plan and Update never print synthetic image bytes on either stream',t=>{
+ const f=lockChoiceFixture(t),args={...f.prepare(),...f.consent()};
+ for(const action of ['Plan','Update']){const r=f.ok(action,args);assert.ok(!r.stdout.includes(f.chosen.value));assert.ok(!r.stderr.includes(f.chosen.value));}
+});
+
+test('Full lock-screen recovery refuses an older guard boundary before any mutation',t=>{
+ const f=lockChoiceFixture(t,true),args=f.prepare();f.ok('Update',{...args,...f.consent()});f.ok('Test',args);
+ // A same-revision profile update can be undone without crossing the guard boundary.
+ const config=readConfig(f.terminal);config.profiles.list.push({guid:'same-revision',commandline:'keep-profile'});write(f.terminal,config);f.ok('Update',args);f.ok('Restore',{...args,latest:true});f.ok('Test',args);
+ const shortcut=path.join(f.state,'fixture/startup/j3w1-theme-guard.lnk'),db=path.join(f.state,'fixture-windhawk.json'),activity=path.join(f.state,'fixture-windhawk-activity.json');
+ const files=[f.journalPath,shortcut,f.file,db,activity],before=files.map(p=>fs.readFileSync(p)),r=f.run('Restore',{...args,latest:true});assert.notEqual(r.status,0);assert.match(r.stderr,/Restore-Latest would leave an older Full guard/);files.forEach((p,i)=>assert.deepEqual(fs.readFileSync(p),before[i]));
+ f.ok('Uninstall',args);assert.deepEqual(read(f.file),f.chosen);assert.ok(f.journal().transactions.every(tx=>tx.status==='restored'));assert.ok(!fs.existsSync(shortcut));assert.deepEqual(f.journal().transactions[0].operations.map(op=>[op.before,op.after]),f.originalHistory.transactions[0].operations.map(op=>[op.before,op.after]));
+});
+
+test('failed Full lock-screen acceptance remains unaccepted and mismatch Guard only disables',t=>{
+ const f=lockChoiceFixture(t,true),args=f.prepare(),r=f.run('Update',{...args,...f.consent(),failAfter:1});assert.notEqual(r.status,0);assert.equal(f.journal().lockscreenAcceptances[0].status,'rolledback');assert.equal(f.journal().transactions.at(-1).status,'restored');assert.deepEqual(read(f.file),f.chosen);
+ const shortcut=path.join(f.state,'fixture/startup/j3w1-theme-guard.lnk'),legacyLink=JSON.parse(Buffer.from(read(f.journalPath).transactions[0].operations.find(op=>op.path===shortcut).after.value,'base64').toString());assert.ok(legacyLink.arguments.includes(f.args.source));
+ const checked=f.run('Test',args);assert.equal(checked.status,1);assert.match(checked.stdout,/Full appearance differs from capable lifecycle/);
+ const activity=path.join(f.state,'fixture-windhawk-activity.json'),prior=read(activity).mutations.length,journal=fs.readFileSync(f.journalPath),link=fs.readFileSync(shortcut);
+ const guard=f.run('Guard',{...args,fixtureEngineStopped:true,fixtureEngineStartupFails:true});assert.equal(guard.status,2);assert.equal(JSON.parse(guard.stdout).shell,'disabled-incompatible');assert.match(guard.stdout,/Full appearance differs from capable lifecycle/);assert.doesNotMatch(guard.stderr,/Theme engine failed to start/);assert.ok(read(activity).mutations.slice(prior).length>0);assert.ok(read(activity).mutations.slice(prior).every(call=>call[0]==='mod'&&call[1]==='disable'));assert.ok(Object.entries(f.db()).filter(([id])=>id.startsWith('local@')).every(([,mod])=>mod.config.disabled));assert.deepEqual(fs.readFileSync(f.journalPath),journal);assert.deepEqual(fs.readFileSync(shortcut),link);assert.deepEqual(read(f.file),f.chosen);
+ f.ok('Update',{...args,...f.consent()});f.ok('Test',args);f.ok('Uninstall',args);assert.deepEqual(read(f.file),f.chosen);
 });
 
 test('compact cursors use a black body and canonical red edge with visible bounded hotspots',async()=>{
@@ -666,9 +1036,9 @@ test('standalone toast variants use black surfaces with one outer frame',async()
 test('bundled native source is generated, pinned and rejected on tampering',t=>{
  const f=windhawkFixture(t),file=path.join(f.args.source,'dist/j3w1-explorer-native.wh.cpp');
  const text=fs.readFileSync(file,'utf8');
- assert.match(text,/@include explorer.exe/);assert.doesNotMatch(text,/@[A-Z_]+@|native-probe|SetSysColors|GENERIC_WRITE|FILE_APPEND_DATA|CREATE_ALWAYS|CREATE_NEW|WriteFile|DeleteFile/);
- assert.equal((text.match(/CreateFileW\(/g)||[]).length,1,'Only the module digest reader opens files');
- assert.match(text,/CreateFileW\(path,GENERIC_READ,FILE_SHARE_READ,nullptr,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,nullptr\)/);
+ assert.match(text,/@include explorer.exe/);const outside=explorerFailureRecordContract(text);
+ assert.equal((outside.match(/CreateFileW\(/g)||[]).length,1,'Only the module digest reader opens files outside the reviewed writer');
+ assert.match(outside,/CreateFileW\(path,GENERIC_READ,FILE_SHARE_READ,nullptr,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,nullptr\)/);
  assert.match(text,/GetModuleFileNameW\(module,path/);
  assert.match(text,/MAKELONG\(9818,26100\)/);
  fs.appendFileSync(file,'\n// changed');
