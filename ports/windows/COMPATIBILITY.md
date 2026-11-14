@@ -174,11 +174,19 @@ before/after and acceptance history. Later image drift is still a conflict.
 
 Schema2 keeps a verified capable `lifecycleRevision` separate from appearance
 history, including after supported Native Restore-Latest. Full Restore-Latest
-refuses before effects across an older guard boundary. A Full appearance/capable
-revision mismatch after interruption or rollback stays unstyled/unaccepted:
-Guard disables mods without enabling them; Test fails. Use matching Update or
-complete capable recovery. Explicit conflicting recovery revisions refuse.
-Missing or changed capable cache fails
+refuses before effects if the remaining Full appearance revision differs from
+`lifecycleRevision`, even when both revisions are capable; it works only within
+the same revision. A completed transaction can use a supported matching Update
+or complete capable recovery. An incomplete Full transaction also blocks Update:
+use complete capable Restore/Uninstall, preserving the chosen image while
+removing the theme.
+
+After a failed or interrupted acceptance, a retained legacy sign-in guard
+rejects schema2 before running: it neither disables mods nor starts the engine.
+An engine already running in the current session can continue. A capable Guard
+disables mods on a Full appearance/capable revision mismatch, and Test fails;
+this is not successful installation or restored-styling evidence. Explicit
+conflicting recovery revisions refuse. Missing or changed capable cache fails
 offline; use saved recovery commands. Legacy schema1 code rejects this journal.
 An explicit old installer may perform its normal lock/tool/cache preparation
 before its runtime refuses; it is not a zero-filesystem-write operation. It

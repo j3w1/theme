@@ -143,11 +143,18 @@ Use saved recovery commands even after Restore-Latest selects older appearance
 history; never edit old cached releases. A conflicting explicit recovery revision
 is refused; omit it to select the verified capable cache.
 
-Full Restore-Latest refuses before mutation if it would leave an older Full
-guard across that capable boundary. Use a matching Update or complete capable
-Restore/Uninstall. Failed or interrupted acceptance can retain a legacy guard;
-this state is unstyled/unaccepted. Guard disables it and Test fails a Full
-appearance/capable revision mismatch until supported recovery or Update.
+With schema2, Full Restore-Latest refuses before mutation whenever the remaining
+Full appearance revision would differ from the capable lifecycle revision,
+including a different capable revision. It works only within the same revision.
+A completed transaction can use a supported matching Update or complete capable
+Restore/Uninstall. An incomplete Full transaction also blocks Update: use complete
+capable Restore/Uninstall, which removes the theme and preserves the chosen image.
+
+Failed or interrupted acceptance can retain a legacy sign-in guard. That guard
+rejects schema2 before running, without disabling mods or starting the engine;
+an engine already running in the current session can continue. A capable Guard
+disables mods on an appearance/capable revision mismatch, and Test fails. None of
+these outcomes is a successful installation or restored styling pass.
 
 ## What changes
 
