@@ -1,5 +1,5 @@
-import { n as registerElement } from "../chunks/element-DcrNU9Wh.js";
 import { J3w1TextField } from "../components/text-field.js";
+import { n as registerElement } from "../chunks/element-DcrNU9Wh.js";
 // .cache/ui-build/entries/register/text-field.js
 var element = registerElement("j3w1-text-field", J3w1TextField);
 export { element };

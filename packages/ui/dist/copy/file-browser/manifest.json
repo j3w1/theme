@@ -5,10 +5,10 @@
   "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/file-browser.md",
   "dependencies": [
     "register/file-browser.js",
-    "chunks/element-DcrNU9Wh.js",
-    "chunks/choice-DqwWT5pJ.js",
     "register/tree.js",
     "components/tree.js",
+    "chunks/element-DcrNU9Wh.js",
+    "chunks/choice-DqwWT5pJ.js",
     "chunks/advanced-BrFnVc0y.js",
     "chunks/markup-AopKpwOF.js",
     "components/file-browser.js",
@@ -16,11 +16,11 @@
     "chunks/navigation-CknoksQ5.js"
   ],
   "files": {
-    "runtime/register/file-browser.js": "sha256-JGPbb5bwIfA5k1lkGmAD5MHW7FaEf/ACtTM2u/vPPbo=",
+    "runtime/register/file-browser.js": "sha256-cBNDS2HZMOAx1t7RQQT25GGW9RIxdZIvJeDMqMP2eyw=",
+    "runtime/register/tree.js": "sha256-9qIPWnWu0Vzy/f4946lKruIlPYYtoiHLbN5xhR5kVuQ=",
+    "runtime/components/tree.js": "sha256-P+63dC5MB2gKl/raxboRMQBCkbmDE850SXCmGt09e/o=",
     "runtime/chunks/element-DcrNU9Wh.js": "sha256-K12Hi4AEpZEosnfTD6MzmDSw+hv7REmmrIycBycQhpY=",
     "runtime/chunks/choice-DqwWT5pJ.js": "sha256-PO0KJ2PRfy2FN9q9+VSvDnxi1skgfEZswjJnJcZIakA=",
-    "runtime/register/tree.js": "sha256-GkpgoR9dpb/ho4x6diQOMGUvBv63XZ0KfaibFjm74gA=",
-    "runtime/components/tree.js": "sha256-P+63dC5MB2gKl/raxboRMQBCkbmDE850SXCmGt09e/o=",
     "runtime/chunks/advanced-BrFnVc0y.js": "sha256-FVberBpKO49P/WGnxa61BTxhYsLnnvMFInur/TwjG44=",
     "runtime/chunks/markup-AopKpwOF.js": "sha256-/Dn3cWEmlRQzeQAPVf+C0AooVb1pdIQeNeqd1fQVoPc=",
     "runtime/components/file-browser.js": "sha256-f7EdtKJccQxuUuP+3ZqlKg9dJhLkwcMrO9wF55ABqtU=",

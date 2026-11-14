@@ -5,16 +5,16 @@
   "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/link.md",
   "dependencies": [
     "register/link.js",
+    "components/link.js",
     "chunks/element-DcrNU9Wh.js",
     "chunks/choice-DqwWT5pJ.js",
-    "components/link.js",
     "chunks/native-D61761VL.js"
   ],
   "files": {
-    "runtime/register/link.js": "sha256-jwozmacnZdRn6lvmvgeeUqRw+j+qRnBfRC2vt9UgGbk=",
+    "runtime/register/link.js": "sha256-LoZ+sr07kfwVM57nd5NbbbKArwAEMXaMygy0kJa1OJM=",
+    "runtime/components/link.js": "sha256-k1UsDjyh7ID9N1QSWtczvBEYdMfs4xsybrRLTGFzYGQ=",
     "runtime/chunks/element-DcrNU9Wh.js": "sha256-K12Hi4AEpZEosnfTD6MzmDSw+hv7REmmrIycBycQhpY=",
     "runtime/chunks/choice-DqwWT5pJ.js": "sha256-PO0KJ2PRfy2FN9q9+VSvDnxi1skgfEZswjJnJcZIakA=",
-    "runtime/components/link.js": "sha256-k1UsDjyh7ID9N1QSWtczvBEYdMfs4xsybrRLTGFzYGQ=",
     "runtime/chunks/native-D61761VL.js": "sha256-OpLgNJ3+fyz2fjrs+MXXNkgIZfOW56wVOJ3ZbguLteE=",
     "tokens.css": "sha256-7HNUwUO0RfX8jPMvp0gqL5lcjjTDPlhJGzs8j7seouU=",
     "component.css": "sha256-uxvP2GjnvVzGp+CHY0D7UPQ+7qXQiFem1DAnSc7jCyY=",

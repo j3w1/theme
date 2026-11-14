@@ -5,21 +5,21 @@
   "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/toolbar.md",
   "dependencies": [
     "register/toolbar.js",
+    "register/menu.js",
+    "components/menu.js",
     "chunks/element-DcrNU9Wh.js",
     "chunks/choice-DqwWT5pJ.js",
-    "components/toolbar.js",
     "chunks/navigation-CknoksQ5.js",
-    "register/menu.js",
-    "components/menu.js"
+    "components/toolbar.js"
   ],
   "files": {
-    "runtime/register/toolbar.js": "sha256-Gf7THPkn4x1hVyTl/jXRoGd2Oa5RL8dK8uqHQV+pqxQ=",
+    "runtime/register/toolbar.js": "sha256-fKOS52X5HXAN91B5jx7tltIc+DGW5xwD8d/nD88tDj8=",
+    "runtime/register/menu.js": "sha256-CbFFHXntaMAhBkbj+Cl4Y8AwIRFTYj5DoHnboAM4sxM=",
+    "runtime/components/menu.js": "sha256-qz11rQvGk4omYnKEFWVz4SXD3R4xn/UhG0nt4oqFtJw=",
     "runtime/chunks/element-DcrNU9Wh.js": "sha256-K12Hi4AEpZEosnfTD6MzmDSw+hv7REmmrIycBycQhpY=",
     "runtime/chunks/choice-DqwWT5pJ.js": "sha256-PO0KJ2PRfy2FN9q9+VSvDnxi1skgfEZswjJnJcZIakA=",
-    "runtime/components/toolbar.js": "sha256-/Uxx9EzorKPSd2FGVPpk5AnASvRBGVfcGONUJd8x9LE=",
     "runtime/chunks/navigation-CknoksQ5.js": "sha256-4yNcpxqrLbnNx8CaY3mnoMiZLbQunC4AzkuhPHWjVwM=",
-    "runtime/register/menu.js": "sha256-du/4u8ykElicgf7iZHv6rD5yz/4njOxzodjcqCcr0d8=",
-    "runtime/components/menu.js": "sha256-qz11rQvGk4omYnKEFWVz4SXD3R4xn/UhG0nt4oqFtJw=",
+    "runtime/components/toolbar.js": "sha256-/Uxx9EzorKPSd2FGVPpk5AnASvRBGVfcGONUJd8x9LE=",
     "tokens.css": "sha256-7HNUwUO0RfX8jPMvp0gqL5lcjjTDPlhJGzs8j7seouU=",
     "component.css": "sha256-zD6jRNAjuf7XM9+QaxwzEY+F2cFUrQbgUKNLTCc7Q/Y=",
     "LICENSE.md": "sha256-qIhhY3s7J0Mo6RsjJ0tLGwDZv4hHq8knuhm+YGjpzh0=",

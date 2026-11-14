@@ -5,16 +5,16 @@
   "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/number-field.md",
   "dependencies": [
     "register/number-field.js",
+    "components/number-field.js",
     "chunks/element-DcrNU9Wh.js",
     "chunks/choice-DqwWT5pJ.js",
-    "components/number-field.js",
     "chunks/native-D61761VL.js"
   ],
   "files": {
-    "runtime/register/number-field.js": "sha256-4H1AixN0gdK1WGkj5AboI6P6f1J+4eTI6guRQiLwdXo=",
+    "runtime/register/number-field.js": "sha256-rtc7bnV4hHko7O4rC9td2vO2Dpplf9eFRkshCM7myp4=",
+    "runtime/components/number-field.js": "sha256-cR7uqb1y36rf/q2olUxijeTw76itQKlbAa+rFz+FJbc=",
     "runtime/chunks/element-DcrNU9Wh.js": "sha256-K12Hi4AEpZEosnfTD6MzmDSw+hv7REmmrIycBycQhpY=",
     "runtime/chunks/choice-DqwWT5pJ.js": "sha256-PO0KJ2PRfy2FN9q9+VSvDnxi1skgfEZswjJnJcZIakA=",
-    "runtime/components/number-field.js": "sha256-cR7uqb1y36rf/q2olUxijeTw76itQKlbAa+rFz+FJbc=",
     "runtime/chunks/native-D61761VL.js": "sha256-OpLgNJ3+fyz2fjrs+MXXNkgIZfOW56wVOJ3ZbguLteE=",
     "tokens.css": "sha256-7HNUwUO0RfX8jPMvp0gqL5lcjjTDPlhJGzs8j7seouU=",
     "component.css": "sha256-XO8T0IBA7SNqfrL29Rr4KPOzxW7QYgRQVO5YJ59Rmbc=",

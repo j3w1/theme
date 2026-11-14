@@ -5,16 +5,16 @@
   "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/wizard.md",
   "dependencies": [
     "register/wizard.js",
+    "components/wizard.js",
     "chunks/element-DcrNU9Wh.js",
     "chunks/choice-DqwWT5pJ.js",
-    "components/wizard.js",
     "chunks/forms-C3u5121t.js"
   ],
   "files": {
-    "runtime/register/wizard.js": "sha256-3aACVGrEwAij3/eXLo2Kj2WGiM2PDHgexOEY8UmD/ro=",
+    "runtime/register/wizard.js": "sha256-MQS2iRWAwWhBh42+Q2pQpXs+5L36ZePfI7IX70pHM3U=",
+    "runtime/components/wizard.js": "sha256-qUPBej2sL10ar6pmuJhdA1Tk155stiGvejFAN+ep+P4=",
     "runtime/chunks/element-DcrNU9Wh.js": "sha256-K12Hi4AEpZEosnfTD6MzmDSw+hv7REmmrIycBycQhpY=",
     "runtime/chunks/choice-DqwWT5pJ.js": "sha256-PO0KJ2PRfy2FN9q9+VSvDnxi1skgfEZswjJnJcZIakA=",
-    "runtime/components/wizard.js": "sha256-qUPBej2sL10ar6pmuJhdA1Tk155stiGvejFAN+ep+P4=",
     "runtime/chunks/forms-C3u5121t.js": "sha256-DymhKeiaCcQj+DmkDxoEwP0Md4YxiSpCxyYS4eiMnV0=",
     "tokens.css": "sha256-7HNUwUO0RfX8jPMvp0gqL5lcjjTDPlhJGzs8j7seouU=",
     "component.css": "sha256-DfWE/GpjBHHnAxchKcu5pTgCo39mSS+V9uDHjFqFwmA=",
