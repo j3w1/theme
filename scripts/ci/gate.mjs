@@ -22,6 +22,7 @@ const cheap = ["sources", "unit", "unit-install", "unit-install-windows"].some(h
 const expected = {
   checks: cheap,
   "windows-port": cheap,
+  "windows-lockscreen": cheap,
   "windows-install": cheap,
   "windows-native": cheap,
   build: has("build"),

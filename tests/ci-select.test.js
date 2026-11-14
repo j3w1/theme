@@ -121,7 +121,7 @@ test("the plan hash is stable and covers the decision", () => {
 test("release-gate refuses a skipped selected job and a plan that does not recompute", () => {
   const head = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
   const planJson = execFileSync("node", ["scripts/ci/select.mjs", "--event", "workflow_dispatch", "--head", head], { encoding: "utf8", env: { ...process.env, GITHUB_OUTPUT: "", GITHUB_STEP_SUMMARY: "" } });
-  const good = { select: { result: "success" }, checks: { result: "success" }, "windows-port": { result: "success" }, "windows-install": { result: "success" }, "windows-native": { result: "success" }, build: { result: "success" }, browser: { result: "success" }, consumers: { result: "success" }, evidence: { result: "success" } };
+  const good = { select: { result: "success" }, checks: { result: "success" }, "windows-port": { result: "success" }, "windows-lockscreen": { result: "success" }, "windows-install": { result: "success" }, "windows-native": { result: "success" }, build: { result: "success" }, browser: { result: "success" }, consumers: { result: "success" }, evidence: { result: "success" } };
   const gate = (needs, planText = planJson) => {
     try {
       execFileSync("node", ["scripts/ci/gate.mjs"], { encoding: "utf8", stdio: "pipe", env: { ...process.env, NEEDS: JSON.stringify(needs), PLAN: planText } });
@@ -131,7 +131,7 @@ test("release-gate refuses a skipped selected job and a plan that does not recom
   assert.equal(gate(good), true);
   assert.equal(gate({ ...good, browser: { result: "skipped" } }), false);
   assert.equal(gate({ ...good, "windows-install": { result: "failure" } }), false);
-  for (const job of ["windows-port", "windows-install", "windows-native"]) {
+  for (const job of ["windows-port", "windows-lockscreen", "windows-install", "windows-native"]) {
     const { [job]: _, ...absent } = good;
     assert.equal(gate(absent), false, `${job} missing`);
     for (const result of ["skipped", "failure", "cancelled"]) assert.equal(gate({ ...good, [job]: { result } }), false, `${job} ${result}`);
@@ -140,10 +140,10 @@ test("release-gate refuses a skipped selected job and a plan that does not recom
   assert.equal(gate(good, tampered), false);
 });
 
-test("the three Windows workloads run as separate jobs, each with its own limit, and release-gate needs all three", () => {
+test("the four Windows jobs partition port tests and each keeps its limit, with all four required", () => {
   const { jobs } = parseYaml(readFileSync(".github/workflows/ci.yml", "utf8"));
-  const port = jobs["windows-port"], install = jobs["windows-install"], native = jobs["windows-native"];
-  for (const job of [port, install, native]) {
+  const port = jobs["windows-port"], lockscreen = jobs["windows-lockscreen"], install = jobs["windows-install"], native = jobs["windows-native"];
+  for (const job of [port, lockscreen, install, native]) {
     assert.equal(job.needs, "select");
     assert.equal(job.if, "needs.select.outputs.checks == 'true'");
     assert.equal(job["runs-on"], "windows-latest");
@@ -151,14 +151,51 @@ test("the three Windows workloads run as separate jobs, each with its own limit,
     assert.ok(job.steps.every((step) => step["continue-on-error"] === undefined));
   }
   const runs = (job) => job.steps.map((step) => step.run).filter(Boolean);
-  assert.ok(runs(port).includes("node --test --test-concurrency=1 tests/windows-port.test.js"));
+  assert.ok(runs(port).includes("node --test --test-concurrency=1 --test-skip-pattern=lock-screen tests/windows-port.test.js"));
+  assert.ok(runs(lockscreen).includes("node --test --test-concurrency=1 --test-name-pattern=lock-screen tests/windows-port.test.js"));
+  // The two port jobs run the same file with the same options and complementary
+  // filters on one pattern, so every top-level test runs in exactly one of them.
+  const portRun = runs(port).find((r) => r.includes("windows-port.test.js")), lockRun = runs(lockscreen).find((r) => r.includes("windows-port.test.js"));
+  const skip = portRun.match(/--test-skip-pattern=(\S+)/)?.[1], name = lockRun.match(/--test-name-pattern=(\S+)/)?.[1];
+  assert.ok(skip && skip === name, "the skip and name patterns are the same");
+  assert.equal(portRun.replace(`--test-skip-pattern=${skip}`, "--FILTER"), lockRun.replace(`--test-name-pattern=${name}`, "--FILTER"));
+  assert.ok(!/--test-(name|skip)-pattern/.test(portRun.replace(`--test-skip-pattern=${skip}`, "")) && !/--test-(name|skip)-pattern/.test(lockRun.replace(`--test-name-pattern=${name}`, "")), "one filter each");
+  // Name filters reach subtests, so a matching subtest under a non-matching
+  // parent would run in neither job. The partitioned file has none.
+  const portSource = readFileSync("tests/windows-port.test.js", "utf8");
+  assert.doesNotMatch(portSource, /\b[a-z]\.test\(\s*['"`]|\b(describe|suite|it)\(\s*['"`]/);
   assert.ok(runs(install).includes("node --test --test-concurrency=1 tests/windows-install.test.js tests/windows-font.test.js tests/windows-compatibility.test.js tests/windows-setup.test.js"));
-  for (const job of [port, install]) assert.ok(!runs(job).some((r) => r.includes("prepare-windows-compiler") || r.includes("windows-native.test.js")));
+  for (const job of [port, lockscreen, install]) assert.ok(!runs(job).some((r) => r.includes("prepare-windows-compiler") || r.includes("windows-native.test.js")));
   assert.ok(!runs(install).some((r) => r.includes("windows-port.test.js")) && !runs(native).some((r) => r.includes("windows-port.test.js")));
   assert.ok(runs(native).some((r) => r.includes("prepare-windows-compiler.ps1")));
   const test = native.steps.find((step) => step.run === "node --test tests/windows-native.test.js");
   assert.equal(test.env.J3W1_WINDHAWK_ROOT, "${{ runner.temp }}/j3w1-native-toolchain");
-  for (const job of ["windows-port", "windows-install", "windows-native"]) assert.ok(jobs["release-gate"].needs.includes(job), job);
+  for (const job of ["windows-port", "windows-lockscreen", "windows-install", "windows-native"]) assert.ok(jobs["release-gate"].needs.includes(job), job);
+});
+
+test("the windows-port and windows-lockscreen filters split a real Node run into two disjoint halves that cover every test", () => {
+  const { jobs } = parseYaml(readFileSync(".github/workflows/ci.yml", "utf8"));
+  const filter = (job) => jobs[job].steps.map((step) => step.run).find((r) => r?.includes("windows-port.test.js")).match(/--test-(?:skip|name)-pattern=\S+/)[0];
+  const dir = mkdtempSync(path.join(os.tmpdir(), "j3w1-partition-"));
+  const file = path.join(dir, "partition.test.mjs");
+  writeFileSync(file, [
+    'import { test } from "node:test";',
+    'test("plain contract", () => {});',
+    'test("lock-screen acceptance", () => {});',
+    'test("Full lock-screen recovery", () => {});',
+    'for (const x of ["a", "b"]) test(`lock-screen loop ${x}`, () => {});',
+    'test("lockscreen without a hyphen", () => {});',
+    'test("skipped on this host", { skip: "ci only" }, () => {});',
+  ].join("\n"));
+  // A child of a test file inherits NODE_TEST_CONTEXT and would refuse to run its own tests.
+  const { NODE_TEST_CONTEXT: _, ...env } = process.env;
+  const names = (args) => execFileSync(process.execPath, ["--test", "--test-concurrency=1", "--test-reporter=tap", ...args, file], { encoding: "utf8", env })
+    .split("\n").filter((line) => /^ok \d+ - /.test(line)).map((line) => line.replace(/^ok \d+ - /, "").replace(/ # SKIP.*$/, ""));
+  const all = names([]), port = names([filter("windows-port")]), lockscreen = names([filter("windows-lockscreen")]);
+  assert.equal(all.length, 7);
+  assert.deepEqual([...port, ...lockscreen].sort(), [...all].sort());
+  assert.ok(port.every((n) => !lockscreen.includes(n)));
+  assert.deepEqual(lockscreen, ["lock-screen acceptance", "Full lock-screen recovery", "lock-screen loop a", "lock-screen loop b"]);
 });
 
 test("the whole matrix covers every configured Playwright project", async () => {
