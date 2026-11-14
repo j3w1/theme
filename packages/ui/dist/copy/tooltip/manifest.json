@@ -5,17 +5,17 @@
   "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/tooltip.md",
   "dependencies": [
     "register/tooltip.js",
+    "components/tooltip.js",
     "chunks/element-DcrNU9Wh.js",
     "chunks/choice-DqwWT5pJ.js",
-    "components/tooltip.js",
     "chunks/overlays-ByrS0Cmy.js",
     "chunks/hover-helper-CYYYHTxG.js"
   ],
   "files": {
-    "runtime/register/tooltip.js": "sha256-F7E8JHr/JV4iZeeVJnARr64yUr2l01418fBM2UvligM=",
+    "runtime/register/tooltip.js": "sha256-3T22FC1O3Y+fpsy6//SaLmPMWAv2xfpeMJofODNbdyk=",
+    "runtime/components/tooltip.js": "sha256-5QdpTXakycHPQ/BaN/KfAE9wKn4FrL1l+kMzFxOuhWc=",
     "runtime/chunks/element-DcrNU9Wh.js": "sha256-K12Hi4AEpZEosnfTD6MzmDSw+hv7REmmrIycBycQhpY=",
     "runtime/chunks/choice-DqwWT5pJ.js": "sha256-PO0KJ2PRfy2FN9q9+VSvDnxi1skgfEZswjJnJcZIakA=",
-    "runtime/components/tooltip.js": "sha256-5QdpTXakycHPQ/BaN/KfAE9wKn4FrL1l+kMzFxOuhWc=",
     "runtime/chunks/overlays-ByrS0Cmy.js": "sha256-srJuRzvmtttiMD5VUoiC5FLYEuIhocaI2tLEzeY0u3s=",
     "runtime/chunks/hover-helper-CYYYHTxG.js": "sha256-gQbDWQOc18EVbr+QUt+ifnJOoGXY4C8qLS4N2CpCZ70=",
     "tokens.css": "sha256-7HNUwUO0RfX8jPMvp0gqL5lcjjTDPlhJGzs8j7seouU=",

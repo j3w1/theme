@@ -5,17 +5,17 @@
   "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/multiselect.md",
   "dependencies": [
     "register/multiselect.js",
+    "components/multiselect.js",
     "chunks/element-DcrNU9Wh.js",
     "chunks/choice-DqwWT5pJ.js",
-    "components/multiselect.js",
     "chunks/advanced-BrFnVc0y.js",
     "chunks/markup-AopKpwOF.js"
   ],
   "files": {
-    "runtime/register/multiselect.js": "sha256-1WE2XkDVU0w3W2wKz7GsaPQoHNCsroAW8HcfzuJg7Cw=",
+    "runtime/register/multiselect.js": "sha256-56kiJjron94wkErM9nmSVFGVUSnxSVyolBjmFVcCqpU=",
+    "runtime/components/multiselect.js": "sha256-sPp8OqCzF9v0hsxG/mWdadkKOIW//gyZ/Bng4A5c//Y=",
     "runtime/chunks/element-DcrNU9Wh.js": "sha256-K12Hi4AEpZEosnfTD6MzmDSw+hv7REmmrIycBycQhpY=",
     "runtime/chunks/choice-DqwWT5pJ.js": "sha256-PO0KJ2PRfy2FN9q9+VSvDnxi1skgfEZswjJnJcZIakA=",
-    "runtime/components/multiselect.js": "sha256-sPp8OqCzF9v0hsxG/mWdadkKOIW//gyZ/Bng4A5c//Y=",
     "runtime/chunks/advanced-BrFnVc0y.js": "sha256-FVberBpKO49P/WGnxa61BTxhYsLnnvMFInur/TwjG44=",
     "runtime/chunks/markup-AopKpwOF.js": "sha256-/Dn3cWEmlRQzeQAPVf+C0AooVb1pdIQeNeqd1fQVoPc=",
     "tokens.css": "sha256-7HNUwUO0RfX8jPMvp0gqL5lcjjTDPlhJGzs8j7seouU=",

@@ -5,17 +5,17 @@
   "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/i3-window-frame.md",
   "dependencies": [
     "register/i3-window-frame.js",
+    "components/i3-window-frame.js",
     "chunks/element-DcrNU9Wh.js",
     "chunks/choice-DqwWT5pJ.js",
-    "components/i3-window-frame.js",
     "chunks/compositions-DWG4tv9E.js",
     "chunks/navigation-CknoksQ5.js"
   ],
   "files": {
-    "runtime/register/i3-window-frame.js": "sha256-Ov3rofs1avoZR0C4IqqkijLrojDAHlDuk7wor1rg70Q=",
+    "runtime/register/i3-window-frame.js": "sha256-dZZPvU4jtY9N3zHqWHLCo5KTGrceIo3m/1oEOgIsdG8=",
+    "runtime/components/i3-window-frame.js": "sha256-gKjEbi3JtUqHZR58RGIkZhx3LV31jTM0QacXjNxKLLE=",
     "runtime/chunks/element-DcrNU9Wh.js": "sha256-K12Hi4AEpZEosnfTD6MzmDSw+hv7REmmrIycBycQhpY=",
     "runtime/chunks/choice-DqwWT5pJ.js": "sha256-PO0KJ2PRfy2FN9q9+VSvDnxi1skgfEZswjJnJcZIakA=",
-    "runtime/components/i3-window-frame.js": "sha256-gKjEbi3JtUqHZR58RGIkZhx3LV31jTM0QacXjNxKLLE=",
     "runtime/chunks/compositions-DWG4tv9E.js": "sha256-vV/UcQrj3UFpVXymFuH4t/h/T+7JqBeND9xuyVdCjqo=",
     "runtime/chunks/navigation-CknoksQ5.js": "sha256-4yNcpxqrLbnNx8CaY3mnoMiZLbQunC4AzkuhPHWjVwM=",
     "tokens.css": "sha256-7HNUwUO0RfX8jPMvp0gqL5lcjjTDPlhJGzs8j7seouU=",

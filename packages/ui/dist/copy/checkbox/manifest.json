@@ -5,16 +5,16 @@
   "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/checkbox.md",
   "dependencies": [
     "register/checkbox.js",
+    "components/checkbox.js",
     "chunks/element-DcrNU9Wh.js",
     "chunks/choice-DqwWT5pJ.js",
-    "components/checkbox.js",
     "chunks/native-D61761VL.js"
   ],
   "files": {
-    "runtime/register/checkbox.js": "sha256-4FXUPwf4ix3wwVjE+fGDDGgVp+oXhoxuin7qwnMqYYY=",
+    "runtime/register/checkbox.js": "sha256-r9JGoJelmp4Lgw7kQiePTT6R9XASYBymjqicF/OKgGE=",
+    "runtime/components/checkbox.js": "sha256-wYmcBKQmc0+hPiMjdLSxHFSci1qcX0h7DyRtiOtB62o=",
     "runtime/chunks/element-DcrNU9Wh.js": "sha256-K12Hi4AEpZEosnfTD6MzmDSw+hv7REmmrIycBycQhpY=",
     "runtime/chunks/choice-DqwWT5pJ.js": "sha256-PO0KJ2PRfy2FN9q9+VSvDnxi1skgfEZswjJnJcZIakA=",
-    "runtime/components/checkbox.js": "sha256-wYmcBKQmc0+hPiMjdLSxHFSci1qcX0h7DyRtiOtB62o=",
     "runtime/chunks/native-D61761VL.js": "sha256-OpLgNJ3+fyz2fjrs+MXXNkgIZfOW56wVOJ3ZbguLteE=",
     "tokens.css": "sha256-7HNUwUO0RfX8jPMvp0gqL5lcjjTDPlhJGzs8j7seouU=",
     "component.css": "sha256-UbNMFdu+HW8ujyQExwYwdN9wZDBkKRrgWyLfrTITwec=",

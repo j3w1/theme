@@ -5,16 +5,16 @@
   "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/button-group.md",
   "dependencies": [
     "register/button-group.js",
+    "components/button-group.js",
     "chunks/element-DcrNU9Wh.js",
     "chunks/choice-DqwWT5pJ.js",
-    "components/button-group.js",
     "chunks/native-D61761VL.js"
   ],
   "files": {
-    "runtime/register/button-group.js": "sha256-CFMDZp4J0G3eNpyzz9h6e411fRQd4qCFeWFwo78IXAM=",
+    "runtime/register/button-group.js": "sha256-oPc6kZt0Jl+v/orYfNS93TNIiFF/auma5vqPo3W01b8=",
+    "runtime/components/button-group.js": "sha256-03J38xNN25EiiWRaSOx/ndOebdEU8ay5ANw68TOo1sc=",
     "runtime/chunks/element-DcrNU9Wh.js": "sha256-K12Hi4AEpZEosnfTD6MzmDSw+hv7REmmrIycBycQhpY=",
     "runtime/chunks/choice-DqwWT5pJ.js": "sha256-PO0KJ2PRfy2FN9q9+VSvDnxi1skgfEZswjJnJcZIakA=",
-    "runtime/components/button-group.js": "sha256-03J38xNN25EiiWRaSOx/ndOebdEU8ay5ANw68TOo1sc=",
     "runtime/chunks/native-D61761VL.js": "sha256-OpLgNJ3+fyz2fjrs+MXXNkgIZfOW56wVOJ3ZbguLteE=",
     "tokens.css": "sha256-7HNUwUO0RfX8jPMvp0gqL5lcjjTDPlhJGzs8j7seouU=",
     "component.css": "sha256-0HQ2nfSUmtlZV8Bwsob1wBnVODkxbeI16OqeME3hc2M=",
