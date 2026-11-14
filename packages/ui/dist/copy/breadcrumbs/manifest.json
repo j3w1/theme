@@ -5,16 +5,16 @@
   "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/breadcrumbs.md",
   "dependencies": [
     "register/breadcrumbs.js",
+    "components/breadcrumbs.js",
     "chunks/element-DcrNU9Wh.js",
     "chunks/choice-DqwWT5pJ.js",
-    "components/breadcrumbs.js",
     "chunks/navigation-CknoksQ5.js"
   ],
   "files": {
-    "runtime/register/breadcrumbs.js": "sha256-T+4ZMhNyFraW/V5E84ueE/5MWurZ2UfOdAkMEh8DVa0=",
+    "runtime/register/breadcrumbs.js": "sha256-0wnEyJ+lTbZQ92I3SMEA6gMJeONGFn7n9OCKhRNerTY=",
+    "runtime/components/breadcrumbs.js": "sha256-lttQVA0QJicYwLEjh9+fV4T6Bbz1HugXAzgrH1lYDuw=",
     "runtime/chunks/element-DcrNU9Wh.js": "sha256-K12Hi4AEpZEosnfTD6MzmDSw+hv7REmmrIycBycQhpY=",
     "runtime/chunks/choice-DqwWT5pJ.js": "sha256-PO0KJ2PRfy2FN9q9+VSvDnxi1skgfEZswjJnJcZIakA=",
-    "runtime/components/breadcrumbs.js": "sha256-lttQVA0QJicYwLEjh9+fV4T6Bbz1HugXAzgrH1lYDuw=",
     "runtime/chunks/navigation-CknoksQ5.js": "sha256-4yNcpxqrLbnNx8CaY3mnoMiZLbQunC4AzkuhPHWjVwM=",
     "tokens.css": "sha256-7HNUwUO0RfX8jPMvp0gqL5lcjjTDPlhJGzs8j7seouU=",
     "component.css": "sha256-+Zc2EEKW9OfZl8s+wFiHlzjJHlyVTyGwZDbPlyRKx4A=",

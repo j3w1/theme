@@ -5,16 +5,16 @@
   "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/combobox.md",
   "dependencies": [
     "register/combobox.js",
+    "components/combobox.js",
     "chunks/element-DcrNU9Wh.js",
     "chunks/choice-DqwWT5pJ.js",
-    "components/combobox.js",
     "chunks/navigation-CknoksQ5.js"
   ],
   "files": {
-    "runtime/register/combobox.js": "sha256-m2UGZdlqKfsCnUJuIsT/I3mYjH6K0Y5R836lZqJSXWs=",
+    "runtime/register/combobox.js": "sha256-zBEGFqJcb7A984PtqEc3bNvozxKzPLQmBak7vzV/HcM=",
+    "runtime/components/combobox.js": "sha256-M50QmcWZJm+1LBF0oMh7S3tuXjDoApW3kq5Lzf+s57I=",
     "runtime/chunks/element-DcrNU9Wh.js": "sha256-K12Hi4AEpZEosnfTD6MzmDSw+hv7REmmrIycBycQhpY=",
     "runtime/chunks/choice-DqwWT5pJ.js": "sha256-PO0KJ2PRfy2FN9q9+VSvDnxi1skgfEZswjJnJcZIakA=",
-    "runtime/components/combobox.js": "sha256-M50QmcWZJm+1LBF0oMh7S3tuXjDoApW3kq5Lzf+s57I=",
     "runtime/chunks/navigation-CknoksQ5.js": "sha256-4yNcpxqrLbnNx8CaY3mnoMiZLbQunC4AzkuhPHWjVwM=",
     "tokens.css": "sha256-7HNUwUO0RfX8jPMvp0gqL5lcjjTDPlhJGzs8j7seouU=",
     "component.css": "sha256-8Hkgwo0uaQUx8y4ghR6eYfsYL07GWC6VT0p+F/wavGo=",

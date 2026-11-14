@@ -5,17 +5,17 @@
   "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/repeater.md",
   "dependencies": [
     "register/repeater.js",
+    "components/repeater.js",
     "chunks/element-DcrNU9Wh.js",
     "chunks/choice-DqwWT5pJ.js",
-    "components/repeater.js",
     "chunks/advanced-BrFnVc0y.js",
     "chunks/markup-AopKpwOF.js"
   ],
   "files": {
-    "runtime/register/repeater.js": "sha256-eOxh9asjFElUMBptJubnb4sagYVPb5+yydspzDqugOE=",
+    "runtime/register/repeater.js": "sha256-SLh8AWaFjm/5H3DW3GsC6wQmPmQK1zNyxBrZG40c1p0=",
+    "runtime/components/repeater.js": "sha256-FOveMEI56LVJDMyXlEMbXGE9D0/LX85DQ9meCqa8G74=",
     "runtime/chunks/element-DcrNU9Wh.js": "sha256-K12Hi4AEpZEosnfTD6MzmDSw+hv7REmmrIycBycQhpY=",
     "runtime/chunks/choice-DqwWT5pJ.js": "sha256-PO0KJ2PRfy2FN9q9+VSvDnxi1skgfEZswjJnJcZIakA=",
-    "runtime/components/repeater.js": "sha256-FOveMEI56LVJDMyXlEMbXGE9D0/LX85DQ9meCqa8G74=",
     "runtime/chunks/advanced-BrFnVc0y.js": "sha256-FVberBpKO49P/WGnxa61BTxhYsLnnvMFInur/TwjG44=",
     "runtime/chunks/markup-AopKpwOF.js": "sha256-/Dn3cWEmlRQzeQAPVf+C0AooVb1pdIQeNeqd1fQVoPc=",
     "tokens.css": "sha256-7HNUwUO0RfX8jPMvp0gqL5lcjjTDPlhJGzs8j7seouU=",

@@ -5,16 +5,16 @@
   "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/skip-link.md",
   "dependencies": [
     "register/skip-link.js",
+    "components/skip-link.js",
     "chunks/element-DcrNU9Wh.js",
     "chunks/choice-DqwWT5pJ.js",
-    "components/skip-link.js",
     "chunks/native-D61761VL.js"
   ],
   "files": {
-    "runtime/register/skip-link.js": "sha256-rdQErALjG6gRS2crzShW/TexAUbYpuBEGDW5L/xETEU=",
+    "runtime/register/skip-link.js": "sha256-//4tO8aHN7zh618zeupuTge4cLxSj8MBDXE5Bj5TM9s=",
+    "runtime/components/skip-link.js": "sha256-OzQweNJslHEVKrG1S2NnaBeW4GQAlBmb150UHci4dfI=",
     "runtime/chunks/element-DcrNU9Wh.js": "sha256-K12Hi4AEpZEosnfTD6MzmDSw+hv7REmmrIycBycQhpY=",
     "runtime/chunks/choice-DqwWT5pJ.js": "sha256-PO0KJ2PRfy2FN9q9+VSvDnxi1skgfEZswjJnJcZIakA=",
-    "runtime/components/skip-link.js": "sha256-OzQweNJslHEVKrG1S2NnaBeW4GQAlBmb150UHci4dfI=",
     "runtime/chunks/native-D61761VL.js": "sha256-OpLgNJ3+fyz2fjrs+MXXNkgIZfOW56wVOJ3ZbguLteE=",
     "tokens.css": "sha256-7HNUwUO0RfX8jPMvp0gqL5lcjjTDPlhJGzs8j7seouU=",
     "component.css": "sha256-AX9f8HRHYyMt1utmAsrIP+UncKsDILTwMv4qUMxNku0=",

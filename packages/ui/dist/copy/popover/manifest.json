@@ -5,17 +5,17 @@
   "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/popover.md",
   "dependencies": [
     "register/popover.js",
+    "components/popover.js",
     "chunks/element-DcrNU9Wh.js",
     "chunks/choice-DqwWT5pJ.js",
-    "components/popover.js",
     "chunks/overlays-ByrS0Cmy.js",
     "chunks/hover-helper-CYYYHTxG.js"
   ],
   "files": {
-    "runtime/register/popover.js": "sha256-xRkCFvW2ZZFE7oiyzjI0LU04ybC1vn0qsZSMwBHa0W4=",
+    "runtime/register/popover.js": "sha256-HdPeRtcfhxS9QNAMJrl661h1LkG3S3cr4fHCi2o1Szk=",
+    "runtime/components/popover.js": "sha256-nAvUbHCM0U5uPjB1l0wd9ni5aLtz2qtJMYetonjOmEc=",
     "runtime/chunks/element-DcrNU9Wh.js": "sha256-K12Hi4AEpZEosnfTD6MzmDSw+hv7REmmrIycBycQhpY=",
     "runtime/chunks/choice-DqwWT5pJ.js": "sha256-PO0KJ2PRfy2FN9q9+VSvDnxi1skgfEZswjJnJcZIakA=",
-    "runtime/components/popover.js": "sha256-nAvUbHCM0U5uPjB1l0wd9ni5aLtz2qtJMYetonjOmEc=",
     "runtime/chunks/overlays-ByrS0Cmy.js": "sha256-srJuRzvmtttiMD5VUoiC5FLYEuIhocaI2tLEzeY0u3s=",
     "runtime/chunks/hover-helper-CYYYHTxG.js": "sha256-gQbDWQOc18EVbr+QUt+ifnJOoGXY4C8qLS4N2CpCZ70=",
     "tokens.css": "sha256-7HNUwUO0RfX8jPMvp0gqL5lcjjTDPlhJGzs8j7seouU=",
