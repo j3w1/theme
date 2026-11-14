@@ -11,6 +11,7 @@ param(
  [string]$StateRoot=(Join-Path $env:LOCALAPPDATA 'j3w1-theme\windows'),
  [switch]$NonInteractive,[switch]$Latest,
  [switch]$RestoreColorizationIntensity,
+ [string]$KeepLockScreenValueSha256,[string]$ExpectedJournalSha256,
  [switch]$Fixture,[int]$FixtureFailAfter=0,
  [switch]$Lifecycle
 )
@@ -187,7 +188,7 @@ function Sync-J3w1SetupRecovery([string]$PowerShell,[string]$StateRoot) {
  $current=Join-Path $StateRoot 'current.json';Assert-J3w1SetupPath $current
  if(-not(Test-Path -LiteralPath $current)){return}
  $pointer=Get-Content -LiteralPath $current -Raw|ConvertFrom-Json
- $verified=Get-J3w1VerifiedRecoveryRelease $StateRoot $pointer.revision
+ $verified=Get-J3w1VerifiedRecoveryRelease $StateRoot (Get-J3w1LifecycleRevision $StateRoot $pointer.revision)
  Save-J3w1SetupRecovery $PowerShell (Join-Path $verified.path 'install.ps1') $StateRoot
 }
 function Get-J3w1VerifiedRecoveryRelease([string]$StateRoot,[string]$Revision) {
@@ -205,6 +206,19 @@ function Get-J3w1VerifiedRecoveryRelease([string]$StateRoot,[string]$Revision) {
  }
  return @{path=$release;dependencies=(Get-Content -LiteralPath (Join-Path $release 'dependencies.json') -Raw|ConvertFrom-Json)}
 }
+function Get-J3w1LifecycleRevision([string]$StateRoot,[string]$AppearanceRevision) {
+ $journal=Join-Path $StateRoot 'journal.json';Assert-J3w1SetupPath $journal
+ if(-not(Test-Path -LiteralPath $journal)){return $AppearanceRevision}
+ $history=Get-Content -LiteralPath $journal -Raw|ConvertFrom-Json
+ if($history.schemaVersion -eq 1){return $AppearanceRevision}
+ if($history.schemaVersion -ne 2 -or $history.lifecycleRevision -cnotmatch '^[0-9a-f]{40}$' -or $history.lifecycleRuntimeSha256 -cnotmatch '^[0-9a-f]{64}$' -or $history.lifecycleManifestSha256 -cnotmatch '^[0-9a-f]{64}$'){throw 'Unsupported or malformed capable recovery journal'}
+ $verified=Get-J3w1VerifiedRecoveryRelease $StateRoot $history.lifecycleRevision
+ $manifest=Get-Content -LiteralPath (Join-Path $verified.path 'install-manifest.json') -Raw|ConvertFrom-Json
+ if((Get-FileHash -LiteralPath (Join-Path $verified.path 'install-manifest.json') -Algorithm SHA256).Hash.ToLowerInvariant() -cne $history.lifecycleManifestSha256){throw 'Capable recovery manifest binding changed'}
+ $entry=@($manifest.files|Where-Object path -CEQ 'dist/runtime.cjs');$runtime=Join-Path $verified.path 'dist/runtime.cjs';Assert-J3w1SetupPath $runtime
+ if($entry.Count -ne 1 -or $entry[0].sha256 -cne $history.lifecycleRuntimeSha256 -or -not(Test-Path -LiteralPath $runtime) -or (Get-FileHash -LiteralPath $runtime -Algorithm SHA256).Hash.ToLowerInvariant() -cne $history.lifecycleRuntimeSha256){throw 'Capable recovery runtime missing or changed'}
+ return $history.lifecycleRevision
+}
 function Get-J3w1RecoveryPowerShellPin($Release,[string]$StateRoot) {
  $pin=$Release.dependencies.PSObject.Properties['powershell']
  if($pin){return $pin.Value}
@@ -214,7 +228,7 @@ function Get-J3w1RecoveryPowerShellPin($Release,[string]$StateRoot) {
  $journal=Join-Path $StateRoot 'journal.json';Assert-J3w1SetupPath $journal
  if(Test-Path -LiteralPath $journal){
   $history=Get-Content -LiteralPath $journal -Raw|ConvertFrom-Json
-  if($history.schemaVersion -ne 1){throw 'Unsupported recovery journal'}
+  if($history.schemaVersion -notin 1,2){throw 'Unsupported recovery journal'}
   $transactions=@($history.transactions);[array]::Reverse($transactions)
   $seen=[Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
   foreach($transaction in $transactions){
@@ -235,7 +249,7 @@ function Invoke-J3w1WindowsRecovery([string]$Action,[bool]$Latest,[string]$State
   $journal=Join-Path $StateRoot 'journal.json';Assert-J3w1SetupPath $journal
   if(Test-Path -LiteralPath $journal){
    $history=Get-Content -LiteralPath $journal -Raw|ConvertFrom-Json
-   if($history.schemaVersion -ne 1){throw 'Unsupported recovery journal'}
+   if($history.schemaVersion -notin 1,2){throw 'Unsupported recovery journal'}
    $pointer=@($history.transactions|Where-Object status -NE 'restored'|Select-Object -Last 1)
    if($pointer.Count){$pointer=$pointer[0]}else{$pointer=$null}
   }
@@ -246,7 +260,7 @@ function Invoke-J3w1WindowsRecovery([string]$Action,[bool]$Latest,[string]$State
   $pointer=Get-Content -LiteralPath $current -Raw|ConvertFrom-Json
  }
  if($pointer.revision -cnotmatch '^[0-9a-f]{40}$' -or $pointer.mode -notin 'Full','Native'){throw 'Invalid installed recovery identity'}
- $verifiedRelease=Get-J3w1VerifiedRecoveryRelease $StateRoot $pointer.revision
+ $verifiedRelease=Get-J3w1VerifiedRecoveryRelease $StateRoot (Get-J3w1LifecycleRevision $StateRoot $pointer.revision)
  $release=$verifiedRelease.path
  $powerShell=Find-J3w1SetupPowerShell
  if(-not $powerShell){
@@ -319,6 +333,7 @@ param(
  [string]$StateRoot=(Join-Path $env:LOCALAPPDATA 'j3w1-theme\windows'),
  [switch]$Latest,
  [switch]$RestoreColorizationIntensity,
+ [string]$KeepLockScreenValueSha256,[string]$ExpectedJournalSha256,
  [switch]$Fixture,
  [int]$FixtureFailAfter=0
 )
@@ -479,7 +494,7 @@ if(-not $Revision -and $Action -in 'Test','Restore','Uninstall','Guard'){
   $journalPath=Join-Path $StateRoot 'journal.json';Assert-SafePath $journalPath
   if(Test-Path -LiteralPath $journalPath){
    $history=Get-Content -LiteralPath $journalPath -Raw|ConvertFrom-Json
-   if($history.schemaVersion -ne 1){throw 'Unsupported recovery journal'}
+   if($history.schemaVersion -notin 1,2){throw 'Unsupported recovery journal'}
    $installed=@($history.transactions|Where-Object status -ne 'restored'|Select-Object -Last 1)
    if($installed.Count){$installed=$installed[0]}else{$installed=$null}
   }
@@ -491,6 +506,7 @@ if(-not $Revision -and $Action -in 'Test','Restore','Uninstall','Guard'){
  }
  $Revision=$installed.revision;$Mode=$installed.mode
 }
+if($Action -in 'Test','Restore','Uninstall','Guard'){$Revision=Get-J3w1LifecycleRevision $StateRoot $Revision}
 if(-not $Revision -and $SourceRoot){$Revision=(& git -C $SourceRoot rev-parse HEAD).Trim();if($LASTEXITCODE){throw 'Cannot resolve source HEAD'}}
 if($Revision -notmatch '^[0-9a-f]{40}$'){throw 'Supply -Revision with a full immutable commit SHA, or -Version with a published release tag.'}
 $release=Join-Path $StateRoot "releases\$Revision"
@@ -565,7 +581,7 @@ try{
  $guardPowerShell=(Get-Process -Id $PID).Path
  # Keep Guard on the same unpackaged runtime as installation and recovery.
  if($FixtureFailAfter -and -not $Fixture){throw 'Failure injection is available only in isolated fixtures'}
- $request=@{guardPwsh=$guardPowerShell;failAfter=$FixtureFailAfter;source=$release;state=$StateRoot;action=$Action;mode=$Mode;revision=$Revision;latest=[bool]$Latest;restoreColorizationIntensity=[bool]$RestoreColorizationIntensity;pwsh=(Get-Process -Id $PID).Path;fixture=[bool]$Fixture}
+ $request=@{guardPwsh=$guardPowerShell;failAfter=$FixtureFailAfter;source=$release;state=$StateRoot;action=$Action;mode=$Mode;revision=$Revision;latest=[bool]$Latest;restoreColorizationIntensity=[bool]$RestoreColorizationIntensity;keepLockScreenValueSha256=$KeepLockScreenValueSha256;expectedJournalSha256=$ExpectedJournalSha256;explicitSource=[bool]$SourceRoot;cacheManifestSha256=$verified.manifestSha256.ToLowerInvariant();pwsh=(Get-Process -Id $PID).Path;fixture=[bool]$Fixture}
  if($Action -in 'Prepare','Apply','Update'){
   $preflight=$request.Clone();$preflight.action='Plan'
   $report=$preflight|ConvertTo-Json -Compress|& $node.Source (Join-Path $release 'dist/runtime.cjs')
@@ -611,10 +627,11 @@ if($MyInvocation.InvocationName -ne '.'){
  if(-not $Fixture){Assert-J3w1NativeProcess}
  if($Latest -and $Action -ne 'Restore'){throw '-Latest is only valid with -Action Restore'}
  if($RestoreColorizationIntensity -and ($Action -ne 'Restore' -or -not $SourceRoot -or -not ($Revision -or $Version))){throw '-RestoreColorizationIntensity requires Restore with an explicit reviewed -SourceRoot and -Revision or -Version.'}
+ if(($KeepLockScreenValueSha256 -or $ExpectedJournalSha256) -and ($Action -notin 'Plan','Apply','Update' -or -not $SourceRoot -or $Revision -cnotmatch '^[0-9a-f]{40}$' -or $KeepLockScreenValueSha256 -cnotmatch '^[0-9a-f]{64}$' -or $ExpectedJournalSha256 -cnotmatch '^[0-9a-f]{64}$')){throw 'Lock-screen preservation requires paired value/journal digests and an explicit reviewed SourceRoot/Revision for Plan/Apply/Update.'}
  if($Action -eq 'Update' -and -not $Revision -and -not $Version){throw 'Update requires an explicit -Version or -Revision.'}
  if($Lifecycle -or $SourceRoot -or $Fixture -or $Action -in 'Plan','Prepare','Guard'){
   $lifecycleMode=if($Mode -eq 'Auto'){'Full'}else{$Mode}
-  Invoke-J3w1WindowsLifecycle -Action $Action -Mode $lifecycleMode -Revision $Revision -Version $Version -SourceRoot $SourceRoot -StateRoot $StateRoot -Latest:$Latest -RestoreColorizationIntensity:$RestoreColorizationIntensity -Fixture:$Fixture -FixtureFailAfter $FixtureFailAfter
+  Invoke-J3w1WindowsLifecycle -Action $Action -Mode $lifecycleMode -Revision $Revision -Version $Version -SourceRoot $SourceRoot -StateRoot $StateRoot -Latest:$Latest -RestoreColorizationIntensity:$RestoreColorizationIntensity -KeepLockScreenValueSha256 $KeepLockScreenValueSha256 -ExpectedJournalSha256 $ExpectedJournalSha256 -Fixture:$Fixture -FixtureFailAfter $FixtureFailAfter
   if(-not $Lifecycle -and -not $Fixture -and $Action -in 'Apply','Update'){
    Invoke-J3w1WindowsLifecycle -Action Test -StateRoot $StateRoot
   }

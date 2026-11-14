@@ -765,7 +765,96 @@ test('Windhawk backup restores original disabled mod settings; incompatible guar
 test('recoverable lock-screen image is journaled and restored; later image edits are conflicts',t=>{
  const f=fixture(t),file=path.join(f.state,'fixture/lockscreen.json'),before={exists:true,value:Buffer.from('original image').toString('base64'),extension:'.jpg'};
  write(file,before);f.ok('Apply');assert.equal(read(file).extension,'.bmp');f.ok('Test');f.ok('Restore');assert.deepEqual(read(file),before);
- f.ok('Apply');const managed=read(file);write(file,{...before,value:Buffer.from('later image').toString('base64')});assert.equal(f.run('Restore').status,2);write(file,managed);f.ok('Restore');assert.deepEqual(read(file),before);
+ f.ok('Apply');const managed=read(file),later={...before,value:Buffer.from('later image').toString('base64')};write(file,later);
+ assert.equal(f.run('Test').status,1);
+ const refused=f.run('Apply');assert.notEqual(refused.status,0);assert.match(refused.stderr,/Managed setting conflict: Windows lock-screen image/);
+ assert.deepEqual(read(file),later);
+ assert.equal(f.run('Restore').status,2);write(file,managed);f.ok('Restore');assert.deepEqual(read(file),before);
+});
+
+// All image values and cache identities in these cases are synthetic fixtures.
+const lockValueSha=value=>sha(Buffer.from(JSON.stringify({exists:value.exists,extension:value.extension,value:value.value})));
+function lockChoiceFixture(t){
+ const f=fixture(t),file=path.join(f.state,'fixture/lockscreen.json'),journalPath=path.join(f.state,'journal.json');
+ const original={exists:true,value:Buffer.from('synthetic original').toString('base64'),extension:'.jpg'},chosen={...original,value:Buffer.from('synthetic owner choice').toString('base64')};
+ write(file,original);f.ok('Apply');const originalHistory=f.journal();write(file,chosen);
+ const prepare=(revision='2'.repeat(40))=>{
+  const release=path.join(f.state,'releases',revision);fs.mkdirSync(path.join(release,'dist'),{recursive:true});
+  for(const name of ['install.ps1','dependencies.json','dist/runtime.cjs'])fs.copyFileSync(path.join(source,name),path.join(release,name));
+  fs.copyFileSync(path.join(source,'dist/install-manifest.json'),path.join(release,'install-manifest.json'));
+  const manifestSha256=sha(fs.readFileSync(path.join(release,'install-manifest.json')));write(path.join(release,'verified.json'),{revision,manifestSha256});
+  const quote=p=>p.replaceAll("'","''"),prefix=`& '${quote(process.execPath)}' -NoProfile -File '${quote(path.join(release,'install.ps1'))}' -StateRoot '${quote(f.state)}' -Action `;
+  fs.writeFileSync(path.join(f.state,'recovery-commands.txt'),['Test','Restore -Latest','Restore','Uninstall'].map(a=>prefix+a).join('\n')+'\n');
+  return {revision,explicitSource:true,pwsh:process.execPath,guardPwsh:process.execPath,cacheManifestSha256:manifestSha256};
+ };
+ const consent=()=>({keepLockScreenValueSha256:lockValueSha(chosen),expectedJournalSha256:sha(fs.readFileSync(journalPath))});
+ return {...f,file,journalPath,original,chosen,originalHistory,prepare,consent};
+}
+test('lock-screen acceptance binds exact current value and journal without writing the chosen picture',t=>{
+ const f=lockChoiceFixture(t),args={...f.prepare(),...f.consent()},beforeImage=fs.readFileSync(f.file),beforeJournal=fs.readFileSync(f.journalPath);
+ const discovered=JSON.parse(f.ok('Plan').stdout);assert.equal(discovered.lockScreenPreservation.valueSha256,args.keepLockScreenValueSha256);assert.equal(discovered.lockScreenPreservation.requested,false);
+ const plan=JSON.parse(f.ok('Plan',args).stdout);assert.equal(plan.lockScreenPreservation.newAcceptance,true);assert.deepEqual(fs.readFileSync(f.journalPath),beforeJournal);
+ const accepted=f.ok('Update',args);assert.ok(!accepted.stdout.includes(f.chosen.value));assert.deepEqual(fs.readFileSync(f.file),beforeImage);
+ const history=f.journal();assert.equal(history.schemaVersion,2);assert.deepEqual(history.transactions[0],f.originalHistory.transactions[0]);assert.equal(history.lockscreenAcceptances[0].status,'committed');f.ok('Test');
+ f.ok('Apply',{...args,...f.consent()});assert.equal(f.journal().transactions.length,2);assert.equal(f.journal().lockscreenAcceptances.length,1);
+});
+for(const bad of ['value','journal','scope','unrelated'])test(`lock-screen acceptance refuses ${bad} consent or drift before changing ownership`,t=>{
+ const f=lockChoiceFixture(t),args={...f.prepare(),...f.consent()};
+ if(bad==='value')args.keepLockScreenValueSha256='0'.repeat(64);
+ if(bad==='journal')fs.appendFileSync(f.journalPath,' ');
+ if(bad==='scope')args.explicitSource=false;
+ if(bad==='unrelated'){const config=readConfig(f.terminal);config.profiles.defaults.opacity=45;write(f.terminal,config);}
+ const journal=fs.readFileSync(f.journalPath),image=fs.readFileSync(f.file),r=f.run('Update',args);assert.notEqual(r.status,0);assert.deepEqual(fs.readFileSync(f.journalPath),journal);assert.deepEqual(fs.readFileSync(f.file),image);assert.equal(f.journal().schemaVersion,1);
+});
+test('lock-screen acceptance requires verified capable cache and already-saved recovery commands',t=>{
+ for(const fault of ['cache','commands']){
+  const f=lockChoiceFixture(t),args={...f.prepare(),...f.consent()},journal=fs.readFileSync(f.journalPath),image=fs.readFileSync(f.file);
+  if(fault==='cache')fs.appendFileSync(path.join(f.state,'releases',args.revision,'dist/runtime.cjs'),'\n// changed');else fs.writeFileSync(path.join(f.state,'recovery-commands.txt'),'wrong entry');
+  assert.notEqual(f.run('Update',args).status,0);assert.deepEqual(fs.readFileSync(f.journalPath),journal);assert.deepEqual(fs.readFileSync(f.file),image);
+ }
+});
+test('committed lock-screen choice survives revision restore and uninstall but later unapproved pictures conflict',t=>{
+ const f=lockChoiceFixture(t),args={...f.prepare(),...f.consent()};f.ok('Update',args);
+ const next=f.prepare('3'.repeat(40));f.ok('Update',next);f.ok('Restore',{latest:true});assert.equal(f.journal().lifecycleRevision,next.revision);f.ok('Test');assert.deepEqual(read(f.file),f.chosen);
+ const unexpected={...f.chosen,value:Buffer.from('unapproved synthetic later picture').toString('base64')};write(f.file,unexpected);assert.equal(f.run('Test').status,1);assert.notEqual(f.run('Apply').status,0);assert.notEqual(f.run('Update',next).status,0);assert.equal(f.run('Restore').status,2);assert.deepEqual(read(f.file),unexpected);
+ write(f.file,f.chosen);f.ok('Uninstall');assert.deepEqual(read(f.file),f.chosen);assert.ok(f.journal().transactions.every(x=>x.status==='restored'));assert.deepEqual(f.journal().transactions[0].operations.map(x=>[x.before,x.after]),f.originalHistory.transactions[0].operations.map(x=>[x.before,x.after]));
+});
+test('pending lock-screen acceptance rolls back without becoming ordinary Test authority',t=>{
+ const f=lockChoiceFixture(t),config=readConfig(f.terminal);config.profiles.list.push({guid:'third',commandline:'keep-third'});write(f.terminal,config);
+ const args={...f.prepare(),...f.consent()},r=f.run('Update',{...args,failAfter:1});assert.notEqual(r.status,0);assert.deepEqual(read(f.file),f.chosen);
+ const history=f.journal();assert.equal(history.schemaVersion,2);assert.equal(history.lockscreenAcceptances[0].status,'rolledback');assert.equal(history.transactions.at(-1).status,'restored');assert.equal(f.run('Test').status,1);
+ assert.deepEqual(history.transactions[0],f.originalHistory.transactions[0]);assert.equal(readConfig(f.terminal).profiles.list[2].colorScheme,undefined);
+});
+test('lock-screen acceptance cannot survive a failed final installation pointer write',t=>{
+ const f=lockChoiceFixture(t),args={...f.prepare(),...f.consent()},pointer=path.join(f.state,'current.json');fs.unlinkSync(pointer);fs.mkdirSync(pointer);
+ const r=f.run('Update',args);assert.notEqual(r.status,0);assert.deepEqual(read(f.file),f.chosen);assert.equal(f.journal().lockscreenAcceptances[0].status,'rolledback');assert.equal(f.journal().transactions.at(-1).status,'restored');assert.equal(f.run('Test').status,1);
+});
+test('lock-screen acceptance refuses ambiguous active ownership without changing history',t=>{
+ const f=lockChoiceFixture(t),args=f.prepare(),history=f.journal(),first=history.transactions[0];history.transactions.push({...first,id:'synthetic-duplicate-owner',operations:first.operations.filter(op=>op.kind==='lockscreen')});write(f.journalPath,history);
+ const before=fs.readFileSync(f.journalPath),r=f.run('Update',{...args,...f.consent()});assert.notEqual(r.status,0);assert.match(r.stderr,/Ambiguous managed lock screen/);assert.deepEqual(fs.readFileSync(f.journalPath),before);assert.deepEqual(read(f.file),f.chosen);
+});
+test('image change during activation rejects pending lock-screen acceptance without overwriting it',t=>{
+ const f=lockChoiceFixture(t),args={...f.prepare(),...f.consent()},later={...f.chosen,value:Buffer.from('synthetic concurrent picture').toString('base64')};
+ const r=f.run('Update',{...args,fixtureRefreshSteps:[{files:[{path:'lockscreen.json',value:JSON.stringify(later)}]}]});assert.notEqual(r.status,0);assert.deepEqual(read(f.file),later);assert.equal(f.journal().lockscreenAcceptances[0].status,'rolledback');assert.equal(f.run('Test').status,1);
+});
+test('pending lock-screen acceptance is not authority for standalone Test or interrupted recovery',t=>{
+ const f=lockChoiceFixture(t),args={...f.prepare(),...f.consent()};f.ok('Update',args);
+ const history=f.journal();history.transactions.at(-1).status='applying';history.lockscreenAcceptances[0].status='pending';write(f.journalPath,history);
+ assert.equal(f.run('Test').status,1);assert.deepEqual(read(f.file),f.chosen);f.ok('Restore',{latest:true});assert.equal(f.journal().lockscreenAcceptances[0].status,'rolledback');assert.deepEqual(read(f.file),f.chosen);assert.equal(f.run('Test').status,1);
+});
+test('lock-screen acceptance refuses an image without existing theme ownership',t=>{
+ const f=fixture(t);f.ok('Apply');const file=path.join(f.state,'fixture/lockscreen.json'),image={exists:true,extension:'.jpg',value:Buffer.from('synthetic unowned').toString('base64')};write(file,image);
+ const journal=path.join(f.state,'journal.json'),before=fs.readFileSync(journal),r=f.run('Update',{revision:'2'.repeat(40),explicitSource:true,keepLockScreenValueSha256:lockValueSha(image),expectedJournalSha256:sha(before)});
+ assert.notEqual(r.status,0);assert.match(r.stderr,/Lock-screen consent binding differs/);assert.deepEqual(fs.readFileSync(journal),before);assert.deepEqual(read(file),image);
+});
+for(const invalid of ['unrecoverable','oversized','base64','extension'])test(`lock-screen acceptance refuses ${invalid} current image data`,t=>{
+ const f=lockChoiceFixture(t),args={...f.prepare(),...f.consent()};let image={...f.chosen};
+ if(invalid==='unrecoverable')image={exists:false};
+ if(invalid==='oversized')image.value=Buffer.alloc(20*1024*1024+1,65).toString('base64');
+ if(invalid==='base64')image.value='YWJj=';
+ if(invalid==='extension')image.extension='.gif';
+ write(f.file,image);args.keepLockScreenValueSha256=lockValueSha(image);const before=fs.readFileSync(f.journalPath),r=f.run('Update',args);
+ assert.notEqual(r.status,0);assert.match(r.stderr,/Lock-screen consent binding differs/);assert.deepEqual(fs.readFileSync(f.journalPath),before);assert.deepEqual(read(f.file),image);
 });
 
 test('compact cursors use a black body and canonical red edge with visible bounded hotspots',async()=>{

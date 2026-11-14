@@ -119,6 +119,27 @@ unreadable, rollback resets it to the Windows default, so a previous custom
 caption override can be lost. See [interrupted recovery](COMPATIBILITY.md#recovery)
 for missing-cache, lock or conflict handling.
 
+### Keep an intentional lock-screen image
+
+An ordinary Apply or Update refuses a later lock-screen image, like other
+managed-setting conflicts. If you intentionally chose that picture, run the
+reviewed installer's `Plan`: `lockScreenPreservation` reports its canonical
+value digest and current journal digest, without an image or image path.
+Review preservation with `Plan`, then use `Apply` or `Update` with both
+`-KeepLockScreenValueSha256 <value digest>` and
+`-ExpectedJournalSha256 <journal digest>`, an explicit reviewed `-SourceRoot`
+and its full immutable `-Revision`. Both digests must still match exactly.
+This requires an existing owned, recoverable lock screen; it is not a general
+setting-adoption or first-install option.
+
+Acceptance keeps the selected bytes without setting the image. Test, later
+installs and recovery still reject unapproved image changes. Restore/Uninstall
+preserve the accepted picture and release its theme ownership; original
+before/after images and acceptance history remain private in the journal.
+The schema2 journal retains a capable verified installer for offline recovery.
+Use saved recovery commands even after Restore-Latest selects older appearance
+history; never edit old cached releases.
+
 ## What changes
 
 The current 26300.9974 core Full candidate excludes Notepad editor/chrome and

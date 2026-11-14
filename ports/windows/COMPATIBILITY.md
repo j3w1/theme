@@ -163,6 +163,22 @@ That does not certify the remaining native visual states.
 
 ## Recovery
 
+Explicit lock-screen preservation uses a schema2 journal. The paired
+`-KeepLockScreenValueSha256` / `-ExpectedJournalSha256` arguments bind an
+intentional choice to exact current bytes and journal state; they require an
+existing managed lock screen and reviewed immutable source. Pending receipts
+are not ordinary Test authority, and failed acceptance never writes the image.
+Committed choices remain exact expectations until their ownership is released;
+Restore/Uninstall leave that chosen image in place while retaining original
+before/after and acceptance history. Later image drift is still a conflict.
+
+Schema2 keeps a verified capable `lifecycleRevision` separate from appearance
+history, including after Restore-Latest. Missing or changed capable cache fails
+offline; use saved recovery commands. Legacy schema1 code rejects this journal.
+An explicit old installer may perform its normal lock/tool/cache preparation
+before its runtime refuses; it is not a zero-filesystem-write operation. It
+must not be used for schema2 recovery or have its cached bytes patched.
+
 State is under `%LOCALAPPDATA%/j3w1-theme/windows`: immutable `releases`,
 `journal.json`, `current.json`, `backups`, `recovery`, `downloads`, and `tools`.
 Journals and backups may contain private settings or image bytes. Never attach

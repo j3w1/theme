@@ -1569,8 +1569,68 @@ if (mutating) {
     import_node_fs2.default.unlinkSync(lock);
   });
 }
-var history = import_node_fs2.default.existsSync(journal) ? json(journal) : { schemaVersion: 1, transactions: [] };
-if (history.schemaVersion !== 1 || !Array.isArray(history.transactions)) throw Error("Unsupported recovery journal");
+var journalInput = import_node_fs2.default.existsSync(journal) ? import_node_fs2.default.readFileSync(safe(journal)) : null;
+var history = journalInput ? JSON.parse(journalInput.toString("utf8").replace(/^\uFEFF/, "")) : { schemaVersion: 1, transactions: [] };
+if (![1, 2].includes(history.schemaVersion) || !Array.isArray(history.transactions)) throw Error("Unsupported recovery journal");
+var journalInputSha = journalInput ? sha256Hex(journalInput) : null;
+var opId = (op) => JSON.stringify([op.kind, op.key, op.name, op.path, op.profile, op.member, op.keys]);
+var canonical = (value) => Array.isArray(value) ? value.map(canonical) : value && typeof value === "object" ? Object.fromEntries(Object.keys(value).sort().map((k) => [k, canonical(value[k])])) : value;
+var valueSha = (value) => sha256Hex(Buffer.from(JSON.stringify(canonical(value))));
+var keeping = !!(args.keepLockScreenValueSha256 || args.expectedJournalSha256);
+if (keeping && (!["Plan", "Apply", "Update"].includes(action) || !args.explicitSource || !/^[0-9a-f]{40}$/.test(args.revision ?? "") || ![args.keepLockScreenValueSha256, args.expectedJournalSha256].every((v2) => /^[0-9a-f]{64}$/.test(v2 ?? "")))) throw Error("Lock-screen preservation requires paired value/journal digests and an explicit reviewed source revision for Plan/Apply/Update");
+function validImage(value) {
+  return value?.exists === true && Object.keys(value).sort().join(",") === "exists,extension,value" && [".jpg", ".jpeg", ".png", ".bmp"].includes(value.extension) && typeof value.value === "string" && value.value.length > 0 && value.value.length <= 27962028 && value.value.length % 4 === 0 && /^[A-Za-z0-9+/]+={0,2}$/.test(value.value) && Buffer.from(value.value, "base64").length <= 20 * 1024 * 1024 && Buffer.from(value.value, "base64").toString("base64") === value.value;
+}
+function capableCache(revision, expectedRuntime, expectedManifest) {
+  if (!/^[0-9a-f]{40}$/.test(revision ?? "")) throw Error("Invalid capable lifecycle revision");
+  const release = safe(import_node_path2.default.join(state, "releases", revision)), manifestPath = safe(import_node_path2.default.join(release, "install-manifest.json")), manifest = json(manifestPath), marker = json(import_node_path2.default.join(release, "verified.json"));
+  if (marker.revision !== revision || marker.manifestSha256.toLowerCase() !== sha256Hex(import_node_fs2.default.readFileSync(manifestPath)) || expectedManifest && marker.manifestSha256.toLowerCase() !== expectedManifest || manifest.schemaVersion !== 1) throw Error("Capable recovery manifest changed");
+  for (const name of ["install.ps1", "dependencies.json", "dist/runtime.cjs"]) {
+    const entries = manifest.files.filter((f) => f.path === name), file = safe(import_node_path2.default.join(release, name));
+    if (entries.length !== 1 || !/^[0-9a-f]{64}$/.test(entries[0].sha256) || sha256Hex(import_node_fs2.default.readFileSync(file)) !== entries[0].sha256) throw Error("Capable recovery cache missing or changed");
+  }
+  const runtimeHash = sha256Hex(import_node_fs2.default.readFileSync(import_node_path2.default.join(release, "dist/runtime.cjs")));
+  if (expectedRuntime && runtimeHash !== expectedRuntime) throw Error("Capable recovery runtime changed");
+  return { release, runtimeHash, manifestHash: marker.manifestSha256.toLowerCase() };
+}
+function savedCapableRecovery(release) {
+  const lines = read(import_node_path2.default.join(state, "recovery-commands.txt")).replace(/^\uFEFF/, "").trim().split(/\r?\n/), actions = ["Test", "Restore -Latest", "Restore", "Uninstall"];
+  if (lines.length !== 4) throw Error("Capable recovery commands unavailable");
+  for (const [i, line] of lines.entries()) {
+    const match = line.match(/^& '((?:[^']|'')+)' -NoProfile -File '((?:[^']|'')+)' -StateRoot '((?:[^']|'')+)' -Action (.+)$/);
+    const real = (p) => import_node_fs2.default.realpathSync.native(p.replaceAll("''", "'")).toLowerCase();
+    if (!match || match[4] !== actions[i] || real(match[1]) !== real(args.guardPwsh ?? args.pwsh) || real(match[2]) !== real(import_node_path2.default.join(release, "install.ps1")) || real(match[3]) !== real(state)) throw Error("Capable recovery commands differ");
+  }
+}
+function choiceFor(op, pending) {
+  return (history.lockscreenAcceptances ?? []).findLast((r) => r.ownerId === opId(op) && history.transactions.find((t) => t.id === r.ownerTransaction)?.operations[r.ownerIndex] === op && (r.status === "committed" || r.status === "pending" && r.transaction === pending?.id));
+}
+var expectedValue = (op, pending) => op.kind === "lockscreen" ? choiceFor(op, pending)?.value ?? op.after : op.after;
+if (history.schemaVersion === 2) {
+  if (![history.lifecycleRuntimeSha256, history.lifecycleManifestSha256].every((v2) => /^[0-9a-f]{64}$/.test(v2 ?? ""))) throw Error("Invalid capable recovery binding");
+  capableCache(history.lifecycleRevision, history.lifecycleRuntimeSha256, history.lifecycleManifestSha256);
+  if (!Array.isArray(history.lockscreenAcceptances)) throw Error("Invalid lock-screen acceptance history");
+  for (const r of history.lockscreenAcceptances) {
+    const owner = history.transactions.find((t) => t.id === r.ownerTransaction)?.operations[r.ownerIndex];
+    const transaction = history.transactions.find((t) => t.id === r.transaction);
+    if (!owner || owner.kind !== "lockscreen" || !Number.isInteger(r.ownerIndex) || r.ownerIndex < 0 || r.ownerId !== opId(owner) || r.originalAfterSha256 !== valueSha(owner.after) || !["pending", "committed", "rolledback"].includes(r.status) || !validImage(r.value) || r.valueSha256 !== valueSha(r.value) || !transaction || r.status === "pending" && !["applying", "restore-conflict"].includes(transaction.status) || r.status === "committed" && transaction.status === "applying") throw Error("Invalid lock-screen acceptance receipt");
+  }
+}
+var lockscreenChoice = null;
+var lockscreenCandidate = null;
+function lockscreenTarget(now) {
+  let owner;
+  for (const tx of history.transactions.filter((t) => t.status === "applied")) for (const [index, op] of tx.operations.entries()) if (op.applied && op.kind === "lockscreen") {
+    if (owner) throw Error("Ambiguous managed lock screen");
+    owner = { tx, index, op };
+  }
+  if (owner && validImage(now) && !eq(now, expectedValue(owner.op))) lockscreenCandidate = { valueSha256: valueSha(now), journalSha256: journalInputSha, newAcceptance: true };
+  if (keeping) {
+    if (!owner || !validImage(now) || journalInputSha !== args.expectedJournalSha256 || valueSha(now) !== args.keepLockScreenValueSha256) throw Error("Lock-screen consent binding differs");
+    if (!eq(now, expectedValue(owner.op))) lockscreenChoice = { ownerTransaction: owner.tx.id, ownerIndex: owner.index, ownerId: opId(owner.op), originalAfterSha256: valueSha(owner.op.after), value: now, valueSha256: valueSha(now), journalBeforeSha256: journalInputSha };
+  }
+  return lockscreenChoice?.value ?? (owner && choiceFor(owner.op)?.value) ?? null;
+}
 function safe(p) {
   p = import_node_path2.default.resolve(p);
   for (let q = p; ; q = import_node_path2.default.dirname(q)) {
@@ -1763,7 +1823,8 @@ if (["Plan", "Apply", "Update"].includes(action)) {
   }
   for (const category of ["Folder", "Directory"]) reg("Software\\Classes\\" + category + "\\DefaultIcon", "", import_node_path2.default.join(assets, "j3w1-folder.ico"), "String");
   const lockBaseline = lockscreen({ operation: "get" });
-  if (lockBaseline.exists) ops.push({ kind: "lockscreen", after: { exists: true, value: import_node_fs2.default.readFileSync(import_node_path2.default.join(source, "dist/j3w1-wallpaper.bmp")).toString("base64"), extension: ".bmp" } });
+  const chosenLockscreen = lockscreenTarget(lockBaseline);
+  if (lockBaseline.exists) ops.push({ kind: "lockscreen", after: chosenLockscreen ?? { exists: true, value: import_node_fs2.default.readFileSync(import_node_path2.default.join(source, "dist/j3w1-wallpaper.bmp")).toString("base64"), extension: ".bmp" } });
   reg("Control Panel\\Desktop", "Wallpaper", import_node_path2.default.join(assets, "j3w1-wallpaper.bmp"), "String");
   reg("Control Panel\\Desktop", "WallpaperStyle", "10", "String");
   reg("Control Panel\\Desktop", "TileWallpaper", "0", "String");
@@ -1994,7 +2055,6 @@ function stageMods(tx) {
   }
 }
 var label = (op) => op.kind === "lockscreen" ? "Windows lock-screen image" : op.kind === "windhawk-setting" ? `Windhawk/${op.name}` : op.kind === "registry" ? `${op.key}/${op.name}` : op.path;
-var opId = (op) => JSON.stringify([op.kind, op.key, op.name, op.path, op.profile, op.member, op.keys]);
 function colorizationIntensityRecovery(op, now) {
   if (!args.restoreColorizationIntensity || op.kind !== "registry" || op.key !== "Software\\Microsoft\\Windows\\DWM" || op.name !== "ColorizationColor") return false;
   const valid = (value) => value?.exists === true && value.type === "DWord" && Number.isInteger(value.value) && value.value >= 0 && value.value <= 4294967295;
@@ -2096,6 +2156,15 @@ function restore(tx) {
     if (!op.applied || exact.has(op.path)) continue;
     try {
       const now = get(op);
+      if (op.kind === "lockscreen" && choiceFor(op)) {
+        if (!eq(now, expectedValue(op))) {
+          conflicts.push(label(op));
+          continue;
+        }
+        op.restorePending = true;
+        persist();
+        continue;
+      }
       if (eq(now, op.before)) {
         op.restorePending = true;
         persist();
@@ -2140,7 +2209,7 @@ function restore(tx) {
       conflicts.push(`${snapshot.path}: ${error.message}`);
     }
     for (const op of pending) try {
-      if (exact.has(op.path) ? !verifiedDocuments.has(op.path) : !eq(get(op), op.before)) {
+      if (exact.has(op.path) ? !verifiedDocuments.has(op.path) : !eq(get(op), op.kind === "lockscreen" && choiceFor(op) ? expectedValue(op) : op.before)) {
         conflicts.push(label(op));
         continue;
       }
@@ -2163,6 +2232,9 @@ function restore(tx) {
     }
   }
   tx.status = conflicts.length ? "restore-conflict" : "restored";
+  if (!conflicts.length) {
+    for (const receipt of history.lockscreenAcceptances ?? []) if (receipt.transaction === tx.id && receipt.status === "pending") receipt.status = "rolledback";
+  }
   persist();
   return [...new Set(conflicts)];
 }
@@ -2175,7 +2247,7 @@ function verify({ checkEngine = true, pending } = {}) {
   for (const t of active) for (const op of t.operations) if (op.applied) effective.set(opId(op), op);
   const failed = [];
   for (const op of effective.values()) try {
-    if (!eq(get(op), op.after)) failed.push(label(op));
+    if (!eq(get(op), expectedValue(op, pending))) failed.push(label(op));
   } catch (error) {
     failed.push(label(op));
   }
@@ -2202,7 +2274,7 @@ function verify({ checkEngine = true, pending } = {}) {
 if (action === "Plan") {
   const report = compatibility();
   if (args.mode === "Full" && report.compatible) assertExcludedAdaptersAbsent();
-  console.log(JSON.stringify({ action, mode: args.mode, compatible: report.compatible, compatibility: report, excludedAdapters: [...adapterExclusions()], operations: ops.map((op) => ({ kind: op.kind, target: label(op), keys: op.keys ?? op.name, changes: !eq(get(op), op.after) })), limitations: settings.limitations }, null, 2));
+  console.log(JSON.stringify({ action, mode: args.mode, compatible: report.compatible, compatibility: report, excludedAdapters: [...adapterExclusions()], operations: ops.map((op) => ({ kind: op.kind, target: label(op), keys: op.keys ?? op.name, changes: !eq(get(op), op.after) })), ...keeping || lockscreenCandidate ? { lockScreenPreservation: { valueSha256: keeping ? args.keepLockScreenValueSha256 : lockscreenCandidate.valueSha256, journalSha256: journalInputSha, newAcceptance: !!lockscreenChoice || !!lockscreenCandidate, requested: keeping } } : {}, limitations: settings.limitations }, null, 2));
 } else if (action === "Test") {
   const result = verify();
   console.log(JSON.stringify(result, null, 2));
@@ -2271,7 +2343,7 @@ if (action === "Plan") {
   for (const tx of history.transactions.filter((t) => t.status === "applied")) for (const op of tx.operations) if (op.applied) effective.set(opId(op), op);
   for (const op of ops) {
     const managed = effective.get(opId(op));
-    if (managed && !eq(get(op), managed.after)) throw Error(`Managed setting conflict: ${label(op)}. Restore and resolve it before applying.`);
+    if (managed && !eq(get(op), op.kind === "lockscreen" && lockscreenChoice ? lockscreenChoice.value : expectedValue(managed))) throw Error(`Managed setting conflict: ${label(op)}. Restore and resolve it before applying.`);
   }
   const planned = ops.map(({ planningSnapshot, ...op }) => {
     const before = get(op);
@@ -2279,7 +2351,7 @@ if (action === "Plan") {
     return { ...op, before };
   }).filter((op) => !eq(op.before, op.after));
   const previous = history.transactions.filter((t) => t.status === "applied").at(-1);
-  if (!planned.length && previous?.revision === args.revision && previous?.mode === args.mode) {
+  if (!planned.length && !lockscreenChoice && previous?.revision === args.revision && previous?.mode === args.mode) {
     const checked = verify({ checkEngine: false });
     if (checked.failed.length) throw Error("Installed state drift; run Test for details");
     if (args.mode === "Full") startWindhawk();
@@ -2287,6 +2359,18 @@ if (action === "Plan") {
   } else {
     const documents = [...new Set(planned.filter((op) => op.kind === "json").map((op) => op.path))].map((p) => ({ path: p, before: get({ kind: "file", path: p }) }));
     const tx = { id: import_node_crypto3.default.randomUUID(), revision: args.revision, mode: args.mode, status: "applying", operations: planned, documents, mods: [] };
+    if (lockscreenChoice) {
+      if (!/^[0-9a-f]{64}$/.test(args.cacheManifestSha256 ?? "")) throw Error("Verified capable manifest binding required");
+      const capability = capableCache(args.revision, sha256Hex(import_node_fs2.default.readFileSync(import_node_path2.default.join(source, "dist/runtime.cjs"))), args.cacheManifestSha256);
+      savedCapableRecovery(capability.release);
+      if (sha256Hex(import_node_fs2.default.readFileSync(journal)) !== journalInputSha || !eq(get({ kind: "lockscreen" }), lockscreenChoice.value)) throw Error("Concurrent edit before lock-screen acceptance");
+      history.schemaVersion = 2;
+      history.lifecycleRevision = args.revision;
+      history.lifecycleRuntimeSha256 = capability.runtimeHash;
+      history.lifecycleManifestSha256 = capability.manifestHash;
+      history.lockscreenAcceptances ??= [];
+      history.lockscreenAcceptances.push({ ...lockscreenChoice, status: "pending", transaction: tx.id });
+    }
     history.transactions.push(tx);
     persist();
     try {
@@ -2313,12 +2397,27 @@ if (action === "Plan") {
       if (args.mode === "Full") startWindhawk();
       const activated = verify({ pending: tx });
       if (activated.failed.length) throw Error("Post-refresh verification failed: " + activated.failed.join(", "));
+      if (lockscreenChoice && !eq(get({ kind: "lockscreen" }), lockscreenChoice.value)) throw Error("Concurrent edit before lock-screen acceptance commit");
+      if (history.schemaVersion === 2) {
+        if (!/^[0-9a-f]{64}$/.test(args.cacheManifestSha256 ?? "")) throw Error("Verified capable manifest binding required");
+        const capability = capableCache(args.revision, sha256Hex(import_node_fs2.default.readFileSync(import_node_path2.default.join(source, "dist/runtime.cjs"))), args.cacheManifestSha256);
+        savedCapableRecovery(capability.release);
+        history.lifecycleRevision = args.revision;
+        history.lifecycleRuntimeSha256 = capability.runtimeHash;
+        history.lifecycleManifestSha256 = capability.manifestHash;
+      }
+      for (const receipt of history.lockscreenAcceptances ?? []) if (receipt.transaction === tx.id && receipt.status === "pending") receipt.status = "committed";
       tx.status = "applied";
       persist();
       updatePointer();
       console.log(JSON.stringify({ result: "applied", revision: args.revision, changes: planned.length, limitations: settings.limitations }));
     } catch (error) {
       console.error("Installation failed; reversing this transaction before returning the error.");
+      for (const receipt of history.lockscreenAcceptances ?? []) if (receipt.transaction === tx.id && receipt.status === "committed") {
+        receipt.status = "pending";
+        tx.status = "applying";
+        persist();
+      }
       for (const mod of tx.mods) if (!mod.unchanged) try {
         wh(["mod", "disable", mod.id]);
       } catch {

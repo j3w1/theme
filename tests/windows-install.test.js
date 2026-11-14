@@ -6,6 +6,7 @@ import test from 'node:test';
 import fs from 'node:fs';
 import path from 'node:path';
 import {spawnSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
 import {repoRoot} from '../scripts/lib/fs.mjs';
 
 
@@ -27,9 +28,38 @@ function fixture(t,mode='Native'){
  const run=(action,args=[])=>spawnSync(pwsh,['-NoLogo','-NoProfile','-NonInteractive','-File',installer,'-Fixture','-Mode',mode,'-StateRoot',state,'-SourceRoot',source,'-Action',action,...args],{env,encoding:'utf8',timeout:90000});
  const ok=(action,args=[])=>{const r=run(action,args);assert.equal(r.status,0,`${action}: ${r.stdout}\n${r.stderr}`);return r;};
  const terminal=path.join(state,'fixture/terminal/settings.json');write(terminal,'{\n// original\n"profiles":{"list":[]}}');
- return {root,source,state,first,terminal,git,commit,run,ok};
+ return {root,source,state,first,terminal,git,commit,run,ok,env};
 }
 const options={skip:unavailable?'PowerShell 7.4+ unavailable':false};
+const lockImageDigest=value=>createHash('sha256').update(JSON.stringify({exists:value.exists,extension:value.extension,value:value.value})).digest('hex');
+const fileDigest=p=>createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+
+test('lock-screen acceptance follows the capable cache when appearance rolls back to older history',options,t=>{
+ const f=fixture(t),file=path.join(f.state,'fixture/lockscreen.json');
+ write(file,{exists:true,extension:'.jpg',value:Buffer.from('synthetic original picture').toString('base64')});f.ok('Apply',['-Revision',f.first]);
+ const original=read(path.join(f.state,'journal.json')).transactions[0],chosen={exists:true,extension:'.jpg',value:Buffer.from('synthetic chosen picture').toString('base64')};write(file,chosen);
+ const discover=JSON.parse(f.ok('Plan').stdout);assert.equal(discover.lockScreenPreservation.valueSha256,lockImageDigest(chosen));assert.equal(discover.lockScreenPreservation.requested,false);
+ const second=f.commit(),args=['-Revision',second,'-KeepLockScreenValueSha256',lockImageDigest(chosen),'-ExpectedJournalSha256',fileDigest(path.join(f.state,'journal.json'))];
+ f.ok('Plan',args);assert.ok(!fs.existsSync(path.join(f.state,'releases',second)));f.ok('Update',args);f.ok('Test');
+ const history=read(path.join(f.state,'journal.json'));assert.equal(history.schemaVersion,2);assert.equal(history.lifecycleRevision,second);assert.deepEqual(history.transactions[0],original);assert.deepEqual(read(file),chosen);
+ f.ok('Restore',['-Latest']);assert.equal(read(path.join(f.state,'current.json')).revision,f.first);assert.equal(read(path.join(f.state,'journal.json')).lifecycleRevision,second);f.ok('Test');
+ const recovery=fs.readFileSync(path.join(f.state,'recovery-commands.txt'),'utf8');assert.ok(recovery.includes(second));assert.ok(!recovery.includes(f.first));
+ // This synthetic reader proves its schema1 contract, not an old full installer.
+ const legacy=path.join(f.root,'schema1-reader.cjs'),sentinel=path.join(f.root,'appearance-written');fs.writeFileSync(legacy,"const fs=require('node:fs');if(JSON.parse(fs.readFileSync(process.argv[2])).schemaVersion!==1)throw Error('Unsupported recovery journal');fs.writeFileSync(process.argv[3],'written');");
+ const refused=spawnSync(process.execPath,[legacy,path.join(f.state,'journal.json'),sentinel],{encoding:'utf8'});assert.equal(refused.status,1);assert.match(refused.stderr,/Unsupported recovery journal/);assert.ok(!fs.existsSync(sentinel));
+ const capable=path.join(f.state,'releases',second,'dist/runtime.cjs'),bytes=fs.readFileSync(capable);fs.appendFileSync(capable,'\n// tampered');
+ assert.notEqual(f.run('Test').status,0);assert.deepEqual(read(file),chosen);fs.writeFileSync(capable,bytes);f.ok('Uninstall');assert.deepEqual(read(file),chosen);assert.ok(read(path.join(f.state,'journal.json')).transactions.every(x=>x.status==='restored'));
+});
+
+test('lock-screen acceptance refuses before journal migration if recovery commands cannot be saved',options,t=>{
+ const f=fixture(t),file=path.join(f.state,'fixture/lockscreen.json');write(file,{exists:true,extension:'.jpg',value:Buffer.from('synthetic original').toString('base64')});f.ok('Apply',['-Revision',f.first]);
+ const chosen={exists:true,extension:'.jpg',value:Buffer.from('synthetic keep choice').toString('base64')};write(file,chosen);const journal=path.join(f.state,'journal.json'),before=fs.readFileSync(journal),second=f.commit();
+ const script=`. $env:J3W1_FIX_INSTALLER
+function Save-J3w1SetupRecovery {throw 'Synthetic recovery-save failure'}
+Invoke-J3w1WindowsLifecycle -Action Update -Mode Native -SourceRoot $env:J3W1_FIX_SOURCE -Revision $env:J3W1_FIX_REVISION -StateRoot $env:J3W1_FIX_STATE -KeepLockScreenValueSha256 $env:J3W1_FIX_VALUE -ExpectedJournalSha256 $env:J3W1_FIX_JOURNAL -Fixture`;
+ const r=spawnSync(pwsh,['-NoLogo','-NoProfile','-NonInteractive','-Command',script],{env:{...f.env,J3W1_FIX_INSTALLER:installer,J3W1_FIX_SOURCE:f.source,J3W1_FIX_REVISION:second,J3W1_FIX_STATE:f.state,J3W1_FIX_VALUE:lockImageDigest(chosen),J3W1_FIX_JOURNAL:fileDigest(journal)},encoding:'utf8',timeout:90000});
+ assert.notEqual(r.status,0);assert.match(r.stderr,/Synthetic recovery-save failure/);assert.deepEqual(fs.readFileSync(journal),before);assert.deepEqual(read(file),chosen);assert.equal(read(journal).schemaVersion,1);
+});
 test('pinned PowerShell lifecycle plans without state, applies offline tags, updates, restores and uninstalls',options,t=>{
  const f=fixture(t),before=fs.readFileSync(f.terminal,'utf8');
  f.ok('Plan',['-Version','v4.0.0']);assert.ok(!fs.existsSync(path.join(f.state,'releases')));assert.ok(!fs.existsSync(path.join(f.state,'journal.json')));
