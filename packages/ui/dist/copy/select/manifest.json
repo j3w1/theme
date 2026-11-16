@@ -5,16 +5,16 @@
   "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/select.md",
   "dependencies": [
     "register/select.js",
+    "components/select.js",
     "chunks/element-DcrNU9Wh.js",
     "chunks/choice-DqwWT5pJ.js",
-    "components/select.js",
     "chunks/native-D61761VL.js"
   ],
   "files": {
-    "runtime/register/select.js": "sha256-a/ebYoMxXf0lulroJxRYiTUDtJLmr23xOp4f3nhwepc=",
+    "runtime/register/select.js": "sha256-GRSbvb7RnfHac0r2vI4Jp9+S92PtFfg7bodMgnrOV60=",
+    "runtime/components/select.js": "sha256-5I3s1W7GlcelP7ffSDNZXafcFZmzILO7gFZrwhZh9Ps=",
     "runtime/chunks/element-DcrNU9Wh.js": "sha256-K12Hi4AEpZEosnfTD6MzmDSw+hv7REmmrIycBycQhpY=",
     "runtime/chunks/choice-DqwWT5pJ.js": "sha256-PO0KJ2PRfy2FN9q9+VSvDnxi1skgfEZswjJnJcZIakA=",
-    "runtime/components/select.js": "sha256-5I3s1W7GlcelP7ffSDNZXafcFZmzILO7gFZrwhZh9Ps=",
     "runtime/chunks/native-D61761VL.js": "sha256-OpLgNJ3+fyz2fjrs+MXXNkgIZfOW56wVOJ3ZbguLteE=",
     "tokens.css": "sha256-7HNUwUO0RfX8jPMvp0gqL5lcjjTDPlhJGzs8j7seouU=",
     "component.css": "sha256-F6DQsNcbPkf+LkJ534A3xYbg7WBsLszKxMa9zap0wK0=",

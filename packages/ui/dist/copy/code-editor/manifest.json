@@ -5,16 +5,16 @@
   "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/code-editor.md",
   "dependencies": [
     "register/code-editor.js",
+    "components/code-editor.js",
     "chunks/element-DcrNU9Wh.js",
     "chunks/choice-DqwWT5pJ.js",
-    "components/code-editor.js",
     "chunks/display-l54fb8vw.js"
   ],
   "files": {
-    "runtime/register/code-editor.js": "sha256-UdHVDO1voHkuJxvk2L6GqXlhe33V2vQjMWxXPn1khuw=",
+    "runtime/register/code-editor.js": "sha256-1icGkPlts/psnEX+WKLM6HXJxjRtGBDn+ojOSTRVE/0=",
+    "runtime/components/code-editor.js": "sha256-cSXmUpi0vGMqGobq9++3IbvncnACcWtOqxek0flaVgs=",
     "runtime/chunks/element-DcrNU9Wh.js": "sha256-K12Hi4AEpZEosnfTD6MzmDSw+hv7REmmrIycBycQhpY=",
     "runtime/chunks/choice-DqwWT5pJ.js": "sha256-PO0KJ2PRfy2FN9q9+VSvDnxi1skgfEZswjJnJcZIakA=",
-    "runtime/components/code-editor.js": "sha256-cSXmUpi0vGMqGobq9++3IbvncnACcWtOqxek0flaVgs=",
     "runtime/chunks/display-l54fb8vw.js": "sha256-xfzo614uMLlSbZc5l+o4vHvrL8yBjQAcV/HJdmPUJ/g=",
     "tokens.css": "sha256-7HNUwUO0RfX8jPMvp0gqL5lcjjTDPlhJGzs8j7seouU=",
     "component.css": "sha256-aa9zAzIlna+IPd+Xivi0WU385o/+RmhG5pRVR1vsE64=",

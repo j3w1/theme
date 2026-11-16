@@ -5,16 +5,16 @@
   "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/chart.md",
   "dependencies": [
     "register/chart.js",
+    "components/chart.js",
     "chunks/element-DcrNU9Wh.js",
     "chunks/choice-DqwWT5pJ.js",
-    "components/chart.js",
     "chunks/display-l54fb8vw.js"
   ],
   "files": {
-    "runtime/register/chart.js": "sha256-andwTROOZAuydVX/8AHv1ch78Vp2Bpfw0e1QhJuc1H8=",
+    "runtime/register/chart.js": "sha256-JafaRcKC5yVZ4izebexH/PkhsnepL2hzxGAQ4jYNM60=",
+    "runtime/components/chart.js": "sha256-b+gmdldG475mc83KqS69DHLQ3yWt0OTgOk+UNqB5J9o=",
     "runtime/chunks/element-DcrNU9Wh.js": "sha256-K12Hi4AEpZEosnfTD6MzmDSw+hv7REmmrIycBycQhpY=",
     "runtime/chunks/choice-DqwWT5pJ.js": "sha256-PO0KJ2PRfy2FN9q9+VSvDnxi1skgfEZswjJnJcZIakA=",
-    "runtime/components/chart.js": "sha256-b+gmdldG475mc83KqS69DHLQ3yWt0OTgOk+UNqB5J9o=",
     "runtime/chunks/display-l54fb8vw.js": "sha256-xfzo614uMLlSbZc5l+o4vHvrL8yBjQAcV/HJdmPUJ/g=",
     "tokens.css": "sha256-7HNUwUO0RfX8jPMvp0gqL5lcjjTDPlhJGzs8j7seouU=",
     "component.css": "sha256-bZANhpWKREr2mT2bkDhKqg7tacAvTsBxyTk7F9aojeE=",

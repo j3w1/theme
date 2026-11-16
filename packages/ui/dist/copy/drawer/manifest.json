@@ -5,17 +5,17 @@
   "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/drawer.md",
   "dependencies": [
     "register/drawer.js",
+    "components/drawer.js",
     "chunks/element-DcrNU9Wh.js",
     "chunks/choice-DqwWT5pJ.js",
-    "components/drawer.js",
     "chunks/overlays-ByrS0Cmy.js",
     "chunks/hover-helper-CYYYHTxG.js"
   ],
   "files": {
-    "runtime/register/drawer.js": "sha256-AM5iGLPnmhN77hlMQqOhJM8ZDYwV/jpxf4bjQDWLHlE=",
+    "runtime/register/drawer.js": "sha256-KxSg1SGlFntQgJC6EcCMaxW7vguSRjN/2ufzm3ZwlPc=",
+    "runtime/components/drawer.js": "sha256-pzlC82dLU4rIzLrh4d4s+ZnSly9nTMxc2DKkcsXnmBQ=",
     "runtime/chunks/element-DcrNU9Wh.js": "sha256-K12Hi4AEpZEosnfTD6MzmDSw+hv7REmmrIycBycQhpY=",
     "runtime/chunks/choice-DqwWT5pJ.js": "sha256-PO0KJ2PRfy2FN9q9+VSvDnxi1skgfEZswjJnJcZIakA=",
-    "runtime/components/drawer.js": "sha256-pzlC82dLU4rIzLrh4d4s+ZnSly9nTMxc2DKkcsXnmBQ=",
     "runtime/chunks/overlays-ByrS0Cmy.js": "sha256-srJuRzvmtttiMD5VUoiC5FLYEuIhocaI2tLEzeY0u3s=",
     "runtime/chunks/hover-helper-CYYYHTxG.js": "sha256-gQbDWQOc18EVbr+QUt+ifnJOoGXY4C8qLS4N2CpCZ70=",
     "tokens.css": "sha256-7HNUwUO0RfX8jPMvp0gqL5lcjjTDPlhJGzs8j7seouU=",

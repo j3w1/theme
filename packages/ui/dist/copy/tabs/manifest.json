@@ -5,16 +5,16 @@
   "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/tabs.md",
   "dependencies": [
     "register/tabs.js",
+    "components/tabs.js",
     "chunks/element-DcrNU9Wh.js",
     "chunks/choice-DqwWT5pJ.js",
-    "components/tabs.js",
     "chunks/navigation-CknoksQ5.js"
   ],
   "files": {
-    "runtime/register/tabs.js": "sha256-vuNpf0Ff4n7Hgx8O4757u2GYg/zd7qZ0qR1yYzIIJME=",
+    "runtime/register/tabs.js": "sha256-k68A0D8dWk9kW5nS8mR5cWJRHkIuKIdEPd+hpzw3vlM=",
+    "runtime/components/tabs.js": "sha256-EZw8dHljPEIaVDnuxpR0JDUNswrzy2tdcXiSySBYCyo=",
     "runtime/chunks/element-DcrNU9Wh.js": "sha256-K12Hi4AEpZEosnfTD6MzmDSw+hv7REmmrIycBycQhpY=",
     "runtime/chunks/choice-DqwWT5pJ.js": "sha256-PO0KJ2PRfy2FN9q9+VSvDnxi1skgfEZswjJnJcZIakA=",
-    "runtime/components/tabs.js": "sha256-EZw8dHljPEIaVDnuxpR0JDUNswrzy2tdcXiSySBYCyo=",
     "runtime/chunks/navigation-CknoksQ5.js": "sha256-4yNcpxqrLbnNx8CaY3mnoMiZLbQunC4AzkuhPHWjVwM=",
     "tokens.css": "sha256-7HNUwUO0RfX8jPMvp0gqL5lcjjTDPlhJGzs8j7seouU=",
     "component.css": "sha256-fstv2PtC0k8ABx0bciCb6VX0pPTRl3oa8iGdR+6QR0Y=",

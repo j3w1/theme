@@ -5,16 +5,16 @@
   "contract": "https://github.com/j3w1/theme/blob/v4.0.0/spec/components/fieldset.md",
   "dependencies": [
     "register/fieldset.js",
+    "components/fieldset.js",
     "chunks/element-DcrNU9Wh.js",
     "chunks/choice-DqwWT5pJ.js",
-    "components/fieldset.js",
     "chunks/native-D61761VL.js"
   ],
   "files": {
-    "runtime/register/fieldset.js": "sha256-zuT5rtNl3t8k1HJk1X7Q3lQIAgyzKBUsKFZPD0E/ihc=",
+    "runtime/register/fieldset.js": "sha256-7q446gn6TrPeYgJnyFGin905h/CsYZgWG1LUSGLBVk8=",
+    "runtime/components/fieldset.js": "sha256-TWSyWZNRKgfnqI8T6d1EQ5W/mD6n0d8CqqP8ZNXAKgw=",
     "runtime/chunks/element-DcrNU9Wh.js": "sha256-K12Hi4AEpZEosnfTD6MzmDSw+hv7REmmrIycBycQhpY=",
     "runtime/chunks/choice-DqwWT5pJ.js": "sha256-PO0KJ2PRfy2FN9q9+VSvDnxi1skgfEZswjJnJcZIakA=",
-    "runtime/components/fieldset.js": "sha256-TWSyWZNRKgfnqI8T6d1EQ5W/mD6n0d8CqqP8ZNXAKgw=",
     "runtime/chunks/native-D61761VL.js": "sha256-OpLgNJ3+fyz2fjrs+MXXNkgIZfOW56wVOJ3ZbguLteE=",
     "tokens.css": "sha256-7HNUwUO0RfX8jPMvp0gqL5lcjjTDPlhJGzs8j7seouU=",
     "component.css": "sha256-8VS+tXfjHW87aIScNUGAXsrsJ0qwScONidsZFMMFNh0=",
