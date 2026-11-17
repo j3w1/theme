@@ -4,9 +4,9 @@ import { chooseOptions } from '../ui/choice-helper.mjs';
 
 const scope = verification({
   component: 'select', category: 'enhancements',
-  states: ['default', 'selected', 'expanded', 'collapsed'],
+  states: ['default'],
   variants: ['default', 'multiple'],
-  note: 'Choice test helper only: real native selects and public progressive enhancement, including a controlled locator-query boundary. No manual accessibility or comprehensive state coverage claim.',
+  note: 'Choice test helper only, with default-root scope: real native selects and public progressive enhancement, including a controlled locator-query boundary, single/multiple selection, and popup expansion/collapse. These functional protocols do not claim additional catalogue root states. No manual accessibility or comprehensive state coverage claim.',
 });
 
 async function fixture(page) {
