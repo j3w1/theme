@@ -11,6 +11,7 @@ import {sha256Hex as hash,writeDurableTemp,replaceDurableTemp} from '../../../sc
 const args=JSON.parse(fs.readFileSync(0,'utf8'));
 const source=path.resolve(args.source), state=path.resolve(args.state), action=args.action;
 const fixture=args.fixture===true;
+if(args.restoreColorizationIntensity&&action!=='Restore')throw Error('Colorization intensity recovery is only available with Restore');
 if(process.platform!=='win32'&&!fixture)throw Error('Run on native Windows.');
 const read=p=>fs.readFileSync(safe(p),'utf8'),json=p=>JSON.parse(read(p).replace(/^\uFEFF/,''));
 
@@ -29,8 +30,61 @@ if (mutating) {
  fs.writeFileSync(lockFd, JSON.stringify({pid:process.pid,action}));
  process.on('exit',()=>{fs.closeSync(lockFd);fs.unlinkSync(lock);});
 }
-let history=fs.existsSync(journal)?json(journal):{schemaVersion:1,transactions:[]};
-if(history.schemaVersion!==1||!Array.isArray(history.transactions))throw Error('Unsupported recovery journal');
+const journalInput=fs.existsSync(journal)?fs.readFileSync(safe(journal)):null;
+let history=journalInput?JSON.parse(journalInput.toString('utf8').replace(/^\uFEFF/,'')):{schemaVersion:1,transactions:[]};
+if(![1,2].includes(history.schemaVersion)||!Array.isArray(history.transactions))throw Error('Unsupported recovery journal');
+if(history.schemaVersion===1&&['lockscreenAcceptances','lifecycleRevision','lifecycleRuntimeSha256','lifecycleManifestSha256'].some(key=>Object.hasOwn(history,key)))throw Error('Schema1 journal carries unvalidated capable recovery fields');
+const journalInputSha=journalInput?hash(journalInput):null;
+const opId=op=>JSON.stringify([op.kind,op.key,op.name,op.path,op.profile,op.member,op.keys]);
+const canonical=value=>Array.isArray(value)?value.map(canonical):value&&typeof value==='object'?Object.fromEntries(Object.keys(value).sort().map(k=>[k,canonical(value[k])])):value;
+const valueSha=value=>hash(Buffer.from(JSON.stringify(canonical(value))));
+const keeping=!!(args.keepLockScreenValueSha256||args.expectedJournalSha256);
+if(keeping&&(!['Plan','Apply','Update'].includes(action)||!args.explicitSource||!/^[0-9a-f]{40}$/.test(args.revision??'')||![args.keepLockScreenValueSha256,args.expectedJournalSha256].every(v=>/^[0-9a-f]{64}$/.test(v??''))))throw Error('Lock-screen preservation requires paired value/journal digests and an explicit reviewed source revision for Plan/Apply/Update');
+function validImage(value){return value?.exists===true&&Object.keys(value).sort().join(',')==='exists,extension,value'&&['.jpg','.jpeg','.png','.bmp'].includes(value.extension)&&typeof value.value==='string'&&value.value.length>0&&value.value.length<=27962028&&value.value.length%4===0&&/^[A-Za-z0-9+/]+={0,2}$/.test(value.value)&&Buffer.from(value.value,'base64').length<=20*1024*1024&&Buffer.from(value.value,'base64').toString('base64')===value.value;}
+function capableCache(revision,expectedRuntime,expectedManifest){
+ if(!/^[0-9a-f]{40}$/.test(revision??''))throw Error('Invalid capable lifecycle revision');
+ const release=safe(path.join(state,'releases',revision)),manifestPath=safe(path.join(release,'install-manifest.json')),manifest=json(manifestPath),marker=json(path.join(release,'verified.json'));
+ if(marker.revision!==revision||marker.manifestSha256.toLowerCase()!==hash(fs.readFileSync(manifestPath))||(expectedManifest&&marker.manifestSha256.toLowerCase()!==expectedManifest)||manifest.schemaVersion!==1)throw Error('Capable recovery manifest changed');
+ for(const name of ['install.ps1','dependencies.json','dist/runtime.cjs']){
+  const entries=manifest.files.filter(f=>f.path===name),file=safe(path.join(release,name));
+  if(entries.length!==1||!/^[0-9a-f]{64}$/.test(entries[0].sha256)||hash(fs.readFileSync(file))!==entries[0].sha256)throw Error('Capable recovery cache missing or changed');
+ }
+ const runtimeHash=hash(fs.readFileSync(path.join(release,'dist/runtime.cjs')));
+ if(expectedRuntime&&runtimeHash!==expectedRuntime)throw Error('Capable recovery runtime changed');
+ return {release,runtimeHash,manifestHash:marker.manifestSha256.toLowerCase()};
+}
+function savedCapableRecovery(release){
+ const lines=read(path.join(state,'recovery-commands.txt')).replace(/^\uFEFF/,'').trim().split(/\r?\n/),actions=['Test','Restore -Latest','Restore','Uninstall'];
+ if(lines.length!==4)throw Error('Capable recovery commands unavailable');
+ for(const [i,line]of lines.entries()){
+  const match=line.match(/^& '((?:[^']|'')+)' -NoProfile -File '((?:[^']|'')+)' -StateRoot '((?:[^']|'')+)' -Action (.+)$/);
+  const real=p=>fs.realpathSync.native(p.replaceAll("''","'")).toLowerCase();
+  if(!match||match[4]!==actions[i]||real(match[1])!==real(args.guardPwsh??args.pwsh)||real(match[2])!==real(path.join(release,'install.ps1'))||real(match[3])!==real(state))throw Error('Capable recovery commands differ');
+ }
+}
+function choiceFor(op,pending){return (history.lockscreenAcceptances??[]).findLast(r=>r.ownerId===opId(op)&&history.transactions.find(t=>t.id===r.ownerTransaction)?.operations[r.ownerIndex]===op&&(r.status==='committed'||(r.status==='pending'&&r.transaction===pending?.id)));}
+const expectedValue=(op,pending)=>op.kind==='lockscreen'?(choiceFor(op,pending)?.value??op.after):op.after;
+if(history.schemaVersion===2){
+ if(![history.lifecycleRuntimeSha256,history.lifecycleManifestSha256].every(v=>/^[0-9a-f]{64}$/.test(v??'')))throw Error('Invalid capable recovery binding');
+ capableCache(history.lifecycleRevision,history.lifecycleRuntimeSha256,history.lifecycleManifestSha256);
+ if(!Array.isArray(history.lockscreenAcceptances))throw Error('Invalid lock-screen acceptance history');
+ for(const r of history.lockscreenAcceptances){
+  const owner=history.transactions.find(t=>t.id===r.ownerTransaction)?.operations[r.ownerIndex];
+  const transaction=history.transactions.find(t=>t.id===r.transaction);
+  if(!owner||owner.kind!=='lockscreen'||!Number.isInteger(r.ownerIndex)||r.ownerIndex<0||r.ownerId!==opId(owner)||r.originalAfterSha256!==valueSha(owner.after)||!['pending','committed','rolledback'].includes(r.status)||!validImage(r.value)||r.valueSha256!==valueSha(r.value)||!transaction||(r.status==='pending'&&!['applying','restore-conflict'].includes(transaction.status))||(r.status==='committed'&&transaction.status==='applying'))throw Error('Invalid lock-screen acceptance receipt');
+ }
+}
+let lockscreenChoice=null,lockscreenCandidate=null;
+function lockscreenTarget(now){
+ let owner;
+ for(const tx of history.transactions.filter(t=>t.status==='applied'))for(const [index,op]of tx.operations.entries())if(op.applied&&op.kind==='lockscreen'){if(owner&&keeping)throw Error('Ambiguous managed lock screen');owner={tx,index,op};}
+ if(owner&&validImage(now)&&!eq(now,expectedValue(owner.op)))lockscreenCandidate={valueSha256:valueSha(now),journalSha256:journalInputSha,newAcceptance:true};
+ if(keeping){
+  if(!owner||!validImage(now)||journalInputSha!==args.expectedJournalSha256||valueSha(now)!==args.keepLockScreenValueSha256)throw Error('Lock-screen consent binding differs');
+  if(!eq(now,expectedValue(owner.op)))lockscreenChoice={ownerTransaction:owner.tx.id,ownerIndex:owner.index,ownerId:opId(owner.op),originalAfterSha256:valueSha(owner.op.after),value:now,valueSha256:valueSha(now),journalBeforeSha256:journalInputSha};
+ }
+ return lockscreenChoice?.value??(owner&&choiceFor(owner.op)?.value)??null;
+}
 
 function safe(p) {
  p=path.resolve(p);
@@ -43,8 +97,28 @@ function safe(p) {
 }
 function atomic(p,b){safe(p);fs.mkdirSync(path.dirname(p),{recursive:true});const temp=writeDurableTemp(p,b);try{replaceDurableTemp(temp,p,{beforeAttempt:()=>safe(p)});}finally{if(fs.existsSync(temp))fs.unlinkSync(temp);}}
 function persist(){atomic(journal,JSON.stringify(history,null,2)+'\n');}
+let fixtureRefreshCount=0;
 function ps(request){
- if(fixture){const p=path.join(root,'registry.json'),reg=fs.existsSync(p)?json(p):{};if(request.operation==='get'){const key=request.key+'|'+request.name;return reg[key]??{exists:false};}if(request.operation==='set'){const key=request.key+'|'+request.name;if(request.value.exists)reg[key]=request.value;else delete reg[key];atomic(p,JSON.stringify(reg));return {ok:true};}return {ok:true};}
+ if(fixture){
+  const p=path.join(root,'registry.json'),reg=fs.existsSync(p)?json(p):{};
+  if(request.operation==='get')return reg[request.key+'|'+request.name]??{exists:false};
+  if(request.operation==='set'){
+   const key=request.key+'|'+request.name;
+   if(request.value.exists)reg[key]=request.value;else delete reg[key];
+   atomic(p,JSON.stringify(reg));return {ok:true};
+  }
+  if(request.operation==='refresh'){
+   const index=fixtureRefreshCount++,step=args.fixtureRefreshSteps?.[index]??(index===0?{values:args.fixtureRefreshValues}:null);
+   if(step?.error)throw Error('Injected personalization refresh failure');
+   if(step?.values){Object.assign(reg,step.values);atomic(p,JSON.stringify(reg));}
+   for(const file of step?.files??[]){
+    const dest=safe(path.resolve(root,file.path));
+    if(!dest.startsWith(path.resolve(root)+path.sep)||typeof file.value!=='string')throw Error('Invalid fixture refresh file');
+    atomic(dest,file.value);
+   }
+  }
+  return {ok:true};
+ }
  const r=spawnSync(args.pwsh,['-NoLogo','-NoProfile','-NonInteractive','-File',path.join(source,'adapter.ps1')],{input:JSON.stringify(request),encoding:'utf8',windowsHide:true});if(r.status!==0)throw Error(`Windows adapter failed: ${r.stderr.trim()}`);return JSON.parse(r.stdout.trim());
 }
 function lockscreen(request){
@@ -128,8 +202,18 @@ if(args.mode==='Full'&&(!fixture||args.fixtureWindhawk)){
 }
 const personalization='Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize';
 reg(personalization,'AppsUseLightTheme',0);reg(personalization,'SystemUsesLightTheme',0);reg(personalization,'EnableTransparency',0);reg(personalization,'ColorPrevalence',0);
-const accent=v['native.accent'].slice(1),rgb=accent.match(/../g),abgr=parseInt('ff'+rgb.toReversed().join(''),16),argb=parseInt('ff'+accent,16);
-reg('Software\\Microsoft\\Windows\\DWM','AccentColor',abgr);reg('Software\\Microsoft\\Windows\\DWM','ColorizationColor',argb);reg('Software\\Microsoft\\Windows\\DWM','ColorPrevalence',1);
+const accent=v['native.accent'].slice(1),rgb=accent.match(/../g),abgr=parseInt('ff'+rgb.toReversed().join(''),16);
+// DWM colorization intensity is native Windows state, not theme opacity.
+// Preserve that byte while replacing the RGB with the canonical accent. A legacy
+// opaque write was observed as nonopaque after activation; its cause is unverified.
+// The complete resulting DWORD is journaled and checked, including intensity.
+const colorization=ps({operation:'get',key:'Software\\Microsoft\\Windows\\DWM',name:'ColorizationColor'});
+if(colorization.exists&&(colorization.type!=='DWord'||!Number.isInteger(colorization.value)||colorization.value<0||colorization.value>0xffffffff))throw Error('Invalid native DWM colorization DWORD; no settings changed');
+const intensity=colorization.exists?Math.floor(colorization.value/0x1000000):0xff;
+const argb=intensity*0x1000000+parseInt(accent,16);
+reg('Software\\Microsoft\\Windows\\DWM','AccentColor',abgr);
+reg('Software\\Microsoft\\Windows\\DWM','ColorizationColor',argb);ops.at(-1).planningSnapshot=colorization;
+reg('Software\\Microsoft\\Windows\\DWM','ColorPrevalence',1);
 reg('Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Accent','AccentColorMenu',abgr);
 const assets=path.join(state,'assets');file(path.join(assets,'j3w1-wallpaper.bmp'),'j3w1-wallpaper.bmp');
 // Only generic folder defaults change. Per-folder desktop.ini and shortcuts
@@ -140,7 +224,8 @@ for(const open of [false,true]){
 }
 for(const category of ['Folder','Directory'])reg('Software\\Classes\\'+category+'\\DefaultIcon','',path.join(assets,'j3w1-folder.ico'),'String');
 const lockBaseline=lockscreen({operation:'get'});
-if(lockBaseline.exists)ops.push({kind:'lockscreen',after:{exists:true,value:fs.readFileSync(path.join(source,'dist/j3w1-wallpaper.bmp')).toString('base64'),extension:'.bmp'}});
+const chosenLockscreen=lockscreenTarget(lockBaseline);
+if(lockBaseline.exists)ops.push({kind:'lockscreen',after:chosenLockscreen??{exists:true,value:fs.readFileSync(path.join(source,'dist/j3w1-wallpaper.bmp')).toString('base64'),extension:'.bmp'}});
 reg('Control Panel\\Desktop','Wallpaper',path.join(assets,'j3w1-wallpaper.bmp'),'String');reg('Control Panel\\Desktop','WallpaperStyle','10','String');reg('Control Panel\\Desktop','TileWallpaper','0','String');
 const cursorNames=['Arrow','Help','AppStarting','Wait','Crosshair','IBeam','NWPen','No','SizeNS','SizeWE','SizeNWSE','SizeNESW','SizeAll','UpArrow','Hand','Pin','Person'];
 for(const name of cursorNames){const f='j3w1-'+name.toLowerCase()+'.cur';file(path.join(assets,f),f);reg('Control Panel\\Cursors',name,path.join(assets,f),'ExpandString');}
@@ -184,6 +269,19 @@ function compatibility(){
  return shellCompatibility(fixture?args.environment:ps({operation:'environment'}),settings.compatibility);
 }
 function compat(){return compatibility().compatible;}
+function adapterExclusions(){
+ const ids=settings.adapterExclusions??[],known=new Set((settings.bundledMods??[]).map(mod=>mod.id));
+ if(!Array.isArray(ids)||new Set(ids).size!==ids.length||ids.some(id=>!known.has(id)))throw Error('Invalid source-owned adapter exclusions');
+ return new Set(ids);
+}
+function assertExcludedAdaptersAbsent(){
+ const excluded=adapterExclusions();
+ for(const tx of history.transactions.filter(tx=>tx.status!=='restored'))for(const mod of tx.mods??[])
+  if(!mod.restored&&excluded.has(mod.sourceId??mod.id.replace(/^local@/,'')))throw Error('Excluded managed adapter remains owned; run official Restore before this candidate: '+mod.id);
+ if((fixture&&!args.fixtureWindhawk)||(!fixture&&!fs.existsSync(windhawk)))return;
+ for(const id of excluded)for(const installedId of [id,'local@'+id])
+  if(wh(['mod','show',installedId],true))throw Error('Excluded adapter is already installed; resolve its ownership explicitly before this candidate: '+installedId);
+}
 const windhawk=path.join(state,'tools/windhawk/2.0.0-alpha.6/windhawk-cli.exe');
 function whLaunch(){return {command:fixture&&args.fixtureWindhawk?process.execPath:windhawk,prefix:fixture&&args.fixtureWindhawk?[args.fixtureWindhawk,state]:[]};}
 function whSettings(id,values){
@@ -251,8 +349,10 @@ function stageMods(tx){
  if(!compat())throw Error('Unsupported Windows/shell fingerprint. Full mode refused; Native remains available.');
  if(!fixture&&!fs.existsSync(windhawk))throw Error('Pinned Windhawk CLI missing. Run the dependency bootstrap first.');
  const deps=json(path.join(source,'dependencies.json'));
- const bundled=settings.bundledMods??[];
- for(const mod of bundled)if(!/^[a-z0-9-]+$/.test(mod.id) || mod.path!==`dist/${mod.id}.wh.cpp` || !/^[a-f0-9]{64}$/.test(mod.sha256))throw Error('Invalid bundled Windhawk source');
+ const allBundled=settings.bundledMods??[],excluded=adapterExclusions();
+ for(const mod of allBundled)if(!/^[a-z0-9-]+$/.test(mod.id) || mod.path!==`dist/${mod.id}.wh.cpp` || !/^[a-f0-9]{64}$/.test(mod.sha256))throw Error('Invalid bundled Windhawk source');
+ assertExcludedAdaptersAbsent();
+ const bundled=allBundled.filter(mod=>!excluded.has(mod.id));
  const upstream=deps.mods.map(mod=>{
   const sourcePath=safe(path.join(state,'downloads',mod.id+'.wh.cpp'));
   if(mod.id!=='windows-11-settings-styler')return {...mod,sourcePath};
@@ -307,7 +407,17 @@ function stageMods(tx){
 }
 
 const label=op=>op.kind==='lockscreen'?'Windows lock-screen image':op.kind==='windhawk-setting'?`Windhawk/${op.name}`:op.kind==='registry'?`${op.key}/${op.name}`:op.path;
-const opId=op=>JSON.stringify([op.kind,op.key,op.name,op.path,op.profile,op.member,op.keys]);
+function colorizationIntensityRecovery(op,now) {
+ if(!args.restoreColorizationIntensity||op.kind!=='registry'||op.key!=='Software\\Microsoft\\Windows\\DWM'||op.name!=='ColorizationColor')return false;
+ const valid=value=>value?.exists===true&&value.type==='DWord'&&Number.isInteger(value.value)&&value.value>=0&&value.value<=0xffffffff;
+ if(![op.before,op.after,now].every(valid))return false;
+ // Explicit recovery of the former opaque mapping only. Accept exactly the
+ // original intensity plus the recorded installed RGB, never a different RGB,
+ // type, missing value, or arbitrary intensity. Preserve both original receipts.
+ const intensity=Math.floor(op.before.value/0x1000000);
+ return intensity!==0xff&&Math.floor(op.after.value/0x1000000)===0xff
+  &&now.value===intensity*0x1000000+op.after.value%0x1000000;
+}
 const currentPath=path.join(state,'current.json');
 function updatePointer() {
  const active=history.transactions.filter(t=>t.status==='applied').at(-1);
@@ -316,13 +426,24 @@ function updatePointer() {
 }
 function restore(tx) {
  const conflicts=[];
+ // A durable incomplete status owns all pending expectations until refresh and
+ // exact readback succeed. Never expose a restored transaction before activation.
+ tx.status='restore-conflict';persist();
+ const restoredModMatches=(mod)=>{
+  const expected=mod.restorePending,shown=wh(['mod','show',mod.id],true);
+  if(!expected.exists)return !shown;
+  return shown?.metadata?.version===expected.version&&eq(shown.config,expected.config)
+   &&eq(wh(['mod','settings','get',mod.id]),expected.settings)
+   &&(!expected.artifact||sameModArtifact(shown,expected.artifact));
+ };
  for(const mod of [...(tx.mods??[])].reverse()) {
   if(mod.restored)continue;
   // No write was acquired: preserve the live instance and any later user edit.
   if(mod.unchanged){mod.restored=true;persist();continue;}
   console.error(`Restoring theme adapter ${mod.sourceId??mod.id}. Saved source may need compilation.`);
   try {
-   if(!wh(['mod','show',mod.id],true)&&!mod.before){mod.restored=true;persist();continue;}
+   if(mod.restorePending){if(!restoredModMatches(mod))conflicts.push(mod.id);continue;}
+   if(!wh(['mod','show',mod.id],true)&&!mod.before){mod.restorePending={exists:false};persist();continue;}
    const shown=wh(['mod','show',mod.id]),currentSettings=wh(['mod','settings','get',mod.id]);
    const reuseRestore=mod.reused&&mod.before&&sameSettingKeys(currentSettings,mod.beforeSettings)
     &&sameModArtifact(shown,compiledReceipt(mod));
@@ -357,7 +478,8 @@ function restore(tx) {
     }
    }
    else wh(['--yes','mod','remove',mod.id]);
-   mod.restored=true;persist();
+   const restored=wh(['mod','show',mod.id],true);
+   mod.restorePending=restored?{exists:true,version:restored.metadata?.version,config:restored.config,settings:wh(['mod','settings','get',mod.id]),artifact:modArtifact(restored)}:{exists:false};persist();
   }catch(error){conflicts.push(`${mod.id}: ${error.message}`);}
  }
  console.error('Restoring saved personalization and application settings.');
@@ -365,37 +487,71 @@ function restore(tx) {
  // bytes (including comments, absent parents and original file absence).
  const exact=new Set();
  for(const snapshot of tx.documents??[]) {
-  if(!snapshot.after)continue;
+  if(!snapshot.after||!tx.operations.some(op=>op.applied&&op.kind==='json'&&op.path===snapshot.path))continue;
   try {
    const op={kind:'file',path:snapshot.path};
-   if(eq(get(op),snapshot.after)){
-    put(op,snapshot.before);exact.add(snapshot.path);
-    for(const item of tx.operations)if(item.kind==='json'&&item.path===snapshot.path)item.applied=false;
+   const now=get(op);
+   if(eq(now,snapshot.after)||(snapshot.restorePending&&eq(now,snapshot.before))){
+    if(!eq(now,snapshot.before))put(op,snapshot.before);
+    if(!eq(get(op),snapshot.before))throw Error('Document restoration readback failed');
+    snapshot.restorePending=true;exact.add(snapshot.path);
+    for(const item of tx.operations)if(item.applied&&item.kind==='json'&&item.path===snapshot.path)item.restorePending=true;
     persist();
-   }
+   }else if(snapshot.restorePending){delete snapshot.restorePending;persist();}
   }catch(error){conflicts.push(`${snapshot.path}: ${error.message}`);}
  }
  for(const op of tx.operations.toReversed()) {
   if(!op.applied||exact.has(op.path))continue;
   try {
    const now=get(op);
-   if(eq(now,op.before)){op.applied=false;persist();continue;}
-   if(!eq(now,op.after)){conflicts.push(label(op));continue;}
-   put(op,op.before);op.applied=false;persist();
+   if(op.kind==='lockscreen'&&choiceFor(op)){if(!eq(now,expectedValue(op))){conflicts.push(label(op));continue;}op.restorePending=true;persist();continue;}
+   if(eq(now,op.before)){op.restorePending=true;persist();continue;}
+   if(!eq(now,op.after)){
+    if(!colorizationIntensityRecovery(op,now)){conflicts.push(label(op));continue;}
+    op.intensityRecovery={observed:now,recordedAfter:op.after};persist();
+   }
+   put(op,op.before);
+   if(!eq(get(op),op.before))throw Error('Restoration readback failed');
+   op.restorePending=true;persist();
   }catch(error){conflicts.push(`${label(op)}: ${error.message}`);}
  }
- tx.status=conflicts.length?'restore-conflict':'restored';persist();
+ const pending=tx.operations.filter(op=>op.applied&&op.restorePending);
+ const pendingMods=(tx.mods??[]).filter(mod=>mod.restorePending&&!mod.restored);
+ let refreshed=true;
+ if(pending.length||pendingMods.length)try{ps({operation:'refresh'});}catch(error){refreshed=false;conflicts.push(`Personalization refresh: ${error.message}`);}
+ if(refreshed){
+  const verifiedDocuments=new Set();
+  for(const snapshot of tx.documents??[])if(snapshot.restorePending)try{
+   if(!eq(get({kind:'file',path:snapshot.path}),snapshot.before)){conflicts.push(snapshot.path);continue;}
+   verifiedDocuments.add(snapshot.path);delete snapshot.restorePending;persist();
+  }catch(error){conflicts.push(`${snapshot.path}: ${error.message}`);}
+  for(const op of pending)try{
+   if(exact.has(op.path)?!verifiedDocuments.has(op.path):!eq(get(op),op.kind==='lockscreen'&&choiceFor(op)?expectedValue(op):op.before)){conflicts.push(label(op));continue;}
+   op.applied=false;delete op.restorePending;persist();
+  }catch(error){conflicts.push(`${label(op)}: ${error.message}`);}
+  for(const mod of pendingMods)try{
+   if(!restoredModMatches(mod)){conflicts.push(mod.id);continue;}
+   mod.restored=true;delete mod.restorePending;persist();
+  }catch(error){conflicts.push(`${mod.id}: ${error.message}`);}
+ }
+ tx.status=conflicts.length?'restore-conflict':'restored';
+ if(!conflicts.length)for(const receipt of history.lockscreenAcceptances??[])if(receipt.transaction===tx.id&&receipt.status==='pending')receipt.status='rolledback';
+ persist();
  return [...new Set(conflicts)];
 }
-function verify({checkEngine=true}={}) {
+const fullMismatch=tx=>history.schemaVersion===2&&tx?.mode==='Full'&&tx.revision!==history.lifecycleRevision;
+function verify({checkEngine=true,pending}={}) {
  const active=history.transactions.filter(t=>t.status==='applied');
+ if(pending)active.push(pending);
  const tx=active.at(-1);
  if(!tx)throw Error('No installed transaction');
+ if(!pending&&fullMismatch(tx))return {result:'failed',revision:tx.revision,failed:['Full appearance differs from capable lifecycle; matching Update or complete recovery required'],limitations:settings.limitations};
  const effective=new Map();
  for(const t of active)for(const op of t.operations)if(op.applied)effective.set(opId(op),op);
  const failed=[];
- for(const op of effective.values())try{if(!eq(get(op),op.after))failed.push(label(op));}catch(error){failed.push(label(op));}
+ for(const op of effective.values())try{if(!eq(get(op),expectedValue(op,pending)))failed.push(label(op));}catch(error){failed.push(label(op));}
  if(tx.mode==='Full') {
+  try{assertExcludedAdaptersAbsent();}catch(error){failed.push(error.message);}
   if(checkEngine&&!engineRunning())failed.push('theme engine is not running');
   if(!compat())failed.push('shell compatibility');
   for(const mod of tx.mods??[])try{
@@ -409,21 +565,27 @@ function verify({checkEngine=true}={}) {
  return {result:failed.length?'failed':'passed',revision:tx.revision,failed,limitations:settings.limitations};
 }
 if(action==='Plan') {
- console.log(JSON.stringify({action,mode:args.mode,compatible:compat(),compatibility:compatibility(),operations:ops.map(op=>({kind:op.kind,target:label(op),keys:op.keys??op.name,changes:!eq(get(op),op.after)})),limitations:settings.limitations},null,2));
+ const report=compatibility();
+ if(args.mode==='Full'&&report.compatible)assertExcludedAdaptersAbsent();
+ console.log(JSON.stringify({action,mode:args.mode,compatible:report.compatible,compatibility:report,excludedAdapters:[...adapterExclusions()],operations:ops.map(op=>({kind:op.kind,target:label(op),keys:op.keys??op.name,changes:!eq(get(op),op.after)})),...(keeping||lockscreenCandidate?{lockScreenPreservation:{valueSha256:keeping?args.keepLockScreenValueSha256:lockscreenCandidate.valueSha256,journalSha256:journalInputSha,newAcceptance:!!lockscreenChoice||!!lockscreenCandidate,requested:keeping}}:{}),limitations:settings.limitations},null,2));
 }else if(action==='Test') {
  const result=verify();console.log(JSON.stringify(result,null,2));if(result.failed.length)process.exitCode=1;
 }else if(['Restore','Uninstall'].includes(action)) {
  const candidates=history.transactions.filter(t=>t.status!=='restored');
  const selected=args.latest?candidates.slice(-1):candidates;
+ const remaining=history.transactions.filter(t=>t.status==='applied'&&!selected.includes(t)).at(-1);
+ if(action==='Restore'&&args.latest&&fullMismatch(remaining))throw Error('Restore-Latest would leave an older Full guard; use matching Update or complete capable Restore/Uninstall');
  const conflicts=[];
  for(const [index,tx] of selected.toReversed().entries()) {
   console.error(`Restoring saved update ${index+1} of ${selected.length}.`);
   conflicts.push(...restore(tx));
   // Never traverse older baselines through a newer unresolved transaction.
   if(conflicts.length)break;
+  updatePointer();
  }
- ps({operation:'refresh'});
- if(!conflicts.length)updatePointer();
+ // Resume an interruption after the last restored receipt but before its
+ // pointer update, without reacquiring any released setting ownership.
+ if(!selected.length)updatePointer();
  console.log(JSON.stringify({result:conflicts.length?'conflicts':'restored',conflicts,recovery:conflicts.length?'Resolve the listed values using journal.json, then rerun Restore. Backups are retained.':null}));
  if(conflicts.length)process.exitCode=2;
 }else if(action==='Guard') {
@@ -432,36 +594,53 @@ if(action==='Plan') {
   const failures=[];
   // Disable every managed mod before deciding whether this sign-in may activate it.
   for(const mod of tx.mods??[])try{wh(['mod','disable',mod.id]);}catch(error){failures.push(`${mod.id}: ${error.message}`);}
+  if(fullMismatch(tx))failures.push('Full appearance differs from capable lifecycle; matching Update or complete recovery required');
+  else{
   if(!compat())failures.push('unknown shell compatibility');
+  try{assertExcludedAdaptersAbsent();}catch(error){failures.push(error.message);}
   for(const mod of tx.mods??[])try{
    const shown=wh(['mod','show',mod.id]);
    if(shown.metadata?.version!==mod.version||!eq(wh(['mod','settings','get',mod.id]),mod.settings))failures.push(`${mod.id}: version or settings drift`);
    if(compiledReceipt(mod)&&!sameModArtifact(shown,compiledReceipt(mod)))failures.push(`${mod.id}: compiled artifact drift`);
   }catch(error){failures.push(`${mod.id}: ${error.message}`);}
   if(wh(['app','settings','get']).settings.disableUpdateCheck!==true)failures.push('dependency update policy changed');
+  }
   if(!failures.length)try{for(const mod of tx.mods??[])wh(['mod','enable',mod.id]);startWindhawk();}catch(error){failures.push(error.message);for(const mod of tx.mods??[])try{wh(['mod','disable',mod.id]);}catch{}}
   console.log(JSON.stringify({shell:failures.length?'disabled-incompatible':'enabled',failures}));
   if(failures.length)process.exitCode=2;
  }
 }else if(['Apply','Update'].includes(action)) {
  if(args.mode==='Full'&&!compat())throw Error('Full preflight failed: unsupported Windows/shell fingerprint');
+ if(args.mode==='Full')assertExcludedAdaptersAbsent();
  const currentMode=history.transactions.filter(t=>t.status==='applied').at(-1)?.mode;
  if(currentMode&&currentMode!==args.mode)throw Error('Restore the installed mode before changing Full/Native mode');
  const pending=history.transactions.find(x=>['applying','restore-conflict'].includes(x.status));
  if(pending)throw Error('Incomplete transaction: run Restore before another Apply');
+ if(fixture&&args.fixtureBeforePlanningValues)for(const [target,value]of Object.entries(args.fixtureBeforePlanningValues)){const [key,name]=target.split('|');ps({operation:'set',key,name,value});}
  // User edits of an existing managed value require conflict resolution first.
  const effective=new Map();
  for(const tx of history.transactions.filter(t=>t.status==='applied'))for(const op of tx.operations)if(op.applied)effective.set(opId(op),op);
- for(const op of ops){const managed=effective.get(opId(op));if(managed&&!eq(get(op),managed.after))throw Error(`Managed setting conflict: ${label(op)}. Restore and resolve it before applying.`);}
- const planned=ops.map(op=>({...op,before:get(op)})).filter(op=>!eq(op.before,op.after));
+ for(const op of ops){const managed=effective.get(opId(op));if(managed&&!eq(get(op),op.kind==='lockscreen'&&lockscreenChoice?lockscreenChoice.value:expectedValue(managed)))throw Error(`Managed setting conflict: ${label(op)}. Restore and resolve it before applying.`);}
+ const planned=ops.map(({planningSnapshot,...op})=>{
+  const before=get(op);
+  if(planningSnapshot&&!eq(before,planningSnapshot))throw Error('Concurrent edit during dependent colorization planning; no settings changed');
+  return {...op,before};
+ }).filter(op=>!eq(op.before,op.after));
  const previous=history.transactions.filter(t=>t.status==='applied').at(-1);
- if(!planned.length&&previous?.revision===args.revision&&previous?.mode===args.mode) {
+ if(!planned.length&&!lockscreenChoice&&previous?.revision===args.revision&&previous?.mode===args.mode) {
   const checked=verify({checkEngine:false});if(checked.failed.length)throw Error('Installed state drift; run Test for details');
   if(args.mode==='Full')startWindhawk();
   console.log(JSON.stringify({result:'unchanged',revision:args.revision}));
  }else {
   const documents=[...new Set(planned.filter(op=>op.kind==='json').map(op=>op.path))].map(p=>({path:p,before:get({kind:'file',path:p})}));
   const tx={id:crypto.randomUUID(),revision:args.revision,mode:args.mode,status:'applying',operations:planned,documents,mods:[]};
+  if(lockscreenChoice){
+   if(!/^[0-9a-f]{64}$/.test(args.cacheManifestSha256??''))throw Error('Verified capable manifest binding required');
+   const capability=capableCache(args.revision,hash(fs.readFileSync(path.join(source,'dist/runtime.cjs'))),args.cacheManifestSha256);savedCapableRecovery(capability.release);
+   if(hash(fs.readFileSync(journal))!==journalInputSha||!eq(get({kind:'lockscreen'}),lockscreenChoice.value))throw Error('Concurrent edit before lock-screen acceptance');
+   history.schemaVersion=2;history.lifecycleRevision=args.revision;history.lifecycleRuntimeSha256=capability.runtimeHash;history.lifecycleManifestSha256=capability.manifestHash;
+   history.lockscreenAcceptances??=[];history.lockscreenAcceptances.push({...lockscreenChoice,status:'pending',transaction:tx.id});
+  }
   history.transactions.push(tx);persist();
   try {
    stageMods(tx);
@@ -480,13 +659,18 @@ if(action==='Plan') {
    if(args.mode==='Full'&&!compat())throw Error('Compatibility changed during apply');
    for(const mod of tx.mods)if(!mod.unchanged)wh(['mod','enable',mod.id]);
    if(args.mode==='Full')startWindhawk();
+   const activated=verify({pending:tx});
+   if(activated.failed.length)throw Error('Post-refresh verification failed: '+activated.failed.join(', '));
+   if(lockscreenChoice&&!eq(get({kind:'lockscreen'}),lockscreenChoice.value))throw Error('Concurrent edit before lock-screen acceptance commit');
+   if(history.schemaVersion===2){if(!/^[0-9a-f]{64}$/.test(args.cacheManifestSha256??''))throw Error('Verified capable manifest binding required');const capability=capableCache(args.revision,hash(fs.readFileSync(path.join(source,'dist/runtime.cjs'))),args.cacheManifestSha256);savedCapableRecovery(capability.release);history.lifecycleRevision=args.revision;history.lifecycleRuntimeSha256=capability.runtimeHash;history.lifecycleManifestSha256=capability.manifestHash;}
+   for(const receipt of history.lockscreenAcceptances??[])if(receipt.transaction===tx.id&&receipt.status==='pending')receipt.status='committed';
    tx.status='applied';persist();updatePointer();
    console.log(JSON.stringify({result:'applied',revision:args.revision,changes:planned.length,limitations:settings.limitations}));
   }catch(error) {
    console.error('Installation failed; reversing this transaction before returning the error.');
+   for(const receipt of history.lockscreenAcceptances??[])if(receipt.transaction===tx.id&&receipt.status==='committed'){receipt.status='pending';tx.status='applying';persist();}
    for(const mod of tx.mods)if(!mod.unchanged)try{wh(['mod','disable',mod.id]);}catch{}
    const conflicts=restore(tx);
-   try{ps({operation:'refresh'});}catch(refreshError){conflicts.push(`Personalization refresh: ${refreshError.message}`);tx.status='restore-conflict';persist();}
    if(!conflicts.length)updatePointer();
    throw Error(`${error.message}; rollback ${conflicts.length?'needs conflict recovery; run Restore':'completed'}`);
   }

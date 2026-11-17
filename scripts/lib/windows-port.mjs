@@ -331,7 +331,10 @@ export function windowsArtifacts({manifest,host,resolved}){
  const replacement=readFileSync(path.join(repoRoot,'ports/windows/src/settings-core-window.cpp.in'),'utf8')
   .replace('@EXECUTABLE_SHA256@',startup.executableSha256).replace('@XAML_SHA256@',startup.xamlSha256);
  const settingsStartup={sourceSha256:startup.sourceSha256,replacement};
- json('windows-settings.json',{schemaVersion:1,version:manifest.version,values:settings,stylerVariants,bundledMods,settingsStartup,compatibility:host.compatibility,limitations:host.limitations});
+ const adapterExclusions=host.adapterExclusions??[];
+ if(!Array.isArray(adapterExclusions)||new Set(adapterExclusions).size!==adapterExclusions.length
+  ||adapterExclusions.some(id=>!bundledMods.some(mod=>mod.id===id)))throw Error('Invalid source-owned Windows adapter exclusions');
+ json('windows-settings.json',{schemaVersion:1,version:manifest.version,values:settings,stylerVariants,bundledMods,adapterExclusions,settingsStartup,compatibility:host.compatibility,limitations:host.limitations});
  const ansi=['black','red','green','yellow','blue','purple','cyan','white','brightBlack','brightRed','brightGreen','brightYellow','brightBlue','brightPurple','brightCyan','brightWhite'];
  const scheme={name:'j3w1',foreground:val('color.terminal.fg'),background:val('color.surface.canvas'),cursorColor:val('color.terminal.cursor'),selectionBackground:val('color.code.selection-bg')};ansi.forEach((k,i)=>scheme[k]=val(`color.terminal.ansi.${i}`));
  json('terminal-fragment.json',{schemes:[scheme]});

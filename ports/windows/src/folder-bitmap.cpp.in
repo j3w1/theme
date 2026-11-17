@@ -64,8 +64,9 @@ static HRESULT STDMETHODCALLTYPE Hook(IWICImagingFactory* factory,HICON icon,IWI
     DWORD before=GetLastError();bool reviewed=Caller(__builtin_return_address(0));SetLastError(before);
     return Convert(factory,icon,result,reviewed);
 }
-static bool Init() noexcept {
+static bool Init(HRESULT* observed=nullptr,HRESULT* creation=nullptr) noexcept {
     HRESULT apartment=CoInitializeEx(nullptr,COINIT_APARTMENTTHREADED);
+    if(observed)*observed=apartment;
     if(FAILED(apartment)&&apartment!=RPC_E_CHANGED_MODE)return false;
     struct Apartment {
         IWICImagingFactory* factory=nullptr;
@@ -74,7 +75,9 @@ static bool Init() noexcept {
     } apartmentScope{nullptr,SUCCEEDED(apartment)};
     auto& factory=apartmentScope.factory;bool ready=false;
     try {
-    if(SUCCEEDED(CoCreateInstance(CLSID_WICImagingFactory,nullptr,CLSCTX_INPROC_SERVER,IID_PPV_ARGS(&factory)))) {
+    HRESULT created=CoCreateInstance(CLSID_WICImagingFactory,nullptr,CLSCTX_INPROC_SERVER,IID_PPV_ARGS(&factory));
+    if(creation)*creation=created;
+    if(SUCCEEDED(created)) {
         // IWICImagingFactory inherits IUnknown; CreateBitmapFromHICON is the
         // documented method at slot 22 of the public interface ABI.
         auto function=(*reinterpret_cast<void***>(factory))[22];HMODULE module=nullptr;

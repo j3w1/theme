@@ -18,9 +18,13 @@ const again = JSON.parse(execFileSync("node", args, { encoding: "utf8", env: { .
 if (JSON.stringify(again) !== JSON.stringify(plan)) problems.push(`the plan does not recompute: ${String(plan.planHash).slice(0, 12)} vs ${again.planHash.slice(0, 12)}`);
 
 const has = (p) => plan.proofs.includes(p);
+const cheap = ["sources", "unit", "unit-install", "unit-install-windows"].some(has);
 const expected = {
-  checks: ["sources", "unit", "unit-install", "unit-install-windows"].some(has),
-  "windows-install": ["sources", "unit", "unit-install", "unit-install-windows"].some(has),
+  checks: cheap,
+  "windows-port": cheap,
+  "windows-lockscreen": cheap,
+  "windows-install": cheap,
+  "windows-native": cheap,
   build: has("build"),
   browser: plan.shards.length > 0,
   consumers: has("consumers"),

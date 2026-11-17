@@ -51,7 +51,7 @@ test('Settings derived source journals both pins, restores the prior adapter, an
  write(path.join(state,'downloads/windows-11-settings-styler.wh.cpp'),upstream);
  write(path.join(source,'dependencies.json'),{mods:[{id:'windows-11-settings-styler',version:'1.1',sha256:upstreamDigest}]});
  const settingsFile=path.join(source,'dist/windows-settings.json'),settings=read(settingsFile);
- settings.bundledMods=[];settings.settingsStartup={sourceSha256:upstreamDigest,replacement};write(settingsFile,settings);
+ settings.bundledMods=[];settings.adapterExclusions=[];settings.settingsStartup={sourceSha256:upstreamDigest,replacement};write(settingsFile,settings);
  const run=action=>spawnSync(process.execPath,[path.join(source,'dist/runtime.cjs')],{
   input:JSON.stringify({source,state,action,mode:'Full',revision:(action==='Apply'?'1':'2').repeat(40),fixture:true,
    fixtureWindhawk:path.join(repoRoot,'tests/fixtures/windows-windhawk.cjs')}),encoding:'utf8',timeout:30000});
