@@ -3,13 +3,11 @@ import { expect } from '@playwright/test';
 // Exercise the visible themed UI. Native fallback specimens still use the
 // browser's real select interaction; no hidden-control or forced action bypass.
 async function visibleControl(locator) {
-  if (await locator.count() > 1) locator = locator.and(locator.page().locator('select,[role="combobox"],[role="listbox"][aria-multiselectable="true"]')).filter({ visible: true });
-  if (await locator.evaluate(node => node.tagName === 'SELECT')) {
-    if (await locator.isVisible()) return locator;
-    const id = await locator.evaluate(node => node.nextElementSibling?.querySelector('[role="combobox"],[role="listbox"]')?.id);
-    expect(id, 'Hidden native select must have its themed control').toBeTruthy();
-    locator = locator.page().locator(`[id=${JSON.stringify(id)}]`);
-  }
+  // Resolve the source and its native select's companion together on every
+  // lookup: enhancement can change a label's matches between awaited calls.
+  const themed = '[role="combobox"],[role="listbox"][aria-multiselectable="true"]';
+  const companion = locator.locator('xpath=self::select/following-sibling::*[1]').locator(themed);
+  locator = locator.or(companion).and(locator.page().locator(`select,${themed}`)).filter({ visible: true });
   await expect(locator).toBeVisible();
   return locator;
 }
