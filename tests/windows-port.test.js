@@ -94,62 +94,108 @@ test('Search presentation cannot hide controls, accept scripts or substitute lit
   assert.throws(()=>windowsWebContentStyles([{target:'.suggestion .details',styles:{},presentation:{'background-color':fill}}],value),/Unsupported Search presentation/);
 });
 // Diagnostics for lifecycle children that fail or run long on a slow host. They
-// write one bounded block to stderr, assert nothing, and never throw in place of
-// the caller's assertions. The paired trace comes from the Windhawk fixture CLI:
-// boot is that process's start (performance.timeOrigin) to its first trace line,
-// so Node bootstrap plus loading the fixture; run is its entry to its exit. A gap
-// between nested calls, and the time before the first or after the last, still
-// mixes runtime work with OS scheduling and process creation; it is reported
-// unattributed. A missing trace is UNAVAILABLE and an entry without an exit is
-// INCOMPLETE, never zero.
+// write one bounded block to stderr with a synchronous write, assert nothing,
+// and never throw in place of the caller's assertions. A call is quiet only when
+// it exits 0 without an error or signal inside the threshold; every other call
+// is reported, including expected rejections.
+//
+// The paired trace comes from the Windhawk fixture CLI. "boot" is that process's
+// start (performance.timeOrigin, rounded) to its entry timestamp: Node bootstrap
+// plus loading the fixture, not OS process creation. "run" is its entry to its
+// exit timestamp. A gap between nested calls, and the time before the first or
+// after the last, still mixes runtime work with OS scheduling and process
+// creation, and is reported unattributed.
+//
+// Evidence that cannot be trusted is never turned into zero: a missing or
+// unreadable trace is UNAVAILABLE; malformed, truncated, exit-only or
+// out-of-window records make the timeline PARTIAL, with the affected intervals
+// UNKNOWN and no totals; an entry without an exit inside the child's window is
+// INCOMPLETE.
 const childReportMs=Number(process.env.J3W1_CHILD_REPORT_MS??15000);
-const traceReadLimit=1024*1024,traceRecordLimit=4000,outputTailLimit=2048;
-const traceSize=file=>{try{return fs.statSync(file).size;}catch{return 0;}};
-const outputTail=text=>typeof text==='string'?text.slice(-outputTailLimit):null;
-function childTimeline(file,offset,runtimePid,started,ended){
- let text;
+const traceReadLimit=1024*1024,traceRecordLimit=4000,outputTailBytes=2048,reportLimit=16*1024;
+function traceSnapshot(file){
+ try{return {state:'ok',offset:fs.statSync(file).size};}
+ catch(error){return error?.code==='ENOENT'?{state:'absent',offset:0}:{state:'unavailable',offset:0,reason:'snapshot '+(error?.code??String(error))};}
+}
+function outputTail(text){
+ if(typeof text!=='string')return null;
+ const bytes=Buffer.from(text,'utf8');if(bytes.length<=outputTailBytes)return text;
+ // Keep the last outputTailBytes bytes, starting on a UTF-8 character boundary.
+ let start=bytes.length-outputTailBytes;while(start<bytes.length&&(bytes[start]&0xc0)===0x80)start++;
+ return bytes.subarray(start).toString('utf8');
+}
+const finite=x=>typeof x==='number'&&Number.isFinite(x);
+function traceRecord(line){
+ let r;try{r=JSON.parse(line);}catch{return null;}
+ if(!r||!Number.isInteger(r.pid)||!Number.isInteger(r.ppid)||!finite(r.t))return null;
+ if(r.event==='entry')return finite(r.origin)&&Array.isArray(r.operation)&&r.operation.every(x=>typeof x==='string')?r:null;
+ return r.event==='exit'?r:null;
+}
+function childTimeline(file,snapshot,runtimePid,started,ended){
+ if(snapshot.state==='unavailable')return {trace:'UNAVAILABLE',reason:snapshot.reason};
+ let text,size;
  try{
   const fd=fs.openSync(file,'r');
-  try{const length=Math.max(0,Math.min(fs.fstatSync(fd).size-offset,traceReadLimit)),buffer=Buffer.alloc(length);fs.readSync(fd,buffer,0,length,offset);text=buffer.toString('utf8');}
+  try{size=fs.fstatSync(fd).size;const length=Math.max(0,Math.min(size-snapshot.offset,traceReadLimit)),buffer=Buffer.alloc(length);fs.readSync(fd,buffer,0,length,snapshot.offset);text=buffer.toString('utf8');}
   finally{fs.closeSync(fd);}
- }catch(error){return {trace:'UNAVAILABLE',reason:error.code??String(error)};}
+ }catch(error){return {trace:'UNAVAILABLE',reason:error?.code==='ENOENT'?'no trace file (no nested call recorded)':'read '+(error?.code??String(error))};}
+ if(!text.length)return {trace:'UNAVAILABLE',reason:'no new trace records for this call'};
+ const problems=[];
+ if(size-snapshot.offset>traceReadLimit)problems.push('trace read truncated');
  // The last element is '' after a trailing newline, or an unfinished record.
- const complete=text.split('\n').slice(0,-1);
- let malformed=text.length&&!text.endsWith('\n')?1:0,foreign=0;const calls=new Map();
+ const lines=text.split('\n');if(lines.at(-1)!=='')problems.push('unfinished last record');
+ const complete=lines.slice(0,-1);if(complete.length>traceRecordLimit)problems.push('record limit reached');
+ let malformed=0,foreign=0;const calls=new Map();
  for(const line of complete.slice(0,traceRecordLimit)){
-  let record;try{record=JSON.parse(line);}catch{malformed++;continue;}
-  if(record.ppid!==runtimePid){foreign++;continue;}
-  const call=calls.get(record.pid)??{pid:record.pid};calls.set(record.pid,call);
-  if(record.event==='entry'){call.operation=record.operation;call.origin=record.origin;call.entry=record.t;}
-  else if(record.event==='exit'){call.exit=record.t;call.code=record.code;}
-  else malformed++;
+  const r=traceRecord(line);if(!r){malformed++;continue;}
+  if(r.ppid!==runtimePid){foreign++;continue;}
+  const call=calls.get(r.pid)??{pid:r.pid};calls.set(r.pid,call);
+  if(r.event==='entry'){if(call.entry!==undefined)call.duplicate=true;call.operation=r.operation;call.origin=r.origin;call.entry=r.t;}
+  else{if(call.exit!==undefined)call.duplicate=true;call.exit=r.t;call.code=r.code;}
  }
- const ordered=[...calls.values()].filter(c=>c.entry!==undefined).sort((a,b)=>a.entry-b.entry);
- const incomplete=ordered.filter(c=>c.exit===undefined);
+ if(malformed)problems.push(malformed+' malformed records');
+ if(!calls.size)return {trace:'UNAVAILABLE',reason:'no records bound to this child',records:complete.length,malformed,foreign,problems:[...new Set(problems)].slice(0,10)};
+ const all=[...calls.values()];
+ const exitOnly=all.filter(c=>c.entry===undefined),duplicates=all.filter(c=>c.duplicate);
+ if(exitOnly.length)problems.push(exitOnly.length+' exit without entry');
+ if(duplicates.length)problems.push(duplicates.length+' duplicate records');
+ // A record outside this child's own [started, ended] window cannot belong to
+ // its measured interval; an exit after the child ended does not prove completion.
+ const ordered=all.filter(c=>c.entry!==undefined).sort((a,b)=>a.entry-b.entry);
+ const inWindow=ordered.filter(c=>c.origin>=started&&c.origin<=c.entry&&c.entry<=ended);
+ if(inWindow.length!==ordered.length)problems.push((ordered.length-inWindow.length)+' records outside the child window or out of order');
+ for(const c of inWindow)c.finished=c.exit!==undefined&&c.exit>=c.entry&&c.exit<=ended;
  const intervals=[];let previous=null,label='before first nested call';
- for(const c of ordered){
-  intervals.push({phase:'gap '+label,ms:previous===null?c.origin-started:previous.exit===undefined?'UNKNOWN':c.origin-previous.exit});
-  intervals.push({phase:'boot '+c.operation.join(' '),pid:c.pid,ms:c.entry-c.origin});
-  intervals.push({phase:'run '+c.operation.join(' '),pid:c.pid,ms:c.exit===undefined?'INCOMPLETE':c.exit-c.entry});
-  previous=c;label='after '+c.operation.join(' ');
+ for(const c of inWindow){
+  const name=c.operation.join(' ');
+  let gap;
+  if(previous===null)gap=c.origin-started;
+  else if(!previous.finished)gap='UNKNOWN';
+  else if(c.origin<previous.exit){gap='UNKNOWN';problems.push('overlapping nested calls');}
+  else gap=c.origin-previous.exit;
+  intervals.push({phase:'gap '+label,ms:gap});
+  intervals.push({phase:'boot '+name,pid:c.pid,ms:c.entry-c.origin});
+  intervals.push({phase:'run '+name,pid:c.pid,ms:c.finished?c.exit-c.entry:'INCOMPLETE'});
+  previous=c;label='after '+name;
  }
- intervals.push({phase:'tail after last nested call',ms:previous===null?ended-started:previous.exit===undefined?'UNKNOWN':ended-previous.exit});
- const measured=intervals.filter(i=>typeof i.ms==='number');
+ const partial=problems.length>0;
+ intervals.push({phase:'tail after last nested call',ms:partial?'UNKNOWN':previous===null?ended-started:previous.finished?ended-previous.exit:'UNKNOWN'});
+ const measured=intervals.filter(i=>finite(i.ms)),unmeasured=intervals.filter(i=>!finite(i.ms));
  const total=kind=>measured.filter(i=>i.phase.startsWith(kind)).reduce((s,i)=>s+i.ms,0);
- return {trace:'available',records:complete.length,truncated:complete.length>traceRecordLimit||text.length>=traceReadLimit,malformed,foreign,
-  nestedCalls:ordered.length,incomplete:incomplete.slice(0,10).map(c=>({pid:c.pid,operation:c.operation})),
-  totals:{gap:total('gap'),boot:total('boot'),run:total('run'),tail:total('tail')},
-  unmeasured:intervals.filter(i=>typeof i.ms!=='number').slice(0,10),
-  largest:[...measured].sort((a,b)=>b.ms-a.ms).slice(0,5)};
+ return {trace:partial?'PARTIAL':'available',problems:[...new Set(problems)].slice(0,10),records:complete.length,malformed,foreign,
+  nestedCalls:inWindow.length,incomplete:inWindow.filter(c=>!c.finished).slice(0,10).map(c=>({pid:c.pid,operation:c.operation})),
+  totals:partial||unmeasured.length?'UNKNOWN':{gap:total('gap'),boot:total('boot'),run:total('run'),tail:total('tail')},
+  unmeasured:unmeasured.slice(0,10),largest:[...measured].sort((a,b)=>b.ms-a.ms).slice(0,5)};
 }
-function reportChild(action,result,started,ended,file,offset){
+function writeDiagnostic(text){try{fs.writeSync(2,text.length>reportLimit?text.slice(0,reportLimit)+' [report truncated]\n':text);}catch{}}
+function reportChild(action,result,started,ended,file,snapshot){
  try{
   const elapsed=ended-started;
-  if(!result.error&&!result.signal&&elapsed<=childReportMs)return;
+  if(!result.error&&!result.signal&&result.status===0&&elapsed<=childReportMs)return;
   const report={action,elapsedMs:elapsed,pid:result.pid,error:result.error?.code??null,status:result.status,signal:result.signal,
-   timeline:childTimeline(file,offset,result.pid,started,ended),stdoutTail:outputTail(result.stdout),stderrTail:outputTail(result.stderr)};
-  process.stderr.write('j3w1-child-timing '+JSON.stringify(report)+'\n');
- }catch(error){try{process.stderr.write('j3w1-child-timing UNAVAILABLE '+String(error?.message??error).slice(0,200)+'\n');}catch{}}
+   timeline:childTimeline(file,snapshot,result.pid,started,ended),stdoutTail:outputTail(result.stdout),stderrTail:outputTail(result.stderr)};
+  writeDiagnostic('j3w1-child-timing '+JSON.stringify(report)+'\n');
+ }catch(error){let reason='';try{reason=String(error?.message??error).slice(0,200);}catch{}writeDiagnostic('j3w1-child-timing UNAVAILABLE '+reason+'\n');}
 }
 function fixture(t) {
  const state=scratchDirSync(t, 'j3w1-windows-test-');
@@ -158,9 +204,9 @@ function fixture(t) {
  const before='\uFEFF{\n // keep this comment\n "profiles": {"list": [{"guid":"one","commandline":"keep-one","font":{"size":17},"colorScheme":"j3w1zsh"},{"guid":"two","commandline":"keep-two"}]},\n "keybindings": [{"command":"paste","keys":"ctrl+v"}],\n}\n';
  write(terminal,before);
  const run=(action,extra={})=>{
-  const offset=traceSize(trace),started=Date.now();
+  const snapshot=traceSnapshot(trace),started=Date.now();
   const result=spawnSync(process.execPath,[runtime],{input:JSON.stringify({action,source,state,fixture:true,mode:'Native',revision:'1'.repeat(40),...extra}),encoding:'utf8',timeout:30000});
-  reportChild(action,result,started,Date.now(),trace,offset);
+  reportChild(action,result,started,Date.now(),trace,snapshot);
   // A killed child cannot establish an expected lifecycle rejection or rollback.
   assert.ifError(result.error);
   assert.equal(result.signal,null,`${action}: lifecycle child terminated by ${result.signal}`);

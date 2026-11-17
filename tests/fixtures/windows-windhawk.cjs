@@ -3,8 +3,9 @@ const fs=require('node:fs'),path=require('node:path');
 const [state,...raw]=process.argv.slice(2),args=raw.filter(a=>!['--json','--yes'].includes(a));
 // Diagnostics only. Each nested fixture process appends one entry and one exit
 // record under this test's state, so the parent test can locate a call still in
-// flight. An entry without an exit stays incomplete. A failed trace write is
-// left absent (the parent reports the trace UNAVAILABLE); it never writes to
+// flight. The entry timestamp is sampled before its append. A failed trace write
+// leaves that record absent: the parent then reports the trace UNAVAILABLE or
+// PARTIAL, or that call INCOMPLETE, never a zero measurement. It never writes to
 // stdout or changes the fixture's own result.
 const tracePath=path.join(state,'fixture-windhawk-trace.jsonl');
 const trace=event=>{try{fs.appendFileSync(tracePath,JSON.stringify({...event,pid:process.pid,ppid:process.ppid,t:Date.now()})+'\n');}catch{}};
