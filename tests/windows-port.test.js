@@ -106,11 +106,13 @@ test('Search presentation cannot hide controls, accept scripts or substitute lit
 // after the last, still mixes runtime work with OS scheduling and process
 // creation, and is reported unattributed.
 //
-// Evidence that cannot be trusted is never turned into zero: a missing or
-// unreadable trace is UNAVAILABLE; malformed, truncated, exit-only or
-// out-of-window records make the timeline PARTIAL, with the affected intervals
-// UNKNOWN and no totals; an entry without an exit inside the child's window is
-// INCOMPLETE.
+// Evidence that cannot be trusted is never turned into zero. A missing or
+// unreadable trace is UNAVAILABLE. Any malformed, truncated, exit-only,
+// duplicate, overlapping or out-of-window record makes the whole timeline
+// PARTIAL: it then reports no intervals and no totals, only a bounded list of
+// the calls observed for this child with what is known about each. Only a fully
+// valid trace is measured; there, an entry without an exit inside the child's
+// window is INCOMPLETE.
 const childReportMs=Number(process.env.J3W1_CHILD_REPORT_MS??15000);
 const traceReadLimit=1024*1024,traceRecordLimit=4000,outputTailBytes=2048,reportLimit=16*1024;
 function traceSnapshot(file){
@@ -159,35 +161,50 @@ function childTimeline(file,snapshot,runtimePid,started,ended){
  const exitOnly=all.filter(c=>c.entry===undefined),duplicates=all.filter(c=>c.duplicate);
  if(exitOnly.length)problems.push(exitOnly.length+' exit without entry');
  if(duplicates.length)problems.push(duplicates.length+' duplicate records');
- // A record outside this child's own [started, ended] window cannot belong to
- // its measured interval; an exit after the child ended does not prove completion.
+ // A child's records must fall inside its own [started, ended] window and in
+ // order. The parent and child clocks (Date.now, rounded performance.timeOrigin)
+ // are not guaranteed comparable, so this conservatively rejects some valid
+ // traces as PARTIAL rather than repairing them.
  const ordered=all.filter(c=>c.entry!==undefined).sort((a,b)=>a.entry-b.entry);
- const inWindow=ordered.filter(c=>c.origin>=started&&c.origin<=c.entry&&c.entry<=ended);
- if(inWindow.length!==ordered.length)problems.push((ordered.length-inWindow.length)+' records outside the child window or out of order');
- for(const c of inWindow)c.finished=c.exit!==undefined&&c.exit>=c.entry&&c.exit<=ended;
+ const usable=c=>c.origin>=started&&c.origin<=c.entry&&c.entry<=ended;
+ for(const c of ordered)c.finished=usable(c)&&c.exit!==undefined&&c.exit>=c.entry&&c.exit<=ended;
+ const outside=ordered.filter(c=>!usable(c));
+ if(outside.length)problems.push(outside.length+' records outside the child window or out of order');
+ for(let i=1;i<ordered.length;i++)if(ordered[i-1].finished&&ordered[i].origin<ordered[i-1].exit){problems.push('overlapping nested calls');break;}
+ if(problems.length){
+  const status=c=>c.entry===undefined?'exit without entry':!usable(c)?'outside the child window or out of order':c.duplicate?'duplicate records':c.finished?'entry and exit observed':'entry without a usable exit';
+  const observed=all.sort((a,b)=>(a.entry??a.exit)-(b.entry??b.exit)).slice(0,20).map(c=>({pid:c.pid,operation:c.operation??null,status:status(c)}));
+  return {trace:'PARTIAL',problems:[...new Set(problems)].slice(0,10),records:complete.length,malformed,foreign,
+   observedCalls:all.length,observed,intervals:'UNKNOWN',totals:'UNKNOWN'};
+ }
  const intervals=[];let previous=null,label='before first nested call';
- for(const c of inWindow){
+ for(const c of ordered){
   const name=c.operation.join(' ');
-  let gap;
-  if(previous===null)gap=c.origin-started;
-  else if(!previous.finished)gap='UNKNOWN';
-  else if(c.origin<previous.exit){gap='UNKNOWN';problems.push('overlapping nested calls');}
-  else gap=c.origin-previous.exit;
-  intervals.push({phase:'gap '+label,ms:gap});
+  intervals.push({phase:'gap '+label,ms:previous===null?c.origin-started:previous.finished?c.origin-previous.exit:'UNKNOWN'});
   intervals.push({phase:'boot '+name,pid:c.pid,ms:c.entry-c.origin});
   intervals.push({phase:'run '+name,pid:c.pid,ms:c.finished?c.exit-c.entry:'INCOMPLETE'});
   previous=c;label='after '+name;
  }
- const partial=problems.length>0;
- intervals.push({phase:'tail after last nested call',ms:partial?'UNKNOWN':previous===null?ended-started:previous.finished?ended-previous.exit:'UNKNOWN'});
+ intervals.push({phase:'tail after last nested call',ms:previous===null?ended-started:previous.finished?ended-previous.exit:'UNKNOWN'});
  const measured=intervals.filter(i=>finite(i.ms)),unmeasured=intervals.filter(i=>!finite(i.ms));
  const total=kind=>measured.filter(i=>i.phase.startsWith(kind)).reduce((s,i)=>s+i.ms,0);
- return {trace:partial?'PARTIAL':'available',problems:[...new Set(problems)].slice(0,10),records:complete.length,malformed,foreign,
-  nestedCalls:inWindow.length,incomplete:inWindow.filter(c=>!c.finished).slice(0,10).map(c=>({pid:c.pid,operation:c.operation})),
-  totals:partial||unmeasured.length?'UNKNOWN':{gap:total('gap'),boot:total('boot'),run:total('run'),tail:total('tail')},
+ return {trace:'available',records:complete.length,malformed,foreign,
+  nestedCalls:ordered.length,incomplete:ordered.filter(c=>!c.finished).slice(0,10).map(c=>({pid:c.pid,operation:c.operation})),
+  totals:unmeasured.length?'UNKNOWN':{gap:total('gap'),boot:total('boot'),run:total('run'),tail:total('tail')},
   unmeasured:unmeasured.slice(0,10),largest:[...measured].sort((a,b)=>b.ms-a.ms).slice(0,5)};
 }
-function writeDiagnostic(text){try{fs.writeSync(2,text.length>reportLimit?text.slice(0,reportLimit)+' [report truncated]\n':text);}catch{}}
+function writeDiagnostic(text){
+ try{
+  let bytes=Buffer.from(text,'utf8');
+  if(bytes.length>reportLimit){
+   // Keep at most reportLimit bytes in all, ending on a UTF-8 character boundary.
+   const suffix=Buffer.from(' [report truncated]\n','utf8');let end=reportLimit-suffix.length;
+   while(end>0&&(bytes[end]&0xc0)===0x80)end--;
+   bytes=Buffer.concat([bytes.subarray(0,end),suffix]);
+  }
+  fs.writeSync(2,bytes);
+ }catch{}
+}
 function reportChild(action,result,started,ended,file,snapshot){
  try{
   const elapsed=ended-started;
