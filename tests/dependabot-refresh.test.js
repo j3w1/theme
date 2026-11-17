@@ -128,7 +128,7 @@ test("refresh is read-only, runs only for Dependabot PRs and cannot satisfy rele
   assert.equal(checkout.with.ref, "${{ github.event.pull_request.head.sha }}");
   assert.equal(checkout.with["fetch-depth"], 0);
   assert.equal(checkout.with["persist-credentials"], false);
-  assert.equal(job.steps.find((step) => step.uses?.startsWith("actions/setup-node@"))?.with["node-version"], 24);
+  assert.equal(job.steps.find((step) => step.uses?.startsWith("actions/setup-node@"))?.with["node-version"], "24.22.3");
   const install = job.steps.find((step) => step.run?.startsWith("npm ci"));
   assert.equal(install.if, "steps.classify.outputs.eligible == 'true'");
   assert.match(job.steps.find((step) => step.id === "refresh").run, /dependabot-refresh\.mjs --base/);
