@@ -93,13 +93,74 @@ test('Search presentation cannot hide controls, accept scripts or substitute lit
  for(const fill of ['white','transparent','var(--unreviewed-color)'])
   assert.throws(()=>windowsWebContentStyles([{target:'.suggestion .details',styles:{},presentation:{'background-color':fill}}],value),/Unsupported Search presentation/);
 });
+// Diagnostics for lifecycle children that fail or run long on a slow host. They
+// write one bounded block to stderr, assert nothing, and never throw in place of
+// the caller's assertions. The paired trace comes from the Windhawk fixture CLI:
+// boot is that process's start (performance.timeOrigin) to its first trace line,
+// so Node bootstrap plus loading the fixture; run is its entry to its exit. A gap
+// between nested calls, and the time before the first or after the last, still
+// mixes runtime work with OS scheduling and process creation; it is reported
+// unattributed. A missing trace is UNAVAILABLE and an entry without an exit is
+// INCOMPLETE, never zero.
+const childReportMs=Number(process.env.J3W1_CHILD_REPORT_MS??15000);
+const traceReadLimit=1024*1024,traceRecordLimit=4000,outputTailLimit=2048;
+const traceSize=file=>{try{return fs.statSync(file).size;}catch{return 0;}};
+const outputTail=text=>typeof text==='string'?text.slice(-outputTailLimit):null;
+function childTimeline(file,offset,runtimePid,started,ended){
+ let text;
+ try{
+  const fd=fs.openSync(file,'r');
+  try{const length=Math.max(0,Math.min(fs.fstatSync(fd).size-offset,traceReadLimit)),buffer=Buffer.alloc(length);fs.readSync(fd,buffer,0,length,offset);text=buffer.toString('utf8');}
+  finally{fs.closeSync(fd);}
+ }catch(error){return {trace:'UNAVAILABLE',reason:error.code??String(error)};}
+ // The last element is '' after a trailing newline, or an unfinished record.
+ const complete=text.split('\n').slice(0,-1);
+ let malformed=text.length&&!text.endsWith('\n')?1:0,foreign=0;const calls=new Map();
+ for(const line of complete.slice(0,traceRecordLimit)){
+  let record;try{record=JSON.parse(line);}catch{malformed++;continue;}
+  if(record.ppid!==runtimePid){foreign++;continue;}
+  const call=calls.get(record.pid)??{pid:record.pid};calls.set(record.pid,call);
+  if(record.event==='entry'){call.operation=record.operation;call.origin=record.origin;call.entry=record.t;}
+  else if(record.event==='exit'){call.exit=record.t;call.code=record.code;}
+  else malformed++;
+ }
+ const ordered=[...calls.values()].filter(c=>c.entry!==undefined).sort((a,b)=>a.entry-b.entry);
+ const incomplete=ordered.filter(c=>c.exit===undefined);
+ const intervals=[];let previous=null,label='before first nested call';
+ for(const c of ordered){
+  intervals.push({phase:'gap '+label,ms:previous===null?c.origin-started:previous.exit===undefined?'UNKNOWN':c.origin-previous.exit});
+  intervals.push({phase:'boot '+c.operation.join(' '),pid:c.pid,ms:c.entry-c.origin});
+  intervals.push({phase:'run '+c.operation.join(' '),pid:c.pid,ms:c.exit===undefined?'INCOMPLETE':c.exit-c.entry});
+  previous=c;label='after '+c.operation.join(' ');
+ }
+ intervals.push({phase:'tail after last nested call',ms:previous===null?ended-started:previous.exit===undefined?'UNKNOWN':ended-previous.exit});
+ const measured=intervals.filter(i=>typeof i.ms==='number');
+ const total=kind=>measured.filter(i=>i.phase.startsWith(kind)).reduce((s,i)=>s+i.ms,0);
+ return {trace:'available',records:complete.length,truncated:complete.length>traceRecordLimit||text.length>=traceReadLimit,malformed,foreign,
+  nestedCalls:ordered.length,incomplete:incomplete.slice(0,10).map(c=>({pid:c.pid,operation:c.operation})),
+  totals:{gap:total('gap'),boot:total('boot'),run:total('run'),tail:total('tail')},
+  unmeasured:intervals.filter(i=>typeof i.ms!=='number').slice(0,10),
+  largest:[...measured].sort((a,b)=>b.ms-a.ms).slice(0,5)};
+}
+function reportChild(action,result,started,ended,file,offset){
+ try{
+  const elapsed=ended-started;
+  if(!result.error&&!result.signal&&elapsed<=childReportMs)return;
+  const report={action,elapsedMs:elapsed,pid:result.pid,error:result.error?.code??null,status:result.status,signal:result.signal,
+   timeline:childTimeline(file,offset,result.pid,started,ended),stdoutTail:outputTail(result.stdout),stderrTail:outputTail(result.stderr)};
+  process.stderr.write('j3w1-child-timing '+JSON.stringify(report)+'\n');
+ }catch(error){try{process.stderr.write('j3w1-child-timing UNAVAILABLE '+String(error?.message??error).slice(0,200)+'\n');}catch{}}
+}
 function fixture(t) {
  const state=scratchDirSync(t, 'j3w1-windows-test-');
+ const trace=path.join(state,'fixture-windhawk-trace.jsonl');
  const terminal=path.join(state,'fixture/terminal/settings.json');
  const before='\uFEFF{\n // keep this comment\n "profiles": {"list": [{"guid":"one","commandline":"keep-one","font":{"size":17},"colorScheme":"j3w1zsh"},{"guid":"two","commandline":"keep-two"}]},\n "keybindings": [{"command":"paste","keys":"ctrl+v"}],\n}\n';
  write(terminal,before);
  const run=(action,extra={})=>{
+  const offset=traceSize(trace),started=Date.now();
   const result=spawnSync(process.execPath,[runtime],{input:JSON.stringify({action,source,state,fixture:true,mode:'Native',revision:'1'.repeat(40),...extra}),encoding:'utf8',timeout:30000});
+  reportChild(action,result,started,Date.now(),trace,offset);
   // A killed child cannot establish an expected lifecycle rejection or rollback.
   assert.ifError(result.error);
   assert.equal(result.signal,null,`${action}: lifecycle child terminated by ${result.signal}`);
