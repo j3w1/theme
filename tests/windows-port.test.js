@@ -112,16 +112,23 @@ const outputTailBytes=2048,reportLimit=16*1024;
 // A begin without an end names an observed call, not its underlying cause.
 // The byte budget stays below spawnSync's existing capture limit. Exhaustion
 // is explicit: later calls are then unknown, never attributed to an old begin.
+// A completed fsync end adds callMs around the saved original call, excluding
+// marker output. For that same call, end minus begin minus callMs is elapsed
+// outside the original; end-marker output follows its timestamp. callMs still
+// includes descheduling and timer/dispatch overhead, not kernel/disk service time.
+// Quantization, mixed distributions and no relevant slow occurrence limit any
+// comparison. Missing fields/end or LIMIT are unknown; legacy captures cannot
+// be split retrospectively, nor can death after a completed rename name a call.
 function observeLifecycleChild(){
  const fs=require('node:fs'),cp=require('node:child_process');
  const {performance}=require('node:perf_hooks');
  const write=fs.writeSync,limit=128*1024;
  const exhausted='j3w1-child-operation LIMIT: later operations unknown\n';
  let remaining=limit;
- const emit=(state,operation)=>{
+ const emit=(state,operation,callMs)=>{
   if(!remaining)return;
   try{
-   let line=`j3w1-child-operation ${performance.now().toFixed(3)} ${state} ${operation}\n`;
+   let line=`j3w1-child-operation ${performance.now().toFixed(3)} ${state} ${operation}${callMs===undefined?'':` callMs=${callMs}`}\n`;
    if(Buffer.byteLength(line)+Buffer.byteLength(exhausted)>remaining){line=exhausted;remaining=0;}
    else remaining-=Buffer.byteLength(line);
    write(2,line);
@@ -139,7 +146,20 @@ function observeLifecycleChild(){
     }
    }catch{}
    emit('begin',operation);
-   try{return Reflect.apply(original,this,args);}finally{emit('end',operation);}
+   let started;
+   if(name==='fsyncSync')try{started=performance.now();}catch{}
+   try{return Reflect.apply(original,this,args);}finally{
+    if(name==='fsyncSync'){
+     let ended;
+     try{ended=performance.now();}catch{}
+     let callMs='unknown';
+     try{
+      const elapsed=ended-started;
+      if(Number.isFinite(started)&&started>=0&&Number.isFinite(ended)&&Number.isFinite(elapsed)&&elapsed>=0)callMs=elapsed.toFixed(3);
+     }catch{}
+     emit('end',operation,callMs);
+    }else emit('end',operation);
+   }
   };
  }
  require('node:module').syncBuiltinESMExports();
@@ -395,6 +415,102 @@ test('lifecycle boundary observer preserves results and exceptions with bounded 
  }
  assert.match(result.stderr,/LIMIT: later operations unknown/);
  assert.ok(Buffer.byteLength(result.stderr)<=128*1024);
+});
+
+// Disposable observer dependencies give each clock read and marker write an
+// independent deterministic cost; no host operation or lifecycle is performed.
+function fakeLifecycleObserver({beginMs=0,endMs=0,callMs=0,clock,brokenOutput=false,value={},error}={}){
+ let elapsed=0,reads=0;
+ const lines=[],calls=[],events=[];
+ const saved=name=>function(...args){
+  events.push('original '+name);calls.push({name,receiver:this,args});
+  if(name==='fsyncSync'){elapsed+=callMs;if(error)throw error;}
+  return value;
+ };
+ const fakeFs={fsyncSync:saved('fsyncSync'),renameSync:saved('renameSync'),writeSync:(fd,line)=>{
+  const begin=line.includes(' begin ');events.push(begin?'write begin':'write end');
+  elapsed+=begin?beginMs:endMs;
+  if(brokenOutput)throw new Error('marker output unavailable');
+  lines.push(line);return Buffer.byteLength(line);
+ }};
+ const fakeCp={spawnSync:saved('spawnSync')};
+ const modules={'node:fs':fakeFs,'node:child_process':fakeCp,'node:perf_hooks':{performance:{now:()=>{
+  events.push('clock');reads++;return clock?clock(reads,elapsed):elapsed;
+ }}},'node:module':{syncBuiltinESMExports(){}}};
+ runInNewContext(observerSource,{require:name=>modules[name],Buffer});
+ return {fs:fakeFs,cp:fakeCp,lines,calls,events,value};
+}
+
+test('fsync call timing excludes marker output and preserves the same-call interval',()=>{
+ const f=fakeLifecycleObserver({beginMs:70,endMs:90,callMs:5});
+ assert.equal(f.fs.fsyncSync(23),f.value);
+ assert.deepEqual(f.events,['clock','write begin','clock','original fsyncSync','clock','clock','write end']);
+ const begin=f.lines[0].match(/^j3w1-child-operation ([\d.]+) begin fsyncSync\n$/);
+ const end=f.lines[1].match(/^j3w1-child-operation ([\d.]+) end fsyncSync callMs=([\d.]+)\n$/);
+ assert.ok(begin);assert.ok(end);
+ const markerMs=Number(end[1])-Number(begin[1]),originalMs=Number(end[2]);
+ assert.equal(markerMs,75);assert.equal(originalMs,5);assert.equal(markerMs-originalMs,70);
+ const g=fakeLifecycleObserver({beginMs:2,endMs:300,callMs:41});
+ g.fs.fsyncSync(24);assert.match(g.lines[1],/43\.000 end fsyncSync callMs=41\.000\n$/);
+ g.fs.renameSync('synthetic original','synthetic renamed');g.cp.spawnSync('synthetic executable',['app','settings','get']);
+ assert.ok(g.lines.filter(line=>!line.includes(' end fsyncSync')).every(line=>!line.includes('callMs')));
+});
+
+test('fsync call timing preserves original receiver, arguments, return and thrown identity exactly once',()=>{
+ const receiver={},args=[42,{synthetic:true}],value={original:'return'};
+ const f=fakeLifecycleObserver({callMs:7,value});
+ assert.equal(Reflect.apply(f.fs.fsyncSync,receiver,args),value);
+ assert.equal(f.calls.length,1);assert.equal(f.calls[0].receiver,receiver);assert.deepEqual(f.calls[0].args,args);
+ assert.match(f.lines[1],/end fsyncSync callMs=7\.000\n$/);
+ const error=new Error('original exception'),g=fakeLifecycleObserver({callMs:11,error});
+ assert.throws(()=>Reflect.apply(g.fs.fsyncSync,receiver,args),thrown=>thrown===error);
+ assert.equal(g.calls.length,1);assert.equal(g.calls[0].receiver,receiver);assert.deepEqual(g.calls[0].args,args);
+ assert.match(g.lines[1],/end fsyncSync callMs=11\.000\n$/);
+});
+
+test('fsync call timing reports invalid readings as unknown without replacing original behavior',()=>{
+ for(const readings of [[undefined,8],[NaN,8],[2,Infinity],[9,8],[-1,8],['2',8],[2,undefined]]){
+  const f=fakeLifecycleObserver({clock:(read,elapsed)=>read===2?readings[0]:read===3?readings[1]:elapsed});
+  assert.equal(f.fs.fsyncSync(42),f.value);assert.equal(f.calls.length,1);
+  assert.match(f.lines.at(-1),/end fsyncSync callMs=unknown\n$/);
+  assert.doesNotMatch(f.lines.join(''),/callMs=0/);
+ }
+ const f=fakeLifecycleObserver({clock:read=>{if(read===2||read===3)throw new Error('clock unavailable');return 0;}});
+ assert.equal(f.fs.fsyncSync(42),f.value);assert.equal(f.calls.length,1);
+ assert.match(f.lines.at(-1),/callMs=unknown\n$/);
+ const zero=fakeLifecycleObserver();zero.fs.fsyncSync(42);
+ assert.match(zero.lines.at(-1),/callMs=0\.000\n$/,'a measured zero is distinct from unknown');
+});
+
+test('fsync call timing and marker failures still invoke the original exactly once',()=>{
+ const value={original:'return'},error=new Error('original failure');
+ const f=fakeLifecycleObserver({brokenOutput:true,value,clock:()=>{throw new Error('clock unavailable');}});
+ assert.equal(f.fs.fsyncSync(42),value);assert.equal(f.calls.length,1);assert.deepEqual(f.lines,[]);
+ const g=fakeLifecycleObserver({brokenOutput:true,error});
+ assert.throws(()=>g.fs.fsyncSync(42),thrown=>thrown===error);assert.equal(g.calls.length,1);assert.deepEqual(g.lines,[]);
+ assert.deepEqual(g.events,['clock','write begin','clock','original fsyncSync','clock','clock','write end']);
+});
+
+test('fsync call timing consumes the existing UTF-8 observer budget and exhausts explicitly',()=>{
+ const f=fakeLifecycleObserver({callMs:1});
+ for(let i=0;i<6000;i++)assert.equal(f.fs.fsyncSync(i),f.value);
+ assert.equal(f.calls.length,6000);
+ const text=f.lines.join(''),bytes=Buffer.from(text,'utf8');
+ assert.ok(bytes.length<=128*1024);
+ assert.equal(new TextDecoder('utf-8',{fatal:true}).decode(bytes),text);
+ assert.match(text,/end fsyncSync callMs=1\.000\n/);
+ assert.equal(text.split('j3w1-child-operation LIMIT: later operations unknown\n').length,2);
+ assert.ok(text.endsWith('j3w1-child-operation LIMIT: later operations unknown\n'));
+ const before=f.lines.length;f.fs.fsyncSync(6001);
+ assert.equal(f.lines.length,before);assert.equal(f.calls.length,6001);
+});
+
+test('fsync call timing leaves the normal diagnostic report within its 16 KiB UTF-8 cap',t=>{
+ const chunks=[];t.mock.method(fs,'writeSync',(fd,bytes)=>{assert.equal(fd,2);chunks.push(Buffer.from(bytes));return bytes.length;});
+ reportChild('🌹'.repeat(10000),{pid:1,error:{code:'ETIMEDOUT'},status:null,signal:'SIGTERM',stdout:'é'.repeat(3000),stderr:'中'.repeat(3000)},0,30000);
+ assert.equal(chunks.length,1);const bytes=chunks[0];assert.ok(bytes.length<=16*1024);
+ const text=new TextDecoder('utf-8',{fatal:true}).decode(bytes);
+ assert.ok(text.startsWith('j3w1-child-timing '));assert.ok(text.endsWith(' [report truncated]\n'));
 });
 
 test('Windows manifest covers every binary and executable artifact byte exactly',async()=>{
