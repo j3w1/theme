@@ -273,7 +273,29 @@ jobs:
         with:
           node-version: 24
           cache: npm
+      - name: Collect best-effort npm installation facts
+        continue-on-error: true
+        timeout-minutes: 1
+        run: |
+          diagnostics="$RUNNER_TEMP/theme-build-npm-diagnostics"
+          mkdir -p "$diagnostics"
+          record() {
+            label=$1
+            shift
+            value=$("$@" 2>/dev/null) || value=unknown
+            printf '%s: %s\n' "$label" "$value"
+          }
+          {
+            record 'node --version' node --version
+            record 'npm --version' npm --version
+            for key in omit include os cpu libc; do
+              record "npm config get $key" npm config get "$key"
+            done
+            record runtime node -e 'console.log(JSON.stringify({version: process.version, platform: process.platform, arch: process.arch, glibcVersionRuntime: process.report.getReport().header.glibcVersionRuntime ?? null}))'
+          } > "$diagnostics/facts.txt"
       - run: npm ci --prefer-offline --no-audit --no-fund
+        env:
+          npm_config_logs_dir: ${{ runner.temp }}/theme-build-npm-diagnostics/install
       - name: Build the site under /theme/
         run: npm run build
         env:
@@ -302,6 +324,7 @@ jobs:
           path: |
             test-results/
             playwright-report/
+            ${{ runner.temp }}/theme-build-npm-diagnostics
           if-no-files-found: ignore
 
   # Selected specs on a pull request (plain reporter); the whole suite in

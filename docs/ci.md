@@ -31,6 +31,33 @@ these cumulative case durations are not additional phases. The logs support
 serial budget exhaustion and variable unit work, without establishing why
 those cases ran slower, a dependency cause, or a shared cause with #88.
 
+The `build` job collects best-effort, labelled pre-install facts in
+`${{ runner.temp }}/theme-build-npm-diagnostics/facts.txt`: Node/npm versions,
+npm's `omit`, `include`, `os`, `cpu` and `libc` configuration, and a small
+runtime object with Node version, platform, architecture and runtime glibc
+version. Blank or null platform overrides mean automatic selection; they do
+not prove npm's internal detected platform. Observed runtime facts are
+separate. Failed queries are `unknown`; failed directory or file writes can
+leave facts unavailable and do not gate installation or building.
+
+Only the existing `npm ci` step sets `npm_config_logs_dir` to the sibling
+`install/` directory. Default verbosity and log rotation limits stay in place;
+later npm commands use their default directory and cannot rotate the retained
+installation logs. On failure, the existing `build-results` artifact includes
+this diagnostic root alongside `test-results/` and `playwright-report/`, with
+its existing missing-file and default retention policy. Successful-job files
+expire with the hosted runner; there is no success upload.
+
+Combining workspace and runner-temp paths makes their common ancestor the
+archive root. On GitHub's Ubuntu runner, its relative layout is
+`_temp/theme-build-npm-diagnostics/facts.txt`,
+`_temp/theme-build-npm-diagnostics/install/`,
+`theme/theme/test-results/` and `theme/theme/playwright-report/`. Existing
+reports keep their bytes, under the longer paths. Logs preserve only events
+npm emitted; they cannot recover discarded optional-dependency errors, and
+files are not guaranteed if npm cannot start/write or the runner is lost.
+Retaining these diagnostics does not explain or resolve [#99](https://github.com/j3w1/theme/issues/99).
+
 The shared Playwright action installs the locked browsers and their system
 packages on each runner. Browser binaries are not restored from a cross-run
 cache: different Ubuntu releases can share a browser revision while requiring
