@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // Runs the checks a plan selected (D-031). Called by the ci workflow:
 //   PLAN='<plan json>' node scripts/ci/run.mjs cheap
+//   PLAN='<plan json>' node scripts/ci/run.mjs install
 //   PLAN='<plan json>' node scripts/ci/run.mjs browser <project>:<shard>/<total>
 // The plan comes through the environment, never the command line, so a
 // changed path's name cannot reach a shell.
@@ -23,6 +24,7 @@ const INSTALL = ["host-install.test.js", "orca-install.test.js"];
 if (stage === "cheap") {
   if (has("sources")) { run("npm", ["run", "validate"]); run("npm", ["run", "check"]); }
   if (has("unit")) run("node", ["--test", ...readdirSync("tests").filter((f) => f.endsWith(".test.js") && !INSTALL.includes(f)).sort().map((f) => `tests/${f}`)]);
+} else if (stage === "install") {
   if (has("unit-install")) run("node", ["--test", "tests/host-install.test.js"]);
   if (has("unit-install-windows")) run("node", ["--test", "tests/orca-install.test.js"]);
 } else if (stage === "browser") {

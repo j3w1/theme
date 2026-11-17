@@ -88,12 +88,17 @@ jobs:
           [ -n "$BASE" ] && args+=(--base "$BASE")
           node scripts/ci/select.mjs "${args[@]}"
 
-  # Sources and unit tests: one install, no browser.
+  # Source/unit and installer phases have independent 15-minute budgets.
+  # The aggregate checks result requires both; neither cancels the other.
   checks:
     needs: select
     if: needs.select.outputs.checks == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        stage: [cheap, install]
     steps:
       - uses: actions/checkout@v7
         with:
@@ -103,8 +108,8 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci --prefer-offline --no-audit --no-fund
-      - name: Selected sources and unit tests
-        run: node scripts/ci/run.mjs cheap
+      - name: Selected checks, ${{ matrix.stage }}
+        run: node scripts/ci/run.mjs ${{ matrix.stage }}
         env:
           PLAN: ${{ needs.select.outputs.plan }}
 
