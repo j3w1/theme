@@ -749,14 +749,14 @@ test('Full Test reports a stopped engine and idempotent Apply restarts without r
 });
 
 test('first-install engine startup failure rolls back managed settings and mods',t=>{
- const f=windhawkFixture(t,'protocol'),failed=f.run('Apply',{...f.args,fixtureEngineStopped:true,fixtureEngineStartupFails:true});
+ const f=windhawkFixture(t),failed=f.run('Apply',{...f.args,fixtureEngineStopped:true,fixtureEngineStartupFails:true});
  assert.notEqual(failed.status,0);assert.match(failed.stderr,/Theme engine failed to start; rollback completed/);
  assert.equal(f.journal().transactions[0].status,'restored');assert.equal(fs.readFileSync(f.terminal,'utf8'),f.before);
  assert.deepEqual(f.db(),{appSettings:{disableUpdateCheck:false}});
 });
 
 test('Windhawk backup restores original disabled mod settings; incompatible guard disables managed mods',t=>{
- const f=windhawkFixture(t,'protocol'),before={'local@fixture-styler':{id:'local@fixture-styler',metadata:{version:'0.9'},config:{disabled:true},settings:{theme:'original'}}};
+ const f=windhawkFixture(t),before={'local@fixture-styler':{id:'local@fixture-styler',metadata:{version:'0.9'},config:{disabled:true},settings:{theme:'original'}}};
  write(path.join(f.state,'fixture-windhawk.json'),before);f.ok('Apply',f.args);
  assert.equal(f.run('Guard',{...f.args,compatible:false}).status,2);assert.equal(f.db()['local@fixture-styler'].config.disabled,true);
  f.ok('Restore',f.args);assert.deepEqual(f.db(),{...before,appSettings:{disableUpdateCheck:false}});
