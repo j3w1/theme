@@ -5,10 +5,12 @@ import { sha256Hex } from "../scripts/lib/host-install/files.mjs";
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import {parse} from 'jsonc-parser';
+import {parse as parseYaml} from 'yaml';
 import fs from 'node:fs';
 import path from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {performance} from 'node:perf_hooks';
+import {runInNewContext} from 'node:vm';
 import {PNG} from 'pngjs';
 import {repoRoot,readJson} from '../scripts/lib/fs.mjs';
 import {assertPortArtifacts} from '../scripts/lib/port-artifacts.mjs';
@@ -172,6 +174,30 @@ function reportChild(action,result,started,ended){
   writeDiagnostic('j3w1-child-timing '+JSON.stringify(report)+'\n');
  }catch(error){let reason='';try{reason=String(error?.message??error).slice(0,200);}catch{}writeDiagnostic('j3w1-child-timing UNAVAILABLE '+reason+'\n');}
 }
+// Retain only already-returned synthetic Windows CI transport failures, after
+// timing/reporting. Missing files remain unknown; capture never changes result.
+function captureChildFailure(action,result,{synthetic=false,platform=process.platform,ci=process.env.CI,root=path.join(repoRoot,'test-results/windows-child-failures')}={}){
+ try{
+  if(!synthetic||platform!=='win32'||!ci||(!result.error&&!result.signal))return result;
+  fs.mkdirSync(root,{recursive:true});
+  const dir=fs.mkdtempSync(path.join(root,'child-'));
+  const scalar=value=>value==null?null:String(value).slice(0,128);
+  const report={action:scalar(action),pid:result.pid??null,status:result.status??null,error:scalar(result.error?.code),signal:scalar(result.signal)};
+  for(const [stream,limit]of [['stdout',16*1024],['stderr',144*1024]]){
+   const value=result[stream],bytes=typeof value==='string'?Buffer.from(value,'utf8'):Buffer.isBuffer(value)?value:null;
+   let end=Math.min(bytes?.length??0,limit);
+   // Keep a prefix of the exact bytes without cutting a UTF-8 character.
+   while(bytes&&end<bytes.length&&end>0&&(bytes[end]&0xc0)===0x80)end--;
+   const retained=bytes?.subarray(0,end)??Buffer.alloc(0);
+   const info={originalBytes:bytes?.length??null,retainedBytes:null,unavailable:true,truncated:bytes?end<bytes.length:null};
+   try{fs.writeFileSync(path.join(dir,stream+'.log'),retained);info.retainedBytes=retained.length;info.unavailable=bytes===null;}catch{}
+   report[stream]=info;
+  }
+  const metadata=Buffer.from(JSON.stringify(report)+'\n','utf8');
+  if(metadata.length<=16*1024)fs.writeFileSync(path.join(dir,'report.json'),metadata);
+ }catch{}
+ return result;
+}
 function fixture(t) {
  const state=scratchDirSync(t, 'j3w1-windows-test-');
  const terminal=path.join(state,'fixture/terminal/settings.json');
@@ -182,6 +208,7 @@ function fixture(t) {
   const started=performance.now();
   const result=spawnSync(process.execPath,['--require',observer,runtime],{input:JSON.stringify({action,source,state,fixture:true,mode:'Native',revision:'1'.repeat(40),...extra}),encoding:'utf8',timeout:30000});
   reportChild(action,result,started,performance.now());
+  captureChildFailure(action,result,{synthetic:!Object.hasOwn(extra,'fixture')||extra.fixture===true});
   // A killed child cannot establish an expected lifecycle rejection or rollback.
   assert.ifError(result.error);
   assert.equal(result.signal,null,`${action}: lifecycle child terminated by ${result.signal}`);
@@ -195,6 +222,149 @@ test('lifecycle child diagnostics do not depend on the wall clock',t=>{
  t.mock.method(Date,'now',()=>{throw Error('Wall clock is unavailable');});
  const f=fixture(t);
  assert.equal(JSON.parse(f.ok('Plan').stdout).action,'Plan');
+});
+
+test('Windows child failure capture retains a real timeout without replacing its failure',t=>{
+ const root=path.join(scratchDirSync(t,'j3w1-child-failure-'),'capture');
+ const stdout='disposable stdout: é 🌹\n',stderr='disposable stderr: 中 🌹\n';
+ const result=spawnSync(process.execPath,['-e',`const fs=require('node:fs');fs.writeSync(1,${JSON.stringify(stdout)});fs.writeSync(2,${JSON.stringify(stderr)});setInterval(()=>{},1000);`],{encoding:'utf8',timeout:2000});
+ assert.equal(result.error?.code,'ETIMEDOUT');
+ const error=result.error,signal=result.signal;
+ assert.equal(captureChildFailure('Disposable',result,{root,synthetic:true,platform:'win32',ci:'true'}),result);
+ assert.equal(result.error,error);assert.equal(result.signal,signal);
+ assert.throws(()=>assert.ifError(result.error),failure=>failure.actual===error);
+ const dirs=fs.readdirSync(root);assert.equal(dirs.length,1);
+ const dir=path.join(root,dirs[0]);
+ assert.deepEqual(fs.readdirSync(dir).sort(),['report.json','stderr.log','stdout.log']);
+ for(const [stream,text]of [['stdout',stdout],['stderr',stderr]]){
+  assert.deepEqual(fs.readFileSync(path.join(dir,stream+'.log')),Buffer.from(text));
+  assert.deepEqual(read(path.join(dir,'report.json'))[stream],{originalBytes:Buffer.byteLength(text),retainedBytes:Buffer.byteLength(text),unavailable:false,truncated:false});
+ }
+ assert.equal(read(path.join(dir,'report.json')).error,'ETIMEDOUT');
+});
+
+test('Windows child failure capture admits signal-only results and keeps each child unique',t=>{
+ const root=path.join(scratchDirSync(t,'j3w1-child-failure-'),'capture');
+ const result={pid:42,status:null,signal:'SIGTERM',stdout:'first 🌹',stderr:'returned trace'};
+ for(let i=0;i<2;i++)assert.equal(captureChildFailure('Guard',result,{root,synthetic:true,platform:'win32',ci:'true'}),result);
+ const dirs=fs.readdirSync(root);assert.equal(dirs.length,2);
+ for(const name of dirs){
+  const dir=path.join(root,name),report=read(path.join(dir,'report.json'));
+  assert.equal(report.signal,'SIGTERM');assert.equal(report.error,null);
+  assert.equal(report.status,null);assert.equal(report.pid,42);assert.equal(report.action,'Guard');
+  assert.equal(fs.readFileSync(path.join(dir,'stdout.log'),'utf8'),result.stdout);
+ }
+});
+
+test('Windows child failure capture excludes expected exits, native calls and non-Windows CI',t=>{
+ const root=path.join(scratchDirSync(t,'j3w1-child-failure-'),'capture');
+ const options={root,synthetic:true,platform:'win32',ci:'true'};
+ for(const status of [0,1,2]){
+  const result={status,signal:null,stdout:'expected output',stderr:'expected rejection'};
+  assert.equal(captureChildFailure('Guard',result,options),result);
+ }
+ const result={error:Object.assign(new Error('transport failure'),{code:'ETIMEDOUT'}),signal:null};
+ for(const change of [{synthetic:false},{synthetic:undefined},{platform:'linux'},{platform:'darwin'},{ci:''},{ci:false},{ci:null}]){
+  assert.equal(captureChildFailure('Apply',result,{...options,...change}),result);
+ }
+ assert.ok(!fs.existsSync(root));
+});
+
+test('Windows child failure capture bounds exact UTF-8 prefixes and honestly reports missing output',t=>{
+ const root=path.join(scratchDirSync(t,'j3w1-child-failure-'),'capture');
+ const options={root,synthetic:true,platform:'win32',ci:'true'};
+ const result={signal:'SIGTERM',stdout:'a'.repeat(16*1024-1)+'🌹end',stderr:'b'.repeat(144*1024-2)+'中end'};
+ captureChildFailure('x'.repeat(40000),result,options);
+ const dir=path.join(root,fs.readdirSync(root)[0]),report=read(path.join(dir,'report.json'));
+ let combined=0;
+ for(const [stream,cap,prefix]of [['stdout',16*1024,'a'.repeat(16*1024-1)],['stderr',144*1024,'b'.repeat(144*1024-2)]]){
+  const bytes=fs.readFileSync(path.join(dir,stream+'.log'));combined+=bytes.length;
+  assert.ok(bytes.length<=cap);assert.deepEqual(bytes,Buffer.from(prefix));
+  assert.deepEqual(report[stream],{originalBytes:Buffer.byteLength(result[stream]),retainedBytes:bytes.length,unavailable:false,truncated:true});
+ }
+ const metadata=fs.readFileSync(path.join(dir,'report.json'));assert.ok(metadata.length<=16*1024);
+ assert.ok(combined+metadata.length<=176*1024);
+ captureChildFailure('Missing',{signal:'SIGTERM',stdout:null},options);
+ const missing=fs.readdirSync(root).map(name=>path.join(root,name)).find(name=>name!==dir);
+ for(const stream of ['stdout','stderr']){
+  assert.equal(fs.statSync(path.join(missing,stream+'.log')).size,0);
+  assert.deepEqual(read(path.join(missing,'report.json'))[stream],{originalBytes:null,retainedBytes:0,unavailable:true,truncated:null});
+ }
+});
+
+test('Windows child failure capture cannot replace a failure when its output is unwritable',t=>{
+ const state=scratchDirSync(t,'j3w1-child-failure-'),root=path.join(state,'not-a-directory');
+ fs.writeFileSync(root,'keep original file');
+ const error=Object.assign(new Error('original timeout'),{code:'ETIMEDOUT'}),result={error,signal:'SIGTERM',stdout:'returned',stderr:'trace'};
+ assert.equal(captureChildFailure('Apply',result,{root,synthetic:true,platform:'win32',ci:'true'}),result);
+ assert.throws(()=>assert.ifError(result.error),failure=>failure.actual===error);
+ assert.equal(result.signal,'SIGTERM');assert.equal(fs.readFileSync(root,'utf8'),'keep original file');
+});
+
+test('Windows child failure capture distinguishes exact caps from missing writes',t=>{
+ const root=path.join(scratchDirSync(t,'j3w1-child-failure-'),'capture'),options={root,synthetic:true,platform:'win32',ci:'true'};
+ const result={signal:'SIGTERM',stdout:'é'.repeat(8*1024),stderr:'中'.repeat(48*1024)};
+ captureChildFailure('Exact',result,options);
+ const first=path.join(root,fs.readdirSync(root)[0]),report=read(path.join(first,'report.json'));
+ for(const [stream,cap]of [['stdout',16*1024],['stderr',144*1024]]){
+  assert.deepEqual(fs.readFileSync(path.join(first,stream+'.log')),Buffer.from(result[stream]));
+  assert.deepEqual(report[stream],{originalBytes:cap,retainedBytes:cap,unavailable:false,truncated:false});
+ }
+ const original=fs.writeFileSync;
+ t.mock.method(fs,'writeFileSync',(file,...args)=>{
+  if(path.basename(file)==='stdout.log')throw Object.assign(new Error('unwritable'),{code:'EACCES'});
+  return original(file,...args);
+ });
+ assert.equal(captureChildFailure('Unavailable',result,options),result);
+ const second=fs.readdirSync(root).map(name=>path.join(root,name)).find(dir=>dir!==first),partial=read(path.join(second,'report.json'));
+ assert.ok(!fs.existsSync(path.join(second,'stdout.log')));
+ assert.deepEqual(partial.stdout,{originalBytes:16*1024,retainedBytes:null,unavailable:true,truncated:false});
+ assert.deepEqual(fs.readFileSync(path.join(second,'stderr.log')),Buffer.from(result.stderr));
+ assert.equal(partial.stderr.unavailable,false);
+});
+
+test('Windows child failure capture stays after timing and preserves fixture transport assertions',t=>{
+ const state=scratchDirSync(t,'j3w1-child-failure-'),root=path.join(state,'capture'),events=[];
+ const error=Object.freeze(Object.assign(new Error('original timeout'),{code:'ETIMEDOUT'}));
+ let result=Object.freeze({error,signal:'SIGTERM',status:null,stdout:'synthetic stdout',stderr:'synthetic trace'});
+ // Execute the real wrapper with disposable dependencies, including a returned
+ // transport failure, without launching a native lifecycle or changing the host.
+ const makeFixture=runInNewContext(`(${fixture.toString()})`,{
+  scratchDirSync:()=>state,path,write,observerSource,source,runtime,process,assert,read,
+  performance:{now:()=>{events.push('clock');return events.length;}},
+  spawnSync:()=>{events.push('child');return result;},
+  reportChild:()=>events.push('report'),
+  captureChildFailure:(action,returned,options)=>{
+   events.push('capture');return captureChildFailure(action,returned,{...options,root,platform:'win32',ci:'true'});
+  }
+ });
+ const f=makeFixture(t);
+ assert.throws(()=>f.run('Apply'),failure=>failure.actual===error);
+ assert.deepEqual(events,['clock','child','clock','report','capture']);
+ assert.equal(fs.readdirSync(root).length,1);
+ assert.throws(()=>f.run('Apply',{fixture:false}),failure=>failure.actual===error);
+ assert.equal(fs.readdirSync(root).length,1,'native calls create no capture');
+ result=Object.freeze({signal:'SIGTERM',status:null,stdout:'signal output',stderr:''});
+ assert.throws(()=>f.run('Apply'),failure=>failure.actual==='SIGTERM');
+ assert.equal(fs.readdirSync(root).length,2);
+ for(const status of [1,2]){
+  result=Object.freeze({signal:null,status,stdout:'expected rejection',stderr:''});
+  assert.equal(f.run('Guard'),result);
+ }
+ assert.equal(fs.readdirSync(root).length,2,'expected exits create no capture');
+});
+
+test('Windows child failure uploads allow only bounded capture files on failed job attempts',()=>{
+ const {jobs}=parseYaml(fs.readFileSync(path.join(repoRoot,'.github/workflows/ci.yml'),'utf8'));
+ for(const name of ['windows-port','windows-lockscreen']){
+  const uploads=jobs[name].steps.filter(step=>step.uses?.startsWith('actions/upload-artifact@'));
+  assert.equal(uploads.length,1);
+  const upload=uploads[0];assert.equal(upload.uses,'actions/upload-artifact@v7');
+  assert.equal(upload.if,'failure()');assert.equal(upload['continue-on-error'],undefined);
+  assert.equal(upload.with.name,'windows-child-failures-${{ github.job }}-${{ github.run_id }}-${{ github.run_attempt }}');
+  assert.deepEqual(upload.with.path.trim().split('\n'),['test-results/windows-child-failures/*/stdout.log','test-results/windows-child-failures/*/stderr.log','test-results/windows-child-failures/*/report.json']);
+  assert.equal(upload.with['if-no-files-found'],'ignore');
+ }
 });
 
 test('lifecycle boundary observer preserves results and exceptions with bounded stderr',t=>{
