@@ -4,7 +4,7 @@ import os from "node:os";
 import { createHash } from "node:crypto";
 import { repoRoot, stableJson } from "../scripts/lib/fs.mjs";
 import { git, REVISION } from "../scripts/tooling/git.mjs";
-import { subjectOfBuild, validateEvidence } from "../scripts/lib/evidence.mjs";
+import { subjectOfBuild, validateEvidence, validateEvidenceScope } from "../scripts/lib/evidence.mjs";
 
 export default class EvidenceReporter {
   onBegin(config, suite) {
@@ -55,8 +55,14 @@ export default class EvidenceReporter {
 
   async onEnd(result) {
     if (this.subset) {
+      // Selected CI runs must reject the same catalogue claims as publication,
+      // without requiring a build subject or producing execution evidence.
+      for (const record of this.records) {
+        try { await validateEvidenceScope(record.scope); }
+        catch (error) { this.collectionErrors.push(error.message); }
+      }
       console.log("Evidence not written: this run is a subset. Only the whole suite, or merge-reports of every shard, records evidence.");
-      // A missing verification annotation still fails a subset run.
+      // Missing annotations and invalid scopes both fail a subset run.
       if (this.collectionErrors.length) {
         console.error(this.collectionErrors.join("; "));
         return { status: "failed" };

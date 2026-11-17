@@ -2,7 +2,7 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 import { z } from "zod";
 import { gitFiles, listFiles, readJson, readText, repoRoot, sha256, stableJson } from "./fs.mjs";
-import { evidenceSchema } from "../../schemas/evidence.mjs";
+import { evidenceSchema, scopeSchema } from "../../schemas/evidence.mjs";
 
 // Conservative invalidation: every tracked source/dependency input can affect
 // every claim. Run metadata never participates in the source digest.
@@ -23,19 +23,25 @@ export const artifactFingerprint = (files) => sha256(stableJson(files));
 export const freshnessOf = (evidence, subject) => evidence.sourceDigest === subject.sourceDigest && evidence.artifactDigest === subject.artifactDigest ? "current" : "stale";
 export const displayResult = (record, freshness) => freshness === "stale" ? `stale (${record.result})` : record.result;
 
+export const validateEvidenceScope = async (input) => {
+  const scope = scopeSchema(z).parse(input);
+  const { component, states, variants } = scope;
+  if (component === "page") return scope;
+  const coverage = await readJson("exports/coverage.json");
+  if (!coverage.components[component]) throw new Error(`Unknown evidence component: ${component}`);
+  const spec = await readJson(`exports/components/${component}.json`);
+  if (states.some((s) => !spec.states.includes(s))) throw new Error(`Unknown state for ${component}`);
+  if (variants.some((v) => !spec.variants.some((entry) => entry.id === v))) throw new Error(`Unknown variant for ${component}`);
+  return scope;
+};
+
 export const validateEvidence = async (input) => {
   const evidence = evidenceSchema(z).parse(input);
-  const coverage = await readJson("exports/coverage.json");
   const ids = new Set();
   for (const record of evidence.records) {
     if (ids.has(record.id)) throw new Error(`Duplicate evidence ID: ${record.id}`);
     ids.add(record.id);
-    const { component, states, variants } = record.scope;
-    if (component === "page") continue;
-    if (!coverage.components[component]) throw new Error(`Unknown evidence component: ${component}`);
-    const spec = await readJson(`exports/components/${component}.json`);
-    if (states.some((s) => !spec.states.includes(s))) throw new Error(`Unknown state for ${component}`);
-    if (variants.some((v) => !spec.variants.some((entry) => entry.id === v))) throw new Error(`Unknown variant for ${component}`);
+    await validateEvidenceScope(record.scope);
   }
   return evidence;
 };
