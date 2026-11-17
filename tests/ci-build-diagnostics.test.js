@@ -112,7 +112,7 @@ test("only the existing build install gets isolated logs; commands, order, gates
   upload.with.path = "test-results/\nplaywright-report/\n";
   assert.deepEqual(unchanged, [
     { uses: "actions/checkout@v7", with: { "fetch-depth": 0 } },
-    { uses: "actions/setup-node@v7", with: { "node-version": 24, cache: "npm" } },
+    { uses: "actions/setup-node@v7", with: { "node-version": "24.22.3", cache: "npm" } },
     { run: installCommand },
     { name: "Build the site under /theme/", run: "npm run build", env: { GITHUB_SHA: "${{ github.sha }}" } },
     { name: "Base paths, consistency and private-material gates on dist/", run: "npm run test:dist" },

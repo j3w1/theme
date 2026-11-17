@@ -9,6 +9,11 @@ node scripts/ci/select.mjs --event pull_request --base origin/main --head HEAD
 
 CI is `select` → checks → `release-gate`.
 
+Hosted workflows pin Node to the quoted exact patch `"24.22.3"`, the
+[Node 24 security release](https://nodejs.org/en/blog/release/v24.22.3), so
+setup-node cannot reuse an older Node 24 patch. This pin leaves local Node 24
+support, the dependency graph and npm policy unchanged.
+
 The `checks` job runs two matrix entries in parallel: `cheap` keeps source
 validation, generated-file drift and the selected unit files; `install` keeps
 the selected host and Orca installer suites. Each retains the 15-minute job
