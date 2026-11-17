@@ -108,6 +108,47 @@ jobs:
         env:
           PLAN: ${{ needs.select.outputs.plan }}
 
+  # The Windows workloads run as four jobs so each keeps its own 15-minute
+  # limit: generated port contracts, split by the complementary lock-screen
+  # name filters into windows-port and windows-lockscreen (every test in the
+  # file runs in exactly one of them), the installer lifecycle, and the native
+  # compiler with offscreen regressions. release-gate requires all four.
+  windows-port:
+    needs: select
+    if: needs.select.outputs.checks == 'true'
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --prefer-offline --no-audit --no-fund
+      - name: Generated Windows port contracts
+        shell: pwsh
+        run: node --test --test-concurrency=1 --test-skip-pattern=lock-screen tests/windows-port.test.js
+
+  windows-lockscreen:
+    needs: select
+    if: needs.select.outputs.checks == 'true'
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --prefer-offline --no-audit --no-fund
+      - name: Generated Windows lock-screen contracts
+        shell: pwsh
+        run: node --test --test-concurrency=1 --test-name-pattern=lock-screen tests/windows-port.test.js
+
   windows-install:
     needs: select
     if: needs.select.outputs.checks == 'true'
@@ -122,9 +163,24 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci --prefer-offline --no-audit --no-fund
-      - name: Native Windows lifecycle and generated port contracts
+      - name: Native Windows lifecycle
         shell: pwsh
-        run: node --test --test-concurrency=1 tests/windows-port.test.js tests/windows-install.test.js tests/windows-font.test.js tests/windows-compatibility.test.js tests/windows-setup.test.js
+        run: node --test --test-concurrency=1 tests/windows-install.test.js tests/windows-font.test.js tests/windows-compatibility.test.js tests/windows-setup.test.js
+
+  windows-native:
+    needs: select
+    if: needs.select.outputs.checks == 'true'
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --prefer-offline --no-audit --no-fund
       - name: Prepare the pinned native compiler without applying a theme
         shell: pwsh
         run: ./scripts/ci/prepare-windows-compiler.ps1 -Root "$env:RUNNER_TEMP/j3w1-native-toolchain"
@@ -382,7 +438,7 @@ jobs:
           if-no-files-found: ignore
 
   release-gate:
-    needs: [select, checks, windows-install, build, browser, consumers, evidence]
+    needs: [select, checks, windows-port, windows-lockscreen, windows-install, windows-native, build, browser, consumers, evidence]
     if: always()
     runs-on: ubuntu-latest
     timeout-minutes: 3

@@ -10,6 +10,8 @@ param(
  [string]$Revision,[string]$Version,[string]$SourceRoot,
  [string]$StateRoot=(Join-Path $env:LOCALAPPDATA 'j3w1-theme\windows'),
  [switch]$NonInteractive,[switch]$Latest,
+ [switch]$RestoreColorizationIntensity,
+ [string]$KeepLockScreenValueSha256,[string]$ExpectedJournalSha256,
  [switch]$Fixture,[int]$FixtureFailAfter=0,
  [switch]$Lifecycle
 )
@@ -186,7 +188,7 @@ function Sync-J3w1SetupRecovery([string]$PowerShell,[string]$StateRoot) {
  $current=Join-Path $StateRoot 'current.json';Assert-J3w1SetupPath $current
  if(-not(Test-Path -LiteralPath $current)){return}
  $pointer=Get-Content -LiteralPath $current -Raw|ConvertFrom-Json
- $verified=Get-J3w1VerifiedRecoveryRelease $StateRoot $pointer.revision
+ $verified=Get-J3w1VerifiedRecoveryRelease $StateRoot (Get-J3w1LifecycleRevision $StateRoot $pointer.revision)
  Save-J3w1SetupRecovery $PowerShell (Join-Path $verified.path 'install.ps1') $StateRoot
 }
 function Get-J3w1VerifiedRecoveryRelease([string]$StateRoot,[string]$Revision) {
@@ -204,6 +206,22 @@ function Get-J3w1VerifiedRecoveryRelease([string]$StateRoot,[string]$Revision) {
  }
  return @{path=$release;dependencies=(Get-Content -LiteralPath (Join-Path $release 'dependencies.json') -Raw|ConvertFrom-Json)}
 }
+function Get-J3w1LifecycleRevision([string]$StateRoot,[string]$AppearanceRevision) {
+ $journal=Join-Path $StateRoot 'journal.json';Assert-J3w1SetupPath $journal
+ if(-not(Test-Path -LiteralPath $journal)){return $AppearanceRevision}
+ $history=Get-Content -LiteralPath $journal -Raw|ConvertFrom-Json
+ if($history.schemaVersion -eq 1){
+  if(@('lockscreenAcceptances','lifecycleRevision','lifecycleRuntimeSha256','lifecycleManifestSha256'|Where-Object {$history.PSObject.Properties.Name -contains $_}).Count){throw 'Schema1 journal carries unvalidated capable recovery fields'}
+  return $AppearanceRevision
+ }
+ if($history.schemaVersion -ne 2 -or $history.lifecycleRevision -cnotmatch '^[0-9a-f]{40}$' -or $history.lifecycleRuntimeSha256 -cnotmatch '^[0-9a-f]{64}$' -or $history.lifecycleManifestSha256 -cnotmatch '^[0-9a-f]{64}$'){throw 'Unsupported or malformed capable recovery journal'}
+ $verified=Get-J3w1VerifiedRecoveryRelease $StateRoot $history.lifecycleRevision
+ $manifest=Get-Content -LiteralPath (Join-Path $verified.path 'install-manifest.json') -Raw|ConvertFrom-Json
+ if((Get-FileHash -LiteralPath (Join-Path $verified.path 'install-manifest.json') -Algorithm SHA256).Hash.ToLowerInvariant() -cne $history.lifecycleManifestSha256){throw 'Capable recovery manifest binding changed'}
+ $entry=@($manifest.files|Where-Object path -CEQ 'dist/runtime.cjs');$runtime=Join-Path $verified.path 'dist/runtime.cjs';Assert-J3w1SetupPath $runtime
+ if($entry.Count -ne 1 -or $entry[0].sha256 -cne $history.lifecycleRuntimeSha256 -or -not(Test-Path -LiteralPath $runtime) -or (Get-FileHash -LiteralPath $runtime -Algorithm SHA256).Hash.ToLowerInvariant() -cne $history.lifecycleRuntimeSha256){throw 'Capable recovery runtime missing or changed'}
+ return $history.lifecycleRevision
+}
 function Get-J3w1RecoveryPowerShellPin($Release,[string]$StateRoot) {
  $pin=$Release.dependencies.PSObject.Properties['powershell']
  if($pin){return $pin.Value}
@@ -213,7 +231,7 @@ function Get-J3w1RecoveryPowerShellPin($Release,[string]$StateRoot) {
  $journal=Join-Path $StateRoot 'journal.json';Assert-J3w1SetupPath $journal
  if(Test-Path -LiteralPath $journal){
   $history=Get-Content -LiteralPath $journal -Raw|ConvertFrom-Json
-  if($history.schemaVersion -ne 1){throw 'Unsupported recovery journal'}
+  if($history.schemaVersion -notin 1,2){throw 'Unsupported recovery journal'}
   $transactions=@($history.transactions);[array]::Reverse($transactions)
   $seen=[Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
   foreach($transaction in $transactions){
@@ -234,7 +252,7 @@ function Invoke-J3w1WindowsRecovery([string]$Action,[bool]$Latest,[string]$State
   $journal=Join-Path $StateRoot 'journal.json';Assert-J3w1SetupPath $journal
   if(Test-Path -LiteralPath $journal){
    $history=Get-Content -LiteralPath $journal -Raw|ConvertFrom-Json
-   if($history.schemaVersion -ne 1){throw 'Unsupported recovery journal'}
+   if($history.schemaVersion -notin 1,2){throw 'Unsupported recovery journal'}
    $pointer=@($history.transactions|Where-Object status -NE 'restored'|Select-Object -Last 1)
    if($pointer.Count){$pointer=$pointer[0]}else{$pointer=$null}
   }
@@ -245,7 +263,7 @@ function Invoke-J3w1WindowsRecovery([string]$Action,[bool]$Latest,[string]$State
   $pointer=Get-Content -LiteralPath $current -Raw|ConvertFrom-Json
  }
  if($pointer.revision -cnotmatch '^[0-9a-f]{40}$' -or $pointer.mode -notin 'Full','Native'){throw 'Invalid installed recovery identity'}
- $verifiedRelease=Get-J3w1VerifiedRecoveryRelease $StateRoot $pointer.revision
+ $verifiedRelease=Get-J3w1VerifiedRecoveryRelease $StateRoot (Get-J3w1LifecycleRevision $StateRoot $pointer.revision)
  $release=$verifiedRelease.path
  $powerShell=Find-J3w1SetupPowerShell
  if(-not $powerShell){
@@ -295,7 +313,8 @@ function Invoke-J3w1WindowsSetup([string]$Revision,[string]$Version,[string]$Mod
   $powerShell=Find-J3w1SetupPowerShell
   if(-not $powerShell){Write-Host 'Checking the pinned private PowerShell runtime...';$powerShell=Install-J3w1SetupPowerShell $deps.powershell $StateRoot}
   Write-Host 'Preparing verified files and Node if needed; checking shell compatibility...'
-  $plan=(Invoke-J3w1SetupLifecycle $powerShell $installer 'Prepare' 'Full' $Revision $StateRoot)|ConvertFrom-Json
+  $preparationMode=if($Mode -eq 'Native'){'Native'}else{'Full'}
+  $plan=(Invoke-J3w1SetupLifecycle $powerShell $installer 'Prepare' $preparationMode $Revision $StateRoot)|ConvertFrom-Json
   $chosen=Select-J3w1SetupMode $plan $Mode $NonInteractive
   $retained=Join-Path $StateRoot "releases\$Revision\install.ps1"
   Save-J3w1SetupRecovery $powerShell $retained $StateRoot
@@ -316,6 +335,8 @@ param(
  [string]$Revision,[string]$Version,[string]$SourceRoot,
  [string]$StateRoot=(Join-Path $env:LOCALAPPDATA 'j3w1-theme\windows'),
  [switch]$Latest,
+ [switch]$RestoreColorizationIntensity,
+ [string]$KeepLockScreenValueSha256,[string]$ExpectedJournalSha256,
  [switch]$Fixture,
  [int]$FixtureFailAfter=0
 )
@@ -365,6 +386,26 @@ function Get-VerifiedDownload($Item,[string]$Destination){
   Assert-SafePath $Destination
   [IO.File]::Move($pending,$Destination)
  }finally{if(Test-Path -LiteralPath $pending){Remove-Item -LiteralPath $pending}}
+}
+function Get-ThemeWindhawkVersion([string]$Cli){& $Cli --version}
+function Initialize-ThemeFullDependencies($Dependencies,[string]$Downloads){
+ Assert-SafePath $Downloads;[IO.Directory]::CreateDirectory($Downloads)|Out-Null
+ $tool=Join-Path $StateRoot 'tools\windhawk\2.0.0-alpha.6';$cli=Join-Path $tool 'windhawk-cli.exe'
+ Assert-SafePath $tool;Assert-SafePath $cli
+ if((Test-Path -LiteralPath $tool) -and -not(Test-Path -LiteralPath $cli)){throw 'Retained Windhawk directory is incomplete; preserve it for explicit recovery'}
+ $setup=Join-Path $Downloads 'windhawk_setup_offline.exe';Get-VerifiedDownload $Dependencies.windhawk $setup
+ $sig=Get-AuthenticodeSignature -LiteralPath $setup
+ if($sig.Status -ne 'Valid' -or $sig.SignerCertificate.Subject -notlike "*$($Dependencies.windhawk.publisher)*"){throw 'Windhawk publisher signature verification failed'}
+ if(-not(Test-Path -LiteralPath $cli)){
+  $proc=Start-Process -FilePath $setup -ArgumentList @('/S','/PORTABLE','/DEVTOOLS',"/D=$tool") -WindowStyle Hidden -Wait -PassThru
+  if($proc.ExitCode -ne 0){throw "Windhawk dependency installation failed: $($proc.ExitCode)"}
+ }
+ if((Get-ThemeWindhawkVersion $cli) -ne 'windhawk-cli 2.0.0-alpha.6'){throw 'Windhawk version differs from the reviewed pin'}
+ foreach($relative in @('Compiler\bin\clang++.exe','Engine\2.0.0\64\windhawk.lib')){
+  $required=Join-Path $tool $relative;Assert-SafePath $required
+  if(-not(Test-Path -LiteralPath $required -PathType Leaf)){throw "Retained Windhawk compiler is incomplete: $relative"}
+ }
+ foreach($mod in $Dependencies.mods){Get-VerifiedDownload $mod (Join-Path $Downloads "$($mod.id).wh.cpp")}
 }
 function Write-PrivateJson($Path,$Value){
  Assert-SafePath $Path
@@ -449,6 +490,7 @@ if($Version){
  if($ref.object.type -eq 'tag'){$tag=Invoke-RestMethod $ref.object.url -TimeoutSec 60 -OperationTimeoutSeconds 60;$Revision=$tag.object.sha}else{$Revision=$ref.object.sha}
  }
 }
+$requestedRecoveryRevision=$Revision
 $current=Join-Path $StateRoot 'current.json'
 if(-not $Revision -and $Action -in 'Test','Restore','Uninstall','Guard'){
  $installed=$null
@@ -456,7 +498,7 @@ if(-not $Revision -and $Action -in 'Test','Restore','Uninstall','Guard'){
   $journalPath=Join-Path $StateRoot 'journal.json';Assert-SafePath $journalPath
   if(Test-Path -LiteralPath $journalPath){
    $history=Get-Content -LiteralPath $journalPath -Raw|ConvertFrom-Json
-   if($history.schemaVersion -ne 1){throw 'Unsupported recovery journal'}
+   if($history.schemaVersion -notin 1,2){throw 'Unsupported recovery journal'}
    $installed=@($history.transactions|Where-Object status -ne 'restored'|Select-Object -Last 1)
    if($installed.Count){$installed=$installed[0]}else{$installed=$null}
   }
@@ -467,6 +509,11 @@ if(-not $Revision -and $Action -in 'Test','Restore','Uninstall','Guard'){
   $installed=Get-Content -LiteralPath $current -Raw|ConvertFrom-Json
  }
  $Revision=$installed.revision;$Mode=$installed.mode
+}
+if($Action -in 'Test','Restore','Uninstall','Guard'){
+ $capableRevision=Get-J3w1LifecycleRevision $StateRoot $Revision
+ if($requestedRecoveryRevision -and $requestedRecoveryRevision -cne $capableRevision){throw 'Explicit recovery revision conflicts with the required capable lifecycle revision'}
+ $Revision=$capableRevision
 }
 if(-not $Revision -and $SourceRoot){$Revision=(& git -C $SourceRoot rev-parse HEAD).Trim();if($LASTEXITCODE){throw 'Cannot resolve source HEAD'}}
 if($Revision -notmatch '^[0-9a-f]{40}$'){throw 'Supply -Revision with a full immutable commit SHA, or -Version with a published release tag.'}
@@ -542,30 +589,23 @@ try{
  $guardPowerShell=(Get-Process -Id $PID).Path
  # Keep Guard on the same unpackaged runtime as installation and recovery.
  if($FixtureFailAfter -and -not $Fixture){throw 'Failure injection is available only in isolated fixtures'}
- $request=@{guardPwsh=$guardPowerShell;failAfter=$FixtureFailAfter;source=$release;state=$StateRoot;action=$Action;mode=$Mode;revision=$Revision;latest=[bool]$Latest;pwsh=(Get-Process -Id $PID).Path;fixture=[bool]$Fixture}
- if($Action -in 'Apply','Update'){
+ $request=@{guardPwsh=$guardPowerShell;failAfter=$FixtureFailAfter;source=$release;state=$StateRoot;action=$Action;mode=$Mode;revision=$Revision;latest=[bool]$Latest;restoreColorizationIntensity=[bool]$RestoreColorizationIntensity;keepLockScreenValueSha256=$KeepLockScreenValueSha256;expectedJournalSha256=$ExpectedJournalSha256;explicitSource=[bool]$SourceRoot;cacheManifestSha256=$verified.manifestSha256.ToLowerInvariant();pwsh=(Get-Process -Id $PID).Path;fixture=[bool]$Fixture}
+ if($Action -in 'Prepare','Apply','Update'){
   $preflight=$request.Clone();$preflight.action='Plan'
   $report=$preflight|ConvertTo-Json -Compress|& $node.Source (Join-Path $release 'dist/runtime.cjs')
   if($LASTEXITCODE){throw 'Preflight failed; no dependencies or settings were changed'}
   $plan=$report|ConvertFrom-Json
-  if($Mode -eq 'Full' -and -not $plan.compatible){throw 'Full preflight failed: unsupported Windows/shell fingerprint'}
+  if($Action -ne 'Prepare' -and $Mode -eq 'Full' -and -not $plan.compatible){throw 'Full preflight failed: unsupported Windows/shell fingerprint'}
+ }
+ # Prepare may retain verified tools, but never registers fonts, writes
+ # personalization/recovery ownership, stages adapters or starts the engine.
+ if($Action -in 'Prepare','Apply','Update' -and $Mode -eq 'Full' -and $plan.compatible -and -not $Fixture){
+  Initialize-ThemeFullDependencies $deps (Join-Path $StateRoot 'downloads')
  }
  if($Action -in 'Apply','Update' -and -not $Fixture){
   $deps=Get-Content -LiteralPath (Join-Path $release 'dependencies.json') -Raw|ConvertFrom-Json
   $downloads=Join-Path $StateRoot 'downloads';Assert-SafePath $downloads;[IO.Directory]::CreateDirectory($downloads)|Out-Null
   Install-ThemeFont $deps.font $downloads
- }
- if($Action -in 'Apply','Update' -and $Mode -eq 'Full' -and -not $Fixture){
-  $tool=Join-Path $StateRoot 'tools\windhawk\2.0.0-alpha.6';$cli=Join-Path $tool 'windhawk-cli.exe'
-  if(-not(Test-Path -LiteralPath $cli)){
-   $setup=Join-Path $downloads 'windhawk_setup_offline.exe';Get-VerifiedDownload $deps.windhawk $setup
-   $sig=Get-AuthenticodeSignature -LiteralPath $setup
-   if($sig.Status -ne 'Valid' -or $sig.SignerCertificate.Subject -notlike "*$($deps.windhawk.publisher)*"){throw 'Windhawk publisher signature verification failed'}
-   $proc=Start-Process -FilePath $setup -ArgumentList @('/S','/PORTABLE','/DEVTOOLS',"/D=$tool") -WindowStyle Hidden -Wait -PassThru
-   if($proc.ExitCode -ne 0){throw "Windhawk dependency installation failed: $($proc.ExitCode)"}
-  }
-  if((& $cli --version) -ne 'windhawk-cli 2.0.0-alpha.6'){throw 'Windhawk version differs from the reviewed pin'}
-  foreach($mod in $deps.mods){Get-VerifiedDownload $mod (Join-Path $downloads "$($mod.id).wh.cpp")}
  }
   if($Action -eq 'Prepare'){$request.action='Plan'}
   # Every apply path retains recovery before settings change, including a
@@ -594,10 +634,12 @@ if($MyInvocation.InvocationName -ne '.'){
  Set-StrictMode -Version Latest;$ErrorActionPreference='Stop'
  if(-not $Fixture){Assert-J3w1NativeProcess}
  if($Latest -and $Action -ne 'Restore'){throw '-Latest is only valid with -Action Restore'}
+ if($RestoreColorizationIntensity -and ($Action -ne 'Restore' -or -not $SourceRoot -or -not ($Revision -or $Version))){throw '-RestoreColorizationIntensity requires Restore with an explicit reviewed -SourceRoot and -Revision or -Version.'}
+ if(($KeepLockScreenValueSha256 -or $ExpectedJournalSha256) -and ($Action -notin 'Plan','Apply','Update' -or -not $SourceRoot -or $Revision -cnotmatch '^[0-9a-f]{40}$' -or $KeepLockScreenValueSha256 -cnotmatch '^[0-9a-f]{64}$' -or $ExpectedJournalSha256 -cnotmatch '^[0-9a-f]{64}$')){throw 'Lock-screen preservation requires paired value/journal digests and an explicit reviewed SourceRoot/Revision for Plan/Apply/Update.'}
  if($Action -eq 'Update' -and -not $Revision -and -not $Version){throw 'Update requires an explicit -Version or -Revision.'}
  if($Lifecycle -or $SourceRoot -or $Fixture -or $Action -in 'Plan','Prepare','Guard'){
   $lifecycleMode=if($Mode -eq 'Auto'){'Full'}else{$Mode}
-  Invoke-J3w1WindowsLifecycle -Action $Action -Mode $lifecycleMode -Revision $Revision -Version $Version -SourceRoot $SourceRoot -StateRoot $StateRoot -Latest:$Latest -Fixture:$Fixture -FixtureFailAfter $FixtureFailAfter
+  Invoke-J3w1WindowsLifecycle -Action $Action -Mode $lifecycleMode -Revision $Revision -Version $Version -SourceRoot $SourceRoot -StateRoot $StateRoot -Latest:$Latest -RestoreColorizationIntensity:$RestoreColorizationIntensity -KeepLockScreenValueSha256 $KeepLockScreenValueSha256 -ExpectedJournalSha256 $ExpectedJournalSha256 -Fixture:$Fixture -FixtureFailAfter $FixtureFailAfter
   if(-not $Lifecycle -and -not $Fixture -and $Action -in 'Apply','Update'){
    Invoke-J3w1WindowsLifecycle -Action Test -StateRoot $StateRoot
   }

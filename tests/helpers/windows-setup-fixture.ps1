@@ -133,7 +133,7 @@ elseif($Case -eq 'orchestration'){
  Check (($script:actions -join ',') -eq 'Prepare:Full') 'Unsupported host applied settings'
  $script:actions=@();$script:failTest=$false
  Invoke-J3w1WindowsSetup $rev '' 'Native' $true $Root
- Check (($script:actions -join ',') -eq 'Prepare:Full,Apply:Native,Test:Native') 'Explicit Native routing failed'
+ Check (($script:actions -join ',') -eq 'Prepare:Native,Apply:Native,Test:Native') 'Explicit Native routing failed or acquired Full tools'
 }
 elseif($Case -eq 'cached-setup'){
  $env:OS='Windows_NT';$env:PROCESSOR_ARCHITECTURE='AMD64'

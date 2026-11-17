@@ -119,7 +119,51 @@ unreadable, rollback resets it to the Windows default, so a previous custom
 caption override can be lost. See [interrupted recovery](COMPATIBILITY.md#recovery)
 for missing-cache, lock or conflict handling.
 
+### Keep an intentional lock-screen image
+
+An ordinary Apply or Update refuses a later lock-screen image, like other
+managed-setting conflicts. If you intentionally chose that picture, run the
+reviewed installer's `Plan`: `lockScreenPreservation` reports its canonical
+value digest and current journal digest, without an image or image path.
+Review preservation with `Plan`, then use `Apply` or `Update` with both
+`-KeepLockScreenValueSha256 <value digest>` and
+`-ExpectedJournalSha256 <journal digest>`, an explicit reviewed `-SourceRoot`
+and its full immutable `-Revision`. Both digests must still match exactly.
+This requires an existing owned, recoverable lock screen; it is not a general
+setting-adoption or first-install option.
+
+Acceptance keeps the selected bytes without setting the image. Test, later
+installs and recovery still reject unapproved image changes. Restore/Uninstall
+preserve the accepted picture; only restoring its original owning installation
+releases that image ownership. Undoing a supported Native acceptance Update
+with Restore-Latest keeps the choice attached to the older active owner. Original
+before/after images and acceptance history remain private in the journal.
+The schema2 journal retains a capable verified installer for offline recovery.
+Use saved recovery commands even after Restore-Latest selects older appearance
+history; never edit old cached releases. A conflicting explicit recovery revision
+is refused; omit it to select the verified capable cache.
+
+With schema2, Full Restore-Latest refuses before mutation whenever the remaining
+Full appearance revision would differ from the capable lifecycle revision,
+including a different capable revision. It works only within the same revision.
+A completed transaction can use a supported matching Update or complete capable
+Restore/Uninstall. An incomplete Full transaction also blocks Update: use complete
+capable Restore/Uninstall, which removes the theme and preserves the chosen image.
+
+Failed or interrupted acceptance can retain a legacy sign-in guard. That guard
+rejects schema2 before running, without disabling mods or starting the engine;
+an engine already running in the current session can continue. A capable Guard
+disables mods on an appearance/capable revision mismatch, and Test fails. None of
+these outcomes is a successful installation or restored styling pass.
+
 ## What changes
+
+The current 26300.9974 core Full candidate excludes Notepad editor/chrome and
+PowerToys preview/Markdown adapters because the installed component versions are
+outside their reviewed pins. Their sources and earlier evidence remain intact;
+the table is an implementation inventory, not a claim that those excluded surfaces
+are installed or supported. See Compatibility for the exact exclusions and the
+canonical tools-only Prepare action. Native PowerToys settings remain separate.
 
 | Area | Treatment |
 | --- | --- |
@@ -218,3 +262,53 @@ Calculator and the WinUI chrome adapters share the owned theme-refresh and
 control-resource templates, substituted by one checked renderer; each generated
 Windhawk source stays standalone for its pinned compiler. Refactors must
 preserve the emitted adapter bytes when behavior is unchanged.
+
+### Explorer initialization failure record
+
+Explorer adapter 1.8.10 can emit one protocol-1 numeric failure record. This is
+diagnostic evidence, not admission, a successful initialization or visual
+acceptance. It preserves all existing fail-closed checks and COM policy.
+The closed stages, in original initialization order, are:
+
+| Number | Failed stage | Native code |
+| --- | --- | --- |
+| 1–2 | Accessibility admission; application colors | unavailable |
+| 3–5 | Executable path; version size; version data | Win32 |
+| 6–7 | Version query; exact fixed version | unavailable |
+| 8 | Theme-class procedure | Win32 |
+| 9–14 | Pin color; marquee settings; renderer load; marquee hooks; navigation hooks; folder colors | unavailable |
+| 15–16 | Folder-glyph COM initialization; glyph build | HRESULT; unavailable |
+| 17–18 | Bitmap COM initialization; factory/bitmap admission | HRESULT; factory HRESULT only when that call failed, otherwise unavailable |
+| 19–20 | Background brush; remaining hooks | unavailable |
+
+The record contains only `protocol`, `adapterVersion`, `pid`, exact decimal-string
+`creationFiletime`, numeric `stage`, `nativeKind` (0 unavailable, 1 Win32,
+2 HRESULT), `nativeAvailable`, unsigned 32-bit `nativeValue`, and `glyphCom` /
+`bitmapCom` (unsigned HRESULT or null when not reached). A boolean guard does
+not supply a stale last-error value. Later stages were not reached; earlier
+admission passed. A missing record supplies no stage or initialization result.
+A record whose PID or exact creation FILETIME differs from the independently
+bound target is unavailable for that target.
+
+The writer resolves the current user's LocalAppData through the known-folder
+API, never an environment override. It requires the existing, non-reparse
+`j3w1-theme/windows/diagnostics` directory. It holds the local drive root and
+every validated ancestor without write/delete sharing through exclusive
+`CREATE_NEW`, opened-file identity/containment validation, a bounded write
+(less than 1024 bytes) and flush. Unavailable, aliased, non-directory, reparse,
+ambiguous or replaced identities fail closed without a fallback. No directory
+is created by the adapter. The sole name is
+`j3w1-explorer-native-1.8.10-init-failure.json`; no overwrite, append, alternate
+name, retry, repair or pruning occurs. Diagnostic errors preserve initialization
+outcomes and the caller's last error. Partial or malformed output is unavailable
+evidence and is never silently repaired. The flush outcome is not recorded and
+cannot be inferred from the file. A complete, well-formed record evidences only
+the bytes attributed to the independently identified process; it does not prove
+successful flushing or durability, and no conclusion may depend on flush success.
+
+This file is outside the recovery journal and survives failed initialization,
+unload and Restore. A separately reviewed use task must prepare and own the
+directory, bind source/DLL/transaction/process identities and collect the exact
+file/hash. That producer retains cleanup ownership; the adapter never deletes
+it or reads lifecycle journals. Source/harness checks alone authorize no desktop
+activation, directory preparation or lifecycle operation.

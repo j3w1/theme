@@ -2050,13 +2050,13 @@
       "startDockedVersion": "10.0.26100.9818",
       "shellExperienceVersion": "10.0.26100.9818",
       "shellPackageVersion": "10.0.26100.9818",
-      "explorerFixedVersion": "10.0.26100.9818",
+      "explorerFixedVersion": "10.0.26100.9974",
       "clientPackageVersion": "1000.26100.385.0",
       "startLayout": "redesigned",
       "explorerVersion": "10.0.26100.9818",
       "searchVersion": "2609.12000.100.0",
       "startPackageVersion": "10.0.26100.4768",
-      "ubr": 9818,
+      "ubr": 9974,
       "status": "candidate"
     }
   ],
@@ -2065,10 +2065,11 @@
     "Command Palette custom tint cannot independently assign every foreground.",
     "Lock-screen application requires a supported API and recoverable previous image; otherwise it is not applied.",
     "Windows/Start updates outside the tested compatibility entry disable managed shell styling until reviewed.",
-    "Static cursor shapes preserve roles; host accessibility pointer overrides take priority."
+    "Static cursor shapes preserve roles; host accessibility pointer overrides take priority.",
+    "The 26300.9974 core Full candidate excludes Notepad editor/chrome and PowerToys preview/Markdown adapters; their installed package and WebView versions are unreviewed. Native PowerToys settings remain separate."
   ],
   "nativeExplorer": {
-    "version": "1.8.8",
+    "version": "1.8.10",
     "background": "color.surface.canvas",
     "foreground": "color.text.default",
     "hover": "color.interaction.hover.bg",
@@ -2091,11 +2092,11 @@
     "folderEdge": "color.border.active"
   },
   "nativeExplorerModules": {
-    "FRAME": "10.0.26100.9818",
+    "FRAME": "10.0.26100.9974",
     "DUI": "10.0.26100.9818",
     "COMCTL": "6.10.26100.9818",
-    "WIC": "10.0.26100.9818",
-    "SHELLCOMMON": "10.0.26100.9818"
+    "WIC": "10.0.26100.9974",
+    "SHELLCOMMON": "10.0.26100.9974"
   },
   "monacoPreview": {
     "version": "1.1.1",
@@ -2890,8 +2891,8 @@
     }
   },
   "nativeExplorerModuleDigests": {
-    "WIC": "389703886cdf613073d405cc6ddea1a3097a27258770cd3e7ea8ac4940180bce",
-    "SHELLCOMMON": "d275b4025c9332cbe255a368f0c876c746e1959d7db40156db467fb829059dba"
+    "WIC": "df01c4d5e5f594e6aa18e7a4baa27eba3cf5409c74f02b00d7c8e46b277da631",
+    "SHELLCOMMON": "9e84c8cedb33956f3ad3865328099f1598e347fb09a3af961b9056a128d36232"
   },
   "terminalChrome": {
     "version": "1.0.20",
@@ -2906,5 +2907,11 @@
     "sourceSha256": "7424d3b2298d06b4c8dc0e2b16a6e49011c4af2e97ec92ef28ecd2ad53bf8571",
     "executableSha256": "310e83f20fe92416371916d829e9e6d0d16a8fa91485e10caa67dbb8e5f9f870",
     "xamlSha256": "da3ae828c807b56eab79981e68dd605daec066b088ff8836afbb8bd04de18c01"
-  }
+  },
+  "adapterExclusions": [
+    "j3w1-notepad-native",
+    "j3w1-notepad-chrome",
+    "j3w1-powertoys-preview",
+    "j3w1-powertoys-markdown"
+  ]
 }

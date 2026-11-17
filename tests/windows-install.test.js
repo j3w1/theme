@@ -6,6 +6,7 @@ import test from 'node:test';
 import fs from 'node:fs';
 import path from 'node:path';
 import {spawnSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
 import {repoRoot} from '../scripts/lib/fs.mjs';
 
 
@@ -14,7 +15,7 @@ if(unavailable&&process.env.CI)test('Windows lifecycle tests require PowerShell'
 const installer=path.join(repoRoot,'ports/windows/install.ps1');
 
 const write=(p,x)=>{fs.mkdirSync(path.dirname(p),{recursive:true});fs.writeFileSync(p,typeof x==='string'?x:JSON.stringify(x));};
-function fixture(t){
+function fixture(t,mode='Native'){
  const root=scratchDirSync(t, 'j3w1-windows-wrapper-');
  const source=path.join(root,'source'),state=path.join(root,'state');
  fs.mkdirSync(source);fs.cpSync(path.join(repoRoot,'ports/windows'),path.join(source,'ports/windows'),{recursive:true});
@@ -24,12 +25,49 @@ function fixture(t){
  git('init');git('config','user.email','fixture@example.invalid');git('config','user.name','Fixture');git('config','core.autocrlf','false');
  const commit=()=>{git('add','.');git('commit','--allow-empty','-m','fixture');return git('rev-parse','HEAD');};
  const first=commit();git('tag','v4.0.0');
- const run=(action,args=[])=>spawnSync(pwsh,['-NoLogo','-NoProfile','-NonInteractive','-File',installer,'-Fixture','-Mode','Native','-StateRoot',state,'-SourceRoot',source,'-Action',action,...args],{env,encoding:'utf8',timeout:90000});
+ const run=(action,args=[])=>spawnSync(pwsh,['-NoLogo','-NoProfile','-NonInteractive','-File',installer,'-Fixture','-Mode',mode,'-StateRoot',state,'-SourceRoot',source,'-Action',action,...args],{env,encoding:'utf8',timeout:90000});
  const ok=(action,args=[])=>{const r=run(action,args);assert.equal(r.status,0,`${action}: ${r.stdout}\n${r.stderr}`);return r;};
  const terminal=path.join(state,'fixture/terminal/settings.json');write(terminal,'{\n// original\n"profiles":{"list":[]}}');
- return {root,source,state,first,terminal,git,commit,run,ok};
+ return {root,source,state,first,terminal,git,commit,run,ok,env};
 }
 const options={skip:unavailable?'PowerShell 7.4+ unavailable':false};
+const lockImageDigest=value=>createHash('sha256').update(JSON.stringify({exists:value.exists,extension:value.extension,value:value.value})).digest('hex');
+const fileDigest=p=>createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+
+test('lock-screen acceptance follows the capable cache when appearance rolls back to older history',options,t=>{
+ const f=fixture(t),file=path.join(f.state,'fixture/lockscreen.json');
+ write(file,{exists:true,extension:'.jpg',value:Buffer.from('synthetic original picture').toString('base64')});f.ok('Apply',['-Revision',f.first]);
+ const original=read(path.join(f.state,'journal.json')).transactions[0],chosen={exists:true,extension:'.jpg',value:Buffer.from('synthetic chosen picture').toString('base64')};write(file,chosen);
+ const discover=JSON.parse(f.ok('Plan').stdout);assert.equal(discover.lockScreenPreservation.valueSha256,lockImageDigest(chosen));assert.equal(discover.lockScreenPreservation.requested,false);
+ const second=f.commit(),args=['-Revision',second,'-KeepLockScreenValueSha256',lockImageDigest(chosen),'-ExpectedJournalSha256',fileDigest(path.join(f.state,'journal.json'))];
+ f.ok('Plan',args);assert.ok(!fs.existsSync(path.join(f.state,'releases',second)));f.ok('Update',args);f.ok('Test');
+ const history=read(path.join(f.state,'journal.json'));assert.equal(history.schemaVersion,2);assert.equal(history.lifecycleRevision,second);assert.deepEqual(history.transactions[0],original);assert.deepEqual(read(file),chosen);
+ f.ok('Restore',['-Latest']);assert.equal(read(path.join(f.state,'current.json')).revision,f.first);assert.equal(read(path.join(f.state,'journal.json')).lifecycleRevision,second);f.ok('Test');
+ const recovery=fs.readFileSync(path.join(f.state,'recovery-commands.txt'),'utf8');assert.ok(recovery.includes(second));assert.ok(!recovery.includes(f.first));
+ // This synthetic reader proves its schema1 contract, not an old full installer.
+ const legacy=path.join(f.root,'schema1-reader.cjs'),sentinel=path.join(f.root,'appearance-written');fs.writeFileSync(legacy,"const fs=require('node:fs');if(JSON.parse(fs.readFileSync(process.argv[2])).schemaVersion!==1)throw Error('Unsupported recovery journal');fs.writeFileSync(process.argv[3],'written');");
+ const refused=spawnSync(process.execPath,[legacy,path.join(f.state,'journal.json'),sentinel],{encoding:'utf8'});assert.equal(refused.status,1);assert.match(refused.stderr,/Unsupported recovery journal/);assert.ok(!fs.existsSync(sentinel));
+ const capable=path.join(f.state,'releases',second,'dist/runtime.cjs'),bytes=fs.readFileSync(capable);fs.appendFileSync(capable,'\n// tampered');
+ assert.notEqual(f.run('Test').status,0);assert.deepEqual(read(file),chosen);fs.writeFileSync(capable,bytes);f.ok('Uninstall');assert.deepEqual(read(file),chosen);assert.ok(read(path.join(f.state,'journal.json')).transactions.every(x=>x.status==='restored'));
+});
+
+test('lock-screen acceptance refuses before journal migration if recovery commands cannot be saved',options,t=>{
+ const f=fixture(t),file=path.join(f.state,'fixture/lockscreen.json');write(file,{exists:true,extension:'.jpg',value:Buffer.from('synthetic original').toString('base64')});f.ok('Apply',['-Revision',f.first]);
+ const chosen={exists:true,extension:'.jpg',value:Buffer.from('synthetic keep choice').toString('base64')};write(file,chosen);const journal=path.join(f.state,'journal.json'),before=fs.readFileSync(journal),second=f.commit();
+ const script=`. $env:J3W1_FIX_INSTALLER
+function Save-J3w1SetupRecovery {throw 'Synthetic recovery-save failure'}
+Invoke-J3w1WindowsLifecycle -Action Update -Mode Native -SourceRoot $env:J3W1_FIX_SOURCE -Revision $env:J3W1_FIX_REVISION -StateRoot $env:J3W1_FIX_STATE -KeepLockScreenValueSha256 $env:J3W1_FIX_VALUE -ExpectedJournalSha256 $env:J3W1_FIX_JOURNAL -Fixture`;
+ const r=spawnSync(pwsh,['-NoLogo','-NoProfile','-NonInteractive','-Command',script],{env:{...f.env,J3W1_FIX_INSTALLER:installer,J3W1_FIX_SOURCE:f.source,J3W1_FIX_REVISION:second,J3W1_FIX_STATE:f.state,J3W1_FIX_VALUE:lockImageDigest(chosen),J3W1_FIX_JOURNAL:fileDigest(journal)},encoding:'utf8',timeout:90000});
+ assert.notEqual(r.status,0);assert.match(r.stderr,/Synthetic recovery-save failure/);assert.deepEqual(fs.readFileSync(journal),before);assert.deepEqual(read(file),chosen);assert.equal(read(journal).schemaVersion,1);
+});
+test('explicit recovery revisions must match the schema2 capable cache',options,t=>{
+ const f=fixture(t),file=path.join(f.state,'fixture/lockscreen.json'),journal=path.join(f.state,'journal.json');write(file,{exists:true,extension:'.jpg',value:Buffer.from('synthetic original').toString('base64')});f.ok('Apply',['-Revision',f.first]);
+ const chosen={exists:true,extension:'.jpg',value:Buffer.from('synthetic accepted choice').toString('base64')};write(file,chosen);const second=f.commit();f.git('tag','v4.0.1',second);
+ f.ok('Update',['-Revision',second,'-KeepLockScreenValueSha256',lockImageDigest(chosen),'-ExpectedJournalSha256',fileDigest(journal)]);f.ok('Test');f.ok('Test',['-Revision',second]);f.ok('Test',['-Version','v4.0.1']);
+ const before=fs.readFileSync(journal);for(const action of ['Test','Restore','Uninstall','Guard']){const r=f.run(action,['-Revision',f.first]);assert.notEqual(r.status,0);assert.match(r.stderr,/Explicit recovery revision conflicts/);assert.deepEqual(fs.readFileSync(journal),before);assert.deepEqual(read(file),chosen);}
+ const tag=f.run('Test',['-Version','v4.0.0']);assert.notEqual(tag.status,0);assert.match(tag.stderr,/Explicit recovery revision conflicts/);assert.deepEqual(fs.readFileSync(journal),before);f.ok('Uninstall',['-Revision',second]);assert.deepEqual(read(file),chosen);
+});
+
 test('pinned PowerShell lifecycle plans without state, applies offline tags, updates, restores and uninstalls',options,t=>{
  const f=fixture(t),before=fs.readFileSync(f.terminal,'utf8');
  f.ok('Plan',['-Version','v4.0.0']);assert.ok(!fs.existsSync(path.join(f.state,'releases')));assert.ok(!fs.existsSync(path.join(f.state,'journal.json')));
@@ -134,6 +172,72 @@ test('native registry adapter preserves the unsigned high bit of ARGB DWORD colo
  assert.deepEqual(JSON.parse(result.stdout),[0,2147483647,2147483648,4294967295,4278976720]);
 });
 
+test('Full Prepare retains release but leaves theme, font, engine and ownership state untouched',options,t=>{
+ const f=fixture(t,'Full'),before=fs.readFileSync(f.terminal);
+ const result=JSON.parse(f.ok('Prepare',['-Revision',f.first]).stdout);
+ assert.equal(result.action,'Plan');assert.equal(result.mode,'Full');assert.equal(result.compatible,true);
+ assert.equal(result.excludedAdapters.length,4);
+ assert.deepEqual(fs.readFileSync(f.terminal),before);
+ for(const name of ['journal.json','current.json','font-dependency.json','recovery-commands.txt','fixture-windhawk.json','fixture/font-registered.json'])
+  assert.ok(!fs.existsSync(path.join(f.state,name)),name);
+ assert.ok(fs.existsSync(path.join(f.state,'releases',f.first,'verified.json')));
+});
+test('tools-only bootstrap reuses canonical paths and refuses changed archives, publishers, versions and failed installation',options,t=>{
+ const root=scratchDirSync(t,'j3w1-prepare-tools-');
+ const script=String.raw`
+ $ErrorActionPreference='Stop';$StateRoot=[IO.Path]::GetFullPath($env:J3W1_PREP_TEST_ROOT)
+ $ast=[Management.Automation.Language.Parser]::ParseFile($env:J3W1_PREP_TEST_INSTALLER,[ref]$null,[ref]$null)
+ foreach($name in @('Get-VerifiedDownload','Initialize-ThemeFullDependencies')){
+  $node=$ast.Find({param($n) $n -is [Management.Automation.Language.FunctionDefinitionAst] -and $n.Name -eq $name},$true)
+  if(-not $node){throw "Missing actual bootstrap function: $name"};. ([scriptblock]::Create($node.Extent.Text))
+ }
+ function Assert-SafePath([string]$Path){if(-not [IO.Path]::GetFullPath($Path).StartsWith($StateRoot+[IO.Path]::DirectorySeparatorChar)){throw 'Fixture path escaped'}}
+ $script:starts=0;$script:status='Valid';$script:publisher='CN=Fixture Publisher';$script:version='windhawk-cli 2.0.0-alpha.6';$script:exitCode=0
+ function Get-AuthenticodeSignature {param($LiteralPath) @{Status=$script:status;SignerCertificate=@{Subject=$script:publisher}}}
+ function Get-ThemeWindhawkVersion {param($Cli) $script:version}
+ function Start-Process {param($FilePath,$ArgumentList,$WindowStyle,[switch]$Wait,[switch]$PassThru)
+  if([IO.Path]::GetFileName($FilePath) -ne 'windhawk_setup_offline.exe' -or ($ArgumentList[0..2] -join ',') -ne '/S,/PORTABLE,/DEVTOOLS' -or $WindowStyle -ne 'Hidden'){throw 'Unexpected process launch'}
+  $script:starts++;[IO.Directory]::CreateDirectory([IO.Path]::GetDirectoryName($script:cli))|Out-Null
+  foreach($relative in @('Compiler/bin/clang++.exe','Engine/2.0.0/64/windhawk.lib')){
+   $path=Join-Path ([IO.Path]::GetDirectoryName($script:cli)) $relative;[IO.Directory]::CreateDirectory([IO.Path]::GetDirectoryName($path))|Out-Null;[IO.File]::WriteAllText($path,'fixture only')
+  }
+  [IO.File]::WriteAllText($script:cli,'not executable: fixture only');@{ExitCode=$script:exitCode}
+ }
+ function Expect-Refusal([scriptblock]$Body,[string]$Pattern){try{& $Body}catch{if($_.Exception.Message -match $Pattern){return};throw};throw "Expected refusal: $Pattern"}
+ Expect-Refusal {Assert-SafePath (Join-Path ([IO.Path]::GetDirectoryName($StateRoot)) 'fixture-outside')} 'Fixture path escaped'
+ $downloads=Join-Path $StateRoot 'downloads';[IO.Directory]::CreateDirectory($downloads)|Out-Null
+ $archive=Join-Path $downloads 'windhawk_setup_offline.exe';[IO.File]::WriteAllText($archive,'fixture archive')
+ $hash=(Get-FileHash -LiteralPath $archive).Hash.ToLowerInvariant()
+ $deps=@{windhawk=@{sha256=$hash;publisher='Fixture Publisher'};mods=@()}
+ $script:cli=Join-Path $StateRoot 'tools/windhawk/2.0.0-alpha.6/windhawk-cli.exe'
+ $owner=Join-Path $StateRoot 'owner-state.txt';[IO.File]::WriteAllText($owner,'running engine and owner settings remain unchanged')
+ Initialize-ThemeFullDependencies $deps $downloads
+ Initialize-ThemeFullDependencies $deps $downloads
+ if($script:starts -ne 1){throw 'Cached compiler was reinstalled'}
+ $deps.windhawk.sha256='0'*64;Expect-Refusal {Initialize-ThemeFullDependencies $deps $downloads} 'Dependency digest mismatch';$deps.windhawk.sha256=$hash
+ $script:status='Invalid';Expect-Refusal {Initialize-ThemeFullDependencies $deps $downloads} 'publisher signature';$script:status='Valid'
+ $script:publisher='CN=Wrong Publisher';Expect-Refusal {Initialize-ThemeFullDependencies $deps $downloads} 'publisher signature';$script:publisher='CN=Fixture Publisher'
+ $script:version='wrong version';Expect-Refusal {Initialize-ThemeFullDependencies $deps $downloads} 'version differs';$script:version='windhawk-cli 2.0.0-alpha.6'
+ $compiler=Join-Path ([IO.Path]::GetDirectoryName($script:cli)) 'Compiler/bin/clang++.exe'
+ Remove-Item -LiteralPath $compiler;Expect-Refusal {Initialize-ThemeFullDependencies $deps $downloads} 'compiler is incomplete';[IO.File]::WriteAllText($compiler,'fixture only')
+ if($script:starts -ne 1){throw 'A rejected dependency launched'}
+ Remove-Item -LiteralPath $script:cli;Expect-Refusal {Initialize-ThemeFullDependencies $deps $downloads} 'directory is incomplete'
+ [IO.File]::WriteAllText($script:cli,'fixture only')
+ $script:exitCode=7
+ # Exercise the failed fresh-install result in a separate empty canonical root.
+ $StateRoot=Join-Path $StateRoot 'fresh';$script:cli=Join-Path $StateRoot 'tools/windhawk/2.0.0-alpha.6/windhawk-cli.exe'
+ $freshDownloads=Join-Path $StateRoot 'downloads';[IO.Directory]::CreateDirectory($freshDownloads)|Out-Null
+ [IO.File]::WriteAllText((Join-Path $freshDownloads 'windhawk_setup_offline.exe'),'fixture archive')
+ Expect-Refusal {Initialize-ThemeFullDependencies $deps $freshDownloads} 'installation failed: 7'
+ if([IO.File]::ReadAllText($owner) -cne 'running engine and owner settings remain unchanged'){throw 'Owner state changed'}
+ if((Get-FileHash -LiteralPath $archive).Hash.ToLowerInvariant() -cne $hash){throw 'Archive changed'}
+ foreach($name in @('journal.json','current.json','font-dependency.json','recovery-commands.txt')){if(Test-Path -LiteralPath (Join-Path $StateRoot $name)){throw 'Theme state created'}}
+ @{cachedReused=$true;refusals=7;themeStateCreated=$false;starts=$script:starts}|ConvertTo-Json -Compress`;
+ // Exercise a dot-segment root alias on every runner, preserving strict confinement.
+ const r=spawnSync(pwsh,['-NoLogo','-NoProfile','-NonInteractive','-Command',script],{env:{...process.env,J3W1_PREP_TEST_ROOT:root+path.sep+'.',J3W1_PREP_TEST_INSTALLER:installer},encoding:'utf8',timeout:30000});
+ assert.equal(r.status,0,r.stdout+'\n'+r.stderr);
+ assert.deepEqual(JSON.parse(r.stdout),{cachedReused:true,refusals:7,themeStateCreated:false,starts:2});
+});
 test('Prepare retains verified release and returns a plan without mutating theme settings',options,t=>{
  const f=fixture(t),before=fs.readFileSync(f.terminal,'utf8');
  const result=f.ok('Prepare',['-Revision',f.first]);
