@@ -8,6 +8,7 @@ import {parse} from 'jsonc-parser';
 import fs from 'node:fs';
 import path from 'node:path';
 import {spawnSync} from 'node:child_process';
+import {performance} from 'node:perf_hooks';
 import {PNG} from 'pngjs';
 import {repoRoot,readJson} from '../scripts/lib/fs.mjs';
 import {assertPortArtifacts} from '../scripts/lib/port-artifacts.mjs';
@@ -98,11 +99,50 @@ test('Search presentation cannot hide controls, accept scripts or substitute lit
 // threshold (J3W1_CHILD_REPORT_MS, default 15000 ms). Every other call writes one
 // bounded block to stderr: the action, pid, error, status, signal, elapsed time
 // and the last 2048 UTF-8 bytes of the child's own stdout and stderr, where the
-// runtime prints its current phase. The write is synchronous and best-effort,
+// runtime prints its current phase. phaseTail keeps that output separately
+// from the synthetic child's operation markers. The write is best-effort,
 // asserts nothing, and never throws in place of the caller's assertions. It
-// measures nothing inside the child: no per-phase timing is claimed.
+// cannot attribute an observed boundary to a platform or nested-process cause.
 const childReportMs=Number(process.env.J3W1_CHILD_REPORT_MS??15000);
 const outputTailBytes=2048,reportLimit=16*1024;
+// Preload only in synthetic lifecycle children. Each boundary goes straight to
+// their captured stderr; no snapshots, process markers or production hooks.
+// A begin without an end names an observed call, not its underlying cause.
+// The byte budget stays below spawnSync's existing capture limit. Exhaustion
+// is explicit: later calls are then unknown, never attributed to an old begin.
+function observeLifecycleChild(){
+ const fs=require('node:fs'),cp=require('node:child_process');
+ const {performance}=require('node:perf_hooks');
+ const write=fs.writeSync,limit=128*1024;
+ const exhausted='j3w1-child-operation LIMIT: later operations unknown\n';
+ let remaining=limit;
+ const emit=(state,operation)=>{
+  if(!remaining)return;
+  try{
+   let line=`j3w1-child-operation ${performance.now().toFixed(3)} ${state} ${operation}\n`;
+   if(Buffer.byteLength(line)+Buffer.byteLength(exhausted)>remaining){line=exhausted;remaining=0;}
+   else remaining-=Buffer.byteLength(line);
+   write(2,line);
+  }catch{}
+ };
+ for(const [object,name]of [[fs,'fsyncSync'],[fs,'renameSync'],[cp,'spawnSync']]){
+  const original=object[name];
+  object[name]=function(...args){
+   // Only the fixed CLI verb is printed; settings, paths and values stay out.
+   let operation=name;
+   try{
+    if(name==='spawnSync'&&Array.isArray(args[1])){
+     const verb=args[1].filter(v=>['app','mod','data','settings','get','set','show','enable','disable','remove','import','export','install'].includes(v)).slice(0,3).join(' ');
+     if(verb)operation+=' '+verb;
+    }
+   }catch{}
+   emit('begin',operation);
+   try{return Reflect.apply(original,this,args);}finally{emit('end',operation);}
+  };
+ }
+ require('node:module').syncBuiltinESMExports();
+}
+const observerSource=`(${observeLifecycleChild.toString()})();\n`;
 function outputTail(text){
  if(typeof text!=='string')return null;
  const bytes=Buffer.from(text,'utf8');if(bytes.length<=outputTailBytes)return text;
@@ -127,7 +167,8 @@ function reportChild(action,result,started,ended){
   const elapsed=ended-started;
   if(!result.error&&!result.signal&&result.status===0&&elapsed<=childReportMs)return;
   const report={action,elapsedMs:elapsed,pid:result.pid,error:result.error?.code??null,status:result.status,signal:result.signal,
-   stdoutTail:outputTail(result.stdout),stderrTail:outputTail(result.stderr)};
+   stdoutTail:outputTail(result.stdout),stderrTail:outputTail(result.stderr),
+   phaseTail:outputTail(typeof result.stderr==='string'?result.stderr.split('\n').filter(line=>!line.startsWith('j3w1-child-operation ')).join('\n'):null)};
   writeDiagnostic('j3w1-child-timing '+JSON.stringify(report)+'\n');
  }catch(error){let reason='';try{reason=String(error?.message??error).slice(0,200);}catch{}writeDiagnostic('j3w1-child-timing UNAVAILABLE '+reason+'\n');}
 }
@@ -136,10 +177,11 @@ function fixture(t) {
  const terminal=path.join(state,'fixture/terminal/settings.json');
  const before='\uFEFF{\n // keep this comment\n "profiles": {"list": [{"guid":"one","commandline":"keep-one","font":{"size":17},"colorScheme":"j3w1zsh"},{"guid":"two","commandline":"keep-two"}]},\n "keybindings": [{"command":"paste","keys":"ctrl+v"}],\n}\n';
  write(terminal,before);
+ const observer=path.join(state,'child-observer.cjs');write(observer,observerSource);
  const run=(action,extra={})=>{
-  const started=Date.now();
-  const result=spawnSync(process.execPath,[runtime],{input:JSON.stringify({action,source,state,fixture:true,mode:'Native',revision:'1'.repeat(40),...extra}),encoding:'utf8',timeout:30000});
-  reportChild(action,result,started,Date.now());
+  const started=performance.now();
+  const result=spawnSync(process.execPath,['--require',observer,runtime],{input:JSON.stringify({action,source,state,fixture:true,mode:'Native',revision:'1'.repeat(40),...extra}),encoding:'utf8',timeout:30000});
+  reportChild(action,result,started,performance.now());
   // A killed child cannot establish an expected lifecycle rejection or rollback.
   assert.ifError(result.error);
   assert.equal(result.signal,null,`${action}: lifecycle child terminated by ${result.signal}`);
@@ -148,6 +190,42 @@ function fixture(t) {
  const ok=(action,extra={})=>{const r=run(action,extra);assert.equal(r.status,0,`${action}: ${r.stdout}\n${r.stderr}`);return r;};
  return {state,terminal,before,run,ok,journal:()=>read(path.join(state,'journal.json'))};
 }
+
+test('lifecycle child diagnostics do not depend on the wall clock',t=>{
+ t.mock.method(Date,'now',()=>{throw Error('Wall clock is unavailable');});
+ const f=fixture(t);
+ assert.equal(JSON.parse(f.ok('Plan').stdout).action,'Plan');
+});
+
+test('lifecycle boundary observer preserves results and exceptions with bounded stderr',t=>{
+ const state=scratchDirSync(t,'j3w1-child-observer-');
+ const observer=path.join(state,'observer.cjs');write(observer,observerSource);
+ const script=String.raw`
+  const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process');
+  const file=path.join(process.argv[1],'original'),renamed=file+'-renamed';
+  const fd=fs.openSync(file,'wx');fs.writeFileSync(fd,'exact bytes');
+  assert.equal(fs.fsyncSync(fd),undefined);fs.closeSync(fd);
+  assert.equal(fs.renameSync(file,renamed),undefined);assert.equal(fs.readFileSync(renamed,'utf8'),'exact bytes');
+  const child=cp.spawnSync(process.execPath,['-e','process.stdout.write("child result")'],{encoding:'utf8'});
+  assert.equal(child.status,0);assert.equal(child.stdout,'child result');assert.equal(child.signal,null);assert.ifError(child.error);
+  assert.throws(()=>fs.renameSync(file,renamed),{code:'ENOENT'});
+  assert.throws(()=>cp.spawnSync(1),{code:'ERR_INVALID_ARG_TYPE'});
+  const closed=cp.spawnSync(process.execPath,['--require',process.argv[2],'-e',
+   'const fs=require("node:fs");fs.closeSync(2);try{fs.fsyncSync(-1);}catch(error){if(error.code!=="ERR_OUT_OF_RANGE")throw error;process.stdout.write("original exception");}'],{encoding:'utf8'});
+  assert.equal(closed.status,0);assert.equal(closed.stdout,'original exception');assert.ifError(closed.error);
+  for(let i=0;i<5000;i++)assert.throws(()=>fs.fsyncSync(-1),{code:'ERR_OUT_OF_RANGE'});
+  fs.closeSync(2);assert.throws(()=>fs.renameSync(file,renamed),{code:'ENOENT'});
+  process.stdout.write('observer preserved behavior');
+ `;
+ const result=spawnSync(process.execPath,['--require',observer,'-e',script,state,observer],{encoding:'utf8',timeout:30000});
+ assert.ifError(result.error);assert.equal(result.signal,null);assert.equal(result.status,0,result.stderr);
+ assert.equal(result.stdout,'observer preserved behavior');
+ for(const operation of ['fsyncSync','renameSync','spawnSync']){
+  assert.match(result.stderr,new RegExp('begin '+operation));assert.match(result.stderr,new RegExp('end '+operation));
+ }
+ assert.match(result.stderr,/LIMIT: later operations unknown/);
+ assert.ok(Buffer.byteLength(result.stderr)<=128*1024);
+});
 
 test('Windows manifest covers every binary and executable artifact byte exactly',async()=>{
  const port=await readJson('ports/windows/port.json');
