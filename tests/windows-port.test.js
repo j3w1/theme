@@ -93,105 +93,22 @@ test('Search presentation cannot hide controls, accept scripts or substitute lit
  for(const fill of ['white','transparent','var(--unreviewed-color)'])
   assert.throws(()=>windowsWebContentStyles([{target:'.suggestion .details',styles:{},presentation:{'background-color':fill}}],value),/Unsupported Search presentation/);
 });
-// Diagnostics for lifecycle children that fail or run long on a slow host. They
-// write one bounded block to stderr with a synchronous write, assert nothing,
-// and never throw in place of the caller's assertions. A call is quiet only when
-// it exits 0 without an error or signal inside the threshold; every other call
-// is reported, including expected rejections.
-//
-// The paired trace comes from the Windhawk fixture CLI. "boot" is that process's
-// start (performance.timeOrigin, rounded) to its entry timestamp: Node bootstrap
-// plus loading the fixture, not OS process creation. "run" is its entry to its
-// exit timestamp. A gap between nested calls, and the time before the first or
-// after the last, still mixes runtime work with OS scheduling and process
-// creation, and is reported unattributed.
-//
-// Evidence that cannot be trusted is never turned into zero. A missing or
-// unreadable trace is UNAVAILABLE. Any malformed, truncated, exit-only,
-// duplicate, overlapping or out-of-window record makes the whole timeline
-// PARTIAL: it then reports no intervals and no totals, only a bounded list of
-// the calls observed for this child with what is known about each. Only a fully
-// valid trace is measured; there, an entry without an exit inside the child's
-// window is INCOMPLETE.
+// Diagnostics for lifecycle children that fail or run long on a slow host. A
+// call is quiet only when it exits 0 without an error or signal inside the
+// threshold (J3W1_CHILD_REPORT_MS, default 15000 ms). Every other call writes one
+// bounded block to stderr: the action, pid, error, status, signal, elapsed time
+// and the last 2048 UTF-8 bytes of the child's own stdout and stderr, where the
+// runtime prints its current phase. The write is synchronous and best-effort,
+// asserts nothing, and never throws in place of the caller's assertions. It
+// measures nothing inside the child: no per-phase timing is claimed.
 const childReportMs=Number(process.env.J3W1_CHILD_REPORT_MS??15000);
-const traceReadLimit=1024*1024,traceRecordLimit=4000,outputTailBytes=2048,reportLimit=16*1024;
-function traceSnapshot(file){
- try{return {state:'ok',offset:fs.statSync(file).size};}
- catch(error){return error?.code==='ENOENT'?{state:'absent',offset:0}:{state:'unavailable',offset:0,reason:'snapshot '+(error?.code??String(error))};}
-}
+const outputTailBytes=2048,reportLimit=16*1024;
 function outputTail(text){
  if(typeof text!=='string')return null;
  const bytes=Buffer.from(text,'utf8');if(bytes.length<=outputTailBytes)return text;
  // Keep the last outputTailBytes bytes, starting on a UTF-8 character boundary.
  let start=bytes.length-outputTailBytes;while(start<bytes.length&&(bytes[start]&0xc0)===0x80)start++;
  return bytes.subarray(start).toString('utf8');
-}
-const finite=x=>typeof x==='number'&&Number.isFinite(x);
-function traceRecord(line){
- let r;try{r=JSON.parse(line);}catch{return null;}
- if(!r||!Number.isInteger(r.pid)||!Number.isInteger(r.ppid)||!finite(r.t))return null;
- if(r.event==='entry')return finite(r.origin)&&Array.isArray(r.operation)&&r.operation.every(x=>typeof x==='string')?r:null;
- return r.event==='exit'?r:null;
-}
-function childTimeline(file,snapshot,runtimePid,started,ended){
- if(snapshot.state==='unavailable')return {trace:'UNAVAILABLE',reason:snapshot.reason};
- let text,size;
- try{
-  const fd=fs.openSync(file,'r');
-  try{size=fs.fstatSync(fd).size;const length=Math.max(0,Math.min(size-snapshot.offset,traceReadLimit)),buffer=Buffer.alloc(length);fs.readSync(fd,buffer,0,length,snapshot.offset);text=buffer.toString('utf8');}
-  finally{fs.closeSync(fd);}
- }catch(error){return {trace:'UNAVAILABLE',reason:error?.code==='ENOENT'?'no trace file (no nested call recorded)':'read '+(error?.code??String(error))};}
- if(!text.length)return {trace:'UNAVAILABLE',reason:'no new trace records for this call'};
- const problems=[];
- if(size-snapshot.offset>traceReadLimit)problems.push('trace read truncated');
- // The last element is '' after a trailing newline, or an unfinished record.
- const lines=text.split('\n');if(lines.at(-1)!=='')problems.push('unfinished last record');
- const complete=lines.slice(0,-1);if(complete.length>traceRecordLimit)problems.push('record limit reached');
- let malformed=0,foreign=0;const calls=new Map();
- for(const line of complete.slice(0,traceRecordLimit)){
-  const r=traceRecord(line);if(!r){malformed++;continue;}
-  if(r.ppid!==runtimePid){foreign++;continue;}
-  const call=calls.get(r.pid)??{pid:r.pid};calls.set(r.pid,call);
-  if(r.event==='entry'){if(call.entry!==undefined)call.duplicate=true;call.operation=r.operation;call.origin=r.origin;call.entry=r.t;}
-  else{if(call.exit!==undefined)call.duplicate=true;call.exit=r.t;call.code=r.code;}
- }
- if(malformed)problems.push(malformed+' malformed records');
- if(!calls.size)return {trace:'UNAVAILABLE',reason:'no records bound to this child',records:complete.length,malformed,foreign,problems:[...new Set(problems)].slice(0,10)};
- const all=[...calls.values()];
- const exitOnly=all.filter(c=>c.entry===undefined),duplicates=all.filter(c=>c.duplicate);
- if(exitOnly.length)problems.push(exitOnly.length+' exit without entry');
- if(duplicates.length)problems.push(duplicates.length+' duplicate records');
- // A child's records must fall inside its own [started, ended] window and in
- // order. The parent and child clocks (Date.now, rounded performance.timeOrigin)
- // are not guaranteed comparable, so this conservatively rejects some valid
- // traces as PARTIAL rather than repairing them.
- const ordered=all.filter(c=>c.entry!==undefined).sort((a,b)=>a.entry-b.entry);
- const usable=c=>c.origin>=started&&c.origin<=c.entry&&c.entry<=ended;
- for(const c of ordered)c.finished=usable(c)&&c.exit!==undefined&&c.exit>=c.entry&&c.exit<=ended;
- const outside=ordered.filter(c=>!usable(c));
- if(outside.length)problems.push(outside.length+' records outside the child window or out of order');
- for(let i=1;i<ordered.length;i++)if(ordered[i-1].finished&&ordered[i].origin<ordered[i-1].exit){problems.push('overlapping nested calls');break;}
- if(problems.length){
-  const status=c=>c.entry===undefined?'exit without entry':!usable(c)?'outside the child window or out of order':c.duplicate?'duplicate records':c.finished?'entry and exit observed':'entry without a usable exit';
-  const observed=all.sort((a,b)=>(a.entry??a.exit)-(b.entry??b.exit)).slice(0,20).map(c=>({pid:c.pid,operation:c.operation??null,status:status(c)}));
-  return {trace:'PARTIAL',problems:[...new Set(problems)].slice(0,10),records:complete.length,malformed,foreign,
-   observedCalls:all.length,observed,intervals:'UNKNOWN',totals:'UNKNOWN'};
- }
- const intervals=[];let previous=null,label='before first nested call';
- for(const c of ordered){
-  const name=c.operation.join(' ');
-  intervals.push({phase:'gap '+label,ms:previous===null?c.origin-started:previous.finished?c.origin-previous.exit:'UNKNOWN'});
-  intervals.push({phase:'boot '+name,pid:c.pid,ms:c.entry-c.origin});
-  intervals.push({phase:'run '+name,pid:c.pid,ms:c.finished?c.exit-c.entry:'INCOMPLETE'});
-  previous=c;label='after '+name;
- }
- intervals.push({phase:'tail after last nested call',ms:previous===null?ended-started:previous.finished?ended-previous.exit:'UNKNOWN'});
- const measured=intervals.filter(i=>finite(i.ms)),unmeasured=intervals.filter(i=>!finite(i.ms));
- const total=kind=>measured.filter(i=>i.phase.startsWith(kind)).reduce((s,i)=>s+i.ms,0);
- return {trace:'available',records:complete.length,malformed,foreign,
-  nestedCalls:ordered.length,incomplete:ordered.filter(c=>!c.finished).slice(0,10).map(c=>({pid:c.pid,operation:c.operation})),
-  totals:unmeasured.length?'UNKNOWN':{gap:total('gap'),boot:total('boot'),run:total('run'),tail:total('tail')},
-  unmeasured:unmeasured.slice(0,10),largest:[...measured].sort((a,b)=>b.ms-a.ms).slice(0,5)};
 }
 function writeDiagnostic(text){
  try{
@@ -205,25 +122,24 @@ function writeDiagnostic(text){
   fs.writeSync(2,bytes);
  }catch{}
 }
-function reportChild(action,result,started,ended,file,snapshot){
+function reportChild(action,result,started,ended){
  try{
   const elapsed=ended-started;
   if(!result.error&&!result.signal&&result.status===0&&elapsed<=childReportMs)return;
   const report={action,elapsedMs:elapsed,pid:result.pid,error:result.error?.code??null,status:result.status,signal:result.signal,
-   timeline:childTimeline(file,snapshot,result.pid,started,ended),stdoutTail:outputTail(result.stdout),stderrTail:outputTail(result.stderr)};
+   stdoutTail:outputTail(result.stdout),stderrTail:outputTail(result.stderr)};
   writeDiagnostic('j3w1-child-timing '+JSON.stringify(report)+'\n');
  }catch(error){let reason='';try{reason=String(error?.message??error).slice(0,200);}catch{}writeDiagnostic('j3w1-child-timing UNAVAILABLE '+reason+'\n');}
 }
 function fixture(t) {
  const state=scratchDirSync(t, 'j3w1-windows-test-');
- const trace=path.join(state,'fixture-windhawk-trace.jsonl');
  const terminal=path.join(state,'fixture/terminal/settings.json');
  const before='\uFEFF{\n // keep this comment\n "profiles": {"list": [{"guid":"one","commandline":"keep-one","font":{"size":17},"colorScheme":"j3w1zsh"},{"guid":"two","commandline":"keep-two"}]},\n "keybindings": [{"command":"paste","keys":"ctrl+v"}],\n}\n';
  write(terminal,before);
  const run=(action,extra={})=>{
-  const snapshot=traceSnapshot(trace),started=Date.now();
+  const started=Date.now();
   const result=spawnSync(process.execPath,[runtime],{input:JSON.stringify({action,source,state,fixture:true,mode:'Native',revision:'1'.repeat(40),...extra}),encoding:'utf8',timeout:30000});
-  reportChild(action,result,started,Date.now(),trace,snapshot);
+  reportChild(action,result,started,Date.now());
   // A killed child cannot establish an expected lifecycle rejection or rollback.
   assert.ifError(result.error);
   assert.equal(result.signal,null,`${action}: lifecycle child terminated by ${result.signal}`);
