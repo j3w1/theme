@@ -10,6 +10,7 @@ const workflow = parse(readFileSync(".github/workflows/ci.yml", "utf8"));
 const build = workflow.jobs.build;
 const rootExpression = "${{ runner.temp }}/theme-build-npm-diagnostics";
 const installCommand = "npm ci --prefer-offline --no-audit --no-fund";
+const posixOnly = { skip: process.platform === "win32" ? "POSIX CI shell fixture; never invoke the Windows bash/WSL alias" : false };
 const factsStep = () => {
   const step = build.steps.find((step) => step.run?.includes("facts.txt"));
   assert.ok(step, "the build job collects pre-install facts");
@@ -77,7 +78,7 @@ function fixture(t, options = {}) {
   delete env.npm_config_logs_dir;
   const run = (step) => {
     const stepEnv = Object.fromEntries(Object.entries(step.env ?? {}).map(([key, value]) => [key, value.replaceAll("${{ runner.temp }}", temp)]));
-    const result = spawnSync("bash", ["--noprofile", "--norc", "-e", "-o", "pipefail", "-c", step.run], {
+    const result = spawnSync("bash", ["-e", "-c", step.run], {
       cwd: scratch, env: { ...env, ...stepEnv }, encoding: "utf8", timeout: 10_000,
     });
     assert.ifError(result.error);
@@ -99,6 +100,7 @@ test("only the existing build install gets isolated logs; commands, order, gates
   assert.equal(build.env, undefined);
   assert.equal(workflow.env.npm_config_logs_dir, undefined);
   assert.equal(facts["continue-on-error"], true);
+  assert.equal(facts["timeout-minutes"], 1, "a hung query cannot consume the whole job deadline");
   assert.equal(facts.if, undefined, "facts use normal step ordering");
   const unchanged = structuredClone(build.steps.filter((step) => step !== facts));
   const install = unchanged.find((step) => step.run === installCommand);
@@ -120,7 +122,9 @@ test("only the existing build install gets isolated logs; commands, order, gates
     { uses: "actions/upload-artifact@v7", if: "failure()", with: { name: "build-results", path: "test-results/\nplaywright-report/\n", "if-no-files-found": "ignore" } },
   ]);
   assert.equal(build.steps.indexOf(facts), 2, "after setup-node and before install");
+  assert.ok(Object.keys(workflow.env ?? {}).every((key) => !/^npm_config_/i.test(key)));
   for (const [job, value] of Object.entries(workflow.jobs)) {
+    assert.ok(Object.keys(value.env ?? {}).every((key) => !/^npm_config_/i.test(key)), `${job}: no inherited npm overrides`);
     for (const step of value.steps ?? []) {
       if (job === "build" && step.run === installCommand) continue;
       assert.equal(step.env?.npm_config_logs_dir, undefined, `${job}: later npm commands use their default log directory`);
@@ -128,7 +132,7 @@ test("only the existing build install gets isolated logs; commands, order, gates
   }
 });
 
-test("facts are labelled and allowlisted, with automatic overrides separate from observed runtime", (t) => {
+test("facts are labelled and allowlisted, with automatic overrides separate from observed runtime", posixOnly, (t) => {
   const f = fixture(t);
   const result = f.run(factsStep());
   assert.equal(result.status, 0, result.stderr);
@@ -148,7 +152,7 @@ test("facts are labelled and allowlisted, with automatic overrides separate from
   assert.ok(f.calls().every((call) => call.logsDir === null));
 });
 
-test("failed queries become unknown without recording partial output; absent glibc stays null", (t) => {
+test("failed queries become unknown without recording partial output; absent glibc stays null", posixOnly, (t) => {
   const f = fixture(t, { failQueries: ["node --version", "npm config get os"], noGlibc: true });
   assert.equal(f.run(factsStep()).status, 0);
   assert.match(f.facts(), /^node --version: unknown\n/m);
@@ -174,7 +178,7 @@ function execute(f) {
   return { results, status: 0 };
 }
 
-test("unavailable diagnostic directory or facts file never gates the normal install/build", (t) => {
+test("unavailable diagnostic directory or facts file never gates the normal install/build", posixOnly, (t) => {
   for (const unavailable of ["directory", "file"]) {
     const f = fixture(t, { unavailable });
     const { results, status } = execute(f);
@@ -185,7 +189,7 @@ test("unavailable diagnostic directory or facts file never gates the normal inst
   }
 });
 
-test("install failure preserves its original exit and diagnostics and skips build", (t) => {
+test("install failure preserves its original exit and diagnostics and skips build", posixOnly, (t) => {
   const f = fixture(t, { installExit: 37 });
   const { results, status } = execute(f);
   assert.equal(status, 37);
@@ -197,7 +201,7 @@ test("install failure preserves its original exit and diagnostics and skips buil
   assert.equal(f.calls().at(-1).logsDir, path.join(f.diagnostics, "install"));
 });
 
-test("build failure keeps its exit, successful install logs and facts despite later npm rotation", (t) => {
+test("build failure keeps its exit, successful install logs and facts despite later npm rotation", posixOnly, (t) => {
   const f = fixture(t, { buildExit: 43 });
   const { results, status } = execute(f);
   assert.equal(status, 43);

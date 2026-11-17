@@ -275,6 +275,7 @@ jobs:
           cache: npm
       - name: Collect best-effort npm installation facts
         continue-on-error: true
+        timeout-minutes: 1
         run: |
           diagnostics="$RUNNER_TEMP/theme-build-npm-diagnostics"
           mkdir -p "$diagnostics"
