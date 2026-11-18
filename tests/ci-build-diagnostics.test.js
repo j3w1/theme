@@ -9,6 +9,7 @@ import { scratchDirSync } from "./helpers/scratch.mjs";
 const workflow = parse(readFileSync(".github/workflows/ci.yml", "utf8"));
 const build = workflow.jobs.build;
 const rootExpression = "${{ runner.temp }}/theme-build-npm-diagnostics";
+const browserInstallLogs = "${{ runner.temp }}/theme-browser-npm-diagnostics/install";
 const installCommand = "npm ci --prefer-offline --no-audit --no-fund";
 const posixOnly = { skip: process.platform === "win32" ? "POSIX CI shell fixture; never invoke the Windows bash/WSL alias" : false };
 const factsStep = () => {
@@ -126,10 +127,42 @@ test("only the existing build install gets isolated logs; commands, order, gates
   for (const [job, value] of Object.entries(workflow.jobs)) {
     assert.ok(Object.keys(value.env ?? {}).every((key) => !/^npm_config_/i.test(key)), `${job}: no inherited npm overrides`);
     for (const step of value.steps ?? []) {
-      if (job === "build" && step.run === installCommand) continue;
+      if ((job === "build" || job === "browser") && step.run === installCommand) continue;
       assert.equal(step.env?.npm_config_logs_dir, undefined, `${job}: later npm commands use their default log directory`);
     }
   }
+});
+
+test("browser shards retain only failed npm ci logs under a shard- and attempt-specific artifact name", () => {
+  const { steps } = workflow.jobs.browser;
+  const installs = steps.filter((step) => step.run === installCommand);
+  assert.deepEqual(installs, [{
+    id: "npm-install",
+    run: installCommand,
+    env: { npm_config_logs_dir: browserInstallLogs },
+  }]);
+  assert.deepEqual(steps[steps.indexOf(installs[0]) + 1], {
+    name: "Upload failed browser npm install logs",
+    uses: "actions/upload-artifact@v7",
+    if: "failure() && steps.npm-install.outcome == 'failure'",
+    with: {
+      name: "browser-npm-install-${{ strategy.job-index }}-attempt-${{ github.run_attempt }}",
+      path: browserInstallLogs,
+      "if-no-files-found": "ignore",
+    },
+  });
+});
+
+test("browser npm ci writes its isolated log and preserves the failing exit", posixOnly, (t) => {
+  const f = fixture(t, { installExit: 152 });
+  const install = workflow.jobs.browser.steps.find((step) => step.run === installCommand);
+  const result = f.run(install);
+  assert.equal(result.status, 152, result.stderr);
+  const calls = f.calls();
+  assert.equal(calls.length, 1);
+  assert.deepEqual(calls[0].args, installCommand.split(" ").slice(1));
+  assert.ok(calls[0].logsDir, "npm ci uses a step-scoped log directory");
+  assert.equal(readFileSync(path.join(calls[0].logsDir, "debug.log"), "utf8"), `emitted ${installCommand}\n`);
 });
 
 test("facts are labelled and allowlisted, with automatic overrides separate from observed runtime", posixOnly, (t) => {

@@ -344,7 +344,17 @@ jobs:
         with:
           node-version: "24.22.3"
           cache: npm
-      - run: npm ci --prefer-offline --no-audit --no-fund
+      - id: npm-install
+        run: npm ci --prefer-offline --no-audit --no-fund
+        env:
+          npm_config_logs_dir: ${{ runner.temp }}/theme-browser-npm-diagnostics/install
+      - name: Upload failed browser npm install logs
+        if: failure() && steps.npm-install.outcome == 'failure'
+        uses: actions/upload-artifact@v7
+        with:
+          name: browser-npm-install-${{ strategy.job-index }}-attempt-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/theme-browser-npm-diagnostics/install
+          if-no-files-found: ignore
       - uses: actions/download-artifact@v8
         with:
           name: site-dist
