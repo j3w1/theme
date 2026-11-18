@@ -344,7 +344,34 @@ jobs:
         with:
           node-version: "24.22.3"
           cache: npm
-      - run: npm ci --prefer-offline --no-audit --no-fund
+      - id: npm-install
+        run: npm ci --prefer-offline --no-audit --no-fund
+        env:
+          npm_config_logs_dir: ${{ runner.temp }}/theme-browser-npm-diagnostics/install
+      - name: Stage failed browser npm ci logs
+        if: failure() && steps.npm-install.outcome == 'failure'
+        continue-on-error: true
+        run: |
+          diagnostics="$RUNNER_TEMP/theme-browser-npm-diagnostics"
+          shopt -s nullglob
+          for first in "$diagnostics"/install/*-debug-0.log; do
+            # Lifecycle scripts can inherit the log directory. Match the
+            # top-level argv and retain rotated parts of that same npm log.
+            [[ -f "$first" && ! -L "$first" ]] || continue
+            grep -qE '^[0-9]+ verbose argv "ci" "--prefer-offline" "--no-audit" "--no-fund"$' "$first" || continue
+            mkdir -p "$diagnostics/upload"
+            for part in "${first%-debug-0.log}"-debug-[0-9]*.log; do
+              [[ -f "$part" && ! -L "$part" ]] || continue
+              cp -- "$part" "$diagnostics/upload/"
+            done
+          done
+      - name: Upload failed browser npm install logs
+        if: failure() && steps.npm-install.outcome == 'failure'
+        uses: actions/upload-artifact@v7
+        with:
+          name: browser-npm-install-${{ strategy.job-index }}-attempt-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/theme-browser-npm-diagnostics/upload
+          if-no-files-found: ignore
       - uses: actions/download-artifact@v8
         with:
           name: site-dist

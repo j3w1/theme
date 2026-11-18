@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import path from "node:path";
 import { parse } from "yaml";
@@ -9,6 +9,8 @@ import { scratchDirSync } from "./helpers/scratch.mjs";
 const workflow = parse(readFileSync(".github/workflows/ci.yml", "utf8"));
 const build = workflow.jobs.build;
 const rootExpression = "${{ runner.temp }}/theme-build-npm-diagnostics";
+const browserInstallLogs = "${{ runner.temp }}/theme-browser-npm-diagnostics/install";
+const browserUploadLogs = "${{ runner.temp }}/theme-browser-npm-diagnostics/upload";
 const installCommand = "npm ci --prefer-offline --no-audit --no-fund";
 const posixOnly = { skip: process.platform === "win32" ? "POSIX CI shell fixture; never invoke the Windows bash/WSL alias" : false };
 const factsStep = () => {
@@ -90,7 +92,7 @@ function fixture(t, options = {}) {
   return { run, calls, facts, installLog, diagnostics };
 }
 
-test("only the existing build install gets isolated logs; commands, order, gates and artifact policy stay intact", () => {
+test("the build install gets isolated logs; commands, order, gates and artifact policy stay intact", () => {
   const facts = factsStep();
   assert.equal(build.needs, "select");
   assert.equal(build.if, "needs.select.outputs.build == 'true'");
@@ -126,10 +128,74 @@ test("only the existing build install gets isolated logs; commands, order, gates
   for (const [job, value] of Object.entries(workflow.jobs)) {
     assert.ok(Object.keys(value.env ?? {}).every((key) => !/^npm_config_/i.test(key)), `${job}: no inherited npm overrides`);
     for (const step of value.steps ?? []) {
-      if (job === "build" && step.run === installCommand) continue;
+      if ((job === "build" || job === "browser") && step.run === installCommand) continue;
       assert.equal(step.env?.npm_config_logs_dir, undefined, `${job}: later npm commands use their default log directory`);
     }
   }
+});
+
+test("browser shards retain only failed npm ci logs under a shard- and attempt-specific artifact name", () => {
+  const { steps } = workflow.jobs.browser;
+  const installs = steps.filter((step) => step.run === installCommand);
+  assert.deepEqual(installs, [{
+    id: "npm-install",
+    run: installCommand,
+    env: { npm_config_logs_dir: browserInstallLogs },
+  }]);
+  const installIndex = steps.indexOf(installs[0]);
+  const installFailed = "failure() && steps.npm-install.outcome == 'failure'";
+  const stage = steps[installIndex + 1];
+  assert.equal(stage.if, installFailed);
+  assert.equal(stage["continue-on-error"], true);
+  assert.deepEqual(steps[installIndex + 2], {
+    name: "Upload failed browser npm install logs",
+    uses: "actions/upload-artifact@v7",
+    if: installFailed,
+    with: {
+      name: "browser-npm-install-${{ strategy.job-index }}-attempt-${{ github.run_attempt }}",
+      path: browserUploadLogs,
+      "if-no-files-found": "ignore",
+    },
+  });
+});
+
+test("browser npm ci writes its isolated log and preserves the failing exit", posixOnly, (t) => {
+  const f = fixture(t, { installExit: 152 });
+  const install = workflow.jobs.browser.steps.find((step) => step.run === installCommand);
+  const result = f.run(install);
+  assert.equal(result.status, 152, result.stderr);
+  const calls = f.calls();
+  assert.equal(calls.length, 1);
+  assert.deepEqual(calls[0].args, installCommand.split(" ").slice(1));
+  assert.ok(calls[0].logsDir, "npm ci uses a step-scoped log directory");
+  assert.equal(readFileSync(path.join(calls[0].logsDir, "debug.log"), "utf8"), `emitted ${installCommand}\n`);
+});
+
+test("browser log collection keeps npm ci and its rotated log but excludes nested npm installs", posixOnly, (t) => {
+  const f = fixture(t);
+  const temp = path.dirname(f.diagnostics);
+  const logs = browserInstallLogs.replace("${{ runner.temp }}", temp);
+  const upload = browserUploadLogs.replace("${{ runner.temp }}", temp);
+  const stage = workflow.jobs.browser.steps.find((step) => step.name === "Stage failed browser npm ci logs");
+  assert.ok(stage);
+  assert.equal(f.run(stage).status, 0, "npm may fail before it opens a log");
+  assert.ok(!existsSync(upload));
+
+  const parent = "2026-11-18T00_00_00_000Z-debug-";
+  const child = "2026-11-18T00_00_00_001Z-debug-";
+  const files = {
+    [parent + "0.log"]: '4 verbose argv "ci" "--prefer-offline" "--no-audit" "--no-fund"\n',
+    [parent + "1.log"]: "50001 error network read ECONNRESET\n",
+    [child + "0.log"]: '4 verbose argv "install" "--prefer-offline" "--no-audit" "esbuild"\n',
+    [child + "1.log"]: "50001 verbose exit 0\n",
+  };
+  mkdirSync(logs, { recursive: true });
+  for (const [name, content] of Object.entries(files)) writeFileSync(path.join(logs, name), content);
+
+  const result = f.run(stage);
+  assert.equal(result.status, 0, result.stderr);
+  const uploaded = readdirSync(upload).sort().map((name) => [name, readFileSync(path.join(upload, name), "utf8")]);
+  assert.deepEqual(uploaded, Object.entries(files).slice(0, 2));
 });
 
 test("facts are labelled and allowlisted, with automatic overrides separate from observed runtime", posixOnly, (t) => {
