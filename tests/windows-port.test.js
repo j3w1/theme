@@ -407,7 +407,15 @@ test('lifecycle boundary observer preserves results and exceptions with bounded 
   fs.closeSync(2);assert.throws(()=>fs.renameSync(file,renamed),{code:'ENOENT'});
   process.stdout.write('observer preserved behavior');
  `;
- const result=spawnSync(process.execPath,['--require',observer,'-e',script,state,observer],{encoding:'utf8',timeout:30000});
+ // This burst tests the observer's byte budget. A nonblocking stderr socket
+ // can reject the one LIMIT write with EAGAIN if the parent is behind.
+ const stderrPath=path.join(state,'stderr.log');
+ const stderrFd=fs.openSync(stderrPath,'wx');
+ let result;
+ try{
+  result=spawnSync(process.execPath,['--require',observer,'-e',script,state,observer],{encoding:'utf8',timeout:30000,stdio:['pipe','pipe',stderrFd]});
+ }finally{fs.closeSync(stderrFd);}
+ result.stderr=fs.readFileSync(stderrPath,'utf8');
  assert.ifError(result.error);assert.equal(result.signal,null);assert.equal(result.status,0,result.stderr);
  assert.equal(result.stdout,'observer preserved behavior');
  for(const operation of ['fsyncSync','renameSync','spawnSync']){
