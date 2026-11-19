@@ -134,6 +134,9 @@ jobs:
       - run: npm ci --prefer-offline --no-audit --no-fund
       - name: Generated Windows port contracts
         shell: pwsh
+        env:
+          TEMP: ${{ runner.temp }}
+          TMP: ${{ runner.temp }}
         run: node --test --test-concurrency=1 --test-skip-pattern=lock-screen tests/windows-port.test.js
       - uses: actions/upload-artifact@v7
         if: failure()
@@ -161,6 +164,9 @@ jobs:
       - run: npm ci --prefer-offline --no-audit --no-fund
       - name: Generated Windows lock-screen contracts
         shell: pwsh
+        env:
+          TEMP: ${{ runner.temp }}
+          TMP: ${{ runner.temp }}
         run: node --test --test-concurrency=1 --test-name-pattern=lock-screen tests/windows-port.test.js
       - uses: actions/upload-artifact@v7
         if: failure()
