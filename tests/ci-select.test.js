@@ -173,6 +173,25 @@ test("the four Windows jobs partition port tests and each keeps its limit, with 
   for (const job of ["windows-port", "windows-lockscreen", "windows-install", "windows-native"]) assert.ok(jobs["release-gate"].needs.includes(job), job);
 });
 
+test("runner temp placement is confined to the two Windows contract test steps", () => {
+  const workflow = parseYaml(readFileSync(".github/workflows/ci.yml", "utf8"));
+  const temp = { TEMP: "${{ runner.temp }}", TMP: "${{ runner.temp }}" };
+  const scoped = [];
+  for (const key of ["TEMP", "TMP"]) assert.equal(workflow.env?.[key], undefined);
+  for (const [id, job] of Object.entries(workflow.jobs)) {
+    for (const key of ["TEMP", "TMP"]) assert.equal(job.env?.[key], undefined, id);
+    for (const step of job.steps ?? []) {
+      if (step.env?.TEMP === undefined && step.env?.TMP === undefined) continue;
+      assert.deepEqual(step.env, temp, id);
+      scoped.push([id, step.run]);
+    }
+  }
+  assert.deepEqual(scoped, [
+    ["windows-port", "node --test --test-concurrency=1 --test-skip-pattern=lock-screen tests/windows-port.test.js"],
+    ["windows-lockscreen", "node --test --test-concurrency=1 --test-name-pattern=lock-screen tests/windows-port.test.js"],
+  ]);
+});
+
 test("the windows-port and windows-lockscreen filters split a real Node run into two disjoint halves that cover every test", () => {
   const { jobs } = parseYaml(readFileSync(".github/workflows/ci.yml", "utf8"));
   const filter = (job) => jobs[job].steps.map((step) => step.run).find((r) => r?.includes("windows-port.test.js")).match(/--test-(?:skip|name)-pattern=\S+/)[0];
