@@ -20,6 +20,7 @@ async function fixture(t) {
   git(dir, "init", "-q");
   git(dir, "config", "user.email", "tests@example.com");
   git(dir, "config", "user.name", "Tests");
+  await put(dir, ".gitattributes", "* text=auto eol=lf\n");
   await put(dir, ".gitignore", "node_modules/\n.cache/\n");
   await put(dir, "package.json", JSON.stringify({ workspaces: ["apps/demo", "packages/ui"] }));
   await put(dir, "package-lock.json", "old\n");

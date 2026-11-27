@@ -158,12 +158,12 @@ these outcomes is a successful installation or restored styling pass.
 
 ## What changes
 
-The current 26300.9974 core Full candidate excludes Notepad editor/chrome and
-PowerToys preview/Markdown adapters because the installed component versions are
-outside their reviewed pins. Their sources and earlier evidence remain intact;
-the table is an implementation inventory, not a claim that those excluded surfaces
-are installed or supported. See Compatibility for the exact exclusions and the
-canonical tools-only Prepare action. Native PowerToys settings remain separate.
+The current 26300.10075 Full candidate includes all eight bundled adapters and
+the five pinned shell stylers. Exact identities were measured for
+Notepad 11.2609.11.0, Paint 11.2609.441.0, Terminal 1.25.3131.0,
+PowerToys 0.102.3101.0, WinUI runtime 2.7.0.0 and WebView 158.0.4370.45.
+The unchanged four Markdown header identities and Monaco template were checked.
+The port remains experimental; matching identities do not establish full visual acceptance.
 
 | Area | Treatment |
 | --- | --- |
@@ -265,7 +265,7 @@ preserve the emitted adapter bytes when behavior is unchanged.
 
 ### Explorer initialization failure record
 
-Explorer adapter 1.8.10 can emit one protocol-1 numeric failure record. This is
+Explorer adapter 1.8.11 can emit one protocol-1 numeric failure record. This is
 diagnostic evidence, not admission, a successful initialization or visual
 acceptance. It preserves all existing fail-closed checks and COM policy.
 The closed stages, in original initialization order, are:
@@ -298,7 +298,7 @@ every validated ancestor without write/delete sharing through exclusive
 (less than 1024 bytes) and flush. Unavailable, aliased, non-directory, reparse,
 ambiguous or replaced identities fail closed without a fallback. No directory
 is created by the adapter. The sole name is
-`j3w1-explorer-native-1.8.10-init-failure.json`; no overwrite, append, alternate
+`j3w1-explorer-native-1.8.11-init-failure.json`; no overwrite, append, alternate
 name, retry, repair or pruning occurs. Diagnostic errors preserve initialization
 outcomes and the caller's last error. Partial or malformed output is unavailable
 evidence and is never silently repaired. The flush outcome is not recorded and

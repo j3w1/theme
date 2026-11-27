@@ -2044,19 +2044,19 @@
   ],
   "compatibility": [
     {
-      "settingsVersion": "10.0.26100.9818",
-      "build": 26300,
+      "searchVersion": "2610.23000.200.0",
+      "explorerFixedVersion": "10.0.26100.10068",
       "architecture": "X64",
-      "startDockedVersion": "10.0.26100.9818",
+      "shellPackageVersion": "10.0.26100.10068",
       "shellExperienceVersion": "10.0.26100.9818",
-      "shellPackageVersion": "10.0.26100.9818",
-      "explorerFixedVersion": "10.0.26100.9974",
-      "clientPackageVersion": "1000.26100.385.0",
+      "startDockedVersion": "10.0.26100.10068",
+      "explorerVersion": "10.0.26100.10068",
+      "settingsVersion": "10.0.26100.10075",
       "startLayout": "redesigned",
-      "explorerVersion": "10.0.26100.9818",
-      "searchVersion": "2609.12000.100.0",
       "startPackageVersion": "10.0.26100.4768",
-      "ubr": 9974,
+      "clientPackageVersion": "1000.26100.505.0",
+      "build": 26300,
+      "ubr": 10075,
       "status": "candidate"
     }
   ],
@@ -2065,11 +2065,10 @@
     "Command Palette custom tint cannot independently assign every foreground.",
     "Lock-screen application requires a supported API and recoverable previous image; otherwise it is not applied.",
     "Windows/Start updates outside the tested compatibility entry disable managed shell styling until reviewed.",
-    "Static cursor shapes preserve roles; host accessibility pointer overrides take priority.",
-    "The 26300.9974 core Full candidate excludes Notepad editor/chrome and PowerToys preview/Markdown adapters; their installed package and WebView versions are unreviewed. Native PowerToys settings remain separate."
+    "Static cursor shapes preserve roles; host accessibility pointer overrides take priority."
   ],
   "nativeExplorer": {
-    "version": "1.8.10",
+    "version": "1.8.11",
     "background": "color.surface.canvas",
     "foreground": "color.text.default",
     "hover": "color.interaction.hover.bg",
@@ -2092,15 +2091,15 @@
     "folderEdge": "color.border.active"
   },
   "nativeExplorerModules": {
-    "FRAME": "10.0.26100.9974",
+    "FRAME": "10.0.26100.10068",
     "DUI": "10.0.26100.9818",
     "COMCTL": "6.10.26100.9818",
-    "WIC": "10.0.26100.9974",
-    "SHELLCOMMON": "10.0.26100.9974"
+    "WIC": "10.0.26100.10068",
+    "SHELLCOMMON": "10.0.26100.10075"
   },
   "monacoPreview": {
-    "version": "1.1.1",
-    "hostVersion": "0.102.2933.0",
+    "version": "1.1.2",
+    "hostVersion": "0.102.3101.0",
     "templateSha256": "7e8f2bfb81aa6498bd2d236c3eae54c8e42633cf288f9299df62d2537b553bac",
     "colors": {
       "editor.background": "color.surface.canvas",
@@ -2348,11 +2347,11 @@
     "buttonStyleTarget": "CalculatorApp.Controls.CalculatorButton, CalculatorApp, Version=11.2607.0.0, Culture=neutral, PublicKeyToken=null"
   },
   "markdownPreview": {
-    "version": "1.4.3",
-    "hostVersion": "0.102.2933.0",
-    "hostSha256": "e4ed4dfc3e8b3b97b1214e5655fa4ed76b2f47b8f988ef3477ccaa3608b23c53",
-    "controlSha256": "da51a0c36f615ed34219d810aaf4ce3806721bcbeba2b7e01100ed3ff94a700e",
-    "helperSha256": "d4659bdd5ae3fdf622063149b3133b5af6716bcd2a9907653ce0cc0001b01b09",
+    "version": "1.4.4",
+    "hostVersion": "0.102.3101.0",
+    "hostSha256": "f842df3e1bd6f806d0b7d5d163a5dc793a2afe7ee5c55e452cd1c58a880c8af0",
+    "controlSha256": "00f022bcdd148154512d52a0b4107f8141df283875a064b28547dcfcdaac807d",
+    "helperSha256": "4aedea9f7b2374a315112b1433155f2eb06d65b7f0d0e2c78ea25d3e2ede2902",
     "headers": [
       {
         "theme": "dark",
@@ -2473,18 +2472,27 @@
         "backgroundGetterRva": 354128,
         "backgroundSetterRva": 354320,
         "controllerCloseRva": 347232
+      },
+      {
+        "version": "158.0.4370.45",
+        "sha256": "c2f47e25ff8dccf853ba668a1e1d275a70b5ca909d02e433bb6829219cae1879",
+        "navigateToStringRva": 441984,
+        "navigateRva": 441824,
+        "backgroundGetterRva": 383696,
+        "backgroundSetterRva": 383888,
+        "controllerCloseRva": 375280
       }
     ],
     "nativeHost": {
       "version": "10.0.26100.8115",
       "sha256": "0402afd1e3231da4841a093040f861b1af321f3dd6740c879de9d1e3d600d95e",
-      "explorerSha256": "0c857b2af68be73283875745a4aee812761e58ff966d005953c3b4378a244526"
+      "explorerSha256": "b7641e46f3c8f4855957661e6b2f87e982ab869e320901e7cc6fb0eb34b80900"
     }
   },
   "notepadNative": {
-    "version": "1.1.1",
-    "packageFullName": "Microsoft.WindowsNotepad_11.2607.14.0_x64__8wekyb3d8bbwe",
-    "editorSha256": "e7babd9942e133c690b4144657956af890912d130f81a81650f3a5597b5e5dbc",
+    "version": "1.1.2",
+    "packageFullName": "Microsoft.WindowsNotepad_11.2609.11.0_x64__8wekyb3d8bbwe",
+    "editorSha256": "c4b644aee7b05eb1e4d162067dc74319b989d7e3d02e357c6ef69076dbed1d1a",
     "roles": {
       "CANVAS": "color.surface.canvas",
       "PROSE": "color.text.prose",
@@ -2493,11 +2501,11 @@
     }
   },
   "notepadChrome": {
-    "version": "1.2.39",
-    "packageFullName": "Microsoft.WindowsNotepad_11.2607.14.0_x64__8wekyb3d8bbwe",
-    "runtimePackage": "Microsoft.WindowsAppRuntime.2_2.6.5.0_x64__8wekyb3d8bbwe",
-    "runtimeSha256": "ba728ec8e18e86577581ac611b7379ad08f69d47898f0ada0f1536f4313a9758",
-    "diagnosticsBridgeSha256": "a9eb6c0de80645c3f3b0570636f37966f5cf8c9583c91ce1b8760a937a243e44",
+    "version": "1.2.40",
+    "packageFullName": "Microsoft.WindowsNotepad_11.2609.11.0_x64__8wekyb3d8bbwe",
+    "runtimePackage": "Microsoft.WindowsAppRuntime.2_2.7.0.0_x64__8wekyb3d8bbwe",
+    "runtimeSha256": "0554f662e7abfbf2472e3eac4eab296d15e9a6999ea11842378478e1665749e1",
+    "diagnosticsBridgeSha256": "5d61d64df27b1cc3c503c6e7969239383484ae4e9d5887ec7187a1c6abdd7a95",
     "captionColors": {},
     "existingCaptionRollback": "windows-default"
   },
@@ -2870,11 +2878,11 @@
     "TabViewItemHeaderBackgroundDisabled": "color.interaction.disabled.bg"
   },
   "paintChrome": {
-    "version": "1.0.36",
-    "packageFullName": "Microsoft.Paint_11.2609.401.0_x64__8wekyb3d8bbwe",
-    "runtimePackage": "Microsoft.WindowsAppRuntime.2_2.6.5.0_x64__8wekyb3d8bbwe",
-    "runtimeSha256": "ba728ec8e18e86577581ac611b7379ad08f69d47898f0ada0f1536f4313a9758",
-    "diagnosticsBridgeSha256": "a9eb6c0de80645c3f3b0570636f37966f5cf8c9583c91ce1b8760a937a243e44",
+    "version": "1.0.37",
+    "packageFullName": "Microsoft.Paint_11.2609.441.0_x64__8wekyb3d8bbwe",
+    "runtimePackage": "Microsoft.WindowsAppRuntime.2_2.7.0.0_x64__8wekyb3d8bbwe",
+    "runtimeSha256": "0554f662e7abfbf2472e3eac4eab296d15e9a6999ea11842378478e1665749e1",
+    "diagnosticsBridgeSha256": "5d61d64df27b1cc3c503c6e7969239383484ae4e9d5887ec7187a1c6abdd7a95",
     "captionColors": {
       "BackgroundColor": "color.surface.canvas",
       "ForegroundColor": "color.text.default",
@@ -2891,27 +2899,22 @@
     }
   },
   "nativeExplorerModuleDigests": {
-    "WIC": "df01c4d5e5f594e6aa18e7a4baa27eba3cf5409c74f02b00d7c8e46b277da631",
-    "SHELLCOMMON": "9e84c8cedb33956f3ad3865328099f1598e347fb09a3af961b9056a128d36232"
+    "WIC": "b6fcacdc292471f4871451af8fb7a3aa6035c83f96d56c4cc02ec7b823b282d9",
+    "SHELLCOMMON": "3e1e5ffd4a4cbf01126d05daeff09a418500f285a46ebe5ce5a2a492c5564c1c"
   },
   "terminalChrome": {
-    "version": "1.0.20",
-    "packageFullName": "Microsoft.WindowsTerminal_1.24.12741.0_x64__8wekyb3d8bbwe",
-    "runtimeSha256": "da3ae828c807b56eab79981e68dd605daec066b088ff8836afbb8bd04de18c01",
-    "diagnosticsBridgeSha256": "da3ae828c807b56eab79981e68dd605daec066b088ff8836afbb8bd04de18c01",
+    "version": "1.0.21",
+    "packageFullName": "Microsoft.WindowsTerminal_1.25.3131.0_x64__8wekyb3d8bbwe",
+    "runtimeSha256": "cda98b583c865c1a47043ea2fc3375290ce9af58d76ad72a426ec1bd0b44a10b",
+    "diagnosticsBridgeSha256": "cda98b583c865c1a47043ea2fc3375290ce9af58d76ad72a426ec1bd0b44a10b",
     "captionColors": {},
     "controlsPackage": "Microsoft.UI.Xaml.2.8_8.2511.26001.0_x64__8wekyb3d8bbwe",
     "controlsSha256": "fe5f8d9d545f778e6778e31c7fb4b01227f12dd6aec4d4bfc54ef76ba920baae"
   },
   "settingsStartup": {
     "sourceSha256": "7424d3b2298d06b4c8dc0e2b16a6e49011c4af2e97ec92ef28ecd2ad53bf8571",
-    "executableSha256": "310e83f20fe92416371916d829e9e6d0d16a8fa91485e10caa67dbb8e5f9f870",
-    "xamlSha256": "da3ae828c807b56eab79981e68dd605daec066b088ff8836afbb8bd04de18c01"
+    "executableSha256": "2586f96e5b250da73caaa9f92e763b2e8af60750001b8a0ce8292bae17b0eabb",
+    "xamlSha256": "cda98b583c865c1a47043ea2fc3375290ce9af58d76ad72a426ec1bd0b44a10b"
   },
-  "adapterExclusions": [
-    "j3w1-notepad-native",
-    "j3w1-notepad-chrome",
-    "j3w1-powertoys-preview",
-    "j3w1-powertoys-markdown"
-  ]
+  "adapterExclusions": []
 }

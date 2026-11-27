@@ -718,7 +718,7 @@ test('Explorer marquee settings encode canonical alpha and module compatibility'
  assert.equal(settings.marquee,'#1f911410');
  assert.equal(settings.marqueeBorder,'#e53935');
  const source=fs.readFileSync(path.join(repoRoot,'ports/windows/dist/j3w1-explorer-native.wh.cpp'),'utf8');
- assert.match(source,/FixedModuleVersion\(frame,MAKELONG\(0,10\),MAKELONG\(9974,26100\)\)/);
+ assert.match(source,/FixedModuleVersion\(frame,MAKELONG\(0,10\),MAKELONG\(10068,26100\)\)/);
  assert.match(source,/FixedModuleVersion\(dui,MAKELONG\(0,10\),MAKELONG\(9818,26100\)\)/);
  assert.doesNotMatch(source,/@[A-Z0-9_]+@/);
 });
@@ -737,7 +737,7 @@ function explorerFailureRecordContract(source){
  assert.match(helper,/CreateFileW\(parent\.c_str\(\),FILE_LIST_DIRECTORY\|FILE_READ_ATTRIBUTES,FILE_SHARE_READ,nullptr,\s*OPEN_EXISTING,FILE_FLAG_BACKUP_SEMANTICS\|FILE_FLAG_OPEN_REPARSE_POINT,nullptr\)/);
  assert.match(helper,/CreateFileW\(path\.c_str\(\),GENERIC_WRITE\|FILE_READ_ATTRIBUTES,0,nullptr,CREATE_NEW,\s*FILE_ATTRIBUTE_NORMAL\|FILE_FLAG_OPEN_REPARSE_POINT,nullptr\)/);
  assert.ok(helper.includes(String.raw`path+=L"\\j3w1-theme\\windows\\diagnostics";`));
- assert.ok(helper.includes(String.raw`path+=L"\\j3w1-explorer-native-1.8.10-init-failure.json";`));
+ assert.ok(helper.includes(String.raw`path+=L"\\j3w1-explorer-native-1.8.11-init-failure.json";`));
  assert.equal((helper.match(/WriteFile\(/g)||[]).length,1);assert.equal((helper.match(/FlushFileBuffers\(/g)||[]).length,1);
  assert.match(helper,/WriteFile\(file\.value,record,static_cast<DWORD>\(size\),&written,nullptr\)/);
  assert.match(helper,/size<=0\|\|size>=static_cast<int>\(sizeof\(record\)\)/);
@@ -758,7 +758,7 @@ function explorerFailureRecordContract(source){
  const keys=[...helper.matchAll(/\\"([A-Za-z]+)\\":/g)].map(m=>m[1]);
  assert.deepEqual(keys,['protocol','adapterVersion','pid','creationFiletime','stage','nativeKind','nativeAvailable','nativeValue','glyphCom','bitmapCom']);
  // The exception admits only the exact reviewed writer, not arbitrary code in a named namespace.
- assert.equal(sha(Buffer.from(helper)),'26ed1580566e249a868b524707575c6511965012a986cfe7f62c9940252629e5');
+ assert.equal(sha(Buffer.from(helper)),'0e6ab6ea33fc473f4db3827cec2bb483354200a12285c84a409e0f8269909337');
  return outside;
 }
 
@@ -769,7 +769,7 @@ test('Explorer failure record retains closed data, admission and exclusive path 
   source+'\nvoid ForeignWrite(){WriteFile(nullptr,nullptr,0,nullptr,nullptr);}\n',
   source+'\nvoid ForeignOpen(){CreateFileW(L"unreviewed",GENERIC_READ,FILE_SHARE_READ,nullptr,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,nullptr);}\n',
   source.replace('namespace InitFailure {','namespace InitFailure {\nvoid ForeignWrite(){WriteFile(nullptr,nullptr,0,nullptr,nullptr);}'),
-  source.replace('j3w1-explorer-native-1.8.10-init-failure.json','other-init-failure.json'),
+  source.replace('j3w1-explorer-native-1.8.11-init-failure.json','other-init-failure.json'),
   source.replace('CREATE_NEW','OPEN_ALWAYS'),
   source.replace('GENERIC_WRITE|FILE_READ_ATTRIBUTES,0,nullptr,CREATE_NEW','GENERIC_WRITE|FILE_READ_ATTRIBUTES,FILE_SHARE_WRITE,nullptr,CREATE_NEW'),
   source+'\nnamespace InitFailure {}\n',
@@ -1026,8 +1026,11 @@ function windhawkFixture(t,scope='all'){
  // Windows process startup across eight adapters can exhaust the unchanged
  // 30-second child deadline before a journal-only assertion is reached.
  assert.ok(['all','protocol','candidate'].includes(scope));
- // Retain every earlier component/recovery test state. The current candidate's
- // narrower activation policy is exercised separately with scope=candidate.
+ // Keep an explicit exclusion fixture even when the current host admits every adapter.
+ if(scope==='candidate'){
+  const settingsFile=path.join(copy,'dist/windows-settings.json'),settings=read(settingsFile);
+  settings.adapterExclusions=['j3w1-notepad-native','j3w1-notepad-chrome','j3w1-powertoys-preview','j3w1-powertoys-markdown'];write(settingsFile,settings);
+ }
  if(scope!=='candidate'){
   const settingsFile=path.join(copy,'dist/windows-settings.json'),settings=read(settingsFile);
   settings.adapterExclusions=[];write(settingsFile,settings);
@@ -1041,7 +1044,7 @@ function windhawkFixture(t,scope='all'){
  const args={source:copy,mode:'Full',fixtureWindhawk:path.join(repoRoot,'tests/fixtures/windows-windhawk.cjs')};
  return {...f,args,db:()=>read(path.join(f.state,'fixture-windhawk.json'))};
 }
-test('9974 candidate excludes unreviewed optional adapters without losing their artifacts',t=>{
+test('source-owned exclusions omit optional adapters without losing their artifacts',t=>{
  const f=windhawkFixture(t,'candidate'),settings=read(path.join(f.args.source,'dist/windows-settings.json'));
  const environment=read(path.join(source,'host.json')).compatibility[0];
  const args={...f.args,environment};

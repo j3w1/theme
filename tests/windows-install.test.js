@@ -176,7 +176,7 @@ test('Full Prepare retains release but leaves theme, font, engine and ownership 
  const f=fixture(t,'Full'),before=fs.readFileSync(f.terminal);
  const result=JSON.parse(f.ok('Prepare',['-Revision',f.first]).stdout);
  assert.equal(result.action,'Plan');assert.equal(result.mode,'Full');assert.equal(result.compatible,true);
- assert.equal(result.excludedAdapters.length,4);
+ assert.deepEqual(result.excludedAdapters,[]);
  assert.deepEqual(fs.readFileSync(f.terminal),before);
  for(const name of ['journal.json','current.json','font-dependency.json','recovery-commands.txt','fixture-windhawk.json','fixture/font-registered.json'])
   assert.ok(!fs.existsSync(path.join(f.state,name)),name);

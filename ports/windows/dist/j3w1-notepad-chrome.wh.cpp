@@ -2,7 +2,7 @@
 // @id j3w1-notepad-chrome
 // @name j3w1 Notepad chrome
 // @description Exact-package Notepad chrome resources; document and artwork colors remain native
-// @version 1.2.39
+// @version 1.2.40
 // @author j3w1
 // @include Notepad.exe
 // @architecture x86-64
@@ -456,7 +456,7 @@ static bool ReviewedPackage(){
     if(GetCurrentPackageFullName(&length,nullptr)!=ERROR_INSUFFICIENT_BUFFER||length>512)return false;
     std::vector<wchar_t> name(length);
     if(GetCurrentPackageFullName(&length,name.data())!=ERROR_SUCCESS)return false;
-    for(auto allowed:{L"Microsoft.WindowsNotepad_11.2607.14.0_x64__8wekyb3d8bbwe"})if(wcscmp(name.data(),allowed)==0)return true;
+    for(auto allowed:{L"Microsoft.WindowsNotepad_11.2609.11.0_x64__8wekyb3d8bbwe"})if(wcscmp(name.data(),allowed)==0)return true;
     return false;
 }
 static bool RuntimeFileDigest(std::wstring const& path,const char* expected) {
@@ -491,9 +491,9 @@ static bool ReviewedRuntime(){
     wchar_t system[32768]{};auto systemLength=GetSystemDirectoryW(system,std::size(system));
     if(!systemLength||systemLength>=std::size(system)||_wcsicmp(name.c_str(),(std::wstring(system)+L"\\Microsoft.UI.Xaml.dll").c_str())){runtimeStatus=-1;return false;}
 #else
-    if(name.find(L"\\Microsoft.WindowsAppRuntime.2_2.6.5.0_x64__8wekyb3d8bbwe\\")==std::wstring::npos){runtimeStatus=-1;return false;}
+    if(name.find(L"\\Microsoft.WindowsAppRuntime.2_2.7.0.0_x64__8wekyb3d8bbwe\\")==std::wstring::npos){runtimeStatus=-1;return false;}
 #endif
-    bool valid=RuntimeFileDigest(path,"ba728ec8e18e86577581ac611b7379ad08f69d47898f0ada0f1536f4313a9758");
+    bool valid=RuntimeFileDigest(path,"0554f662e7abfbf2472e3eac4eab296d15e9a6999ea11842378478e1665749e1");
 #if J3W1_LEGACY_XAML
     auto controls=GetModuleHandleW(L"Microsoft.UI." L"Xaml.dll");if(!controls)return false;
     wchar_t controlsPath[32768]{};auto controlsLength=GetModuleFileNameW(controls,controlsPath,std::size(controlsPath));
@@ -2427,7 +2427,7 @@ static bool ReviewedDiagnosticsBridge(std::wstring const& path) {
    if(complete&&BCryptFinishHash(hash,digest,sizeof(digest),0)>=0) {
     constexpr char hex[]="0123456789abcdef";std::string actual;
     for(BYTE byte:digest){actual+=hex[byte>>4];actual+=hex[byte&15];}
-    valid=actual=="a9eb6c0de80645c3f3b0570636f37966f5cf8c9583c91ce1b8760a937a243e44";
+    valid=actual=="5d61d64df27b1cc3c503c6e7969239383484ae4e9d5887ec7187a1c6abdd7a95";
    }
   }
  }

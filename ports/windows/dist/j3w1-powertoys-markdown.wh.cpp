@@ -2,7 +2,7 @@
 // @id j3w1-powertoys-markdown
 // @name j3w1 Windows preview backing and PowerToys Markdown
 // @description Exact-version black and rose Markdown rendering adapter
-// @version 1.4.3
+// @version 1.4.4
 // @author j3w1
 // @include PowerToys.MarkdownPreviewHandler.exe
 // @include prevhost.exe
@@ -57,6 +57,7 @@ static constexpr BrowserPin browserPins[]={
  {"0cfcd55c5095aec1ab484f15af1ef24bb4dd87b2807557ef7feeb4535c70e0e7",0x8a290,0x8a1f0,0x58e50,0x58f10,0x57380}, // 154.0.4258.62
  {"19eec800fb666a0f939c1fc2113c3bcfc2ad352776d5ddfcb4994d15f77d9b4c",0x87bb0,0x87b10,0x56780,0x56840,0x54cc0}, // 155.0.4283.45
  {"f01ee4397e3f366460011ce1224e7e0f779d96321f97b6de5a0bb435d319dcc4",0x88510,0x88470,0x56750,0x56810,0x54c60}, // 156.0.4314.58
+ {"c2f47e25ff8dccf853ba668a1e1d275a70b5ca909d02e433bb6829219cae1879",0x6be80,0x6bde0,0x5dad0,0x5db90,0x5b9f0}, // 158.0.4370.45
 };
 struct Boundary {HMODULE module=nullptr;bool attempted=false;std::atomic<bool> ready{false};NavigateFn originalString=nullptr,originalNavigate=nullptr;GetBackgroundFn getBackground=nullptr;SetBackgroundFn originalBackground=nullptr,publicBackground=nullptr;CloseControllerFn originalClose=nullptr;};
 static Boundary boundaries[std::size(browserPins)];
@@ -205,7 +206,7 @@ static BOOL CALLBACK DiscoverPreviewOwner(HWND window,LPARAM) {
  wchar_t exe[32768]{};DWORD length=std::size(exe);
  try{
   if(QueryFullProcessImageNameW(lifetime,0,exe,&length)&&length<std::size(exe)
-   &&DigestFile(exe,"0c857b2af68be73283875745a4aee812761e58ff966d005953c3b4378a244526")&&CachePreviewOwner(process,lifetime))return TRUE;
+   &&DigestFile(exe,"b7641e46f3c8f4855957661e6b2f87e982ab869e320901e7cc6fb0eb34b80900")&&CachePreviewOwner(process,lifetime))return TRUE;
  }catch(...){} // Native notifications must retain fallback after allocation failure.
  CloseHandle(lifetime);return TRUE;
 }
@@ -560,6 +561,7 @@ static bool InstallBoundary(HMODULE module){
   case 3:return HookBoundary<3>(module);
   case 4:return HookBoundary<4>(module);
   case 5:return HookBoundary<5>(module);
+  case 6:return HookBoundary<6>(module);
  }
  return false;
 }
@@ -587,8 +589,8 @@ BOOL Wh_ModInit(){
  if(_wcsicmp(folder.c_str()+split+1,L"prevhost.exe")==0)return InitNativePreviewHost(folder);
  if(_wcsicmp(folder.c_str()+split+1,L"PowerToys.MarkdownPreviewHandler.exe"))return FALSE;
  folder.resize(split);
- if(!DigestFile(exe,"e4ed4dfc3e8b3b97b1214e5655fa4ed76b2f47b8f988ef3477ccaa3608b23c53")||!DigestFile(folder+L"\\PowerToys.MarkdownPreviewHandler.dll","da51a0c36f615ed34219d810aaf4ce3806721bcbeba2b7e01100ed3ff94a700e")
-  ||!DigestFile(folder+L"\\PowerToys.FilePreviewCommon.dll","d4659bdd5ae3fdf622063149b3133b5af6716bcd2a9907653ce0cc0001b01b09"))return FALSE;
+ if(!DigestFile(exe,"f842df3e1bd6f806d0b7d5d163a5dc793a2afe7ee5c55e452cd1c58a880c8af0")||!DigestFile(folder+L"\\PowerToys.MarkdownPreviewHandler.dll","00f022bcdd148154512d52a0b4107f8141df283875a064b28547dcfcdaac807d")
+  ||!DigestFile(folder+L"\\PowerToys.FilePreviewCommon.dll","4aedea9f7b2374a315112b1433155f2eb06d65b7f0d0e2c78ea25d3e2ede2902"))return FALSE;
  PWSTR low=nullptr;if(FAILED(SHGetKnownFolderPath(FOLDERID_LocalAppDataLow,0,nullptr,&low)))return FALSE;
  tempFolder=low;CoTaskMemFree(low);tempFolder+=L"\\Microsoft\\PowerToys\\MarkdownPreview-Temp\\";
  enabled=Wh_GetIntSetting(L"enabled")!=0;
