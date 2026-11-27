@@ -33,17 +33,6 @@ const attrValues = (text, css = false) => {
   return out;
 };
 
-const ROOT_ABS_LITERAL = /["'`](\/(?!theme\/)[a-z0-9_./-]+)["'`]/gi;
-
-/* Vue Router 5.5.1 (7e754077) emits "/." + base + to as the non-hash ternary
-   alternate for history.pushState; the demo uses createWebHashHistory so that
-   branch is unreachable. Exempt only that local concatenation shape at its
-   exact offset. */
-const isVueRouterNoHashBase = (text, match) =>
-  match[1] === "/." &&
-  /:\s*$/.test(text.slice(Math.max(0, match.index - 8), match.index)) &&
-  /^\s*\+\s*[\w$]+\s*\+\s*[\w$]+\s*;/.test(text.slice(match.index + match[0].length, match.index + match[0].length + 64));
-
 const exists = async (relative) => {
   try {
     await fs.access(path.join(repoRoot, relative));
@@ -87,29 +76,16 @@ test("no root-absolute URL escapes the base path, and every internal reference r
   }
   for (const file of distFiles.filter((f) => f.endsWith(".js"))) {
     const text = await readText(file);
-    for (const m of text.matchAll(ROOT_ABS_LITERAL)) {
+    for (const m of text.matchAll(/["'`](\/(?!theme\/)[a-z0-9_./-]+)["'`]/gi)) {
       if (m[1].startsWith("/theme")) continue;
-      // The Vue Router bundle contains registered hash destinations, its
-      // protocol-relative URL sentinel, and the unreachable no-hash base
-      // concatenation. These are not HTTP resource requests.
+      // The Vue Router bundle contains registered hash destinations and its
+      // protocol-relative URL sentinel. These are not HTTP resource requests.
       // portal.spec.js visits every destination and asserts actual request paths.
-      if (file.startsWith("dist/demo/assets/") && (hashDestinations.includes(m[1]) || m[1] === "//" || isVueRouterNoHashBase(text, m))) continue;
+      if (file.startsWith("dist/demo/assets/") && (hashDestinations.includes(m[1]) || m[1] === "//")) continue;
       problems.push(`${file}: string literal ${m[1]} looks root-absolute`);
     }
   }
   assert.deepEqual(problems, []);
-});
-
-test("vue-router no-hash base exemption is bound to the local ternary concatenation", () => {
-  const matches = (source) => [...source.matchAll(ROOT_ABS_LITERAL)].map((m) => isVueRouterNoHashBase(source, m));
-  const real = "c=s>-1?(n.host&&document.querySelector(`base`)?e:e.slice(s))+r:`/.`+e+r;try{}catch{}";
-  assert.deepEqual(matches(real), [true]);
-  assert.deepEqual(matches("fetch(`/.`)"), [false]);
-  assert.deepEqual(matches('href="/."'), [false]);
-  assert.deepEqual(matches("fetch(`/.`+e+r)"), [false]);
-  assert.deepEqual(matches("fetch(s?a:`/.`+e+r)"), [false]);
-  assert.deepEqual(matches("a=`/.`+e+r;"), [false]);
-  assert.deepEqual(matches(`${real};fetch(\`/.\`);fetch(\`/.\`+e+r)`), [true, false, false]);
 });
 
 test("canonical, og:url and the nojekyll marker are correct", async () => {
