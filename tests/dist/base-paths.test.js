@@ -35,17 +35,26 @@ const attrValues = (text, css = false) => {
 
 /* vue-router 5.5.1 builds `"/." + base + to` for history.pushState only when its
    base has no "#". createWebHashHistory always adds one, so the branch is dead
-   for the demo and is never a request URL. Only that exact expression, the
-   one flowing into pushState/replaceState, is exempt; any other "/." is not. */
+   for the demo and is never a request URL. Only the false-branch literal of that
+   exact expression, at its exact offset, is exempt; any other "/." is not. */
+const q = "[`\"']";
+const noHashBranch = new RegExp(`(\\w+)=(\\w+)\\.indexOf\\(${q}#${q}\\)\\s*,\\s*(\\w+)=\\1>-1\\?\\(\\w+\\.host&&document\\.querySelector\\(${q}base${q}\\)\\?\\2:\\2\\.slice\\(\\1\\)\\)\\+(\\w+):${q}(/\\.)${q}\\+\\2\\+\\4\\s*;\\s*try\\s*\\{\\s*\\w+\\[\\w+\\?${q}replaceState${q}:${q}pushState${q}\\]\\(\\w+,${q}${q},\\3\\)`, "gd");
 const isVueRouterNoHashBase = (text, index, literal) => {
   if (literal !== "/.") return false;
-  const q = "[`\"']";
-  // `i=b.indexOf("#"),u=i>-1?(host&&document.querySelector("base")?b:b.slice(i))+to:"/."+b+to;try{h[..."replaceState":"pushState"](state,"",u)`
-  const guard = new RegExp(`(\\w+)=(\\w+)\\.indexOf\\(${q}#${q}\\)\\s*,\\s*(\\w+)=\\1>-1\\?\\([^;]*?\\)\\+(\\w+):${q}/\\.${q}\\+\\2\\+\\4\\s*;\\s*try\\s*\\{\\s*\\w+\\[[^\\]]*?(?:replaceState|pushState)${q}\\]\\(\\w+,${q}${q},\\3\\)`);
-  const start = Math.max(0, index - 200);
-  const m = guard.exec(text.slice(start, index + 220));
-  return Boolean(m) && start + m.index + m[0].indexOf("/.") <= index && index < start + m.index + m[0].length;
+  noHashBranch.lastIndex = 0;
+  for (const m of text.matchAll(noHashBranch)) if (m.indices[5][0] === index) return true;
+  return false;
 };
+/* The dead branch is only dead while the demo is hash-only: main.js must create
+   its router with createWebHashHistory and no other history constructor, and the
+   bundle must carry vue-router's hash constructor next to the exempt branch. */
+const hashOnlySource = (text) => {
+  const history = [...text.matchAll(/\bhistory\s*:\s*(\w+)\(/g)].map((m) => m[1]);
+  const names = [...text.matchAll(/\bcreate(?:Web|Memory)?\w*History\b/g)].map((m) => m[0]);
+  const imp = /import\s*\{\s*createRouter\s*,\s*createWebHashHistory\s*\}\s*from\s*["']vue-router["']/.test(text);
+  return imp && history.length === 1 && history[0] === "createWebHashHistory" && names.every((n) => n === "createWebHashHistory");
+};
+const hashConstructorBundle = /function (\w+)\((\w+)\)\{return \2=location\.host\?\2\|\|location\.pathname\+location\.search:[`"']{2},\2\.includes\([`"']#[`"']\)\|\|\(\2\+=[`"']#[`"']\),\w+\(\2\)\}/;
 
 const exists = async (relative) => {
   try {
@@ -88,6 +97,7 @@ test("no root-absolute URL escapes the base path, and every internal reference r
       if (!(await exists(target)) && !(await exists(`${target}/index.html`))) problems.push(`${file}: relative ${value} does not resolve`);
     }
   }
+  const demoHashOnly = hashOnlySource(await readText("apps/demo/src/main.js"));
   for (const file of distFiles.filter((f) => f.endsWith(".js"))) {
     const text = await readText(file);
     for (const m of text.matchAll(/["'`](\/(?!theme\/)[a-z0-9_./-]+)["'`]/gi)) {
@@ -95,7 +105,7 @@ test("no root-absolute URL escapes the base path, and every internal reference r
       // The Vue Router bundle contains registered hash destinations and its
       // protocol-relative URL sentinel. These are not HTTP resource requests.
       // portal.spec.js visits every destination and asserts actual request paths.
-      if (file.startsWith("dist/demo/assets/") && (hashDestinations.includes(m[1]) || m[1] === "//" || isVueRouterNoHashBase(text, m.index + 1, m[1]))) continue;
+      if (file.startsWith("dist/demo/assets/") && (hashDestinations.includes(m[1]) || m[1] === "//" || demoHashOnly && hashConstructorBundle.test(text) && isVueRouterNoHashBase(text, m.index + 1, m[1]))) continue;
       problems.push(`${file}: string literal ${m[1]} looks root-absolute`);
     }
   }
@@ -104,19 +114,40 @@ test("no root-absolute URL escapes the base path, and every internal reference r
 
 test("the vue-router no-hash base exemption is exact", () => {
   const real = "function a(r,a,o){let s=e.indexOf(`#`),c=s>-1?(n.host&&document.querySelector(`base`)?e:e.slice(s))+r:`/.`+e+r;try{t[o?`replaceState`:`pushState`](a,``,c),i.value=a}catch(e){n[o?`replace`:`assign`](c)}}";
-  const at = (text) => isVueRouterNoHashBase(text, text.indexOf("/."), "/.");
+  const at = (text, nth = 0) => {
+    let i = -1;
+    for (let k = 0; k <= nth; k++) i = text.indexOf("/.", i + 1);
+    return isVueRouterNoHashBase(text, i, "/.");
+  };
   assert.ok(at(real));
+  // Live "/." literals inside the matched span (true branch, interval index) stay flagged.
+  const live = real.replace("slice(s))+r", "slice(s))+r+fetch(`/.`)");
+  assert.ok(!isVueRouterNoHashBase(live, live.indexOf("/."), "/."));
+  const inTrue = "function a(r,a,o){let s=e.indexOf(`#`),c=s>-1?(fetch(`/.`),e)+r:`/.`+e+r;try{t[o?`replaceState`:`pushState`](a,``,c)}}";
+  assert.ok(!at(inTrue, 0) && !at(inTrue, 1));
+  const inIndex = real.replace("indexOf(`#`)", "indexOf(`#`,fetch(`/.`))");
+  assert.ok(!at(inIndex, 0) && !at(inIndex, 1));
   assert.ok(!at(real.replace("s>-1?", "s>-1&&x?")));
   assert.ok(!at(real.replace("e.indexOf(`#`)", "e.indexOf(`?`)")));
   assert.ok(!at(real.replace(":`/.`+e+r", ":`/.`+e+r+`x`")));
   assert.ok(!at(real.replace(",c)", ",z)")));
   assert.ok(!at("fetch(`/.`)") && !at("a=`/.`+e+r;fetch(a)") && !at('href="/."'));
-  assert.ok(!at("c=`/.`+e+r;try{t[o?`replaceState`:`pushState`](a,``,c)}"));
-  assert.ok(!at(`${real};t.pushState(a,\`\`,\`/.\`)`.replace(real, "")));
   assert.ok(!isVueRouterNoHashBase(real, real.indexOf("/."), "/.x"));
-  // Same guard shape, but a second live "/." in the same file stays flagged.
   const twin = `${real};t.pushState(a,\`\`,\`/.\`)`;
   assert.ok(!isVueRouterNoHashBase(twin, twin.lastIndexOf("/."), "/."));
+});
+
+test("the exemption requires a hash-only demo", () => {
+  const ok = 'import { createRouter, createWebHashHistory } from "vue-router";\nconst router = createRouter({ history: createWebHashHistory(), routes });';
+  assert.ok(hashOnlySource(ok));
+  assert.ok(!hashOnlySource(ok.replace(/createWebHashHistory/g, "createWebHistory")));
+  assert.ok(!hashOnlySource(ok.replace("history: createWebHashHistory()", "history: createWebHistory()")));
+  assert.ok(!hashOnlySource(ok.replace("createWebHashHistory }", "createWebHashHistory, createWebHistory }")));
+  assert.ok(!hashOnlySource(`${ok}\nconst other = createRouter({ history: createWebHistory(), routes });`));
+  assert.ok(!hashOnlySource(ok.replace("createWebHashHistory()", "createMemoryHistory()")));
+  const bundle = "function Fc(e){return e=location.host?e||location.pathname+location.search:``,e.includes(`#`)||(e+=`#`),Pc(e)}";
+  assert.ok(hashConstructorBundle.test(bundle));
+  assert.ok(!hashConstructorBundle.test(bundle.replace("e.includes(`#`)||(e+=`#`),", "")));
 });
 
 test("canonical, og:url and the nojekyll marker are correct", async () => {
