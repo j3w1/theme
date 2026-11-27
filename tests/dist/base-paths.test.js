@@ -33,6 +33,20 @@ const attrValues = (text, css = false) => {
   return out;
 };
 
+/* vue-router 5.5.1 builds `"/." + base + to` for history.pushState only when its
+   base has no "#". createWebHashHistory always adds one, so the branch is dead
+   for the demo and is never a request URL. Only that exact expression, the
+   one flowing into pushState/replaceState, is exempt; any other "/." is not. */
+const isVueRouterNoHashBase = (text, index, literal) => {
+  if (literal !== "/.") return false;
+  const q = "[`\"']";
+  // `i=b.indexOf("#"),u=i>-1?(host&&document.querySelector("base")?b:b.slice(i))+to:"/."+b+to;try{h[..."replaceState":"pushState"](state,"",u)`
+  const guard = new RegExp(`(\\w+)=(\\w+)\\.indexOf\\(${q}#${q}\\)\\s*,\\s*(\\w+)=\\1>-1\\?\\([^;]*?\\)\\+(\\w+):${q}/\\.${q}\\+\\2\\+\\4\\s*;\\s*try\\s*\\{\\s*\\w+\\[[^\\]]*?(?:replaceState|pushState)${q}\\]\\(\\w+,${q}${q},\\3\\)`);
+  const start = Math.max(0, index - 200);
+  const m = guard.exec(text.slice(start, index + 220));
+  return Boolean(m) && start + m.index + m[0].indexOf("/.") <= index && index < start + m.index + m[0].length;
+};
+
 const exists = async (relative) => {
   try {
     await fs.access(path.join(repoRoot, relative));
@@ -81,11 +95,28 @@ test("no root-absolute URL escapes the base path, and every internal reference r
       // The Vue Router bundle contains registered hash destinations and its
       // protocol-relative URL sentinel. These are not HTTP resource requests.
       // portal.spec.js visits every destination and asserts actual request paths.
-      if (file.startsWith("dist/demo/assets/") && (hashDestinations.includes(m[1]) || m[1] === "//")) continue;
+      if (file.startsWith("dist/demo/assets/") && (hashDestinations.includes(m[1]) || m[1] === "//" || isVueRouterNoHashBase(text, m.index + 1, m[1]))) continue;
       problems.push(`${file}: string literal ${m[1]} looks root-absolute`);
     }
   }
   assert.deepEqual(problems, []);
+});
+
+test("the vue-router no-hash base exemption is exact", () => {
+  const real = "function a(r,a,o){let s=e.indexOf(`#`),c=s>-1?(n.host&&document.querySelector(`base`)?e:e.slice(s))+r:`/.`+e+r;try{t[o?`replaceState`:`pushState`](a,``,c),i.value=a}catch(e){n[o?`replace`:`assign`](c)}}";
+  const at = (text) => isVueRouterNoHashBase(text, text.indexOf("/."), "/.");
+  assert.ok(at(real));
+  assert.ok(!at(real.replace("s>-1?", "s>-1&&x?")));
+  assert.ok(!at(real.replace("e.indexOf(`#`)", "e.indexOf(`?`)")));
+  assert.ok(!at(real.replace(":`/.`+e+r", ":`/.`+e+r+`x`")));
+  assert.ok(!at(real.replace(",c)", ",z)")));
+  assert.ok(!at("fetch(`/.`)") && !at("a=`/.`+e+r;fetch(a)") && !at('href="/."'));
+  assert.ok(!at("c=`/.`+e+r;try{t[o?`replaceState`:`pushState`](a,``,c)}"));
+  assert.ok(!at(`${real};t.pushState(a,\`\`,\`/.\`)`.replace(real, "")));
+  assert.ok(!isVueRouterNoHashBase(real, real.indexOf("/."), "/.x"));
+  // Same guard shape, but a second live "/." in the same file stays flagged.
+  const twin = `${real};t.pushState(a,\`\`,\`/.\`)`;
+  assert.ok(!isVueRouterNoHashBase(twin, twin.lastIndexOf("/."), "/."));
 });
 
 test("canonical, og:url and the nojekyll marker are correct", async () => {
