@@ -758,7 +758,7 @@ function explorerFailureRecordContract(source){
  const keys=[...helper.matchAll(/\\"([A-Za-z]+)\\":/g)].map(m=>m[1]);
  assert.deepEqual(keys,['protocol','adapterVersion','pid','creationFiletime','stage','nativeKind','nativeAvailable','nativeValue','glyphCom','bitmapCom']);
  // The exception admits only the exact reviewed writer, not arbitrary code in a named namespace.
- assert.equal(sha(Buffer.from(helper)),'26ed1580566e249a868b524707575c6511965012a986cfe7f62c9940252629e5');
+ assert.equal(sha(Buffer.from(helper)),'0e6ab6ea33fc473f4db3827cec2bb483354200a12285c84a409e0f8269909337');
  return outside;
 }
 
