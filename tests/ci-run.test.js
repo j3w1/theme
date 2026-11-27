@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync, writeFileSync, readdirSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
 import { parse } from "yaml";
 import { scratchDirSync } from "./helpers/scratch.mjs";
 
@@ -31,7 +32,7 @@ function runner(t) {
   const { NODE_TEST_CONTEXT: _, ...env } = process.env;
   return (stage, selected = proofs, fail = 0) => {
     writeFileSync(output, "");
-    const result = spawnSync(process.execPath, ["--import", preload, "scripts/ci/run.mjs", stage], {
+    const result = spawnSync(process.execPath, ["--import", pathToFileURL(preload).href, "scripts/ci/run.mjs", stage], {
       encoding: "utf8",
       env: { ...env, PLAN: JSON.stringify({ proofs: selected }), CI_COMMANDS: output, CI_FAIL_COMMAND: String(fail) },
     });
