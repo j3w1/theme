@@ -2,7 +2,24 @@
 
 ## Compatibility boundary
 
-The current source candidate is Windows 11 x64 build 26300.9974 with the
+The local source candidate is Windows 11 x64 build 26300.10075 with redesigned
+Start. Explorer and StartDocked are 10.0.26100.10068, Settings is
+10.0.26100.10075, Search is 2610.23000.200.0 and Client.CBS is 1000.26100.505.0.
+ExplorerFrame/WIC are fixed 10068; shellcommon is fixed 10075; DUI/Common Controls
+retain 9818. Full hashes bind WIC, shellcommon, Settings and system XAML.
+All eight bundled adapters are included. Notepad 11.2609.11.0 and Paint
+11.2609.441.0 load WinUI 2.7.0.0; Terminal is 1.25.3131.0 and Calculator
+remains 11.2607.0.0. Package, RichEdit, XAML and diagnostics bridge identities
+were measured separately. No version range or unchecked RVA is admitted.
+PowerToys 0.102.3101.0 retains the exact Monaco template and all four Markdown
+headers. An isolated SDK controller in WebView 158.0.4370.45 measured the five
+public method RVAs and passed transparent/black/original background round trips,
+empty HTML/about:blank calls and Close. These observations establish identity and
+public-call admission, not navigation completion or exhaustive rendered acceptance.
+
+### Preceding candidate history
+
+The preceding source candidate was Windows 11 x64 build 26300.9974 with the
 redesigned Start layout. It replaces the retired 26300.9818, 26300.9711, 26200.9550 and 26300.9550
 candidates; those builds no longer qualify for Full mode. `host.json` records exact Explorer, StartDocked, SystemSettings,
 ShellExperienceHost and SearchHost versions, plus Start, shell and Client.CBS
@@ -16,7 +33,7 @@ file-hash guards. The unchanged Settings executable/system XAML hashes remain
 pinned. These measured identities and source changes do not establish native
 compiler, hook-initialization or rendered acceptance for this successor.
 
-The core Full candidate explicitly excludes `j3w1-notepad-native`,
+That core Full candidate explicitly excluded `j3w1-notepad-native`,
 `j3w1-notepad-chrome`, `j3w1-powertoys-preview` and
 `j3w1-powertoys-markdown`. Installed Notepad 11.2609.11.0,
 PowerToys 0.102.3101.0 and WebView 157.0.4341.46 are outside their reviewed

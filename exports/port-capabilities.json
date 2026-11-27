@@ -3631,7 +3631,7 @@
       "themeRevision": "edf3c50d768f1f8663a2e8e470c4f21a69718b0f",
       "profile": "default",
       "targetVersions": [
-        "26300.9974"
+        "26300.10075"
       ],
       "testedVersions": [],
       "os": [
@@ -3641,7 +3641,7 @@
         "status": "not verified",
         "reason": "No recorded real-import protocol bound to this subject."
       },
-      "subjectDigest": "sha256-EGu82W3ITFo7AD5gBbDFgcmFStVEdDB7Fce4bl16VVU=",
+      "subjectDigest": "sha256-hItVxhPNcpkruIbdq+d1m+cdJifHx6UCzpiNEFlA87k=",
       "evidencePath": null,
       "surfaces": {
         "desktop": {
@@ -3670,7 +3670,7 @@
         }
       },
       "files": [
-        {"path":"dist/windows-settings.json","install":"Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.","source":"ports/windows/dist/windows-settings.json","digest":"sha256-z4X9fhngZtFQV+N5VnLGXh8qYa2+6FnBDSR7IzaMQd8="},
+        {"path":"dist/windows-settings.json","install":"Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.","source":"ports/windows/dist/windows-settings.json","digest":"sha256-CS53zvgNMc5BoQ0cRKEkpnGh3NIdkl5jmf4v46+Ng+8="},
         {"path":"dist/terminal-fragment.json","install":"Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.","source":"ports/windows/dist/terminal-fragment.json","digest":"sha256-ueGK1sonkqOooVn2IH2JWSEcFExz4jrgEfJKha6kshI="},
         {"path":"dist/terminal-theme.json","install":"Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.","source":"ports/windows/dist/terminal-theme.json","digest":"sha256-duddM2Lojjtf96yUFMRVePSIGODdFKL0YpGxXkLhw3g="},
         {"path":"dist/fancyzones-layouts.json","install":"Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.","source":"ports/windows/dist/fancyzones-layouts.json","digest":"sha256-tBt1KjS7Azw5TOrDrDOkysIFDNwU5rnHUtMZHr9CwRI="},
@@ -3699,25 +3699,25 @@
         {"path":"dist/j3w1-pin.cur","install":"Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.","source":"ports/windows/dist/j3w1-pin.cur","digest":"sha256-YMoFMCRCo6hoBhSOJlEsciiYnvmGICxtErmdS0SrJeg="},
         {"path":"dist/j3w1-person.cur","install":"Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.","source":"ports/windows/dist/j3w1-person.cur","digest":"sha256-be/7eNvDKI8kadus9JedWvDVjQMqn8h+6hKTq6Q2Sas="},
         {"path":"dist/runtime.cjs","install":"Use the pinned Windows lifecycle installer.","source":"ports/windows/dist/runtime.cjs","digest":"sha256-ZnWFZ8DkHjT4A4Q2IEEr2GBr0gir6Y7HLU0pA96YyqY="},
-        {"path":"dist/install-manifest.json","install":"Use the pinned Windows lifecycle installer.","source":"ports/windows/dist/install-manifest.json","digest":"sha256-syal8YU2pTX9+bJtXc2hcvP+cN2z+x9otWnGQmNMLIg="},
-        {"path":"dist/j3w1-explorer-native.wh.cpp","install":"Use the pinned Windows lifecycle installer.","source":"ports/windows/dist/j3w1-explorer-native.wh.cpp","digest":"sha256-FGAZvYV4I/5no8SfuD4ew0jpybsf9P5K0dTo21YpHn0="},
+        {"path":"dist/install-manifest.json","install":"Use the pinned Windows lifecycle installer.","source":"ports/windows/dist/install-manifest.json","digest":"sha256-s3fFkyJ0nRI4MLa1Ati7ybhsFO+XNC7noGtG5NEpnvU="},
+        {"path":"dist/j3w1-explorer-native.wh.cpp","install":"Use the pinned Windows lifecycle installer.","source":"ports/windows/dist/j3w1-explorer-native.wh.cpp","digest":"sha256-MyqCFDBfk/FkCwKO7rB2cm7pGzrKtkz9VGAKOmeDjG8="},
         {"path":"dist/j3w1-explorer-native.json","install":"Use the pinned Windows lifecycle installer.","source":"ports/windows/dist/j3w1-explorer-native.json","digest":"sha256-LepbaM+39csZyYFFNx2MXgRGsi7fmuDN94C9P/WE6Zo="},
-        {"path":"dist/j3w1-powertoys-preview.wh.cpp","install":"Use the pinned Windows lifecycle installer.","source":"ports/windows/dist/j3w1-powertoys-preview.wh.cpp","digest":"sha256-ehRK2mYAJVbd3ht5MWhrIe/aZJhYsghtgiHFGEC02bc="},
+        {"path":"dist/j3w1-powertoys-preview.wh.cpp","install":"Use the pinned Windows lifecycle installer.","source":"ports/windows/dist/j3w1-powertoys-preview.wh.cpp","digest":"sha256-579RbCFRlPgX3ta6W54L/U2LrexmkXotntyjoLQBlck="},
         {"path":"dist/j3w1-powertoys-preview.json","install":"Use the pinned Windows lifecycle installer.","source":"ports/windows/dist/j3w1-powertoys-preview.json","digest":"sha256-+lwIdlLbogmrj/YARkIQargB+Gxd4ZfFpIhE2gZtznM="},
         {"path":"dist/j3w1-calculator.wh.cpp","install":"Use the pinned Windows lifecycle installer.","source":"ports/windows/dist/j3w1-calculator.wh.cpp","digest":"sha256-uX5tCv+cZGX4hlb7+zdF99olnPWP1AW4+2XpbhdkKjw="},
         {"path":"dist/j3w1-calculator.json","install":"Use the pinned Windows lifecycle installer.","source":"ports/windows/dist/j3w1-calculator.json","digest":"sha256-+lwIdlLbogmrj/YARkIQargB+Gxd4ZfFpIhE2gZtznM="},
-        {"path":"dist/j3w1-powertoys-markdown.wh.cpp","install":"Use the pinned Windows lifecycle installer.","source":"ports/windows/dist/j3w1-powertoys-markdown.wh.cpp","digest":"sha256-XqO89xVqsKCfVO25IF9K/rtuioEpc3xEPfj8jFwV+T8="},
+        {"path":"dist/j3w1-powertoys-markdown.wh.cpp","install":"Use the pinned Windows lifecycle installer.","source":"ports/windows/dist/j3w1-powertoys-markdown.wh.cpp","digest":"sha256-egitrPbbEm6zC1bP9esnM34QqAJL9uRshJdnSiJiaWg="},
         {"path":"dist/j3w1-powertoys-markdown.json","install":"Use the pinned Windows lifecycle installer.","source":"ports/windows/dist/j3w1-powertoys-markdown.json","digest":"sha256-+lwIdlLbogmrj/YARkIQargB+Gxd4ZfFpIhE2gZtznM="},
         {"path":"dist/markdown-theme.css","install":"Use the pinned Windows lifecycle installer.","source":"ports/windows/dist/markdown-theme.css","digest":"sha256-QQfAcDmQJOHNbZ0veNpgvMS/j9oyGHIlv1MqTWO8cho="},
         {"path":"dist/j3w1-folder.ico","install":"Run the single pinned ports/windows/install.ps1; folder defaults are included in its saved rollback.","source":"ports/windows/dist/j3w1-folder.ico","digest":"sha256-u7se2WhFGTHeghKcgAIeJHjvMsjZ5RgvjU01oemZ81Y="},
         {"path":"dist/j3w1-folder-open.ico","install":"Run the single pinned ports/windows/install.ps1; folder defaults are included in its saved rollback.","source":"ports/windows/dist/j3w1-folder-open.ico","digest":"sha256-tJcpfyOv6O+Gf1NzqMxs+3xPrstYFAiJIKAlw02UsdE="},
-        {"path":"dist/j3w1-notepad-native.wh.cpp","install":"Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.","source":"ports/windows/dist/j3w1-notepad-native.wh.cpp","digest":"sha256-VahaZWltDuk4e7vjWyB0G73+Y41V2cBkvHuoy7DNa6I="},
+        {"path":"dist/j3w1-notepad-native.wh.cpp","install":"Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.","source":"ports/windows/dist/j3w1-notepad-native.wh.cpp","digest":"sha256-iWIfnSghVZEsfGor1RdSyaHRmCKBzD8MUzqOEz40ff4="},
         {"path":"dist/j3w1-notepad-native.json","install":"Use the pinned ports/windows/install.ps1 lifecycle; do not overwrite whole application settings.","source":"ports/windows/dist/j3w1-notepad-native.json","digest":"sha256-+lwIdlLbogmrj/YARkIQargB+Gxd4ZfFpIhE2gZtznM="},
-        {"path":"dist/j3w1-notepad-chrome.wh.cpp","install":"Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.","source":"ports/windows/dist/j3w1-notepad-chrome.wh.cpp","digest":"sha256-vDhlUrAWaz6Esmp0fxkzHffAn6gGEu7CoIemil7Ax6E="},
+        {"path":"dist/j3w1-notepad-chrome.wh.cpp","install":"Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.","source":"ports/windows/dist/j3w1-notepad-chrome.wh.cpp","digest":"sha256-27+lU6zDhyupt8ZRTqX8eIWWpBe4btMZE+V3vOg8BOE="},
         {"path":"dist/j3w1-notepad-chrome.json","install":"Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.","source":"ports/windows/dist/j3w1-notepad-chrome.json","digest":"sha256-+lwIdlLbogmrj/YARkIQargB+Gxd4ZfFpIhE2gZtznM="},
-        {"path":"dist/j3w1-paint-chrome.wh.cpp","install":"Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.","source":"ports/windows/dist/j3w1-paint-chrome.wh.cpp","digest":"sha256-sYy/gTQG4+R+bwQw7a7HFZv1PhGKMOenwjgzAN9Ms74="},
+        {"path":"dist/j3w1-paint-chrome.wh.cpp","install":"Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.","source":"ports/windows/dist/j3w1-paint-chrome.wh.cpp","digest":"sha256-rL7nxGNa7x7hN7nxtB3fd9KwdO3k+VrAArHnQwvVkOw="},
         {"path":"dist/j3w1-paint-chrome.json","install":"Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.","source":"ports/windows/dist/j3w1-paint-chrome.json","digest":"sha256-+lwIdlLbogmrj/YARkIQargB+Gxd4ZfFpIhE2gZtznM="},
-        {"path":"dist/j3w1-terminal-chrome.wh.cpp","install":"Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.","source":"ports/windows/dist/j3w1-terminal-chrome.wh.cpp","digest":"sha256-e5ArZJK6t5Ln1i1nx63zTvmIbWQQF1YH9som1054coM="},
+        {"path":"dist/j3w1-terminal-chrome.wh.cpp","install":"Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.","source":"ports/windows/dist/j3w1-terminal-chrome.wh.cpp","digest":"sha256-67/u1Q/0pptjNCU9hzJux0BC6GtxVT0/yzImnZ2IBWc="},
         {"path":"dist/j3w1-terminal-chrome.json","install":"Use the single pinned ports/windows/install.ps1 lifecycle; chrome changes share its saved rollback.","source":"ports/windows/dist/j3w1-terminal-chrome.json","digest":"sha256-+lwIdlLbogmrj/YARkIQargB+Gxd4ZfFpIhE2gZtznM="}
       ],
       "rollback": "Run install.ps1 -Action Restore for original settings, or add -Latest for the previous transaction; Uninstall also removes owned theme assets.",

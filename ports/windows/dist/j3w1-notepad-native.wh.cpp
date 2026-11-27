@@ -2,7 +2,7 @@
 // @id j3w1-notepad-native
 // @name j3w1 Notepad editor colors
 // @description Package-gated editor painting; document formats remain native
-// @version 1.1.1
+// @version 1.1.2
 // @author j3w1
 // @include Notepad.exe
 // @architecture x86-64
@@ -121,7 +121,7 @@ static bool ReviewedEditor(){
             if(complete&&BCryptFinishHash(hash,digest,sizeof(digest),0)>=0){
                 constexpr char hex[]="0123456789abcdef";std::string actual;
                 for(BYTE byte:digest){actual+=hex[byte>>4];actual+=hex[byte&15];}
-                valid=actual=="e7babd9942e133c690b4144657956af890912d130f81a81650f3a5597b5e5dbc";
+                valid=actual=="c4b644aee7b05eb1e4d162067dc74319b989d7e3d02e357c6ef69076dbed1d1a";
             }
         }
     }
@@ -161,7 +161,7 @@ static void StartDiscovery() {
 }
 BOOL Wh_ModInit(){
  UINT32 length=0;GetCurrentPackageFullName(&length,nullptr);if(!length||length>512)return FALSE;
- std::vector<wchar_t> name(length);if(GetCurrentPackageFullName(&length,name.data())!=ERROR_SUCCESS||wcscmp(name.data(),L"Microsoft.WindowsNotepad_11.2607.14.0_x64__8wekyb3d8bbwe"))return FALSE;
+ std::vector<wchar_t> name(length);if(GetCurrentPackageFullName(&length,name.data())!=ERROR_SUCCESS||wcscmp(name.data(),L"Microsoft.WindowsNotepad_11.2609.11.0_x64__8wekyb3d8bbwe"))return FALSE;
  dispatch=RegisterWindowMessageW(L"j3w1-notepad-native-refresh");enabled=Wh_GetIntSetting(L"enabled")!=0;
  return dispatch&&Wh_SetFunctionHook(reinterpret_cast<void*>(GetSysColor),reinterpret_cast<void*>(Color),
      reinterpret_cast<void**>(&originalColor))&&HookGlyph();

@@ -2,7 +2,7 @@
 // @id j3w1-powertoys-preview
 // @name j3w1 PowerToys text preview
 // @description Token palette for the exact reviewed Monaco preview template
-// @version 1.1.1
+// @version 1.1.2
 // @author j3w1
 // @include PowerToys.MonacoPreviewHandler.exe
 // @architecture x86-64
@@ -172,7 +172,7 @@ static bool ReviewedVersion(const wchar_t* exe) {
         && VerQueryValueW(data.data(),L"\\",reinterpret_cast<void**>(&fixed),&length)
         && length>=sizeof(*fixed) && fixed->dwSignature==0xfeef04bd
         && fixed->dwFileVersionMS==MAKELONG(102,0)
-        && fixed->dwFileVersionLS==MAKELONG(0,2933);
+        && fixed->dwFileVersionLS==MAKELONG(0,3101);
 }
 static bool ReviewedTemplate(const std::string& bytes) {
     BCRYPT_ALG_HANDLE algorithm=nullptr;BCRYPT_HASH_HANDLE hash=nullptr;

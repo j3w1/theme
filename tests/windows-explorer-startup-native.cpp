@@ -64,7 +64,7 @@ static BOOL WINAPI FixtureFree(HMODULE module){assert(modulePaths.erase(module)=
 static DWORD WINAPI FixtureName(HMODULE module,LPWSTR path,DWORD count){if(truncatePath)return count;auto found=modulePaths.find(module);if(found==modulePaths.end())return 0;wcscpy(path,found->second.c_str());return static_cast<DWORD>(found->second.size());}
 static DWORD WINAPI FixtureVersionSize(LPCWSTR,LPDWORD){return 1;}
 static BOOL WINAPI FixtureVersionInfo(LPCWSTR path,DWORD,DWORD,LPVOID){readingFrame=wcsstr(path,L"ExplorerFrame.dll")!=nullptr;return TRUE;}
-static BOOL WINAPI FixtureVersionQuery(LPCVOID,LPCWSTR,LPVOID* result,PUINT size){static VS_FIXEDFILEINFO version{};version.dwFileVersionMS=wrongVersion?0:MAKELONG(0,10);version.dwFileVersionLS=MAKELONG(readingFrame?(retiredFrame?9818:9974):(mixedDui?9974:9818),26100);*result=&version;*size=sizeof(version);return TRUE;}
+static BOOL WINAPI FixtureVersionQuery(LPCVOID,LPCWSTR,LPVOID* result,PUINT size){static VS_FIXEDFILEINFO version{};version.dwFileVersionMS=wrongVersion?0:MAKELONG(0,10);version.dwFileVersionLS=MAKELONG(readingFrame?(retiredFrame?9974:10068):(mixedDui?10068:9818),26100);*result=&version;*size=sizeof(version);return TRUE;}
 static BOOL Wh_SetFunctionHook(void*,void*,void**){++hooks;return TRUE;}
 static PCWSTR Wh_GetStringSetting(PCWSTR){return L"#000000";}
 static void Wh_FreeStringSetting(PCWSTR){}
@@ -125,7 +125,7 @@ static DWORD GetModuleFileNameW(HMODULE,LPWSTR text,DWORD){if(fail==3){SetLastEr
 static DWORD GetFileVersionInfoSizeW(LPCWSTR,LPDWORD){if(fail==4){SetLastError(ERROR_BAD_EXE_FORMAT);return 0;}return 1;}
 static BOOL GetFileVersionInfoW(LPCWSTR,DWORD,DWORD,LPVOID){if(fail==5){SetLastError(ERROR_BAD_EXE_FORMAT);return FALSE;}return TRUE;}
 static BOOL VerQueryValueW(LPCVOID,LPCWSTR,LPVOID* result,PUINT size) {
- static VS_FIXEDFILEINFO version{};version.dwFileVersionMS=MAKELONG(0,10);version.dwFileVersionLS=fail==7?0:MAKELONG(9974,26100);
+ static VS_FIXEDFILEINFO version{};version.dwFileVersionMS=MAKELONG(0,10);version.dwFileVersionLS=fail==7?0:MAKELONG(10068,26100);
  *result=&version;*size=sizeof(version);return fail!=6;
 }
 static FARPROC GetProcAddress(HMODULE,LPCSTR){if(fail==8){SetLastError(ERROR_BAD_EXE_FORMAT);return nullptr;}return reinterpret_cast<FARPROC>(1);}
@@ -156,7 +156,7 @@ static BOOL Wh_SetFunctionHook(void*,void*,void**){++hookCalls;return fail!=20;}
 static void FailureRecords() {
  int count=0;auto args=CommandLineToArgvW(GetCommandLineW(),&count);assert(args&&count==2);diagnosticRoot=args[1];LocalFree(args);
  auto directory=std::filesystem::path(diagnosticRoot)/L"j3w1-theme"/L"windows"/L"diagnostics";
- auto file=directory/L"j3w1-explorer-native-1.8.10-init-failure.json";
+ auto file=directory/L"j3w1-explorer-native-1.8.11-init-failure.json";
  auto read=[&](){std::ifstream input(file,std::ios::binary);return std::string(std::istreambuf_iterator<char>(input),{});};
  auto clear=[&](){fault=Fault::None;creates=writes=flushes=0;std::filesystem::remove(file);};
  auto emit=[&](){SetLastError(0x12345678);bool result=InitFailure::Write(15,InitFailure::HResult,0x80010106,true,RPC_E_CHANGED_MODE,false,S_OK);assert(GetLastError()==0x12345678);return result;};

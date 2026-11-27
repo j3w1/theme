@@ -158,12 +158,12 @@ these outcomes is a successful installation or restored styling pass.
 
 ## What changes
 
-The current 26300.9974 core Full candidate excludes Notepad editor/chrome and
-PowerToys preview/Markdown adapters because the installed component versions are
-outside their reviewed pins. Their sources and earlier evidence remain intact;
-the table is an implementation inventory, not a claim that those excluded surfaces
-are installed or supported. See Compatibility for the exact exclusions and the
-canonical tools-only Prepare action. Native PowerToys settings remain separate.
+This local 26300.10075 Full candidate includes all eight bundled adapters and
+the five pinned shell stylers. Exact identities were measured on this PC for
+Notepad 11.2609.11.0, Paint 11.2609.441.0, Terminal 1.25.3131.0,
+PowerToys 0.102.3101.0, WinUI runtime 2.7.0.0 and WebView 158.0.4370.45.
+The unchanged four Markdown header identities and Monaco template were checked.
+This is a local compatibility patch, not an upstream release or full visual acceptance.
 
 | Area | Treatment |
 | --- | --- |

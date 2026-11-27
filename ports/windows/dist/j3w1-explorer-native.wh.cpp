@@ -2,7 +2,7 @@
 // @id j3w1-explorer-native
 // @name j3w1 Explorer native colors
 // @description Generated native Explorer canvas and text adapter; exact host only
-// @version 1.8.10
+// @version 1.8.11
 // @author j3w1
 // @include explorer.exe
 // @architecture x86-64
@@ -638,8 +638,8 @@ static bool Caller(void* address) noexcept {
         reinterpret_cast<LPCWSTR>(address),&module)||module!=GetModuleHandleW(L"windowsudk.shellcommon.dll"))return false;
     std::lock_guard guard(moduleLock);
     if(retainedShell)return module==retainedShell;
-    if(!FixedModuleVersion(module,MAKELONG(0,10),MAKELONG(9974,26100))
-       ||!Digest(module,"9e84c8cedb33956f3ad3865328099f1598e347fb09a3af961b9056a128d36232"))return false;
+    if(!FixedModuleVersion(module,MAKELONG(0,10),MAKELONG(10075,26100))
+       ||!Digest(module,"3e1e5ffd4a4cbf01126d05daeff09a418500f285a46ebe5ce5a2a492c5564c1c"))return false;
     // Retain the admitted module until hook cleanup so a recycled handle cannot
     // inherit an earlier module's admission. Missing/unknown callers pass through.
     return GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS,reinterpret_cast<LPCWSTR>(address),&retainedShell)!=FALSE;
@@ -676,8 +676,8 @@ static bool Init(HRESULT* observed=nullptr,HRESULT* creation=nullptr) noexcept {
         auto function=(*reinterpret_cast<void***>(factory))[22];HMODULE module=nullptr;
         ready=GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS|GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
             reinterpret_cast<LPCWSTR>(function),&module)&&module==GetModuleHandleW(L"windowscodecs.dll")
-            &&FixedModuleVersion(module,MAKELONG(0,10),MAKELONG(9974,26100))
-            &&Digest(module,"df01c4d5e5f594e6aa18e7a4baa27eba3cf5409c74f02b00d7c8e46b277da631")
+            &&FixedModuleVersion(module,MAKELONG(0,10),MAKELONG(10068,26100))
+            &&Digest(module,"b6fcacdc292471f4871451af8fb7a3aa6035c83f96d56c4cc02ec7b823b282d9")
             &&Wh_SetFunctionHook(function,reinterpret_cast<void*>(Hook),reinterpret_cast<void**>(&originalConvert));
     }
     if(ready){retainedFactory=factory;factory=nullptr;}
@@ -802,7 +802,7 @@ static void ReleaseExplorerRenderingModules() noexcept {
     ownedExplorerDui=nullptr;ownedExplorerFrame=nullptr;
 }
 static bool InitMarquee(HMODULE frame,HMODULE dui) {
-    if(!FixedModuleVersion(frame,MAKELONG(0,10),MAKELONG(9974,26100))
+    if(!FixedModuleVersion(frame,MAKELONG(0,10),MAKELONG(10068,26100))
        || !FixedModuleVersion(dui,MAKELONG(0,10),MAKELONG(9818,26100)))return false;
     marqueeVtable=FindExactSymbol(frame,L"const UIMarqueeSelector::`vftable'{for `DirectUI::Element'}");
     itemsViewVtable=FindExactSymbol(frame,L"const UIItemsView::`vftable'{for `DirectUI::HWNDElement'}");
@@ -1271,12 +1271,12 @@ static bool Write(unsigned stage,Kind kind,DWORD code,bool glyphReached,HRESULT 
         if(glyphReached)snprintf(glyphValue,sizeof(glyphValue),"%lu",static_cast<DWORD>(glyph));
         if(bitmapReached)snprintf(bitmapValue,sizeof(bitmapValue),"%lu",static_cast<DWORD>(bitmap));
         int size=snprintf(record,sizeof(record),
-            "{\"protocol\":1,\"adapterVersion\":\"1.8.10\",\"pid\":%lu,\"creationFiletime\":\"%llu\","
+            "{\"protocol\":1,\"adapterVersion\":\"1.8.11\",\"pid\":%lu,\"creationFiletime\":\"%llu\","
             "\"stage\":%u,\"nativeKind\":%u,\"nativeAvailable\":%s,\"nativeValue\":%lu,"
             "\"glyphCom\":%s,\"bitmapCom\":%s}\n",GetCurrentProcessId(),stamp.QuadPart,stage,
             static_cast<unsigned>(kind),kind==Unavailable?"false":"true",code,glyphValue,bitmapValue);
         if(size<=0||size>=static_cast<int>(sizeof(record)))return false;
-        path+=L"\\j3w1-explorer-native-1.8.10-init-failure.json";
+        path+=L"\\j3w1-explorer-native-1.8.11-init-failure.json";
         Handle file(CreateFileW(path.c_str(),GENERIC_WRITE|FILE_READ_ATTRIBUTES,0,nullptr,CREATE_NEW,
             FILE_ATTRIBUTE_NORMAL|FILE_FLAG_OPEN_REPARSE_POINT,nullptr));
         if(!Identity(file.value,path,false,parent.dwVolumeSerialNumber))return false;
@@ -1311,7 +1311,7 @@ BOOL Wh_ModInit() {
     VS_FIXEDFILEINFO* version=nullptr;UINT length=0;
     if(!size || !failure.Check(VersionInfo,GetFileVersionInfoW(executable,0,size,bytes.data())!=FALSE,Win32)
         || !failure.Check(VersionValue,VerQueryValueW(bytes.data(),L"\\",(void**)&version,&length)!=FALSE)
-        || !failure.Check(VersionMatch,length>=sizeof(*version) && version->dwFileVersionMS==MAKELONG(0,10) && version->dwFileVersionLS==MAKELONG(9974,26100))) {return FALSE;}
+        || !failure.Check(VersionMatch,length>=sizeof(*version) && version->dwFileVersionMS==MAKELONG(0,10) && version->dwFileVersionLS==MAKELONG(10068,26100))) {return FALSE;}
     themeClass=(ThemeClassFn)GetProcAddress(GetModuleHandleW(L"uxtheme.dll"),MAKEINTRESOURCEA(74));
     if(!failure.Check(ThemeClass,themeClass!=nullptr,Win32)) {return FALSE;}
     ExplorerRenderingModules renderers;
