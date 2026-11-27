@@ -12,6 +12,9 @@ updates:
     # Manual bumps only after re-vetting: legacy 203.x–214.x sorts above 1.229.1.
     ignore:
       - dependency-name: teleproto
+      # Skip 5.5.1: its non-hash /. branch trips the dist base-path gate.
+      - dependency-name: vue-router
+        versions: ["5.5.1"]
   - package-ecosystem: github-actions
     directory: /
     schedule:
