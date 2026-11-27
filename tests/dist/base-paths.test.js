@@ -54,7 +54,33 @@ const hashOnlySource = (text) => {
   const imp = /import\s*\{\s*createRouter\s*,\s*createWebHashHistory\s*\}\s*from\s*["']vue-router["']/.test(text);
   return imp && history.length === 1 && history[0] === "createWebHashHistory" && names.every((n) => n === "createWebHashHistory");
 };
-const hashConstructorBundle = /function (\w+)\((\w+)\)\{return \2=location\.host\?\2\|\|location\.pathname\+location\.search:[`"']{2},\2\.includes\([`"']#[`"']\)\|\|\(\2\+=[`"']#[`"']\),\w+\(\2\)\}/;
+const hashWrapper = /function (\w+)\((\w+)\)\{return \2=location\.host\?\2\|\|location\.pathname\+location\.search:[`"']{2},\2\.includes\([`"']#[`"']\)\|\|\(\2\+=[`"']#[`"']\),(\w+)\(\2\)\}/d;
+const occurrences = (text, id) => [...text.matchAll(new RegExp(`(?<![\\w$])${id}(?![\\w$])`, "g"))].map((m) => m.index);
+/* Fail-closed proof that the hash wrapper is what the router uses and that the
+   no-hash exempt branch is reachable only through it: the wrapper forwards to the
+   web-history function W; W occurs exactly twice (its declaration and that
+   forwarding call), so no other caller or alias can reach the no-hash machinery;
+   W's body calls the function N that holds the exempt branch; and every
+   `history: x()` in the bundle is the wrapper, which occurs only as its
+   declaration and that router call. */
+const hashRouterProof = (text) => {
+  const w = hashWrapper.exec(text);
+  if (!w) return false;
+  const [wrapper, forwarded] = [w[1], w[3]];
+  const tail = w.indices[3][0];
+  const web = occurrences(text, forwarded);
+  const decl = text.indexOf(`function ${forwarded}(`);
+  if (decl < 0 || web.length !== 2 || web[0] !== decl + "function ".length || web[1] !== tail) return false;
+  const body = /^function \w+\((\w+)\)\{\1=\w+\(\1\);let \w+=(\w+)\(\1\),\w+=\w+\(\1,\w+\.state,\w+\.location,\w+\.replace\);[^]*?history\.go\(/.exec(text.slice(decl));
+  if (!body) return false;
+  const start = text.indexOf(`function ${body[2]}(`);
+  noHashBranch.lastIndex = 0;
+  const branches = [...text.matchAll(noHashBranch)];
+  if (start < 0 || start > decl || !branches.length || !branches.every((m) => m.index > start && m.index < decl)) return false;
+  const calls = [...text.matchAll(/\bhistory\s*:\s*([\w$]+)\(/g)];
+  const uses = occurrences(text, wrapper);
+  return calls.length === 1 && calls[0][1] === wrapper && uses.length === 2 && uses[0] === w.index + "function ".length && uses[1] === calls[0].index + calls[0][0].indexOf(wrapper);
+};
 
 const exists = async (relative) => {
   try {
@@ -105,7 +131,7 @@ test("no root-absolute URL escapes the base path, and every internal reference r
       // The Vue Router bundle contains registered hash destinations and its
       // protocol-relative URL sentinel. These are not HTTP resource requests.
       // portal.spec.js visits every destination and asserts actual request paths.
-      if (file.startsWith("dist/demo/assets/") && (hashDestinations.includes(m[1]) || m[1] === "//" || demoHashOnly && hashConstructorBundle.test(text) && isVueRouterNoHashBase(text, m.index + 1, m[1]))) continue;
+      if (file.startsWith("dist/demo/assets/") && (hashDestinations.includes(m[1]) || m[1] === "//" || demoHashOnly && hashRouterProof(text) && isVueRouterNoHashBase(text, m.index + 1, m[1]))) continue;
       problems.push(`${file}: string literal ${m[1]} looks root-absolute`);
     }
   }
@@ -145,9 +171,22 @@ test("the exemption requires a hash-only demo", () => {
   assert.ok(!hashOnlySource(ok.replace("createWebHashHistory }", "createWebHashHistory, createWebHistory }")));
   assert.ok(!hashOnlySource(`${ok}\nconst other = createRouter({ history: createWebHistory(), routes });`));
   assert.ok(!hashOnlySource(ok.replace("createWebHashHistory()", "createMemoryHistory()")));
-  const bundle = "function Fc(e){return e=location.host?e||location.pathname+location.search:``,e.includes(`#`)||(e+=`#`),Pc(e)}";
-  assert.ok(hashConstructorBundle.test(bundle));
-  assert.ok(!hashConstructorBundle.test(bundle.replace("e.includes(`#`)||(e+=`#`),", "")));
+  const html = "function Nc(e){let t=e.indexOf(`#`),n=t>-1?(location.host&&document.querySelector(`base`)?e:e.slice(t))+r:`/.`+e+r;try{h[o?`replaceState`:`pushState`](a,``,n)}catch(e){}}function Pc(e){e=tc(e);let t=Nc(e),n=jc(e,t.state,t.location,t.replace);function r(e,t=!0){history.go(e)}return i}";
+  const wrap = "function Fc(e){return e=location.host?e||location.pathname+location.search:``,e.includes(`#`)||(e+=`#`),Pc(e)}";
+  const bundle = `${html}${wrap}var mu=ol({history:Fc(),routes:[]});`;
+  assert.ok(hashRouterProof(bundle));
+  assert.ok(!hashRouterProof(bundle.replace("e.includes(`#`)||(e+=`#`),", "")));
+  // Retained hash constructor, but the router or another caller reaches web history.
+  assert.ok(!hashRouterProof(bundle.replace("history:Fc()", "history:Pc()")));
+  assert.ok(!hashRouterProof(`${bundle}var r2=ol({history:Pc()});`));
+  assert.ok(!hashRouterProof(`${bundle}var h=Pc;var r2=ol({history:h()});`));
+  assert.ok(!hashRouterProof(`${bundle}var h=Pc;`));
+  assert.ok(!hashRouterProof(`${bundle}var r2=ol({history:Fc()});`));
+  assert.ok(!hashRouterProof(`${bundle}var h=Fc;`));
+  assert.ok(!hashRouterProof(bundle.replace("history:Fc()", "history:Fc2()")));
+  // The exempt branch must sit in the function the web-history function calls.
+  assert.ok(!hashRouterProof(bundle.replace("let t=Nc(e)", "let t=Zc(e)")));
+  assert.ok(!hashRouterProof(`${wrap}var mu=ol({history:Fc()});${html}`));
 });
 
 test("canonical, og:url and the nojekyll marker are correct", async () => {
