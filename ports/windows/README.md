@@ -265,7 +265,7 @@ preserve the emitted adapter bytes when behavior is unchanged.
 
 ### Explorer initialization failure record
 
-Explorer adapter 1.8.10 can emit one protocol-1 numeric failure record. This is
+Explorer adapter 1.8.11 can emit one protocol-1 numeric failure record. This is
 diagnostic evidence, not admission, a successful initialization or visual
 acceptance. It preserves all existing fail-closed checks and COM policy.
 The closed stages, in original initialization order, are:
@@ -298,7 +298,7 @@ every validated ancestor without write/delete sharing through exclusive
 (less than 1024 bytes) and flush. Unavailable, aliased, non-directory, reparse,
 ambiguous or replaced identities fail closed without a fallback. No directory
 is created by the adapter. The sole name is
-`j3w1-explorer-native-1.8.10-init-failure.json`; no overwrite, append, alternate
+`j3w1-explorer-native-1.8.11-init-failure.json`; no overwrite, append, alternate
 name, retry, repair or pruning occurs. Diagnostic errors preserve initialization
 outcomes and the caller's last error. Partial or malformed output is unavailable
 evidence and is never silently repaired. The flush outcome is not recorded and
