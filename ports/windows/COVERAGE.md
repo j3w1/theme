@@ -1,14 +1,18 @@
 # Windows and application coverage
 
-The current 26300.9974 source candidate targets the core Full Windows shell.
-It is not yet native/visually qualified merely because its measured pins match.
-Notepad editor/chrome and PowerToys preview/Markdown hooks are explicitly excluded
-from this revision's lifecycle activation: installed Notepad11.2609.11.0,
-PowerToys0.102.3101.0 and WebView157.0.4341.46 remain unreviewed. Their older
-component observations below are historical, not acceptance of these versions.
-Native PowerToys utility settings remain available. Paint, Calculator and Terminal
-retain their own exact unchanged guards. The 9818 host is retired for this successor;
-its immutable source/cache and earlier evidence are preserved.
+The current 26300.10075 source candidate includes all five pinned shell stylers
+and eight bundled adapters, with no lifecycle exclusions. Notepad 11.2609.11.0,
+Paint 11.2609.441.0, Terminal 1.25.3131.0, PowerToys 0.102.3101.0,
+WinUI 2.7.0.0 and WebView 158.0.4370.45 have separately measured exact pins;
+Calculator remains 11.2607.0.0. The preceding 9974 shell host is retired.
+
+A live Full update and its installer Test passed with all thirteen adapters
+enabled. Bounded observations showed themed Explorer lists/chrome, Calculator,
+Notepad editor/chrome, Paint controls, Settings, Start and both PowerToys code
+and Markdown previews. Terminal's adapter was observed loaded. These checks do
+not establish every interaction, first-frame, DPI, accessibility, clean-install
+or new-sign-in state. Earlier owner acceptances below retain their recorded
+host scope; the port remains experimental.
 
 The Windows installer applies the adapters listed below. It does not make every
 application inherit a global j3w1 palette. Windows personalization, Win32 theme

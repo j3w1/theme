@@ -2,7 +2,7 @@
 
 ## Compatibility boundary
 
-The local source candidate is Windows 11 x64 build 26300.10075 with redesigned
+The current source candidate is Windows 11 x64 build 26300.10075 with redesigned
 Start. Explorer and StartDocked are 10.0.26100.10068, Settings is
 10.0.26100.10075, Search is 2610.23000.200.0 and Client.CBS is 1000.26100.505.0.
 ExplorerFrame/WIC are fixed 10068; shellcommon is fixed 10075; DUI/Common Controls

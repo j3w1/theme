@@ -158,12 +158,12 @@ these outcomes is a successful installation or restored styling pass.
 
 ## What changes
 
-This local 26300.10075 Full candidate includes all eight bundled adapters and
-the five pinned shell stylers. Exact identities were measured on this PC for
+The current 26300.10075 Full candidate includes all eight bundled adapters and
+the five pinned shell stylers. Exact identities were measured for
 Notepad 11.2609.11.0, Paint 11.2609.441.0, Terminal 1.25.3131.0,
 PowerToys 0.102.3101.0, WinUI runtime 2.7.0.0 and WebView 158.0.4370.45.
 The unchanged four Markdown header identities and Monaco template were checked.
-This is a local compatibility patch, not an upstream release or full visual acceptance.
+The port remains experimental; matching identities do not establish full visual acceptance.
 
 | Area | Treatment |
 | --- | --- |
